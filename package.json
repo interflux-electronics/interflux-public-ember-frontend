@@ -11,11 +11,15 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
+    "build": "./node_modules/ember-cli/bin/ember build",
+    "start": "./node_modules/ember-cli/bin/ember serve",
+    "test": "./node_modules/ember-cli/bin/ember test",
+    "deploy": "git checkout production -f; git pull origin master; git push; ./remote/deploy.sh; git checkout master",
+    "bump-patch": "npm version patch; git push origin --tags; git push",
+    "bump-minor": "npm version minor; git push origin --tags; git push",
+    "bump-major": "npm version major; git push origin --tags; git push",
     "lint:hbs": "ember-template-lint .",
-    "lint:js": "eslint .",
-    "start": "ember serve",
-    "test": "ember test"
+    "lint:js": "eslint ."
   },
   "devDependencies": {
     "@ember/optional-features": "^1.0.0",
