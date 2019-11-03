@@ -21,6 +21,7 @@ Router.map(function() {
   this.route('orders');
   this.route('academy');
   this.route('contact');
+  this.route('feed');
 });
 
 export default Router;
