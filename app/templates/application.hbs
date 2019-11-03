@@ -1,3 +1,30 @@
-<h2 id="title">Welcome to Ember</h2>
+<div id="app">
 
-{{outlet}}
+  <img
+    src="https://cdn.interflux.com/images/logos/secondary-interflux-electronics-logo-2.svg"
+    width="200"
+    height="200"
+    alt="Interflux Electronics logo"
+  >
+
+  <nav>
+
+    <ul>
+      <li>
+        <LinkTo @route='products'>Products - Browse our products</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='orders'>Orders - Manage your orders</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='academy'>Academy - Learn how to solder electronic even better</LinkTo>
+      </li>
+      <li>
+        <LinkTo @route='contact'>Humans - Ask Interflux, we're helpful</LinkTo>
+      </li>
+    </ul>
+  </nav>
+
+  {{outlet}}
+
+</div>
