@@ -11,7 +11,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "./node_modules/ember-cli/bin/ember build",
+    "build": "./node_modules/ember-cli/bin/ember build --environment production",
     "start": "./node_modules/ember-cli/bin/ember serve",
     "test": "./node_modules/ember-cli/bin/ember test",
     "deploy": "git checkout production -f; git pull origin master; git push; ./remote/deploy.sh; git checkout master",
