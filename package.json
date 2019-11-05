@@ -40,6 +40,7 @@
     "ember-data": "~3.13.0",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^6.7.0",
+    "ember-get-config": "^0.2.4",
     "ember-load-initializers": "^2.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^4.5.1",
@@ -47,6 +48,7 @@
     "ember-source": "~3.13.0",
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
+    "git-rev-sync": "^1.12.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.9.0"
   },

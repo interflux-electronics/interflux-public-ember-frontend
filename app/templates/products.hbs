@@ -8,10 +8,13 @@
 
 <h1>Products</h1>
 
-<p>#1</p>
-<p>#2</p>
-<p>#3</p>
-<p>#4</p>
-<p>#5</p>
+<ul>
+  {{#each model.products as |product|}}
+    <li>
+      <p>{{product.name}}</p>
+      <p>{{product.pitch}}</p>
+    </li>
+  {{/each}}
+</ul>
 
 {{outlet}}
