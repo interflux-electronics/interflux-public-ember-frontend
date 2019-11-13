@@ -1,0 +1,21 @@
+<nav>
+  <ul>
+    <li>
+      <LinkTo @route="index">Back</LinkTo>
+    </li>
+  </ul>
+</nav>
+
+<h1>Feed</h1>
+
+<button {{on 'click' this.create}}>New</button>
+
+{{#if @loading}}
+
+{{else}}
+  <ul>
+    {{#each articlesSorted as |article|}}
+      <FeedItem @article={{article}} />
+    {{/each}}
+  </ul>
+{{/if}}

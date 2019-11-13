@@ -30,7 +30,7 @@ nav em {
   max-width: 360px;
   margin: 0 auto;
   background: #fff;
-  padding: 30px;
+  padding: 15px;
   box-sizing: border-box;
 }
 
@@ -42,3 +42,8 @@ img {
   display: block;
   margin: 0 auto;
 }
+
+@import 'app/components/feed-item/style.scss';
+@import 'app/components/feeds-page/style.scss';
+@import 'app/components/page-load/style.scss';
+@import 'app/components/load-spinner/style.scss';
