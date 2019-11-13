@@ -19,7 +19,7 @@ const apiHosts = {
 // Where this Ember app is located
 const appHosts = {
   development: 'http://localhost:4200',
-  production: 'https://interflux.io'
+  production: 'https://app.interflux.com'
 };
 
 // Where the CDN is located
