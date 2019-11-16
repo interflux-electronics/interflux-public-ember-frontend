@@ -13,6 +13,8 @@
   "scripts": {
     "build": "./node_modules/ember-cli/bin/ember build --environment production",
     "start": "./node_modules/ember-cli/bin/ember serve",
+    "start-android": "ANDROID_BUILD=true corber start",
+    "start-ios": "IOS_BUILD=true corber start",
     "test": "./node_modules/ember-cli/bin/ember test",
     "deploy": "git checkout production -f; git pull origin master; git push; ./remote/deploy.sh; git checkout master",
     "bump-patch": "npm version patch; git push origin --tags; git push",

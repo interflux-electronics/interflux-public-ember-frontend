@@ -43,12 +43,21 @@ module.exports = function(env) {
   const appHost = appHosts[env];
   const cdnHost = cdnHosts[env];
 
+  const isAndroid = process.env.ANDROID_BUILD === 'true';
+  const isIOS = process.env.IOS_BUILD === 'true';
+  const isMobileApp = isAndroid || isIOS;
+  const isWebApp = !isMobileApp;
+
+  // Change the root url to an empty string if this is a native build because cordova requires it.
+  const locationType = isMobileApp && !isTest ? 'hash' : 'history';
+  const rootURL = isMobileApp && !isTest ? '' : '/';
+
   let ENV = {
     appName: PKG.name,
     modulePrefix: PKG.name,
     environment: env,
-    rootURL: '/',
-    locationType: 'history',
+    rootURL,
+    locationType,
     EmberENV: {
       FEATURES: {},
       EXTEND_PROTOTYPES: {
@@ -58,9 +67,13 @@ module.exports = function(env) {
     APP: {},
 
     buildConfig: {
+      isProduction,
       isDevelopment,
       isTest,
-      isProduction,
+      isAndroid,
+      isIOS,
+      isMobileApp,
+      isWebApp,
       apiHost,
       appHost,
       cdnHost,
