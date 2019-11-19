@@ -1,6 +1,27 @@
-body {
-  font-family: 'Rubik', sans-serif;
-}
+$assetsPath: '/assets';
+
+// Variables
+@import 'variables/colours';
+@import 'variables/fonts';
+@import 'variables/easings';
+
+// Mixins
+@import 'mixins/responsive';
+// @import 'mixins/headings';
+// @import 'mixins/paragraphs';
+
+// Fonts
+@import 'fonts/nunito-sans';
+
+// Normalise
+@import 'normalise/cross-browser';
+@import 'normalise/cross-project';
+
+// Components
+@import 'app/components/feed-item/style.scss';
+@import 'app/components/feeds-page/style.scss';
+@import 'app/components/page-load/style.scss';
+@import 'app/components/load-spinner/style.scss';
 
 ul a {
   text-decoration: none;
@@ -42,8 +63,3 @@ img {
   display: block;
   margin: 0 auto;
 }
-
-@import 'app/components/feed-item/style.scss';
-@import 'app/components/feeds-page/style.scss';
-@import 'app/components/page-load/style.scss';
-@import 'app/components/load-spinner/style.scss';
