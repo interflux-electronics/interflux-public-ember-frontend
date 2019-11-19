@@ -2,6 +2,8 @@
 
 # compiled output
 /dist/
+/dist-android/
+/dist-ios/
 /tmp/
 
 # dependencies
@@ -32,3 +34,5 @@ corber/cordova/plugins/*
 !corber/cordova/plugins/.gitkeep
 corber/cordova/www/*
 !corber/cordova/www/.gitkeep
+
+.DS_Store
