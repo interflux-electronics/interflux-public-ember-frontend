@@ -16,6 +16,7 @@
     "build-android": "ANDROID_BUILD=true corber build --platform=android --environment=production",
     "start": "./node_modules/ember-cli/bin/ember serve",
     "start-ios": "IOS_BUILD=true corber start --platform=ios",
+    "android": "ANDROID_BUILD=true ember s --port=4200 --live-reload-port=0 --output-path=dist-android/",
     "start-android": "ANDROID_BUILD=true corber start --platform=android",
     "test": "./node_modules/ember-cli/bin/ember test",
     "deploy": "git checkout production -f; git pull origin master; git push; ./remote/deploy.sh; git checkout master",
