@@ -12,20 +12,35 @@ const apiNamespace = 'v1/public';
 
 // Where the Rails backend is located
 const apiHosts = {
-  development: 'http://localhost:3000',
-  production: 'https://api.interflux.com'
+  production: 'https://app.interflux.com',
+  development: {
+    web: 'http://localhost:3000',
+    ios: 'http://localhost:3000',
+    android: 'http://10.0.2.2:3000'
+  },
+  test: 'http://localhost:3000'
 };
 
 // Where this Ember app is located
 const appHosts = {
-  development: 'http://localhost:4200',
-  production: 'https://app.interflux.com'
+  production: 'https://app.interflux.com',
+  development: {
+    web: 'http://localhost:4200',
+    ios: 'http://localhost:4200',
+    android: 'http://10.0.2.2:4200'
+  },
+  test: 'http://localhost:4200'
 };
 
 // Where the CDN is located
 const cdnHosts = {
-  development: 'http://localhost:9000',
-  production: 'https://cdn.interflux.com'
+  production: 'https://cdn.interflux.com',
+  development: {
+    web: 'http://localhost:9000',
+    ios: 'http://localhost:9000',
+    android: 'http://10.0.2.2:9000'
+  },
+  test: 'http://localhost:9000'
 };
 
 // The mobile browser's theme colour
@@ -33,20 +48,23 @@ const cdnHosts = {
 const themeColour = '#23578c';
 
 module.exports = function(env) {
-  // Environment flags
-  const isDevelopment = env === 'development';
+  // Environments
   const isProduction = env === 'production';
+  const isDevelopment = env === 'development';
   const isTest = env === 'test';
+  const environment = env;
 
-  // Hosts
-  const apiHost = apiHosts[env];
-  const appHost = appHosts[env];
-  const cdnHost = cdnHosts[env];
-
+  // Platforms
   const isAndroid = process.env.ANDROID_BUILD === 'true';
   const isIOS = process.env.IOS_BUILD === 'true';
   const isMobileApp = isAndroid || isIOS;
   const isWebApp = !isMobileApp;
+  const platform = isWebApp ? 'web' : isIOS ? 'ios' : 'android';
+
+  // Hosts
+  const apiHost = isProduction ? apiHosts[env] : apiHosts[env][platform];
+  const appHost = isProduction ? appHosts[env] : appHosts[env][platform];
+  const cdnHost = isProduction ? cdnHosts[env] : cdnHosts[env][platform];
 
   // Change the root url to an empty string if this is a native build because cordova requires it.
   const locationType = isMobileApp && !isTest ? 'hash' : 'history';
@@ -55,7 +73,7 @@ module.exports = function(env) {
   let ENV = {
     appName: PKG.name,
     modulePrefix: PKG.name,
-    environment: env,
+    environment,
     rootURL,
     locationType,
     EmberENV: {
@@ -67,6 +85,8 @@ module.exports = function(env) {
     APP: {},
 
     buildConfig: {
+      environment,
+      platform,
       isProduction,
       isDevelopment,
       isTest,
