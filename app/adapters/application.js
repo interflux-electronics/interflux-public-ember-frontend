@@ -24,12 +24,10 @@ export default JSONAPIAdapter.extend({
     get() {
       const headers = {};
 
-      // With the Content-Type header 'application/vnd.api+json' we say that
-      // what we send to the API is JSON API compliant.
+      // We declare to the back-end our requests our JSON API compliant.
       headers['Content-Type'] = 'application/vnd.api+json';
 
-      // With the Accept header 'application/vnd.api+json' we say that what we
-      // expect back from the API is JSON API compliant data.
+      // We state that we expect the back-end responses to be JSON API compliant.
       headers['Accept'] = 'application/vnd.api+json';
 
       return headers;
