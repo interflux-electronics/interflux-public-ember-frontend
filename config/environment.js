@@ -62,13 +62,32 @@ module.exports = function(env) {
   const platform = isWebApp ? 'web' : isIOS ? 'ios' : 'android';
 
   // Hosts
-  const apiHost = isProduction ? apiHosts[env] : apiHosts[env][platform];
-  const appHost = isProduction ? appHosts[env] : appHosts[env][platform];
-  const cdnHost = isProduction ? cdnHosts[env] : cdnHosts[env][platform];
+  const apiHost = isDevelopment ? apiHosts[env][platform] : apiHosts[env];
+  const appHost = isDevelopment ? appHosts[env][platform] : appHosts[env];
+  const cdnHost = isDevelopment ? cdnHosts[env][platform] : cdnHosts[env];
 
   // Change the root url to an empty string if this is a native build because cordova requires it.
   const locationType = isMobileApp && !isTest ? 'hash' : 'history';
   const rootURL = isMobileApp && !isTest ? '' : '/';
+
+  const buildConfig = {
+    environment,
+    platform,
+    isProduction,
+    isDevelopment,
+    isTest,
+    isAndroid,
+    isIOS,
+    isMobileApp,
+    isWebApp,
+    apiHost,
+    appHost,
+    cdnHost,
+    apiNamespace,
+    gitBranch,
+    gitRevision,
+    themeColour
+  };
 
   let ENV = {
     appName: PKG.name,
@@ -76,40 +95,15 @@ module.exports = function(env) {
     environment,
     rootURL,
     locationType,
+    buildConfig,
+
     EmberENV: {
       FEATURES: {},
       EXTEND_PROTOTYPES: {
         Date: false
       }
     },
-    APP: {},
-
-    buildConfig: {
-      environment,
-      platform,
-      isProduction,
-      isDevelopment,
-      isTest,
-      isAndroid,
-      isIOS,
-      isMobileApp,
-      isWebApp,
-      apiHost,
-      appHost,
-      cdnHost,
-      apiNamespace,
-      gitBranch,
-      gitRevision,
-      themeColour
-    }
-
-    // fastboot: {
-    //   hostWhitelist: ['interflux.io', '0.0.0.0:8002', 'localhost:4200']
-    // },
-
-    // googleAnalytics: {
-    //   // trackingId: 'UA-34474019-11'
-    // }
+    APP: {}
   };
 
   if (isDevelopment) {
