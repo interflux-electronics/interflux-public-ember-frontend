@@ -1,0 +1,10 @@
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{#if icon}}
+    <i class="fa fa-{{icon}}"></i>
+  {{/if}}
+  {{#if text}}
+    <span>{{text}}</span>
+  {{/if}}
+{{/if}}

@@ -1,0 +1,32 @@
+{{#if label}}
+  <label>{{label}}</label>
+{{/if}}
+
+{{#if showError}}
+  <div class="error">
+    <p
+      onclick={{action "hideError"}}
+      role="button"
+    >
+      {{error}}
+    </p>
+  </div>
+{{/if}}
+
+<input
+  type={{type}}
+  value={{value}}
+  placeholder={{placeholder}}
+  tabindex={{tabindex}}
+  autofocus={{autofocus}}
+  oninput={{action "_onUpdate" value="target.value"}}
+  focusIn={{action "_onFocusIn"}}
+  focusOut={{action "_onFocusOut"}}
+  onenter={{action "_onOnEnter"}}
+>
+
+{{#if isLoading}}
+  <div class="status loading"><i class="fa fa-refresh fa-spin"></i></div>
+{{else if showCheck}}
+  <div class="status check"><i class="fa fa-check"></i></div>
+{{/if}}
