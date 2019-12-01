@@ -17,49 +17,112 @@ $assetsPath: '/assets';
 @import 'normalise/cross-browser';
 @import 'normalise/cross-project';
 
-// Components
+// App
+@import 'app/components/app/style.scss';
+
+// UI
 @import 'app/components/feed-item/style.scss';
 @import 'app/components/feeds-page/style.scss';
 @import 'app/components/page-load/style.scss';
 @import 'app/components/load-spinner/style.scss';
+@import 'app/components/product-card/style.scss';
+@import 'app/components/product-set/style.scss';
+@import 'app/components/hero-card/style.scss';
+@import 'app/components/hero-set/style.scss';
+@import 'app/components/icon/style.scss';
 
-ul a {
-  text-decoration: none;
+// Pages
+@import 'app/components/index-page/style.scss';
+@import 'app/components/product-page/content/style.scss';
+@import 'app/components/products-index-page/style.scss';
+
+a.back {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  padding: 1vw;
+  font-size: 14px;
+  background: $interflux-blue;
+  color: white;
+  &.one {
+    background: #2669ad;
+  }
+  img {
+    width: 8vw;
+    height: auto;
+    margin: 0 1vw;
+  }
 }
 
-nav {
-  margin: 60px 0 60px;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav li {
-  margin-bottom: 30px;
-}
-
-nav em {
-  display: block;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-}
-
-#app {
-  max-width: 360px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 15px;
-  box-sizing: border-box;
-}
-
-body {
+h1 {
+  text-align: center;
+  font-size: 7vw;
+  font-family: $nunito-sans-extrabold;
+  width: 100vw;
+  height: 100vw;
   background: #eee;
+  border: 0.2vw solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-img {
-  display: block;
-  margin: 0 auto;
+p {
+  text-align: center;
+  font-size: 4vw;
+  font-family: $nunito-sans-regular;
+}
+
+nav.tiles {
+  position: relative;
+  .filler {
+    padding-bottom: 10vw;
+    button {
+      background: #ccc;
+      font-size: 4vw;
+      line-height: 10vw;
+      width: 100vw;
+      border: 0.2vw solid #fff;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+  .clip {
+    height: calc(100% - 10vw);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    a {
+      width: 50vw;
+      height: 40vw;
+      background: #eee;
+      border: 0.2vw solid #fff;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2vw;
+      h2 {
+        font-size: 4.2vw;
+        text-align: center;
+      }
+    }
+  }
+}
+
+p + nav.tiles {
+  margin-top: 5vw;
+}
+
+h1 + p,
+nav.tiles + p {
+  margin-top: 15vw;
+}
+
+#beacon-viewtop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }

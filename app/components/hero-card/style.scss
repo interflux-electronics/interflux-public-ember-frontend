@@ -1,0 +1,46 @@
+.hero-card {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vw;
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+
+  .clip {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0.5vw 2vw rgba(black, 0.2);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  h2 {
+    font-size: 9vw;
+    text-align: center;
+    z-index: 1;
+    transition: all 1000ms ease;
+    font-size: inherit;
+    background: white;
+    padding: 1vw 2vw;
+    span {
+      background: $interflux-blue;
+      color: white;
+    }
+  }
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: auto;
+    transition: transform ease 300ms;
+  }
+}

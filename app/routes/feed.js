@@ -8,6 +8,7 @@ export default Route.extend({
 
   model() {
     return RSVP.hash({
+      heros: this.store.peekAll('hero').filterBy('group', this.routeName),
       articles: this.store.findAll('article').catch(response => {
         this.errors.handle(response);
       })

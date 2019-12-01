@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Service.extend({
   console: service(),
-  sentry: service(),
+  // sentry: service(),
 
   error(msg) {
     this.console.error(msg);

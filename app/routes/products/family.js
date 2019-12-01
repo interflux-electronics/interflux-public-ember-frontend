@@ -2,9 +2,10 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
 export default Route.extend({
-  model() {
+  model(params) {
+    debugger;
     return RSVP.hash({
-      heros: this.store.peekAll('hero').filterBy('group', this.routeName)
+      products: this.modelFor('products').products
     });
   }
 });

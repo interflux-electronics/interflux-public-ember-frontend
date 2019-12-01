@@ -1,0 +1,25 @@
+{{!-- <img
+  id="logo"
+  src="{{cdn-host}}/images/logos/secondary-interflux-electronics-logo-2.svg"
+  width="200"
+  height="200"
+  alt="Interflux Electronics logo"
+> --}}
+
+<HeroSet>
+  {{#each @heros as |hero|}}
+    <LinkTo @route={{hero.route}}>
+      <AnimatedContainer>
+        <HeroCard @model={{hero}}>
+          <h2>{{hero.title}}</h2>
+          <h2>{{hero.sub}}</h2>
+          <img
+            src="{{cdn-host}}{{hero.image}}"
+            width="1000"
+            height="1000"
+          />
+        </HeroCard>
+      </AnimatedContainer>
+    </LinkTo>
+  {{/each}}
+</HeroSet>
