@@ -10,15 +10,15 @@ module('Integration | Component | ui/textarea', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Textarea />`);
+    await render(hbs`<Ui::Textarea />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Textarea>
+      <Ui::Textarea>
         template block text
-      </UI::Textarea>
+      </Ui::Textarea>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

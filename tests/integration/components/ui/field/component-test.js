@@ -10,15 +10,15 @@ module('Integration | Component | ui/field', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Field />`);
+    await render(hbs`<Ui::Field />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Field>
+      <Ui::Field>
         template block text
-      </UI::Field>
+      </Ui::Field>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

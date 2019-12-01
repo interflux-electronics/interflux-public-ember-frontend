@@ -12,6 +12,7 @@ module.exports = {
   },
   rules: {
     'ember/no-jquery': 'error',
+    'ember/avoid-leaking-state-in-ember-objects': 'off',
     'require-yield': 'off',
     'no-console': 'off'
   },

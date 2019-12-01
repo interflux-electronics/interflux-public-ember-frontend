@@ -1,11 +1,17 @@
 import Button from '../component';
 import { get } from '@ember/object';
 import { readOnly, notEmpty } from '@ember/object/computed';
+import { PropTypes } from 'ember-prop-types';
 
-const empty = [];
+const { func, string } = PropTypes;
 
 export default Button.extend({
-  tagName: 'button',
+  propTypes: {
+    task: func.isRequired,
+    text: string,
+    icon: string
+  },
+
   classNames: ['button-task'],
   classNameBindings: [
     'isRunning:busy:idle',
@@ -22,7 +28,7 @@ export default Button.extend({
   // Show task error
   showError: notEmpty('error'),
   error: readOnly('errors.firstObject'),
-  errors: empty,
+  errors: null,
 
   // Perform the task passed in
   click() {

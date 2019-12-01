@@ -1,6 +1,15 @@
 import Button from '../component';
+import { PropTypes } from 'ember-prop-types';
+
+const { string } = PropTypes;
 
 export default Button.extend({
+  propTypes: {
+    href: string.isRequired,
+    text: string,
+    icon: string
+  },
+
   tagName: 'a',
   classNames: ['button-to-url'],
   attributeBindings: ['href', 'target', 'rel'],

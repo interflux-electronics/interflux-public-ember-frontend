@@ -1,19 +1,23 @@
 import Button from '../component';
 import { hrefTo } from 'ember-href-to/helpers/href-to';
 import { computed } from '@ember/object';
+import { PropTypes } from 'ember-prop-types';
+
+const { string } = PropTypes;
 
 export default Button.extend({
+  propTypes: {
+    route: string.isRequired,
+    arg1: string,
+    arg2: string,
+    arg3: string,
+    text: string,
+    icon: string
+  },
+
   tagName: 'a',
   classNames: ['button-to-route'],
   attributeBindings: ['href'],
-
-  // Passed in
-  route: undefined,
-  arg1: undefined,
-  arg2: undefined,
-  arg3: undefined,
-  text: undefined,
-  icon: undefined,
 
   // Return the URL matching the route
   href: computed('route', function() {

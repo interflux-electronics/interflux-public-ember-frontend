@@ -10,15 +10,15 @@ module('Integration | Component | ui/icon', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Icon />`);
+    await render(hbs`<Ui::Icon />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Icon>
+      <Ui::Icon>
         template block text
-      </UI::Icon>
+      </Ui::Icon>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

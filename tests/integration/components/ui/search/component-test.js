@@ -10,15 +10,15 @@ module('Integration | Component | ui/search', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Search />`);
+    await render(hbs`<Ui::Search />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Search>
+      <Ui::Search>
         template block text
-      </UI::Search>
+      </Ui::Search>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

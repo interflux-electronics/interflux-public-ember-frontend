@@ -10,15 +10,15 @@ module('Integration | Component | ui/button/action', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Button::Action />`);
+    await render(hbs`<Ui::Button::Action />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Button::Action>
+      <Ui::Button::Action>
         template block text
-      </UI::Button::Action>
+      </Ui::Button::Action>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

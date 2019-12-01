@@ -10,15 +10,15 @@ module('Integration | Component | ui/image/responsive', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Image::Responsive />`);
+    await render(hbs`<Ui::Image::Responsive />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Image::Responsive>
+      <Ui::Image::Responsive>
         template block text
-      </UI::Image::Responsive>
+      </Ui::Image::Responsive>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

@@ -10,15 +10,15 @@ module('Integration | Component | ui/input', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<UI::Input />`);
+    await render(hbs`<Ui::Input />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <UI::Input>
+      <Ui::Input>
         template block text
-      </UI::Input>
+      </Ui::Input>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
