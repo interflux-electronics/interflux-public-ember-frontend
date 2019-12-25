@@ -4,22 +4,17 @@ import { PropTypes } from 'ember-prop-types';
 const { string } = PropTypes;
 
 export default Button.extend({
+  tagName: 'a',
+  classNames: ['button-to-url'],
+  attributeBindings: ['href', 'target', 'rel'],
+
   propTypes: {
     href: string.isRequired,
     text: string,
     icon: string
   },
 
-  tagName: 'a',
-  classNames: ['button-to-url'],
-  attributeBindings: ['href', 'target', 'rel'],
-
-  // Passed in
-  href: undefined,
-  text: undefined,
-  icon: undefined,
-
-  // To avoid current page being lost, always open in external window
+  // Always open external URLs in new browser tabs
   target: '_blank',
 
   // For security, always add this to external links

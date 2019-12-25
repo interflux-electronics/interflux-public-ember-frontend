@@ -1,5 +1,5 @@
 {{#if icon}}
-  <i class="fa fa-{{icon}}"></i>
+  <Icon @name="{{icon}}" />
 {{/if}}
 {{#if (and textBusy textIdle)}}
   <span>{{if isRunning textBusy textIdle}}</span>
