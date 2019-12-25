@@ -5,27 +5,232 @@
   flex-direction: column;
   background: #eee;
   position: relative;
+  box-shadow: 0 2px 5px rgba(black, 0.2);
+
+  .hero {
+    @include widescreen {
+      width: 600px;
+      height: 600px;
+    }
+    @include desktop {
+      width: vw(600);
+      height: vw(600);
+    }
+    @include tablet {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+    @include mobile {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+  }
+
+  &.large {
+    @include widescreen {
+      width: 300px;
+      height: 300px;
+    }
+    @include desktop {
+      width: vw(300);
+      height: vw(300);
+    }
+    @include tablet {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+    @include mobile {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+    button {
+      position: absolute;
+      background: $lmpa-orange;
+      color: white;
+      font-family: $nunito-sans-regular;
+      line-height: 100%;
+      display: flex;
+      align-items: center;
+      border: 0;
+      @include widescreen {
+        right: 15px;
+        bottom: 15px;
+        font-size: 15px;
+        padding: 5px 7px 4px;
+      }
+      @include desktop {
+        right: vw(15);
+        bottom: vw(15);
+        font-size: vw(15px);
+        padding: vw(5px) vw(7px) vw(4px);
+      }
+      @include tablet {
+        right: 2vw; // TODO
+        bottom: 2vw; // TODO
+        font-size: 15vw;
+        padding: 5vw 7vw 4vw;
+      }
+      @include mobile {
+        right: 2vw; // TODO
+        bottom: 2vw; // TODO
+        font-size: 15vw;
+        padding: 5vw 7vw 4vw;
+      }
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include widescreen {
+          width: 5px;
+          margin-left: 5px;
+          height: 15px;
+        }
+        @include desktop {
+          width: vw(5);
+          margin-left: vw(5);
+        }
+        @include tablet {
+          width: 2vw;
+          margin-left: 2vw;
+        }
+        @include mobile {
+          width: 2vw;
+          margin-left: 2vw;
+        }
+        path[fill] {
+          fill: white;
+        }
+      }
+    }
+  }
+
+  &.medium {
+    @include widescreen {
+      width: 150px;
+      height: 150px;
+    }
+    @include desktop {
+      width: vw(150);
+      height: vw(150);
+    }
+    @include tablet {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+    @include mobile {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+    .text {
+      left: 0;
+      top: 0;
+      padding: 7.5px;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    h2 {
+      font-size: 11.5px;
+      padding: 3px 5px 2.5px;
+    }
+    h3,
+    button {
+      display: none;
+    }
+  }
+
+  &.small {
+    @include widescreen {
+      width: 75px;
+      height: 75px;
+    }
+    @include desktop {
+      width: vw(75);
+      height: vw(75);
+    }
+    @include tablet {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+    @include mobile {
+      width: 90vw; // TODO
+      height: 90vw; // TODO
+    }
+  }
+
   .text {
     position: absolute;
     z-index: 1;
-    left: 2vw;
-    top: 2vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    @include widescreen {
+      left: 15px;
+      top: 15px;
+    }
+    @include desktop {
+      left: vw(15);
+      top: vw(15);
+    }
+    @include tablet {
+      left: 2vw; // TODO
+      top: 2vw; // TODO
+    }
+    @include mobile {
+      left: 2vw; // TODO
+      top: 2vw; // TODO
+    }
   }
   h2 {
     background: $interflux-blue;
     color: white;
-    font-size: 10vw;
     font-family: $nunito-sans-extrabold;
+    line-height: 100%;
+    @include widescreen {
+      font-size: 23px;
+      padding: 6px 10px 5px;
+    }
+    @include desktop {
+      font-size: vw(23);
+      padding: vw(6) vw(10) vw(5);
+    }
+    @include tablet {
+      font-size: 10vw; // TODO
+      padding: 10vw 10vw 10vw; // TODO
+    }
+    @include mobile {
+      font-size: 10vw; // TODO
+      padding: 10vw 10vw 10vw; // TODO
+    }
   }
   h3 {
     background: $interflux-light-blue;
     color: white;
-    font-size: 5vw;
     font-family: $nunito-sans-regular;
-    margin-top: 1vw;
+    line-height: 100%;
+    @include widescreen {
+      font-size: 15px;
+      margin-top: 5px;
+      padding: 5px 7px 4px;
+    }
+    @include desktop {
+      font-size: vw(15);
+      margin-top: vw(5);
+      padding: vw(5) vw(7) vw(4);
+    }
+    @include tablet {
+      font-size: 15vw;
+      margin-top: 5vw;
+      padding: 5vw 7vw 4vw;
+    }
+    @include mobile {
+      font-size: 15vw;
+      margin-top: 5vw;
+      padding: 5vw 7vw 4vw;
+    }
   }
   img {
     position: absolute;
@@ -34,24 +239,5 @@
     z-index: 0;
     width: 100%;
     height: auto;
-  }
-  button {
-    background: $lmpa-orange;
-    color: white;
-    position: absolute;
-    right: 2vw;
-    bottom: 2vw;
-    display: flex;
-    align-items: center;
-    i {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 2vw;
-      margin-left: 2vw;
-      path {
-        // fill: white;
-      }
-    }
   }
 }

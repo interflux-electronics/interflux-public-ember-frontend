@@ -1,0 +1,24 @@
+main,
+header,
+footer,
+section {
+  .liner {
+    width: 100%;
+    max-width: 1200px; // Don't stretch content beyond 1200px width
+    margin: 0 auto; // centre them in the page-wide parents
+    box-sizing: border-box;
+    margin: 0 auto;
+    @include widescreen {
+      padding: 0 30px;
+    }
+    @include desktop {
+      padding: 0 vw(30);
+    }
+    @include tablet {
+      padding: 0 3vw;
+    }
+    @include mobile {
+      padding: 0 3vw;
+    }
+  }
+}

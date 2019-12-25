@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['product-card'],
-  classNameBindings: ['size']
+  tagName: 'header',
+  elementId: 'app-header'
 });

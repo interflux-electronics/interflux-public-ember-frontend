@@ -1,1 +1,33 @@
-{{yield}}
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{#if isRow}}
+    <LinkTo
+      @route={{route}}
+      @model={{model}}
+    >
+      {{#each sortedProducts as |product|}}
+        <ProductCard
+          @product={{product}}
+          @size={{cardSize}}
+        />
+      {{/each}}
+    </LinkTo>
+  {{/if}}
+
+  {{#if isGrid}}
+    <div class="liner">
+      {{#each sortedProducts as |product|}}
+        <LinkTo
+          @route="product"
+          @model={{product.slug}}
+        >
+          <ProductCard
+            @product={{product}}
+            @size={{cardSize}}
+          />
+        </LinkTo>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}
