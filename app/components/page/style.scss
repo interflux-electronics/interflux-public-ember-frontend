@@ -1,0 +1,73 @@
+main.page {
+  min-height: 100vh;
+  section {
+    background: white;
+    > h1 {
+      font-family: $nunito-sans-bold;
+      background: $interflux-blue;
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 500%;
+      @include widescreen {
+        font-size: 32px;
+        // line-height: 70px;
+      }
+      @include desktop {
+        font-size: vw(32);
+        // line-height: vw(70);
+      }
+      @include tablet {
+        font-size: 10vw; // TODO
+        // line-height: 10vw; // TODO
+      }
+      @include mobile {
+        font-size: 10vw; // TODO
+        // line-height: 10vw; // TODO
+      }
+    }
+    > .icon {
+      margin: 0 auto;
+    }
+    > h2 {
+      font-family: $nunito-sans-light;
+      color: $paragraph-color-1;
+      text-align: center;
+      @include widescreen {
+        font-size: 32px;
+        line-height: 70px;
+      }
+      @include desktop {
+        font-size: vw(32);
+        line-height: vw(70);
+      }
+      @include tablet {
+        font-size: 10vw; // TODO
+        line-height: 10vw; // TODO
+      }
+      @include mobile {
+        font-size: 10vw; // TODO
+        line-height: 10vw; // TODO
+      }
+    }
+    > p {
+      font-family: $nunito-sans-regular;
+      color: $paragraph-color-2;
+      margin: 0 auto;
+      @include widescreen {
+        font-size: 16px;
+        line-height: 30px;
+        max-width: 630px;
+      }
+      @include desktop {
+        font-size: vw(16);
+        line-height: vw(30);
+        max-width: vw(630);
+      }
+      @include tablet {
+      }
+      @include mobile {
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+<Icon @name={{family.slug}} />
+<h1>{{family.namePlural}}</h1>
+
+{{#if isFlux}}
+  <p>flux</p>
+  <p>alcohol based</p>
+  <p>water based</p>
+
+  <section>
+    <IconDuo
+      @icon1="soldering-fluxes"
+      @icon2="water-based"
+    />
+    <h2>Water-based soldering-fluxes</h2>
+    <p>Water-based fluxes are highly popular because they are A and B. Because they are not flamable, they are easier to transport and store. We recommend them because they are environmentally friendly. You can use water-based fluxes in all wave and soldering machines. Do note that water heats, evaporates, sprays and foams differently than alcohol and thus requires your machines to be configured differently. Feel free to <a href="#">Ask Interflux</a>, we're happy to help you configure.</p>
+    <p>Interflux is proud to be one of the first to have pioneered water-based fluxes and today still our fluxes stand out because they C and D.</p>
+    <ProductSet
+      @products={{waterBasedFluxes}}
+      @composition="grid"
+    />
+  </section>
+
+  <section>
+    <IconDuo
+      @icon1="soldering-fluxes"
+      @icon2="alcohol-based"
+    />
+    <h2>Alcohol-based soldering-fluxes</h2>
+    <p>Alcohol-based fluxes are the easiest to solder with because A, B and C. Soldering manufacturers love them because D.</p>
+    <ProductSet
+      @products={{alcoholBasedFluxes}}
+      @composition="grid"
+    />
+  </section>
+
+  <section>
+    <IconDuo
+      @icon1="soldering-fluxes"
+      @icon2="rosin-based"
+    />
+    <h2>Rosin-based soldering-fluxes</h2>
+    <p>Rosin, also called colophony, is a solid form of resin obtained from pines and other plants. It's a great base for soldering fluxes because A and B. However the industry is moving away from it because C and D.</p>
+    <p>You may appreciate our rosin-fluxes because they don't F and do G perfectly.</p>
+    <ProductSet
+      @products={{rosinBasedFluxes}}
+      @composition="grid"
+    />
+  </section>
+{{/if}}
+
+{{#if isPaste}}
+  <p>paste</p>
+  <p>low temperatures</p>
+  <p>high temperatures</p>
+{{/if}}
+
+{{#if isWire}}
+  <p>wire</p>
+  <p>lead-free</p>
+  <p>lead-based</p>
+{{/if}}

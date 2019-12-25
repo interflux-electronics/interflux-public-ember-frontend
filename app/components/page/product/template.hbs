@@ -1,0 +1,33 @@
+<AnimatedContainer>
+  <Animate
+    @model={{product}}
+    @duration={{duration}}
+  >
+    <LinkTo
+      @route="products"
+      class="back two"
+    >Interflux > Products</LinkTo>
+    <LinkTo
+      @route="products"
+      class="back one"
+    >Products</LinkTo>
+  </Animate>
+</AnimatedContainer>
+
+<AnimatedContainer>
+  {{#animated-value product use=transition duration=duration}}
+    <ProductCard
+      @product={{product}}
+      @size="max"
+    />
+  {{/animated-value}}
+</AnimatedContainer>
+
+<AnimatedContainer>
+  <Animate
+    @model={{product}}
+    @duration={{duration}}
+  >
+    <Page::Product::Content @product={{product}} />
+  </Animate>
+</AnimatedContainer>
