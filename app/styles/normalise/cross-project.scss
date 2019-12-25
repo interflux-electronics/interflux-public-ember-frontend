@@ -14,30 +14,6 @@ body {
   height: 100%;
 }
 
-// The general layout of the page
-footer,
-header,
-section {
-  overflow: hidden; // To avoid content from pushing of screen or into other sections
-  > div.liner {
-    max-width: 1200px; // Don't stretch content beyond 1200px width
-    box-sizing: border-box;
-    margin: 0 auto;
-    @include widescreen {
-      padding: 0 60px;
-    }
-    @include desktop {
-      padding: 0 vw(60, 1200);
-    }
-    @include tablet {
-      padding: 0 6vw;
-    }
-    @include mobile {
-      padding: 0 6vw;
-    }
-  }
-}
-
 // To avoid <img> and <iframe> to have weird white space below them, make them a block
 iframe,
 img {

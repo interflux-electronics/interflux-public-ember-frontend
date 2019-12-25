@@ -20,16 +20,24 @@ $assetsPath: '/assets';
 
 // App
 @import 'app/components/app/style.scss';
+@import 'app/components/app/header/style.scss';
+@import 'app/components/app/breadcrumbs/style.scss';
+@import 'app/components/app/footer/style.scss';
 
 // Reusable UI
 @import 'app/components/ui/button/style';
 @import 'app/components/ui/field/style';
-@import 'app/components/ui/icon/style';
 @import 'app/components/ui/image/style';
 @import 'app/components/ui/input/style';
 @import 'app/components/ui/search/style';
 @import 'app/components/ui/textarea/style';
 @import 'app/components/ui/video/style';
+
+// Components
+@import 'app/components/page/style';
+@import 'app/components/icon/style';
+@import 'app/components/liner/style.scss';
+@import 'app/components/icon-duo/style.scss';
 
 // UI specific to this project
 @import 'app/components/feed-item/style.scss';
@@ -42,97 +50,11 @@ $assetsPath: '/assets';
 @import 'app/components/hero-set/style.scss';
 
 // Pages
-@import 'app/components/index-page/style.scss';
-@import 'app/components/product-page/content/style.scss';
-@import 'app/components/products-index-page/style.scss';
-
-// a.back {
-//   display: flex;
-//   align-items: center;
-//   z-index: 2;
-//   padding: 1vw;
-//   font-size: 14px;
-//   background: $interflux-blue;
-//   color: white;
-//   &.one {
-//     background: #2669ad;
-//   }
-//   img {
-//     width: 8vw;
-//     height: auto;
-//     margin: 0 1vw;
-//   }
-// }
-//
-// h1 {
-//   text-align: center;
-//   font-size: 7vw;
-//   font-family: $nunito-sans-extrabold;
-//   width: 100vw;
-//   height: 100vw;
-//   background: #eee;
-//   border: 0.2vw solid #fff;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   text-align: center;
-// }
-//
-// p {
-//   text-align: center;
-//   font-size: 4vw;
-//   font-family: $nunito-sans-regular;
-// }
-//
-// nav.tiles {
-//   position: relative;
-//   .filler {
-//     padding-bottom: 10vw;
-//     button {
-//       background: #ccc;
-//       font-size: 4vw;
-//       line-height: 10vw;
-//       width: 100vw;
-//       border: 0.2vw solid #fff;
-//       position: absolute;
-//       bottom: 0;
-//     }
-//   }
-//   .clip {
-//     height: calc(100% - 10vw);
-//     overflow: hidden;
-//     display: flex;
-//     flex-wrap: wrap;
-//     a {
-//       width: 50vw;
-//       height: 40vw;
-//       background: #eee;
-//       border: 0.2vw solid #fff;
-//       box-sizing: border-box;
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//       padding: 2vw;
-//       h2 {
-//         font-size: 4.2vw;
-//         text-align: center;
-//       }
-//     }
-//   }
-// }
-//
-// p + nav.tiles {
-//   margin-top: 5vw;
-// }
-//
-// h1 + p,
-// nav.tiles + p {
-//   margin-top: 15vw;
-// }
-//
-// #beacon-viewtop {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-// }
+@import 'app/components/page/index/style.scss';
+@import 'app/components/page/product/content/style.scss';
+@import 'app/components/page/products/style.scss';
+@import 'app/components/page/products/families/style.scss';
+@import 'app/components/page/products/families/family/style.scss';
+@import 'app/components/page/products/purposes/style.scss';
+@import 'app/components/page/products/qualities/style.scss';
+@import 'app/components/page/products/names/style.scss';

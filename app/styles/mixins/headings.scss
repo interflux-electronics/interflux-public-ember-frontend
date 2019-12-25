@@ -59,10 +59,10 @@ h6 {
 
 @mixin h1-desktop {
   @include h1;
-  font-size: vw(59, 1200);
-  line-height: vw(64, 1200);
-  letter-spacing: vw(-2.4, 1200);
-  max-width: vw(590, 1200);
+  font-size: vw(59);
+  line-height: vw(64);
+  letter-spacing: vw(-2.4);
+  max-width: vw(590);
 }
 
 @mixin h1-tablet {
@@ -98,10 +98,10 @@ h6 {
 
 @mixin h2-desktop {
   @include h2;
-  font-size: vw(44, 1200);
-  line-height: vw(48, 1200);
-  letter-spacing: vw(-1, 1200);
-  max-width: vw(768, 1200);
+  font-size: vw(44);
+  line-height: vw(48);
+  letter-spacing: vw(-1);
+  max-width: vw(768);
 }
 
 @mixin h2-tablet {
@@ -137,10 +137,10 @@ h6 {
 
 @mixin h3-desktop {
   @include h3;
-  font-size: vw(33, 1200);
-  line-height: vw(40, 1200);
-  letter-spacing: vw(-0.9, 1200);
-  max-width: vw(768, 1200);
+  font-size: vw(33);
+  line-height: vw(40);
+  letter-spacing: vw(-0.9);
+  max-width: vw(768);
 }
 
 @mixin h3-tablet {
@@ -176,10 +176,10 @@ h6 {
 
 @mixin h4-desktop {
   @include h4;
-  font-size: vw(24, 1200);
-  line-height: vw(32, 1200);
-  letter-spacing: vw(-0.8, 1200);
-  max-width: vw(680, 1200);
+  font-size: vw(24);
+  line-height: vw(32);
+  letter-spacing: vw(-0.8);
+  max-width: vw(680);
 }
 
 @mixin h4-tablet {
@@ -214,9 +214,9 @@ h6 {
 
 @mixin h5-desktop {
   @include h5;
-  font-size: vw(18, 1200);
-  line-height: vw(24, 1200);
-  letter-spacing: vw(-0.4, 1200);
+  font-size: vw(18);
+  line-height: vw(24);
+  letter-spacing: vw(-0.4);
 }
 
 @mixin h5-tablet {
@@ -250,9 +250,9 @@ h6 {
 
 @mixin h6-desktop {
   @include h6;
-  font-size: vw(11, 1200);
-  line-height: vw(16, 1200);
-  letter-spacing: vw(2.4, 1200);
+  font-size: vw(11);
+  line-height: vw(16);
+  letter-spacing: vw(2.4);
 }
 
 @mixin h6-tablet {

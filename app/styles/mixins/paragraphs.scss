@@ -42,9 +42,9 @@ p {
 
 @mixin p-lead-desktop {
   @include p-lead;
-  font-size: vw(18, 1200);
-  line-height: vw(28, 1200);
-  max-width: vw(540, 1200);
+  font-size: vw(18);
+  line-height: vw(28);
+  max-width: vw(540);
 }
 
 @mixin p-lead-tablet {
@@ -97,9 +97,9 @@ p {
 
 @mixin p-body-desktop {
   @include p-body;
-  font-size: vw(14, 1200);
-  line-height: vw(20, 1200);
-  max-width: vw(560, 1200);
+  font-size: vw(14);
+  line-height: vw(20);
+  max-width: vw(560);
 }
 
 @mixin p-body-tablet {
@@ -152,9 +152,9 @@ p {
 
 @mixin p-caption-desktop {
   @include p-caption;
-  font-size: vw(11, 1200);
-  line-height: vw(16, 1200);
-  max-width: vw(440, 1200);
+  font-size: vw(11);
+  line-height: vw(16);
+  max-width: vw(440);
 }
 
 @mixin p-caption-tablet {

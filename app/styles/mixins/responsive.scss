@@ -45,10 +45,10 @@
 // Documentation on SASS functions:
 // https://sass-lang.com/documentation/at-rules/function
 //
-@function vw($desired_px, $screen_width) {
-  @return #{($desired_px / $screen_width * 100) + "vw"};
+@function vw($desired_px, $screen_width: 1200) {
+  @return #{($desired_px / $screen_width * 100) + 'vw'};
 }
 
 @function px($desired_vw, $screen_width) {
-  @return #{(($desired_vw / 100) * $screen_width) + "px"};
+  @return #{(($desired_vw / 100) * $screen_width) + 'px'};
 }
