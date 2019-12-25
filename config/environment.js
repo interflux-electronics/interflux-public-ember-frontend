@@ -12,7 +12,7 @@ const apiNamespace = 'v1/public';
 
 // Where the Rails backend is located
 const apiHosts = {
-  production: 'https://app.interflux.com',
+  production: 'https://api.interflux.com',
   development: {
     web: 'http://localhost:3000',
     ios: 'http://localhost:3000',
