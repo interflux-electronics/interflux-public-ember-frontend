@@ -2,10 +2,10 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
 export default Route.extend({
-  model(params) {
-    debugger;
+  model() {
     return RSVP.hash({
-      products: this.modelFor('products').products
+      products: this.modelFor('products').products,
+      families: this.modelFor('products').families
     });
   }
 });

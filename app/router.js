@@ -30,12 +30,21 @@ Router.map(function() {
   //   this.route('cleaning', { path: '/for-cleaning' });
   // });
   this.route('products', function() {
-    this.route('family', { path: '/:slug' });
+    this.route('families', function() {
+      this.route('family', { path: '/:family_slug' });
+    });
+    this.route('purposes');
+    this.route('features', { path: 'qualities' });
+    this.route('names');
   });
   this.route('product', { path: 'product/:slug' });
   this.route('academy');
   this.route('contact');
   this.route('feed');
+
+  this.route('en', function() {
+    this.route('contact');
+  });
 });
 
 export default Router;
