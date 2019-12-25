@@ -1,4 +1,4 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { alias } from '@ember/object/computed';
 
 export default Model.extend({
@@ -17,6 +17,12 @@ export default Model.extend({
 
   // images: hasMany('product-image'),
   // variants: hasMany('product-variant'),
+  features: hasMany('product-feature'),
 
-  family: alias('productFamily')
+  family: alias('productFamily'),
+
+  hasFeature(slug) {
+    return true;
+    // return this.features.some(f => f.slug === slug);
+  }
 });
