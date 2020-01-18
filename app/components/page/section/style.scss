@@ -1,0 +1,110 @@
+.page {
+  > section {
+    > h2 {
+      font-family: $nunito-sans-light;
+      color: $paragraph-color-1;
+      text-align: center;
+      @include widescreen {
+        font-size: 32px;
+        line-height: 70px;
+      }
+      @include desktop {
+        font-size: vw(32);
+        line-height: vw(70);
+      }
+      @include tablet {
+        font-size: 10vw; // TODO
+        line-height: 10vw; // TODO
+      }
+      @include mobile {
+        font-size: 10vw; // TODO
+        line-height: 10vw; // TODO
+      }
+    }
+
+    > p {
+      font-family: $nunito-sans-regular;
+      color: $paragraph-color-2;
+      margin: 0 auto;
+      @include widescreen {
+        font-size: 16px;
+        line-height: 30px;
+        max-width: 630px;
+      }
+      @include desktop {
+        font-size: vw(16);
+        line-height: vw(30);
+        max-width: vw(630);
+      }
+      @include tablet {
+      }
+      @include mobile {
+      }
+      a {
+        color: $interflux-light-blue;
+        &:hover {
+          color: $lmpa-orange;
+        }
+      }
+    }
+
+    .icon-duo + h2 {
+      @include widescreen {
+        margin-top: 14px;
+      }
+      @include desktop {
+        margin-top: vw(14);
+      }
+      @include tablet {
+        margin-top: 10vw; // TODO
+      }
+      @include mobile {
+        margin-top: 10vw; // TODO
+      }
+    }
+    h2 + p {
+      @include widescreen {
+        margin-top: 10px;
+      }
+      @include desktop {
+        margin-top: vw(10);
+      }
+      @include tablet {
+        margin-top: 10vw; // TODO
+      }
+      @include mobile {
+        margin-top: 10vw; // TODO
+      }
+    }
+
+    p + .product-set {
+      @include widescreen {
+        margin-top: 24px;
+      }
+      @include desktop {
+        margin-top: vw(24);
+      }
+      @include tablet {
+        margin-top: 10vw; // TODO
+      }
+      @include mobile {
+        margin-top: 10vw; // TODO
+      }
+    }
+
+    & + section {
+      @include widescreen {
+        margin-top: 120px;
+      }
+      @include desktop {
+        margin-top: vw(120);
+      }
+      @include tablet {
+        margin-top: 10vw; // TODO
+      }
+      @include mobile {
+        margin-top: 10vw; // TODO
+      }
+    }
+  }
+}

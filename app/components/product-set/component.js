@@ -10,7 +10,12 @@ const sizes = {
 
 export default Component.extend({
   classNames: ['product-set'],
-  classNameBindings: ['composition'],
+  classNameBindings: ['composition', 'isQuatro:quatro'],
+
+  isQuatro: equal('count', 4),
+  count: computed(function() {
+    return this.products.length;
+  }),
 
   isRow: equal('composition', 'row'),
   isGrid: equal('composition', 'grid'),

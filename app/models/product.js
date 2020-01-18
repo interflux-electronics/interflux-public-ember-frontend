@@ -17,12 +17,11 @@ export default Model.extend({
 
   // images: hasMany('product-image'),
   // variants: hasMany('product-variant'),
-  features: hasMany('product-feature'),
+  features: hasMany('feature'),
 
   family: alias('productFamily'),
 
   hasFeature(slug) {
-    return true;
-    // return this.features.some(f => f.slug === slug);
+    return this.features.any(f => f.slug === slug);
   }
 });

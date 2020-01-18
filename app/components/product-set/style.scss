@@ -50,6 +50,11 @@
   }
 
   &.grid {
+    &.quatro {
+      .liner {
+        max-width: 680px; // 30px + 300px + 20px + 300px + 30px
+      }
+    }
     .liner {
       max-width: 1020px; // 30px + 300px + 20px + 300px + 20px + 300px + 30px
       padding: 0 20px;

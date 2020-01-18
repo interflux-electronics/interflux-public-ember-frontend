@@ -4,7 +4,8 @@ export default Route.extend({
   model() {
     return {
       products: this.store.findAll('product'),
-      families: this.store.findAll('product-family')
+      families: this.store.findAll('product-family'),
+      features: this.store.findAll('feature')
     };
   }
 });

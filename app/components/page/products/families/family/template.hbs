@@ -1,17 +1,14 @@
-<Icon @name={{family.slug}} />
-<h1>{{family.namePlural}}</h1>
+<Hero>
+  <h1>{{capitalize-words family.namePlural}}</h1>
+</Hero>
 
 {{#if isFlux}}
-  <p>flux</p>
-  <p>alcohol based</p>
-  <p>water based</p>
-
   <section>
     <IconDuo
       @icon1="soldering-fluxes"
-      @icon2="water-based"
+      @icon2="alcohol-based"
     />
-    <h2>Water-based soldering-fluxes</h2>
+    <h2>Water-based soldering fluxes</h2>
     <p>Water-based fluxes are highly popular because they are A and B. Because they are not flamable, they are easier to transport and store. We recommend them because they are environmentally friendly. You can use water-based fluxes in all wave and soldering machines. Do note that water heats, evaporates, sprays and foams differently than alcohol and thus requires your machines to be configured differently. Feel free to <a href="#">Ask Interflux</a>, we're happy to help you configure.</p>
     <p>Interflux is proud to be one of the first to have pioneered water-based fluxes and today still our fluxes stand out because they C and D.</p>
     <ProductSet
@@ -23,9 +20,9 @@
   <section>
     <IconDuo
       @icon1="soldering-fluxes"
-      @icon2="alcohol-based"
+      @icon2="rosin-based"
     />
-    <h2>Alcohol-based soldering-fluxes</h2>
+    <h2>Alcohol-based soldering fluxes</h2>
     <p>Alcohol-based fluxes are the easiest to solder with because A, B and C. Soldering manufacturers love them because D.</p>
     <ProductSet
       @products={{alcoholBasedFluxes}}
@@ -38,7 +35,7 @@
       @icon1="soldering-fluxes"
       @icon2="rosin-based"
     />
-    <h2>Rosin-based soldering-fluxes</h2>
+    <h2>Rosin-based soldering fluxes</h2>
     <p>Rosin, also called colophony, is a solid form of resin obtained from pines and other plants. It's a great base for soldering fluxes because A and B. However the industry is moving away from it because C and D.</p>
     <p>You may appreciate our rosin-fluxes because they don't F and do G perfectly.</p>
     <ProductSet
@@ -55,7 +52,29 @@
 {{/if}}
 
 {{#if isWire}}
-  <p>wire</p>
-  <p>lead-free</p>
-  <p>lead-based</p>
+  <section>
+    <IconDuo
+      @icon1="solder-wires"
+      @icon2="lead-free"
+    />
+    <h2>Lead-free solder-wires</h2>
+    <p>Working with lead-free alloys removes the health and environmental risk lead imposes.</p>
+    <ProductSet
+      @products={{leadFreeWires}}
+      @composition="grid"
+    />
+  </section>
+
+  <section>
+    <IconDuo
+      @icon1="solder-wires"
+      @icon2="lead-bases"
+    />
+    <h2>Lead-based solder wires</h2>
+    <p>Lead is a popular alloy for wires because it's <strong>cheap</strong>, has a relatively <strong>low melting point</strong> and allows for <strong>excellent wetting</strong>. Working with lead does impose health and environmental risks. Therefor we highly recommend to take great care. We've summarised for you tips on working safely with lead here in <a href="#">this article</a>.</p>
+    <ProductSet
+      @products={{leadBasedWires}}
+      @composition="grid"
+    />
+  </section>
 {{/if}}
