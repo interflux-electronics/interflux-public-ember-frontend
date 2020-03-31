@@ -8,36 +8,31 @@
 // https://github.com/ember-cli/ember-fetch
 //
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
-import config from 'ember-get-config';
-import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
+import { inject as service } from '@ember/service';
 
-const { apiHost, apiNamespace } = config.buildConfig;
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  @service api;
 
-export default JSONAPIAdapter.extend({
-  host: apiHost,
-  namespace: apiNamespace,
+  host = this.api.host;
+  namespace = this.api.namespace;
 
   // Dynamically set the headers on each request.
   // Docs: https://guides.emberjs.com/release/models/customizing-adapters/
-  headers: computed({
-    get() {
-      const headers = {};
-
-      // We declare to the back-end our requests our JSON API compliant.
-      headers['Content-Type'] = 'application/vnd.api+json';
-
-      // We state that we expect the back-end responses to be JSON API compliant.
-      headers['Accept'] = 'application/vnd.api+json';
-
-      return headers;
-    }
-  }),
+  get headers() {
+    return this.api.headers;
+  }
 
   // Convert the Ember model name to something Rails would recognise:
   // Rails expects underscored resources
   // Rails expects pluralized resources
-  pathForType: function(type) {
+  pathForType(type) {
     return pluralize(type);
   }
-});
+
+  // Never show local records until after findAll has completed loading the remote records
+  // https://api.emberjs.com/ember-data/3.10/classes/DS.Adapter/methods?anchor=shouldReloadAll
+  shouldReloadAll() {
+    return true;
+  }
+}
