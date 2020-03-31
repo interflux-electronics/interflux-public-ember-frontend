@@ -1,11 +1,7 @@
-import DS from 'ember-data';
+import config from 'interflux/config/environment';
 import Route from '@ember/routing/route';
-import config from 'ember-get-config';
 import { inject as service } from '@ember/service';
-// import { relativeRoute } from '../helpers/relative-route';
-
-const { isDevelopment, isProduction, isTest } = config;
-const {
+import {
   AbortError,
   ConflictError,
   InvalidError,
@@ -14,7 +10,9 @@ const {
   TimeoutError,
   UnauthorizedError,
   ForbiddenError
-} = DS;
+} from '@ember-data/adapter/error';
+
+const { isDevelopment, isProduction, isTest } = config;
 
 // For AJAX
 // https://github.com/ember-cli/ember-ajax/issues/57
@@ -24,70 +22,58 @@ const {
 
 export function initialize() {
   Route.reopen({
-    console: service(),
-    log: service(),
+    auth: service(),
 
     actions: {
       error(error) {
-        // TODO: In Fastboot every API request fails, thus aborting the route to login page.
-        // if (this.isFastBoot) {
-        //   return;
-        // }
-
         // The request to the server was aborted
         // https://emberjs.com/api/ember-data/3.0/classes/DS.AbortError
         if (error instanceof AbortError) {
           if (isProduction) {
             if (navigator.onLine) {
-              this.log.error(
-                'Route transition aborted. Looks like the production API is down.'
-              );
-              // TODO: Send direct message to Jan
+              console.error('Looks like the production API is down.');
+              // TODO: Log error
             } else {
-              this.log.error(
-                'Route transition aborted. Looks like you are offline.'
-              );
+              console.error('Looks like you are offline.');
               // TODO: Notify user
             }
           } else if (isDevelopment) {
-            this.log.error(
-              'Route transition aborted. Looks like your local API is down.'
-            );
+            console.error('Looks like your local API is down.');
           } else if (isTest) {
-            this.log.error(
-              'Route transition aborted. Looks like we did not hit Mirage.'
-            );
+            console.error('Looks like we did not hit Mirage.');
           } else {
-            this.log.error('Route transition aborted. This should never show.');
+            console.error('This should never show.');
+            debugger;
           }
         }
         if (error instanceof InvalidError) {
           // https://emberjs.com/api/ember-data/3.0/classes/DS.InvalidError
           // Ember Data expects a source/pointer
-          this.log.error(
-            `422 - This request is invalid. Reason: ${error.code} - ${error.detail}`
+          console.error(
+            '422 - This request got rejected because of invalid data.'
           );
         } else if (error instanceof UnauthorizedError) {
-          this.log.error('401 - You are not authorised to make this request.');
-          this.transitionTo('login');
+          console.error('401 - You are not authorised to make this request.');
+          console.warn('Reseting authentication data');
+          console.warn('Redirecting to login');
+          this.auth.reset();
         } else if (error instanceof ForbiddenError) {
-          this.log.error('403 - You are not allowed to make this request.');
+          console.error('403 - You are not allowed to make this request.');
         } else if (error instanceof NotFoundError) {
-          this.log.error('404 - The back-end does not know this route.');
+          console.error('404 - The API does not know this route.');
         } else if (error instanceof ConflictError) {
-          this.log.error('409 - The request is conflicting.');
+          console.error('409 - The request is conflicting.');
         } else if (error instanceof ServerError) {
-          this.log.error('500 - The server is down!');
-          // TODO: Warn Jan
+          console.error('500 - The server is down!');
         } else if (error instanceof TimeoutError) {
-          this.log.error(
+          console.error(
             '504 - The request timed out. Check your network and API load.'
           );
         } else {
-          this.log.error('Unknown error');
-          this.log.error(error);
-          this.console.debug('DEBUG: Is Rails running?');
-          this.console.debug('DEBUG: Do you have a model for this resource?');
+          console.error('Unknown error');
+          console.error(error);
+          console.debug('DEBUG: Is Rails running?');
+          console.debug('DEBUG: Do you have a model for this resource?');
           // Unknown error
           // debugger;
           // try {
@@ -97,7 +83,7 @@ export function initialize() {
           //   this.transitionTo('index');
           // }
           // const firstError = error.errors[0];
-          // this.log.error(firstError.status, firstError.code, firstError.detail);
+          // console.error(firstError.status, firstError.code, firstError.detail);
         }
       }
     }
