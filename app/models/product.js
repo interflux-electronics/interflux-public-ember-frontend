@@ -1,27 +1,15 @@
-import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 import { alias } from '@ember/object/computed';
 
-export default Model.extend({
-  slug: attr('string'),
-  name: attr('string'),
-  pitch: attr('string'),
+export default class ProductModel extends Model {
+  @attr('string') slug;
+  @attr('string') name;
+  @attr('boolean') public;
 
-  // public: attr('boolean'),
-  // deprecated: attr('boolean'),
-  // orderable: attr('boolean'),
-  // popular: attr('boolean'),
-  // new: attr('boolean'),
+  @alias('productFamily') family;
 
-  productFamily: belongsTo('product-family'),
-  // avatar: belongsTo('image'),
+  @belongsTo('product-family') productFamily;
 
-  // images: hasMany('product-image'),
-  // variants: hasMany('product-variant'),
-  features: hasMany('feature'),
-
-  family: alias('productFamily'),
-
-  hasFeature(slug) {
-    return this.features.any(f => f.slug === slug);
-  }
-});
+  @hasMany('document') documents;
+  @hasMany('image') images;
+}

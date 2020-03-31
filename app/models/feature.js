@@ -1,9 +1,9 @@
 import Model, { attr, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  slug: attr('string'),
-  icon: attr('string'),
-  text: attr('string'),
+export default class FeatureModel extends Model {
+  @attr('string') slug;
+  @attr('string') icon;
+  @attr('string') text;
 
-  products: hasMany('product')
-});
+  @hasMany('product') products;
+}

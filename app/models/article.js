@@ -1,9 +1,9 @@
-import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-  slug: attr('string'),
-  title: attr('string'),
-  body: attr('string'),
-  createdAt: attr('date'),
-  updatedAt: attr('date')
-});
+export default class ArticleModel extends Model {
+  @attr('string') slug;
+  @attr('string') title;
+  @attr('string') body;
+  @attr('string') createdAt;
+  @attr('string') updatedAt;
+}
