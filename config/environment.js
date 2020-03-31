@@ -25,11 +25,11 @@ const apiHosts = {
 const appHosts = {
   production: 'https://app.interflux.com',
   development: {
-    web: 'http://localhost:4200',
-    ios: 'http://localhost:4200',
-    android: 'http://10.0.2.2:4200'
+    web: 'http://localhost:4400',
+    ios: 'http://localhost:4400',
+    android: 'http://10.0.2.2:4400'
   },
-  test: 'http://localhost:4200'
+  test: 'http://localhost:4400'
 };
 
 // Where the CDN is located
@@ -92,42 +92,37 @@ module.exports = function(env) {
   let ENV = {
     appName: PKG.name,
     modulePrefix: PKG.name,
+    podModulePrefix: `${PKG.name}/routables`,
     environment,
     rootURL,
     locationType,
-    buildConfig,
-
     EmberENV: {
       FEATURES: {},
       EXTEND_PROTOTYPES: {
         Date: false
       }
     },
-    APP: {}
+    APP: {},
+
+    buildConfig,
+    isDevelopment,
+    isTest,
+    isProduction,
+    apiHost,
+    appHost,
+    cdnHost,
+    apiNamespace,
+    gitBranch,
+    gitRevision,
+    themeColour
   };
 
-  if (isDevelopment) {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-  }
-
   if (isTest) {
-    // Testem prefers this...
     ENV.locationType = 'none';
-
-    // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
-
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
-  }
-
-  if (isProduction) {
-    // here you can enable a production-specific feature
   }
 
   return ENV;
