@@ -1,9 +1,14 @@
+'use strict';
+
 module.exports = {
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   plugins: ['ember'],
   extends: ['eslint:recommended', 'plugin:ember/recommended'],
@@ -12,8 +17,6 @@ module.exports = {
   },
   rules: {
     'ember/no-jquery': 'error',
-    'ember/avoid-leaking-state-in-ember-objects': 'off',
-    'require-yield': 'off',
     'no-console': 'off'
   },
   overrides: [

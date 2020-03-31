@@ -1,50 +1,40 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const buildConfig = require('./config/environment')(EmberApp.env()).buildConfig;
-
-const { isProduction, gitRevision } = buildConfig;
+const ENV = require('./config/environment')(EmberApp.env());
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Makes SASS listen to file changes in the component folders
     sassOptions: {
-      includePaths: ['app/components'],
+      includePaths: ['app/routables'],
       overwrite: true
     },
 
     // Adds CSS browser prefixes
     autoprefixer: {
-      browsers: [
-        '> 1%',
-        'Explorer > 10',
-        'Firefox >= 17',
-        'Chrome >= 10',
-        'Safari >= 6',
-        'iOS >= 6'
-      ],
       cascade: false,
       remove: false
     },
 
     // Prevent CSS minification in development and tests
     minifyCSS: {
-      enabled: isProduction
+      enabled: ENV.isProduction
     },
 
     // Prevent JS minification in development and tests
     minifyJS: {
-      enabled: isProduction
+      enabled: ENV.isProduction
     },
 
     // Enable source maps for debugging and Sentry
     sourcemaps: {
-      enabled: isProduction,
+      enabled: ENV.isProduction,
       extensions: ['js']
     },
 
     fingerprint: {
-      enabled: isProduction,
+      enabled: ENV.isProduction,
       extensions: [
         'js',
         'css',
@@ -60,7 +50,7 @@ module.exports = function(defaults) {
         'woff2'
       ],
       replaceExtensions: ['html', 'css', 'scss', 'js'],
-      customHash: gitRevision
+      customHash: ENV.gitRevision
     },
 
     'ember-fetch': {

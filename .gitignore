@@ -35,4 +35,4 @@ corber/cordova/plugins/*
 corber/cordova/www/*
 !corber/cordova/www/.gitkeep
 
-.DS_Store
+*.DS_Store

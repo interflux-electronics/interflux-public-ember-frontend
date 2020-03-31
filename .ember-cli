@@ -1,5 +1,3 @@
 {
-  "usePods": false,
-  "watcher": "node",
-  "disableAnalytics": false
+  "port": 4400
 }
