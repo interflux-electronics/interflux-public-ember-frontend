@@ -1,6 +1,6 @@
 import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default class LanguageModel extends Model {
+export default class LeadModel extends Model {
   @attr('string') name;
   @attr('string') company;
   @attr('string') email;
