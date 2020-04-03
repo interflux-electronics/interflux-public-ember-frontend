@@ -1,6 +1,6 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  tagName: 'main',
-  classNames: ['page']
-});
+export default class PageComponent extends Component {
+  @service modal;
+}

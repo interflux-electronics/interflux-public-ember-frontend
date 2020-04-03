@@ -1,45 +1,32 @@
+body {
+  background: $blue-4;
+}
 main.page {
+  display: flex;
   min-height: 100vh;
-  @include widescreen {
-    padding-bottom: 120px;
-  }
-  @include desktop {
-    padding-bottom: vw(120);
-  }
-  @include tablet {
-    padding-bottom: 10vw; // TODO
-  }
-  @include mobile {
-    padding-bottom: 10vw; // TODO
-  }
-  section {
-    background: white;
-    > h1 {
-      font-family: $nunito-sans-bold;
-      background: $interflux-blue;
-      color: white;
-      text-align: center;
-      margin-bottom: 30px;
-      line-height: 500%;
-      @include widescreen {
-        font-size: 32px;
-        // line-height: 70px;
-      }
-      @include desktop {
-        font-size: vw(32);
-        // line-height: vw(70);
-      }
-      @include tablet {
-        font-size: 10vw; // TODO
-        // line-height: 10vw; // TODO
-      }
-      @include mobile {
-        font-size: 10vw; // TODO
-        // line-height: 10vw; // TODO
+  background: $blue-4;
+  > section {
+    width: 100%;
+    padding: 30px;
+    &.center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      p {
+        margin: 0;
+        & + p {
+          margin-top: 16px;
+        }
       }
     }
-    > .icon {
-      margin: 0 auto;
+    > h1 {
+      font-size: 30px;
+      color: white;
+      margin-bottom: 30px;
+    }
+    p {
+      color: white;
     }
   }
 }

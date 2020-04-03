@@ -19,43 +19,43 @@ $assetsPath: '/assets';
 @import 'normalise/cross-project';
 
 // App
-@import 'app/routables/components/app/style.scss';
-@import 'app/routables/components/app/header/style.scss';
-@import 'app/routables/components/app/breadcrumbs/style.scss';
-@import 'app/routables/components/app/footer/style.scss';
+@import 'app/routables/components/legacy/app/style.scss';
+@import 'app/routables/components/legacy/app/header/style.scss';
+@import 'app/routables/components/legacy/app/breadcrumbs/style.scss';
+@import 'app/routables/components/legacy/app/footer/style.scss';
 
 // Reusable UI
-@import 'app/routables/components/ui/button/style';
-@import 'app/routables/components/ui/field/style';
-@import 'app/routables/components/ui/image/style';
-@import 'app/routables/components/ui/input/style';
-@import 'app/routables/components/ui/search/style';
-@import 'app/routables/components/ui/textarea/style';
-@import 'app/routables/components/ui/video/style';
+@import 'app/routables/components/legacy/ui/button/style';
+@import 'app/routables/components/legacy/ui/field/style';
+@import 'app/routables/components/legacy/ui/image/style';
+@import 'app/routables/components/legacy/ui/input/style';
+@import 'app/routables/components/legacy/ui/search/style';
+@import 'app/routables/components/legacy/ui/textarea/style';
+@import 'app/routables/components/legacy/ui/video/style';
 
 // Components
-@import 'app/routables/components/page/style';
-@import 'app/routables/components/page/section/style';
-@import 'app/routables/components/icon/style';
-@import 'app/routables/components/liner/style.scss';
-@import 'app/routables/components/icon-duo/style.scss';
+@import 'app/routables/components/legacy/page/style';
+@import 'app/routables/components/legacy/page/section/style';
+@import 'app/routables/components/legacy/icon/style';
+@import 'app/routables/components/legacy/liner/style.scss';
+@import 'app/routables/components/legacy/icon-duo/style.scss';
 
 // UI specific to this project
-@import 'app/routables/components/feed-item/style.scss';
-@import 'app/routables/components/feeds-page/style.scss';
-@import 'app/routables/components/page-load/style.scss';
-@import 'app/routables/components/load-spinner/style.scss';
-@import 'app/routables/components/product-card/style.scss';
-@import 'app/routables/components/product-set/style.scss';
-@import 'app/routables/components/hero-card/style.scss';
-@import 'app/routables/components/hero-set/style.scss';
+@import 'app/routables/components/legacy/feed-item/style.scss';
+@import 'app/routables/components/legacy/feeds-page/style.scss';
+@import 'app/routables/components/legacy/page-load/style.scss';
+@import 'app/routables/components/legacy/load-spinner/style.scss';
+@import 'app/routables/components/legacy/product-card/style.scss';
+@import 'app/routables/components/legacy/product-set/style.scss';
+@import 'app/routables/components/legacy/hero-card/style.scss';
+@import 'app/routables/components/legacy/hero-set/style.scss';
 
 // Pages
-@import 'app/routables/components/page/index/style.scss';
-@import 'app/routables/components/page/product/content/style.scss';
-@import 'app/routables/components/page/products/style.scss';
-@import 'app/routables/components/page/products/families/style.scss';
-@import 'app/routables/components/page/products/families/family/style.scss';
-@import 'app/routables/components/page/products/purposes/style.scss';
-@import 'app/routables/components/page/products/qualities/style.scss';
-@import 'app/routables/components/page/products/names/style.scss';
+// @import 'app/routables/components/page/index/style.scss';
+// @import 'app/routables/components/page/product/content/style.scss';
+// @import 'app/routables/components/page/products/style.scss';
+// @import 'app/routables/components/page/products/families/style.scss';
+// @import 'app/routables/components/page/products/families/family/style.scss';
+// @import 'app/routables/components/page/products/purposes/style.scss';
+// @import 'app/routables/components/page/products/qualities/style.scss';
+// @import 'app/routables/components/page/products/names/style.scss';

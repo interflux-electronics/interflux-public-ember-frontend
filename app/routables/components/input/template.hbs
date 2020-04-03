@@ -1,0 +1,23 @@
+<div
+  class="input {{if @size @size 'no-size'}} {{if @icon 'has-icon' 'no-icon'}} {{if @disabled 'disabled' 'not-disabled'}} {{if @isValidated (if @isValid 'valid' 'invalid') 'not-validated'}}"
+>
+  <input
+    value={{@value}}
+    type={{@type}}
+    placeholder={{@placeholder}}
+    disabled={{@disabled}}
+    autocapitalize='off'
+    autocomplete='off'
+    autocorrect='off'
+    spellcheck=false
+    {{on 'focus' onFocus}}
+    {{on 'blur' onBlur}}
+    {{on 'keyup' onKeyUp}}
+    autofocus='true'
+  >
+  {{#if @icon}}
+    <div class="icon">
+      <!-- <Icon @name={{@icon}} /> -->
+    </div>
+  {{/if}}
+</div>
