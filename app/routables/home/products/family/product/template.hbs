@@ -1,1 +1,36 @@
-{{outlet}}
+<Page @id="product">
+  <Section @class="temporary">
+    <Button::Route
+      @route="home.products.family.index"
+      @text={{@model.product.family.namePlural}}
+      @size="small"
+      @style="blue-2"
+    />
+    <h1>{{@model.product.name}}</h1>
+    <h2>{{@model.product.family.nameSingle}}</h2>
+
+    {{#each @model.product.images as |image|}}
+      <Image::Responsive
+        @path={{image.path}}
+        @sizes={{image.sizes}}
+        @formats={{image.formats}}
+        @alt={{image.alt}}
+        @caption={{image.caption}}
+      />
+    {{/each}}
+
+    <ul>
+      {{#each @model.product.documents as |document|}}
+        <li>
+          <Button::Url
+            @href="{{cdn}}/{{document.path}}"
+            @text="{{document.name}} ({{document.language.nameEnglish}})"
+            @icon="pdf"
+            @size="medium"
+            @style="white grey-border"
+          />
+        </li>
+      {{/each}}
+    </ul>
+  </Section>
+</Page>

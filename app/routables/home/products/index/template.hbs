@@ -1,1 +1,24 @@
-{{outlet}}
+<Page @id="products">
+  <Section @class="temporary">
+    <Button::Route
+      @route="home"
+      @text="home"
+      @size="small"
+      @style="blue-2"
+    />
+    <h1>Products</h1>
+    <ul>
+      {{#each @model.families as |family|}}
+        <li>
+          <Button::Route
+            @route="home.products.family"
+            @model={{family.slug}}
+            @text={{family.namePlural}}
+            @size="small"
+            @style="blue-2"
+          />
+        </li>
+      {{/each}}
+    </ul>
+  </Section>
+</Page>

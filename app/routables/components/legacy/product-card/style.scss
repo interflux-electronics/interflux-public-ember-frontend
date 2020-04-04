@@ -58,7 +58,7 @@
       position: absolute;
       background: $lmpa-orange;
       color: white;
-      font-family: $nunito-sans-regular;
+      font-family: $regular;
       line-height: 100%;
       display: flex;
       align-items: center;
@@ -220,7 +220,7 @@
   h3 {
     background: $interflux-light-blue;
     color: white;
-    font-family: $nunito-sans-regular;
+    font-family: $regular;
     line-height: 100%;
     @include widescreen {
       font-size: 15px;

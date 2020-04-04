@@ -17,14 +17,15 @@ export default class ImageResponsiveComponent extends Component {
 
   @action
   didInsert(element) {
-    console.debug('<Image::Responsive> didInsertImg()', { element });
+    // console.debug('<Image::Responsive> didInsertImg()', { element });
     this.computeOptimalSize(element);
   }
 
-  @action
-  willDestroy(element) {
-    console.debug('<Image::Responsive> willDestroy()', { element });
-  }
+  // Needed?
+  // @action
+  // willDestroy(element) {
+  //   console.debug('<Image::Responsive> willDestroy()', { element });
+  // }
 
   @action
   computeOptimalSize(element) {
@@ -48,14 +49,14 @@ export default class ImageResponsiveComponent extends Component {
       }
     });
 
-    console.debug('<Image::Responsive> computeOptimalSize()', {
-      width: element.offsetWidth,
-      height: element.offsetHeight,
-      sizes: this.args.sizes,
-      pixelRatio,
-      optimalWidth,
-      closestSize
-    });
+    // console.debug('<Image::Responsive> computeOptimalSize()', {
+    //   width: element.offsetWidth,
+    //   height: element.offsetHeight,
+    //   sizes: this.args.sizes,
+    //   pixelRatio,
+    //   optimalWidth,
+    //   closestSize
+    // });
 
     this.optimalHeight = closestSize.split('x')[0];
     this.optimalWidth = closestSize.split('x')[1];
@@ -64,7 +65,7 @@ export default class ImageResponsiveComponent extends Component {
 
   @action
   onLoad() {
-    console.debug('<Image::Responsive> onLoad()');
+    // console.debug('<Image::Responsive> onLoad()');
     this.loading = false;
     this.loadFailed = false;
   }

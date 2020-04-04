@@ -1,4 +1,4 @@
 import Route from '@ember/routing/route';
 
-export default class HomeArticlesRoute extends Route {
+export default class ArticlesRoute extends Route {
 }

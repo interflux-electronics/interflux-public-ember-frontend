@@ -1,1 +1,15 @@
-{{outlet}}
+<Page @id="home">
+  <Section @class="temporary">
+    <h1>Home</h1>
+    <ul>
+      <li>
+        <Button::Route
+          @route="home.products"
+          @text="Products"
+          @size="small"
+          @style="blue-2"
+        />
+      </li>
+    </ul>
+  </Section>
+</Page>
