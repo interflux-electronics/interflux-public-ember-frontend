@@ -1,7 +1,7 @@
 <Page @id="product-family">
   <Section @class="temporary">
     <Button::Route
-      @route="home.products"
+      @route="products"
       @text="products"
       @size="small"
       @style="blue-2"
@@ -11,11 +11,11 @@
       {{#each @model.products as |product|}}
         <li>
           <Button::Route
-            @route="home.products.family.product"
+            @route="products.family.product"
             @model={{product.slug}}
             @text={{product.name}}
-            @size="small"
-            @style="blue-2"
+            @size="medium"
+            @style="white grey-border"
           />
         </li>
       {{/each}}

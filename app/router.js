@@ -8,19 +8,21 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('home', { path: '/:language' }, function() {
-    this.route('products', function() {
+    this.route('products', { resetNamespace: true }, function() {
       this.route('family', { path: '/:family' }, function() {
         this.route('product', { path: '/:product' });
       });
     });
-    this.route('articles', function() {
+    this.route('articles', { resetNamespace: true }, function() {
       this.route('article', { path: '/:article' });
     });
-    this.route('documents');
+    this.route('documents', { resetNamespace: true });
+    this.route('contact', { resetNamespace: true });
+    this.route('catchall', { path: '*:', resetNamespace: true });
   });
-  this.route('catchall');
-  this.route('error');
+
   this.route('loading');
+  this.route('error');
 });
 
 export default Router;

@@ -21,7 +21,7 @@ export default class ProductFamilyRoute extends Route {
   afterModel(model) {
     if (!model.family) {
       console.warn('redirecting back to products page');
-      this.transitionTo('home.products');
+      this.transitionTo('products');
     }
   }
 }

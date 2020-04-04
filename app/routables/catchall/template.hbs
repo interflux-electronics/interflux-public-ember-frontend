@@ -1,1 +1,11 @@
-{{outlet}}
+<Page @id="not-found">
+  <Section @class="temporary">
+    <p>Sorry, there is no page here.</p>
+    <Button::Route
+      @route="home"
+      @text="Return home :)"
+      @size="small"
+      @style="blue-2"
+    />
+  </Section>
+</Page>

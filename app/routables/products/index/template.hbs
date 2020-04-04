@@ -2,7 +2,7 @@
   <Section @class="temporary">
     <Button::Route
       @route="home"
-      @text="home"
+      @text="Home"
       @size="small"
       @style="blue-2"
     />
@@ -11,11 +11,11 @@
       {{#each @model.families as |family|}}
         <li>
           <Button::Route
-            @route="home.products.family"
+            @route="products.family"
             @model={{family.slug}}
             @text={{family.namePlural}}
-            @size="small"
-            @style="blue-2"
+            @size="medium"
+            @style="white grey-border"
           />
         </li>
       {{/each}}

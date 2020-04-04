@@ -1,0 +1,24 @@
+<Page @id="articles">
+  <Section @class="temporary">
+    <Button::Route
+      @route="home"
+      @text="Home"
+      @size="small"
+      @style="blue-2"
+    />
+    <h1>Articles</h1>
+    <ul>
+      {{#each @model.articles as |article|}}
+        <li>
+          <Button::Route
+            @route="articles.article"
+            @model={{article.slug}}
+            @text={{article.title}}
+            @size="medium"
+            @style="white grey-border"
+          />
+        </li>
+      {{/each}}
+    </ul>
+  </Section>
+</Page>

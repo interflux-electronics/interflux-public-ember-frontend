@@ -23,12 +23,12 @@
 
 // Pages
 @import 'app/routables/home/index/style';
-@import 'app/routables/home/products/index/style';
-@import 'app/routables/home/products/family/index/style';
-@import 'app/routables/home/products/family/product/style';
-@import 'app/routables/home/articles/index/style';
-@import 'app/routables/home/articles/article/style';
-@import 'app/routables/home/documents/style';
-@import 'app/routables/home/contact/style';
+@import 'app/routables/products/index/style';
+@import 'app/routables/products/family/index/style';
+@import 'app/routables/products/family/product/style';
+@import 'app/routables/articles/index/style';
+@import 'app/routables/articles/article/style';
+@import 'app/routables/documents/style';
+@import 'app/routables/contact/style';
 @import 'app/routables/loading/style';
 @import 'app/routables/error/style';
