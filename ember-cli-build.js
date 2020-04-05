@@ -35,24 +35,28 @@ module.exports = function(defaults) {
     },
 
     fingerprint: {
-      enabled: ENV.isProduction,
-      extensions: [
-        'js',
-        'css',
-        'png',
-        'jpg',
-        'svg',
-        'map',
-        'mp4',
-        'ogg',
-        'webp',
-        'webm',
-        'woff',
-        'woff2'
-      ],
-      replaceExtensions: ['html', 'css', 'scss', 'js'],
-      customHash: ENV.gitRevision
+      enabled: false
     },
+
+    // fingerprint: {
+    //   enabled: ENV.isProduction,
+    //   extensions: [
+    //     'js',
+    //     'css',
+    //     'png',
+    //     'jpg',
+    //     'svg',
+    //     'map',
+    //     'mp4',
+    //     'ogg',
+    //     'webp',
+    //     'webm',
+    //     'woff',
+    //     'woff2'
+    //   ],
+    //   replaceExtensions: ['html', 'css', 'scss', 'js'],
+    //   customHash: ENV.gitRevision
+    // },
 
     'ember-fetch': {
       preferNative: true
