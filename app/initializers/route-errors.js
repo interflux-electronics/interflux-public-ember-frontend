@@ -43,7 +43,6 @@ export function initialize() {
             console.error('Looks like we did not hit Mirage.');
           } else {
             console.error('This should never show.');
-            debugger;
           }
         }
         if (error instanceof InvalidError) {
