@@ -1,4 +1,4 @@
-<Page @id="contacts">
+<Page @id="contact">
   <Section @class="temporary">
     <Button::Route
       @route="home"
@@ -7,23 +7,51 @@
       @style="blue-2"
     />
     <h1>Contact</h1>
+
+    <Map />
+
     <ul>
       {{#each @model.companies as |company|}}
         <li>
           <h2>{{company.businessName}}</h2>
-          <p>{{company.legalName}}</p>
-          <p>{{company.address}}</p>
-          <p>{{company.country.nameEnglish}}</p>
-          <p>{{company.phone}}</p>
-          <p>{{company.fax}}</p>
+
+          {{#if company.phone}}
+            <p>Tel: <a
+                href="tel:{{company.phone}}"
+                target="_blank"
+                rel="noreferrer nofollow"
+              >{{company.fax}}</a></p>
+          {{/if}}
+
+          {{#if company.fax}}
+            <p>Fax: <a
+                href="fax:{{company.fax}}"
+                target="_blank"
+                rel="noreferrer nofollow"
+              >{{company.fax}}</a></p>
+          {{/if}}
+
           {{#if company.emails}}
             {{#each company.emails as |email|}}
-              <p>{{email}}</p>
+              <p>Email: <a
+                  href="mailto:{{email}}"
+                  target="_blank"
+                  rel="noreferrer nofollow"
+                >{{email}}</a></p>
             {{/each}}
           {{/if}}
+
           {{#if company.website}}
-            <p>{{company.website}}</p>
+            <p>Website: <a
+                href={{company.website}}
+                target="_blank"
+                rel="noreferrer nofollow"
+              >{{company.website}}</a></p>
           {{/if}}
+
+          <p>{{company.legalName}}</p>
+          <p>{{company.address}}</p>
+          <h3>{{company.country.nameEnglish}}</h3>
         </li>
       {{/each}}
     </ul>

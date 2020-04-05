@@ -20,5 +20,13 @@ section {
       align-items: center;
       padding: 5vw;
     }
+    p {
+      & > a {
+        color: $blue-0;
+        &:hover {
+          color: $orange-3;
+        }
+      }
+    }
   }
 }

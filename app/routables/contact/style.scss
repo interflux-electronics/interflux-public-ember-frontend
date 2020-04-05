@@ -1,3 +1,17 @@
 #contact.page {
-  //
+  .map {
+    margin-bottom: 80px;
+  }
+  li {
+    align-items: flex-start;
+    & + li {
+      margin-top: 60px;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    p {
+      margin: 0;
+    }
+  }
 }
