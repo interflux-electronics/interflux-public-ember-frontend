@@ -11,7 +11,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "ember serve --environment=development",
+    "start": "./node_modules/ember-cli/bin/ember serve",
     "build": "ember build --environment=production",
     "deploy": "./bin/deploy.sh",
     "test": "npm-run-all lint:* test:*",
@@ -20,7 +20,6 @@
     "lint:hbs": "ember-template-lint .",
     "build-ios": "IOS_BUILD=true corber build --platform=ios --environment=production",
     "build-android": "ANDROID_BUILD=true corber build --platform=android --environment=production",
-    "start": "./node_modules/ember-cli/bin/ember serve",
     "start-ios": "IOS_BUILD=true corber start --platform=ios",
     "android": "ANDROID_BUILD=true ember s --port=4200 --live-reload-port=0 --output-path=dist-android/",
     "start-android": "ANDROID_BUILD=true corber start --platform=android"
@@ -53,6 +52,7 @@
     "ember-fetch": "^7.0.1",
     "ember-get-config": "^0.2.4",
     "ember-load-initializers": "^2.1.1",
+    "ember-mapbox-gl": "^0.16.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-prop-types": "^9.0.2",
     "ember-qunit": "^4.6.0",
@@ -64,6 +64,7 @@
     "eslint-plugin-node": "^11.0.0",
     "git-rev-sync": "^2.0.0",
     "loader.js": "^4.7.0",
+    "mapbox-gl": "^1.0.0",
     "npm-run-all": "^4.1.5",
     "qunit-dom": "^1.1.0",
     "sass": "^1.25.0"
