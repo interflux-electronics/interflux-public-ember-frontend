@@ -1,5 +1,31 @@
-<Page @id="contact">
-  <section>
-    <p>Contact</p>
-  </section>
+<Page @id="contacts">
+  <Section @class="temporary">
+    <Button::Route
+      @route="home"
+      @text="Home"
+      @size="small"
+      @style="blue-2"
+    />
+    <h1>Contact</h1>
+    <ul>
+      {{#each @model.companies as |company|}}
+        <li>
+          <h2>{{company.businessName}}</h2>
+          <p>{{company.legalName}}</p>
+          <p>{{company.address}}</p>
+          <p>{{company.country.nameEnglish}}</p>
+          <p>{{company.phone}}</p>
+          <p>{{company.fax}}</p>
+          {{#if company.emails}}
+            {{#each company.emails as |email|}}
+              <p>{{email}}</p>
+            {{/each}}
+          {{/if}}
+          {{#if company.website}}
+            <p>{{company.website}}</p>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </Section>
 </Page>
