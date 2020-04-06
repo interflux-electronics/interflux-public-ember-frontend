@@ -5,16 +5,8 @@ export default class ProductFamilyRoute extends Route {
   @service store;
 
   model(params) {
-    // const family = this.store
-    //   .peekAll('productFamily')
-    //   .findBy('slug', params.family);
-    // const products = ;
-
     return {
-      family: this.store.peekAll('productFamily').findBy('slug', params.family),
-      products: this.store
-        .peekAll('product')
-        .filterBy('family.slug', params.family)
+      family: this.store.peekAll('productFamily').findBy('slug', params.family)
     };
   }
 

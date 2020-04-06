@@ -26,6 +26,7 @@ button {
     }
 
     &.medium {
+      font-family: $semibold;
       font-family: $regular;
       font-size: 15px;
       line-height: 40px;
@@ -85,17 +86,13 @@ button {
       }
     }
 
-    &.white {
-      background: white;
-      &:hover {
-        background: $grey-1;
-      }
-    }
-
     &.grey-border {
+      background: white;
       border: 1px solid $grey-1;
+      color: $blue-0;
       &:hover {
-        border-color: $grey-2;
+        color: $orange-3;
+        border-color: $orange-1;
       }
     }
 

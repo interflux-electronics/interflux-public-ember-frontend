@@ -1,19 +1,19 @@
-<Page @id="articles">
+<Page @id="documents">
   <Section @class="temporary">
     <Button::Route
       @route="home"
-      @text="Home"
+      @text="Back"
       @size="small"
       @style="blue-2"
     />
-    <h1>Articles</h1>
+    <h1>Documents</h1>
     <ul>
-      {{#each @model.articles as |article|}}
+      {{#each @model.categories as |category|}}
         <li>
           <Button::Route
-            @route="articles.article"
-            @model={{article.slug}}
-            @text={{article.title}}
+            @route="documents.category"
+            @model={{category.slug}}
+            @text={{category.name}}
             @size="medium"
             @style="grey-border"
           />

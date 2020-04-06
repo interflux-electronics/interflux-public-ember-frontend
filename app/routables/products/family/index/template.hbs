@@ -8,14 +8,14 @@
     />
     <h1>{{capitalize-words @model.family.namePlural}}</h1>
     <ul>
-      {{#each @model.products as |product|}}
+      {{#each @model.family.products as |product|}}
         <li>
           <Button::Route
             @route="products.family.product"
             @model={{product.slug}}
             @text={{product.name}}
             @size="medium"
-            @style="white grey-border"
+            @style="grey-border"
           />
         </li>
       {{/each}}

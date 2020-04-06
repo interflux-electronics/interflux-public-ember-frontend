@@ -16,7 +16,9 @@ Router.map(function() {
     this.route('articles', { resetNamespace: true }, function() {
       this.route('article', { path: '/:article' });
     });
-    this.route('documents', { resetNamespace: true });
+    this.route('documents', { resetNamespace: true }, function() {
+      this.route('category', { path: '/:category' });
+    });
     this.route('contact', { resetNamespace: true });
     this.route('catchall', { path: '*:', resetNamespace: true });
   });

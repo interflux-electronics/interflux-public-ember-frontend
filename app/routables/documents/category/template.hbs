@@ -1,0 +1,42 @@
+<Page @id="document-category">
+  <Section @class="temporary">
+    <Button::Route
+      @route="documents"
+      @text="Back"
+      @size="small"
+      @style="blue-2"
+    />
+    <h1>{{@model.category.name}}</h1>
+    {{#if (eq @model.category.slug 'SDS')}}
+      <p>To request an SDS, please contact our REACH team in Belgium:</p>
+      <p><a
+          href="mailto:reach@interflux.com"
+          target="_blank"
+          rel="nofollow noreferrer"
+        >reach@interflux.com</a></p>
+    {{else if (eq @model.category.slug 'REACH')}}
+      <p>For all questions regarding Registration, Evaluation, Authorisation and
+        Restriction of Chemicals (REACH) please contact our friendly REACH team
+        in Belgium:</p>
+      <p><a
+          href="mailto:reach@interflux.com"
+          target="_blank"
+          rel="nofollow noreferrer"
+        >reach@interflux.com</a></p>
+    {{else}}
+      <ul>
+        {{#each @model.category.documents as |document|}}
+          <li>
+            <Button::Url
+              @href="{{cdn}}/{{document.path}}"
+              @text="{{document.name}} ({{document.language.nameEnglish}})"
+              @icon="pdf"
+              @size="medium"
+              @style="grey-border"
+            />
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </Section>
+</Page>
