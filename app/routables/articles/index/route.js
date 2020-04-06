@@ -7,7 +7,8 @@ export default class ArticlesIndexRoute extends Route {
 
   model() {
     return hash({
-      articles: this.store.findAll('article')
+      articles: this.store.findAll('article'),
+      categories: this.store.findAll('articleCategory')
     });
   }
 }
