@@ -1,8 +1,8 @@
-// Why not?
-// All credit goes to https://asciify.me/
-export function initialize() {
-  console.log(
-    `%c
+import ENV from 'interflux/config/environment';
+
+// Because we can.
+// Credit goes to https://asciify.me/ though.
+const asciLogo = `
 ---'.''. '.-'.  ' .'  '-  -'.'  -' -. '.''- '''    '-. . -.' '   -' '- . ' '   '-- ' ''.  ''
 ..''-.    '''.'  ' .  -....  ''..' ' '-. .'  '-' '-'.- .-.''...-' - ''- '- ''.'. '''  -  ''
 .--'-..'--'''- ' '.-'-.  '  '' '.'. -. '..       ' -.-. ..   -'.' --. .- '   ''-' ''-''-- -'
@@ -43,9 +43,12 @@ export function initialize() {
  '----' -'' --  ''  ''  .' ''- - .'.'.-'' ' ' '-..-- '   ' .-.''-.- --'. '-.'...-  -.'-' .'-
 '  - .-  - .'-  '- . ''' '   ---'' . -- .  ''. -  ' ' -   -' '' ---'- '.-  interflux.com  '.
 ' ''.  -' .- --.'- ''   .-'''.  ' . ' '' '''-'-  .'-''.-  '''-.'.- '    ''  '  - '-'-'- ''.-
-  `,
-    'color: #23578c'
-  );
+`;
+
+export function initialize() {
+  if (ENV.isProduction) {
+    console.log(`%c${asciLogo}`, 'color: #23578c');
+  }
 }
 
 export default {
