@@ -17,49 +17,29 @@ module.exports = function(defaults) {
       remove: false
     },
 
-    // Prevent CSS minification in development and tests
+    // Only minify CSS in production to speed up development and tests.
     minifyCSS: {
       enabled: ENV.isProduction
     },
 
-    // Prevent JS minification in development and tests
+    // Only minify JS in production to speed up development and tests.
     minifyJS: {
       enabled: ENV.isProduction
     },
 
-    // Enable source maps for debugging and Sentry
+    // Enable source maps in all environments because it helps debugging.
     sourcemaps: {
-      // enabled: ENV.isProduction,
       enabled: true,
       extensions: ['js']
     },
 
+    // Because the 2 JS and 2 CSS bundles are being HTTP2 pushed alongside the
+    // index.html by Nginx, we need the name to be predictable and thus have
+    // no fingerprints. Cache busting is not needed because the JS and CSS
+    // bundles we'll never cache (they update too often). Images, videos and
+    // fonts we'll highly cache though.
     fingerprint: {
       enabled: false
-    },
-
-    // fingerprint: {
-    //   enabled: ENV.isProduction,
-    //   extensions: [
-    //     'js',
-    //     'css',
-    //     'png',
-    //     'jpg',
-    //     'svg',
-    //     'map',
-    //     'mp4',
-    //     'ogg',
-    //     'webp',
-    //     'webm',
-    //     'woff',
-    //     'woff2'
-    //   ],
-    //   replaceExtensions: ['html', 'css', 'scss', 'js'],
-    //   customHash: ENV.gitRevision
-    // },
-
-    'ember-fetch': {
-      preferNative: true
     }
   });
 
