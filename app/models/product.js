@@ -6,10 +6,12 @@ export default class ProductModel extends Model {
   @attr('string') name;
   @attr('boolean') public;
 
-  @alias('productFamily') family;
-
   @belongsTo('product-family') productFamily;
+  @belongsTo('image') image;
 
   @hasMany('document') documents;
   @hasMany('image') images;
+
+  @alias('productFamily') family;
+  @alias('image') avatar;
 }

@@ -46,9 +46,23 @@
 // https://sass-lang.com/documentation/at-rules/function
 //
 @function vw($desired_px, $screen_width: 1200) {
-  @return #{($desired_px / $screen_width * 100) + 'vw'};
+  $number: strip-unit($desired_px);
+  @return #{($number / $screen_width * 100) + 'vw'};
 }
 
-@function px($desired_vw, $screen_width) {
-  @return #{(($desired_vw / 100) * $screen_width) + 'px'};
+@function px($desired_vw, $screen_width: 1200) {
+  $number: strip-unit($desired_vw);
+  @return #{(($number / 100) * $screen_width) + 'px'};
+}
+
+// Remove the unit of a length
+// @param {Number} $number - Number to remove unit from
+// @return {Number} - Unitless number
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+//
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
 }

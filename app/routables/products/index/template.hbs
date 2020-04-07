@@ -10,17 +10,11 @@
     <ul>
       {{#each @model.families as |family|}}
         <li>
-          <h2>{{family.namePlural}}</h2>
-
-          {{#each family.products as |product|}}
-            <p>{{product.name}}</p>
-          {{/each}}
-
           <Button::Route
             @route="products.family"
             @model={{family.slug}}
-            @text="see all"
-            @size="small"
+            @text="{{capitalize-words family.namePlural}} ({{family.count}})"
+            @size="medium"
             @style="grey-border"
           />
         </li>

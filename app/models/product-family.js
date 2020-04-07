@@ -7,4 +7,8 @@ export default class ProductFamilyModel extends Model {
   @attr('string') namePlural;
 
   @hasMany('product') products;
+
+  get count() {
+    return this.products.length;
+  }
 }

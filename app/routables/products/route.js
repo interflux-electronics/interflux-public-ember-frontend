@@ -7,7 +7,7 @@ export default class ProductsRoute extends Route {
 
   model() {
     return hash({
-      products: this.store.findAll('product'),
+      products: this.store.query('product', { include: ['image'].join(',') }),
       families: this.store.findAll('productFamily')
     });
   }

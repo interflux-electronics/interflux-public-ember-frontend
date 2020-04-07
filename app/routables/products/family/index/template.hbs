@@ -2,23 +2,16 @@
   <Section @class="temporary">
     <Button::Route
       @route="products"
-      @text="products"
+      @text="Back"
       @size="small"
       @style="blue-2"
     />
     <h1>{{capitalize-words @model.family.namePlural}}</h1>
-    <ul>
-      {{#each @model.family.products as |product|}}
-        <li>
-          <Button::Route
-            @route="products.family.product"
-            @model={{product.slug}}
-            @text={{product.name}}
-            @size="medium"
-            @style="grey-border"
-          />
-        </li>
-      {{/each}}
-    </ul>
+  </Section>
+
+  <Section @class="product-tiles">
+    {{#each @model.family.products as |product|}}
+      <ProductTile @product={{product}} />
+    {{/each}}
   </Section>
 </Page>
