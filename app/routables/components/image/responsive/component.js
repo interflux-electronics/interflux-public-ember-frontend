@@ -2,26 +2,27 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+// TODO: write tests
+
 export default class ImageResponsiveComponent extends Component {
   @tracked loading = true;
   @tracked loadFailed = false;
   @tracked showImage = false;
+  @tracked showError = false;
   @tracked optimalWidth;
   @tracked optimalHeight;
-  @tracked webp;
 
-  constructor() {
-    super(...arguments);
-    this.webp = this.args.formats.includes('webp');
+  get webp() {
+    return false; // TODO: first fix chroma issue with WEBP images
+    // return this.args.formats && this.args.formats.includes('webp');
   }
 
   @action
   didInsert(element) {
-    // console.debug('<Image::Responsive> didInsertImg()', { element });
     this.computeOptimalSize(element);
   }
 
-  // Needed?
+  // TODO: Stop watching
   // @action
   // willDestroy(element) {
   //   console.debug('<Image::Responsive> willDestroy()', { element });
@@ -29,34 +30,26 @@ export default class ImageResponsiveComponent extends Component {
 
   @action
   computeOptimalSize(element) {
+    const sizes = this.args.sizes;
     const pixelRatio = window.devicePixelRatio || 1;
     const optimalWidth = element.offsetWidth * pixelRatio;
 
-    let closestSize;
-    let closestDifference;
-
-    this.args.sizes.forEach(size => {
+    const distances = sizes.map(size => {
       const width = size.split('x')[0];
-      const difference = width - optimalWidth;
-      const isPositive = difference >= 0;
-      const isCloser = closestDifference
-        ? difference < closestDifference
-        : true;
-
-      if (isPositive && isCloser) {
-        closestSize = size;
-        closestDifference = difference;
-      }
+      return width - optimalWidth;
     });
 
-    // console.debug('<Image::Responsive> computeOptimalSize()', {
-    //   width: element.offsetWidth,
-    //   height: element.offsetHeight,
-    //   sizes: this.args.sizes,
-    //   pixelRatio,
-    //   optimalWidth,
-    //   closestSize
-    // });
+    const larger = distances.filter(d => d >= 0);
+    const smaller = distances.filter(d => d < 0);
+
+    const closestDistance = larger.length
+      ? Math.max(...larger)
+      : Math.max(...smaller);
+
+    const closestSize = sizes.find(size => {
+      const width = size.split('x')[0];
+      return width - optimalWidth === closestDistance;
+    });
 
     this.optimalHeight = closestSize.split('x')[0];
     this.optimalWidth = closestSize.split('x')[1];
