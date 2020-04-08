@@ -1,0 +1,20 @@
+<Section @class="products">
+  {{#each @products as |product|}}
+    <LinkTo
+      @route="products.family.product"
+      @model={{product.slug}}
+      class="product-tile"
+    >
+      <h2>{{product.name}}</h2>
+      <h3>{{product.family.nameSingle}}</h3>
+      <Image::Responsive
+        @path={{product.avatar.path}}
+        @sizes={{product.avatar.sizes}}
+        @formats={{product.avatar.formats}}
+        @alt={{product.avatar.alt}}
+        @caption={{product.avatar.caption}}
+      />
+      <button>Explore</button>
+    </LinkTo>
+  {{/each}}
+</Section>

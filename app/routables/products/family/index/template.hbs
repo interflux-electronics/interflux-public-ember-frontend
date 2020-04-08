@@ -9,9 +9,5 @@
     <h1>{{capitalize-words @model.family.namePlural}}</h1>
   </Section>
 
-  <Section @class="product-tiles">
-    {{#each @model.family.products as |product|}}
-      <ProductTile @product={{product}} />
-    {{/each}}
-  </Section>
+  <Section::Products @products={{@model.family.products}} />
 </Page>
