@@ -3,6 +3,15 @@ section {
     max-width: 1200px;
     margin: 0 auto;
   }
+  &.crumbs {
+    .liner {
+      display: flex;
+      padding: 1vw;
+      a {
+        margin-right: 5px;
+      }
+    }
+  }
   &.temporary {
     h1 {
       text-align: center;

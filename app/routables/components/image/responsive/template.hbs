@@ -1,9 +1,12 @@
 <figure
-  class="responsive-image"
-  {{did-insert this.computeOptimalSize}}
+  class="responsive-image{{if @class (concat ' ' @class)}}"
+  {{did-insert this.findOptimalSize}}
+  {{on 'click' this.onClick}}
 >
   <picture>
-    {{#if (and validParams (not this.error))}}
+    {{#if this.error}}
+      <Icon::InterfluxGrey />
+    {{else}}
       {{#if this.loading}}
         <div class="loading">
           <LoadSpinner @icon="cup" />
@@ -12,25 +15,23 @@
       {{#if this.foundOptimal}}
         {{#if webp}}
           <source
-            srcset="{{cdn}}/{{@path}}@{{this.optimalWidth}}x{{this.optimalHeight}}.webp"
+            srcset="{{cdn}}/{{@image.path}}@{{this.optimalWidth}}x{{this.optimalHeight}}.webp"
             type="image/webp"
           >
         {{/if}}
         <img
-          src="{{cdn}}/{{@path}}@{{this.optimalWidth}}x{{this.optimalHeight}}.jpg"
+          src="{{cdn}}/{{@image.path}}@{{this.optimalWidth}}x{{this.optimalHeight}}.jpg"
           width={{this.optimalWidth}}
           height={{this.optimalHeight}}
-          alt={{@alt}}
+          alt={{@image.alt}}
           onload={{this.onLoad}}
           onerror={{this.onError}}
         >
       {{/if}}
-    {{else}}
-      <Icon::InterfluxGrey />
     {{/if}}
   </picture>
 
-  {{#if @caption}}
-    <figcaption>{{@caption}}</figcaption>
+  {{#if @image.caption}}
+    <figcaption>{{@image.caption}}</figcaption>
   {{/if}}
 </figure>

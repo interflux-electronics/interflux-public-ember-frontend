@@ -2,23 +2,64 @@
   <Section @class="temporary">
     <Button::Route
       @route="products.family.index"
-      @text={{@model.product.family.namePlural}}
+      @text="Back"
       @size="small"
-      @style="blue-2"
+      @style="grey"
     />
-    <h1>{{@model.product.name}}</h1>
-    <h2>{{@model.product.family.nameSingle}}</h2>
+  </Section>
 
-    {{#each @model.product.images as |image|}}
-      <Image::Responsive
-        @path={{image.path}}
-        @sizes={{image.sizes}}
-        @formats={{image.formats}}
-        @alt={{image.alt}}
-        @caption={{image.caption}}
-      />
-    {{/each}}
+  <Section::ProductHero @product={{@model.product}} />
 
+  <Section::Text @id="processes">
+    <h2>Applications</h2>
+    <p>For wave soldering</p>
+    <p>For reflow soldering</p>
+    <p>For hand soldering</p>
+  </Section::Text>
+
+  <Section::Text @id="highlights">
+    <h2>Qualities</h2>
+    <p>Absolute halide free</p>
+    <p>Lead-free</p>
+    <p>Excellent wetting</p>
+  </Section::Text>
+
+  <Section::Text @id="highlights">
+    <h2>Physical and chemical properties</h2>
+    <p>Specific density : 1.20 g/ml ± 0.1</p>
+    <p>Colour : White / yellow</p>
+    <p>Odour : mild</p>
+    <p>pH : 3</p>
+    <p>Viscosity : 250.000 cps</p>
+    <p>Solubility in water : insoluble</p>
+    <p>Self ignition temperature : 320°C (608°F)</p>
+  </Section::Text>
+
+  <Section::Text @id="highlights">
+    <h2>Available alloys</h2>
+    <p>LMPA-Q6</p>
+    <p>SnPb</p>
+    <p>SnPbAg</p>
+    <p>SnPbCu</p>
+  </Section::Text>
+
+  <Section::Text @id="highlights">
+    <h2>Available containers</h2>
+    <p>200L barrel</p>
+    <p>25L container</p>
+    <p>10L container</p>
+    <p>1L bottle</p>
+  </Section::Text>
+
+  <Section::Text @id="highlights">
+    <h2>How to use {{@model.product.name}}</h2>
+    <p>1. First...</p>
+    <p>2. Second...</p>
+    <p>3. Finally...</p>
+  </Section::Text>
+
+  <Section::Text @id="documents">
+    <h2>Documents</h2>
     <ul>
       {{#each @model.product.documents as |document|}}
         <li>
@@ -26,11 +67,11 @@
             @href="{{cdn}}/{{document.path}}"
             @text="{{document.name}} ({{document.language.nameEnglish}})"
             @icon="pdf"
-            @size="medium"
+            @size="small"
             @style="grey-border"
           />
         </li>
       {{/each}}
     </ul>
-  </Section>
+  </Section::Text>
 </Page>

@@ -1,0 +1,280 @@
+section.product-hero {
+  background: $grey-0;
+  .liner {
+    max-width: none;
+    @include widescreen {
+      display: grid;
+      grid-template-columns: 1fr 600px 600px 1fr;
+      grid-template-rows: auto auto;
+    }
+    @include desktop {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+  }
+  .hero {
+    position: relative; // For <figcaption>
+    @include widescreen {
+      width: px(50vw);
+      height: px(50vw);
+      grid-row: 1;
+      grid-column: 2;
+    }
+    @include desktop {
+      width: 50vw;
+      height: 50vw;
+      grid-row: 1;
+      grid-column: 1;
+    }
+    @include tablet {
+      width: 100vw;
+      height: 100vw;
+    }
+    @include mobile {
+      width: 100vw;
+      height: 100vw;
+    }
+    figure {
+      width: 100%;
+      &.hidden {
+        display: none;
+      }
+      &.active {
+        display: block;
+      }
+      figcaption {
+        position: absolute;
+        line-height: 100%;
+        color: $paragraph-color-2;
+        @include widescreen {
+          bottom: px(1vw);
+          left: px(1vw);
+          font-size: px(1.2vw);
+        }
+        @include desktop {
+          bottom: 1vw;
+          left: 1vw;
+          font-size: 1.2vw;
+        }
+        @include tablet {
+          bottom: 2vw;
+          left: 2vw;
+          font-size: 2.5vw;
+        }
+        @include mobile {
+          bottom: 3vw;
+          left: 3vw;
+          font-size: 4vw;
+        }
+      }
+    }
+  }
+
+  .thumbs {
+    display: flex;
+    justify-content: center;
+    @include widescreen {
+      grid-row: 2;
+      grid-column: 1 / span 4;
+      padding: px(0.4vw) 0;
+      background: white;
+    }
+    @include desktop {
+      grid-row: 2;
+      grid-column: 1 / span 2;
+      padding: 0.4vw 0;
+      background: white;
+    }
+    @include tablet {
+      margin-top: 0.8vw;
+    }
+    @include mobile {
+      margin-top: 1.3vw;
+    }
+    > div {
+      display: flex;
+      justify-content: center;
+      flex-flow: wrap;
+      max-width: 1200px;
+    }
+    figure {
+      flex-shrink: 0;
+      transition: transform 100ms ease;
+      outline: 0 solid white;
+      box-shadow: 0;
+      cursor: pointer; // because clickable
+      @include widescreen {
+        width: px((100vw / 15));
+        height: px((100vw / 15));
+      }
+      @include desktop {
+        width: calc(100vw / 15);
+        height: calc(100vw / 15);
+      }
+      @include tablet {
+        width: calc(100vw / 9);
+        height: calc(100vw / 9);
+      }
+      @include mobile {
+        width: calc(100vw / 6);
+        height: calc(100vw / 6);
+      }
+      &.active {
+        z-index: 1;
+        transform: scale(1.2);
+      }
+      &:hover {
+        z-index: 2;
+        transform: scale(1.3);
+      }
+      &:hover,
+      &.active {
+        transform-origin: center;
+        @include widescreen {
+          outline: px(0.4vw) solid white;
+          box-shadow: 0 px(0.2vw) px(0.3vw) rgba(black, 0.5);
+        }
+        @include desktop {
+          outline: 0.4vw solid white;
+          box-shadow: 0 0.2vw 0.3vw rgba(black, 0.5);
+        }
+        @include tablet {
+          outline: 0.8vw solid $grey-0;
+          box-shadow: 0 0.5vw 0.8vw rgba(black, 0.2);
+        }
+        @include mobile {
+          outline: 1.3vw solid $grey-0;
+          box-shadow: 0 1vw 2vw rgba(black, 0.2);
+        }
+      }
+      figcaption {
+        display: none;
+      }
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    @include widescreen {
+      padding: px(4vw);
+      grid-row: 1;
+      grid-column: 3;
+    }
+    @include desktop {
+      padding: 4vw;
+      grid-row: 1;
+      grid-column: 2;
+    }
+    @include tablet {
+      padding: 12vw 6vw;
+    }
+    @include mobile {
+      padding: 16vw 6vw 12vw;
+    }
+    h1 {
+      font-family: $extrabold;
+      background: $blue-3;
+      color: white;
+      line-height: 145%;
+      @include widescreen {
+        font-size: px(2.8vw);
+        padding: px(0.2vw) px(1.4vw) 0;
+        margin-bottom: px(1.1vw);
+      }
+      @include desktop {
+        font-size: 2.8vw;
+        padding: 0.2vw 1.4vw 0;
+        margin-bottom: 1.1vw;
+      }
+      @include tablet {
+        font-size: 4.8vw;
+        padding: 0.36vw 1.8vw 0;
+        margin-bottom: 3vw;
+      }
+      @include mobile {
+        font-size: 8vw;
+        padding: 0.6vw 3vw 0;
+        margin-bottom: 3vw;
+      }
+    }
+    h2 {
+      font-family: $regular;
+      background: $blue-0;
+      color: white;
+      line-height: 165%;
+      @include widescreen {
+        font-size: px(1.5vw);
+        padding: px(0.1vw) px(0.8vw) 0;
+        margin-bottom: px(3vw);
+      }
+      @include desktop {
+        font-size: 1.5vw;
+        padding: 0.1vw 0.8vw 0;
+        margin-bottom: 3vw;
+      }
+      @include tablet {
+        font-size: 2.76vw;
+        padding: 0.06vw 1.68vw 0;
+        margin-bottom: 6vw;
+      }
+      @include mobile {
+        font-size: 4.6vw;
+        padding: 0.1vw 2.8vw 0;
+        margin-bottom: 10vw;
+      }
+    }
+    p {
+      line-height: 160%;
+      margin: 0;
+      @include widescreen {
+        font-size: px(1.4vw);
+      }
+      @include desktop {
+        font-size: 1.4vw;
+      }
+      @include tablet {
+        font-size: 2.8vw;
+      }
+      @include mobile {
+        font-size: 4.6vw;
+      }
+      & + p {
+        @include widescreen {
+          margin-top: px(1vw);
+        }
+        @include desktop {
+          margin-top: 1vw;
+        }
+        @include tablet {
+          margin-top: 3vw;
+        }
+        @include mobile {
+          margin-top: 5vw;
+        }
+      }
+      a {
+        color: $orange-3;
+        text-decoration: underline;
+      }
+    }
+    .button-base {
+      @include widescreen {
+        margin-top: px(3vw);
+      }
+      @include desktop {
+        margin-top: 3vw;
+      }
+      @include tablet {
+        margin-top: 6vw;
+      }
+      @include mobile {
+        margin-top: 10vw;
+      }
+    }
+  }
+}

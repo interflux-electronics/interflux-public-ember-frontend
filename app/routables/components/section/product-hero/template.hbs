@@ -1,0 +1,39 @@
+<Section
+  @id="hero"
+  @class="product-hero"
+>
+  <div class="hero">
+    <Image::Responsive @image={{this.heroImage}} />
+  </div>
+
+  {{#if (gt @product.images.length 1)}}
+    <div class="thumbs">
+      <div>
+        {{#each @product.images as |image|}}
+          <Image::Responsive
+            @image={{image}}
+            @onClick={{action this.setHero image}}
+            @class={{if (eq image this.heroImage) 'active'}}
+          />
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="text">
+    <h1>{{@product.name}}</h1>
+    <h2>{{@product.family.nameSingle}}</h2>
+    <p>Interflux® PacIFic 2009M was one of the first water-based fluxes ever
+      invented to help close the hole in the ozon layer in 1992. Until date it's
+      one of our best water-based fluxes. It's mainly used in wave and selective
+      soldering.</p>
+    <p>Price: <a href="#">log in first</a></p>
+    <p>Availability: <a href="#">log in first</a></p>
+    <Button::Url
+      @href="mailto:order@interflux.com"
+      @text="Order"
+      @size="big"
+      @style="orange-3"
+    />
+  </div>
+</Section>

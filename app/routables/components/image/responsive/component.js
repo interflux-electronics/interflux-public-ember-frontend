@@ -11,17 +11,31 @@ export default class ImageResponsiveComponent extends Component {
   @tracked optimalWidth;
   @tracked optimalHeight;
 
-  get validParams() {
-    return this.args.sizes && this.args.formats && this.args.path;
-  }
-
   // From the moment the <figure> element is inserted into the DOM, we know its
-  // width and can then fire the computeOptimalSize() action to find the image
+  // width and can then fire the findOptimalSize() action to find the image
   // with the smallest possible resolution which renders a sharp image. This
   // technique can dramatically reduce download times, especially on mobile.
   @action
-  computeOptimalSize(element) {
-    const { sizes } = this.args;
+  findOptimalSize(element) {
+    const image = this.args.image;
+    if (!image) {
+      this.error = true;
+      return;
+    }
+
+    // Throws errors with Ember proxy objects
+    // const { sizes, formats, path } = image;
+    // Instead use .get()
+    const sizes = image.get('sizes');
+    const formats = image.get('formats');
+    const path = image.get('path');
+    const valid = sizes && formats && path;
+
+    if (!valid) {
+      this.error = true;
+      return;
+    }
+
     const pixelRatio = window.devicePixelRatio || 1;
     const optimalWidth = element.offsetWidth * pixelRatio;
 
@@ -48,9 +62,9 @@ export default class ImageResponsiveComponent extends Component {
   }
 
   get webp() {
-    // return false;
+    return false;
     // TODO: first fix chroma issue with WEBP images
-    return this.args.formats.includes('webp');
+    // return this.args.image.get('formats').includes('webp');
   }
 
   @action
@@ -63,6 +77,13 @@ export default class ImageResponsiveComponent extends Component {
   onError() {
     this.loading = false;
     this.error = true;
-    console.error('Failed to load image', this.args.path);
+    console.error('Failed to load image', this.args.image.path);
+  }
+
+  @action
+  onClick() {
+    if (this.args.onClick) {
+      this.args.onClick();
+    }
   }
 }

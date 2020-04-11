@@ -1,4 +1,4 @@
-section.products {
+section.product-tiles {
   .liner {
     display: flex;
     flex-flow: wrap;
@@ -9,21 +9,25 @@ section.products {
     background: #eee;
     @include widescreen {
       width: px(28vw);
+      height: px(28vw);
       margin: px(1vw);
       box-shadow: 0 px(0.2vw) px(0.1vw) rgba(black, 0.2);
     }
     @include desktop {
       width: 28vw;
+      height: 28vw;
       margin: 1vw;
       box-shadow: 0 0.2vw 0.1vw rgba(black, 0.2);
     }
     @include tablet {
       width: 44vw;
+      height: 44vw;
       margin: 2vw;
       box-shadow: 0 0.3vw 0.2vw rgba(black, 0.2);
     }
     @include mobile {
       width: 92vw;
+      height: 92vw;
       max-width: 400px;
       margin: 0 4vw 4vw;
       box-shadow: 0 0.3vw 0.5vw rgba(black, 0.2);
@@ -51,6 +55,10 @@ section.products {
       z-index: 1;
       background: $blue-3;
       color: white;
+      max-width: 84%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       @include widescreen {
         font-size: px(2.1vw);
         padding: px(0.6vw) px(1vw) px(0.45vw);
