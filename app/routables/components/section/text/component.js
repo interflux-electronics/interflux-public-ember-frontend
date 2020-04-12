@@ -1,4 +1,3 @@
 import Component from '@glimmer/component';
 
-export default class SectionProductsComponent extends Component {
-}
+export default class SectionTextComponent extends Component {}

@@ -10,33 +10,55 @@
 
   <Section::ProductHero @product={{@model.product}} />
 
-  <Section::Text @id="processes">
-    <h2>Applications</h2>
-    <p>For wave soldering</p>
-    <p>For reflow soldering</p>
-    <p>For hand soldering</p>
+  <Section::ProductFeatures @id="applications">
+    <h4>Applications</h4>
+    <ul>
+      <li>
+        <Icon @name="wave-soldering" />
+        <p>For wave soldering</p>
+      </li>
+      <li>
+        <Icon @name="selective-soldering" />
+        <p>For selective soldering</p>
+      </li>
+      <li>
+        <Icon @name="hand-soldering" />
+        <p>For hand soldering</p>
+      </li>
+    </ul>
+  </Section::ProductFeatures>
+
+  <Section::ProductFeatures @id="highlights">
+    <h4>Qualities</h4>
+    <ul>
+      <li>
+        <Icon @name="halide-free" />
+        <p>Absolute halide free</p>
+      </li>
+      <li>
+        <Icon @name="lead-free" />
+        <p>Lead-free</p>
+      </li>
+      <li>
+        <Icon @name="excellent-wetting" />
+        <p>Excellent wetting</p>
+      </li>
+    </ul>
+  </Section::ProductFeatures>
+
+  <Section::Text @id="highlights">
+    <h4>Physical and chemical properties</h4>
+    <p>Specific density: 1.20 g/ml ± 0.1</p>
+    <p>Colour: white / yellow</p>
+    <p>Odour: mild</p>
+    <p>pH: 3</p>
+    <p>Viscosity: 250.000 cps</p>
+    <p>Solubility in water: insoluble</p>
+    <p>Self ignition temperature: 320°C (608°F)</p>
   </Section::Text>
 
   <Section::Text @id="highlights">
-    <h2>Qualities</h2>
-    <p>Absolute halide free</p>
-    <p>Lead-free</p>
-    <p>Excellent wetting</p>
-  </Section::Text>
-
-  <Section::Text @id="highlights">
-    <h2>Physical and chemical properties</h2>
-    <p>Specific density : 1.20 g/ml ± 0.1</p>
-    <p>Colour : White / yellow</p>
-    <p>Odour : mild</p>
-    <p>pH : 3</p>
-    <p>Viscosity : 250.000 cps</p>
-    <p>Solubility in water : insoluble</p>
-    <p>Self ignition temperature : 320°C (608°F)</p>
-  </Section::Text>
-
-  <Section::Text @id="highlights">
-    <h2>Available alloys</h2>
+    <h4>Available alloys</h4>
     <p>LMPA-Q6</p>
     <p>SnPb</p>
     <p>SnPbAg</p>
@@ -44,7 +66,7 @@
   </Section::Text>
 
   <Section::Text @id="highlights">
-    <h2>Available containers</h2>
+    <h4>Available containers</h4>
     <p>200L barrel</p>
     <p>25L container</p>
     <p>10L container</p>
@@ -52,22 +74,22 @@
   </Section::Text>
 
   <Section::Text @id="highlights">
-    <h2>How to use {{@model.product.name}}</h2>
+    <h4>How to use {{@model.product.name}}</h4>
     <p>1. First...</p>
     <p>2. Second...</p>
     <p>3. Finally...</p>
   </Section::Text>
 
   <Section::Text @id="documents">
-    <h2>Documents</h2>
+    <h4>Documents</h4>
     <ul>
       {{#each @model.product.documents as |document|}}
         <li>
           <Button::Url
             @href="{{cdn}}/{{document.path}}"
-            @text="{{document.name}} ({{document.language.nameEnglish}})"
+            @text="{{document.name}} ({{document.language.nameEnglish}}) PDF"
             @icon="pdf"
-            @size="small"
+            @size="medium"
             @style="grey-border"
           />
         </li>

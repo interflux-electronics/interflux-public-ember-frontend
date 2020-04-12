@@ -14,38 +14,5 @@ section.text {
     @include mobile {
       padding: 12vw 5vw;
     }
-    h2 {
-      font-family: $extrabold;
-      color: #445260;
-      @include widescreen {
-        font-size: px(1.8vw);
-      }
-      @include desktop {
-        font-size: 1.8vw;
-      }
-      @include tablet {
-        font-size: 3.6vw;
-      }
-      @include mobile {
-        font-size: 6vw;
-        line-height: 160%;
-      }
-    }
-    p {
-      color: #445260;
-      font-family: $regular;
-      @include widescreen {
-        font-size: px(1.4vw);
-      }
-      @include desktop {
-        font-size: 1.4vw;
-      }
-      @include tablet {
-        font-size: 2.8vw;
-      }
-      @include mobile {
-        font-size: 4.6vw;
-      }
-    }
   }
 }

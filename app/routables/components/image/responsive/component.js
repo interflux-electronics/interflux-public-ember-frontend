@@ -61,6 +61,28 @@ export default class ImageResponsiveComponent extends Component {
     this.foundOptimal = true;
   }
 
+  // TODO: seed correct sizes in database
+  get shape() {
+    const image = this.args.image;
+    if (!image) {
+      return 'no-image';
+    }
+    const sizes = image.get('sizes');
+    if (!sizes) {
+      return 'no-sizes';
+    }
+    const size = sizes[0].split('x');
+    const width = size[0];
+    const height = size[1];
+    if (width === height) {
+      return 'square';
+    } else if (width > height) {
+      return 'landscape';
+    } else {
+      return 'portrait';
+    }
+  }
+
   get webp() {
     return false;
     // TODO: first fix chroma issue with WEBP images

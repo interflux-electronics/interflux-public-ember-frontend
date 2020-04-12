@@ -1,5 +1,5 @@
 <figure
-  class="responsive-image{{if @class (concat ' ' @class)}}"
+  class="responsive-image {{shape}}{{if @class (concat ' ' @class)}}"
   {{did-insert this.findOptimalSize}}
   {{on 'click' this.onClick}}
 >
