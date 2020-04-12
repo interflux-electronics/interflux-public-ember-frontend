@@ -33,8 +33,7 @@ section.product-features {
           margin-top: 2vw;
         }
       }
-      svg,
-      img {
+      picture {
         display: block;
         height: auto;
         @include widescreen {
@@ -56,6 +55,9 @@ section.product-features {
           width: 15vw;
           height: 15vw;
           margin-right: 4vw;
+        }
+        i.load-spinner {
+          transform: scale(0.7);
         }
       }
       p {

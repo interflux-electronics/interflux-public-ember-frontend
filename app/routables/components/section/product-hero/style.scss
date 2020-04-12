@@ -103,6 +103,7 @@ section.product-hero {
       transition: transform 100ms ease;
       outline: 0 solid white;
       box-shadow: 0;
+      transform: scale(1);
       cursor: pointer; // because clickable
       @include widescreen {
         width: px((100vw / 15));

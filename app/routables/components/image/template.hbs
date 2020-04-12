@@ -1,0 +1,23 @@
+<picture class="image">
+  {{#if this.error}}
+    <div class="error">
+      <img
+        src="{{cdn}}/images/icons/unknown.svg"
+        alt="icon unknown"
+      >
+    </div>
+  {{/if}}
+
+  {{#if this.loading}}
+    <div class="loading">
+      <LoadSpinner @icon="cup" />
+    </div>
+  {{/if}}
+
+  <img
+    src={{@src}}
+    alt={{@alt}}
+    onload={{this.onLoad}}
+    onerror={{this.onError}}
+  >
+</picture>
