@@ -22,11 +22,18 @@ export default class ImageResponsiveComponent extends Component {
   @computed('args.image')
   get valid() {
     const image = this.args.image;
+
+    if (!image) {
+      this.status = 'error';
+      return false;
+    }
+
     const sizes = image.get('sizes');
     const formats = image.get('formats');
     const path = image.get('path');
 
-    if (!image || !sizes || !formats || !path) {
+    if (!sizes || !formats || !path) {
+      this.status = 'error';
       return false;
     }
 
