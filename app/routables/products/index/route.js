@@ -7,7 +7,7 @@ export default class ProductsIndexRoute extends Route {
 
   model() {
     return hash({
-      families: this.modelFor('products').families
+      families: this.modelFor('products').families.sortBy('rank', 'namePlural')
     });
   }
 }
