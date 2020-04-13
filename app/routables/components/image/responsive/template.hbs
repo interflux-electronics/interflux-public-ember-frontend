@@ -1,35 +1,42 @@
 <figure
   class="responsive-image {{shape}}{{if @class (concat ' ' @class)}}"
-  {{did-insert this.findOptimalSize}}
+  {{did-insert this.register}}
   {{on 'click' this.onClick}}
 >
   <picture>
-    {{#if this.error}}
-      <Icon::InterfluxGrey />
-    {{else}}
-      {{#if this.loading}}
-        <div class="loading">
-          <LoadSpinner @icon="cup" />
-        </div>
-      {{/if}}
-      {{#if this.foundOptimal}}
+    {{#if this.valid}}
+      {{#if this.optimal}}
         {{#if webp}}
           <source
-            srcset="{{cdn}}/{{@image.path}}@{{this.optimalWidth}}x{{this.optimalHeight}}.webp"
+            srcset="{{cdn}}/{{@image.path}}@{{this.optimal.width}}x{{this.optimal.height}}.webp"
             type="image/webp"
           >
         {{/if}}
         <img
-          src="{{cdn}}/{{@image.path}}@{{this.optimalWidth}}x{{this.optimalHeight}}.jpg"
-          width={{this.optimalWidth}}
-          height={{this.optimalHeight}}
+          src="{{cdn}}/{{@image.path}}@{{this.optimal.width}}x{{this.optimal.height}}.jpg"
+          width={{this.optimal.width}}
+          height={{this.optimal.height}}
           alt={{@image.alt}}
           onload={{this.onLoad}}
           onerror={{this.onError}}
         >
       {{/if}}
+    {{else}}
+      <Icon::InterfluxGrey />
     {{/if}}
   </picture>
+
+  {{#if this.showLoading}}
+    <div class="loading">
+      <LoadSpinner @icon="cup" />
+    </div>
+  {{/if}}
+
+  {{#if this.showError}}
+    <div class="error">
+      <Icon::InterfluxGrey />
+    </div>
+  {{/if}}
 
   {{#if @image.caption}}
     <figcaption>{{@image.caption}}</figcaption>

@@ -1,43 +1,57 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { computed } from '@ember/object';
 
 // TODO: write tests
 
 export default class ImageResponsiveComponent extends Component {
-  @tracked foundOptimal = false;
-  @tracked loading = true;
-  @tracked error = false;
-  @tracked optimalWidth;
-  @tracked optimalHeight;
+  @tracked element; // the <figure> element
+  @tracked status = 'loading'; // loading, error or done
 
-  // From the moment the <figure> element is inserted into the DOM, we know its
-  // width and can then fire the findOptimalSize() action to find the image
-  // with the smallest possible resolution which renders a sharp image. This
-  // technique can dramatically reduce download times, especially on mobile.
+  // On insert into the DOM, we register the <figure> element for later use
   @action
-  findOptimalSize(element) {
-    const image = this.args.image;
-    if (!image) {
-      this.error = true;
-      return;
-    }
+  register(element) {
+    this.element = element;
+  }
 
-    // Throws errors with Ember proxy objects
-    // const { sizes, formats, path } = image;
-    // Instead use .get()
+  // Return true if all passed in params are valid for this component to function.
+  // Note: Deconstructing args will throws errors if image is an Ember proxy.
+  // const { sizes, formats, path } = image;
+  // Instead use .get()
+  @computed('args.image')
+  get valid() {
+    const image = this.args.image;
     const sizes = image.get('sizes');
     const formats = image.get('formats');
     const path = image.get('path');
-    const valid = sizes && formats && path;
 
-    if (!valid) {
-      this.error = true;
-      return;
+    if (!image || !sizes || !formats || !path) {
+      return false;
     }
 
+    return true;
+  }
+
+  // Returns the smallest image size which still renders sharply.
+  @computed('element', 'args.image')
+  get optimal() {
+    // Do not compute the optimal size until the <figure> component has been
+    // inserted into the DOM. We need it to compute it's width in the DOM, as
+    // defined by our responsive CSS. For as long the optimal size is unknown,
+    // the loading spinner will be shown.
+    if (!this.element) {
+      return null;
+    }
+
+    // Each time a new
+    if (!this.isLoading) {
+      this.status = 'loading';
+    }
+
+    const sizes = this.args.image.get('sizes');
     const pixelRatio = window.devicePixelRatio || 1;
-    const optimalWidth = element.offsetWidth * pixelRatio;
+    const optimalWidth = this.element.offsetWidth * pixelRatio;
 
     const distances = sizes.map(size => {
       const width = size.split('x')[0];
@@ -51,14 +65,15 @@ export default class ImageResponsiveComponent extends Component {
       ? Math.min(...larger)
       : Math.max(...smaller);
 
-    const closestSize = sizes.find(size => {
+    const optimalSize = sizes.find(size => {
       const width = size.split('x')[0];
       return width - optimalWidth === closestDistance;
     });
 
-    this.optimalWidth = closestSize.split('x')[0];
-    this.optimalHeight = closestSize.split('x')[1];
-    this.foundOptimal = true;
+    return {
+      width: optimalSize.split('x')[0],
+      height: optimalSize.split('x')[1]
+    };
   }
 
   // TODO: seed correct sizes in database
@@ -83,23 +98,31 @@ export default class ImageResponsiveComponent extends Component {
     }
   }
 
+  // TODO: first fix chroma issue with WEBP images
   get webp() {
     return false;
-    // TODO: first fix chroma issue with WEBP images
     // return this.args.image.get('formats').includes('webp');
+  }
+
+  @computed('status')
+  get showLoading() {
+    return this.status === 'loading';
+  }
+
+  @computed('status')
+  get showError() {
+    return this.status === 'error';
   }
 
   @action
   onLoad() {
-    this.loading = false;
-    this.error = false;
+    this.status = 'done';
   }
 
   @action
   onError() {
-    this.loading = false;
-    this.error = true;
     console.error('Failed to load image', this.args.image.path);
+    this.status = 'error';
   }
 
   @action

@@ -1,5 +1,6 @@
 figure.responsive-image {
   margin: 0;
+  overflow: hidden; // To hide alt text from breaking out of the <figure> frame
   picture {
     display: block;
     width: 100%;
@@ -8,6 +9,7 @@ figure.responsive-image {
       display: block;
       width: 100%;
       height: auto;
+      font-size: 1px; // To prevent the alt text from showing if load failed
     }
     svg {
       display: block;
@@ -17,14 +19,17 @@ figure.responsive-image {
       height: auto;
       opacity: 0.2;
     }
-    .loading {
-      position: absolute;
-      background: #eee;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  }
+  .loading,
+  .error {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #eee;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
