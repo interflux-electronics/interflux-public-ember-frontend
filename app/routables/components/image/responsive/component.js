@@ -128,7 +128,11 @@ export default class ImageResponsiveComponent extends Component {
 
   @action
   onError() {
-    console.error('Failed to load image', this.args.image.path);
+    console.error('Failed to load image');
+    if (this.args.image) {
+      const path = this.args.image.get('path');
+      console.error({ path });
+    }
     this.status = 'error';
   }
 
