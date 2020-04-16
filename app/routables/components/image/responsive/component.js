@@ -105,10 +105,8 @@ export default class ImageResponsiveComponent extends Component {
     }
   }
 
-  // TODO: first fix chroma issue with WEBP images
   get webp() {
-    return false;
-    // return this.args.image.get('formats').includes('webp');
+    return this.args.image.get('formats').includes('webp');
   }
 
   @computed('status')
