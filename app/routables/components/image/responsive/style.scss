@@ -1,7 +1,23 @@
 figure.responsive-image {
+  display: flex;
+  justify-content: center;
   margin: 0;
+  max-width: 100%;
+  max-height: 100%;
   overflow: hidden; // To hide alt text from breaking out of the <figure> frame
   background: #eee;
+  &.portrait {
+    height: 100%;
+    width: auto;
+    picture {
+      height: 100%;
+      width: auto;
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
   picture {
     display: block;
     width: 100%;

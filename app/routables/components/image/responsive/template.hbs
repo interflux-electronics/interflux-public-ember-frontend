@@ -1,5 +1,5 @@
 <figure
-  class="responsive-image {{shape}}{{if @class (concat ' ' @class)}}"
+  class="responsive-image {{this.orientation}}{{if @class ' '}}{{@class}}"
   {{did-insert this.register}}
   {{on 'click' this.onClick}}
 >

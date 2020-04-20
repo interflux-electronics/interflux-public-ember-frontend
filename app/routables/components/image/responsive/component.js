@@ -83,22 +83,19 @@ export default class ImageResponsiveComponent extends Component {
     };
   }
 
-  // TODO: seed correct sizes in database
-  get shape() {
-    const image = this.args.image;
-    if (!image) {
-      return 'no-image';
+  @computed('args.image')
+  get orientation() {
+    if (!this.valid) {
+      return 'invalid';
     }
-    const sizes = image.get('sizes');
-    if (!sizes) {
-      return 'no-sizes';
-    }
+    const sizes = this.args.image.get('sizes');
     const size = sizes[0].split('x');
-    const width = size[0];
-    const height = size[1];
-    if (width === height) {
+    const w = size[0];
+    const h = size[1];
+    if (w === h) {
       return 'square';
-    } else if (width > height) {
+    }
+    if (w > h) {
       return 'landscape';
     } else {
       return 'portrait';
