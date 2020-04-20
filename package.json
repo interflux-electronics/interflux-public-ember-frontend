@@ -11,9 +11,9 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "./node_modules/ember-cli/bin/ember serve",
+    "start": "ember serve",
     "build": "ember build --environment=production",
-    "deploy": "./bin/deploy.sh",
+    "deploy": "remote/deploy.sh",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
