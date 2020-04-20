@@ -17,10 +17,10 @@ export default class ProductModel extends Model {
   @alias('image') avatar;
 
   get qualities() {
-    return this.features.rejectBy('isProcess', true);
+    return this.features.filterBy('category', 'quality');
   }
 
   get processes() {
-    return this.features.filterBy('isProcess', true);
+    return this.features.filterBy('category', 'process');
   }
 }

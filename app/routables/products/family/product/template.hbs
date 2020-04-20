@@ -11,12 +11,12 @@
   <Section::ProductHero @product={{@model.product}} />
 
   <Section::ProductFeatures @id="applications">
-    <h4>Applications</h4>
+    <h4>Developed for</h4>
     <ul>
       {{#each @model.product.processes as |feature|}}
         <li>
           <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
-          <p>{{feature.text}}</p>
+          <p>{{capitalize-words feature.text}}</p>
         </li>
       {{/each}}
     </ul>

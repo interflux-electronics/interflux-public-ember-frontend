@@ -5,11 +5,7 @@ export default class FeatureModel extends Model {
   @attr('string') icon;
   @attr('string') text;
   @attr('string') gist;
+  @attr('string') category;
 
   @hasMany('product') products;
-
-  get isProcess() {
-    console.log(this.text);
-    return this.text.startsWith('For');
-  }
 }
