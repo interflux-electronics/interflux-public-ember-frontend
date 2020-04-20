@@ -11,7 +11,16 @@ export default class ProductModel extends Model {
 
   @hasMany('document') documents;
   @hasMany('image') images;
+  @hasMany('feature') features;
 
   @alias('productFamily') family;
   @alias('image') avatar;
+
+  get qualities() {
+    return this.features.rejectBy('isProcess', true);
+  }
+
+  get processes() {
+    return this.features.filterBy('isProcess', true);
+  }
 }

@@ -13,6 +13,30 @@
   <Section::ProductFeatures @id="applications">
     <h4>Applications</h4>
     <ul>
+      {{#each @model.product.processes as |feature|}}
+        <li>
+          <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
+          <p>{{feature.text}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </Section::ProductFeatures>
+
+  <Section::ProductFeatures @id="highlights">
+    <h4>Qualities</h4>
+    <ul>
+      {{#each @model.product.qualities as |feature|}}
+        <li>
+          <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
+          <p>{{feature.text}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </Section::ProductFeatures>
+
+  <Section::ProductFeatures @id="applications">
+    <h4>Examples</h4>
+    <ul>
       <li>
         <Image @src="{{cdn}}/images/icons/wave-soldering.svg" />
         <p>For wave soldering</p>
@@ -25,12 +49,6 @@
         <Image @src="{{cdn}}/images/icons/rework-and-repair.svg" />
         <p>For hand soldering</p>
       </li>
-    </ul>
-  </Section::ProductFeatures>
-
-  <Section::ProductFeatures @id="highlights">
-    <h4>Qualities</h4>
-    <ul>
       <li>
         <Image @src="{{cdn}}/images/icons/leaves.svg" />
         <p>Absolute halide free</p>
