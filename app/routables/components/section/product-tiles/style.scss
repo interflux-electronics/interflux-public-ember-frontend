@@ -129,13 +129,13 @@ section.product-tiles {
         font-size: 1.7vw;
         padding: 0.6vw 1vw 0.4vw;
         top: 7.2vw;
-        // left: 1.8vw;
+        left: 1.8vw;
       }
       @include mobile {
         font-size: 4.7vw;
         padding: 1.2vw 1.9vw 0.9vw;
         top: 16.2vw;
-        // left: 3.8vw;
+        left: 3.8vw;
       }
     }
     button {
@@ -173,17 +173,50 @@ section.product-tiles {
         bottom: 3.8vw;
       }
 
-      i {
+      svg {
+        height: 50%;
+        width: auto;
+        [fill] {
+          fill: white;
+        }
         @include widescreen {
+          height: px(0.8vw); // TODO
+          margin-left: px(0.3vw);
         }
         @include desktop {
-          height: 9px;
-          width: 9px;
-          margin-left: 8px;
+          height: 0.8vw; // TODO
+          margin-left: 0.3vw;
         }
         @include tablet {
+          height: 1vw;
+          margin-left: 0.6vw;
         }
         @include mobile {
+          height: 2.8vw;
+          margin-left: 1.5vw;
+        }
+      }
+
+      i {
+        @include widescreen {
+          height: px(0.8vw);
+          width: px(0.8vw);
+          margin-left: px(0.3vw);
+        }
+        @include desktop {
+          height: 0.8vw;
+          width: 0.8vw;
+          margin-left: 0.3vw;
+        }
+        @include tablet {
+          height: 0.8vw; // TODO
+          width: 0.8vw; // TODO
+          margin-left: 0.3vw; // TODO
+        }
+        @include mobile {
+          height: 0.8vw; // TODO
+          width: 0.8vw; // TODO
+          margin-left: 0.3vw; // TODO
         }
         svg [fill] {
           fill: white;

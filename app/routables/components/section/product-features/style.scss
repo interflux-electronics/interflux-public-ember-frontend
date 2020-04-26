@@ -1,4 +1,5 @@
-section.product-features {
+section.product-features,
+section.documents {
   .liner {
     @include widescreen {
       width: px(60vw);
@@ -63,7 +64,8 @@ section.product-features {
           transform: scale(0.7);
         }
       }
-      p {
+      p,
+      > a {
         color: $paragraph-color-1;
         font-family: $regular;
         margin: 0;

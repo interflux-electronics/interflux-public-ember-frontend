@@ -78,28 +78,14 @@ section {
       font-size: 1.6vw;
     }
     @include tablet {
-      font-size: 3.2vw;
+      font-size: 3.2vw; // TODO
     }
     @include mobile {
-      font-size: 5vw;
+      font-size: 6vw;
       line-height: 160%;
     }
 
-    & + ul {
-      @include widescreen {
-        margin-top: px(2.5vw);
-      }
-      @include desktop {
-        margin-top: 2.5vw;
-      }
-      @include tablet {
-        margin-top: 5vw;
-      }
-      @include mobile {
-        margin-top: 5vw;
-      }
-    }
-
+    & + ul,
     & + p {
       @include widescreen {
         margin-top: px(2.5vw);
@@ -108,10 +94,10 @@ section {
         margin-top: 2.5vw;
       }
       @include tablet {
-        margin-top: 5vw;
+        margin-top: 5vw; // TODO
       }
       @include mobile {
-        margin-top: 5vw;
+        margin-top: 8vw;
       }
     }
   }
@@ -163,16 +149,17 @@ section.product-hero {
     margin-bottom: 5.5vw;
   }
   @include tablet {
-    margin-bottom: 10vw; // TODO
+    margin-bottom: 14vw;
   }
   @include mobile {
-    margin-bottom: 10vw; // TODO
+    margin-bottom: 20vw;
   }
 }
 
 section.text + section.product-features,
 section.text + section.product-tiles,
 section.text + section.text,
+section.product-features + section.documents,
 section.product-features + section.text,
 section.product-features + section.product-features {
   @include widescreen {
@@ -182,10 +169,10 @@ section.product-features + section.product-features {
     margin-top: 5.5vw;
   }
   @include tablet {
-    margin-top: 10vw; // TODO
+    margin-top: 14vw;
   }
   @include mobile {
-    margin-top: 10vw; // TODO
+    margin-top: 20vw;
   }
 }
 
@@ -203,10 +190,10 @@ section.product-tiles + section.text {
       margin: 9vw auto;
     }
     @include tablet {
-      margin: 10vw auto; // TODO
+      margin: 14vw auto;
     }
     @include mobile {
-      margin: 10vw auto; // TODO
+      margin: 20vw auto;
     }
   }
 }

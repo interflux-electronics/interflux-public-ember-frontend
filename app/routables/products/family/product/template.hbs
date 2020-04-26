@@ -46,21 +46,24 @@
   {{/if}}
 
   {{#if @model.product.documents}}
-    <Section::Text @id="documents">
+    <Section::Documents @id="documents">
       <h4>Related documents</h4>
       <ul>
         {{#each @model.product.documents as |document|}}
           <li>
-            <Button::Url
-              @href="{{cdn}}/{{document.path}}"
-              @text="{{document.name}} ({{document.language.nameEnglish}}) PDF"
-              @icon="pdf"
-              @size="medium"
-              @style="grey-border"
-            />
+            <Button::Url @href="{{cdn}}/{{document.path}}">
+              <Image
+                @src="{{cdn}}/images/icons/download.svg"
+                @width="100"
+                @height="100"
+              />
+              <span>
+                {{document.name}} ({{document.language.nameEnglish}})
+              </span>
+            </Button::Url>
           </li>
         {{/each}}
       </ul>
-    </Section::Text>
+    </Section::Documents>
   {{/if}}
 </Page>
