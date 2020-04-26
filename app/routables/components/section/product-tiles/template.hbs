@@ -7,7 +7,7 @@
     >
       <h2>{{product.name}}</h2>
       <h3>{{if product.label product.label product.family.nameSingle}}</h3>
-      <Image::Responsive @image={{get product 'avatar'}} />
+      <ResponsiveImage @image={{get product 'avatar'}} />
       <button>
         <span>Explore</span>
         <Icon @name="arrow-right" />
@@ -24,7 +24,7 @@
       <h2>{{product.name}}</h2>
       <h3>{{if product.label product.label product.family.nameSingle}}</h3>
       {{#if showAll}}
-        <Image::Responsive @image={{get product 'avatar'}} />
+        <ResponsiveImage @image={{get product 'avatar'}} />
       {{/if}}
       <button>
         <span>Explore</span>

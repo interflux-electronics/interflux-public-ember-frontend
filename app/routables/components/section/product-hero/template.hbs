@@ -3,14 +3,14 @@
   @class="product-hero"
 >
   <div class="hero">
-    <Image::Responsive @image={{this.heroImage}} />
+    <ResponsiveImage @image={{this.heroImage}} />
   </div>
 
   {{#if (gt @product.images.length 1)}}
     <div class="thumbs">
       <div>
         {{#each @product.images as |image|}}
-          <Image::Responsive
+          <ResponsiveImage
             @image={{image}}
             @onClick={{action this.setHero image}}
             @class={{if (eq image this.heroImage) 'active'}}
