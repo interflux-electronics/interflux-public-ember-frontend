@@ -1,0 +1,35 @@
+.icon-duo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  picture {
+    @include widescreen {
+      width: px(5vw);
+      height: px(5vw);
+    }
+    @include desktop {
+      width: 5vw;
+      height: 5vw;
+    }
+    @include tablet {
+      height: 10vw; // TODO
+    }
+    @include mobile {
+      height: 10vw; // TODO
+    }
+  }
+  p {
+    @include widescreen {
+      margin: 0 10px;
+    }
+    @include desktop {
+      margin: 0 vw(10);
+    }
+    @include tablet {
+      margin: 0 10vw; // TODO
+    }
+    @include mobile {
+      margin: 0 10vw; // TODO
+    }
+  }
+}
