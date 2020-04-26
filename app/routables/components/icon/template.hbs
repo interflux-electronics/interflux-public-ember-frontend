@@ -1,15 +1,3 @@
-{{#if (eq @name "alcohol")}}
-  <img
-    src="{{cdn}}/images/icons/{{@name}}.svg"
-    width="1000"
-    height="1000"
-    alt="icon {{@name}}"
-  >
-{{else}}
-  <img
-    src="{{cdn}}/images/icons/unknown.svg"
-    width="1000"
-    height="1000"
-    alt="icon unknown"
-  >
-{{/if}}
+<i class='icon'>
+  {{component (concat "icon/svg/" @name)}}
+</i>
