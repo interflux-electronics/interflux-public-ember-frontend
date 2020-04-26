@@ -10,112 +10,57 @@
 
   <Section::ProductHero @product={{@model.product}} />
 
-  <Section::ProductFeatures @id="applications">
-    <h4>Developed for</h4>
-    <ul>
-      {{#each @model.product.processes as |feature|}}
-        <li>
-          <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
-          <p>{{capitalise feature.text}}</p>
-        </li>
-      {{/each}}
-    </ul>
-  </Section::ProductFeatures>
+  {{#if @model.product.pitch}}
+    <Section::Text @id="pitch">
+      <h4>In short</h4>
+      <p>{{@model.product.pitch}}</p>
+    </Section::Text>
+  {{/if}}
 
-  <Section::ProductFeatures @id="highlights">
-    <h4>Qualities</h4>
-    <ul>
-      {{#each @model.product.qualities as |feature|}}
-        <li>
-          <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
-          <p>{{feature.text}}</p>
-        </li>
-      {{/each}}
-    </ul>
-  </Section::ProductFeatures>
+  {{#if @model.product.processes}}
+    <Section::ProductFeatures @id="processes">
+      <h4>Recommended for</h4>
+      <ul>
+        {{#each @model.product.processes as |feature|}}
+          <li>
+            <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
+            <p>{{capitalise feature.text}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </Section::ProductFeatures>
+  {{/if}}
 
-  <Section::ProductFeatures @id="applications">
-    <h4>Examples</h4>
-    <ul>
-      <li>
-        <Image @src="{{cdn}}/images/icons/wave-soldering.svg" />
-        <p>For wave soldering</p>
-      </li>
-      <li>
-        <Image @src="{{cdn}}/images/icons/selective-soldering.svg" />
-        <p>For selective soldering</p>
-      </li>
-      <li>
-        <Image @src="{{cdn}}/images/icons/rework-and-repair.svg" />
-        <p>For hand soldering</p>
-      </li>
-      <li>
-        <Image @src="{{cdn}}/images/icons/leaves.svg" />
-        <p>Absolute halide free</p>
-      </li>
-      <li>
-        <Image @src="{{cdn}}/images/icons/strong.svg" />
-        <p>Excellent wetting</p>
-      </li>
-      <li>
-        <Image @src="{{cdn}}/images/icons/circuit-1.svg" />
-        <p>No residu</p>
-      </li>
-      <li>
-        <Image @src="{{cdn}}/images/icons/chemistry.svg" />
-        <p>Some feature</p>
-      </li>
-    </ul>
-  </Section::ProductFeatures>
+  {{#if @model.product.qualities}}
+    <Section::ProductFeatures @id="qualities">
+      <h4>Key advantages</h4>
+      <ul>
+        {{#each @model.product.qualities as |feature|}}
+          <li>
+            <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
+            <p>{{feature.text}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </Section::ProductFeatures>
+  {{/if}}
 
-  <Section::Text @id="highlights">
-    <h4>Physical and chemical properties</h4>
-    <p>Specific density: 1.20 g/ml ± 0.1</p>
-    <p>Colour: white / yellow</p>
-    <p>Odour: mild</p>
-    <p>pH: 3</p>
-    <p>Viscosity: 250.000 cps</p>
-    <p>Solubility in water: insoluble</p>
-    <p>Self ignition temperature: 320°C (608°F)</p>
-  </Section::Text>
-
-  <Section::Text @id="highlights">
-    <h4>Available alloys</h4>
-    <p>LMPA-Q6</p>
-    <p>SnPb</p>
-    <p>SnPbAg</p>
-    <p>SnPbCu</p>
-  </Section::Text>
-
-  <Section::Text @id="highlights">
-    <h4>Available containers</h4>
-    <p>200L barrel</p>
-    <p>25L container</p>
-    <p>10L container</p>
-    <p>1L bottle</p>
-  </Section::Text>
-
-  <Section::Text @id="highlights">
-    <h4>How to use {{@model.product.name}}</h4>
-    <p>1. First...</p>
-    <p>2. Second...</p>
-    <p>3. Finally...</p>
-  </Section::Text>
-
-  <Section::Text @id="documents">
-    <h4>Documents</h4>
-    <ul>
-      {{#each @model.product.documents as |document|}}
-        <li>
-          <Button::Url
-            @href="{{cdn}}/{{document.path}}"
-            @text="{{document.name}} ({{document.language.nameEnglish}}) PDF"
-            @icon="pdf"
-            @size="medium"
-            @style="grey-border"
-          />
-        </li>
-      {{/each}}
-    </ul>
-  </Section::Text>
+  {{#if @model.product.documents}}
+    <Section::Text @id="documents">
+      <h4>Related documents</h4>
+      <ul>
+        {{#each @model.product.documents as |document|}}
+          <li>
+            <Button::Url
+              @href="{{cdn}}/{{document.path}}"
+              @text="{{document.name}} ({{document.language.nameEnglish}}) PDF"
+              @icon="pdf"
+              @size="medium"
+              @style="grey-border"
+            />
+          </li>
+        {{/each}}
+      </ul>
+    </Section::Text>
+  {{/if}}
 </Page>

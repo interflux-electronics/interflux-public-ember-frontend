@@ -7,7 +7,7 @@ export default class ProductHeroComponent extends Component {
 
   constructor(owner, args) {
     super(owner, args);
-    this.heroImage = this.args.product.images.firstObject;
+    this.heroImage = this.args.product.avatar;
   }
 
   @action
