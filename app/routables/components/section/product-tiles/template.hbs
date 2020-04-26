@@ -6,7 +6,7 @@
       class="product-tile {{if product.featured 'featured' 'hidden'}}"
     >
       <h2>{{product.name}}</h2>
-      <h3>{{product.family.nameSingle}}</h3>
+      <h3>{{if product.label product.label product.family.nameSingle}}</h3>
       <Image::Responsive @image={{get product 'avatar'}} />
       <button>
         <span>Explore</span>
@@ -22,7 +22,7 @@
       class="product-tile {{if product.featured 'featured' 'hidden'}}"
     >
       <h2>{{product.name}}</h2>
-      <h3>{{product.family.nameSingle}}</h3>
+      <h3>{{if product.label product.label product.family.nameSingle}}</h3>
       {{#if showAll}}
         <Image::Responsive @image={{get product 'avatar'}} />
       {{/if}}
