@@ -23,7 +23,7 @@
   <div class="text">
     <h1>{{@product.name}}</h1>
     <h2>{{@product.family.nameSingle}}</h2>
-    <p>{{markdown @product.pitch}}</p>
+    <p>{{markdown-to-html @product.pitch}}</p>
     <p>Price: <a href="#">log in first</a></p>
     <p>Availability: <a href="#">log in first</a></p>
     <Button::Url
