@@ -1,0 +1,37 @@
+section.family-hero {
+  background: #eee;
+  overflow: hidden;
+  .liner {
+    padding: 0;
+    max-width: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vw;
+    position: relative;
+  }
+  h1 {
+    background: rgba($blue-3, 0.9);
+    color: white;
+    z-index: 1;
+    @include widescreen {
+      font-size: px(3.3vw);
+      padding: px(0.7vw) px(1.6vw);
+    }
+    @include desktop {
+      font-size: 3.3vw;
+      padding: 0.7vw 1.6vw;
+    }
+    @include tablet {
+      font-size: 10vw; // TODO
+    }
+    @include mobile {
+      font-size: 10vw; // TODO
+    }
+  }
+  img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+  }
+}
