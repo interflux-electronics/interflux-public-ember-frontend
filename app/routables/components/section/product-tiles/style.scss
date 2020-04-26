@@ -1,4 +1,9 @@
 section.product-tiles {
+  &.show-all {
+    a.hidden {
+      display: block;
+    }
+  }
   .liner {
     display: flex;
     flex-flow: wrap;
@@ -39,20 +44,6 @@ section.product-tiles {
     }
 
     &:hover {
-      button {
-        @include widescreen {
-          right: px(-0.3vw);
-        }
-        @include desktop {
-          right: -0.3vw;
-        }
-        @include tablet {
-          right: 1.8vw; // TODO
-        }
-        @include mobile {
-          right: 3.8vw; // TODO
-        }
-      }
       picture {
         transform: scale(1.1);
       }
@@ -201,12 +192,20 @@ section.product-tiles {
     }
     figure {
       width: 100%;
+      height: 100%;
       picture {
         transition: transform ease 200ms;
       }
       figcaption {
         display: none;
       }
+    }
+  }
+  .toggle {
+    width: 100%;
+    button {
+      display: block;
+      margin: 0 auto;
     }
   }
 }

@@ -1,5 +1,5 @@
-<Section @class="product-tiles">
-  {{#each this.sortedProducts as |product index|}}
+<Section @class="product-tiles {{if this.showAll 'show-all' 'show-featured'}}">
+  {{#each this.featuredProducts as |product|}}
     <LinkTo
       @route="products.family.product"
       @model={{product.slug}}
@@ -14,4 +14,33 @@
       </button>
     </LinkTo>
   {{/each}}
+
+  {{#each this.hiddenProducts as |product|}}
+    <LinkTo
+      @route="products.family.product"
+      @model={{product.slug}}
+      class="product-tile {{if product.featured 'featured' 'hidden'}}"
+    >
+      <h2>{{product.name}}</h2>
+      <h3>{{product.family.nameSingle}}</h3>
+      {{#if showAll}}
+        <Image::Responsive @image={{get product 'avatar'}} />
+      {{/if}}
+      <button>
+        <span>Explore</span>
+        <Icon @name="arrow-right" />
+      </button>
+    </LinkTo>
+  {{/each}}
+
+  {{#if this.hiddenProducts}}
+    <div class="toggle">
+      <Button::Action
+        @action={{this.toggle}}
+        @text="show all"
+        @size="big"
+        @style="grey-border"
+      />
+    </div>
+  {{/if}}
 </Section>
