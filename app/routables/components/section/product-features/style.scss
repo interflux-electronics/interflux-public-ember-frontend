@@ -1,18 +1,16 @@
 section.product-features {
   .liner {
     @include widescreen {
-      padding: px(5vw) 0 0;
-      width: px(70vw);
+      width: px(60vw);
     }
     @include desktop {
-      padding: 5vw 0 0;
-      width: 70vw;
+      width: 60vw;
     }
     @include tablet {
-      padding: 12vw 6vw 0;
+      padding: 0 6vw 0;
     }
     @include mobile {
-      padding: 12vw 5vw;
+      padding: 0 5vw;
     }
   }
   ul {
@@ -20,17 +18,22 @@ section.product-features {
       display: flex;
       align-items: center;
       & + li {
+        border-top: 1px solid #eee;
         @include widescreen {
           margin-top: px(0.8vw);
+          padding-top: px(0.8vw);
         }
         @include desktop {
           margin-top: 0.8vw;
+          padding-top: 0.8vw;
         }
         @include tablet {
           margin-top: 1.2vw;
+          padding-top: 1.2vw;
         }
         @include mobile {
           margin-top: 2vw;
+          padding-top: 2vw;
         }
       }
       picture {

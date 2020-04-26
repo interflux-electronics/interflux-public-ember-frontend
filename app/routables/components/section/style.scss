@@ -72,25 +72,25 @@ section {
     font-family: $extrabold;
     color: $paragraph-color-1;
     @include widescreen {
-      font-size: px(1.8vw);
+      font-size: px(1.6vw);
     }
     @include desktop {
-      font-size: 1.8vw;
+      font-size: 1.6vw;
     }
     @include tablet {
-      font-size: 3.6vw;
+      font-size: 3.2vw;
     }
     @include mobile {
-      font-size: 6vw;
+      font-size: 5vw;
       line-height: 160%;
     }
 
     & + ul {
       @include widescreen {
-        margin-top: px(2vw); // TODO
+        margin-top: px(2.5vw);
       }
       @include desktop {
-        margin-top: 2vw; // TODO
+        margin-top: 2.5vw;
       }
       @include tablet {
         margin-top: 5vw;
@@ -102,10 +102,10 @@ section {
 
     & + p {
       @include widescreen {
-        margin-top: px(2vw); // TODO
+        margin-top: px(2.5vw);
       }
       @include desktop {
-        margin-top: 2vw; // TODO
+        margin-top: 2.5vw;
       }
       @include tablet {
         margin-top: 5vw;
@@ -155,12 +155,31 @@ section {
   }
 }
 
-section.text + section.product-tiles {
+section.product-hero {
   @include widescreen {
-    margin-top: px(3.5vw);
+    margin-bottom: px(4.5vw);
   }
   @include desktop {
-    margin-top: 3.5vw;
+    margin-bottom: 5.5vw;
+  }
+  @include tablet {
+    margin-bottom: 10vw; // TODO
+  }
+  @include mobile {
+    margin-bottom: 10vw; // TODO
+  }
+}
+
+section.text + section.product-features,
+section.text + section.product-tiles,
+section.text + section.text,
+section.product-features + section.text,
+section.product-features + section.product-features {
+  @include widescreen {
+    margin-top: px(4.5vw);
+  }
+  @include desktop {
+    margin-top: 5.5vw;
   }
   @include tablet {
     margin-top: 10vw; // TODO

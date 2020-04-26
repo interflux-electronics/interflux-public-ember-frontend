@@ -1,18 +1,16 @@
 section.text {
   .liner {
     @include widescreen {
-      // padding: px(5vw) 0 0;
-      width: px(70vw);
+      width: px(60vw);
     }
     @include desktop {
-      // padding: 5vw 0 0;
-      width: 70vw;
+      width: 60vw;
     }
     @include tablet {
-      // padding: 12vw 6vw 0;
+      padding: 0 6vw;
     }
     @include mobile {
-      // padding: 12vw 5vw;
+      padding: 0 5vw;
     }
   }
 }
