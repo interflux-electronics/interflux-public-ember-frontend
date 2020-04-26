@@ -16,6 +16,6 @@ export default class ImageComponent extends Component {
   onError() {
     this.loading = false;
     this.error = true;
-    console.error('Failed to load image', this.args.image.path);
+    console.error('Failed to load image', this.args.src);
   }
 }
