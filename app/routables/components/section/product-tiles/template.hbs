@@ -1,14 +1,17 @@
 <Section @class="product-tiles">
-  {{#each @products as |product|}}
+  {{#each this.sortedProducts as |product index|}}
     <LinkTo
       @route="products.family.product"
       @model={{product.slug}}
-      class="product-tile"
+      class="product-tile {{if product.featured 'featured' 'hidden'}}"
     >
       <h2>{{product.name}}</h2>
       <h3>{{product.family.nameSingle}}</h3>
       <Image::Responsive @image={{get product 'avatar'}} />
-      <button>Explore</button>
+      <button>
+        <span>Explore</span>
+        <Icon @name="arrow-right" />
+      </button>
     </LinkTo>
   {{/each}}
 </Section>

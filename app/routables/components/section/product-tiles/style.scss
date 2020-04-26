@@ -31,6 +31,33 @@ section.product-tiles {
       margin: 0 4vw 4vw;
       box-shadow: 0 0.3vw 0.5vw rgba(black, 0.2);
     }
+    &.featured {
+      display: block;
+    }
+    &.hidden {
+      display: none;
+    }
+
+    &:hover {
+      button {
+        @include widescreen {
+          right: px(-0.3vw);
+        }
+        @include desktop {
+          right: -0.3vw;
+        }
+        @include tablet {
+          right: 1.8vw; // TODO
+        }
+        @include mobile {
+          right: 3.8vw; // TODO
+        }
+      }
+      picture {
+        transform: scale(1.1);
+      }
+    }
+
     h2,
     h3,
     button {
@@ -58,17 +85,20 @@ section.product-tiles {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      transition: left ease 200ms;
       @include widescreen {
         font-size: px(2.1vw);
         padding: px(0.6vw) px(1vw) px(0.45vw);
         top: px(1.2vw);
-        left: px(1.2vw);
+        left: px(-0.6vw);
+        // left: px(1.2vw);
       }
       @include desktop {
         font-size: 2.1vw;
         padding: 0.6vw 1vw 0.45vw;
         top: 1.2vw;
-        left: 1.2vw;
+        left: -0.6vw;
+        // left: 1.2vw;
       }
       @include tablet {
         font-size: 2.8vw;
@@ -94,25 +124,27 @@ section.product-tiles {
         font-size: px(1.4vw);
         padding: px(0.4vw) px(0.8vw) px(0.4vw);
         top: px(5vw);
-        left: px(1.2vw);
+        left: px(-0.6vw);
+        // left: px(1.2vw);
       }
       @include desktop {
         font-size: 1.4vw;
         padding: 0.4vw 0.8vw 0.4vw;
         top: 5vw;
-        left: 1.2vw;
+        left: -0.6vw;
+        // left: px(-1.2vw);
       }
       @include tablet {
         font-size: 1.7vw;
         padding: 0.6vw 1vw 0.4vw;
         top: 7.2vw;
-        left: 1.8vw;
+        // left: 1.8vw;
       }
       @include mobile {
         font-size: 4.7vw;
         padding: 1.2vw 1.9vw 0.9vw;
         top: 16.2vw;
-        left: 3.8vw;
+        // left: 3.8vw;
       }
     }
     button {
@@ -122,6 +154,9 @@ section.product-tiles {
       border: 0;
       outline: 0;
       line-height: 100%;
+      display: flex;
+      align-items: center;
+      transition: right ease 200ms;
       @include widescreen {
         font-size: px(1.3vw);
         padding: px(0.3vw) px(0.6vw);
@@ -146,9 +181,29 @@ section.product-tiles {
         right: 3.8vw;
         bottom: 3.8vw;
       }
+
+      i {
+        @include widescreen {
+        }
+        @include desktop {
+          height: 9px;
+          width: 9px;
+          margin-left: 8px;
+        }
+        @include tablet {
+        }
+        @include mobile {
+        }
+        svg [fill] {
+          fill: white;
+        }
+      }
     }
     figure {
       width: 100%;
+      picture {
+        transition: transform ease 200ms;
+      }
       figcaption {
         display: none;
       }

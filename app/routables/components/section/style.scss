@@ -47,7 +47,24 @@ section {
 
   // Big light fonts (titles on product family page)
   h3 {
-    //
+    text-align: center;
+    font-family: $light;
+    color: $paragraph-color-1;
+    @include widescreen {
+      font-size: px(2.6vw);
+      margin: 0 0 px(5vw);
+    }
+    @include desktop {
+      font-size: 2.6vw;
+      margin: 0 0 5vw;
+    }
+    @include tablet {
+      font-size: 4.6vw; // TODO
+    }
+    @include mobile {
+      font-size: 8vw; // TODO
+      line-height: 160%; // TODO
+    }
   }
 
   // Small bold dark fonts (titles on product pages)
@@ -134,6 +151,43 @@ section {
       @include mobile {
         // TODO
       }
+    }
+  }
+}
+
+section.text + section.product-tiles {
+  @include widescreen {
+    margin-top: px(3.5vw);
+  }
+  @include desktop {
+    margin-top: 3.5vw;
+  }
+  @include tablet {
+    margin-top: 10vw; // TODO
+  }
+  @include mobile {
+    margin-top: 10vw; // TODO
+  }
+}
+
+section.product-tiles + section.text {
+  &:before {
+    content: ' ';
+    height: 1px;
+    background-color: $grey-1;
+    display: block;
+    width: 90vw;
+    @include widescreen {
+      margin: px(9vw) auto;
+    }
+    @include desktop {
+      margin: 9vw auto;
+    }
+    @include tablet {
+      margin: 10vw auto; // TODO
+    }
+    @include mobile {
+      margin: 10vw auto; // TODO
     }
   }
 }
