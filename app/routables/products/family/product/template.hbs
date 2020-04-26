@@ -16,7 +16,7 @@
       {{#each @model.product.processes as |feature|}}
         <li>
           <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
-          <p>{{capitalize-words feature.text}}</p>
+          <p>{{capitalise feature.text}}</p>
         </li>
       {{/each}}
     </ul>
