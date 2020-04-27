@@ -1,4 +1,6 @@
 <Page @id="product-family">
+  <Header />
+
   <Section @class="temporary">
     <Button::Route
       @route="products"
@@ -55,4 +57,6 @@
   </Section::Text>
 
   <Section::ProductTiles @products={{@model.family.products}} />
+
+  <Footer />
 </Page>

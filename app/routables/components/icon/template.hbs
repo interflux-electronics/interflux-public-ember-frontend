@@ -1,0 +1,13 @@
+<i class="icon">
+  {{#if (eq @name 'geo-marker')}}
+    <Svg::GeoMarker />
+  {{else if (eq @name 'search')}}
+    <Svg::Search />
+  {{else if (eq @name 'shopping-cart')}}
+    <Svg::ShoppingCart />
+  {{else if (eq @name 'user')}}
+    <Svg::User />
+  {{else}}
+    <Svg::Unknown />
+  {{/if}}
+</i>

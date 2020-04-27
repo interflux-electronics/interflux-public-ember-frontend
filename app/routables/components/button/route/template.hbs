@@ -1,15 +1,16 @@
-<!-- TODO: make @model an optional property -->
 {{#if @model}}
   <LinkTo
     @route={{@route}}
     @model={{@model}}
-    class="button-route button-base {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
+    id={{@id}}
+    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
   >
     {{#if hasBlock}}
       {{yield}}
     {{else}}
       {{#if @icon}}
-        <!-- <Icon @name="{{@icon}}" /> -->
+        <p>Icon</p>
+        <Icon @name={{@icon}} />
       {{/if}}
       {{@text}}
     {{/if}}
@@ -17,13 +18,14 @@
 {{else}}
   <LinkTo
     @route={{@route}}
-    class="button-route button-base {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
+    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
+    id={{@id}}
   >
     {{#if hasBlock}}
       {{yield}}
     {{else}}
       {{#if @icon}}
-        <!-- <Icon @name="{{@icon}}" /> -->
+        <Icon @name={{@icon}} />
       {{/if}}
       {{@text}}
     {{/if}}

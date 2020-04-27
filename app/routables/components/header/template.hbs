@@ -1,0 +1,47 @@
+<header>
+  <div class="liner">
+    <div class="left">
+      <Button::Route
+        @route="index"
+        @text="Home"
+        @id="logo"
+      >
+        <img
+          src="{{cdn}}/images/logos/primary-interflux-electronics-logo-1.svg"
+          width="3960"
+          height="1000"
+          alt="Interflux Electronics logo"
+        />
+      </Button::Route>
+
+      <Button::Route
+        @route="products"
+        @text="Products"
+      />
+
+      <Button::Route
+        @route="index"
+        @text="Contacts"
+      />
+    </div>
+
+    <div class="right">
+      <Button::Route
+        @route="index"
+        @icon="search"
+      />
+      <Button::Route
+        @route="index"
+        @icon="geo-marker"
+      />
+      <Button::Route
+        @route="index"
+        @icon="shopping-cart"
+      />
+      <Button::Route
+        @route="index"
+        @icon="user"
+      />
+    </div>
+  </div>
+</header>
