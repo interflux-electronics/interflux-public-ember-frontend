@@ -52,18 +52,16 @@ section {
     color: $paragraph-color-1;
     @include widescreen {
       font-size: px(2.6vw);
-      margin: 0 0 px(5vw);
     }
     @include desktop {
       font-size: 2.6vw;
-      margin: 0 0 5vw;
     }
     @include tablet {
-      font-size: 4.6vw; // TODO
+      font-size: 4.3vw;
     }
     @include mobile {
-      font-size: 8vw; // TODO
-      line-height: 160%; // TODO
+      font-size: 7.4vw;
+      line-height: 160%;
     }
   }
 
@@ -119,10 +117,10 @@ section {
       font-size: 1.4vw;
     }
     @include tablet {
-      font-size: 2.8vw;
+      font-size: 2.4vw;
     }
     @include mobile {
-      font-size: 4.6vw;
+      font-size: 4.4vw;
     }
     & + p {
       @include widescreen {
@@ -156,8 +154,22 @@ section.product-hero {
   }
 }
 
+section.family-hero {
+  @include widescreen {
+    margin-bottom: px(9vw);
+  }
+  @include desktop {
+    margin-bottom: 9vw;
+  }
+  @include tablet {
+    margin-bottom: 18vw; // same as horizontal line margins
+  }
+  @include mobile {
+    margin-bottom: 28vw; // same as horizontal line margins
+  }
+}
+
 section.text + section.product-features,
-section.text + section.product-tiles,
 section.text + section.text,
 section.product-features + section.documents,
 section.product-features + section.text,
@@ -176,6 +188,22 @@ section.product-features + section.product-features {
   }
 }
 
+section.text + section.product-tiles {
+  @include widescreen {
+    margin-top: px(3vw);
+  }
+  @include desktop {
+    margin-top: 3vw;
+  }
+  @include tablet {
+    margin-top: 5vw;
+  }
+  @include mobile {
+    margin-top: 12vw;
+  }
+}
+
+// horizontal line between sections
 section.product-tiles + section.text {
   &:before {
     content: ' ';
@@ -190,10 +218,10 @@ section.product-tiles + section.text {
       margin: 9vw auto;
     }
     @include tablet {
-      margin: 14vw auto;
+      margin: 18vw auto;
     }
     @include mobile {
-      margin: 20vw auto;
+      margin: 28vw auto;
     }
   }
 }

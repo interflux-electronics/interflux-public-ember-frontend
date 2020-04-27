@@ -1,12 +1,5 @@
 <Page @id="product">
-  <Section @class="temporary">
-    <Button::Route
-      @route="products.family.index"
-      @text="Back"
-      @size="small"
-      @style="grey"
-    />
-  </Section>
+  <Header />
 
   <Section::ProductHero @product={{@model.product}} />
 
@@ -66,4 +59,6 @@
       </ul>
     </Section::Documents>
   {{/if}}
+
+  <Footer />
 </Page>

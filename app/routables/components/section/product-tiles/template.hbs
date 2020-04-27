@@ -37,9 +37,9 @@
     <div class="toggle">
       <Button::Action
         @action={{this.toggle}}
-        @text="show all"
-        @size="big"
-        @style="grey-border"
+        @text={{if this.showAll "Show less" (concat "Show more (" this.hiddenCount ")")}}
+        @size="medium"
+        @style="grey"
       />
     </div>
   {{/if}}

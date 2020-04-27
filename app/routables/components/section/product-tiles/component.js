@@ -17,4 +17,8 @@ export default class SectionProductTilesComponent extends Component {
   get hiddenProducts() {
     return this.args.products.rejectBy('featured').sortBy('order', 'name');
   }
+
+  get hiddenCount() {
+    return this.hiddenProducts.length;
+  }
 }

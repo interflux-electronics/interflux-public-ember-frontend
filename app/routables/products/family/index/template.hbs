@@ -1,18 +1,9 @@
 <Page @id="product-family">
   <Header />
 
-  <Section @class="temporary">
-    <Button::Route
-      @route="products"
-      @text="Back"
-      @size="small"
-      @style="blue-2"
-    />
-  </Section>
-
   <Section::FamilyHero @family={{@model.family}} />
 
-  <Section::Text>
+  <!-- <Section::Text>
     <p><strong>Solder pastes</strong> are materials used in the manufacture of
       printed circuit boards to connect surface mount components to pads on the
       board. It is also possible to solder through hole pin in paste components
@@ -22,14 +13,14 @@
       as an electrical connection. The paste is applied to the board by jet
       printing, stencil printing or syringe and then the components are put in
       place by a pick-and-place machine or by hand.</p>
-  </Section::Text>
+  </Section::Text> -->
 
   <Section::Text>
     <IconDuo
       @icon1="solder-wire"
       @icon2="leaves"
     />
-    <h3>Lead-free solder pastes</h3>
+    <h3>lead-free solder pastes</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -46,7 +37,7 @@
       @icon1="solder-wire"
       @icon2="lead"
     />
-    <h3>Lead-based solder pastes</h3>
+    <h3>lead-based solder pastes</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

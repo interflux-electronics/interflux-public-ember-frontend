@@ -13,4 +13,18 @@ section.text {
       padding: 0 5vw;
     }
   }
+  .icon-duo + h3 {
+    @include widescreen {
+      margin: px(3vw) 0;
+    }
+    @include desktop {
+      margin: 3vw 0;
+    }
+    @include tablet {
+      margin: 6.5vw 0 6vw;
+    }
+    @include mobile {
+      margin: 8vw 0;
+    }
+  }
 }

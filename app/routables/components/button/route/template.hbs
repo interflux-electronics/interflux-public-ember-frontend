@@ -9,17 +9,16 @@
       {{yield}}
     {{else}}
       {{#if @icon}}
-        <p>Icon</p>
         <Icon @name={{@icon}} />
       {{/if}}
-      {{@text}}
+      <span>{{@text}}</span>
     {{/if}}
   </LinkTo>
 {{else}}
   <LinkTo
     @route={{@route}}
-    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
     id={{@id}}
+    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
   >
     {{#if hasBlock}}
       {{yield}}
@@ -27,7 +26,7 @@
       {{#if @icon}}
         <Icon @name={{@icon}} />
       {{/if}}
-      {{@text}}
+      <span>{{@text}}</span>
     {{/if}}
   </LinkTo>
 {{/if}}

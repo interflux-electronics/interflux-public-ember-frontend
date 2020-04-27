@@ -1,4 +1,4 @@
-.page > header {
+.page > header#desktop {
   border-bottom: 1px solid #eaeaea;
   @include widescreen {
     height: 70px;
@@ -7,10 +7,10 @@
     height: vw(70);
   }
   @include tablet {
-    height: 10vw; // TODO
+    display: none;
   }
   @include mobile {
-    height: 10vw; // TODO
+    display: none;
   }
   .liner {
     display: flex;
@@ -71,6 +71,7 @@
       margin-top: -1px;
       margin-left: -1px;
       transition: border-color 200ms ease;
+      padding: 0;
       path[fill] {
         fill: #6d6d6d;
       }
@@ -96,14 +97,21 @@
         height: vw(70);
         width: vw(70);
       }
-      @include tablet {
-        height: 10vw; // TODO
-        width: 10vw; // TODO
-      }
-      @include mobile {
-        height: 10vw; // TODO
-        width: 10vw; // TODO
-      }
+    }
+  }
+}
+
+.page > header#mobile {
+  @include widescreen {
+    display: none;
+  }
+  @include desktop {
+    display: none;
+  }
+  #logo {
+    img {
+      width: 10px;
+      height: auto;
     }
   }
 }

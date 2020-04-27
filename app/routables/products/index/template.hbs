@@ -1,11 +1,7 @@
 <Page @id="products">
+  <Header />
+
   <Section @class="temporary">
-    <Button::Route
-      @route="home"
-      @text="Home"
-      @size="small"
-      @style="blue-2"
-    />
     <h1>Products</h1>
     <ul>
       {{#each @model.families as |family|}}
@@ -21,4 +17,6 @@
       {{/each}}
     </ul>
   </Section>
+
+  <Footer />
 </Page>

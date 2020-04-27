@@ -1,6 +1,21 @@
+section#spacer {
+  flex: 1;
+  @include widescreen {
+    min-height: px(10vw);
+  }
+  @include desktop {
+    min-height: 10vw;
+  }
+  @include tablet {
+    min-height: 20vw;
+  }
+  @include mobile {
+    min-height: 30vw;
+  }
+}
+
 section#contact {
-  margin-top: 10vw;
-  padding: 4vw 0;
+  padding: 2vw 0;
   background: $blue-3;
   p {
     text-align: center;
