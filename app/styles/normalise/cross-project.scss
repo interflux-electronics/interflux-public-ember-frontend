@@ -6,6 +6,7 @@ body {
   font-size: 16px;
   line-height: 130%;
   margin: 0;
+  background-color: $blue-3;
   color: $paragraph-color-1;
   -webkit-font-smoothing: antialiased; // Without it, fonts will look bloated Chrome and Safari
   -moz-osx-font-smoothing: grayscale; // Without it, fonts will look bloated Firefox
