@@ -8,7 +8,7 @@ export default class ApplicationRoute extends Route {
     this.store.pushPayload({
       data: [
         {
-          id: '7771cac5-fed3-4b35-a94c-6d6f69e022a6',
+          id: 'en',
           type: 'language',
           attributes: {
             'name-english': 'English',
@@ -17,7 +17,7 @@ export default class ApplicationRoute extends Route {
           }
         },
         {
-          id: 'abd5b5a4-c143-468f-91e9-60a5bafcb002',
+          id: 'es',
           type: 'language',
           attributes: {
             'name-english': 'Spanish',
@@ -26,7 +26,7 @@ export default class ApplicationRoute extends Route {
           }
         },
         {
-          id: '7f001318-548b-43e1-99a1-c2a8bd67b5c0',
+          id: 'de',
           type: 'language',
           attributes: {
             'name-english': 'German',
@@ -35,7 +35,7 @@ export default class ApplicationRoute extends Route {
           }
         },
         {
-          id: '4c5093e5-03c2-4d51-a569-8e52f023c2f2',
+          id: 'fr',
           type: 'language',
           attributes: {
             'name-english': 'French',
@@ -44,7 +44,7 @@ export default class ApplicationRoute extends Route {
           }
         },
         {
-          id: 'b5a315c4-48f4-4028-b95c-54c8d0003c5e',
+          id: 'ja',
           type: 'language',
           attributes: {
             'name-english': 'Japanese',

@@ -1,9 +1,10 @@
 import Model, { attr } from '@ember-data/model';
+import { alias } from '@ember/object/computed';
 
 export default class CountryModel extends Model {
+  @alias('id') twoLetterCode;
   @attr('string') nameEnglish;
   @attr('string') nameNative;
-  @attr('string') twoLetterCode;
   @attr('string') threeLetterCode;
   @attr('string') numericCode;
   @attr('string') region;
