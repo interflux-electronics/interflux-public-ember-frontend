@@ -30,11 +30,11 @@ echo ----------
 
 switch $branch
 case production
-  echo scp bin/install.sh $remote:$path
-  scp bin/install.sh $remote:$path
+  echo scp remote/install.sh $remote:$path/remote
+  scp remote/install.sh $remote:$path/remote
   and echo ----------
-  and echo ssh $remote "$path/install.sh $branch $revision"
-  and ssh $remote "$path/install.sh $branch $revision"
+  and echo ssh $remote "$path/remote/install.sh $branch $revision"
+  and ssh $remote "$path/remote/install.sh $branch $revision"
   echo ----------
   echo git checkout master
   git checkout master
