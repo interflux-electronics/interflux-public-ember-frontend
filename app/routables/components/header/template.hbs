@@ -50,15 +50,25 @@
   <div class="liner">
     <Button::Route
       @route="index"
-      @text="Home"
       @id="logo"
     >
+      <Icon @name="hamburger" />
       <img
-        src="{{cdn}}/images/logos/primary-interflux-electronics-logo-1.svg"
-        width="3960"
-        height="1000"
+        src="{{cdn}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg"
+        width="100"
+        height="100"
         alt="Interflux Electronics logo"
       />
     </Button::Route>
+
+    <Button::Route
+      @route="index"
+      @icon="search"
+    />
+
+    <Button::Route
+      @route="index"
+      @icon="user"
+    />
   </div>
 </header>
