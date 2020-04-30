@@ -10,7 +10,7 @@ export default class ProductFamilyIndexRoute extends Route {
 
     return hash({
       family: this.store.findRecord('productFamily', slug, {
-        include: ['products', 'products.image'].join(',')
+        include: ['products', 'products.image', 'products.features'].join(',')
       })
     });
   }

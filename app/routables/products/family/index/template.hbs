@@ -1,41 +1,213 @@
 <Page @id="product-family">
   <Header />
 
+  <Breadcrumbs>
+    <Button::Route
+      @route={{@back}}
+      @text="Back to Products"
+      @icon="arrow-right"
+      @class="back"
+    />
+  </Breadcrumbs>
+
   <Section::FamilyHero @family={{@model.family}} />
 
-  <Section::Text>
-    <IconDuo
-      @icon1="solder-wire"
-      @icon2="leaves"
+  {{#if (eq @model.family.slug 'soldering-fluxes')}}
+
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/alcohol.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Alcohol-based Soldering Fluxes</h3>
+      <p>Water-based soldering fluxes are popular because they VOC-free and
+        non-flamable, which makes them considerably easier to transport and
+        store.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature='alcohol-based'
     />
-    <h3>lead-free solder pastes</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-  </Section::Text>
 
-  <Section::ProductTiles @products={{@model.family.products}} />
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/water.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Water-based Soldering Fluxes</h3>
+      <p>Water-based soldering fluxes are popular because they VOC-free and
+        non-flamable, which makes them considerably easier to transport, store
+        and handle.</p>
+    </Section::Text>
 
-  <Section::Text>
-    <IconDuo
-      @icon1="solder-wire"
-      @icon2="lead"
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature='water-based'
     />
-    <h3>lead-based solder pastes</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
-  </Section::Text>
 
-  <Section::ProductTiles @products={{@model.family.products}} />
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/chemistry.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Rosin-based Soldering Fluxes</h3>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature='rosin-based'
+    />
+
+  {{else if (eq @model.family.slug 'solder-pastes')}}
+
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/leaves.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Lead-free Solder Pastes</h3>
+      <p>Lead-free solder paste alloys are popular because they do no pose
+        health
+        risks and cause environmental contamination.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature="lead-free-alloys"
+    />
+
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/lead.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Lead-based Solder Pastes</h3>
+      <p>Lead-based solder paste alloys are popular for their low melting points
+        and mechanical strength. We recommend protective clothing for working
+        with lead has health risks.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature="lead-based-alloys"
+    />
+
+  {{else if (eq @model.family.slug 'solder-wires')}}
+
+    <Section::Text>
+      <Icon @src="{{cdn}}/images/icons/laser-soldering.svg" />
+      <h3><small>solder wires for</small><br>Laser Soldering</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature="laser-soldering"
+    />
+
+    <Section::Text>
+      <Icon @src="{{cdn}}/images/icons/robot-soldering.svg" />
+      <h3><small>solder wires for</small><br>Robot Soldering</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature="robot-soldering"
+    />
+
+    <Section::Text>
+      <Icon @src="{{cdn}}/images/icons/rework-and-repair.svg" />
+      <h3><small>solder wires for</small><br>Hand Soldering</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature="hand-soldering"
+    />
+
+
+
+  {{else if (eq @model.family.slug 'solder-alloys')}}
+
+    <Section::ProductTiles @products={{@model.family.products}} />
+
+  {{else if (eq @model.family.slug 'fluxing-systems')}}
+
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/jet-fluxing.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Stand-alone Fluxing Systems</h3>
+      <p>Stand-alone fluxing systems are all-in-one self-sufficient machines for
+        fluxing circuit boards. These are typicially added to the beginning of a
+        wave soldering or selective soldering process. The machine includes it's
+        own smart software for maximising the throughput speed. Our flux nozzles
+        can jet and spray with water-based, alcohol-based and rosin-based
+        soldering fluxes.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature='stand-alone-system'
+    />
+
+    <Section::Text>
+      <Image
+        @src="{{cdn}}/images/icons/spray-fluxing.svg"
+        @width="100"
+        @height="100"
+        @class="icon"
+      />
+      <h3>Retrofit Fluxing Systems</h3>
+      <p>Retrofit fluxing systems are small and modular so they can be mounted
+        into your existing fluxing machines. Our flux nozzles can jet and spray
+        with water-based, alcohol-based and rosin-based soldering fluxes.</p>
+    </Section::Text>
+
+    <Section::ProductTiles
+      @products={{@model.family.products}}
+      @feature='retrofit-system'
+    />
+
+  {{else if (eq @model.family.slug 'auxiliaries')}}
+
+    <Section::ProductTiles @products={{@model.family.products}} />
+
+  {{/if}}
 
   <Footer />
 </Page>

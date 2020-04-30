@@ -50,6 +50,7 @@ section {
     text-align: center;
     font-family: $light;
     color: $paragraph-color-1;
+    line-height: 150%;
     @include widescreen {
       font-size: px(2.6vw);
     }
