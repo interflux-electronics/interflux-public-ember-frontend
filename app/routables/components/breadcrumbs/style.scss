@@ -1,13 +1,18 @@
 section#breadcrumbs {
   .liner {
-    padding: 0;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
   }
   a.back {
     display: flex;
     align-items: center;
-    padding: 0;
     color: $grey-5;
+    background: #f2f2f2;
     font-family: $regular;
+    padding: 0 4vw 0 3vw;
+    width: auto;
+    line-height: 200%;
     .icon {
       display: flex;
       justify-content: flex-end;
@@ -20,15 +25,12 @@ section#breadcrumbs {
       }
       @include tablet {
         width: 10vw; // TODO
-        height: 10vw; // TODO
       }
       @include mobile {
-        width: 6vw;
         margin-right: 2vw;
-        height: 12vw;
       }
       svg {
-        height: 25%;
+        height: 3vw;
         width: auto;
         transform: rotate(180deg);
         [fill] {
