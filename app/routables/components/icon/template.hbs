@@ -1,5 +1,11 @@
 <i class="icon">
-  {{#if (eq @name 'geo-marker')}}
+  {{#if @src}}
+    <Image
+      @src={{@src}}
+      @width={{@width}}
+      @height={{@height}}
+    />
+  {{else if (eq @name 'geo-marker')}}
     <Svg::GeoMarker />
   {{else if (eq @name 'search')}}
     <Svg::Search />
