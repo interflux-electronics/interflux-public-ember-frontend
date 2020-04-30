@@ -1,4 +1,10 @@
 section#breadcrumbs {
+  @include widescreen {
+    display: none;
+  }
+  @include desktop {
+    display: none;
+  }
   .liner {
     padding: 5px;
     display: flex;
