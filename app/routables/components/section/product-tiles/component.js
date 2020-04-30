@@ -10,12 +10,23 @@ export default class SectionProductTilesComponent extends Component {
     this.showAll = !this.showAll;
   }
 
+  get productsForFeature() {
+    if (!this.args.feature) {
+      return this.args.products;
+    }
+    return this.args.products.filter(p => {
+      return p.features.any(f => {
+        return f.slug === this.args.feature;
+      });
+    });
+  }
+
   get featuredProducts() {
-    return this.args.products.filterBy('featured').sortBy('order', 'name');
+    return this.productsForFeature.filterBy('featured').sortBy('order', 'name');
   }
 
   get hiddenProducts() {
-    return this.args.products.rejectBy('featured').sortBy('order', 'name');
+    return this.productsForFeature.rejectBy('featured').sortBy('order', 'name');
   }
 
   get hiddenCount() {
