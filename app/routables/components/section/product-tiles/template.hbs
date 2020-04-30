@@ -8,10 +8,19 @@
       <h2>{{product.name}}</h2>
       <h3>{{if product.label product.label product.family.nameSingle}}</h3>
       <ResponsiveImage @image={{get product 'avatar'}} />
-      <button>
-        <span>Explore</span>
-        <Svg::ArrowRight />
-      </button>
+      {{#if (or product.new product.popular product.featured)}}
+        <button>
+          {{#if product.new}}
+            <span>NEW</span>
+          {{else if product.popular}}
+            <span>popular</span>
+          {{else if product.featured}}
+            <span>learn more</span>
+          {{/if}}
+          <!-- <span>Explore</span> -->
+          <Svg::ArrowRight />
+        </button>
+      {{/if}}
     </LinkTo>
   {{/each}}
 
@@ -26,10 +35,19 @@
       {{#if showAll}}
         <ResponsiveImage @image={{get product 'avatar'}} />
       {{/if}}
-      <button>
-        <span>Explore</span>
-        <Svg::ArrowRight />
-      </button>
+      {{#if (or product.new product.popular product.featured)}}
+        <button>
+          {{#if product.new}}
+            <span>NEW</span>
+          {{else if product.popular}}
+            <span>popular</span>
+          {{else if product.featured}}
+            <span>learn more</span>
+          {{/if}}
+          <!-- <span>Explore</span> -->
+          <Svg::ArrowRight />
+        </button>
+      {{/if}}
     </LinkTo>
   {{/each}}
 
