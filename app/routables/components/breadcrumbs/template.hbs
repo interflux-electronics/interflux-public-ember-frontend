@@ -1,35 +1,5 @@
-<nav id="breadcrumbs">
+<Section @id="breadcrumbs">
   <div class="liner">
-    {{!-- <ul>
-      <li>
-        <ButtonToRoute
-          @route="locale"
-          @text="Interflux"
-          @arg1="en"
-        />
-      </li>
-      <li>
-        <ButtonToRoute
-          @route="locale.products"
-          @text="Products"
-        />
-      </li>
-      <li>
-        <ButtonToRoute
-          @route="locale.products.family"
-          @text="Soldering Fluxes"
-          @arg1="soldering-fluxes"
-        />
-      </li>
-      <li>
-        <ButtonToRoute
-          @route="locale.products.family.product"
-          @text="PacIFic 2009M"
-          @arg1="en"
-          @arg2="soldering-fluxes"
-          @arg3="PacIFic-2009M"
-        />
-      </li>
-    </ul> --}}
+    {{yield}}
   </div>
-</nav>
+</Section>

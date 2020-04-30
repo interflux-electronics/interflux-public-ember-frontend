@@ -17,7 +17,8 @@ body {
 
 // To avoid <img> and <iframe> to have weird white space below them, make them a block
 iframe,
-img {
+img,
+svg {
   display: block;
 }
 

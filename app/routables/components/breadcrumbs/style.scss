@@ -1,20 +1,39 @@
-nav#breadcrumbs {
-  background: white;
-  height: 50px;
-  padding: 0 30px;
-  display: flex;
-  align-items: center;
-  ul {
+section#breadcrumbs {
+  .liner {
+    padding: 0;
+  }
+  a.back {
     display: flex;
-    li {
-      a {
-        background: #f2f2f2;
-        color: #747474;
-        font-size: 13px;
-        padding: 0 10px;
+    align-items: center;
+    padding: 0;
+    color: $grey-5;
+    font-family: $regular;
+    .icon {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      @include widescreen {
+        width: px(10vw); // TODO
       }
-      & + li {
-        margin-left: 10px;
+      @include desktop {
+        width: 10vw; // TODO
+      }
+      @include tablet {
+        width: 10vw; // TODO
+        height: 10vw; // TODO
+      }
+      @include mobile {
+        width: 6vw;
+        margin-right: 2vw;
+        height: 12vw;
+      }
+      svg {
+        height: 25%;
+        width: auto;
+        transform: rotate(180deg);
+        [fill] {
+          fill: $grey-5;
+        }
       }
     }
   }

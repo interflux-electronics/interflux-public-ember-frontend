@@ -3,7 +3,7 @@
     @route={{@route}}
     @model={{@model}}
     id={{@id}}
-    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
+    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}"
   >
     {{#if hasBlock}}
       {{yield}}
@@ -20,7 +20,7 @@
   <LinkTo
     @route={{@route}}
     id={{@id}}
-    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}"
+    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}"
   >
     {{#if hasBlock}}
       {{yield}}
