@@ -3,7 +3,7 @@
 
   <Breadcrumbs>
     <Button::Route
-      @route={{@back}}
+      @route="products"
       @text="Products"
       @icon="arrow-right"
       @class="back"
@@ -15,12 +15,7 @@
   {{#if (eq @model.family.slug 'soldering-fluxes')}}
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/alcohol.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
+      <Icon @src="{{cdn}}/images/icons/alcohol.svg" />
       <h3>Alcohol-based Soldering Fluxes</h3>
       <p>Water-based soldering fluxes are popular because they VOC-free and
         non-flamable, which makes them considerably easier to transport and
@@ -33,12 +28,7 @@
     />
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/water.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
+      <Icon @src="{{cdn}}/images/icons/water.svg" />
       <h3>Water-based Soldering Fluxes</h3>
       <p>Water-based soldering fluxes are popular because they VOC-free and
         non-flamable, which makes them considerably easier to transport, store
@@ -51,12 +41,7 @@
     />
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/chemistry.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
+      <Icon @src="{{cdn}}/images/icons/chemistry.svg" />
       <h3>Rosin-based Soldering Fluxes</h3>
     </Section::Text>
 
@@ -68,13 +53,8 @@
   {{else if (eq @model.family.slug 'solder-pastes')}}
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/leaves.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
-      <h3>Lead-free Solder Pastes</h3>
+      <Icon @src="{{cdn}}/images/icons/leaves.svg" />
+      <h3>Lead-free solder pastes</h3>
       <p>Lead-free solder paste alloys are popular because they do no pose
         health
         risks and cause environmental contamination.</p>
@@ -86,12 +66,7 @@
     />
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/lead.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
+      <Icon @src="{{cdn}}/images/icons/lead.svg" />
       <h3>Lead-based Solder Pastes</h3>
       <p>Lead-based solder paste alloys are popular for their low melting points
         and mechanical strength. We recommend protective clothing for working
@@ -141,7 +116,7 @@
 
     <Section::Text>
       <Icon @src="{{cdn}}/images/icons/rework-and-repair.svg" />
-      <h3><small>solder wires for</small><br>Hand Soldering</h3>
+      <h3><small>solder wires for </small><br>Hand Soldering</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
         minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -156,8 +131,6 @@
       @feature="hand-soldering"
     />
 
-
-
   {{else if (eq @model.family.slug 'solder-alloys')}}
 
     <Section::ProductTiles @products={{@model.family.products}} />
@@ -165,12 +138,7 @@
   {{else if (eq @model.family.slug 'fluxing-systems')}}
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/jet-fluxing.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
+      <Icon @src="{{cdn}}/images/icons/jet-fluxing.svg" />
       <h3>Stand-alone Fluxing Systems</h3>
       <p>Stand-alone fluxing systems are all-in-one self-sufficient machines for
         fluxing circuit boards. These are typicially added to the beginning of a
@@ -186,12 +154,7 @@
     />
 
     <Section::Text>
-      <Image
-        @src="{{cdn}}/images/icons/spray-fluxing.svg"
-        @width="100"
-        @height="100"
-        @class="icon"
-      />
+      <Icon @src="{{cdn}}/images/icons/spray-fluxing.svg" />
       <h3>Retrofit Fluxing Systems</h3>
       <p>Retrofit fluxing systems are small and modular so they can be mounted
         into your existing fluxing machines. Our flux nozzles can jet and spray
