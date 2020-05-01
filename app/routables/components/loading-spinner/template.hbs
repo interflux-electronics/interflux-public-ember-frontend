@@ -1,0 +1,29 @@
+{{#if this.load.show}}
+  <div id="load-spinner">
+    <div class="scene">
+      <div class="cube show-{{this.side}}">
+        <div class="face front">
+          <Icon
+            @src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
+          />
+        </div>
+        <div class="face back">
+          <Icon @src="{{cdn}}/images/icons/wave-soldering.svg" />
+        </div>
+        <div class="face right">
+          <Icon @src="{{cdn}}/images/icons/leaves.svg" />
+        </div>
+        <div class="face left">
+          <Icon @src="{{cdn}}/images/icons/strong.svg" />
+        </div>
+        <div class="face top">
+          <Icon @src="{{cdn}}/images/icons/chemistry.svg" />
+        </div>
+        <div class="face bottom">
+          <Icon @src="{{cdn}}/images/icons/circuit-1.svg" />
+        </div>
+      </div>
+    </div>
+    <p>Loading ...</p>
+  </div>
+{{/if}}

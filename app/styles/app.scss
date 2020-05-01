@@ -33,6 +33,7 @@
 @import 'app/routables/components/input/style';
 @import 'app/routables/components/map/style';
 @import 'app/routables/components/icon-duo/style';
+@import 'app/routables/components/loading-spinner/style';
 
 // Pages
 @import 'app/routables/home/index/style';
@@ -44,5 +45,4 @@
 @import 'app/routables/documents/index/style';
 @import 'app/routables/documents/category/style';
 @import 'app/routables/contact/style';
-@import 'app/routables/loading/style';
 @import 'app/routables/error/style';

@@ -23,8 +23,9 @@ Router.map(function() {
     this.route('catchall', { path: '*:', resetNamespace: true });
   });
 
-  this.route('loading');
   this.route('error');
+  this.route('loading');
+  this.route('application-loading');
 });
 
 export default Router;
