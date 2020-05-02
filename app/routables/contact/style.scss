@@ -1,6 +1,11 @@
 #contact.page {
-  .map {
-    margin-bottom: 80px;
+  section#map {
+    .liner {
+      padding: 0;
+    }
+    .map {
+      margin-bottom: 80px;
+    }
   }
   li {
     align-items: flex-start;

@@ -1,12 +1,8 @@
 <Page @id="documents">
+  <Header />
+
   <Section @class="temporary">
-    <Button::Route
-      @route="home"
-      @text="Back"
-      @size="small"
-      @style="blue-2"
-    />
-    <h1>Documents</h1>
+    <h3>What type of document?</h3>
     <ul>
       {{#each @model.categories as |category|}}
         <li>
@@ -21,4 +17,6 @@
       {{/each}}
     </ul>
   </Section>
+
+  <Footer />
 </Page>

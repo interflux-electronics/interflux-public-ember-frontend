@@ -1,18 +1,38 @@
 section.documents {
   // see section.product-features
+
+  h3 {
+    margin: 5vw 0;
+    & + p {
+      margin-bottom: 3vw;
+    }
+  }
+
+  input {
+    background: #eee;
+  }
+
+  li.no-match {
+    display: none;
+  }
+
   a {
     display: flex;
     align-items: center;
     color: $blue-0;
     width: 100%;
-    img {
-      transition: transform ease 200ms;
+    picture {
+      flex-shrink: 0;
     }
-    &:hover {
-      text-decoration: underline;
-      img {
-        transform: scale(1.1);
+    span {
+      &:last-child {
+        color: $blue-0;
+        width: 100%;
+        text-align: right;
       }
+    }
+    mark {
+      background: yellow;
     }
   }
 }

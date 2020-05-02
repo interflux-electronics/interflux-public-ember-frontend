@@ -1,20 +1,22 @@
 <Page @id="document-category">
-  <Section @class="temporary">
-    <Button::Route
-      @route="documents"
-      @text="Back"
-      @size="small"
-      @style="blue-2"
-    />
-    <h1>{{@model.category.name}}</h1>
-    {{#if (eq @model.category.slug 'SDS')}}
+  <Header />
+
+  {{#if (eq @model.category.slug 'SDS')}}
+
+    <Section @class="temporary">
+      <h3>{{@model.category.name}}</h3>
       <p>To request an SDS, please contact our REACH team in Belgium:</p>
       <p><a
           href="mailto:reach@interflux.com"
           target="_blank"
           rel="nofollow noreferrer"
         >reach@interflux.com</a></p>
-    {{else if (eq @model.category.slug 'REACH')}}
+    </Section>
+
+  {{else if (eq @model.category.slug 'REACH')}}
+
+    <Section @class="temporary">
+      <h3>{{@model.category.name}}</h3>
       <p>For all questions regarding Registration, Evaluation, Authorisation and
         Restriction of Chemicals (REACH) please contact our friendly REACH team
         in Belgium:</p>
@@ -23,20 +25,35 @@
           target="_blank"
           rel="nofollow noreferrer"
         >reach@interflux.com</a></p>
-    {{else}}
-      <ul>
-        {{#each @model.category.documents as |document|}}
-          <li>
-            <Button::Url
-              @href="{{cdn}}/{{document.path}}"
-              @text="{{document.name}} ({{document.language.nameEnglish}}, PDF)"
-              @icon="pdf"
-              @size="medium"
-              @style="grey-border"
-            />
-          </li>
-        {{/each}}
-      </ul>
-    {{/if}}
-  </Section>
+    </Section>
+
+  {{else}}
+
+    <Section::Documents @id="documents">
+      <h3>{{@model.category.name}}</h3>
+      <p>{{@model.category.gist}}</p>
+
+      <SearchList>
+        <ul>
+          {{#each @model.category.documents as |document|}}
+            <li>
+              <Button::Url @href="{{cdn}}/{{document.path}}">
+                <Image
+                  @src="{{cdn}}/images/icons/file-download.svg"
+                  @width="100"
+                  @height="100"
+                />
+                <span data-search="me">{{document.name}} </span>
+                <span>- {{document.language.nameEnglish}}</span>
+                <span>download</span>
+              </Button::Url>
+            </li>
+          {{/each}}
+        </ul>
+      </SearchList>
+    </Section::Documents>
+
+  {{/if}}
+
+  <Footer />
 </Page>

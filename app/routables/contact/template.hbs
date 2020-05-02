@@ -1,15 +1,14 @@
 <Page @id="contact">
-  <Section @class="temporary">
-    <Button::Route
-      @route="home"
-      @text="Home"
-      @size="small"
-      @style="blue-2"
-    />
-    <h1>Contact</h1>
+  <Header />
 
+  <Section
+    @id="map"
+    @class="temporary"
+  >
     <Map />
+  </Section>
 
+  <Section @class="temporary">
     <ul>
       {{#each @model.companies as |company|}}
         <li>
@@ -56,4 +55,6 @@
       {{/each}}
     </ul>
   </Section>
+
+  <Footer />
 </Page>
