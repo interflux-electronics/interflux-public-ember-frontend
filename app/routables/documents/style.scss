@@ -1,0 +1,179 @@
+#documents.page {
+  section#categories {
+    background: $grey-0;
+    .liner {
+      @include widescreen {
+        padding: px(10vw) px(10vw) 0;
+      }
+      @include desktop {
+        padding: 10vw 10vw 0;
+      }
+      @include tablet {
+        padding: 3vw;
+      }
+      @include mobile {
+        padding: 10vw; // TODO
+      }
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: wrap;
+      justify-content: center;
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas:
+        'one two three'
+        'four five six';
+      @include tablet {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          'one two'
+          'three four'
+          'five six';
+      }
+      @include mobile {
+        display: block;
+      }
+    }
+    h3 {
+      align-self: center;
+      grid-area: one;
+    }
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid $grey-1;
+      box-sizing: border-box;
+      background: white;
+      transition: transform 200ms ease-out;
+
+      @include widescreen {
+        padding: px(3.5vw) px(3vw);
+      }
+      @include desktop {
+        padding: 3.5vw 3vw;
+      }
+      @include tablet {
+        padding: 8vw 9vw;
+      }
+      @include mobile {
+        padding: 10vw; // TODO
+      }
+
+      &:hover {
+        transform: scale(1.05) !important;
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(black, 0.2);
+      }
+
+      &:nth-of-type(1) {
+        grid-area: two;
+        border-radius: 5px 0 0 0;
+        transform: translate(0, 0);
+        @include tablet {
+          border-radius: 5px 5px 0 0;
+          transform: translate(-1px, 1px);
+        }
+        @include mobile {
+          border-radius: 5px 5px 0 0;
+          transform: translate(0, 0);
+        }
+      }
+      &:nth-of-type(2) {
+        grid-area: three;
+        border-radius: 0 5px 0 0;
+        transform: translate(-1px, 0);
+        @include tablet {
+          border-radius: 5px 0 0 0;
+          transform: translate(0, 0);
+        }
+        @include mobile {
+          border-radius: 0;
+          transform: translate(0, -1px);
+        }
+      }
+      &:nth-of-type(3) {
+        grid-area: four;
+        border-radius: 5px 0 0 5px;
+        transform: translate(1px, -1px);
+        @include tablet {
+          border-radius: 0;
+          transform: translate(-1px, 0);
+        }
+        @include mobile {
+          border-radius: 0;
+          transform: translate(0, -1px);
+        }
+      }
+      &:nth-of-type(4) {
+        grid-area: five;
+        border-radius: 0;
+        transform: translate(0, -1px);
+        @include tablet {
+          border-radius: 0 0 0 4px;
+          transform: translate(0, -1px);
+        }
+        @include mobile {
+          border-radius: 0;
+          transform: translate(0, -1px);
+        }
+      }
+      &:nth-of-type(5) {
+        grid-area: six;
+        border-radius: 0 0 5px 0;
+        transform: translate(-1px, -1px);
+        @include tablet {
+          border-radius: 0 0 4px 0;
+          transform: translate(-1px, -1px);
+        }
+        @include mobile {
+          border-radius: 0;
+          border-radius: 0 0 4px 4px;
+          transform: translate(0, -1px);
+        }
+      }
+
+      .icon {
+        @include widescreen {
+          margin: 0 0 px(3vw);
+        }
+        @include desktop {
+          margin: 0 0 3vw;
+        }
+        @include tablet {
+          margin: 0 0 4vw;
+        }
+        @include mobile {
+          margin: 0 0 10vw; // TODO
+        }
+      }
+
+      p {
+        text-align: center;
+        line-height: 150%;
+        & + p {
+          @include widescreen {
+            margin-top: px(1vw);
+          }
+          @include desktop {
+            margin-top: 1vw;
+          }
+          @include tablet {
+            margin-top: 2vw;
+          }
+          @include mobile {
+            margin-top: 10vw; // TODO
+          }
+        }
+        span {
+          color: $blue-0;
+        }
+      }
+    }
+  }
+  section#spacer {
+    background: $grey-0;
+  }
+}
