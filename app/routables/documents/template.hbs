@@ -1,1 +1,19 @@
-{{outlet}}
+<Page @id="documents">
+  <Header />
+
+  <Section @id="grid">
+    {{#each @model.categories as |category|}}
+      <LinkTo
+        @route="documents.category"
+        @model={{category.slug}}
+      >
+        <Icon @src="{{cdn}}/images/icons/{{category.icon}}.svg" />
+        <p><strong>{{category.name}}</strong></p>
+        <p>{{category.gist}}</p>
+        <p><span>{{category.cta}}</span></p>
+      </LinkTo>
+    {{/each}}
+  </Section>
+
+  <Footer />
+</Page>

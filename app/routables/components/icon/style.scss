@@ -5,22 +5,18 @@
     @include widescreen {
       width: px(4vw);
       height: px(4vw);
-      margin-right: px(1.5vw);
     }
     @include desktop {
       width: 4vw;
       height: 4vw;
-      margin-right: 1.5vw;
     }
     @include tablet {
       width: 10vw;
       height: 10vw;
-      margin-right: 2.4vw;
     }
     @include mobile {
       width: 15vw;
       height: 15vw;
-      margin-right: 4vw;
     }
     i.load-spinner {
       transform: scale(0.7);

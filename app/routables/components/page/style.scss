@@ -3,4 +3,8 @@ main.page {
   flex-direction: column;
   min-height: 100vh;
   background: white;
+  &.no-scroll {
+    position: fixed;
+    width: 100%;
+  }
 }

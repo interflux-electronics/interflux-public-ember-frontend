@@ -8,7 +8,7 @@ export default class PageComponent extends Component {
 
   @computed('modal.scroll')
   get safeStyle() {
-    if (!this.modal.scroll) {
+    if (!this.modal.active) {
       return null;
     }
     return htmlSafe(`top: -${this.modal.scroll}px`);

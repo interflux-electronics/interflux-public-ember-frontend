@@ -1,6 +1,4 @@
-<Page @id="document-category">
-  <Header />
-
+<Modal @id="document-category">
   {{#if (eq @model.category.slug 'SDS')}}
 
     <Section @class="temporary">
@@ -54,6 +52,4 @@
     </Section::Documents>
 
   {{/if}}
-
-  <Footer />
-</Page>
+</Modal>

@@ -8,7 +8,6 @@ export default class DocumentssRoute extends Route {
   model() {
     return hash({
       documents: this.store.findAll('document'),
-      products: this.store.findAll('product'),
       categories: this.store.findAll('documentCategory')
     });
   }

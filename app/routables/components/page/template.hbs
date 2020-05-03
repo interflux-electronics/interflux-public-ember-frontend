@@ -1,6 +1,6 @@
 <main
   id="{{@id}}"
-  class="page"
+  class="page {{if modal.active 'no-scroll' 'scrollable'}}"
   style={{this.safeStyle}}
 >
   {{yield}}
