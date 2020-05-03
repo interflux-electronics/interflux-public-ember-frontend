@@ -7,6 +7,7 @@ export default class DocumentCategoryModel extends Model {
   @attr('string') name;
   @attr('string') gist;
   @attr('string') icon;
+  @attr('number') order;
 
   @hasMany('document') documents;
 

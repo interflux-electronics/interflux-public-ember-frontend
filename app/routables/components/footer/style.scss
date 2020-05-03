@@ -14,22 +14,22 @@ section#spacer {
   }
 }
 
-section#contact {
-  padding: 2vw 0;
-  background: $blue-3;
-  p {
-    text-align: center;
-    color: white;
-    a {
-      color: white;
-      text-decoration: underline;
-      &:hover {
-        color: $orange-2;
-        text-decoration: none;
-      }
-    }
-  }
-}
+// section#contact {
+//   padding: 2vw 0;
+//   background: $blue-3;
+//   p {
+//     text-align: center;
+//     color: white;
+//     a {
+//       color: white;
+//       text-decoration: underline;
+//       &:hover {
+//         color: $orange-2;
+//         text-decoration: none;
+//       }
+//     }
+//   }
+// }
 
 section#copyright {
   padding: 2vw 0;

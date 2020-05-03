@@ -1,8 +1,10 @@
 <Page @id="documents">
   <Header />
 
-  <Section @id="grid">
-    {{#each @model.categories as |category|}}
+  <Section @id="categories">
+    <h3>What type of document do you need?</h3>
+
+    {{#each sortedCategories as |category|}}
       <LinkTo
         @route="documents.category"
         @model={{category.slug}}

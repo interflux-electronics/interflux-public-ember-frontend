@@ -1,10 +1,23 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 body > .modal {
   > .overlay {
     position: fixed;
-    background: rgba(black, 0.5);
+    background: rgba($blue-5, 0.9);
     width: 100vw;
     height: 100vh;
     top: 0;
+    animation-name: fade-in;
+    animation-duration: 400ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
     > a {
       width: 100%;
       height: 100%;
@@ -20,6 +33,7 @@ body > .modal {
     padding: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
     pointer-events: none; // So the overlay below can be clicked
     > .box {
       background: white;
@@ -29,6 +43,10 @@ body > .modal {
       box-sizing: border-box;
       padding: 30px;
       pointer-events: all; // So the overlay below doesn't get clicked when user interacts within white box
+      animation-name: fade-in;
+      animation-duration: 400ms;
+      animation-timing-function: ease-out;
+      animation-fill-mode: both;
     }
   }
 }

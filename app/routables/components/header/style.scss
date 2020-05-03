@@ -66,53 +66,53 @@
       }
     }
   }
-  .right {
-    display: flex;
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-left: 1px solid #eaeaea;
-      box-sizing: content-box;
-      margin-top: -1px;
-      margin-left: -1px;
-      transition: border-color 200ms ease;
-      padding: 0;
-      border-radius: 0;
-      path[fill] {
-        fill: #6d6d6d;
-      }
-      i {
-        transition: transform 200ms ease;
-        height: 40%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        @include widescreen {
-          height: px(6vw);
-          width: px(6vw);
-        }
-        @include desktop {
-          height: 6vw;
-          width: 6vw;
-        }
-        svg {
-          height: 40%;
-          width: auto;
-        }
-      }
-      &:hover {
-        border-color: $orange-1;
-        z-index: 1;
-        i {
-          transform: scale(1.2);
-        }
-        [fill] {
-          fill: $orange-3;
-        }
-      }
-    }
-  }
+  // .right {
+  //   display: flex;
+  //   a {
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     border-left: 1px solid #eaeaea;
+  //     box-sizing: content-box;
+  //     margin-top: -1px;
+  //     margin-left: -1px;
+  //     transition: border-color 200ms ease;
+  //     padding: 0;
+  //     border-radius: 0;
+  //     path[fill] {
+  //       fill: #6d6d6d;
+  //     }
+  //     i {
+  //       transition: transform 200ms ease;
+  //       height: 40%;
+  //       display: flex;
+  //       justify-content: center;
+  //       align-items: center;
+  //       @include widescreen {
+  //         height: px(6vw);
+  //         width: px(6vw);
+  //       }
+  //       @include desktop {
+  //         height: 6vw;
+  //         width: 6vw;
+  //       }
+  //       svg {
+  //         height: 40%;
+  //         width: auto;
+  //       }
+  //     }
+  //     &:hover {
+  //       border-color: $orange-1;
+  //       z-index: 1;
+  //       i {
+  //         transform: scale(1.2);
+  //       }
+  //       [fill] {
+  //         fill: $orange-3;
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .page > header#mobile {

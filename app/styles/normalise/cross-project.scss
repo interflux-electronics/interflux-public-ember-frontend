@@ -52,6 +52,13 @@ button {
   }
 }
 
+// To prevent browsers from highlighting blue tapped elements
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
 // Semantically <table> is sometimes the best way to describe content.
 // When you do, always reset the display rules because they are unpredictable.
 // display: table;

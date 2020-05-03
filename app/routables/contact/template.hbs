@@ -9,51 +9,53 @@
   </Section>
 
   <Section @class="temporary">
-    <ul>
-      {{#each @model.companies as |company|}}
-        <li>
-          <h2>{{company.businessName}}</h2>
+    <SearchList>
+      <ul>
+        {{#each @model.companies as |company|}}
+          <li>
+            <h2 data-search="me">{{company.businessName}}</h2>
 
-          {{#if company.phone}}
-            <p>Tel: <a
-                href="tel:{{company.phone}}"
-                target="_blank"
-                rel="noreferrer nofollow"
-              >{{company.phone}}</a></p>
-          {{/if}}
-
-          {{#if company.fax}}
-            <p>Fax: <a
-                href="fax:{{company.fax}}"
-                target="_blank"
-                rel="noreferrer nofollow"
-              >{{company.fax}}</a></p>
-          {{/if}}
-
-          {{#if company.emails}}
-            {{#each company.emails as |email|}}
-              <p>Email: <a
-                  href="mailto:{{email}}"
+            {{#if company.phone}}
+              <p>Tel: <a
+                  href="tel:{{company.phone}}"
                   target="_blank"
                   rel="noreferrer nofollow"
-                >{{email}}</a></p>
-            {{/each}}
-          {{/if}}
+                >{{company.phone}}</a></p>
+            {{/if}}
 
-          {{#if company.website}}
-            <p>Website: <a
-                href={{company.website}}
-                target="_blank"
-                rel="noreferrer nofollow"
-              >{{company.website}}</a></p>
-          {{/if}}
+            {{#if company.fax}}
+              <p>Fax: <a
+                  href="fax:{{company.fax}}"
+                  target="_blank"
+                  rel="noreferrer nofollow"
+                >{{company.fax}}</a></p>
+            {{/if}}
 
-          <p>{{company.legalName}}</p>
-          <p>{{company.address}}</p>
-          <h3>{{company.country.nameEnglish}}</h3>
-        </li>
-      {{/each}}
-    </ul>
+            {{#if company.emails}}
+              {{#each company.emails as |email|}}
+                <p>Email: <a
+                    href="mailto:{{email}}"
+                    target="_blank"
+                    rel="noreferrer nofollow"
+                  >{{email}}</a></p>
+              {{/each}}
+            {{/if}}
+
+            {{#if company.website}}
+              <p>Website: <a
+                  href={{company.website}}
+                  target="_blank"
+                  rel="noreferrer nofollow"
+                >{{company.website}}</a></p>
+            {{/if}}
+
+            <p data-search="me">{{company.legalName}}</p>
+            <p data-search="me">{{company.address}}</p>
+            <h3 data-search="me">{{company.country.nameEnglish}}</h3>
+          </li>
+        {{/each}}
+      </ul>
+    </SearchList>
   </Section>
 
   <Footer />
