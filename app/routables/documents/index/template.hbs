@@ -1,22 +1,81 @@
 <Page @id="documents">
   <Header />
 
-  <Section @class="temporary">
-    <h3>What type of document?</h3>
+  <Section @id="grid">
     <ul>
       {{#each @model.categories as |category|}}
         <li>
-          <Button::Route
+          <LinkTo
             @route="documents.category"
             @model={{category.slug}}
-            @text={{category.name}}
-            @size="medium"
-            @style="grey-border"
-          />
+          >
+            <Icon @src="{{cdn}}/images/icons/{{category.icon}}.svg" />
+            <h2>{{category.name}}</h2>
+            <p>{{category.gist}}</p>
+            <p><span>{{category.cta}}</span></p>
+          </LinkTo>
         </li>
       {{/each}}
     </ul>
   </Section>
+
+  <!-- {{#each @model.categories as |category|}}
+    {{#if (eq category.slug 'SDS')}}
+
+      <Section @class="temporary">
+        <h3>{{category.name}}</h3>
+        <p>To request an SDS, please contact our REACH team in Belgium:</p>
+        <p><a
+            href="mailto:reach@interflux.com"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >reach@interflux.com</a></p>
+      </Section>
+
+    {{else if (eq category.slug 'REACH')}}
+
+      <Section @class="temporary">
+        <h3>{{category.name}}</h3>
+        <p>For all questions regarding Registration, Evaluation, Authorisation
+          and
+          Restriction of Chemicals (REACH) please contact our friendly REACH
+          team
+          in Belgium:</p>
+        <p><a
+            href="mailto:reach@interflux.com"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >reach@interflux.com</a></p>
+      </Section>
+
+    {{else}}
+
+      <Section::Documents @id="documents">
+        <h3>{{category.name}}</h3>
+        <p>{{category.gist}}</p>
+
+        <SearchList>
+          <ul>
+            {{#each category.documents as |document|}}
+              <li>
+                <Button::Url @href="{{cdn}}/{{document.path}}">
+                  <Image
+                    @src="{{cdn}}/images/icons/file-download.svg"
+                    @width="100"
+                    @height="100"
+                  />
+                  <span data-search="me">{{document.name}} </span>
+                  <span>- {{document.language.nameEnglish}}</span>
+                  <span>download</span>
+                </Button::Url>
+              </li>
+            {{/each}}
+          </ul>
+        </SearchList>
+      </Section::Documents>
+
+    {{/if}}
+  {{/each}} -->
 
   <Footer />
 </Page>

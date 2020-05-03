@@ -1,3 +1,13 @@
 #documents.page {
-  //
+  section#grid {
+    ul {
+      display: flex;
+      flex-flow: wrap;
+      justify-content: center;
+      align-items: center;
+      li {
+        width: 33.33%;
+      }
+    }
+  }
 }
