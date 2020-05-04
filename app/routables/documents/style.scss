@@ -2,18 +2,6 @@
   section#categories {
     background: $grey-0;
     .liner {
-      @include widescreen {
-        padding: px(10vw) px(10vw) 0;
-      }
-      @include desktop {
-        padding: 10vw 10vw 0;
-      }
-      @include tablet {
-        padding: 3vw;
-      }
-      @include mobile {
-        padding: 10vw; // TODO
-      }
       box-sizing: border-box;
       display: flex;
       flex-flow: wrap;
@@ -24,7 +12,14 @@
       grid-template-areas:
         'one two three'
         'four five six';
+      @include widescreen {
+        padding: px(10vw) px(10vw) 0;
+      }
+      @include desktop {
+        padding: 10vw 10vw 0;
+      }
       @include tablet {
+        padding: 3vw;
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'one two'
@@ -33,11 +28,18 @@
       }
       @include mobile {
         display: block;
+        padding: 5vw;
       }
     }
     h3 {
       align-self: center;
       grid-area: one;
+      width: 80%;
+      margin: 0 auto;
+      @include mobile {
+        width: 90%;
+        margin: 10vw auto 10vw;
+      }
     }
     a {
       display: flex;
@@ -59,7 +61,7 @@
         padding: 8vw 9vw;
       }
       @include mobile {
-        padding: 10vw; // TODO
+        padding: 10vw;
       }
 
       &:hover {
@@ -104,7 +106,7 @@
         }
         @include mobile {
           border-radius: 0;
-          transform: translate(0, -1px);
+          transform: translate(0, -2px);
         }
       }
       &:nth-of-type(4) {
@@ -117,7 +119,7 @@
         }
         @include mobile {
           border-radius: 0;
-          transform: translate(0, -1px);
+          transform: translate(0, -3px);
         }
       }
       &:nth-of-type(5) {
@@ -131,7 +133,7 @@
         @include mobile {
           border-radius: 0;
           border-radius: 0 0 4px 4px;
-          transform: translate(0, -1px);
+          transform: translate(0, -4px);
         }
       }
 

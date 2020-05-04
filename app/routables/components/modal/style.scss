@@ -11,9 +11,10 @@ body > .modal {
   > .overlay {
     position: fixed;
     background: rgba($blue-5, 0.9);
-    width: 100vw;
-    height: 100vh;
-    top: 0;
+    top: 0; // using width and height instead breaks when scrolling
+    bottom: 0;
+    left: 0;
+    right: 0;
     animation-name: fade-in;
     animation-duration: 400ms;
     animation-timing-function: ease-out;
@@ -30,18 +31,27 @@ body > .modal {
     width: 100vw;
     min-height: 100vh;
     box-sizing: border-box;
-    padding: 30px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
+    align-items: flex-start;
     pointer-events: none; // So the overlay below can be clicked
+    @include widescreen {
+      padding: px(7vw);
+    }
+    @include desktop {
+      padding: 7vw;
+    }
+    @include tablet {
+      padding: 10vw 5vw;
+    }
+    @include mobile {
+      padding: 20vw 3vw;
+    }
     > .box {
       background: white;
       width: 100%;
-      max-width: 1000px;
-      min-height: 100px;
       box-sizing: border-box;
-      padding: 30px;
       pointer-events: all; // So the overlay below doesn't get clicked when user interacts within white box
       animation-name: fade-in;
       animation-duration: 400ms;

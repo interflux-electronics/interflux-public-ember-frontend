@@ -1,36 +1,41 @@
-<Modal @id="document-category">
-  {{#if (eq @model.category.slug 'SDS')}}
+<Modal @id={{@model.category.slug}}>
+  {{#if (eq @model.category.slug 'reach')}}
 
-    <Section @class="temporary">
+    <Section
+      @id="reach"
+      @class="text"
+    >
+      <Icon @src="{{cdn}}/images/icons/file-medical.svg" />
       <h3>{{@model.category.name}}</h3>
-      <p>To request an SDS, please contact our REACH team in Belgium:</p>
-      <p><a
-          href="mailto:reach@interflux.com"
-          target="_blank"
-          rel="nofollow noreferrer"
-        >reach@interflux.com</a></p>
-    </Section>
-
-  {{else if (eq @model.category.slug 'REACH')}}
-
-    <Section @class="temporary">
-      <h3>{{@model.category.name}}</h3>
-      <p>For all questions regarding Registration, Evaluation, Authorisation and
-        Restriction of Chemicals (REACH) please contact our friendly REACH team
-        in Belgium:</p>
-      <p><a
-          href="mailto:reach@interflux.com"
-          target="_blank"
-          rel="nofollow noreferrer"
-        >reach@interflux.com</a></p>
+      <p>REACH is the legislation of the European Union regulating chemical
+        substances across Europe. Interflux is subject to and in compliance with
+        this legislation. If you have any questions or need specific documents
+        regarding REACH, please contact our friendly team in Belgium:
+      </p>
+      <Button::Url
+        @href="mailto:reach@interflux.com"
+        @text="reach@interflux.com"
+        @size="medium"
+        @style="orange-3"
+      />
+      <p>
+        Alternatively, visit the
+        <Button::Url
+          @href="https://osha.europa.eu/en/themes/dangerous-substances/reach"
+          @text="REACH website"
+          @size="inline"
+        />.
+      </p>
     </Section>
 
   {{else}}
 
-    <Section::Documents @id="documents">
+    <Section @class="text">
       <h3>{{@model.category.name}}</h3>
       <p>{{@model.category.gist}}</p>
+    </Section>
 
+    <Section::Documents @id="documents">
       <SearchList>
         <ul>
           {{#each @model.category.documents as |document|}}

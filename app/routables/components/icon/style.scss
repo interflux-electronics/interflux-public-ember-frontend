@@ -2,22 +2,57 @@
   picture {
     display: block;
     height: auto;
+
     @include widescreen {
-      width: px(4vw);
-      height: px(4vw);
+      width: px(5vw);
+      height: px(5vw);
     }
     @include desktop {
-      width: 4vw;
-      height: 4vw;
+      width: 5vw;
+      height: 5vw;
     }
     @include tablet {
-      width: 10vw;
-      height: 10vw;
+      width: 9.5vw;
+      height: 9.5vw;
     }
     @include mobile {
-      width: 15vw;
-      height: 15vw;
+      width: 17vw;
+      height: 17vw;
     }
+
+    // @include widescreen {
+    //   width: px(4vw);
+    //   height: px(4vw);
+    // }
+    // @include desktop {
+    //   width: 4vw;
+    //   height: 4vw;
+    // }
+    // @include tablet {
+    //   width: 10vw;
+    //   height: 10vw;
+    // }
+    // @include mobile {
+    //   width: 15vw;
+    //   height: 15vw;
+    // }
+
+    // img,
+    // svg {
+    //   height: auto;
+    //   @include widescreen {
+    //     width: px(5vw);
+    //   }
+    //   @include desktop {
+    //     width: 5vw;
+    //   }
+    //   @include tablet {
+    //     width: 9.5vw;
+    //   }
+    //   @include mobile {
+    //     width: 17vw;
+    //   }
+    // }
     i.load-spinner {
       transform: scale(0.7);
     }

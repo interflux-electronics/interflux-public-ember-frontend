@@ -1,3 +1,68 @@
-#document-category.modal {
-  //
+#reach.modal {
+  .box {
+    @include widescreen {
+      width: px(42vw);
+    }
+    @include desktop {
+      width: 42vw;
+    }
+    @include tablet {
+      width: 64vw;
+    }
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  section.text {
+    .liner {
+      width: auto;
+      @include widescreen {
+        padding: px(3.8vw) px(2vw);
+      }
+      @include desktop {
+        padding: 3.8vw 2vw;
+      }
+      @include tablet {
+        padding: 5vw;
+      }
+      @include mobile {
+        padding: 8vw;
+      }
+      p {
+        text-align: center;
+      }
+      h3 {
+        @include widescreen {
+          margin: px(3vw) 0 px(2.6vw);
+        }
+        @include desktop {
+          margin: 3vw 0 2.6vw;
+        }
+        @include tablet {
+          margin: 4vw 0 3vw;
+        }
+        @include mobile {
+          margin: 7vw 0 5vw;
+        }
+      }
+      p + a {
+        display: block;
+        width: 80%;
+        @include widescreen {
+          margin: px(3vw) auto;
+        }
+        @include desktop {
+          margin: 3vw auto;
+        }
+        @include tablet {
+          margin: 4vw auto;
+        }
+        @include mobile {
+          margin: 7vw 0;
+          width: 100%;
+        }
+      }
+    }
+  }
 }

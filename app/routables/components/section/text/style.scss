@@ -16,22 +16,6 @@ section.text {
   .icon {
     display: flex;
     justify-content: center;
-    img,
-    svg {
-      height: auto;
-      @include widescreen {
-        width: px(5vw);
-      }
-      @include desktop {
-        width: 5vw;
-      }
-      @include tablet {
-        width: 9.5vw;
-      }
-      @include mobile {
-        width: 17vw;
-      }
-    }
   }
   .icon + h3,
   .icon-duo + h3 {

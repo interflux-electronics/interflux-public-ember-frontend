@@ -62,7 +62,7 @@ button {
         border-radius: 0.7vw;
       }
       @include mobile {
-        font-size: 4vw;
+        font-size: 4.4vw;
         padding: 0 8vw;
         border-radius: 1vw;
         width: 100%;
@@ -75,6 +75,15 @@ button {
       font-family: $regular;
       font-size: 14px;
       border-radius: 2px;
+    }
+
+    &.inline {
+      color: $blue-0;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+        color: $orange-2;
+      }
     }
 
     &.blue-2 {
