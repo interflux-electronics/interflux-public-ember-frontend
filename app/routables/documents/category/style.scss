@@ -1,3 +1,109 @@
+#documents.modal {
+  .box {
+    @include widescreen {
+      width: px(60vw);
+    }
+    @include desktop {
+      width: 60vw;
+    }
+    @include tablet {
+      width: 100%;
+    }
+    @include mobile {
+      width: 100%;
+    }
+  }
+  section.text {
+    .liner {
+      width: auto;
+      @include widescreen {
+        padding: px(2.8vw) px(2vw) px(2vw);
+      }
+      @include desktop {
+        padding: 2.8vw 2vw 2vw;
+      }
+      @include tablet {
+        padding: 5vw; // TODO
+      }
+      @include mobile {
+        padding: 8vw; // TODO
+      }
+      p {
+        text-align: center;
+      }
+      h3 {
+        @include widescreen {
+          margin: px(1.6vw) 0 px(0.8vw);
+        }
+        @include desktop {
+          margin: 1.6vw 0 0.8vw;
+        }
+        @include tablet {
+          margin: 4vw 0 3vw; // TODO
+        }
+        @include mobile {
+          margin: 7vw 0 5vw; // TODO
+        }
+      }
+    }
+  }
+  section.documents {
+    .liner {
+      width: auto;
+      padding: 0;
+    }
+    .search-list {
+      > .input {
+        background: #eee;
+        box-sizing: border-box;
+        @include widescreen {
+          padding: px(2.7vw) px(10vw) 0;
+        }
+        @include desktop {
+          padding: 2.7vw 10vw 0;
+        }
+        @include tablet {
+          padding: 2vw 12vw 0;
+        }
+        @include mobile {
+          padding: 3vw 3vw 0;
+        }
+      }
+      > p {
+        background: #eee;
+        text-align: right;
+        color: rgba($paragraph-color-1, 0.6);
+        @include widescreen {
+          padding: px(0.4vw) px(10vw) px(1.7vw);
+        }
+        @include desktop {
+          padding: 0.4vw 10vw 1.7vw;
+        }
+        @include tablet {
+          padding: 0 12vw 1vw;
+        }
+        @include mobile {
+          padding: 0 3vw 3vw;
+        }
+      }
+      > ul {
+        @include widescreen {
+          padding: px(3.8vw) px(2vw);
+        }
+        @include desktop {
+          padding: 3.8vw 2vw;
+        }
+        @include tablet {
+          padding: 5vw;
+        }
+        @include mobile {
+          padding: 8vw;
+        }
+      }
+    }
+  }
+}
+
 #reach.modal {
   .box {
     @include widescreen {

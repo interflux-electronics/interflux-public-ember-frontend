@@ -2,17 +2,12 @@
   class="search-list"
   {{did-insert this.onInsert}}
 >
-  <header>
-    <Input
-      @type="search"
-      @onChange={{fn this.filter}}
-      @size="medium"
-    />
-  </header>
-
-  <p><strong>{{this.count}}</strong> results out of {{max}}</p>
-
-  <!-- {{yield this.results}} -->
-
+  <Input
+    @type="text"
+    @onChange={{fn this.filter}}
+    @placeholder={{@input-placeholder}}
+    @class={{@input-class}}
+  />
+  <p>{{this.count}} / {{max}}</p>
   {{yield}}
 </div>

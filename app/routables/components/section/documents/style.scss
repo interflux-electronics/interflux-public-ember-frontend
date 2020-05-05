@@ -21,14 +21,17 @@ section.documents {
     align-items: center;
     color: $blue-0;
     width: 100%;
+    overflow: hidden;
     picture {
       flex-shrink: 0;
     }
-    span {
+    span,
+    p {
       &:last-child {
         color: $blue-0;
         width: 100%;
         text-align: right;
+        margin-left: 20px;
       }
     }
     mark {

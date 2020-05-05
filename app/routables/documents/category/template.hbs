@@ -1,6 +1,6 @@
-<Modal @id={{@model.category.slug}}>
-  {{#if (eq @model.category.slug 'reach')}}
+{{#if (eq @model.category.slug 'reach')}}
 
+  <Modal @id="reach">
     <Section
       @id="reach"
       @class="text"
@@ -8,7 +8,8 @@
       <Icon @src="{{cdn}}/images/icons/file-medical.svg" />
       <h3>{{@model.category.name}}</h3>
       <p>REACH is the legislation of the European Union regulating chemical
-        substances across Europe. Interflux is subject to and in compliance with
+        substances across Europe. Interflux is subject to and in compliance
+        with
         this legislation. If you have any questions or need specific documents
         regarding REACH, please contact our friendly team in Belgium:
       </p>
@@ -27,34 +28,39 @@
         />.
       </p>
     </Section>
+  </Modal>
 
-  {{else}}
+{{else}}
 
+  <Modal
+    @id="documents"
+    @class="@model.category.slug"
+  >
     <Section @class="text">
+      <Icon @src="{{cdn}}/images/icons/{{@model.category.icon}}.svg" />
       <h3>{{@model.category.name}}</h3>
       <p>{{@model.category.gist}}</p>
     </Section>
 
     <Section::Documents @id="documents">
-      <SearchList>
+      <SearchList
+        @input-placeholder="Search"
+        @input-class="big white shadow"
+      >
         <ul>
           {{#each @model.category.documents as |document|}}
             <li>
               <Button::Url @href="{{cdn}}/{{document.path}}">
-                <Image
-                  @src="{{cdn}}/images/icons/file-download.svg"
-                  @width="100"
-                  @height="100"
-                />
-                <span data-search="me">{{document.name}} </span>
-                <span>- {{document.language.nameEnglish}}</span>
-                <span>download</span>
+                <p data-search="me">{{document.name}}</p>
+                <p>&nbsp;-&nbsp;</p>
+                <p data-search="me">{{document.language.nameEnglish}}</p>
+                <p>download</p>
               </Button::Url>
             </li>
           {{/each}}
         </ul>
       </SearchList>
     </Section::Documents>
+  </Modal>
 
-  {{/if}}
-</Modal>
+{{/if}}

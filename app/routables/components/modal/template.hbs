@@ -1,6 +1,6 @@
-<aside
+<div
   id="{{@id}}"
-  class="modal"
+  class="modal{{if @class (concat ' ' @class)}}"
 >
   <div class="overlay">
     <LinkTo @route={{parentRoute}}></LinkTo>
@@ -10,4 +10,4 @@
       {{yield}}
     </div>
   </div>
-</aside>
+</div>

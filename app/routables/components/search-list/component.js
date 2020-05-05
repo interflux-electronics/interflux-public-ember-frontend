@@ -38,11 +38,24 @@ export default class SearchListComponent extends Component {
 
   @action
   filter(query) {
+    // If no user query, clear all <mark> and show all <li>
+    if (!query) {
+      this.element.querySelectorAll('li').forEach(li => {
+        li.removeAttribute('style');
+      });
+      this.element.querySelectorAll('[data-search="me"]').forEach(el => {
+        el.innerHTML = el.textContent;
+      });
+
+      return;
+    }
+
     const regex = new RegExp(`(${query})`, 'ig');
     let count = 0;
 
+    // Mark all text that matches the query with <mark>
     this.element.querySelectorAll('[data-search="me"]').forEach(el => {
-      if (!query || !regex.test(el.textContent)) {
+      if (!regex.test(el.textContent)) {
         el.innerHTML = el.textContent;
       } else {
         el.innerHTML = el.textContent.replace(regex, '<mark>$1</mark>');
@@ -50,6 +63,7 @@ export default class SearchListComponent extends Component {
       }
     });
 
+    // Hide all <li> that do not have <mark>
     this.element.querySelectorAll('li').forEach(li => {
       const n = li.querySelectorAll('mark').length;
       if (n > 0) {
@@ -59,6 +73,7 @@ export default class SearchListComponent extends Component {
       }
     });
 
+    // Updat the counters
     this.count = query ? count : this.max;
   }
 }
