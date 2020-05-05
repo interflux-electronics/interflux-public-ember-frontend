@@ -16,10 +16,10 @@
       display: flex;
       justify-content: center;
       @include widescreen {
-        margin-right: px(1vw);
+        padding: px(1vw) px(2vw);
       }
       @include desktop {
-        margin-right: 1vw;
+        padding: 1vw 2vw;
       }
       img {
         height: auto;
