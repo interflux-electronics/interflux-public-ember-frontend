@@ -1,26 +1,28 @@
-<Page @id="Home">
+<Page @id="home">
   <Section @class="temporary">
-    <h1>
-      <img
-        src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
-        width="100"
-        height="100"
-      >
-    </h1>
+    <img
+      src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
+      width="100"
+      height="100"
+    >
+
+    <h3>We research &amp; developing soldering chemistry for electronics.</h3>
+    <p>How can we be of help to you?</p>
+
     <ul>
       <li>
         <Button::Route
           @route="products"
           @text="Products"
-          @size="small"
+          @size="medium"
           @style="blue-3"
         />
       </li>
       <li>
         <Button::Route
-          @route="articles"
-          @text="Articles"
-          @size="small"
+          @route="processes"
+          @text="Processes"
+          @size="medium"
           @style="blue-3"
         />
       </li>
@@ -28,7 +30,7 @@
         <Button::Route
           @route="documents"
           @text="Documents"
-          @size="small"
+          @size="medium"
           @style="blue-3"
         />
       </li>
@@ -36,7 +38,7 @@
         <Button::Route
           @route="contact"
           @text="Contact"
-          @size="small"
+          @size="medium"
           @style="blue-3"
         />
       </li>
