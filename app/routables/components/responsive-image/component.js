@@ -15,6 +15,13 @@ export default class ImageResponsiveComponent extends Component {
     this.element = element;
   }
 
+  @action
+  check(img) {
+    if (img.complete) {
+      this.status = 'done';
+    }
+  }
+
   // Return true if all passed in params are valid for this component to function.
   // Note: Deconstructing args will throws errors if image is an Ember proxy.
   // const { sizes, formats, path } = image;
