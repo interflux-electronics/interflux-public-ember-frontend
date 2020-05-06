@@ -1,0 +1,25 @@
+<Page @id="processes">
+  <Header />
+
+  <Section @class="temporary">
+    <h1>Processes</h1>
+    <p>for soldering electronics</p>
+    <!-- <h3>You can leverage the 40 years of specialised know-how we have built up.</h3> -->
+
+    <ul>
+      {{#each @model.processes as |process|}}
+        <li>
+          <Button::Route
+            @route="processes.process"
+            @model={{process.slug}}
+            @text={{capitalise process.text}}
+            @size="medium"
+            @style="grey-border"
+          />
+        </li>
+      {{/each}}
+    </ul>
+  </Section>
+
+  <Footer />
+</Page>

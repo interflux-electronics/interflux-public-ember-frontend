@@ -2,7 +2,7 @@
   {{#each this.featuredProducts as |product|}}
     <LinkTo
       @route="products.family.product"
-      @model={{product.slug}}
+      @models={{array product.family.slug product.slug}}
       class="product-tile {{if product.featured 'featured' 'hidden'}}"
     >
       <h2>{{product.name}}</h2>
@@ -27,7 +27,7 @@
   {{#each this.hiddenProducts as |product|}}
     <LinkTo
       @route="products.family.product"
-      @model={{product.slug}}
+      @models={{array product.family.slug product.slug}}
       class="product-tile {{if product.featured 'featured' 'hidden'}}"
     >
       <h2>{{product.name}}</h2>

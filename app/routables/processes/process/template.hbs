@@ -1,0 +1,27 @@
+<Page @id="process">
+  <Header />
+
+  <!-- <Breadcrumbs>
+    <Button::Route
+      @route="processes"
+      @text="Processes"
+      @icon="arrow-right"
+      @class="back"
+    />
+  </Breadcrumbs> -->
+
+  <Section::Hero
+    @text={{capitalise @model.process.text}}
+    @image="{{cdn}}/images/heroes/circuit-board-3.jpg"
+  />
+
+  <Section::Text>
+    <Icon @src="{{cdn}}/images/icons/alcohol.svg" />
+    <h3>{{@model.process.text}}</h3>
+    <p>{{@model.process.gist}}</p>
+  </Section::Text>
+
+  <Section::ProductTiles @products={{@model.process.products}} />
+
+  <Footer />
+</Page>

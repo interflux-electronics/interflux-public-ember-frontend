@@ -13,6 +13,9 @@ Router.map(function() {
         this.route('product', { path: '/:product' });
       });
     });
+    this.route('processes', { resetNamespace: true }, function() {
+      this.route('process', { path: '/:process' });
+    });
     this.route('articles', { resetNamespace: true }, function() {
       this.route('article', { path: '/:article' });
     });

@@ -10,7 +10,10 @@
     />
   </Breadcrumbs>
 
-  <Section::FamilyHero @family={{@model.family}} />
+  <Section::Hero
+    @text={{capitalise @family.namePlural}}
+    @image="{{cdn}}/images/heroes/circuit-board-closup-1@1950x1300.jpg"
+  />
 
   {{#if (eq @model.family.slug 'soldering-fluxes')}}
 
