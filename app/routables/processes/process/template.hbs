@@ -4,16 +4,13 @@
 >
   <Header />
 
-  <Section::Hero
-    @text={{capitalise @model.process.name}}
-    @image="{{cdn}}/images/heroes/circuit-board-3.jpg"
-  />
-
   <ProcessContent @process={{@model.process}} />
+
+  <!-- TODO: Make product section per product family -->
 
   <Section::Text>
     <Icon @src="{{cdn}}/images/icons/alcohol.svg" />
-    <h3>{{@model.process.text}}</h3>
+    <h3>Products for {{capitalise @model.process.text}}</h3>
     <p>{{@model.process.gist}}</p>
   </Section::Text>
 

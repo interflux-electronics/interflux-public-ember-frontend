@@ -1,10 +1,14 @@
+<Section @id="hero">
+  <img src="{{cdn}}/images/processes/{{@process.hero}}.jpg">
+</Section>
+
 <Section
   @id="what"
-  @class="text"
+  @class="text white"
 >
   <div>
     <Icon @src="{{cdn}}/images/icons/{{@process.slug}}.svg" />
-    <h1>{{@process.name}} - {{@process.slug}}</h1>
+    <h1>{{capitalise @process.name}}</h1>
   </div>
   <p>{{@process.name}} is a technique for manufacturing electronics in which
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -19,7 +23,7 @@
 
 <Section
   @id="how"
-  @class="text"
+  @class="text white"
 >
   <h2>How it works</h2>
   <ol>
@@ -49,14 +53,13 @@
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
         in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
         pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-      <Image @src="{{cdn}}/images/processes/Ersa-34.jpg" />
     </li>
   </ol>
 </Section>
 
 <Section
   @id="good"
-  @class="text"
+  @class="text white"
 >
   <h2>Advantages of {{@process.name}}</h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -70,7 +73,7 @@
 
 <Section
   @id="bad"
-  @class="text"
+  @class="text white"
 >
   <h2>Downsides</h2>
   <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -83,7 +86,7 @@
 
 <Section
   @id="quality"
-  @class="text"
+  @class="text white"
 >
   <h2>How to recognise quality</h2>
   <ol>

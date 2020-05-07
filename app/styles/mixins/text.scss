@@ -40,3 +40,23 @@
     line-height: 160%;
   }
 }
+
+@mixin bold-sub-heading($scale: 1) {
+  font-family: $bold;
+  color: $paragraph-color-1;
+  line-height: 150%;
+  text-align: left;
+  @include widescreen {
+    font-size: px(1.7vw * $scale);
+  }
+  @include desktop {
+    font-size: 1.7vw * $scale;
+  }
+  @include tablet {
+    font-size: 4.3vw * $scale; // TODO
+  }
+  @include mobile {
+    font-size: 7.4vw * $scale; // TODO
+    line-height: 160%;
+  }
+}
