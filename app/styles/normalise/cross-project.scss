@@ -97,3 +97,16 @@ h6 {
   margin: 0; // Counter the browser defaults
   color: $blue-3;
 }
+
+p {
+  @include paragraph;
+  margin: 0; // Counter the browser defaults
+  a {
+    color: $blue-0;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+      color: $orange-3;
+    }
+  }
+}

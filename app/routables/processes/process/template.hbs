@@ -1,19 +1,15 @@
-<Page @id="process">
+<Page
+  @id={{@model.process.slug}}
+  @class="process"
+>
   <Header />
 
-  <!-- <Breadcrumbs>
-    <Button::Route
-      @route="processes"
-      @text="Processes"
-      @icon="arrow-right"
-      @class="back"
-    />
-  </Breadcrumbs> -->
-
   <Section::Hero
-    @text={{capitalise @model.process.text}}
+    @text={{capitalise @model.process.name}}
     @image="{{cdn}}/images/heroes/circuit-board-3.jpg"
   />
+
+  <ProcessContent @process={{@model.process}} />
 
   <Section::Text>
     <Icon @src="{{cdn}}/images/icons/alcohol.svg" />

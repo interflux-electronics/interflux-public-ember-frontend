@@ -1,0 +1,42 @@
+// @include paragraph;
+// @include paragraph(0.8);
+@mixin paragraph($scale: 1) {
+  font-family: $regular;
+  color: $paragraph-color-1;
+  line-height: 170%;
+  margin: 0;
+  @include widescreen {
+    font-size: px(1.4vw * $scale);
+  }
+  @include desktop {
+    font-size: 1.4vw * $scale;
+  }
+  @include tablet {
+    font-size: 2.4vw * $scale;
+  }
+  @include mobile {
+    font-size: 4.4vw * $scale;
+  }
+}
+
+// @include light-heading;
+// @include light-heading(0.8);
+@mixin light-heading($scale: 1) {
+  font-family: $light;
+  color: $paragraph-color-1;
+  line-height: 150%;
+  text-align: center;
+  @include widescreen {
+    font-size: px(2.6vw * $scale);
+  }
+  @include desktop {
+    font-size: 2.6vw * $scale;
+  }
+  @include tablet {
+    font-size: 4.3vw * $scale;
+  }
+  @include mobile {
+    font-size: 7.4vw * $scale;
+    line-height: 160%;
+  }
+}

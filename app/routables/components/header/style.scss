@@ -1,5 +1,7 @@
 .page > header#desktop {
-  border-bottom: 1px solid #eaeaea;
+  // border-bottom: 1px solid $grey-0;
+  box-shadow: 0 2px 2px rgba(black, 0.1);
+  background: white;
   @include tablet {
     display: none;
   }

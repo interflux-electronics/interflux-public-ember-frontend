@@ -1,24 +1,42 @@
 <Page @id="processes">
   <Header />
 
-  <Section @class="temporary">
-    <h1>Processes</h1>
-    <p>for soldering electronics</p>
-    <!-- <h3>You can leverage the 40 years of specialised know-how we have built up.</h3> -->
+  <Section @id="intro">
+    <h1>We have built up 40+ years of experience in soldering electronics.
+      Challenge our know-how!</h1>
+    <p>Know-how is what drives the electronics industry. With trends and
+      techniques evolving fast Interflux has always been at the forefront
+      learning about latest and spearheading the chemistry that was needed to
+      solve complex soldering challenges. This is how we have grown extensive
+      know-how across all processes of soldering electronics.</p>
+    <p>Our partners and customers choose to work with Interflux over and over
+      because we help solve their engineering challenges with tailor-made
+      soldering chemistry and our extensive know-how. If you haven't already, we
+      much look forward working with you as well. Do <LinkTo @route="contact">
+        reach out!</LinkTo>
+    </p>
+  </Section>
 
-    <ul>
-      {{#each @model.processes as |process|}}
-        <li>
-          <Button::Route
-            @route="processes.process"
-            @model={{process.slug}}
-            @text={{capitalise process.text}}
-            @size="medium"
-            @style="grey-border"
+  <Section @id="list">
+    <p>We research & develop chemistry for:</p>
+    <nav>
+      {{#each this.processes as |process|}}
+        <Button::Route
+          @route="processes.process"
+          @model={{process.slug}}
+        >
+          <div>
+            <Icon @src="{{cdn}}/images/icons/{{process.icon}}.svg" />
+            <h2>{{process.name}}</h2>
+          </div>
+          <Image
+            @class="bg"
+            @src="{{cdn}}/images/processes/{{process.hero}}.jpg"
+            @id={{process.slug}}
           />
-        </li>
+        </Button::Route>
       {{/each}}
-    </ul>
+    </nav>
   </Section>
 
   <Footer />

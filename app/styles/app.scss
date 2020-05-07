@@ -6,6 +6,7 @@
 // Mixins
 @import 'mixins/responsive';
 @import 'mixins/browser-prefixes';
+@import 'mixins/text';
 
 // Fonts
 @import 'fonts/nunito-sans';
@@ -50,3 +51,5 @@
 @import 'app/routables/products/family/index/style';
 @import 'app/routables/products/family/product/style';
 @import 'app/routables/products/index/style';
+@import 'app/routables/processes/index/style';
+@import 'app/routables/processes/process/style';

@@ -1,4 +1,7 @@
-<picture class="stateful">
+<picture
+  id={{@id}}
+  class="stateful{{if @class (concat ' ' @class)}}"
+>
   {{#if this.error}}
     <div class="error">
       <img
