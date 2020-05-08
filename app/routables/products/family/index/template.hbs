@@ -1,18 +1,18 @@
 <Page @id="product-family">
   <Header />
 
-  <Breadcrumbs>
+  <!-- <Breadcrumbs>
     <Button::Route
       @route="products"
       @text="Products"
       @icon="arrow-right"
       @class="back"
     />
-  </Breadcrumbs>
+  </Breadcrumbs> -->
 
   <Section::Hero
-    @text={{capitalise @family.namePlural}}
-    @image="{{cdn}}/images/heroes/circuit-board-closup-1@1950x1300.jpg"
+    @text={{capitalise @model.family.namePlural}}
+    @image="{{cdn}}/images/processes/circuit-board-1.jpg"
   />
 
   {{#if (eq @model.family.slug 'soldering-fluxes')}}
