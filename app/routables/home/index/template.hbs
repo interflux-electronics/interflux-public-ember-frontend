@@ -1,45 +1,158 @@
 <Page @id="home">
-  <Section @class="temporary">
-    <img
-      src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
-      width="100"
-      height="100"
-    >
-    <h3>We research &amp; developing soldering chemistry for electronics.</h3>
-    <p>How can we be of help to you?</p>
-    <ul>
-      <li>
+  <Header />
+
+  <Section
+    @id="links"
+    class="legacy"
+  >
+    <div class="left {{imageLeft}}">
+      <h2>Products</h2>
+      <p>Find products by type</p>
+      <nav>
         <Button::Route
-          @route="products"
-          @text="Products"
-          @size="medium"
-          @style="blue-3"
+          @route="products.family"
+          @model="soldering-fluxes"
+          @text="Soldering Fluxes"
+          @onHover={{action 'showImage' 1}}
         />
-      </li>
-      <li>
         <Button::Route
-          @route="processes"
-          @text="Processes"
-          @size="medium"
-          @style="blue-3"
+          @route="products.family"
+          @model="solder-pastes"
+          @text="Soldering Pastes"
+          @onHover={{action 'showImage' 2}}
         />
-      </li>
-      <li>
         <Button::Route
-          @route="documents"
-          @text="Documents"
-          @size="medium"
-          @style="blue-3"
+          @route="products.family"
+          @model="solder-wires"
+          @text="Soldering Wires"
+          @onHover={{action 'showImage' 3}}
         />
-      </li>
-      <li>
         <Button::Route
-          @route="contact"
-          @text="Contact"
-          @size="medium"
-          @style="blue-3"
+          @route="products.family"
+          @model="fluxing-systems"
+          @text="Fluxing Systems"
+          @onHover={{action 'showImage' 4}}
         />
-      </li>
-    </ul>
+        <Button::Route
+          @route="products.family"
+          @model="auxiliaries"
+          @text="Auxiliaries"
+          @onHover={{action 'showImage' 5}}
+        />
+      </nav>
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-1.jpg"
+        class="image-1"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-2"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-3"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-4"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-5"
+      >
+    </div>
+
+    <div class="right {{imageRight}}">
+      <h2>Processes</h2>
+      <p>Find products by type</p>
+      <nav>
+        <Button::Route
+          @route="processes.process"
+          @model="wave-soldering"
+          @text="Wave Soldering"
+          @onHover={{action 'showImage' 6}}
+        />
+        <Button::Route
+          @route="processes.process"
+          @model="selective-soldering"
+          @text="Selective Soldering"
+          @onHover={{action 'showImage' 7}}
+        />
+        <Button::Route
+          @route="processes.process"
+          @model="reflow-soldering"
+          @text="Reflow Soldering"
+          @onHover={{action 'showImage' 8}}
+        />
+        <Button::Route
+          @route="processes.process"
+          @model="rework-and-repair"
+          @text="Rework & Repair"
+          @onHover={{action 'showImage' 9}}
+        />
+        <Button::Route
+          @route="processes.process"
+          @model="pre-tinning"
+          @text="Pre-tinning"
+          @onHover={{action 'showImage' 10}}
+        />
+      </nav>
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-1.jpg"
+        class="image-6"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-7"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-8"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-9"
+      >
+      <img
+        src="{{cdn}}/images/legacy/homepage-images-2.jpg"
+        class="image-10"
+      >
+    </div>
+
+    <div class="bottom">
+      <Button::Route @route="company">
+        <p>Company</p>
+        <p class="small">Learn about Interflux</p>
+      </Button::Route>
+
+      <Button::Route @route="documents">
+        <p>Documents</p>
+        <p class="small">Find technical data</p>
+      </Button::Route>
+
+      <Button::Route @route="contact">
+        <p>Contact</p>
+        <p class="small">Get in touch</p>
+      </Button::Route>
+    </div>
+  </Section>
+
+  <Section @id="languages">
+    {{#each this.languages as |language|}}
+      {{#if (eq language.supported true)}}
+        <Button::Route
+          @route="home"
+          @model={{language.locale}}
+        >
+          <img src="{{cdn}}/images/flags/{{language.locale}}.png">
+          <p>{{language.nameNative}}</p>
+        </Button::Route>
+      {{else}}
+        <Button::Url @href="{{old-host}}/{{language.locale}}">
+          <img src="{{cdn}}/images/flags/{{language.locale}}.png">
+          <p>{{language.nameNative}}</p>
+        </Button::Url>
+      {{/if}}
+    {{/each}}
   </Section>
 </Page>

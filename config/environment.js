@@ -43,6 +43,13 @@ const cdnHosts = {
   test: 'http://localhost:9000'
 };
 
+// Where the old website is located
+const oldHosts = {
+  production: 'https://www.interflux.com',
+  development: 'http://localhost:9100',
+  test: 'http://localhost:9100'
+};
+
 // The mobile browser's theme colour
 // https://developers.google.com/web/fundamentals/design-and-ux/browser-customization/
 const themeColour = '#23578c';
@@ -65,29 +72,11 @@ module.exports = function(env) {
   const apiHost = isDevelopment ? apiHosts[env][platform] : apiHosts[env];
   const appHost = isDevelopment ? appHosts[env][platform] : appHosts[env];
   const cdnHost = isDevelopment ? cdnHosts[env][platform] : cdnHosts[env];
+  const oldHost = oldHosts[env];
 
   // Change the root url to an empty string if this is a native build because cordova requires it.
   const locationType = isMobileApp && !isTest ? 'hash' : 'history';
   const rootURL = isMobileApp && !isTest ? '' : '/';
-
-  const buildConfig = {
-    environment,
-    platform,
-    isProduction,
-    isDevelopment,
-    isTest,
-    isAndroid,
-    isIOS,
-    isMobileApp,
-    isWebApp,
-    apiHost,
-    appHost,
-    cdnHost,
-    apiNamespace,
-    gitBranch,
-    gitRevision,
-    themeColour
-  };
 
   let ENV = {
     appName: PKG.name,
@@ -104,13 +93,13 @@ module.exports = function(env) {
     },
     APP: {},
 
-    buildConfig,
     isDevelopment,
     isTest,
     isProduction,
     apiHost,
     appHost,
     cdnHost,
+    oldHost,
     apiNamespace,
     gitBranch,
     gitRevision,

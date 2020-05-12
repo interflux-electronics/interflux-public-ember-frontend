@@ -23,6 +23,7 @@ Router.map(function() {
       this.route('category', { path: '/:category' });
     });
     this.route('contact', { resetNamespace: true });
+    this.route('company', { resetNamespace: true });
     this.route('catchall', { path: '*:', resetNamespace: true });
   });
 
