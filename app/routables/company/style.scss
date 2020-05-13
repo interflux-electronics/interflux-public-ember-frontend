@@ -1,0 +1,67 @@
+#company.page {
+  #iso,
+  #pioneer,
+  #durable,
+  #support {
+    .liner {
+      display: flex;
+      max-width: 900px;
+      justify-content: space-between;
+      align-items: center;
+      > * + * {
+        margin-left: 50px;
+      }
+    }
+    & + section {
+      margin-top: 100px;
+    }
+    .text {
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  #iso {
+    margin-top: 100px;
+    .liner {
+      position: relative;
+      background: $blue-3;
+      padding: 50px;
+      h2,
+      p {
+        color: white;
+      }
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        &.label {
+          top: -24px;
+          right: 210px;
+        }
+        &.daniel {
+          top: 46px;
+          right: -10px;
+          border: 5px solid #fff;
+          box-shadow: 0 2px 4px RGBA(0, 0, 0, 0.3);
+        }
+      }
+      .text {
+        max-width: 60%;
+      }
+    }
+  }
+
+  #pioneer {
+    //
+  }
+
+  #durable {
+    //
+  }
+
+  #support {
+    //
+  }
+}
