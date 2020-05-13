@@ -142,14 +142,14 @@
       {{#if (eq language.supported true)}}
         <Button::Route
           @route="home"
-          @model={{language.locale}}
+          @model={{language.id}}
         >
-          <img src="{{cdn}}/images/flags/{{language.locale}}.png">
+          <img src="{{cdn}}/images/flags/{{language.id}}.png">
           <p>{{language.nameNative}}</p>
         </Button::Route>
       {{else}}
-        <Button::Url @href="{{old-host}}/{{language.locale}}">
-          <img src="{{cdn}}/images/flags/{{language.locale}}.png">
+        <Button::Url @href="{{old-host}}/{{language.id}}">
+          <img src="{{cdn}}/images/flags/{{language.id}}.png">
           <p>{{language.nameNative}}</p>
         </Button::Url>
       {{/if}}

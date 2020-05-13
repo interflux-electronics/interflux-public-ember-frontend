@@ -14,26 +14,33 @@ section#spacer {
   }
 }
 
-// section#contact {
-//   padding: 2vw 0;
-//   background: $blue-3;
-//   p {
-//     text-align: center;
-//     color: white;
-//     a {
-//       color: white;
-//       text-decoration: underline;
-//       &:hover {
-//         color: $orange-2;
-//         text-decoration: none;
-//       }
-//     }
-//   }
-// }
+section#languages {
+  background: $blue-4;
+  .liner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    max-width: 710px;
+    a {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      margin: 0 10px;
+      p {
+        color: white;
+      }
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+}
 
 section#copyright {
   padding: 2vw 0;
-  background: $blue-4;
+  background: $blue-5;
   p {
     text-align: center;
     color: white;

@@ -16,68 +16,9 @@ export default class HomeIndexController extends Controller {
   }
 
   get languages() {
-    return [
-      {
-        locale: 'en',
-        nameNative: 'English',
-        supported: true
-      },
-      {
-        locale: 'zh',
-        nameNative: '中文'
-      },
-      {
-        locale: 'cs',
-        nameNative: 'Čeština'
-      },
-      {
-        locale: 'de',
-        nameNative: 'Deutsch'
-      },
-      {
-        locale: 'fr',
-        nameNative: 'Français'
-      },
-      {
-        locale: 'it',
-        nameNative: 'Italiano'
-      },
-      {
-        locale: 'id',
-        nameNative: 'Bahasa Indonesia'
-      },
-      {
-        locale: 'pt',
-        nameNative: 'Português'
-      },
-      {
-        locale: 'ro',
-        nameNative: 'Română'
-      },
-      {
-        locale: 'ru',
-        nameNative: 'Русский'
-      },
-      {
-        locale: 'th',
-        nameNative: 'ภาษาไทย'
-      },
-      {
-        locale: 'tr',
-        nameNative: 'Türkçe'
-      },
-      {
-        locale: 'pl',
-        nameNative: 'Polski'
-      },
-      {
-        locale: 'es',
-        nameNative: 'Español'
-      },
-      {
-        locale: 'sv',
-        nameNative: 'Svenska'
-      }
-    ];
+    return this.store
+      .peekAll('language')
+      .filterBy('supported', true)
+      .sortBy('nameNative');
   }
 }

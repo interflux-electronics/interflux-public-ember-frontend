@@ -13,7 +13,9 @@ export default class ApplicationRoute extends Route {
           attributes: {
             'name-english': 'English',
             'name-native': 'English',
-            'two-letter-code': 'en'
+            'two-letter-code': 'en',
+            supported: true,
+            ready: true
           }
         },
         {
@@ -22,7 +24,8 @@ export default class ApplicationRoute extends Route {
           attributes: {
             'name-english': 'Spanish',
             'name-native': 'Español',
-            'two-letter-code': 'es'
+            'two-letter-code': 'es',
+            supported: true
           }
         },
         {
@@ -31,7 +34,8 @@ export default class ApplicationRoute extends Route {
           attributes: {
             'name-english': 'German',
             'name-native': 'Deutsch',
-            'two-letter-code': 'de'
+            'two-letter-code': 'de',
+            supported: true
           }
         },
         {
@@ -40,7 +44,118 @@ export default class ApplicationRoute extends Route {
           attributes: {
             'name-english': 'French',
             'name-native': 'français',
-            'two-letter-code': 'fr'
+            'two-letter-code': 'fr',
+            supported: true
+          }
+        },
+        {
+          id: 'sv',
+          type: 'language',
+          attributes: {
+            'name-english': 'Swedish',
+            'name-native': 'Svenska',
+            'two-letter-code': 'sv',
+            supported: true
+          }
+        },
+        {
+          id: 'pl',
+          type: 'language',
+          attributes: {
+            'name-english': 'Polish',
+            'name-native': 'Polski',
+            'two-letter-code': 'pl',
+            supported: true
+          }
+        },
+        {
+          id: 'tr',
+          type: 'language',
+          attributes: {
+            'name-english': 'Turkish',
+            'name-native': 'Türkçe',
+            'two-letter-code': 'tr',
+            supported: true
+          }
+        },
+        {
+          id: 'th',
+          type: 'language',
+          attributes: {
+            'name-english': 'Thai',
+            'name-native': 'ภาษาไทย',
+            'two-letter-code': 'th',
+            supported: true
+          }
+        },
+        {
+          id: 'ru',
+          type: 'language',
+          attributes: {
+            'name-english': 'Russian',
+            'name-native': 'Русский',
+            'two-letter-code': 'ru',
+            supported: true
+          }
+        },
+        {
+          id: 'ro',
+          type: 'language',
+          attributes: {
+            'name-english': 'Romanian',
+            'name-native': 'Română',
+            'two-letter-code': 'ro',
+            supported: true
+          }
+        },
+        {
+          id: 'pt',
+          type: 'language',
+          attributes: {
+            'name-english': 'Portugese',
+            'name-native': 'Português',
+            'two-letter-code': 'pt',
+            supported: true
+          }
+        },
+        {
+          id: 'id',
+          type: 'language',
+          attributes: {
+            'name-english': 'Indonesian',
+            'name-native': 'Bahasa Indonesia',
+            'two-letter-code': 'id',
+            supported: true
+          }
+        },
+        {
+          id: 'it',
+          type: 'language',
+          attributes: {
+            'name-english': 'Italian',
+            'name-native': 'Italiano',
+            'two-letter-code': 'it',
+            supported: true
+          }
+        },
+        {
+          id: 'cs',
+          type: 'language',
+          attributes: {
+            'name-english': 'Chech',
+            'name-native': 'Čeština',
+            'two-letter-code': 'cs',
+            supported: true
+          }
+        },
+        {
+          id: 'zh',
+          type: 'language',
+          attributes: {
+            'name-english': 'Chinese',
+            'name-native': '中文',
+            'two-letter-code': 'zh',
+            supported: true
           }
         },
         {
@@ -49,7 +164,8 @@ export default class ApplicationRoute extends Route {
           attributes: {
             'name-english': 'Japanese',
             'name-native': '日本語 (にほんご)',
-            'two-letter-code': 'ja'
+            'two-letter-code': 'ja',
+            supported: false
           }
         }
       ]

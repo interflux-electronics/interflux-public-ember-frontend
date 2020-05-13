@@ -6,6 +6,6 @@ export default class LanguageModel extends Model {
 
   @attr('string') nameEnglish;
   @attr('string') nameNative;
-  @attr('string') threeLetterCode;
-  @attr('boolean') public;
+  @attr('boolean') supported; // We offer translations
+  @attr('boolean') ready; // Translations are ready for new API and Ember app
 }
