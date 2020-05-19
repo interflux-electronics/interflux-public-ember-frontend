@@ -1,5 +1,5 @@
 <Section
-  @class="text"
+  @class="text{{if @class (concat ' ' @class)}}"
   @id={{@id}}
 >
   {{yield}}

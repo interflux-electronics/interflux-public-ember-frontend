@@ -1,0 +1,73 @@
+<Section @class="products">
+
+  <div class="text">
+    <!-- <Icon @src="{{cdn}}/images/icons/{{family.slug}}.svg" /> -->
+    <h2>{{{markdown @title}}}</h2>
+    <p>{{{markdown @text}}}</p>
+  </div>
+
+  <div class="tiles {{if this.showAll 'show-all' 'show-featured'}} {{if (eq this.count 4) 'four' 'not-four'}}">
+    {{#each this.featuredProducts as |product|}}
+      <LinkTo
+        @route="products.family.product"
+        @models={{array product.family.slug product.slug}}
+        class="product-tile {{if product.featured 'featured' 'hidden'}}"
+      >
+        <h2>{{product.name}}</h2>
+        <h3>{{if product.label product.label product.family.nameSingle}}</h3>
+        <ResponsiveImage @image={{get product 'avatar'}} />
+        {{#if (or product.new product.popular product.featured)}}
+          <button>
+            {{#if product.new}}
+              <span>NEW</span>
+            {{else if product.popular}}
+              <span>popular</span>
+            {{else if product.featured}}
+              <span>learn more</span>
+            {{/if}}
+            <!-- <span>Explore</span> -->
+            <Svg::ArrowRight />
+          </button>
+        {{/if}}
+      </LinkTo>
+    {{/each}}
+
+    {{#each this.hiddenProducts as |product|}}
+      <LinkTo
+        @route="products.family.product"
+        @models={{array product.family.slug product.slug}}
+        class="product-tile {{if product.featured 'featured' 'hidden'}}"
+      >
+        <h2>{{product.name}}</h2>
+        <h3>{{if product.label product.label product.family.nameSingle}}</h3>
+        {{#if showAll}}
+          <ResponsiveImage @image={{get product 'avatar'}} />
+        {{/if}}
+        {{#if (or product.new product.popular product.featured)}}
+          <button>
+            {{#if product.new}}
+              <span>NEW</span>
+            {{else if product.popular}}
+              <span>popular</span>
+            {{else if product.featured}}
+              <span>learn more</span>
+            {{/if}}
+            <!-- <span>Explore</span> -->
+            <Svg::ArrowRight />
+          </button>
+        {{/if}}
+      </LinkTo>
+    {{/each}}
+
+    {{#if this.hiddenProducts}}
+      <div class="toggle">
+        <Button::Action
+          @action={{this.toggle}}
+          @text={{if this.showAll "Show less" (concat "Show all (" this.hiddenCount ")")}}
+          @size="medium"
+          @style="grey"
+        />
+      </div>
+    {{/if}}
+  </div>
+</Section>

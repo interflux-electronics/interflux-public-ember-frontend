@@ -2,41 +2,71 @@
   background: $grey-0;
   #intro {
     .liner {
-      width: 50vw;
-      padding: 8vw 0;
+      @include widescreen {
+        padding: px(8vw) 0;
+      }
+      @include desktop {
+        padding: 8vw 0;
+      }
+      @include tablet {
+        padding: 10vw; // TODO
+      }
+      @include mobile {
+        padding: 10vw; // TODO
+      }
     }
     h1 {
-      width: 80%;
       margin: 0 auto;
       @include light-heading;
-      margin-bottom: 4vw;
     }
     p {
-      margin-top: 2vw;
+      text-align: center;
+      @include widescreen {
+        margin: px(3vw) auto 0;
+        max-width: px(58vw);
+      }
+      @include desktop {
+        margin: 3vw auto 0;
+        max-width: 58vw;
+      }
+      @include tablet {
+        margin: 10vw; // TODO
+      }
+      @include mobile {
+        margin: 10vw; // TODO
+      }
     }
   }
 
   #list {
-    .liner {
-      width: 68vw;
-      border-top: 1px solid #ddd;
-    }
-    p {
-      text-align: center;
-      margin: 5vw 0;
-    }
     a {
       position: relative;
       display: flex;
       align-items: center;
-      padding: 5vw 2vw;
-      width: 100%;
       overflow: hidden;
-      margin-bottom: 4vw;
       border-radius: 0;
-      box-shadow: 0 2px 3px rgba(black, 0.2);
+      box-shadow: 0 3px 10px rgba(black, 0.4);
       background: white;
       transition: transform ease 200ms;
+
+      border-radius: 0;
+
+      @include widescreen {
+        width: px(80vw);
+        margin: 0 auto px(4vw);
+        padding: px(2.9vw);
+      }
+      @include desktop {
+        width: 80vw;
+        margin: 0 auto 4vw;
+        padding: 2.9vw;
+      }
+      @include tablet {
+        height: 10vw; // TODO
+      }
+      @include mobile {
+        height: 10vw; // TODO
+      }
 
       &:hover {
         transform: scale(1.05);
@@ -47,12 +77,34 @@
         display: flex;
         background: white;
         align-items: center;
-        padding: 0.6vw;
-        padding-right: 0;
+        padding-right: 0 !important;
+        @include widescreen {
+          padding: px(0.6vw);
+        }
+        @include desktop {
+          padding: 0.6vw;
+        }
+        @include tablet {
+          padding: 10vw; // TODO
+        }
+        @include mobile {
+          padding: 10vw; // TODO
+        }
       }
       h2 {
         @include light-heading(0.8);
-        margin: 0 2vw;
+        @include widescreen {
+          margin: 0 px(2vw);
+        }
+        @include desktop {
+          margin: 0 2vw;
+        }
+        @include tablet {
+          margin: 10vw; // TODO
+        }
+        @include mobile {
+          margin: 10vw; // TODO
+        }
       }
       picture.bg {
         position: absolute;
@@ -68,58 +120,77 @@
         left: -10%;
 
         &#wave-soldering {
-          top: -240%;
+          top: -440%;
           width: 200%;
           left: -20%;
         }
-        &#selective-soldering {
-          top: -58%;
-          width: 100%;
-          left: 0%;
-        }
-        &#stencil-printing {
-          top: -194%;
-          width: 120%;
+
+        &#reflow-soldering {
+          top: -450%;
+          width: 200%;
           left: -20%;
         }
-        &#hand-soldering {
-          top: -80%;
+
+        &#selective-soldering {
+          top: -105%;
           width: 100%;
           left: 0%;
         }
-        &#robot-soldering {
-          top: -70%;
-          width: 70%;
-          left: 34%;
-          min-width: auto;
-          min-height: auto;
-          &:after {
-            content: ' ';
-            background: white;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 11vw;
-            height: 100%;
-          }
+
+        &#stencil-printing {
+          top: -342%;
+          width: 110%;
+          left: -10%;
         }
-        &#laser-soldering {
-          top: -4%;
-          width: 60%;
-          left: 51%;
-          min-width: auto;
-          min-height: auto;
-        }
+
         &#OSP-soldering {
           top: -100%;
           width: 130%;
           left: -10%;
         }
+
         &#pre-tinning {
           top: -90%;
           width: 120%;
           left: -10%;
         }
+
+        &#rework-and-repair {
+          top: -80%;
+          width: 100%;
+          left: 0%;
+        }
+
+        // &#hand-soldering {
+        //   top: -80%;
+        //   width: 100%;
+        //   left: 0%;
+        // }
+
+        // &#robot-soldering {
+        //   top: -70%;
+        //   width: 70%;
+        //   left: 34%;
+        //   min-width: auto;
+        //   min-height: auto;
+        //   &:after {
+        //     content: ' ';
+        //     background: white;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     width: 11vw;
+        //     height: 100%;
+        //   }
+        // }
+
+        // &#laser-soldering {
+        //   top: -4%;
+        //   width: 60%;
+        //   left: 51%;
+        //   min-width: auto;
+        //   min-height: auto;
+        // }
       }
     }
   }

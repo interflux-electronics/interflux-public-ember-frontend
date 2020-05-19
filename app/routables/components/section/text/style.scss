@@ -1,10 +1,12 @@
 section.text {
   .liner {
     @include widescreen {
-      width: px(60vw);
+      width: px(65vw);
+      padding: px(4vw);
     }
     @include desktop {
-      width: 60vw;
+      width: 65vw;
+      padding: 4vw;
     }
     @include tablet {
       padding: 0 6vw;
@@ -13,23 +15,7 @@ section.text {
       padding: 0 5vw;
     }
   }
-  .icon {
-    display: flex;
-    justify-content: center;
-  }
-  .icon + h3,
-  .icon-duo + h3 {
-    @include widescreen {
-      margin: px(3vw) 0;
-    }
-    @include desktop {
-      margin: 3vw 0;
-    }
-    @include tablet {
-      margin: 6.5vw 0 6vw;
-    }
-    @include mobile {
-      margin: 8vw 0;
-    }
+  p {
+    @include paragraph;
   }
 }

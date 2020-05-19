@@ -25,7 +25,7 @@
         store.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature='alcohol-based'
     />
@@ -38,7 +38,7 @@
         and handle.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature='water-based'
     />
@@ -48,7 +48,7 @@
       <h3>Rosin-based Soldering Fluxes</h3>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature='rosin-based'
     />
@@ -65,7 +65,7 @@
         mollit anim id est laborum.</p>
     </Section::Text>
 
-    <Section::ProductTiles @products={{@model.family.products}} />
+    <Section::Products @products={{@model.family.products}} />
 
   {{else if (eq @model.family.slug 'solder-pastes')}}
 
@@ -77,7 +77,7 @@
         risks and cause environmental contamination.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature="lead-free-alloys"
     />
@@ -90,7 +90,7 @@
         with lead has health risks.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature="lead-based-alloys"
     />
@@ -109,7 +109,7 @@
         mollit anim id est laborum.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature="laser-soldering"
     />
@@ -126,7 +126,7 @@
         mollit anim id est laborum.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature="robot-soldering"
     />
@@ -143,14 +143,14 @@
         mollit anim id est laborum.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature="hand-soldering"
     />
 
   {{else if (eq @model.family.slug 'solder-alloys')}}
 
-    <Section::ProductTiles @products={{@model.family.products}} />
+    <Section::Products @products={{@model.family.products}} />
 
   {{else if (eq @model.family.slug 'fluxing-systems')}}
 
@@ -165,7 +165,7 @@
         soldering fluxes.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature='stand-alone-system'
     />
@@ -178,14 +178,14 @@
         with water-based, alcohol-based and rosin-based soldering fluxes.</p>
     </Section::Text>
 
-    <Section::ProductTiles
+    <Section::Products
       @products={{@model.family.products}}
       @feature='retrofit-system'
     />
 
   {{else if (eq @model.family.slug 'auxiliaries')}}
 
-    <Section::ProductTiles @products={{@model.family.products}} />
+    <Section::Products @products={{@model.family.products}} />
 
   {{/if}}
 

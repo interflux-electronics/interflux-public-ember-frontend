@@ -12,6 +12,8 @@ export default class ProcessRoute extends Route {
     const slug = params.process;
 
     return hash({
+      products: this.modelFor('processes').products,
+      processes: this.modelFor('processes').processes,
       process: this.store.findRecord('feature', slug, {
         include: ['products', 'products.image'].join(',')
       }),

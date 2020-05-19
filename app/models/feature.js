@@ -2,13 +2,13 @@ import Model, { attr, hasMany } from '@ember-data/model';
 import { alias } from '@ember/object/computed';
 
 const heros = {
-  'wave-soldering': 'Ersa-6',
-  'selective-soldering': 'Ersa-29',
-  'reflow-soldering': 'Ersa-11',
-  'stencil-printing': 'Ersa-8',
-  'OSP-soldering': 'circuit-board-2',
-  'pre-tinning': 'circuit-board-3',
-  'rework-and-repair': 'circuit-board-1',
+  'wave-soldering': 'heros/wave-soldering-1',
+  'selective-soldering': 'heros/selective-soldering-1',
+  'reflow-soldering': 'heros/reflow-soldering-1',
+  'stencil-printing': 'heros/stencil-printing-1',
+  'OSP-soldering': 'heros/osp-soldering-1',
+  'pre-tinning': 'heros/selective-soldering-2',
+  'rework-and-repair': 'heros/rework-and-repair-1',
   'hand-soldering': 'Ersa-3',
   'robot-soldering': 'robot-soldering/Promation-1',
   'laser-soldering': 'laser-soldering/Wolf-1',
@@ -30,6 +30,7 @@ export default class FeatureModel extends Model {
   @alias('text') name;
   @attr('string') gist;
   @attr('string') category;
+  @attr('boolean') hasPage;
 
   @hasMany('product') products;
 
@@ -39,5 +40,9 @@ export default class FeatureModel extends Model {
 
   get order() {
     return Object.keys(heros).indexOf(this.slug) + 1;
+  }
+
+  get families() {
+    return this.products.mapBy('family').uniqBy('id');
   }
 }

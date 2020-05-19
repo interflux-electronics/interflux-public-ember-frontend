@@ -6,7 +6,7 @@
   {{#if @model.product.pitch}}
     <Section::Text @id="pitch">
       <h4>In short</h4>
-      <p>{{markdown-to-html @model.product.pitch}}</p>
+      <p>{{{markdown @model.product.pitch}}}</p>
     </Section::Text>
   {{/if}}
 

@@ -2,39 +2,39 @@
   <Header />
 
   <Section @id="intro">
-    <h1>We have built up 40+ years of experience in soldering electronics.
-      Challenge our know-how!</h1>
-    <p>Know-how is what drives the electronics industry. With trends and
-      techniques evolving fast Interflux has always been at the forefront
-      learning about latest and spearheading the chemistry that was needed to
-      solve complex soldering challenges. This is how we have grown extensive
-      know-how across all processes of soldering electronics.</p>
-    <p>Our partners and customers choose to work with Interflux over and over
-      because we help solve their engineering challenges with tailor-made
-      soldering chemistry and our extensive know-how. If you haven't already, we
-      much look forward working with you as well. Do <LinkTo @route="contact">
-        reach out!</LinkTo>
-    </p>
+    <h1>We've perfected the chemistry you need.</h1>
+    <p>The one thing preventing electronics manufacturers from
+      achieving <strong>high reliability</strong>, is often the soldering
+      chemistry they use.
+      Interflux has been researching all techniques and trends in electronics
+      manufacturing for over 40 years. We have <strong>tailor-made soldering
+        chemistry</strong>
+      for each of these processes and their edge-cases. <br><br>Do
+      <LinkTo @route="contact">reach out</LinkTo> to tap into our extensive
+      know-how.</p>
   </Section>
 
   <Section @id="list">
-    <p>We research & develop chemistry for:</p>
     <nav>
       {{#each this.processes as |process|}}
-        <Button::Route
-          @route="processes.process"
-          @model={{process.slug}}
-        >
-          <div>
-            <Icon @src="{{cdn}}/images/icons/{{process.icon}}.svg" />
-            <h2>{{capitalise process.name}}</h2>
-          </div>
-          <Image
-            @class="bg"
-            @src="{{cdn}}/images/processes/{{process.hero}}.jpg"
-            @id={{process.slug}}
-          />
-        </Button::Route>
+        {{#if process.hasPage}}
+          <Button::Route
+            @route="processes.process"
+            @model={{process.slug}}
+          >
+            <div>
+              <Icon @src="{{cdn}}/images/icons/{{process.icon}}.svg" />
+              <h2>{{capitalise process.name}}</h2>
+            </div>
+            <Image
+              @class="bg"
+              @src="{{cdn}}/images/processes/{{process.hero}}.jpg"
+              @id={{process.slug}}
+            />
+          </Button::Route>
+        {{else}}
+          <!-- no page for {{process.name}} -->
+        {{/if}}
       {{/each}}
     </nav>
   </Section>

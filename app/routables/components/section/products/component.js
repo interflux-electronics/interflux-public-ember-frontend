@@ -1,8 +1,9 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { computed } from '@ember/object';
 
-export default class SectionProductTilesComponent extends Component {
+export default class SectionProductComponent extends Component {
   @tracked showAll;
 
   @action
@@ -31,5 +32,14 @@ export default class SectionProductTilesComponent extends Component {
 
   get hiddenCount() {
     return this.hiddenProducts.length;
+  }
+
+  @computed('showAll')
+  get count() {
+    if (this.showAll) {
+      return this.productsForFeature.length;
+    } else {
+      return this.featuredProducts.length;
+    }
   }
 }
