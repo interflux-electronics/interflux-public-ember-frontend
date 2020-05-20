@@ -14,19 +14,19 @@ export default class ProcessesRoute extends Route {
     });
   }
 
-  @action
-  loading(transition) {
-    const start = new Date();
-    console.log(`loading ${this.load.route}...`);
-    this.load.show = true;
-    this.load.route = 'product';
-    transition.promise.finally(() => {
-      const end = new Date();
-      const ms = end - start;
-      console.log(`done! ${ms}ms`);
-      this.load.show = false;
-    });
-
-    return true;
-  }
+  // @action
+  // loading(transition) {
+  //   const start = new Date();
+  //   console.log(`loading ${this.load.route}...`);
+  //   this.load.show = true;
+  //   this.load.route = 'product';
+  //   transition.promise.finally(() => {
+  //     const end = new Date();
+  //     const ms = end - start;
+  //     console.log(`done! ${ms}ms`);
+  //     this.load.show = false;
+  //   });
+  //
+  //   return true;
+  // }
 }
