@@ -21,28 +21,74 @@ section#languages {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 20px;
-    max-width: 710px;
+    @include widescreen {
+      padding: px(2vw);
+      max-width: px(80vw);
+    }
+    @include desktop {
+      padding: 2vw;
+      max-width: 80vw;
+    }
+    @include tablet {
+      padding: 2.3vw;
+    }
+    @include mobile {
+      padding: 5vw 2vw;
+    }
     a {
       display: flex;
       align-items: center;
       padding: 0;
-      margin: 0 10px;
+      @include widescreen {
+        margin: 0 px(0.8vw);
+      }
+      @include desktop {
+        margin: 0 0.8vw;
+      }
+      @include tablet {
+        margin: 0 2vw;
+      }
+      @include mobile {
+        margin: 0 3vw;
+        width: auto;
+      }
       p {
         color: white;
       }
       img {
-        margin-right: 10px;
+        @include widescreen {
+          margin-right: px(0.4vw);
+        }
+        @include desktop {
+          margin-right: 0.4vw;
+        }
+        @include tablet {
+          margin-right: 1vw;
+        }
+        @include mobile {
+          margin-right: 2vw;
+        }
       }
     }
   }
 }
 
 section#copyright {
-  padding: 2vw 0;
   background: $blue-5;
   display: flex;
   justify-content: center;
+  @include widescreen {
+    padding: px(2vw); // TODO
+  }
+  @include desktop {
+    padding: 2vw; // TODO
+  }
+  @include tablet {
+    padding: 3vw; // TODO
+  }
+  @include mobile {
+    padding: 4vw; // TODO
+  }
   p {
     text-align: center;
     color: white;

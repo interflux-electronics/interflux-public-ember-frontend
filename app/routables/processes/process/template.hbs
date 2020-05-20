@@ -22,20 +22,26 @@
   </Section>
 
   <Section @id="hero">
-    {{#if (or this.media.isDesktop this.media.isWidescreen)}}
-      <img src="{{cdn}}/images/processes/{{@model.process.hero}}-tall@1920x720.jpg">
-    {{/if}}
+    <div class="title">
+      <div>
+        <Icon @src="{{cdn}}/images/icons/{{@model.process.slug}}.svg" />
+        <h1>{{capitalise @model.process.name}}</h1>
+      </div>
+    </div>
 
-    {{#if (or this.media.isMobile this.media.isTablet)}}
-      <img src="{{cdn}}/images/processes/{{@model.process.hero}}-square@1200x1200.jpg">
-    {{/if}}
+    <div class="bg">
+      {{#if (or this.media.isDesktop this.media.isWidescreen)}}
+        <img src="{{cdn}}/images/processes/{{@model.process.hero}}-tall@1920x720.jpg">
+      {{/if}}
+
+      {{#if (or this.media.isMobile this.media.isTablet)}}
+        <img src="{{cdn}}/images/processes/{{@model.process.hero}}-square@1200x1200.jpg">
+      {{/if}}
+    </div>
   </Section>
 
   <Section::Text>
-    <div class="icon-label">
-      <Icon @src="{{cdn}}/images/icons/{{@model.process.slug}}.svg" />
-      <h1>{{capitalise @model.process.name}}</h1>
-    </div>
+    <h2>What is {{@model.process.name}}?</h2>
     <p>{{capitalise @model.process.name}} is a technique for manufacturing electronics in which. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui <a href="#">read more here</a> officia deserunt mollit anim id est laborum.</p>
   </Section::Text>
 

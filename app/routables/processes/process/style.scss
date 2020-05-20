@@ -13,10 +13,10 @@
         padding: 2.5vw;
       }
       @include tablet {
-        padding: 4vw; // TODO
+        padding: 3vw;
       }
       @include mobile {
-        padding: 4vw; // TODO
+        padding: 4vw;
       }
     }
     nav {
@@ -53,54 +53,107 @@
     display: flex;
     justify-content: center;
     @include widescreen {
-      padding: 0 0 px(2.5vw); // same as #subnav
+      padding-bottom: px(2.5vw); // same as #subnav
     }
     @include desktop {
-      padding: 0 0 2.5vw; // same as #subnav
+      padding-bottom: 2.5vw; // same as #subnav
     }
     @include tablet {
+      padding-bottom: 0;
     }
     @include mobile {
+      padding-bottom: 0;
     }
-    img {
-      @include widescreen {
-        width: px(80vw);
-        height: px(30vw);
-        box-shadow: 0 px(0.25vw) px(0.66vw) rgba(black, 0.2);
+    .liner {
+      position: relative;
+    }
+    .title {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > div {
+        background: rgba(white, 0.95);
+        display: flex;
+        align-items: center;
+        box-shadow: 0 1vw 2vw rgba(black, 0.2);
+        @include widescreen {
+          padding: px(0.5vw);
+          padding-right: 0;
+        }
+        @include desktop {
+          padding: 0.5vw;
+          padding-right: 0;
+        }
+        @include tablet {
+          padding: 1vw;
+        }
+        @include mobile {
+          padding: 2vw;
+        }
       }
-      @include desktop {
-        width: 80vw;
-        height: 30vw;
-        box-shadow: 0 0.25vw 0.66vw rgba(black, 0.2);
+      h1 {
+        @include light-heading(0.94);
+        @include widescreen {
+          margin: 0 px(2vw);
+        }
+        @include desktop {
+          margin: 0 2vw;
+        }
+        @include tablet {
+          margin: 0 3vw;
+        }
+        @include mobile {
+          margin: 0 4vw;
+        }
       }
-      @include tablet {
-        width: 100vw;
-        height: 100vw;
-      }
-      @include mobile {
-        width: 100vw;
-        height: 100vw;
+    }
+    .bg {
+      img {
+        @include widescreen {
+          width: px(80vw);
+          height: px(30vw);
+          box-shadow: 0 px(0.25vw) px(0.66vw) rgba(black, 0.2);
+        }
+        @include desktop {
+          width: 80vw;
+          height: 30vw;
+          box-shadow: 0 0.25vw 0.66vw rgba(black, 0.2);
+        }
+        @include tablet {
+          width: 100vw;
+          height: 100vw;
+        }
+        @include mobile {
+          width: 100vw;
+          height: 100vw;
+        }
       }
     }
   }
 
   section.text {
-    .icon-label {
-      display: flex;
-      align-items: center;
-      & + * {
-        margin-top: 30px;
-      }
-      .icon {
-        margin-right: 20px;
-      }
-    }
     h1 {
       @include light-heading;
     }
     h2 {
       @include bold-sub-heading;
-      margin-bottom: 4vw;
+      @include widescreen {
+        margin-bottom: px(2vw);
+      }
+      @include desktop {
+        margin-bottom: 2vw;
+      }
+      @include tablet {
+        margin-bottom: 4vw;
+      }
+      @include mobile {
+        margin-bottom: 6vw;
+      }
     }
     p {
       @include paragraph;
