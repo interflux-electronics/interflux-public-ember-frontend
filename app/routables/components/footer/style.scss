@@ -41,6 +41,8 @@ section#languages {
 section#copyright {
   padding: 2vw 0;
   background: $blue-5;
+  display: flex;
+  justify-content: center;
   p {
     text-align: center;
     color: white;

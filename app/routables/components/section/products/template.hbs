@@ -58,16 +58,16 @@
         {{/if}}
       </LinkTo>
     {{/each}}
-
-    {{#if this.hiddenProducts}}
-      <div class="toggle">
-        <Button::Action
-          @action={{this.toggle}}
-          @text={{if this.showAll "Show less" (concat "Show all (" this.hiddenCount ")")}}
-          @size="medium"
-          @style="grey"
-        />
-      </div>
-    {{/if}}
   </div>
+
+  {{#if this.hiddenProducts}}
+    <div class="toggle">
+      <Button::Action
+        @action={{this.toggle}}
+        @text={{if this.showAll "Show less" (concat "Show all (" this.hiddenCount ")")}}
+        @size="medium"
+        @style="grey"
+      />
+    </div>
+  {{/if}}
 </Section>

@@ -1,16 +1,16 @@
 section.products {
   .liner {
     @include widescreen {
-      padding: px(6vw) 0;
+      padding-bottom: px(6vw);
     }
     @include desktop {
-      padding: 6vw 0;
+      padding-bottom: 6vw;
     }
     @include tablet {
-      padding: 0 6vw; // TODO
+      padding-bottom: 5vw;
     }
     @include mobile {
-      padding: 0 5vw; // TODO
+      padding-bottom: 5vw;
     }
   }
   .text {
@@ -18,8 +18,32 @@ section.products {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @include widescreen {
+      padding: 0 px(6vw);
+    }
+    @include desktop {
+      padding: 0 6vw;
+    }
+    @include tablet {
+      padding: 0 4vw;
+    }
+    @include mobile {
+      padding: 0 5vw;
+    }
     h2 {
       @include light-heading(0.9);
+      @include widescreen {
+        margin: px(6vw) 0 px(2vw);
+      }
+      @include desktop {
+        margin: 6vw 0 2vw;
+      }
+      @include tablet {
+        margin: 8vw 0 9vw;
+      }
+      @include mobile {
+        margin: 13vw 0 12vw;
+      }
       strong {
         font-family: $regular;
         display: block;
@@ -27,7 +51,20 @@ section.products {
     }
     p {
       @include paragraph;
-      margin: 1vw 0;
+      @include widescreen {
+        margin: 0 0 px(3vw);
+        text-align: center;
+      }
+      @include desktop {
+        margin: 0 0 3vw;
+        text-align: center;
+      }
+      @include tablet {
+        margin: 0 0 3vw;
+      }
+      @include mobile {
+        margin: 0 0 10vw;
+      }
     }
     // .icon {
     //   display: flex;
@@ -64,10 +101,10 @@ section.products {
         max-width: 800px;
       }
     }
-
     a {
       position: relative;
       background: #eee;
+      flex-shrink: 0;
       @include widescreen {
         width: px(28vw);
         height: px(28vw);
@@ -104,7 +141,6 @@ section.products {
           transform: scale(1.1);
         }
       }
-
       h2,
       h3,
       button {
@@ -228,7 +264,6 @@ section.products {
           right: 3.8vw;
           bottom: 3.8vw;
         }
-
         svg {
           height: 50%;
           width: auto;
@@ -252,7 +287,6 @@ section.products {
             margin-left: 1.5vw;
           }
         }
-
         i {
           @include widescreen {
             height: px(0.8vw);
@@ -290,24 +324,25 @@ section.products {
         }
       }
     }
-    .toggle {
-      width: 100%;
-      @include widescreen {
-        margin-top: px(3vw);
-      }
-      @include desktop {
-        margin-top: 3vw;
-      }
-      @include tablet {
-        margin-top: 5vw;
-      }
+  }
+  .toggle {
+    @include widescreen {
+      margin-top: px(2vw);
+    }
+    @include desktop {
+      margin-top: 2vw;
+    }
+    @include tablet {
+      margin-top: 2.5vw;
+    }
+    @include mobile {
+      margin-top: 1vw;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
       @include mobile {
-        margin-top: 4vw;
-        padding: 0 10vw;
-      }
-      button {
-        display: block;
-        margin: 0 auto;
+        width: 86vw;
       }
     }
   }

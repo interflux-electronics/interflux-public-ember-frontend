@@ -1,46 +1,47 @@
-<header id="desktop">
-  <div class="liner">
-    <div class="left">
-      <Button::Route
-        @route="index"
-        @text="Home"
-        @id="logo"
-      >
-        <img
-          src="{{cdn}}/images/logos/primary-interflux-electronics-logo-1.svg"
-          width="3960"
-          height="1000"
-          alt="Interflux Electronics logo"
+{{#if (or media.isDesktop media.isWidescreen)}}
+  <header id="desktop">
+    <div class="liner">
+      <div class="left">
+        <Button::Route
+          @route="index"
+          @text="Home"
+          @id="logo"
+        >
+          <img
+            src="{{cdn}}/images/logos/primary-interflux-electronics-logo-1.svg"
+            width="3960"
+            height="1000"
+            alt="Interflux Electronics logo"
+          />
+        </Button::Route>
+
+        <Button::Route
+          @route="products"
+          @text="Products"
         />
-      </Button::Route>
 
-      <Button::Route
-        @route="products"
-        @text="Products"
-      />
+        <Button::Route
+          @route="processes"
+          @text="Processes"
+        />
 
-      <Button::Route
-        @route="processes"
-        @text="Processes"
-      />
+        <Button::Route
+          @route="company"
+          @text="Company"
+        />
 
-      <Button::Route
-        @route="company"
-        @text="Company"
-      />
+        <Button::Route
+          @route="documents"
+          @text="Documents"
+        />
 
-      <Button::Route
-        @route="documents"
-        @text="Documents"
-      />
+        <Button::Route
+          @route="contact"
+          @text="Contact"
+        />
+      </div>
 
-      <Button::Route
-        @route="contact"
-        @text="Contact"
-      />
-    </div>
-
-    <!-- <div class="right">
+      <!-- <div class="right">
       <Button::Route
         @route="index"
         @icon="search"
@@ -58,25 +59,27 @@
         @icon="user"
       />
     </div> -->
-  </div>
-</header>
+    </div>
+  </header>
+{{/if}}
 
-<header id="mobile">
-  <div class="liner">
-    <Button::Route
-      @route="index"
-      @id="logo"
-    >
-      <Icon @name="hamburger" />
-      <img
-        src="{{cdn}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg"
-        width="100"
-        height="100"
-        alt="Interflux Electronics logo"
-      />
-    </Button::Route>
+{{#if (or media.isMobile media.isTablet)}}
+  <header id="mobile">
+    <div class="liner">
+      <Button::Route
+        @route="index"
+        @id="logo"
+      >
+        <Icon @name="hamburger" />
+        <img
+          src="{{cdn}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg"
+          width="100"
+          height="100"
+          alt="Interflux Electronics logo"
+        />
+      </Button::Route>
 
-    <!-- <Button::Route
+      <!-- <Button::Route
       @route="index"
       @icon="search"
     />
@@ -85,5 +88,6 @@
       @route="index"
       @icon="user"
     /> -->
-  </div>
-</header>
+    </div>
+  </header>
+{{/if}}

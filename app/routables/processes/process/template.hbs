@@ -22,7 +22,13 @@
   </Section>
 
   <Section @id="hero">
-    <img src="{{cdn}}/images/processes/{{@model.process.hero}}-tall@1920x720.jpg">
+    {{#if (or this.media.isDesktop this.media.isWidescreen)}}
+      <img src="{{cdn}}/images/processes/{{@model.process.hero}}-tall@1920x720.jpg">
+    {{/if}}
+
+    {{#if (or this.media.isMobile this.media.isTablet)}}
+      <img src="{{cdn}}/images/processes/{{@model.process.hero}}-square@1200x1200.jpg">
+    {{/if}}
   </Section>
 
   <Section::Text>

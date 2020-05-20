@@ -7,13 +7,17 @@ section {
 }
 
 section.white,
-section.products,
 section.text {
   background: $grey-0;
   .liner {
     background: white;
     box-shadow: 0 0.2vw 0.4vw rgba(black, 0.1);
   }
+}
+
+section.products {
+  background: white;
+  box-shadow: 0 0.2vw 0.4vw rgba(black, 0.1);
 }
 
 section.product-hero {
@@ -46,21 +50,6 @@ section.family-hero {
   }
 }
 
-section.process-hero {
-  @include widescreen {
-    margin-bottom: px(9vw);
-  }
-  @include desktop {
-    margin-bottom: 9vw;
-  }
-  @include tablet {
-    margin-bottom: 18vw; // same as horizontal line margins
-  }
-  @include mobile {
-    margin-bottom: 28vw; // same as horizontal line margins
-  }
-}
-
 section.text + section.product-features,
 section.text + section.text,
 section.product-features + section.documents,
@@ -79,41 +68,3 @@ section.product-features + section.product-features {
     margin-top: 20vw;
   }
 }
-
-section.products + section.products {
-  @include widescreen {
-    margin-top: px(3vw);
-  }
-  @include desktop {
-    margin-top: 3vw;
-  }
-  @include tablet {
-    margin-top: 5vw;
-  }
-  @include mobile {
-    margin-top: 12vw;
-  }
-}
-
-// horizontal line between sections
-// section.products + section.text {
-//   &:before {
-//     content: ' ';
-//     height: 1px;
-//     background-color: $grey-1;
-//     display: block;
-//     width: 90vw;
-//     @include widescreen {
-//       margin: px(9vw) auto;
-//     }
-//     @include desktop {
-//       margin: 9vw auto;
-//     }
-//     @include tablet {
-//       margin: 18vw auto;
-//     }
-//     @include mobile {
-//       margin: 28vw auto;
-//     }
-//   }
-// }

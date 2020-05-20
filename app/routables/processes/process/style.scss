@@ -4,9 +4,20 @@
     background: $grey-0;
     display: flex;
     .liner {
-      padding: 30px;
       max-width: none;
       display: flex;
+      @include widescreen {
+        padding: px(2.5vw);
+      }
+      @include desktop {
+        padding: 2.5vw;
+      }
+      @include tablet {
+        padding: 4vw; // TODO
+      }
+      @include mobile {
+        padding: 4vw; // TODO
+      }
     }
     nav {
       display: flex;
@@ -41,11 +52,35 @@
     background: $grey-0;
     display: flex;
     justify-content: center;
-    padding: 0 0 30px;
+    @include widescreen {
+      padding: 0 0 px(2.5vw); // same as #subnav
+    }
+    @include desktop {
+      padding: 0 0 2.5vw; // same as #subnav
+    }
+    @include tablet {
+    }
+    @include mobile {
+    }
     img {
-      width: 960px;
-      height: 360px;
-      box-shadow: 0 3px 8px RGBA(0, 0, 0, 0.2);
+      @include widescreen {
+        width: px(80vw);
+        height: px(30vw);
+        box-shadow: 0 px(0.25vw) px(0.66vw) rgba(black, 0.2);
+      }
+      @include desktop {
+        width: 80vw;
+        height: 30vw;
+        box-shadow: 0 0.25vw 0.66vw rgba(black, 0.2);
+      }
+      @include tablet {
+        width: 100vw;
+        height: 100vw;
+      }
+      @include mobile {
+        width: 100vw;
+        height: 100vw;
+      }
     }
   }
 
@@ -69,6 +104,22 @@
     }
     p {
       @include paragraph;
+    }
+  }
+
+  section.products + section.products,
+  section.text + section.products {
+    @include widescreen {
+      margin-top: px(2.5vw);
+    }
+    @include desktop {
+      margin-top: 2.5vw;
+    }
+    @include tablet {
+      margin-top: 5vw;
+    }
+    @include mobile {
+      margin-top: 12vw;
     }
   }
 }
