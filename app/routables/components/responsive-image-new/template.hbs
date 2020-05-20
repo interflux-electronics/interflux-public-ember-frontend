@@ -1,0 +1,29 @@
+<figure
+  class="responsive-image {{this.orientation}}{{if @class ' '}}{{@class}}"
+  {{on 'click' this.onClick}}
+>
+  <picture {{did-insert this.renderOptimalSize}}>
+    <!-- <source> -->
+    <!-- <img> -->
+  </picture>
+
+  {{#if this.showLoading}}
+    <div class="loading">
+      <LoadSpinner @icon="cup" />
+    </div>
+  {{/if}}
+
+  {{#if this.showError}}
+    <div class="error">
+      <Image
+        @src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
+        @width="400"
+        @height="400"
+      />
+    </div>
+  {{/if}}
+
+  {{#if @image.caption}}
+    <figcaption>{{@image.caption}}</figcaption>
+  {{/if}}
+</figure>
