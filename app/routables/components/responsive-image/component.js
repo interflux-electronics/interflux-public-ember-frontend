@@ -1,31 +1,36 @@
+// TODO: write tests
+
 import ENV from 'interflux/config/environment';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { computed } from '@ember/object';
 
-// TODO: write tests
-//
-// Note: The onload event doesn't always fire correctly when images are cached
-// or served fast. Instead of using Ember template logic, we'll rely on vanilla
-// DOM manipulation so we can set the onload function before we add the src.
-//
-// Resources:
-// https://stackoverflow.com/questions/12354865/image-onload-event-and-browser-cache
-// https://stackoverflow.com/questions/23657424/why-image-complete-property-always-return-true-even-if-there-is-no-src-tag
-
 export default class ImageResponsiveComponent extends Component {
-  @tracked status = 'loading'; // loading, error or done
+  // The state of this component (loading | error | done)
+  @tracked status = 'loading';
 
+  // The <picture> element
+  @tracked picture;
+
+  // When the <picture> element is inserted we register it for later use
   @action
-  renderOptimalSize(picture) {
+  register(element) {
+    this.picture = element;
+  }
+
+  @computed('picture', 'args.{path,image}')
+  get html() {
     if (!this.valid) {
-      return;
+      console.warn('<ResponsiveImage> missing path, sizes or formats');
+      return null;
     }
-    const size = this.optimalSize(picture);
+    if (!this.picture) {
+      return null;
+    }
+    const size = this.optimalSize(this.picture);
     const fragment = this.fragment(size);
-    picture.innerHTML = '';
-    picture.appendChild(fragment);
+    return fragment;
   }
 
   // 1. Find th optimal size for <picture> width and screen pixeldensity
@@ -57,6 +62,15 @@ export default class ImageResponsiveComponent extends Component {
 
     // Create <img> element
     const img = new Image();
+
+    // Note: The img.onload event doesn't always fire as expected when images
+    // are cached or load fast. For it to work correctly, it's important to
+    // attach the onload event before rendering it, so not in the Ember
+    // template (unfortunately). Instead we create the DOM in JS and then render
+    // it with Ember.
+    // Resources:
+    // https://stackoverflow.com/questions/12354865/image-onload-event-and-browser-cache
+    // https://stackoverflow.com/questions/23657424/why-image-complete-property-always-return-true-even-if-there-is-no-src-tag
     img.onload = () => {
       this.status = 'done';
     };
@@ -106,7 +120,6 @@ export default class ImageResponsiveComponent extends Component {
 
   get valid() {
     if (!this.path || !this.sizes || !this.formats) {
-      console.warn('<ResponsiveImage> missing path, sizes or formats');
       this.status = 'error';
       return false;
     }
@@ -114,15 +127,15 @@ export default class ImageResponsiveComponent extends Component {
     return true;
   }
 
-  @computed('args.image')
+  @computed('args.{path,image}')
   get orientation() {
     if (!this.valid) {
       return 'invalid';
     }
     const sizes = this.sizes;
     const size = sizes[0].split('x');
-    const w = size[0];
-    const h = size[1];
+    const w = parseInt(size[0]);
+    const h = parseInt(size[1]);
     if (w === h) {
       return 'square';
     }

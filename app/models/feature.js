@@ -9,18 +9,18 @@ const heros = {
   'OSP-soldering': 'heros/osp-soldering-1',
   'pre-tinning': 'heros/selective-soldering-2',
   'rework-and-repair': 'heros/rework-and-repair-1',
-  'hand-soldering': 'Ersa-3',
-  'robot-soldering': 'robot-soldering/Promation-1',
-  'laser-soldering': 'laser-soldering/Wolf-1',
-  'spray-fluxing': 'circuit-board-4',
-  'foam-fluxing': 'Ersa-5',
-  'jet-fluxing': 'Ersa-5',
-  'solder-paste-jetting': 'Ersa-5',
-  'vapor-phase-soldering': 'Ersa-5',
-  'dip-soldering': 'Ersa-5',
-  dispensing: 'Ersa-5',
-  'solder-bath-conditioning': 'Ersa-5',
-  'general-cleaning': 'Ersa-5'
+  'hand-soldering': 'heros/selective-soldering-2',
+  'robot-soldering': 'heros/selective-soldering-2',
+  'laser-soldering': 'heros/selective-soldering-2',
+  'spray-fluxing': 'heros/selective-soldering-2',
+  'foam-fluxing': 'heros/selective-soldering-2',
+  'jet-fluxing': 'heros/selective-soldering-2',
+  'solder-paste-jetting': 'heros/selective-soldering-2',
+  'vapor-phase-soldering': 'heros/selective-soldering-2',
+  'dip-soldering': 'heros/selective-soldering-2',
+  dispensing: 'heros/selective-soldering-2',
+  'solder-bath-conditioning': 'heros/selective-soldering-2',
+  'general-cleaning': 'heros/selective-soldering-2'
 };
 
 export default class FeatureModel extends Model {

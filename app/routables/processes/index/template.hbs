@@ -2,16 +2,8 @@
   <Header />
 
   <Section @id="intro">
-    <h1>We've perfected the chemistry you need.</h1>
-    <p>The one thing preventing electronics manufacturers from
-      achieving <strong>high reliability</strong>, is often the soldering
-      chemistry they use.
-      Interflux has been researching all techniques and trends in electronics
-      manufacturing for over 40 years. We have <strong>tailor-made soldering
-        chemistry</strong>
-      for each of these processes and their edge-cases. <br><br>Do
-      <LinkTo @route="contact">reach out</LinkTo> to tap into our extensive
-      know-how.</p>
+    <h1>Research is at the core of our philosophy.</h1>
+    <p>The one thing preventing electronics manufacturers from achieving <strong>high reliability</strong>, is often the soldering chemistry they use. Interflux has been researching all techniques and trends in electronics manufacturing for over 40 years. We have <strong>tailor-made soldering chemistry</strong> for each of these processes and their edge-cases.</p>
   </Section>
 
   <Section @id="list">
@@ -22,22 +14,37 @@
             @route="processes.process"
             @model={{process.slug}}
           >
-            <div>
+            <div class="title">
               <Icon @src="{{cdn}}/images/icons/{{process.icon}}.svg" />
               <h2>{{capitalise process.name}}</h2>
             </div>
-            <ResponsiveImageTwo @image={{hash
-                path='/images/processes/heros'
-                formats='jpg,webp'
-              }} />
-            <Image
-              @class="bg"
-              @src="{{cdn}}/images/processes/{{process.hero}}.jpg"
-              @id={{process.slug}}
-            />
+
+            <div class="bg">
+              {{#if (or this.media.isDesktop this.media.isWidescreen)}}
+                <ResponsiveImage
+                  @path="images/processes/{{process.hero}}-short"
+                  @sizes={{array '1920x280' '960x140'}}
+                  @formats={{array 'jpg' 'webp'}}
+                />
+              {{/if}}
+
+              {{#if (or this.media.isTablet)}}
+                <ResponsiveImage
+                  @path="images/processes/{{process.hero}}-tall"
+                  @sizes={{array '1920x720' '960x360'}}
+                  @formats={{array 'jpg' 'webp'}}
+                />
+              {{/if}}
+
+              {{#if (or this.media.isMobile)}}
+                <ResponsiveImage
+                  @path="images/processes/{{process.hero}}-square"
+                  @sizes={{array '1200x1200' '600x600'}}
+                  @formats={{array 'jpg' 'webp'}}
+                />
+              {{/if}}
+            </div>
           </Button::Route>
-        {{else}}
-          <!-- no page for {{process.name}} -->
         {{/if}}
       {{/each}}
     </nav>

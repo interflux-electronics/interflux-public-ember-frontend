@@ -2,9 +2,11 @@
   class="responsive-image {{this.orientation}}{{if @class ' '}}{{@class}}"
   {{on 'click' this.onClick}}
 >
-  <picture {{did-insert this.renderOptimalSize}}>
-    <!-- <source> -->
-    <!-- <img> -->
+  <picture
+    {{did-insert this.register}}
+    data-path={{this.path}}
+  >
+    {{this.html}}
   </picture>
 
   {{#if this.showLoading}}
