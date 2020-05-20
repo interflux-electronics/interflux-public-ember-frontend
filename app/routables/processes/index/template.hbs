@@ -26,6 +26,10 @@
               <Icon @src="{{cdn}}/images/icons/{{process.icon}}.svg" />
               <h2>{{capitalise process.name}}</h2>
             </div>
+            <ResponsiveImageTwo @image={{hash
+                path='/images/processes/heros'
+                formats='jpg,webp'
+              }} />
             <Image
               @class="bg"
               @src="{{cdn}}/images/processes/{{process.hero}}.jpg"

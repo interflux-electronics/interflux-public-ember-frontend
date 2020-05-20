@@ -24,12 +24,13 @@ export default class ImageResponsiveComponent extends Component {
     }
     const size = this.optimalSize(picture);
     const fragment = this.fragment(size);
+    picture.innerHTML = '';
     picture.appendChild(fragment);
   }
 
   // 1. Find th optimal size for <picture> width and screen pixeldensity
   optimalSize(picture) {
-    const sizes = this.args.image.get('sizes');
+    const sizes = this.sizes;
     const pixelRatio = window.devicePixelRatio || 1;
     const optimalWidth = picture.offsetWidth * pixelRatio;
     const distances = sizes.map(size => {
@@ -61,55 +62,51 @@ export default class ImageResponsiveComponent extends Component {
     };
     img.onerror = () => {
       this.status = 'error';
-      console.warn(
-        '<ResponsiveImage> failed to load image',
-        this.args.image.get('path')
-      );
+      console.warn('<ResponsiveImage> failed to load image', this.path);
     };
-    const path = this.args.image.get('path');
     const cdn = ENV['cdnHost'];
-    img.src = `${cdn}/${path}@${size}.jpg`;
+    img.src = `${cdn}/${this.path}@${size}.jpg`;
     img.width = size.split('x')[0];
     img.height = size.split('x')[1];
-    img.alt = this.args.image.get('alt');
+    if (this.alt) {
+      img.alt = this.alt;
+    }
     fragment.append(img);
 
     // If WEBP is supported, create <source> element
     if (this.webp) {
       const source = document.createElement('source');
       source.type = 'image/webp';
-      source.srcset = `${cdn}/${path}@${size}.webp`;
+      source.srcset = `${cdn}/${this.path}@${size}.webp`;
       fragment.prepend(source);
     }
 
     return fragment;
   }
 
-  get webp() {
-    return this.args.image.get('formats').includes('webp');
+  get path() {
+    return this.args.image ? this.args.image.get('path') : this.args.path;
   }
 
-  // Return true if all passed in params are valid for this component to function.
-  // Note: Deconstructing args will throws errors if image is an Ember proxy.
-  // const { sizes, formats, path } = image;
-  // Instead use .get()
+  get sizes() {
+    return this.args.image ? this.args.image.get('sizes') : this.args.sizes;
+  }
+
+  get formats() {
+    return this.args.image ? this.args.image.get('formats') : this.args.formats;
+  }
+
+  get alt() {
+    return this.args.image ? this.args.image.get('alt') : this.args.alt;
+  }
+
+  get webp() {
+    return this.formats.includes('webp');
+  }
+
   get valid() {
-    const image = this.args.image;
-
-    if (!image) {
-      console.warn('<ResponsiveImage> no @image passed down');
-      this.status = 'error';
-      return false;
-    }
-
-    const sizes = image.get('sizes');
-    const formats = image.get('formats');
-    const path = image.get('path');
-
-    if (!sizes || !formats || !path) {
-      console.warn(
-        '<ResponsiveImage> @image does not have path, sizes or formats'
-      );
+    if (!this.path || !this.sizes || !this.formats) {
+      console.warn('<ResponsiveImage> missing path, sizes or formats');
       this.status = 'error';
       return false;
     }
@@ -122,7 +119,7 @@ export default class ImageResponsiveComponent extends Component {
     if (!this.valid) {
       return 'invalid';
     }
-    const sizes = this.args.image.get('sizes');
+    const sizes = this.sizes;
     const size = sizes[0].split('x');
     const w = size[0];
     const h = size[1];

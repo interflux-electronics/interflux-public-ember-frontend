@@ -31,11 +31,19 @@
 
     <div class="bg">
       {{#if (or this.media.isDesktop this.media.isWidescreen)}}
-        <img src="{{cdn}}/images/processes/{{@model.process.hero}}-tall@1920x720.jpg">
+        <ResponsiveImage
+          @path="images/processes/{{@model.process.hero}}-tall"
+          @sizes={{array '1920x720' '960x360'}}
+          @formats={{array 'jpg' 'webp'}}
+        />
       {{/if}}
 
       {{#if (or this.media.isMobile this.media.isTablet)}}
-        <img src="{{cdn}}/images/processes/{{@model.process.hero}}-square@1200x1200.jpg">
+        <ResponsiveImage
+          @path="images/processes/{{@model.process.hero}}-square"
+          @sizes={{array '1200x1200' '600x600'}}
+          @formats={{array 'jpg' 'webp'}}
+        />
       {{/if}}
     </div>
   </Section>
