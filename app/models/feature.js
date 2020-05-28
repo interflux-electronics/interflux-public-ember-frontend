@@ -14,7 +14,7 @@ const heros = {
   'laser-soldering': 'heros/selective-soldering-2',
   'spray-fluxing': 'heros/selective-soldering-2',
   'foam-fluxing': 'heros/selective-soldering-2',
-  'jet-fluxing': 'heros/selective-soldering-2',
+  'jet-fluxing': 'heros/jet-fluxing',
   'solder-paste-jetting': 'heros/selective-soldering-2',
   'vapor-phase-soldering': 'heros/selective-soldering-2',
   'dip-soldering': 'heros/selective-soldering-2',

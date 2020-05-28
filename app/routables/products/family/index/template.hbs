@@ -1,21 +1,48 @@
 <Page @id="product-family">
   <Header />
 
-  <!-- <Breadcrumbs>
-    <Button::Route
-      @route="products"
-      @text="Products"
-      @icon="arrow-right"
-      @class="back"
+  <Section::Subnav>
+    <nav>
+      <Button::Route @route="products">
+        <Svg::ArrowRight />
+        <span>Back to list</span>
+      </Button::Route>
+
+      {{#each @model.families as |family|}}
+        <Button::Route
+          @route="products.family"
+          @model={{family.slug}}
+          @text={{capitalise family.namePlural}}
+        />
+      {{/each}}
+    </nav>
+  </Section::Subnav>
+
+  <Section @id="hero">
+    <div class="text">
+      <h2>{{capitalise @model.family.namePlural}}</h2>
+    </div>
+    <div class="images">
+      {{#each @model.family.heros as |hero|}}
+        <ResponsiveImage
+          @path={{hero}}
+          @sizes={{array '2400x2400' '2200x2200' '2000x2000' '1800x1800' '1600x1600' '1400x1400' '1200x1200' '1000x1000' '800x800' '600x600' '400x400' '200x200' '100x100' '50x50'}}
+          @formats={{array 'jpg' 'webp'}}
+        />
+      {{/each}}
+    </div>
+  </Section>
+
+  {{#each @model.family.subs as |sub|}}
+    <Section::Products
+      @title={{sub.title}}
+      @text={{sub.text}}
+      @feature={{sub.filter}}
+      @products={{@model.family.products}}
     />
-  </Breadcrumbs> -->
+  {{/each}}
 
-  <Section::Hero
-    @text={{capitalise @model.family.namePlural}}
-    @image="{{cdn}}/images/processes/circuit-board-1.jpg"
-  />
-
-  {{#if (eq @model.family.slug 'soldering-fluxes')}}
+  <!-- {{#if (eq @model.family.slug 'soldering-fluxes')}}
 
     <Section::Text>
       <Icon @src="{{cdn}}/images/icons/alcohol.svg" />
@@ -187,7 +214,7 @@
 
     <Section::Products @products={{@model.family.products}} />
 
-  {{/if}}
+  {{/if}} -->
 
   <Footer />
 </Page>

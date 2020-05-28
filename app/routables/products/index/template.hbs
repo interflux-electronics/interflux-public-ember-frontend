@@ -1,21 +1,32 @@
 <Page @id="products">
   <Header />
 
-  <Section @class="temporary">
-    <h1>Products</h1>
-    <ul>
+  <Section @id="intro">
+    <h1>We create <strong>chemistry</strong> for soldering high reliable <strong>electronics</strong></h1>
+  </Section>
+
+  <Section @id="links">
+    <nav>
       {{#each @model.families as |family|}}
-        <li>
-          <Button::Route
-            @route="products.family"
-            @model={{family.slug}}
-            @text={{capitalise family.namePlural}}
-            @size="medium"
-            @style="grey-border"
-          />
-        </li>
+        <Button::Route
+          @route="products.family"
+          @model={{family.slug}}
+        >
+          <div class="text">
+            <h2>{{capitalise family.namePlural}}</h2>
+          </div>
+          <div class="images">
+            {{#each family.heros as |hero|}}
+              <ResponsiveImage
+                @path={{hero}}
+                @sizes={{array '2400x2400' '2200x2200' '2000x2000' '1800x1800' '1600x1600' '1400x1400' '1200x1200' '1000x1000' '800x800' '600x600' '400x400' '200x200' '100x100' '50x50'}}
+                @formats={{array 'jpg' 'webp'}}
+              />
+            {{/each}}
+          </div>
+        </Button::Route>
       {{/each}}
-    </ul>
+    </nav>
   </Section>
 
   <Footer />

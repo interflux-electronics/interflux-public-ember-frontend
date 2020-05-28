@@ -5,8 +5,9 @@ figure.responsive-image {
   margin: 0;
   max-width: 100%;
   max-height: 100%;
-  overflow: hidden; // To hide alt text from breaking out of the <figure> frame
   background: #eee;
+  overflow: hidden; // To hide alt text from breaking out of the <figure> frame
+  position: relative; // So the error and loading states don't got beyond <figure>
   &.portrait {
     height: 100%;
     width: auto;

@@ -1,0 +1,48 @@
+section#subnav {
+  overflow: scroll;
+  background: $grey-0;
+  display: flex;
+  .liner {
+    max-width: none;
+    display: flex;
+    @include widescreen {
+      padding: px(2.5vw);
+    }
+    @include desktop {
+      padding: 2.5vw;
+    }
+    @include tablet {
+      padding: 3vw;
+    }
+    @include mobile {
+      padding: 4vw;
+    }
+  }
+  nav {
+    display: flex;
+  }
+  a {
+    background: $grey-1;
+    color: #696969;
+    font-size: 13px;
+    line-height: 24px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    & + a {
+      margin-left: 4px;
+    }
+    &:first-child {
+      margin-right: 25px;
+      svg {
+        transform: rotate(180deg);
+        height: 4px;
+        width: 6px;
+        margin-right: 5px;
+        [fill] {
+          fill: #596979;
+        }
+      }
+    }
+  }
+}

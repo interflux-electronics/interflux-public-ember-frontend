@@ -43,6 +43,9 @@
     font-size: 7.4vw * $scale;
     line-height: 160%;
   }
+  strong {
+    font-family: $regular;
+  }
 }
 
 // Usage:

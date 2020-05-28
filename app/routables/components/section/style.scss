@@ -50,6 +50,22 @@ section.family-hero {
   }
 }
 
+section.products + section.products,
+section.text + section.products {
+  @include widescreen {
+    margin-top: px(2.5vw);
+  }
+  @include desktop {
+    margin-top: 2.5vw;
+  }
+  @include tablet {
+    margin-top: 5vw;
+  }
+  @include mobile {
+    margin-top: 12vw;
+  }
+}
+
 section.text + section.product-features,
 section.text + section.text,
 section.product-features + section.documents,
