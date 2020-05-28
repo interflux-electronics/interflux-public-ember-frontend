@@ -42,7 +42,10 @@
       <p>{{@model.category.gist}}</p>
     </Section>
 
-    <Section::Documents @id="documents">
+    <Section
+      @id="documents"
+      @class="documents"
+    >
       <SearchList
         @input-placeholder="Search"
         @input-class="big white shadow"
@@ -60,7 +63,7 @@
           {{/each}}
         </ul>
       </SearchList>
-    </Section::Documents>
+    </Section>
   </Modal>
 
 {{/if}}

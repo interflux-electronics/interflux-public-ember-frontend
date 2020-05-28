@@ -1,4 +1,7 @@
-<Section @class="products">
+<Section
+  @id={{@id}}
+  @class="products{{if @class (concat ' ' @class)}}"
+>
 
   <div class="text">
     <!-- <Icon @src="{{cdn}}/images/icons/{{family.slug}}.svg" /> -->

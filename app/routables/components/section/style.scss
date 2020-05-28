@@ -6,12 +6,25 @@ section {
   }
 }
 
-section.white,
-section.text {
+section.white {
   background: $grey-0;
   .liner {
     background: white;
     box-shadow: 0 0.2vw 0.4vw rgba(black, 0.1);
+    @include widescreen {
+      width: px(62vw);
+      padding: px(5vw);
+    }
+    @include desktop {
+      width: 62vw;
+      padding: 5vw;
+    }
+    @include tablet {
+      padding: 10vw 6vw;
+    }
+    @include mobile {
+      padding: 12vw 5vw;
+    }
   }
 }
 
@@ -20,33 +33,130 @@ section.products {
   box-shadow: 0 0.2vw 0.4vw rgba(black, 0.1);
 }
 
-section.product-hero {
-  @include widescreen {
-    margin-bottom: px(4.5vw);
+section.text,
+section.list {
+  h2,
+  h3,
+  h4 {
+    @include bold-sub-heading(1);
   }
-  @include desktop {
-    margin-bottom: 5.5vw;
-  }
-  @include tablet {
-    margin-bottom: 14vw;
-  }
-  @include mobile {
-    margin-bottom: 20vw;
+  p {
+    @include paragraph;
   }
 }
 
-section.family-hero {
-  @include widescreen {
-    margin-bottom: px(9vw);
+section.text {
+  h2,
+  h3,
+  h4 {
+    @include widescreen {
+      margin-bottom: px(1.8vw);
+    }
+    @include desktop {
+      margin-bottom: 1.8vw;
+    }
+    @include tablet {
+      margin-bottom: 3vw;
+    }
+    @include mobile {
+      margin-bottom: 5vw;
+    }
   }
-  @include desktop {
-    margin-bottom: 9vw;
+}
+
+section.list {
+  h2,
+  h3,
+  h4 {
+    @include widescreen {
+      margin-bottom: px(2.5vw);
+    }
+    @include desktop {
+      margin-bottom: 2.5vw;
+    }
+    @include tablet {
+      margin-bottom: 5vw;
+    }
+    @include mobile {
+      margin-bottom: 7vw;
+    }
   }
-  @include tablet {
-    margin-bottom: 18vw; // same as horizontal line margins
-  }
-  @include mobile {
-    margin-bottom: 28vw; // same as horizontal line margins
+}
+
+section.list {
+  ul {
+    li {
+      display: flex;
+      align-items: center;
+      & + li {
+        border-top: 1px solid #eee;
+        @include widescreen {
+          margin-top: px(0.8vw);
+          padding-top: px(0.8vw);
+        }
+        @include desktop {
+          margin-top: 0.8vw;
+          padding-top: 0.8vw;
+        }
+        @include tablet {
+          margin-top: 1.2vw;
+          padding-top: 1.2vw;
+        }
+        @include mobile {
+          margin-top: 2vw;
+          padding-top: 2vw;
+        }
+      }
+      > a {
+        display: flex;
+        align-items: center;
+      }
+      picture {
+        display: block;
+        height: auto;
+        @include widescreen {
+          width: px(4vw);
+          height: px(4vw);
+          margin-right: px(1.5vw);
+        }
+        @include desktop {
+          width: 4vw;
+          height: 4vw;
+          margin-right: 1.5vw;
+        }
+        @include tablet {
+          width: 8vw;
+          height: 8vw;
+          margin-right: 2.4vw;
+        }
+        @include mobile {
+          width: 12vw;
+          height: 12vw;
+          margin-right: 4vw;
+        }
+        i.load-spinner {
+          transform: scale(0.7);
+        }
+      }
+      p,
+      > a {
+        color: $paragraph-color-1;
+        font-family: $regular;
+        margin: 0;
+        // @include widescreen {
+        //   font-size: px(1.4vw);
+        // }
+        // @include desktop {
+        //   font-size: 1.4vw;
+        // }
+        // @include tablet {
+        //   font-size: 2.8vw;
+        // }
+        // @include mobile {
+        //   font-size: 4.6vw;
+        // }
+      }
+    }
   }
 }
 
@@ -66,21 +176,20 @@ section.text + section.products {
   }
 }
 
-section.text + section.product-features,
 section.text + section.text,
-section.product-features + section.documents,
-section.product-features + section.text,
-section.product-features + section.product-features {
+section.list + section.text,
+section.text + section.list,
+section.list + section.list {
   @include widescreen {
-    margin-top: px(4.5vw);
+    margin-top: px(1vw);
   }
   @include desktop {
-    margin-top: 5.5vw;
+    margin-top: 1vw;
   }
   @include tablet {
-    margin-top: 14vw;
+    margin-top: 3vw;
   }
   @include mobile {
-    margin-top: 20vw;
+    margin-top: 5vw;
   }
 }

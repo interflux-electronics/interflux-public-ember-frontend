@@ -174,14 +174,12 @@ section.products {
           padding: px(0.6vw) px(1vw) px(0.45vw);
           top: px(1.2vw);
           left: px(-0.6vw);
-          // left: px(1.2vw);
         }
         @include desktop {
           font-size: 2.1vw;
           padding: 0.6vw 1vw 0.45vw;
           top: 1.2vw;
           left: -0.6vw;
-          // left: 1.2vw;
         }
         @include tablet {
           font-size: 3.3vw;
@@ -208,14 +206,12 @@ section.products {
           padding: px(0.4vw) px(0.8vw) px(0.4vw);
           top: px(5vw);
           left: px(-0.6vw);
-          // left: px(1.2vw);
         }
         @include desktop {
           font-size: 1.4vw;
           padding: 0.4vw 0.8vw 0.4vw;
           top: 5vw;
           left: -0.6vw;
-          // left: px(-1.2vw);
         }
         @include tablet {
           font-size: 2.4vw;

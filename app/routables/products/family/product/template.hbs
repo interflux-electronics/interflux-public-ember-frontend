@@ -1,17 +1,63 @@
 <Page @id="product">
   <Header />
 
-  <Section::ProductHero @product={{@model.product}} />
+  <Section @id="hero">
+    <div class="hero">
+      <ResponsiveImage @image={{this.heroImage}} />
+    </div>
+
+    {{#if (gt @model.product.images.length 1)}}
+      <div class="thumbs">
+        <div>
+          {{#each @model.product.images as |image|}}
+            <ResponsiveImage
+              @image={{image}}
+              @onClick={{action this.setHero image}}
+              @class={{if (eq image this.heroImage) 'active'}}
+            />
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="text">
+      <h1>{{@model.product.name}}</h1>
+      <h2>{{@model.product.family.nameSingle}}</h2>
+      <!-- <p>{{{markdown @model.product.pitch}}}</p> -->
+      <p>Price: <a
+          href="mailto:order@interflux.com"
+          target="_blank"
+          rel="nofollow noreferrer"
+        >request</a></p>
+      <p>Availability: <a
+          href="mailto:order@interflux.com"
+          target="_blank"
+          rel="nofollow noreferrer"
+        >request</a></p>
+      <Button::Url
+        @href="mailto:order@interflux.com"
+        @text="Order"
+        @size="big"
+        @style="orange-3"
+      />
+    </div>
+  </Section>
 
   {{#if @model.product.pitch}}
-    <Section::Text @id="pitch">
-      <h4>In short</h4>
+    <Section
+      @id="pitch"
+      @class="white text"
+    >
+      <h4>Summary</h4>
       <p>{{{markdown @model.product.pitch}}}</p>
-    </Section::Text>
+    </Section>
   {{/if}}
 
   {{#if @model.product.processes}}
-    <Section::ProductFeatures @id="processes">
+    <Section
+      @id="processes"
+      @class="white list"
+    >
       <h4>Recommended for</h4>
       <ul>
         {{#each @model.product.processes as |feature|}}
@@ -21,11 +67,14 @@
           </li>
         {{/each}}
       </ul>
-    </Section::ProductFeatures>
+    </Section>
   {{/if}}
 
   {{#if @model.product.qualities}}
-    <Section::ProductFeatures @id="qualities">
+    <Section
+      @id="qualities"
+      @class="white list"
+    >
       <h4>Key advantages</h4>
       <ul>
         {{#each @model.product.qualities as |feature|}}
@@ -35,11 +84,14 @@
           </li>
         {{/each}}
       </ul>
-    </Section::ProductFeatures>
+    </Section>
   {{/if}}
 
   {{#if @model.product.documents}}
-    <Section::Documents @id="documents">
+    <Section
+      @id="documents"
+      @class="white list"
+    >
       <h4>Related documents</h4>
       <ul>
         {{#each @model.product.documents as |document|}}
@@ -58,7 +110,7 @@
           </li>
         {{/each}}
       </ul>
-    </Section::Documents>
+    </Section>
   {{/if}}
 
   <Footer />

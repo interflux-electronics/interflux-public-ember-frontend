@@ -47,7 +47,45 @@
       }
     }
   }
+
   section.documents {
+    h3 {
+      margin: 5vw 0;
+      & + p {
+        margin-bottom: 3vw;
+      }
+    }
+
+    input {
+      background: #eee;
+    }
+
+    li.no-match {
+      display: none;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      color: $blue-0;
+      width: 100%;
+      overflow: hidden;
+      picture {
+        flex-shrink: 0;
+      }
+      span,
+      p {
+        &:last-child {
+          color: $blue-0;
+          width: 100%;
+          text-align: right;
+          margin-left: 20px;
+        }
+      }
+      mark {
+        background: yellow;
+      }
+    }
     .liner {
       width: auto;
       padding: 0;

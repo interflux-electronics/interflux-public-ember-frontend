@@ -57,10 +57,10 @@
   line-height: 150%;
   text-align: left;
   @include widescreen {
-    font-size: px(1.45vw * $scale);
+    font-size: px(1.4vw * $scale);
   }
   @include desktop {
-    font-size: 1.45vw * $scale;
+    font-size: 1.4vw * $scale;
   }
   @include tablet {
     font-size: 2.7vw * $scale;
