@@ -36,7 +36,7 @@
       }
       @include mobile {
         width: 100vw;
-        height: 29vw;
+        height: 104vw;
         padding: 0;
         padding: 2vw 0;
         box-shadow: 0 0.3vw 0.6vw rgba(black, 0.1);
@@ -52,21 +52,8 @@
         justify-content: center;
         h2 {
           position: absolute;
-          background: $blue-3;
           z-index: 1;
-          color: white;
-          @include widescreen {
-            padding: px(1vw);
-          }
-          @include desktop {
-            padding: 1vw;
-          }
-          @include tablet {
-            padding: 1vw;
-          }
-          @include mobile {
-            padding: 1vw;
-          }
+          @include white-on-blue-text(1);
         }
       }
       .images {
@@ -88,10 +75,8 @@
             height: 25vw;
           }
           @include mobile {
-            width: 50vw; // TODO
-            height: 50vw; // TODO
-            width: 25vw; // TODO
-            height: 25vw; // TODO
+            width: 50vw;
+            height: 50vw;
           }
         }
       }

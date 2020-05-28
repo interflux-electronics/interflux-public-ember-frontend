@@ -70,3 +70,29 @@
     line-height: 160%;
   }
 }
+
+// Usage:
+// @include white-on-blue-text;
+// @include white-on-blue-text(0.8);
+@mixin white-on-blue-text($scale: 1) {
+  font-family: $bold;
+  color: white;
+  background: $blue-3;
+  line-height: 100%;
+  @include widescreen {
+    font-size: px(2.1vw * $scale);
+    padding: px(1vw * $scale) px(2vw * $scale);
+  }
+  @include desktop {
+    font-size: 2.1vw * $scale;
+    padding: 1vw * $scale 2vw * $scale;
+  }
+  @include tablet {
+    font-size: 3.1vw * $scale;
+    padding: 1.6vw * $scale 2.3vw * $scale;
+  }
+  @include mobile {
+    font-size: 5.8vw * $scale;
+    padding: 2.5vw * $scale 4vw * $scale;
+  }
+}
