@@ -3,7 +3,7 @@
   <Modal @id="reach">
     <Section
       @id="reach"
-      @class="text"
+      @class="text centered"
     >
       <Icon @src="{{cdn}}/images/icons/file-medical.svg" />
       <h3>{{@model.category.name}}</h3>
@@ -37,14 +37,18 @@
     @class="@model.category.slug"
   >
     <Section @class="text">
-      <Icon @src="{{cdn}}/images/icons/{{@model.category.icon}}.svg" />
-      <h3>{{@model.category.name}}</h3>
-      <p>{{@model.category.gist}}</p>
+      <div class="left">
+        <Icon @src="{{cdn}}/images/icons/{{@model.category.icon}}.svg" />
+      </div>
+      <div class="right">
+        <h3>{{@model.category.name}}</h3>
+        <p>{{@model.category.gist}}</p>
+      </div>
     </Section>
 
     <Section
       @id="documents"
-      @class="documents"
+      @class="list"
     >
       <SearchList
         @input-placeholder="Search"

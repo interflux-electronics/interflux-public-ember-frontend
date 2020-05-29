@@ -17,7 +17,7 @@
     }
     h1 {
       margin: 0 auto;
-      @include light-heading;
+      @include light-font;
     }
     p {
       text-align: center;
@@ -96,7 +96,7 @@
           padding: 1vw;
         }
         h2 {
-          @include light-heading(0.8);
+          @include light-font(0.8);
           @include widescreen {
             margin: 0 px(2vw);
           }

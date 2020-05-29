@@ -2,6 +2,36 @@
   section#categories {
     background: $grey-0;
     .liner {
+      @include widescreen {
+        padding: 0 px(10vw);
+      }
+      @include desktop {
+        padding: 0 10vw;
+      }
+      @include tablet {
+        padding: 0 3vw 3vw;
+      }
+      @include mobile {
+        padding: 0 5vw 5vw;
+      }
+    }
+    h3 {
+      @include light-font(0.9);
+      @include widescreen {
+        margin: px(6vw) auto;
+      }
+      @include desktop {
+        margin: 6vw auto;
+      }
+      @include tablet {
+        margin: 10vw auto;
+      }
+      @include mobile {
+        width: 90%;
+        margin: 15vw auto;
+      }
+    }
+    nav {
       box-sizing: border-box;
       display: flex;
       flex-flow: wrap;
@@ -12,14 +42,7 @@
       grid-template-areas:
         'one two three'
         'four five six';
-      @include widescreen {
-        padding: px(10vw) px(10vw) 0;
-      }
-      @include desktop {
-        padding: 10vw 10vw 0;
-      }
       @include tablet {
-        padding: 3vw;
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
           'one two'
@@ -28,149 +51,151 @@
       }
       @include mobile {
         display: block;
-        padding: 5vw;
       }
-    }
-    h3 {
-      align-self: center;
-      grid-area: one;
-      width: 80%;
-      margin: 0 auto;
-      @include mobile {
-        width: 90%;
-        margin: 10vw auto 10vw;
-      }
-    }
-    a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid $grey-1;
-      box-sizing: border-box;
-      background: white;
-      transition: transform 200ms ease-out;
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid $grey-1;
+        box-sizing: border-box;
+        background: white;
+        transition: transform 200ms ease-out;
 
-      @include widescreen {
-        padding: px(3.5vw) px(3vw);
-      }
-      @include desktop {
-        padding: 3.5vw 3vw;
-      }
-      @include tablet {
-        padding: 8vw 9vw;
-      }
-      @include mobile {
-        padding: 10vw;
-      }
-
-      &:hover {
-        transform: scale(1.05) !important;
-        z-index: 1;
-        box-shadow: 0 2px 4px rgba(black, 0.2);
-      }
-
-      &:nth-of-type(1) {
-        grid-area: two;
-        border-radius: 5px 0 0 0;
-        transform: translate(0, 0);
-        @include tablet {
-          border-radius: 5px 5px 0 0;
-          transform: translate(-1px, 1px);
-        }
-        @include mobile {
-          border-radius: 5px 5px 0 0;
-          transform: translate(0, 0);
-        }
-      }
-      &:nth-of-type(2) {
-        grid-area: three;
-        border-radius: 0 5px 0 0;
-        transform: translate(-1px, 0);
-        @include tablet {
-          border-radius: 5px 0 0 0;
-          transform: translate(0, 0);
-        }
-        @include mobile {
-          border-radius: 0;
-          transform: translate(0, -1px);
-        }
-      }
-      &:nth-of-type(3) {
-        grid-area: four;
-        border-radius: 5px 0 0 5px;
-        transform: translate(1px, -1px);
-        @include tablet {
-          border-radius: 0;
-          transform: translate(-1px, 0);
-        }
-        @include mobile {
-          border-radius: 0;
-          transform: translate(0, -2px);
-        }
-      }
-      &:nth-of-type(4) {
-        grid-area: five;
-        border-radius: 0;
-        transform: translate(0, -1px);
-        @include tablet {
-          border-radius: 0 0 0 4px;
-          transform: translate(0, -1px);
-        }
-        @include mobile {
-          border-radius: 0;
-          transform: translate(0, -3px);
-        }
-      }
-      &:nth-of-type(5) {
-        grid-area: six;
-        border-radius: 0 0 5px 0;
-        transform: translate(-1px, -1px);
-        @include tablet {
-          border-radius: 0 0 4px 0;
-          transform: translate(-1px, -1px);
-        }
-        @include mobile {
-          border-radius: 0;
-          border-radius: 0 0 4px 4px;
-          transform: translate(0, -4px);
-        }
-      }
-
-      .icon {
         @include widescreen {
-          margin: 0 0 px(3vw);
+          padding: px(3.5vw) px(3vw);
         }
         @include desktop {
-          margin: 0 0 3vw;
+          padding: 3.5vw 3vw;
         }
         @include tablet {
-          margin: 0 0 4vw;
+          padding: 8vw 9vw;
         }
         @include mobile {
-          margin: 0 0 10vw; // TODO
+          padding: 14vw;
         }
-      }
 
-      p {
-        text-align: center;
-        line-height: 150%;
-        & + p {
-          @include widescreen {
-            margin-top: px(1vw);
-          }
-          @include desktop {
-            margin-top: 1vw;
-          }
+        &:hover {
+          transform: scale(1.05) !important;
+          z-index: 1;
+          box-shadow: 0 2px 4px rgba(black, 0.2);
+        }
+
+        &:nth-of-type(1) {
+          grid-area: one;
+          border-radius: 5px 0 0 0;
+          transform: translate(1px, 0);
           @include tablet {
-            margin-top: 2vw;
+            transform: translate(0, 1px);
           }
           @include mobile {
-            margin-top: 10vw; // TODO
+            border-radius: 5px 5px 0 0;
+            transform: translate(0, 0);
           }
         }
-        span {
-          color: $blue-0;
+        &:nth-of-type(2) {
+          grid-area: two;
+          border-radius: 0;
+          transform: translate(0, 0);
+          @include tablet {
+            border-radius: 0 5px 0 0;
+            transform: translate(-1px, 1px);
+          }
+          @include mobile {
+            border-radius: 0;
+            transform: translate(0, -1px);
+          }
+        }
+        &:nth-of-type(3) {
+          grid-area: three;
+          border-radius: 0 5px 0 0;
+          transform: translate(-1px, 0);
+          @include tablet {
+            border-radius: 0;
+            transform: translate(0, 0);
+          }
+          @include mobile {
+            border-radius: 0;
+            transform: translate(0, -2px);
+          }
+        }
+        &:nth-of-type(4) {
+          grid-area: four;
+          border-radius: 0 0 0 5px;
+          transform: translate(1px, -1px);
+          @include tablet {
+            border-radius: 0;
+            transform: translate(-1px, 0);
+          }
+          @include mobile {
+            border-radius: 0;
+            transform: translate(0, -3px);
+          }
+        }
+        &:nth-of-type(5) {
+          grid-area: five;
+          border-radius: 0;
+          transform: translate(0, -1px);
+          @include tablet {
+            border-radius: 0 0 0 5px;
+            transform: translate(0, -1px);
+          }
+          @include mobile {
+            border-radius: 0;
+            border-radius: 0;
+            transform: translate(0, -4px);
+          }
+        }
+        &:nth-of-type(6) {
+          grid-area: six;
+          border-radius: 0 0 5px 0;
+          transform: translate(-1px, -1px);
+          @include tablet {
+            border-radius: 0 0 5px 0;
+            transform: translate(-1px, -1px);
+          }
+          @include mobile {
+            border-radius: 0;
+            border-radius: 0 0 5px 5px;
+            transform: translate(0, -5px);
+          }
+        }
+
+        .icon {
+          @include widescreen {
+            margin: 0 0 px(3vw);
+          }
+          @include desktop {
+            margin: 0 0 3vw;
+          }
+          @include tablet {
+            margin: 0 0 4vw;
+          }
+          @include mobile {
+            margin: 0 0 6vw;
+          }
+        }
+
+        p {
+          text-align: center;
+          line-height: 150%;
+          & + p {
+            @include widescreen {
+              margin-top: px(1vw);
+            }
+            @include desktop {
+              margin-top: 1vw;
+            }
+            @include tablet {
+              margin-top: 2vw;
+            }
+            @include mobile {
+              margin-top: 4vw;
+            }
+          }
+          span {
+            color: $blue-0;
+          }
         }
       }
     }

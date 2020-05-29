@@ -3,18 +3,19 @@
 
   <Section @id="categories">
     <h3>What type of document do you need?</h3>
-
-    {{#each sortedCategories as |category|}}
-      <LinkTo
-        @route="documents.category"
-        @model={{category.slug}}
-      >
-        <Icon @src="{{cdn}}/images/icons/{{category.icon}}.svg" />
-        <p><strong>{{category.name}}</strong></p>
-        <p>{{category.gist}}</p>
-        <p><span>{{category.cta}}</span></p>
-      </LinkTo>
-    {{/each}}
+    <nav>
+      {{#each this.categories as |category|}}
+        <LinkTo
+          @route="documents.category"
+          @model={{category.slug}}
+        >
+          <Icon @src="{{cdn}}/images/icons/{{category.icon}}.svg" />
+          <p><strong>{{category.name}}</strong></p>
+          <p>{{category.gist}}</p>
+          <p><span>{{category.cta}}</span></p>
+        </LinkTo>
+      {{/each}}
+    </nav>
   </Section>
 
   <Footer />

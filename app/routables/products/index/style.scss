@@ -18,7 +18,7 @@
     }
     h1 {
       margin: 0 auto;
-      @include light-heading;
+      @include light-font;
       @include widescreen {
         max-width: px(40vw);
       }

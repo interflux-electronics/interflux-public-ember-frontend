@@ -16,39 +16,60 @@
   section.text {
     .liner {
       width: auto;
+      display: flex;
       @include widescreen {
-        padding: px(2.8vw) px(2vw) px(2vw);
+        padding: px(2.8vw);
       }
       @include desktop {
-        padding: 2.8vw 2vw 2vw;
+        padding: 2.8vw;
       }
       @include tablet {
-        padding: 5vw; // TODO
+        padding: 5vw;
       }
       @include mobile {
-        padding: 8vw; // TODO
+        padding: 8vw;
+        flex-direction: column;
+        align-items: center;
       }
-      p {
-        text-align: center;
+      &.centered {
+        p,
+        h3 {
+          text-align: center;
+        }
       }
-      h3 {
+      .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         @include widescreen {
-          margin: px(1.6vw) 0 px(0.8vw);
+          margin-left: px(1.5vw);
         }
         @include desktop {
-          margin: 1.6vw 0 0.8vw;
+          margin-left: 1.5vw;
         }
         @include tablet {
-          margin: 4vw 0 3vw; // TODO
+          margin-left: 4vw;
         }
+      }
+      p,
+      h3 {
+        margin: 0;
+        line-height: 135%;
         @include mobile {
-          margin: 7vw 0 5vw; // TODO
+          text-align: center;
+        }
+      }
+      h3 {
+        @include mobile {
+          margin: 3vw 0;
         }
       }
     }
   }
 
-  section.documents {
+  section.list {
+    margin-top: 0; // to counter <Section> margins
+
     h3 {
       margin: 5vw 0;
       & + p {
@@ -57,7 +78,7 @@
     }
 
     input {
-      background: #eee;
+      background: white;
     }
 
     li.no-match {
@@ -91,38 +112,25 @@
       padding: 0;
     }
     .search-list {
+      position: relative;
       > .input {
-        background: #eee;
+        background: $grey-0;
         box-sizing: border-box;
         @include widescreen {
-          padding: px(2.7vw) px(10vw) 0;
+          padding: px(2vw);
         }
         @include desktop {
-          padding: 2.7vw 10vw 0;
+          padding: 2vw;
         }
         @include tablet {
-          padding: 2vw 12vw 0;
+          padding: 2vw;
         }
         @include mobile {
-          padding: 3vw 3vw 0;
+          padding: 3vw;
         }
       }
       > p {
-        background: #eee;
-        text-align: right;
-        color: rgba($paragraph-color-1, 0.6);
-        @include widescreen {
-          padding: px(0.4vw) px(10vw) px(1.7vw);
-        }
-        @include desktop {
-          padding: 0.4vw 10vw 1.7vw;
-        }
-        @include tablet {
-          padding: 0 12vw 1vw;
-        }
-        @include mobile {
-          padding: 0 3vw 3vw;
-        }
+        display: none; // TODO
       }
       > ul {
         @include widescreen {
