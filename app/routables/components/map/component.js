@@ -12,7 +12,7 @@ export default class MapComponent extends Component {
       minZoom: '0',
       maxZoom: '24',
       interactive: true,
-      zoom: 1,
+      zoom: 1.7,
       center: [67.5172053, 14.199253] // lng lat! (not lat lng)
     };
   }
@@ -39,14 +39,24 @@ export default class MapComponent extends Component {
   // Singapore 103.8743572 1.3299741
   // Oritech 143.7932688, -37.5441551
   // Beijing 116.4170393 39.994355
+  // Shanghai 121.415829, 31.165788
   //
   get sources() {
-    return [
-      this.feature([3.7924299, 51.1185309]),
-      this.feature([103.8743572, 1.3299741]),
-      this.feature([143.7932688, -37.5441551]),
-      this.feature([116.4170393, 39.994355])
-    ];
+    const arr = [];
+    this.args.markers.forEach(m => {
+      const json = this.feature([m.longitude, m.latitude]); // lng lat! (not lat lng)
+      arr.push(json);
+    });
+
+    // return [
+    //   this.feature([3.7924299, 51.1185309]), // Belgium
+    //   this.feature([103.8743572, 1.3299741]), // Singapore
+    //   this.feature([143.7932688, -37.5441551]), // Oritech
+    //   this.feature([116.4170393, 39.994355]), // Bejing
+    //   this.feature([121.415829, 31.165788]) // Shanghai
+    // ];
+
+    return arr;
   }
 
   get sourceLayer() {

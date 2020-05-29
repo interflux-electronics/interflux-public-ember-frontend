@@ -8,11 +8,15 @@ export default class CompanyModel extends Model {
   @attr('string') fax;
   @attr('array') emails;
   @attr('string') website;
-  @attr('string') latitude;
-  @attr('string') longitude;
+  @attr('number') latitude;
+  @attr('number') longitude;
 
   @belongsTo('country') country;
 
   // @hasMany('member') member;
   // @hasMany('market') country;
+
+  get isGroup() {
+    return this.businessName.toLowerCase().includes('interflux');
+  }
 }

@@ -53,12 +53,12 @@
         width: 80vw;
       }
       @include mobile {
-        width: 90vw; // TODO
+        width: 90vw;
       }
     }
     .search-list {
       > p {
-        display: none; // TODO;
+        display: none;
       }
     }
     ul {

@@ -2,7 +2,7 @@
   <Header />
 
   <Section @id="map">
-    <Map />
+    <Map @markers={{@model.companies}} />
   </Section>
 
   <Section @id="list">
@@ -11,7 +11,7 @@
       @input-class="big white shadow"
     >
       <ul>
-        {{#each @model.companies as |company|}}
+        {{#each this.companies as |company|}}
           <li>
             <h2 data-search="me">{{company.businessName}}</h2>
 
