@@ -1,10 +1,7 @@
-{{#if (eq @model.category.slug 'reach')}}
+{{#if (eq @model.category.slug 'REACH')}}
 
   <Modal @id="reach">
-    <Section
-      @id="reach"
-      @class="text centered"
-    >
+    <Section>
       <Icon @src="{{cdn}}/images/icons/file-medical.svg" />
       <h3>{{@model.category.name}}</h3>
       <p>REACH is the legislation of the European Union regulating chemical
@@ -30,12 +27,25 @@
     </Section>
   </Modal>
 
+{{else if (eq @model.category.slug 'SDS')}}
+
+  <Modal @id="sds">
+    <Section>
+      <Icon @src="{{cdn}}/images/icons/file-medical.svg" />
+      <h3>{{@model.category.name}}</h3>
+      <p>To obtain Safety Data Sheets, please contact our friendly REACH team in Belgium:</p>
+      <Button::Url
+        @href="mailto:reach@interflux.com"
+        @text="reach@interflux.com"
+        @size="medium"
+        @style="orange-3"
+      />
+    </Section>
+  </Modal>
+
 {{else}}
 
-  <Modal
-    @id="documents"
-    @class="@model.category.slug"
-  >
+  <Modal @id="documents">
     <Section @class="text">
       <div class="left">
         <Icon @src="{{cdn}}/images/icons/{{@model.category.icon}}.svg" />

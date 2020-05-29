@@ -163,10 +163,10 @@
 
         .icon {
           @include widescreen {
-            margin: 0 0 px(3vw);
+            margin: 0 0 px(1.5vw);
           }
           @include desktop {
-            margin: 0 0 3vw;
+            margin: 0 0 1.5vw;
           }
           @include tablet {
             margin: 0 0 4vw;
