@@ -1,10 +1,32 @@
 #contact.page {
-  section#map {
+  #map {
     .liner {
       padding: 0;
+      max-width: none;
     }
     .map {
-      margin-bottom: 80px;
+      background: #ccc;
+      width: 100vw;
+      @include widescreen {
+        height: px(50vw);
+        margin-bottom: px(5vw);
+      }
+      @include desktop {
+        height: 50vw;
+        margin-bottom: 5vw;
+      }
+      @include tablet {
+        height: 70vw;
+        margin-bottom: 8vw;
+      }
+      @include mobile {
+        height: 100vw;
+        margin-bottom: 12vw;
+      }
+
+      .mapboxgl-map {
+        height: 100%;
+      }
     }
   }
   li {
@@ -17,6 +39,45 @@
     }
     p {
       margin: 0;
+    }
+  }
+  #list {
+    .liner {
+      @include widescreen {
+        width: px(50vw);
+      }
+      @include desktop {
+        width: 50vw;
+      }
+      @include tablet {
+        width: 80vw;
+      }
+      @include mobile {
+        width: 90vw; // TODO
+      }
+    }
+    .search-list {
+      > p {
+        display: none; // TODO;
+      }
+    }
+    ul {
+      @include widescreen {
+        margin-top: px(4vw);
+      }
+      @include desktop {
+        margin-top: 4vw;
+      }
+      @include tablet {
+        margin-top: 8vw;
+      }
+      @include mobile {
+        margin-top: 12vw;
+      }
+    }
+    h3 {
+      @include light-font(0.8);
+      text-align: left;
     }
   }
 }

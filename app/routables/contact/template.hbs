@@ -1,15 +1,15 @@
 <Page @id="contact">
   <Header />
 
-  <Section
-    @id="map"
-    @class="temporary"
-  >
+  <Section @id="map">
     <Map />
   </Section>
 
-  <Section @class="temporary">
-    <SearchList>
+  <Section @id="list">
+    <SearchList
+      @input-placeholder="Search"
+      @input-class="big white shadow"
+    >
       <ul>
         {{#each @model.companies as |company|}}
           <li>
