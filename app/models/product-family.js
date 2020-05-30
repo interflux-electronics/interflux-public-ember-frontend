@@ -42,11 +42,34 @@ const heros = {
 
 const subs = {
   'soldering-fluxes': [
-    {}
-    // 'alcohol-based',
-    // 'water-based',
-    // 'low-VOC',
-    // 'rework-and-repair'
+    {
+      title: 'Water-based soldering fluxes',
+      text:
+        'Water-based soldering fluxes are popular because they VOC-free and non-flamable, which makes them considerably easier to transport and store.',
+      filter: 'water-based'
+    },
+    {
+      title: 'Alcohol-based soldering fluxes',
+      text:
+        'Alcohol-based soldering fluxes are highly effective soldering fluxes and considered industry standard. Compared to water, alcohol evaporates more quickly, requiring less heat to transfer active solids to circuit boards.',
+      filter: 'alcohol-based'
+    },
+    {
+      title: 'Rosin-based soldering fluxes',
+      text:
+        'Rosin-based soldering fluxes generally contain more solids, allow for longer processing windows.',
+      filter: 'rosin-based'
+    },
+    {
+      title: 'Soldering fluxes for rework and repair',
+      text: '',
+      filter: 'rework-and-repair'
+    }
+    // {
+    //   title: 'Flux thinner',
+    //   text: '',
+    //   filter: 'for-conditioning-flux'
+    // }
   ],
   'solder-pastes': [
     {}
@@ -54,14 +77,25 @@ const subs = {
     // 'low-temperature'
   ],
   'solder-wires': [
-    {}
-    // 'hand-soldering',
-    // 'laser-soldering',
-    // 'robot-soldering',
-    // 'lead-based-alloys',
-    // 'lead-free-alloys'
-    // 'rework-and-repair',
-    // 'halide-free'
+    {
+      icon: 'laser-soldering',
+      title: 'Solder wires for laser soldering',
+      text:
+        'The ideal solder wire for laser soldering needs to be fast repeatable and work on a wide range of surfaces.',
+      filter: 'laser-soldering'
+    },
+    {
+      icon: 'robot-soldering',
+      title: 'Solder wires for robot soldering',
+      text: '',
+      filter: 'robot-soldering'
+    },
+    {
+      icon: 'rework-and-repair',
+      title: 'Solder wires for hand soldering',
+      text: '',
+      filter: 'hand-soldering'
+    }
   ],
   'solder-alloys': [{}],
   auxiliaries: [{}],

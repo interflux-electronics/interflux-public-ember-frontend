@@ -1,23 +1,7 @@
 <i class="icon">
-  {{#if @src}}
-    <Image
-      @src={{@src}}
-      @width={{@width}}
-      @height={{@height}}
-    />
-  {{else if (eq @name 'geo-marker')}}
-    <Svg::GeoMarker />
-  {{else if (eq @name 'search')}}
-    <Svg::Search />
-  {{else if (eq @name 'shopping-cart')}}
-    <Svg::ShoppingCart />
-  {{else if (eq @name 'user')}}
-    <Svg::User />
-  {{else if (eq @name 'hamburger')}}
-    <Svg::Hamburger />
-  {{else if (eq @name 'arrow-right')}}
-    <Svg::ArrowRight />
-  {{else}}
-    <Svg::Unknown />
-  {{/if}}
+  <Image
+    @src="{{cdn}}/images/icons/{{@name}}.svg"
+    @width="50"
+    @height="50"
+  />
 </i>

@@ -1,16 +1,16 @@
 section.products {
   .liner {
     @include widescreen {
-      padding-bottom: px(6vw);
+      padding: px(6vw) 0;
     }
     @include desktop {
-      padding-bottom: 6vw;
+      padding: 6vw 0;
     }
     @include tablet {
-      padding-bottom: 5vw;
+      padding: 9vw 0;
     }
     @include mobile {
-      padding-bottom: 5vw;
+      padding: 12vw 4vw;
     }
   }
   .text {
@@ -18,32 +18,9 @@ section.products {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @include widescreen {
-      padding: 0 px(6vw);
-    }
-    @include desktop {
-      padding: 0 6vw;
-    }
-    @include tablet {
-      padding: 0 4vw;
-    }
-    @include mobile {
-      padding: 0 5vw;
-    }
     h2 {
       @include light-font(0.9);
-      @include widescreen {
-        margin: px(6vw) 0 px(2vw);
-      }
-      @include desktop {
-        margin: 6vw 0 2vw;
-      }
-      @include tablet {
-        margin: 9vw 0 8vw;
-      }
-      @include mobile {
-        margin: 13vw 0 12vw;
-      }
+      margin: 0;
       strong {
         font-family: $regular;
         display: block;
@@ -51,40 +28,30 @@ section.products {
     }
     p {
       @include paragraph;
-      @include widescreen {
-        margin: 0 0 px(3vw);
-        text-align: center;
-      }
-      @include desktop {
-        margin: 0 0 3vw;
-        text-align: center;
-      }
+      margin: 0;
+      text-align: center;
       @include tablet {
-        margin: 0 0 3vw;
+        max-width: 70vw;
       }
       @include mobile {
-        margin: 0 0 10vw;
+        text-align: left;
       }
     }
-    // .icon {
-    //   display: flex;
-    //   justify-content: center;
-    // }
-    // .icon + h3,
-    // .icon-duo + h3 {
-    //   @include widescreen {
-    //     margin: px(3vw) 0;
-    //   }
-    //   @include desktop {
-    //     margin: 3vw 0;
-    //   }
-    //   @include tablet {
-    //     margin: 6.5vw 0 6vw;
-    //   }
-    //   @include mobile {
-    //     margin: 8vw 0;
-    //   }
-    // }
+    .icon + h2,
+    h2 + p {
+      @include widescreen {
+        margin: px(2vw) 0 0;
+      }
+      @include desktop {
+        margin: 2vw 0 0;
+      }
+      @include tablet {
+        margin: 4vw 0 0;
+      }
+      @include mobile {
+        margin: 6vw 0 0;
+      }
+    }
   }
   .tiles {
     display: flex;
@@ -340,6 +307,20 @@ section.products {
       @include mobile {
         width: 86vw;
       }
+    }
+  }
+  .text + .tiles {
+    @include widescreen {
+      margin-top: px(2vw);
+    }
+    @include desktop {
+      margin-top: 2vw;
+    }
+    @include tablet {
+      margin-top: 4vw;
+    }
+    @include mobile {
+      margin-top: 7vw;
     }
   }
 }

@@ -9,7 +9,7 @@
           @route="documents.category"
           @model={{category.slug}}
         >
-          <Icon @src="{{cdn}}/images/icons/{{category.icon}}.svg" />
+          <Icon @name={{category.icon}} />
           <p><strong>{{category.name}}</strong></p>
           <p>{{category.gist}}</p>
           <p><span>{{category.cta}}</span></p>

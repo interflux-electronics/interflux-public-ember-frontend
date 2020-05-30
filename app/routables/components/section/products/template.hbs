@@ -4,9 +4,15 @@
 >
 
   <div class="text">
-    <!-- <Icon @src="{{cdn}}/images/icons/{{family.slug}}.svg" /> -->
-    <h2>{{{markdown @title}}}</h2>
-    <p>{{{markdown @text}}}</p>
+    {{#if @icon}}
+      <Icon @name={{@icon}} />
+    {{/if}}
+    {{#if @title}}
+      <h2>{{{markdown @title}}}</h2>
+    {{/if}}
+    {{#if @text}}
+      <p>{{{markdown @text}}}</p>
+    {{/if}}
   </div>
 
   <div class="tiles {{if this.showAll 'show-all' 'show-featured'}} {{if (eq this.count 4) 'four' 'not-four'}}">

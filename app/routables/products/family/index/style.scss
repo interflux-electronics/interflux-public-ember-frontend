@@ -16,30 +16,37 @@
       position: relative;
       background: white;
       margin: 0 auto;
+
+      background: none; // TEMP: until we have more content
+
       @include widescreen {
         width: px(82vw);
-        height: px(22vw);
+        // height: px(22vw);
+        height: px(11vw); // TEMP
         padding: px(1vw);
-        box-shadow: 0 px(0.2vw) px(0.4vw) rgba(black, 0.1);
+        // box-shadow: 0 px(0.2vw) px(0.4vw) rgba(black, 0.1); // TEMP
       }
       @include desktop {
         width: 82vw;
-        height: 22vw;
+        // height: 22vw;
+        height: 11vw; // TEMP
         padding: 1vw;
-        box-shadow: 0 0.2vw 0.4vw rgba(black, 0.1);
+        // box-shadow: 0 0.2vw 0.4vw rgba(black, 0.1); // TEMP
       }
       @include tablet {
         width: 100vw;
-        height: 27vw;
+        // height: 27vw;
+        height: 13vw; // TEMP
         padding: 1vw 0;
-        box-shadow: 0 0.3vw 0.6vw rgba(black, 0.1);
+        // box-shadow: 0 0.3vw 0.6vw rgba(black, 0.1); // TEMP
       }
       @include mobile {
         width: 100vw;
-        height: 104vw;
+        // height: 104vw;
+        height: 50vw; // TEMP
         padding: 0;
         padding: 2vw 0;
-        box-shadow: 0 0.3vw 0.6vw rgba(black, 0.1);
+        // box-shadow: 0 0.3vw 0.6vw rgba(black, 0.1); // TEMP
       }
       .text {
         position: absolute;
@@ -61,6 +68,9 @@
         flex-flow: wrap;
         justify-content: space-between;
         height: 100%;
+
+        display: none; // TEMP: until we have more content
+
         figure {
           @include widescreen {
             width: px(20vw);
