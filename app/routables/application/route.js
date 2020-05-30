@@ -25,7 +25,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Spanish',
             'name-native': 'Español',
             'two-letter-code': 'es',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -35,7 +36,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'German',
             'name-native': 'Deutsch',
             'two-letter-code': 'de',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -45,7 +47,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'French',
             'name-native': 'français',
             'two-letter-code': 'fr',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -55,7 +58,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Swedish',
             'name-native': 'Svenska',
             'two-letter-code': 'sv',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -65,7 +69,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Polish',
             'name-native': 'Polski',
             'two-letter-code': 'pl',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -75,7 +80,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Turkish',
             'name-native': 'Türkçe',
             'two-letter-code': 'tr',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -85,7 +91,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Thai',
             'name-native': 'ภาษาไทย',
             'two-letter-code': 'th',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -95,7 +102,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Russian',
             'name-native': 'Русский',
             'two-letter-code': 'ru',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -105,7 +113,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Romanian',
             'name-native': 'Română',
             'two-letter-code': 'ro',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -115,7 +124,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Portugese',
             'name-native': 'Português',
             'two-letter-code': 'pt',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -125,7 +135,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Indonesian',
             'name-native': 'Bahasa Indonesia',
             'two-letter-code': 'id',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -135,7 +146,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Italian',
             'name-native': 'Italiano',
             'two-letter-code': 'it',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -145,7 +157,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Chech',
             'name-native': 'Čeština',
             'two-letter-code': 'cs',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -155,7 +168,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Chinese',
             'name-native': '中文',
             'two-letter-code': 'zh',
-            supported: true
+            supported: true,
+            ready: false
           }
         },
         {
@@ -165,7 +179,8 @@ export default class ApplicationRoute extends Route {
             'name-english': 'Japanese',
             'name-native': '日本語 (にほんご)',
             'two-letter-code': 'ja',
-            supported: false
+            supported: false,
+            ready: false
           }
         }
       ]

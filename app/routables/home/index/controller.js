@@ -14,11 +14,4 @@ export default class HomeIndexController extends Controller {
       this.imageRight = `image-${i}`;
     }
   }
-
-  get languages() {
-    return this.store
-      .peekAll('language')
-      .filterBy('supported', true)
-      .sortBy('nameNative');
-  }
 }

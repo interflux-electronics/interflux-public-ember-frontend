@@ -1,0 +1,18 @@
+<Section @id="languages">
+  {{#each this.languages as |language|}}
+    {{#if language.ready}}
+      <Button::Route
+        @route="home"
+        @model={{language.id}}
+      >
+        <img src="{{cdn}}/images/flags/{{language.id}}.png">
+        <p>{{language.nameNative}}</p>
+      </Button::Route>
+    {{else}}
+      <Button::Url @href="{{env 'oldHost'}}/{{language.id}}">
+        <img src="{{cdn}}/images/flags/{{language.id}}.png">
+        <p>{{language.nameNative}}</p>
+      </Button::Url>
+    {{/if}}
+  {{/each}}
+</Section>
