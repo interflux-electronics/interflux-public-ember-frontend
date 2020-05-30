@@ -4,9 +4,9 @@ import { action } from '@ember/object';
 import { computed } from '@ember/object';
 
 export default class ProductsFamilyProductController extends Controller {
-  @tracked chosenImage;
+  @tracked chosenImage = null;
 
-  @computed('chosenImage')
+  @computed('chosenImage', 'model.product.avatar.id')
   get heroImage() {
     return this.chosenImage || this.model.product.avatar;
   }
