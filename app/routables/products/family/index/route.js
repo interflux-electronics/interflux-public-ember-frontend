@@ -16,11 +16,6 @@ export default class ProductFamilyIndexRoute extends Route {
       family: this.store.findRecord('productFamily', slug, {
         include: ['products', 'products.image', 'products.features'].join(',')
       })
-      // delay: new Promise(resolve => {
-      //   later(function() {
-      //     resolve(true);
-      //   }, 2000);
-      // })
     });
   }
 

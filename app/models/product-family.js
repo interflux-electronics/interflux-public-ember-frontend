@@ -72,9 +72,20 @@ const subs = {
     // }
   ],
   'solder-pastes': [
-    {}
-    // 'water-soluble',
-    // 'low-temperature'
+    {
+      // icon: 'laser-soldering',
+      title: 'Low melting point solder pastes',
+      text:
+        'Soldering at lower temperature has numerous advantages include lower energy costs, speed and the ability to break temperature sensitive components. Our low temperature paste are bismuth-based and enhanced for high reliability.',
+      filter: 'low-melting-point'
+    },
+    {
+      // icon: 'laser-soldering',
+      title: 'No Clean™ solder pastes',
+      text:
+        'No Clean™ solder pastes do not need to be cleaned after printing. All Interflux solder pastes have this quality.',
+      filter: 'no-clean'
+    }
   ],
   'solder-wires': [
     {

@@ -24,7 +24,15 @@
       >
         <h2>{{product.name}}</h2>
         <h3>{{if product.label product.label product.family.nameSingle}}</h3>
-        <ResponsiveImage @image={{get product 'avatar'}} />
+        <ResponsiveImage
+          @path={{product.avatar.id}}
+          @sizes={{array '2400x2400' '2200x2200' '2000x2000' '1800x1800' '1600x1600' '1400x1400' '1200x1200' '1000x1000' '800x800' '600x600' '400x400' '200x200' '100x100' '50x50'}}
+          @formats={{array 'jpg' 'webp'}}
+        />
+
+        <!-- <ResponsiveImage @image={{get product 'avatar'}} /> -->
+
+
         {{#if (or product.new product.popular product.featured)}}
           <button>
             {{#if product.new}}
