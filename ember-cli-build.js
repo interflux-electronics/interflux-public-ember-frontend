@@ -17,12 +17,12 @@ module.exports = function(defaults) {
       remove: false
     },
 
-    // Only minify CSS in production to speed up development and tests.
+    // Prevent CSS minification in development and tests
     minifyCSS: {
       enabled: ENV.isProduction
     },
 
-    // Only minify JS in production to speed up development and tests.
+    // Prevent JS minification in development and tests
     minifyJS: {
       enabled: ENV.isProduction
     },
