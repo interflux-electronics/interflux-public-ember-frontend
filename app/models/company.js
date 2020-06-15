@@ -10,13 +10,14 @@ export default class CompanyModel extends Model {
   @attr('string') website;
   @attr('number') latitude;
   @attr('number') longitude;
+  @attr('number') order;
 
   @belongsTo('country') country;
 
   // @hasMany('member') member;
   // @hasMany('market') country;
 
-  get isGroup() {
-    return this.businessName.toLowerCase().includes('interflux');
+  get rank() {
+    return this.order || 999;
   }
 }
