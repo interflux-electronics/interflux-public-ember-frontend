@@ -15,14 +15,11 @@ module.exports = {
   env: {
     browser: true
   },
-<<<<<<< HEAD
   rules: {
     'ember/no-jquery': 'error',
-    'no-console': 'off'
+    'no-console': 'off',
+    'comma-dangle': 'error'
   },
-=======
-  rules: {},
->>>>>>> 77346c0... v3.17.0...v3.22.0
   overrides: [
     // node files
     {
@@ -44,7 +41,6 @@ module.exports = {
         node: true
       },
       plugins: ['node'],
-<<<<<<< HEAD
       rules: Object.assign(
         {},
         require('eslint-plugin-node').configs.recommended.rules,
@@ -56,14 +52,6 @@ module.exports = {
           'node/no-unpublished-require': 'off'
         }
       )
-=======
-      extends: ['plugin:node/recommended'],
-      rules: {
-        // this can be removed once the following is fixed
-        // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        'node/no-unpublished-require': 'off'
-      }
->>>>>>> 77346c0... v3.17.0...v3.22.0
     }
   ]
 };
