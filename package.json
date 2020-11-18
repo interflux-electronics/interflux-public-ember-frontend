@@ -11,13 +11,16 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "ember serve",
+    "start": "ember serve --environment=development",
+    "serve": "ember serve --environment=development",
     "build": "ember build --environment=production",
-    "deploy": "remote/deploy.sh",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
+    "lint:js": "eslint .",
     "lint:hbs": "ember-template-lint .",
+    "setup": "remote/setup.sh",
+    "deploy": "remote/deploy.sh",
     "build-ios": "IOS_BUILD=true corber build --platform=ios --environment=production",
     "build-android": "ANDROID_BUILD=true corber build --platform=android --environment=production",
     "start-ios": "IOS_BUILD=true corber start --platform=ios",
