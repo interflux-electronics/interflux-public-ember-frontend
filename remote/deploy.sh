@@ -1,47 +1,20 @@
-#!/usr/local/bin/fish
+#!/usr/bin/env bash
 
-echo ----------
-echo Updating production branch with master
-echo ----------
-echo git push
-git push
-echo ----------
-echo git checkout production
-git checkout production
-echo ----------
-echo git pull origin master
-git pull origin master
-echo ----------
-echo git push
-git push
-echo ----------
+set -e
+set -o pipefail
 
-set remote "jw@server.interflux.com"
-set path "/var/www/app.interflux.com"
-set branch (git rev-parse --abbrev-ref HEAD)
-set revision (git rev-parse --short HEAD)
+user=bot
+server=server.interflux.com
+domain=app.interflux.com
 
-echo Deploying to remote server
-echo Branch: $branch
-echo Revision: $revision
-echo Remote: $remote
-echo Path: $path
-echo ----------
+echo "----------"
+echo "Deploying:"
+echo $domain
+echo $user@$server
+echo "----------"
 
-switch $branch
-case production
-  echo scp remote/install.sh $remote:$path/remote
-  scp remote/install.sh $remote:$path/remote
-  and echo ----------
-  and echo ssh $remote "$path/remote/install.sh $branch $revision"
-  and ssh $remote "$path/remote/install.sh $branch $revision"
-  echo ----------
-  echo git checkout master
-  git checkout master
-  and echo ----------
-  and echo Deploy successful!
-  and echo ----------
-case '*'
-    echo Aborting - Only the branch production is deployable.
-    echo ----------
-end
+(
+  set -x
+  scp -i ~/.ssh/$user@$server remote/deploy-remote.sh $user@$server:~/
+  ssh -i ~/.ssh/$user@$server $user@$server "~/deploy-remote.sh $domain; rm -f ~/deploy-remote.sh"
+)
