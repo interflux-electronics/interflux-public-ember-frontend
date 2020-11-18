@@ -62,6 +62,8 @@
       }
     }
     ul {
+      display: flex;
+      flex-direction: column;
       @include widescreen {
         margin-top: px(4vw);
       }

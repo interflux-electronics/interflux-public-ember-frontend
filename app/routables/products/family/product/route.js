@@ -2,7 +2,6 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 import { action } from '@ember/object';
-import { later } from '@ember/runloop';
 
 export default class ProductsRoute extends Route {
   @service store;
@@ -13,12 +12,8 @@ export default class ProductsRoute extends Route {
 
     return hash({
       product: this.store.findRecord('product', slug, {
-        include: ['documents', 'images', 'features'].join(',')
-      }),
-      delay: new Promise(resolve => {
-        later(function() {
-          resolve(true);
-        }, 2000);
+        include: ['documents', 'images', 'features'].join(','),
+        reload: true
       })
     });
   }
