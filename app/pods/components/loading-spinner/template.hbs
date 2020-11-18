@@ -3,7 +3,7 @@
     <div class="scene">
       <div class="cube show-{{this.side}}">
         <div class="face front">
-          <Image @src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg" />
+          <Image @src="{{env 'cdnHost'}}/images/logos/secondary-interflux-electronics-symbol-1.svg" />
         </div>
         <div class="face back">
           <Icon @name="wave-soldering" />

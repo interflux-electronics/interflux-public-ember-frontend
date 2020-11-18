@@ -62,7 +62,7 @@
       <ul>
         {{#each @model.product.processes as |feature|}}
           <li>
-            <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
+            <Image @src="{{env 'cdnHost'}}/images/icons/{{feature.icon}}.svg" />
             <p>{{capitalise feature.text}}</p>
           </li>
         {{/each}}
@@ -79,7 +79,7 @@
       <ul>
         {{#each @model.product.qualities as |feature|}}
           <li>
-            <Image @src="{{cdn}}/images/icons/{{feature.icon}}.svg" />
+            <Image @src="{{env 'cdnHost'}}/images/icons/{{feature.icon}}.svg" />
             <p>{{feature.text}}</p>
           </li>
         {{/each}}
@@ -96,9 +96,9 @@
       <ul>
         {{#each @model.product.documents as |document|}}
           <li>
-            <Button::Url @href="{{cdn}}/{{document.path}}">
+            <Button::Url @href="{{env 'cdnHost'}}/{{document.path}}">
               <Image
-                @src="{{cdn}}/images/icons/download.svg"
+                @src="{{env 'cdnHost'}}/images/icons/download.svg"
                 @width="100"
                 @height="100"
               />

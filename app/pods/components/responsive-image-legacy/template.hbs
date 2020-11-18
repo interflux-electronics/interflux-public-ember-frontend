@@ -8,12 +8,12 @@
       {{#if this.optimal}}
         {{#if webp}}
           <source
-            srcset="{{cdn}}/{{@image.path}}@{{this.optimal.width}}x{{this.optimal.height}}.webp"
+            srcset="{{env 'cdnHost'}}/{{@image.path}}@{{this.optimal.width}}x{{this.optimal.height}}.webp"
             type="image/webp"
           >
         {{/if}}
         <img
-          src="{{cdn}}/{{@image.path}}@{{this.optimal.width}}x{{this.optimal.height}}.jpg"
+          src="{{env 'cdnHost'}}/{{@image.path}}@{{this.optimal.width}}x{{this.optimal.height}}.jpg"
           width={{this.optimal.width}}
           height={{this.optimal.height}}
           alt={{@image.alt}}
@@ -34,7 +34,7 @@
   {{#if this.showError}}
     <div class="error">
       <Image
-        @src="{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
+        @src="{{env 'cdnHost'}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
         @width="400"
         @height="400"
       />

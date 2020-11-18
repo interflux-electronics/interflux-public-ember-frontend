@@ -67,7 +67,7 @@
         <ul>
           {{#each @model.category.documents as |document|}}
             <li>
-              <Button::Url @href="{{cdn}}/{{document.path}}">
+              <Button::Url @href="{{env 'cdnHost'}}/{{document.path}}">
                 <p data-search="me">{{document.name}}</p>
                 <p>&nbsp;-&nbsp;</p>
                 <p data-search="me">{{document.language.nameEnglish}}</p>
