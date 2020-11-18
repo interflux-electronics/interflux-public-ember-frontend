@@ -81,7 +81,7 @@ module.exports = function(env) {
   let ENV = {
     appName: PKG.name,
     modulePrefix: PKG.name,
-    podModulePrefix: `${PKG.name}/routables`,
+    podModulePrefix: `${PKG.name}/pods`,
     environment,
     rootURL,
     locationType,
