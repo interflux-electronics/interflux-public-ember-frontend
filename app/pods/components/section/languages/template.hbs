@@ -5,12 +5,18 @@
         @route="home"
         @model={{language.id}}
       >
-        <img src="{{env 'cdnHost'}}/images/flags/{{language.id}}.png">
+        <img
+          src="{{env 'cdnHost'}}/images/flags/{{language.id}}.png"
+          alt="flag {{language.nameNative}}"
+        >
         <p>{{language.nameNative}}</p>
       </Button::Route>
     {{else}}
       <Button::Url @href="{{env 'oldHost'}}/{{language.id}}">
-        <img src="{{env 'cdnHost'}}/images/flags/{{language.id}}.png">
+        <img
+          src="{{env 'cdnHost'}}/images/flags/{{language.id}}.png"
+          alt="flag {{language.nameNative}}"
+        >
         <p>{{language.nameNative}}</p>
       </Button::Url>
     {{/if}}

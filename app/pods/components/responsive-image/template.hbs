@@ -1,6 +1,7 @@
 <figure
   class="responsive-image {{this.orientation}}{{if @class ' '}}{{@class}}"
   {{on 'click' this.onClick}}
+  role="button"
 >
   <picture
     {{did-insert this.register}}

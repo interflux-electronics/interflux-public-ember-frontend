@@ -12,7 +12,7 @@
           {{#each @model.product.images as |image|}}
             <ResponsiveImage
               @image={{image}}
-              @onClick={{action this.setHero image}}
+              @onClick={{fn this.setHero image}}
               @class={{if (eq image this.heroImage) 'active'}}
             />
           {{/each}}
@@ -23,16 +23,16 @@
     <div class="text">
       <h1>{{@model.product.name}}</h1>
       <h2>{{@model.product.family.nameSingle}}</h2>
-      <!-- <p>{{{markdown @model.product.pitch}}}</p> -->
+      {{!-- <p>{{markdown @model.product.pitch}}</p> --}}
       <p>Price: <a
           href="mailto:order@interflux.com"
           target="_blank"
-          rel="nofollow noreferrer"
+          rel="noopener noreferrer"
         >request</a></p>
       <p>Availability: <a
           href="mailto:order@interflux.com"
           target="_blank"
-          rel="nofollow noreferrer"
+          rel="noopener noreferrer"
         >request</a></p>
       <Button::Url
         @href="mailto:order@interflux.com"
@@ -49,7 +49,7 @@
       @class="white text"
     >
       <h4>Summary</h4>
-      <p>{{{markdown @model.product.pitch}}}</p>
+      <p>{{markdown @model.product.pitch}}</p>
     </Section>
   {{/if}}
 

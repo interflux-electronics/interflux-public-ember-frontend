@@ -5,7 +5,7 @@
     @id="links"
     class="legacy"
   >
-    <div class="left {{imageLeft}}">
+    <div class="left {{this.imageLeft}}">
       <h2>Products</h2>
       <p>Find products by type</p>
       <nav>
@@ -13,56 +13,61 @@
           @route="products.family"
           @model="soldering-fluxes"
           @text="Soldering Fluxes"
-          @onHover={{action 'showImage' 1}}
+          {{on 'mouseover' (fn this.showImage 1)}}
         />
         <Button::Route
           @route="products.family"
           @model="solder-pastes"
           @text="Soldering Pastes"
-          @onHover={{action 'showImage' 2}}
+          {{on 'mouseover' (fn this.showImage 2)}}
         />
         <Button::Route
           @route="products.family"
           @model="solder-wires"
           @text="Soldering Wires"
-          @onHover={{action 'showImage' 3}}
+          {{on 'mouseover' (fn this.showImage 3)}}
         />
         <Button::Route
           @route="products.family"
           @model="fluxing-systems"
           @text="Fluxing Systems"
-          @onHover={{action 'showImage' 4}}
+          {{on 'mouseover' (fn this.showImage 4)}}
         />
         <Button::Route
           @route="products.family"
           @model="auxiliaries"
           @text="Auxiliaries"
-          @onHover={{action 'showImage' 5}}
+          {{on 'mouseover' (fn this.showImage 5)}}
         />
       </nav>
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg"
         class="image-1"
+        alt="electronics"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-2"
+        alt="electronics"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-3"
+        alt="electronics"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-4"
+        alt="electronics"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-5"
+        alt="electronics"
       >
     </div>
 
-    <div class="right {{imageRight}}">
+    <div class="right {{this.imageRight}}">
       <h2>Processes</h2>
       <p>Find products by type</p>
       <nav>
@@ -70,52 +75,57 @@
           @route="processes.process"
           @model="wave-soldering"
           @text="Wave Soldering"
-          @onHover={{action 'showImage' 6}}
+          {{on 'mouseover' (fn this.showImage 6)}}
         />
         <Button::Route
           @route="processes.process"
           @model="selective-soldering"
           @text="Selective Soldering"
-          @onHover={{action 'showImage' 7}}
+          {{on 'mouseover' (fn this.showImage 7)}}
         />
         <Button::Route
           @route="processes.process"
           @model="reflow-soldering"
           @text="Reflow Soldering"
-          @onHover={{action 'showImage' 8}}
+          {{on 'mouseover' (fn this.showImage 8)}}
         />
         <Button::Route
           @route="processes.process"
           @model="rework-and-repair"
           @text="Rework & Repair"
-          @onHover={{action 'showImage' 9}}
+          {{on 'mouseover' (fn this.showImage 9)}}
         />
         <Button::Route
           @route="processes.process"
           @model="pre-tinning"
           @text="Pre-tinning"
-          @onHover={{action 'showImage' 10}}
+          {{on 'mouseover' (fn this.showImage 10)}}
         />
       </nav>
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg"
         class="image-6"
+        alt="soldering process"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-7"
+        alt="soldering process"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-8"
+        alt="soldering process"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-9"
+        alt="soldering process"
       >
       <img
         src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
         class="image-10"
+        alt="soldering process"
       >
     </div>
 

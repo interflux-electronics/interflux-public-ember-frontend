@@ -1,9 +1,10 @@
+{{!-- template-lint-disable  --}}
 <div class="map">
   {{#mapbox-gl
     initOptions=this.initOptions
-    mapLoaded=(action 'mapLoaded') as |map|
+    mapLoaded=(fn this.mapLoaded) as |map|
   }}
-    {{map.on 'click' (action 'mapClicked')}}
+    {{map.on 'click' (fn this.mapClicked)}}
 
     {{#each this.sources as |s|}}
       {{#map.source options=s as |source|}}

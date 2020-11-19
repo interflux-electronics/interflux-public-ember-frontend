@@ -11,7 +11,7 @@ export default class MapComponent extends Component {
       style: 'mapbox://styles/jw-floatplane-dev/ck8mcsfr50uwe1iohs6xv6n0d',
       minZoom: '0',
       maxZoom: '24',
-      interactive: true,
+      interactive: false,
       zoom: 1.7,
       center: [67.5172053, 14.199253] // lng lat! (not lat lng)
     };

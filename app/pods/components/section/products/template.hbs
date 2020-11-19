@@ -8,10 +8,10 @@
       <Icon @name={{@icon}} />
     {{/if}}
     {{#if @title}}
-      <h2>{{{markdown @title}}}</h2>
+      <h2>{{markdown @title}}</h2>
     {{/if}}
     {{#if @text}}
-      <p>{{{markdown @text}}}</p>
+      <p>{{markdown @text}}</p>
     {{/if}}
   </div>
 
@@ -30,11 +30,11 @@
           @formats={{array 'jpg' 'webp'}}
         />
 
-        <!-- <ResponsiveImage @image={{get product 'avatar'}} /> -->
+        {{!-- <ResponsiveImage @image={{get product 'avatar'}} /> --}}
 
 
         {{#if (or product.new product.popular product.featured)}}
-          <button>
+          <button type="button">
             {{#if product.new}}
               <span>NEW</span>
             {{else if product.popular}}
@@ -42,7 +42,7 @@
             {{else if product.featured}}
               <span>learn more</span>
             {{/if}}
-            <!-- <span>Explore</span> -->
+            {{!-- <span>Explore</span> --}}
             <Svg::ArrowRight />
           </button>
         {{/if}}
@@ -57,11 +57,11 @@
       >
         <h2>{{product.name}}</h2>
         <h3>{{if product.label product.label product.family.nameSingle}}</h3>
-        {{#if showAll}}
+        {{#if this.showAll}}
           <ResponsiveImage @image={{get product 'avatar'}} />
         {{/if}}
         {{#if (or product.new product.popular product.featured)}}
-          <button>
+          <button type="button">
             {{#if product.new}}
               <span>NEW</span>
             {{else if product.popular}}
@@ -69,7 +69,7 @@
             {{else if product.featured}}
               <span>learn more</span>
             {{/if}}
-            <!-- <span>Explore</span> -->
+            {{!-- <span>Explore</span> --}}
             <Svg::ArrowRight />
           </button>
         {{/if}}
