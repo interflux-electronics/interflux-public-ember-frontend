@@ -34,7 +34,7 @@ export default class SectionProductComponent extends Component {
     return this.hiddenProducts.length;
   }
 
-  @computed('showAll')
+  @computed('featuredProducts.length', 'productsForFeature.length', 'showAll')
   get count() {
     if (this.showAll) {
       return this.productsForFeature.length;

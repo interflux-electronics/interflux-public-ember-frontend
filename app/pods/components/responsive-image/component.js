@@ -19,7 +19,7 @@ export default class ImageResponsiveComponent extends Component {
     this.picture = element;
   }
 
-  @computed('picture', 'args.{path,image}')
+  @computed('args.{image,path}', 'picture', 'valid')
   get html() {
     if (!this.valid) {
       console.warn('<ResponsiveImage> missing path, sizes or formats');
@@ -127,7 +127,7 @@ export default class ImageResponsiveComponent extends Component {
     return true;
   }
 
-  @computed('args.{path,image}')
+  @computed('args.{image,path}', 'sizes', 'valid')
   get orientation() {
     if (!this.valid) {
       return 'invalid';
