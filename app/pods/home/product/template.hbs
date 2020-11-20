@@ -1,0 +1,119 @@
+{{#with @model.product as |product|}}
+  <Page @id="product">
+    <Header />
+
+    <Section @id="hero">
+      <div class="hero">
+        <ResponsiveImage @image={{this.heroImage}} />
+      </div>
+
+      <div class="thumbs">
+        <div>
+          {{#each this.images as |image|}}
+            <button
+              type="button"
+              {{on 'click' (fn this.setHero image)}}
+              class={{if (eq image this.heroImage) 'active'}}
+            >
+              <ResponsiveImage @image={{image}} />
+            </button>
+          {{/each}}
+        </div>
+      </div>
+
+      <div class="text">
+        <h1>{{product.name}}</h1>
+        <h2>{{product.family.nameSingle}}</h2>
+        {{!-- <p>{{markdown product.pitch}}</p> --}}
+        {{!-- <p>Price: <a
+            href="mailto:order@interflux.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >request</a></p> --}}
+        {{!-- <p>Availability: <a
+            href="mailto:order@interflux.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >request</a></p> --}}
+        {{!-- <Button::Url
+          @href="mailto:order@interflux.com"
+          @text="Order"
+          @size="big"
+          @style="orange-3"
+        /> --}}
+      </div>
+    </Section>
+
+    {{#if product.pitch}}
+      <Section
+        @id="pitch"
+        @class="white text"
+      >
+        <h4>Summary</h4>
+        <p>{{markdown product.pitch}}</p>
+      </Section>
+    {{/if}}
+
+    {{#if product.processes}}
+      <Section
+        @id="processes"
+        @class="white list"
+      >
+        <h4>Recommended for</h4>
+        <ul>
+          {{#each product.processes as |feature|}}
+            <li>
+              <Image @src="{{env 'cdnHost'}}/images/icons/{{feature.icon}}.svg" />
+              <p>{{capitalise feature.text}}</p>
+            </li>
+          {{/each}}
+        </ul>
+      </Section>
+    {{/if}}
+
+    {{#if product.qualities}}
+      <Section
+        @id="qualities"
+        @class="white list"
+      >
+        <h4>Key advantages</h4>
+        <ul>
+          {{#each product.qualities as |feature|}}
+            <li>
+              <Image @src="{{env 'cdnHost'}}/images/icons/{{feature.icon}}.svg" />
+              <p>{{feature.text}}</p>
+            </li>
+          {{/each}}
+        </ul>
+      </Section>
+    {{/if}}
+
+    {{#if product.documents}}
+      <Section
+        @id="documents"
+        @class="white list"
+      >
+        <h4>Related documents</h4>
+        <ul>
+          {{#each product.documents as |document|}}
+            <li>
+              <Button::Url @href="{{env 'cdnHost'}}/{{document.path}}">
+                <Image
+                  @src="{{env 'cdnHost'}}/images/icons/download.svg"
+                  @width="100"
+                  @height="100"
+                />
+                <span>
+                  {{document.name}} ({{document.language.nameEnglish}})
+                </span>
+                <span>{{document.category.cta}}</span>
+              </Button::Url>
+            </li>
+          {{/each}}
+        </ul>
+      </Section>
+    {{/if}}
+
+    <Footer />
+  </Page>
+{{/with}}

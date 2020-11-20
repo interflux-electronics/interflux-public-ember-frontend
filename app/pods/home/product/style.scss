@@ -114,6 +114,10 @@
         flex-flow: wrap;
         max-width: 1200px;
       }
+      button {
+        border: 0;
+        padding: 0;
+      }
       figure {
         flex-shrink: 0;
         transition: transform 100ms ease;
@@ -143,11 +147,13 @@
           z-index: 1;
           transform: scale(1.2);
         }
-        &:hover {
+        &:hover,
+        &:focus {
           z-index: 2;
           transform: scale(1.3);
         }
         &:hover,
+        &:focus,
         &.active {
           transform-origin: center;
           @include widescreen {

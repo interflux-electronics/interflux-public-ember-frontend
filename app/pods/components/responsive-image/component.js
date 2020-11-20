@@ -1,14 +1,41 @@
-// TODO: write tests
-
 import ENV from 'interflux/config/environment';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { computed } from '@ember/object';
 
-export default class ImageResponsiveComponent extends Component {
-  // The state of this component (loading | error | done)
-  @tracked status = 'loading';
+function arg(object, property) {
+  return {
+    get() {
+      const value = this.args[property];
+      if (!value) {
+        console.warn(`missing argument: ${property}`);
+      }
+      return value;
+    },
+    set() {
+      console.warn(`argument ${property} is read-only`);
+    }
+  };
+}
+
+export default class ImageComponent extends Component {
+  @arg image;
+
+  get variations() {
+    return this.image ? this.image.get('variations') : null;
+  }
+
+  get path() {
+    return this.image ? this.image.get('path') : null;
+  }
+
+  get caption() {
+    return this.image ? this.image.get('caption') : null;
+  }
+
+  get alt() {
+    return this.image ? this.image.get('alt') : null;
+  }
 
   // The <picture> element
   @tracked picture;
@@ -19,44 +46,17 @@ export default class ImageResponsiveComponent extends Component {
     this.picture = element;
   }
 
-  @computed('args.{image,path}', 'picture', 'valid')
   get html() {
-    if (!this.valid) {
-      console.warn('<ResponsiveImage> missing path, sizes or formats');
-      return null;
+    if (!this.path) {
+      return console.warn('no path');
+    }
+    if (!this.variations) {
+      return console.warn('no variations', this.path);
     }
     if (!this.picture) {
       return null;
     }
-    const size = this.optimalSize(this.picture);
-    const fragment = this.fragment(size);
-    return fragment;
-  }
 
-  // 1. Find th optimal size for <picture> width and screen pixeldensity
-  optimalSize(picture) {
-    const sizes = this.sizes;
-    const pixelRatio = window.devicePixelRatio || 1;
-    const optimalWidth = picture.offsetWidth * pixelRatio;
-    const distances = sizes.map(size => {
-      const width = size.split('x')[0];
-      return width - optimalWidth;
-    });
-
-    const larger = distances.filter(d => d >= 0);
-    const smaller = distances.filter(d => d < 0);
-
-    const closestDistance = larger.length
-      ? Math.min(...larger)
-      : Math.max(...smaller);
-
-    return sizes.find(size => {
-      const width = size.split('x')[0];
-      return width - optimalWidth === closestDistance;
-    });
-  }
-
-  fragment(size) {
     // Before we add things to the DOM we'll append them to a fragment
     const fragment = document.createDocumentFragment();
 
@@ -76,64 +76,96 @@ export default class ImageResponsiveComponent extends Component {
     };
     img.onerror = () => {
       this.status = 'error';
-      console.warn('<ResponsiveImage> failed to load image', this.path);
+      console.warn('<Image> failed to load image', this.path);
     };
     const cdn = ENV['cdnHost'];
-    img.src = `${cdn}/${this.path}@${size}.jpg`;
-    img.width = size.split('x')[0];
-    img.height = size.split('x')[1];
+    img.src = `${cdn}/${this.path}@${this.closestJPG}.jpg`;
+    img.width = this.closestJPG.split('x')[0];
+    img.height = this.closestJPG.split('x')[1];
     if (this.alt) {
       img.alt = this.alt;
     }
     fragment.append(img);
 
     // If WEBP is supported, create <source> element
-    if (this.webp) {
+    if (this.closestWEBP) {
       const source = document.createElement('source');
       source.type = 'image/webp';
-      source.srcset = `${cdn}/${this.path}@${size}.webp`;
+      source.srcset = `${cdn}/${this.path}@${this.closestWEBP}.webp`;
       fragment.prepend(source);
     }
 
     return fragment;
   }
 
-  get path() {
-    return this.args.image ? this.args.image.get('path') : this.args.path;
+  get optimalWidth() {
+    const pixelRatio = window.devicePixelRatio || 1;
+    return this.picture.offsetWidth * pixelRatio;
   }
 
-  get sizes() {
-    return this.args.image ? this.args.image.get('sizes') : this.args.sizes;
+  get JPGs() {
+    return this.variations
+      .split(',')
+      .filter(x => x.split('.')[1] === 'jpg')
+      .map(x => x.split('.')[0]);
   }
 
-  get formats() {
-    return this.args.image ? this.args.image.get('formats') : this.args.formats;
+  get WEBPs() {
+    return this.variations
+      .split(',')
+      .filter(x => x.split('.')[1] === 'webp')
+      .map(x => x.split('.')[0]);
   }
 
-  get alt() {
-    return this.args.image ? this.args.image.get('alt') : this.args.alt;
+  get closestJPG() {
+    return this.closestSize(this.JPGs);
   }
 
-  get webp() {
-    return this.formats.includes('webp');
+  get closestWEBP() {
+    return this.closestSize(this.WEBPs);
   }
 
-  get valid() {
-    if (!this.path || !this.sizes || !this.formats) {
-      this.status = 'error';
-      return false;
-    }
+  closestSize(sizes) {
+    const distances = sizes.map(size => {
+      const width = size.split('x')[0];
+      return width - this.optimalWidth;
+    });
 
-    return true;
+    const larger = distances.filter(d => d >= 0);
+    const smaller = distances.filter(d => d < 0);
+
+    const closestDistance = larger.length
+      ? Math.min(...larger)
+      : Math.max(...smaller);
+
+    return sizes.find(size => {
+      const width = size.split('x')[0];
+      return width - this.optimalWidth === closestDistance;
+    });
   }
 
-  @computed('args.{image,path}', 'sizes', 'valid')
+  // The state of this component (loading | error | done)
+  @tracked status = 'loading';
+
+  get showLoading() {
+    return this.status === 'loading';
+  }
+
+  get showError() {
+    return this.status === 'error';
+  }
+
   get orientation() {
-    if (!this.valid) {
+    if (!this.picture) {
+      return 'loading';
+    }
+    if (!this.variations) {
       return 'invalid';
     }
-    const sizes = this.sizes;
-    const size = sizes[0].split('x');
+    if (!this.closestJPG) {
+      return 'invalid';
+    }
+    const size = this.closestJPG.split('x');
     const w = parseInt(size[0]);
     const h = parseInt(size[1]);
     if (w === h) {
@@ -143,23 +175,6 @@ export default class ImageResponsiveComponent extends Component {
       return 'landscape';
     } else {
       return 'portrait';
-    }
-  }
-
-  @computed('status')
-  get showLoading() {
-    return this.status === 'loading';
-  }
-
-  @computed('status')
-  get showError() {
-    return this.status === 'error';
-  }
-
-  @action
-  onClick() {
-    if (this.args.onClick) {
-      this.args.onClick();
     }
   }
 }

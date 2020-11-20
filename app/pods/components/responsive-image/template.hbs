@@ -1,32 +1,21 @@
-<figure
-  class="responsive-image {{this.orientation}}{{if @class ' '}}{{@class}}"
-  {{on 'click' this.onClick}}
-  role="button"
->
-  <picture
-    {{did-insert this.register}}
-    data-path={{this.path}}
-  >
+<figure class="responsive-image {{this.orientation}}">
+  <picture {{did-insert this.register}}>
     {{this.html}}
   </picture>
 
-  {{#if this.showLoading}}
+  {{#if @caption}}
+    <figcaption>{{@caption}}</figcaption>
+  {{/if}}
+
+  {{!-- {{#if this.showLoading}}
     <div class="loading">
       <LoadSpinner @icon="cup" />
     </div>
-  {{/if}}
+  {{/if}} --}}
 
-  {{#if this.showError}}
+  {{!-- {{#if this.showError}}
     <div class="error">
-      <Image
-        @src="{{env 'cdnHost'}}/images/logos/secondary-interflux-electronics-symbol-1.svg"
-        @width="400"
-        @height="400"
-      />
+      <Svg::Error />
     </div>
-  {{/if}}
-
-  {{#if @image.caption}}
-    <figcaption>{{@image.caption}}</figcaption>
-  {{/if}}
+  {{/if}} --}}
 </figure>

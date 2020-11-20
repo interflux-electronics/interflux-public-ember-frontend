@@ -8,6 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('home', { path: '/:language' }, function() {
+    this.route('product', { path: '/product/:id' });
+
+    // To revisit:
     this.route('products', { resetNamespace: true }, function() {
       this.route('family', { path: '/:family' }, function() {
         this.route('product', { path: '/:product' });

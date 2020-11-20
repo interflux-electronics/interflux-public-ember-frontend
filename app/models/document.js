@@ -1,13 +1,15 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { alias } from '@ember/object/computed';
 
 export default class DocumentModel extends Model {
   @attr('string') path;
   @attr('string') name;
 
+  @belongsTo('document-category') documentCategory;
   @alias('documentCategory') category;
 
-  @belongsTo('document-category') documentCategory;
-  @belongsTo('language') language;
-  @belongsTo('product') product;
+  @hasMany('product') products;
+  @hasMany('product-document') productDocuments;
+  @hasMany('cdn-file') cdnFiles;
+  @alias('cdnFiles') files;
 }

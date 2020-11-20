@@ -1,4 +1,4 @@
-import Model, { attr, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 export default class CompanyModel extends Model {
   @attr('string') businessName;
@@ -6,16 +6,25 @@ export default class CompanyModel extends Model {
   @attr('string') address;
   @attr('string') phone;
   @attr('string') fax;
-  @attr('array') emails;
+  @attr('string') emails;
+  @attr('string') emailGeneral;
+  @attr('string') emailSupport;
+  @attr('string') emailOrders;
+  @attr('string') emailAccounting;
   @attr('string') website;
-  @attr('number') latitude;
-  @attr('number') longitude;
+  @attr('string') latitude;
+  @attr('string') longitude;
+
   @attr('number') order;
+  @attr('boolean') public;
 
   @belongsTo('country') country;
 
-  // @hasMany('member') member;
-  // @hasMany('market') country;
+  @hasMany('person') people;
+  @hasMany('country') markets;
+
+  @hasMany('company-member') companyMembers;
+  @hasMany('company-market') companyMarkets;
 
   get rank() {
     return this.order || 999;
