@@ -8,6 +8,7 @@ export default class ProductRoute extends Route {
         include: [
           'image',
           'documents',
+          'documents.cdn_files',
           'qualities',
           'uses',
           'product_family',
@@ -17,6 +18,7 @@ export default class ProductRoute extends Route {
           'product_uses',
           'product_documents'
         ].join(','),
+
         reload: true
       })
     });

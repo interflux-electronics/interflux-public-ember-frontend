@@ -10,6 +10,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  svg {
+    height: 100%;
+    width: 100%;
+  }
   .icon {
     picture {
       height: 100%;
@@ -43,10 +47,10 @@
       transform: translateZ(-100px) rotateY(90deg);
     }
     &.show-top {
-      transform: translateZ(-100px) rotateX(-90deg);
+      transform: translateZ(-100px) rotateY(0deg) rotateX(-90deg);
     }
     &.show-bottom {
-      transform: translateZ(-100px) rotateX(90deg);
+      transform: translateZ(-100px) rotateY(0deg) rotateX(90deg);
     }
     .face {
       position: absolute;

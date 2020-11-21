@@ -24,47 +24,49 @@
       <div class="text">
         <h1>{{product.name}}</h1>
         <h2>{{product.family.nameSingle}}</h2>
-        {{!-- <p>{{markdown product.pitch}}</p> --}}
-        {{!-- <p>Price: <a
+        <p>{{markdown product.pitch}}</p>
+        <p>Price: <a
             href="mailto:order@interflux.com"
             target="_blank"
             rel="noopener noreferrer"
-          >request</a></p> --}}
-        {{!-- <p>Availability: <a
+          >request</a></p>
+        <p>Availability: <a
             href="mailto:order@interflux.com"
             target="_blank"
             rel="noopener noreferrer"
-          >request</a></p> --}}
-        {{!-- <Button::Url
+          >request</a></p>
+        <Button::Url
           @href="mailto:order@interflux.com"
           @text="Order"
           @size="big"
           @style="orange-3"
-        /> --}}
+        />
       </div>
     </Section>
 
+    {{!--
     {{#if product.pitch}}
       <Section
         @id="pitch"
         @class="white text"
       >
-        <h4>Summary</h4>
+        <h4>What is it?</h4>
         <p>{{markdown product.pitch}}</p>
       </Section>
     {{/if}}
+    --}}
 
-    {{#if product.processes}}
+    {{#if product.uses}}
       <Section
         @id="processes"
         @class="white list"
       >
         <h4>Recommended for</h4>
         <ul>
-          {{#each product.processes as |feature|}}
+          {{#each product.uses as |use|}}
             <li>
-              <Image @src="{{env 'cdnHost'}}/images/icons/{{feature.icon}}.svg" />
-              <p>{{capitalise feature.text}}</p>
+              <Image @src="{{env 'cdnHost'}}/images/icons/{{use.icon}}.svg" />
+              <p>{{capitalise use.text}}</p>
             </li>
           {{/each}}
         </ul>
@@ -74,14 +76,18 @@
     {{#if product.qualities}}
       <Section
         @id="qualities"
-        @class="white list"
+        @class="white list left-right"
       >
-        <h4>Key advantages</h4>
         <ul>
-          {{#each product.qualities as |feature|}}
+          {{#each product.qualities as |quality|}}
             <li>
-              <Image @src="{{env 'cdnHost'}}/images/icons/{{feature.icon}}.svg" />
-              <p>{{feature.text}}</p>
+              <Image @src="{{env 'cdnHost'}}/images/icons/{{quality.icon}}.svg" />
+              <div class="text">
+                <h4>{{quality.text}}</h4>
+                {{#if quality.gist}}
+                  <p>{{quality.gist}}</p>
+                {{/if}}
+              </div>
             </li>
           {{/each}}
         </ul>
@@ -91,23 +97,29 @@
     {{#if product.documents}}
       <Section
         @id="documents"
-        @class="white list"
+        @class="white list left-right"
       >
-        <h4>Related documents</h4>
+        <h4>Documents</h4>
         <ul>
           {{#each product.documents as |document|}}
             <li>
-              <Button::Url @href="{{env 'cdnHost'}}/{{document.path}}">
+              <div class="left">
                 <Image
                   @src="{{env 'cdnHost'}}/images/icons/download.svg"
                   @width="100"
                   @height="100"
                 />
-                <span>
-                  {{document.name}} ({{document.language.nameEnglish}})
-                </span>
-                <span>{{document.category.cta}}</span>
-              </Button::Url>
+                <p>{{document.name}} (PDF)</p>
+              </div>
+
+              <div class="right">
+                {{#each document.files as |file|}}
+                  <Button
+                    @url={{file.url}}
+                    @text={{file.language}}
+                  />
+                {{/each}}
+              </div>
             </li>
           {{/each}}
         </ul>

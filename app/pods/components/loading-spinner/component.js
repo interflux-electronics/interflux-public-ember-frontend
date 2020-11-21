@@ -1,36 +1,32 @@
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { task } from 'ember-concurrency-decorators';
-import { timeout } from 'ember-concurrency';
 
 export default class LoadingSpinnerComponent extends Component {
-  @service load;
   @tracked side = 'front';
 
   constructor() {
     super(...arguments);
 
-    // this.sides = this.sides.sort(function() { return 0.5 - Math.random() });
-    // this.side = this.sides
-
-    this.loop.perform();
+    this.startLoop();
   }
 
-  @task()
-  *loop() {
-    console.log('showing load spinner');
+  delay(ms) {
+    return new Promise(approve => {
+      window.setTimeout(approve, ms);
+    });
+  }
 
-    const array = ['bottom', 'top', 'right', 'left', 'back', 'front'].sort(
-      function() {
-        return 0.5 - Math.random();
-      }
-    );
+  async startLoop() {
+    const array = ['bottom', 'top', 'right', 'left', 'back'].sort(function() {
+      return 0.5 - Math.random();
+    });
+    // Make sure the first shown icon is shown at the end of the loop.
+    array.push('front');
 
     let i = 0;
 
-    while (true) {
-      yield timeout(1200);
+    while (i < 6) {
+      await this.delay(1400);
       this.side = array[i];
       i = i < 5 ? i + 1 : 0;
     }

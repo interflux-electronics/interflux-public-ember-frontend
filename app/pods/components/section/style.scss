@@ -114,25 +114,26 @@ section.list {
       picture {
         display: block;
         height: auto;
+        flex-shrink: 0;
         @include widescreen {
           width: px(4vw);
           height: px(4vw);
-          margin-right: px(1.5vw);
+          margin-right: px(2vw);
         }
         @include desktop {
           width: 4vw;
           height: 4vw;
-          margin-right: 1.5vw;
+          margin-right: 2vw;
         }
         @include tablet {
           width: 8vw;
           height: 8vw;
-          margin-right: 2.4vw;
+          margin-right: 3vw;
         }
         @include mobile {
           width: 12vw;
           height: 12vw;
-          margin-right: 4vw;
+          margin-right: 5vw;
         }
         i.load-spinner {
           transform: scale(0.7);
