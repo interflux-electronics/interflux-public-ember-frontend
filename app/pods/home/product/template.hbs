@@ -65,7 +65,7 @@
         <ul>
           {{#each product.uses as |use|}}
             <li>
-              <Image @src="{{env 'cdnHost'}}/images/icons/{{use.icon}}.svg" />
+              <Image @src={{use.iconURL}} />
               <p>{{capitalise use.text}}</p>
             </li>
           {{/each}}
@@ -81,7 +81,7 @@
         <ul>
           {{#each product.qualities as |quality|}}
             <li>
-              <Image @src="{{env 'cdnHost'}}/images/icons/{{quality.icon}}.svg" />
+              <Image @src={{quality.iconURL}} />
               <div class="text">
                 <h4>{{quality.text}}</h4>
                 {{#if quality.gist}}

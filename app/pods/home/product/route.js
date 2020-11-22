@@ -8,7 +8,6 @@ export default class ProductRoute extends Route {
         include: [
           'image',
           'documents',
-          'documents.cdn_files',
           'qualities',
           'uses',
           'product_family',

@@ -1,6 +1,10 @@
 <figure class="responsive-image {{this.orientation}}">
   <picture {{did-insert this.register}}>
-    {{this.html}}
+    {{#if this.html}}
+      {{this.html}}
+    {{else}}
+      <p>No image</p>
+    {{/if}}
   </picture>
 
   {{#if @caption}}

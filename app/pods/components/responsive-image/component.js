@@ -2,6 +2,7 @@ import ENV from 'interflux/config/environment';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 function arg(object, property) {
   return {
@@ -18,7 +19,9 @@ function arg(object, property) {
   };
 }
 
-export default class ImageComponent extends Component {
+export default class ResponsiveImageComponent extends Component {
+  @service browser;
+
   @arg image;
 
   get variations() {
@@ -37,15 +40,92 @@ export default class ImageComponent extends Component {
     return this.image ? this.image.get('alt') : null;
   }
 
-  // The <picture> element
-  @tracked picture;
+  get hasJPG() {
+    return this.variations.includes('.jpg');
+  }
 
-  // When the <picture> element is inserted we register it for later use
+  get hasWEBP() {
+    return this.variations.includes('.webp');
+  }
+
+  get hasPNG() {
+    return this.variations.includes('.png');
+  }
+
+  get hasSVG() {
+    return this.variations.includes('.svg');
+  }
+
+  get hasSizes() {
+    return this.variations.includes('@');
+  }
+
+  get JPGs() {
+    return this.variations.split(',').filter((x) => x.split('.')[1] === 'jpg');
+  }
+
+  get WEBPs() {
+    return this.variations.split(',').filter((x) => x.split('.')[1] === 'webp');
+  }
+
+  get JPGsizes() {
+    return this.JPGs.map((x) => x.split('.')[0].replace('@', ''));
+  }
+
+  get WEBPsizes() {
+    return this.JPGs.map((x) => x.split('.')[0].replace('@', ''));
+  }
+
+  // PICTURE
+
+  // When the <picture> element is inserted we register it for later use.
   @action
   register(element) {
     this.picture = element;
   }
 
+  // The <picture> element
+  @tracked picture;
+
+  // This component looks at the actual width the <picture> element and the screen density and
+  // decideds which width is the smallest width, which still renders a sharp image.
+  get optimalWidth() {
+    const pixelRatio = window.devicePixelRatio || 1;
+    return this.picture.offsetWidth * pixelRatio;
+  }
+
+  // Returns the JPG size "200x200" which has a width above and closest to the optimal width.
+  get closestJPGsize() {
+    return this.closestSize(this.JPGsizes);
+  }
+
+  // Returns the WEBP size "200x200" which has a width above and closest to the optimal width.
+  get closestWEBPsize() {
+    return this.closestSize(this.WEBPsizes);
+  }
+
+  // Accepts and array of sizes "200x200".
+  // Returns the one which is above and closest to the optimal width.
+  closestSize(sizes) {
+    const distances = sizes.map((size) => {
+      const width = size.split('x')[0];
+      return width - this.optimalWidth;
+    });
+
+    const larger = distances.filter((d) => d >= 0);
+    const smaller = distances.filter((d) => d < 0);
+
+    const closestDistance = larger.length
+      ? Math.min(...larger)
+      : Math.max(...smaller);
+
+    return sizes.find((size) => {
+      const width = size.split('x')[0];
+      return width - this.optimalWidth === closestDistance;
+    });
+  }
+
+  // Here we create the HTML for the <img> and <source> elements which go into the <picture>.
   get html() {
     if (!this.path) {
       return console.warn('no path');
@@ -76,72 +156,63 @@ export default class ImageComponent extends Component {
     };
     img.onerror = () => {
       this.status = 'error';
-      console.warn('<Image> failed to load image', this.path);
+      console.warn('<ResponsiveImage> failed to load image', this.path);
     };
-    const cdn = ENV['cdnHost'];
-    img.src = `${cdn}/${this.path}@${this.closestJPG}.jpg`;
-    img.width = this.closestJPG.split('x')[0];
-    img.height = this.closestJPG.split('x')[1];
     if (this.alt) {
       img.alt = this.alt;
     }
-    fragment.append(img);
 
-    // If WEBP is supported, create <source> element
-    if (this.closestWEBP) {
-      const source = document.createElement('source');
-      source.type = 'image/webp';
-      source.srcset = `${cdn}/${this.path}@${this.closestWEBP}.webp`;
-      fragment.prepend(source);
+    // Ideally we use the native HTML5 <picture> approach with <source> and <img> inside.
+    //
+    // <picture>
+    //   <source src="image.webp" type="image/webp" />
+    //   <img src="image.jpg" width="200" height="200" alt="foo" />
+    // </picture>
+    //
+    // However, browsers end up downloading both the JPG and WEBP!
+    // https://www.smashingmagazine.com/2013/05/how-to-avoid-duplicate-downloads-in-responsive-images/
+    // Thus we revert to simply one <img> rendering.
+    //
+    // For reference:
+    // if (this.hasJPG) {
+    //   img.src = `${ENV.cdnHost}/${this.path}@${this.closestJPGsize}.jpg`;
+    //   img.width = this.closestJPGsize.split('x')[0];
+    //   img.height = this.closestJPGsize.split('x')[1];
+    //   fragment.append(img);
+    //
+    //   if (this.hasWEBP) {
+    //     const source = document.createElement('source');
+    //     source.type = 'image/webp';
+    //     source.srcset = `${ENV.cdnHost}/${this.path}@${this.closestWEBPsize}.webp`;
+    //     fragment.prepend(source);
+    //   }
+    //
+    //   return fragment;
+    // }
+    //
+    if (this.hasSVG) {
+      img.src = `${ENV.cdnHost}/${this.path}.svg`;
+      fragment.append(img);
+      return fragment;
     }
 
-    return fragment;
-  }
+    if (this.hasWEBP && this.browser.supportsWEBP) {
+      img.src = `${ENV.cdnHost}/${this.path}@${this.closestWEBPsize}.webp`;
+      img.width = this.closestWEBPsize.split('x')[0];
+      img.height = this.closestWEBPsize.split('x')[1];
+      fragment.append(img);
+      return fragment;
+    }
 
-  get optimalWidth() {
-    const pixelRatio = window.devicePixelRatio || 1;
-    return this.picture.offsetWidth * pixelRatio;
-  }
+    if (this.hasJPG) {
+      img.src = `${ENV.cdnHost}/${this.path}@${this.closestJPGsize}.jpg`;
+      img.width = this.closestJPGsize.split('x')[0];
+      img.height = this.closestJPGsize.split('x')[1];
+      fragment.append(img);
+      return fragment;
+    }
 
-  get JPGs() {
-    return this.variations
-      .split(',')
-      .filter(x => x.split('.')[1] === 'jpg')
-      .map(x => x.split('.')[0]);
-  }
-
-  get WEBPs() {
-    return this.variations
-      .split(',')
-      .filter(x => x.split('.')[1] === 'webp')
-      .map(x => x.split('.')[0]);
-  }
-
-  get closestJPG() {
-    return this.closestSize(this.JPGs);
-  }
-
-  get closestWEBP() {
-    return this.closestSize(this.WEBPs);
-  }
-
-  closestSize(sizes) {
-    const distances = sizes.map(size => {
-      const width = size.split('x')[0];
-      return width - this.optimalWidth;
-    });
-
-    const larger = distances.filter(d => d >= 0);
-    const smaller = distances.filter(d => d < 0);
-
-    const closestDistance = larger.length
-      ? Math.min(...larger)
-      : Math.max(...smaller);
-
-    return sizes.find(size => {
-      const width = size.split('x')[0];
-      return width - this.optimalWidth === closestDistance;
-    });
+    return null;
   }
 
   // The state of this component (loading | error | done)
@@ -162,10 +233,10 @@ export default class ImageComponent extends Component {
     if (!this.variations) {
       return 'invalid';
     }
-    if (!this.closestJPG) {
+    if (!this.closestJPGsize) {
       return 'invalid';
     }
-    const size = this.closestJPG.split('x');
+    const size = this.closestJPGsize.split('x');
     const w = parseInt(size[0]);
     const h = parseInt(size[1]);
     if (w === h) {
