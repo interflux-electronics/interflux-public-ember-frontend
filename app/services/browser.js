@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 
 export default class BrowserService extends Service {
+  // TODO: Improve for Firefox
   get supportsWEBP() {
     const canvas = document.createElement('canvas');
     if (canvas.getContext && canvas.getContext('2d')) {
