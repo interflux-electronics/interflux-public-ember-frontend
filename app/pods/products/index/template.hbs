@@ -2,12 +2,12 @@
   <Header />
 
   <Section @id="intro">
-    <h1>We create <strong>chemistry</strong> for soldering high reliable <strong>electronics</strong></h1>
+    <h1>We create the <strong>chemistry</strong> needed for producing high reliability <strong>electronics</strong></h1>
   </Section>
 
   <Section @id="links">
     <nav>
-      {{#each @model.families as |family|}}
+      {{#each this.families as |family|}}
         <Button::Route
           @route="products.family"
           @model={{family.slug}}
@@ -16,12 +16,8 @@
             <h2>{{capitalise family.namePlural}}</h2>
           </div>
           <div class="images">
-            {{#each family.heros as |hero|}}
-              <ResponsiveImage
-                @path={{hero}}
-                @sizes={{array '2400x2400' '2200x2200' '2000x2000' '1800x1800' '1600x1600' '1400x1400' '1200x1200' '1000x1000' '800x800' '600x600' '400x400' '200x200' '100x100' '50x50'}}
-                @formats={{array 'jpg' 'webp'}}
-              />
+            {{#each family.images as |image|}}
+              <ResponsiveImage @image={{image}} />
             {{/each}}
           </div>
         </Button::Route>
