@@ -1,47 +1,107 @@
 <Page @id="product-family">
   <Header />
 
-  <Section::Subnav>
-    <nav>
-      <Button::Route @route="products">
+  <nav
+    id="breacrumbs"
+    aria-label="breadcrumbs"
+  >
+    <ol>
+      <li>
+        <a href="/en/">Interflux</a>
         <Svg::ArrowRight />
-        <span>Back to list</span>
-      </Button::Route>
+      </li>
+      <li>
+        <a href="/en/products">Products</a>
+      </li>
+    </ol>
+  </nav>
 
-      {{#each @model.families as |family|}}
-        <Button::Route
-          @route="products.family"
-          @model={{family.slug}}
-          @text={{capitalise family.namePlural}}
-        />
-      {{/each}}
-    </nav>
-  </Section::Subnav>
+  <main aria-labelledby="h1">
+    <div class="liner">
+      <div id="filters">
+        <fieldset>
+          <legend>Search by name</legend>
+          <input
+            type="text"
+            name=""
+            value=""
+          >
+        </fieldset>
 
-  <Section @id="hero">
-    <div class="text">
-      <h2>{{capitalise @model.family.namePlural}}</h2>
+        <fieldset>
+          <legend>Families</legend>
+          {{#each this.filters.families as |checkbox|}}
+            <div class="checkbox-group">
+              <Checkbox
+                @id={{checkbox.id}}
+                @checked={{checkbox.checked}}
+                @onClick={{fn this.handleCheckboxClick checkbox.id}}
+              />
+              <label for="input-{{checkbox.id}}">{{checkbox.label}}</label>
+            </div>
+          {{/each}}
+
+          {{#each @model.families as |family|}}
+            <p>{{family.namePlural}}</p>
+          {{/each}}
+        </fieldset>
+
+        <fieldset>
+          <legend>Applications</legend>
+          {{#each this.filters.families as |checkbox|}}
+            <div class="checkbox-group">
+              <Checkbox
+                @id={{checkbox.id}}
+                @checked={{checkbox.checked}}
+                @onClick={{fn this.handleCheckboxClick checkbox.id}}
+              />
+              <label for="input-{{checkbox.id}}">{{checkbox.label}}</label>
+            </div>
+          {{/each}}
+
+          {{#each @model.uses as |use|}}
+            <p>{{use.text}}</p>
+          {{/each}}
+        </fieldset>
+      </div>
+
+      <div id="products">
+
+        <h1 id="h1">Products</h1>
+
+        {{#each this.model.families as |family|}}
+          <section
+            labelledby="h2-{{family.id}}"
+            describedby="p-{{family.id}}"
+          >
+            <h2 id="h2-{{family.id}}">{{family.namePlural}}</h2>
+            <p id="p-{{family.id}}">{{family.description}}</p>
+            <ol>
+              {{#each family.products as |product|}}
+                <li>
+                  <a href={{href-to 'home.product' product.id}}>
+                    <div class="left">
+                      <ResponsiveImage @image={{product.image}} />
+                    </div>
+
+                    <div class="center">
+                      <h3>{{product.name}}</h3>
+                      <h4>{{product.family.nameSingle}}</h4>
+                      <p>{{product.pitch}}</p>
+                    </div>
+
+                    <div class="right">
+                      <Svg::ArrowRight />
+                    </div>
+                  </a>
+                </li>
+              {{/each}}
+            </ol>
+          </section>
+        {{/each}}
+      </div>
     </div>
-    <div class="images">
-      {{#each @model.family.heros as |hero|}}
-        <ResponsiveImage
-          @path={{hero}}
-          @sizes={{array '2400x2400' '2200x2200' '2000x2000' '1800x1800' '1600x1600' '1400x1400' '1200x1200' '1000x1000' '800x800' '600x600' '400x400' '200x200' '100x100' '50x50'}}
-          @formats={{array 'jpg' 'webp'}}
-        />
-      {{/each}}
-    </div>
-  </Section>
-
-  {{#each @model.family.subs as |sub|}}
-    <Section::Products
-      @icon={{sub.icon}}
-      @title={{sub.title}}
-      @text={{sub.text}}
-      @feature={{sub.filter}}
-      @products={{@model.family.products}}
-    />
-  {{/each}}
+  </main>
 
   <Footer />
 </Page>

@@ -16,4 +16,9 @@ export default class ProductFamilyModel extends Model {
   get rank() {
     return this.order || 999;
   }
+
+  get description() {
+    return 'Soldering fluxes are water, alcohol or rosin based liquids used for soldering electronics. Typicially these are sprayed or jetted onto circuit boards and evaporated during preheating, and do their activation when they come in contact with the liquid metal waves or nozzles.';
+    // return 'Soldering wires are metal wires with a rosin soldering flux at their core. These are most commonly used for hand soldering small patches that need rework or repair. New upcoming techniques are robot and laser soldering.';
+  }
 }

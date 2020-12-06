@@ -1,6 +1,10 @@
 {{#if (or this.media.isDesktop this.media.isWidescreen)}}
-  <header id="desktop">
-    <div class="liner">
+  <header
+    id="desktop"
+    aria-label="site"
+    role="banner"
+  >
+    <nav class="liner">
       <div class="left">
         <Button::Route
           @route="index"
@@ -61,13 +65,17 @@
         @icon="user"
       />
     </div> --}}
-    </div>
+    </nav>
   </header>
 {{/if}}
 
 {{#if (or this.media.isMobile this.media.isTablet)}}
-  <header id="mobile">
-    <div class="liner">
+  <header
+    id="mobile"
+    aria-label="site"
+    role="banner"
+  >
+    <nav class="liner">
       <Button::Route
         @route="index"
         @id="logo"
@@ -92,6 +100,6 @@
       @route="index"
       @icon="user"
     /> --}}
-    </div>
+    </nav>
   </header>
 {{/if}}
