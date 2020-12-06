@@ -137,7 +137,6 @@
       li {
         position: relative;
         z-index: 1;
-        display: flex;
         background: white;
         border: 1px solid #dbdbdb;
         border-radius: 4px;
@@ -149,6 +148,9 @@
         }
         & + li {
           margin-top: 10px;
+        }
+        a {
+          display: flex;
         }
         .left {
           padding: 10px;
