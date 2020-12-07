@@ -24,12 +24,12 @@
         padding: 1vw 2vw;
       }
       img {
-        height: auto;
+        width: auto; // don't make height auto or Safari will explode
         @include widescreen {
-          width: px(18vw);
+          height: px(4.5vw);
         }
         @include desktop {
-          width: 18vw;
+          height: 4.5vw;
         }
       }
     }
