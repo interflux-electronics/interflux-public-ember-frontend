@@ -10,16 +10,17 @@
   user-select: none;
 
   &.checked {
-    background: $orange-0;
+    background: $green-1;
+    border: 1px solid $green-2;
   }
   &.not-checked {
-    background: #ddd;
+    background: white;
+    border: 1px solid #ddd;
   }
   &:focus,
   &:hover {
     box-shadow: 0 0 0 2px white, 0 0 0 4px $blue-0;
   }
-
   svg {
     [fill] {
       fill: #fff;
