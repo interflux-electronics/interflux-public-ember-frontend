@@ -1,10 +1,51 @@
+{{#if (or this.media.isMobile this.media.isTablet)}}
+  <header
+    id="mobile"
+    role="banner"
+    aria-label="site"
+  >
+    <nav
+      class="liner"
+      aria-label="page"
+    >
+      <Button::Route
+        @route="index"
+        @id="logo"
+      >
+        <i>
+          <Svg::Hamburger />
+        </i>
+        <img
+          src="{{env 'cdnHost'}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg"
+          width="100"
+          height="100"
+          alt="Interflux Electronics"
+        />
+      </Button::Route>
+
+      {{!-- <Button::Route
+      @route="index"
+      @icon="search"
+    />
+
+    <Button::Route
+      @route="index"
+      @icon="user"
+    /> --}}
+    </nav>
+  </header>
+{{/if}}
+
 {{#if (or this.media.isDesktop this.media.isWidescreen)}}
   <header
     id="desktop"
-    aria-label="site"
     role="banner"
+    aria-label="site"
   >
-    <nav class="liner">
+    <nav
+      class="liner"
+      aria-label="page"
+    >
       <div class="left">
         <Button::Route
           @route="index"
@@ -20,7 +61,7 @@
         </Button::Route>
 
         <Button::Route
-          @route="products"
+          @route="home.products"
           @text="Products"
         />
 
@@ -65,41 +106,6 @@
         @icon="user"
       />
     </div> --}}
-    </nav>
-  </header>
-{{/if}}
-
-{{#if (or this.media.isMobile this.media.isTablet)}}
-  <header
-    id="mobile"
-    aria-label="site"
-    role="banner"
-  >
-    <nav class="liner">
-      <Button::Route
-        @route="index"
-        @id="logo"
-      >
-        <i>
-          <Svg::Hamburger />
-        </i>
-        <img
-          src="{{env 'cdnHost'}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg"
-          width="100"
-          height="100"
-          alt="Interflux Electronics"
-        />
-      </Button::Route>
-
-      {{!-- <Button::Route
-      @route="index"
-      @icon="search"
-    />
-
-    <Button::Route
-      @route="index"
-      @icon="user"
-    /> --}}
     </nav>
   </header>
 {{/if}}

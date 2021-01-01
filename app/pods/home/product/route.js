@@ -20,6 +20,7 @@ export default class ProductRoute extends Route {
 
         reload: true
       })
+      // delay: new Promise(resolve => setTimeout(resolve, 30000))
     });
   }
 }

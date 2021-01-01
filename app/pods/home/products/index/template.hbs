@@ -1,0 +1,45 @@
+<Page @id="products-index">
+  <Header />
+
+  <main>
+    <Breadcrumbs>
+      <ol>
+        <li>
+          <a href={{href-to 'home'}}>Interflux</a>
+          <Svg::ArrowRight />
+        </li>
+        <li>
+          <p>Products</p>
+        </li>
+      </ol>
+    </Breadcrumbs>
+
+    <article aria-labelledby="h1">
+      <div class="liner">
+        <div class="box white">
+          <h1 id="h1">Products</h1>
+
+          {{#each this.subsets as |subset|}}
+            <section aria-labelledby="h2-{{subset.id}}">
+              <h2 id="h2-{{subset.id}}">{{subset.name}}</h2>
+              <p>{{subset.blurb}}</p>
+              <a href={{href-to 'home.products.subset' subset.slug}}>
+                {{#each subset.avatars as |image|}}
+                  <ResponsiveImage @image={{image}} />
+                {{/each}}
+                <div>
+                  <p class="button">
+                    <span>See all</span>
+                    <Svg::ArrowRight />
+                  </p>
+                </div>
+              </a>
+            </section>
+          {{/each}}
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Page>

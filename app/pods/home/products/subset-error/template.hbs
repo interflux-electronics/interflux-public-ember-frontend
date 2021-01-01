@@ -1,0 +1,32 @@
+<Page @id="products-subset-error">
+  <Header />
+
+  <nav
+    id="breadcrumbs"
+    aria-label="breadcrumbs"
+  >
+    <ol>
+      <li>
+        <a href="/en/">Interflux</a>
+        <Svg::ArrowRight />
+      </li>
+      <li>
+        <a href="/en/products">Products</a>
+        <Svg::ArrowRight />
+      </li>
+      <li>
+        <p>???</p>
+      </li>
+    </ol>
+  </nav>
+
+  <main aria-labelledby="h1">
+    <div class="liner">
+      <h1>¯\_(ツ)_/¯</h1>
+      <p>This page does not exist.</p>
+      <a href={{href-to 'home.products'}}>Return to product overview</a>
+    </div>
+  </main>
+
+  <Footer />
+</Page>

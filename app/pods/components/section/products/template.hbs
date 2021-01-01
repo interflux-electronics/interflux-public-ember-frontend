@@ -18,7 +18,7 @@
   <div class="tiles {{if this.showAll 'show-all' 'show-featured'}} {{if (eq this.count 4) 'four' 'not-four'}}">
     {{#each this.featuredProducts as |product|}}
       <LinkTo
-        @route="products.family.product"
+        @route="product"
         @models={{array product.family.slug product.slug}}
         class="product-tile {{if product.featured 'featured' 'hidden'}}"
       >
@@ -51,7 +51,7 @@
 
     {{#each this.hiddenProducts as |product|}}
       <LinkTo
-        @route="products.family.product"
+        @route="product"
         @models={{array product.family.slug product.slug}}
         class="product-tile {{if product.featured 'featured' 'hidden'}}"
       >

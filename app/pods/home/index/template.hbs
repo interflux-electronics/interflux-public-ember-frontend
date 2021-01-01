@@ -10,31 +10,31 @@
       <p>Find products by type</p>
       <nav>
         <Button::Route
-          @route="products.family"
+          @route="home.products.subset"
           @model="soldering-fluxes"
           @text="Soldering Fluxes"
           {{on 'mouseover' (fn this.showImage 1)}}
         />
         <Button::Route
-          @route="products.family"
+          @route="home.products.subset"
           @model="solder-pastes"
           @text="Soldering Pastes"
           {{on 'mouseover' (fn this.showImage 2)}}
         />
         <Button::Route
-          @route="products.family"
+          @route="home.products.subset"
           @model="solder-wires"
           @text="Soldering Wires"
           {{on 'mouseover' (fn this.showImage 3)}}
         />
         <Button::Route
-          @route="products.family"
+          @route="home.products.subset"
           @model="fluxing-systems"
           @text="Fluxing Systems"
           {{on 'mouseover' (fn this.showImage 4)}}
         />
         <Button::Route
-          @route="products.family"
+          @route="home.products.subset"
           @model="auxiliaries"
           @text="Auxiliaries"
           {{on 'mouseover' (fn this.showImage 5)}}

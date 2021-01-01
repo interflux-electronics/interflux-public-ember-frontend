@@ -1,0 +1,171 @@
+#products-index.page {
+  main {
+    background: $grey-0;
+  }
+  article {
+    > .liner {
+      max-width: 1100px;
+      padding: 30px;
+      margin: 0 auto;
+      > .box.white {
+        background: white;
+        box-shadow: 0 4px 8px rgba(black, 0.1);
+        > section {
+          padding: 60px;
+          border-bottom: 1px solid $grey-1;
+          > a {
+            display: flex;
+            justify-content: space-between;
+            > * {
+              width: 186px;
+              height: 186px;
+              background: $grey-1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p.button {
+                background: $green-1;
+                color: white;
+                font-family: $semibold;
+                font-size: 20px;
+                border-radius: 3px;
+                line-height: 44px;
+                padding: 1px 20px 0;
+                display: flex;
+                align-items: center;
+                svg {
+                  width: 10px;
+                  height: auto;
+                  margin-left: 15px;
+                  [fill] {
+                    fill: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  h1 {
+    font-family: $extrabold;
+    font-size: 36px;
+    line-height: 100%;
+    padding: 60px;
+    border-bottom: 1px solid $grey-1;
+    color: $blue-3;
+  }
+  h2 {
+    font-family: $light;
+    font-size: 30px;
+    line-height: 100%;
+    color: $paragraph-color-1;
+    margin-bottom: 20px;
+  }
+  h2 + p {
+    font-family: $regular;
+    font-family: 16px;
+    line-height: 24px;
+    color: $paragraph-color-1;
+    margin-bottom: 30px;
+  }
+
+  // #intro {
+  //   .liner {
+  //     @include widescreen {
+  //       padding: px(8vw) 0 px(6vw);
+  //     }
+  //     @include desktop {
+  //       padding: 8vw 0 6vw;
+  //     }
+  //     @include tablet {
+  //       padding: 14vw 6vw;
+  //     }
+  //     @include mobile {
+  //       padding: 15vw 6vw;
+  //     }
+  //   }
+  //   h1 {
+  //     margin: 0 auto;
+  //     @include light-font;
+  //     @include widescreen {
+  //       max-width: px(40vw);
+  //     }
+  //     @include desktop {
+  //       max-width: 40vw;
+  //     }
+  //     @include tablet {
+  //       max-width: 70vw;
+  //     }
+  //     @include mobile {
+  //     }
+  //   }
+  // }
+
+  // #links {
+  //   nav {
+  //     display: flex;
+  //     justify-content: center;
+  //     flex-flow: wrap;
+  //   }
+  //   a {
+  //     position: relative;
+  //     background: white;
+  //     border-radius: 0;
+  //     @include widescreen {
+  //       width: px(38vw);
+  //       height: px(38vw);
+  //       padding: px(1vw);
+  //       margin: px(3vw);
+  //       box-shadow: 0 px(0.2vw) px(0.4vw) rgba(black, 0.1);
+  //     }
+  //     @include desktop {
+  //       width: 38vw;
+  //       height: 38vw;
+  //       padding: 1vw;
+  //       margin: 3vw;
+  //       box-shadow: 0 px(0.2vw) px(0.4vw) rgba(black, 0.1);
+  //     }
+  //     @include tablet {
+  //       width: 44vw;
+  //       height: 44vw;
+  //       padding: 1vw;
+  //       margin: 2vw;
+  //       box-shadow: 0 px(0.15vw) px(0.3vw) rgba(black, 0.1);
+  //     }
+  //     @include mobile {
+  //       width: 90vw;
+  //       height: 90vw;
+  //       padding: 2vw;
+  //       margin-bottom: 15vw;
+  //       box-shadow: 0 px(0.2vw) px(0.4vw) rgba(black, 0.1);
+  //     }
+  //     .text {
+  //       position: absolute;
+  //       width: 100%;
+  //       height: 100%;
+  //       display: flex;
+  //       align-items: center;
+  //       justify-content: center;
+  //       left: 0;
+  //       top: 0;
+  //       h2 {
+  //         position: absolute;
+  //         z-index: 1;
+  //         @include white-on-blue-text(1);
+  //       }
+  //     }
+  //     .images {
+  //       display: flex;
+  //       flex-flow: wrap;
+  //       justify-content: space-between;
+  //       height: 100%;
+  //       figure {
+  //         width: 50%;
+  //         height: 50%;
+  //       }
+  //     }
+  //   }
+  // }
+}

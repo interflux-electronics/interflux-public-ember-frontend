@@ -130,6 +130,15 @@ button {
       }
     }
 
+    &.green {
+      background: $green-1;
+      color: white;
+      &:hover,
+      &:focus {
+        background: $green-2;
+      }
+    }
+
     &.grey {
       background: $grey-0;
       color: $grey-5;

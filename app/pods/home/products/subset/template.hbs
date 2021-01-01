@@ -1,0 +1,115 @@
+<Page @id="products-subset">
+  <Header />
+
+  <Breadcrumbs>
+    <ol>
+      <li>
+        <a href={{href-to 'home'}}>Interflux</a>
+        <Svg::ArrowRight />
+      </li>
+      <li>
+        <a href={{href-to 'home.products'}}>Products</a>
+        <Svg::ArrowRight />
+      </li>
+      <li>
+        <p>{{this.pageTitle}}</p>
+      </li>
+    </ol>
+  </Breadcrumbs>
+
+  <main aria-labelledby="h1">
+    <div class="liner">
+      <nav>
+        <a href={{href-to 'home.products'}}>
+          <Svg::ArrowLeft />
+          <span>All products</span>
+        </a>
+      </nav>
+
+      <div class="columns">
+        <article
+          id="products"
+          {{did-insert this.didInsertProducts}}
+        >
+          <h1 id="h1">{{this.pageTitle}}</h1>
+
+          {{#each this.groups as |group|}}
+            <section labelledby="h2-{{group.id}}">
+              <div class="intro">
+                <h2 id="h2-{{group.id}}">{{capitalise group.title}}</h2>
+                {{#if group.description}}
+                  <p>{{group.description}}</p>
+                {{/if}}
+              </div>
+
+              <ol>
+                {{#each group.products as |product|}}
+                  <li data-name={{lowercase product.name}}>
+                    <a href={{href-to 'home.product' product.id}}>
+                      <div class="left">
+                        <ResponsiveImage @image={{product.image}} />
+                      </div>
+
+                      <div class="center">
+                        <h3>{{product.name}}</h3>
+                        <h4>{{product.family.nameSingle}}</h4>
+                        <p>{{product.pitch}}</p>
+                      </div>
+
+                      <div class="right">
+                        <Svg::ArrowRight />
+                      </div>
+                    </a>
+                  </li>
+                {{/each}}
+              </ol>
+            </section>
+          {{/each}}
+        </article>
+
+        <aside>
+          <div class="sticky">
+            <fieldset>
+              <legend>Search by name</legend>
+              <input
+                type="text"
+                {{on 'keyup' this.filterByName}}
+              >
+            </fieldset>
+
+            <fieldset>
+              <legend>Families</legend>
+
+              {{#each this.filters.families as |checkbox|}}
+                <div class="checkbox-group">
+                  <Checkbox
+                    @id="checkbox-{{checkbox.id}}"
+                    @checked={{checkbox.checked}}
+                    @onClick={{fn this.toggle checkbox.id}}
+                  />
+                  <label for="input-{{checkbox.id}}">{{checkbox.label}}</label>
+                </div>
+              {{/each}}
+            </fieldset>
+
+            <fieldset>
+              <legend>Applications</legend>
+              {{#each this.filters.uses as |checkbox|}}
+                <div class="checkbox-group">
+                  <Checkbox
+                    @id={{checkbox.id}}
+                    @checked={{checkbox.checked}}
+                    @onClick={{fn this.toggle checkbox.id}}
+                  />
+                  <label for="input-{{checkbox.id}}">{{checkbox.label}}</label>
+                </div>
+              {{/each}}
+            </fieldset>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Page>

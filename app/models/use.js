@@ -9,6 +9,7 @@ export default class UseModel extends Model {
 
   @hasMany('product-use') productUses;
   @hasMany('product') products;
+  @hasMany('image') images;
 
   get families() {
     return this.products.mapBy('family').uniqBy('id');
@@ -16,5 +17,10 @@ export default class UseModel extends Model {
 
   get iconURL() {
     return `${ENV.cdnHost}/${this.icon}`;
+  }
+
+  get name() {
+    const str = this.text || '';
+    return str[0].toUpperCase() + str.slice(1);
   }
 }

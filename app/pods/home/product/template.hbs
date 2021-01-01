@@ -2,129 +2,187 @@
   <Page @id="product">
     <Header />
 
-    <Section @id="hero">
-      <div class="hero">
-        <ResponsiveImage @image={{this.heroImage}} />
-      </div>
+    <Breadcrumbs>
+      <ol>
+        <li>
+          <a href={{href-to 'home'}}>Interflux</a>
+          <Svg::ArrowRight />
+        </li>
+        <li>
+          <a href={{href-to 'home.products'}}>Products</a>
+          <Svg::ArrowRight />
+        </li>
+        <li>
+          <a href={{href-to 'home.products.subset' product.family.id}}>{{product.family.label}}</a>
+          <Svg::ArrowRight />
+        </li>
+        <li>
+          <p>{{product.name}}</p>
+        </li>
+      </ol>
+    </Breadcrumbs>
 
-      <div class="thumbs">
-        <div>
-          {{#each this.images as |image|}}
-            <button
-              type="button"
-              {{on 'click' (fn this.setHero image)}}
-              class={{if (eq image this.heroImage) 'active'}}
-            >
-              <ResponsiveImage @image={{image}} />
-            </button>
-          {{/each}}
+    <main
+      aria-labelledby="h1"
+      aria-describedby="description"
+    >
+      <div class="liner">
+        <nav>
+          <a href={{href-to 'home.products.subset' product.family.id}}>
+            <Svg::ArrowLeft />
+            <span>{{product.family.label}}</span>
+          </a>
+        </nav>
+
+        <div class="columns">
+          <article
+            id="products"
+            {{did-insert this.didInsertProducts}}
+          >
+            <section>
+              <div id="intro">
+                <h1 id="h1">{{product.name}}</h1>
+                <h2>{{product.family.nameSingle}}</h2>
+                <p id="description">{{markdown product.pitch}}</p>
+              </div>
+
+              <div id="hero">
+                <ResponsiveImage @image={{this.heroImage}} />
+              </div>
+
+              <div id="thumbs">
+                <div>
+                  {{#each this.images as |image|}}
+                    <button
+                      type="button"
+                      {{on 'click' (fn this.setHero image)}}
+                      class={{if (eq image this.heroImage) 'active'}}
+                    >
+                      <ResponsiveImage @image={{image}} />
+                    </button>
+                  {{/each}}
+                </div>
+              </div>
+            </section>
+
+            <section aria-labelledby="h3-uses">
+              {{#if product.uses}}
+                <div id="uses">
+                  <h3>Purpose</h3>
+                  <ul>
+                    {{#each product.uses as |use|}}
+                      <li>
+                        <Image @src={{use.iconURL}} />
+                        <p>{{capitalise use.text}}</p>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{/if}}
+            </section>
+
+            <section aria-labelledby="h3-qualities">
+              {{#if product.qualities}}
+                <div id="qualities">
+                  <h3>Qualities</h3>
+                  <ul>
+                    {{#each product.qualities as |quality|}}
+                      <li>
+                        <Image @src={{quality.iconURL}} />
+                        <div class="text">
+                          <h4>{{quality.text}}</h4>
+                          {{#if quality.gist}}
+                            <p>{{quality.gist}}</p>
+                          {{/if}}
+                        </div>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{/if}}
+            </section>
+
+            <section aria-labelledby="h3-documents">
+              {{#if product.documents}}
+                <div id="documents">
+                  <h3>Documents</h3>
+                  <ul>
+                    {{#each product.documents as |document|}}
+                      <li>
+                        <div class="left">
+                          <Image
+                            @src="{{env 'cdnHost'}}/images/icons/download.svg"
+                            @width="100"
+                            @height="100"
+                          />
+                          <p>{{document.name}} (PDF)</p>
+                        </div>
+
+                        <div class="right">
+                          {{#each document.files as |file|}}
+                            <Button
+                              @url={{file.url}}
+                              @text={{file.language}}
+                            />
+                          {{/each}}
+                        </div>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{/if}}
+            </section>
+          </article>
+
+          <aside>
+            <div class="sticky">
+              <div class="box white">
+                <dl>
+                  <dt>Price:</dt>
+                  <dd>
+                    <a
+                      href="mailto:order@interflux.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >request</a>
+                  </dd>
+                </dl>
+
+                <dl>
+                  <dt>Availability:</dt>
+                  <dd>
+                    <a
+                      href="mailto:order@interflux.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >request</a>
+                  </dd>
+                </dl>
+
+                <Button::Url
+                  @href="mailto:order@interflux.com"
+                  @text="Order"
+                  @size="big"
+                  @style="orange-3"
+                />
+              </div>
+
+              <div class="box outlined">
+                <h4>Need more information?</h4>
+                <p>Ask us anything.</p>
+                <textarea></textarea>
+                <Button::Url
+                  @href="mailto:order@interflux.com"
+                  @text="Ask"
+                  @size="medium"
+                  @style="green"
+                />
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
-
-      <div class="text">
-        <h1>{{product.name}}</h1>
-        <h2>{{product.family.nameSingle}}</h2>
-        <p>{{markdown product.pitch}}</p>
-        <p>Price: <a
-            href="mailto:order@interflux.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >request</a></p>
-        <p>Availability: <a
-            href="mailto:order@interflux.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >request</a></p>
-        <Button::Url
-          @href="mailto:order@interflux.com"
-          @text="Order"
-          @size="big"
-          @style="orange-3"
-        />
-      </div>
-    </Section>
-
-    {{!--
-    {{#if product.pitch}}
-      <Section
-        @id="pitch"
-        @class="white text"
-      >
-        <h4>What is it?</h4>
-        <p>{{markdown product.pitch}}</p>
-      </Section>
-    {{/if}}
-    --}}
-
-    {{#if product.uses}}
-      <Section
-        @id="processes"
-        @class="white list"
-      >
-        <h4>Recommended for</h4>
-        <ul>
-          {{#each product.uses as |use|}}
-            <li>
-              <Image @src={{use.iconURL}} />
-              <p>{{capitalise use.text}}</p>
-            </li>
-          {{/each}}
-        </ul>
-      </Section>
-    {{/if}}
-
-    {{#if product.qualities}}
-      <Section
-        @id="qualities"
-        @class="white list left-right"
-      >
-        <ul>
-          {{#each product.qualities as |quality|}}
-            <li>
-              <Image @src={{quality.iconURL}} />
-              <div class="text">
-                <h4>{{quality.text}}</h4>
-                {{#if quality.gist}}
-                  <p>{{quality.gist}}</p>
-                {{/if}}
-              </div>
-            </li>
-          {{/each}}
-        </ul>
-      </Section>
-    {{/if}}
-
-    {{#if product.documents}}
-      <Section
-        @id="documents"
-        @class="white list left-right"
-      >
-        <h4>Documents</h4>
-        <ul>
-          {{#each product.documents as |document|}}
-            <li>
-              <div class="left">
-                <Image
-                  @src="{{env 'cdnHost'}}/images/icons/download.svg"
-                  @width="100"
-                  @height="100"
-                />
-                <p>{{document.name}} (PDF)</p>
-              </div>
-
-              <div class="right">
-                {{#each document.files as |file|}}
-                  <Button
-                    @url={{file.url}}
-                    @text={{file.language}}
-                  />
-                {{/each}}
-              </div>
-            </li>
-          {{/each}}
-        </ul>
-      </Section>
-    {{/if}}
+    </main>
 
     <Footer />
   </Page>
