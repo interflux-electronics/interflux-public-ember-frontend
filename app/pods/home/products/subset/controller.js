@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { capitalize } from '@ember/string';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
@@ -54,7 +53,7 @@ export default class ProductsSubsetController extends Controller {
   }
 
   get groups() {
-    const { groupByFamily, groupByUse, groupByQuality } = this;
+    const { groupByFamily } = this;
 
     const arr = [];
 

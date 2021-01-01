@@ -83,7 +83,7 @@
               {{#each this.filters.families as |checkbox|}}
                 <div class="checkbox-group">
                   <Checkbox
-                    @id="checkbox-{{checkbox.id}}"
+                    @id={{checkbox.id}}
                     @checked={{checkbox.checked}}
                     @onClick={{fn this.toggle checkbox.id}}
                   />

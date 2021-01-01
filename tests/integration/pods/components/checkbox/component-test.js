@@ -1,26 +1,49 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | checkbox', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    assert.expect(1);
 
-    await render(hbs`<Checkbox />`);
+    this.set('id', '123');
+    this.set('checked', true);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
     await render(hbs`
-      <Checkbox>
-        template block text
-      </Checkbox>
+      <Checkbox
+        @id={{this.id}}
+      />
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    const checkbox = this.element.querySelector('[role="checkbox"]');
+
+    assert.equal(checkbox.getAttribute('aria-labelledby'), 'input-123');
+  });
+
+  test('it toggles', async function(assert) {
+    assert.expect(2);
+
+    this.set('checked', true);
+    this.set('toggle', () => {
+      this.set('checked', !this.checked);
+    });
+
+    await render(hbs`
+      <Checkbox
+        @checked={{this.checked}}
+        @onClick={{this.toggle}}
+      />
+    `);
+
+    const checkbox = this.element.querySelector('[role="checkbox"]');
+
+    assert.equal(checkbox.getAttribute('aria-checked'), 'true');
+
+    await click('[role="checkbox"]');
+
+    assert.equal(checkbox.getAttribute('aria-checked'), 'false');
   });
 });
