@@ -17,7 +17,6 @@ export default class ProductRoute extends Route {
           'product_uses',
           'product_documents'
         ].join(','),
-
         reload: true
       })
       // delay: new Promise(resolve => setTimeout(resolve, 30000))

@@ -35,7 +35,7 @@
     }
     a:not(#logo) {
       position: relative;
-      color: #6d6d6d;
+      color: $paragraph-color-1;
       display: flex;
       align-items: center;
       @include widescreen {
@@ -47,23 +47,16 @@
       span {
         font-family: $bold;
       }
-      &:hover,
-      &.active {
+      &:hover {
         span {
-          color: white;
-          z-index: 2;
+          color: $blue-0;
+          text-decoration: underline;
         }
-        &:after {
-          content: ' ';
-          position: absolute;
-          left: 0;
-          top: 0;
-          z-index: 1;
-          width: 100%;
-          height: 110%;
-          background: linear-gradient(to bottom, #23578c 0%, #194674 100%);
-          box-shadow: 0 1px 2px RGBA(0, 0, 0, 0.1);
-          border-radius: 0 0 3px 3px;
+      }
+      &:focus {
+        span {
+          color: $orange-3;
+          outline: 1px solid $orange-3;
         }
       }
     }

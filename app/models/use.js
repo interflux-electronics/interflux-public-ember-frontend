@@ -6,6 +6,7 @@ export default class UseModel extends Model {
   @attr('string') icon;
   @attr('string') text;
   @attr('string') gist;
+  @attr('number') rank;
 
   @hasMany('product-use') productUses;
   @hasMany('product') products;

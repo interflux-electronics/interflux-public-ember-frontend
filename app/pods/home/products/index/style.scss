@@ -7,19 +7,26 @@
       max-width: 1100px;
       padding: 30px;
       margin: 0 auto;
-      > .box.white {
+      > .box {
         background: white;
         box-shadow: 0 4px 8px rgba(black, 0.1);
+        & + .box {
+          margin-top: 30px;
+        }
         > section {
           padding: 60px;
           border-bottom: 1px solid $grey-1;
           > a {
             display: flex;
-            justify-content: space-between;
+            &:focus,
+            &:hover {
+              outline: 2px solid orange;
+              outline-offset: 5px;
+            }
             > * {
-              width: 186px;
-              height: 186px;
-              background: $grey-1;
+              width: 196px;
+              height: 196px;
+              background: $grey-0;
               display: flex;
               justify-content: center;
               align-items: center;
@@ -33,6 +40,9 @@
                 padding: 1px 20px 0;
                 display: flex;
                 align-items: center;
+                &:hover {
+                  background: $green-2;
+                }
                 svg {
                   width: 10px;
                   height: auto;
@@ -55,18 +65,15 @@
     padding: 60px;
     border-bottom: 1px solid $grey-1;
     color: $blue-3;
+    small {
+      font-family: $regular;
+      font-size: 28px;
+    }
   }
   h2 {
     font-family: $light;
     font-size: 30px;
     line-height: 100%;
-    color: $paragraph-color-1;
-    margin-bottom: 20px;
-  }
-  h2 + p {
-    font-family: $regular;
-    font-family: 16px;
-    line-height: 24px;
     color: $paragraph-color-1;
     margin-bottom: 30px;
   }
