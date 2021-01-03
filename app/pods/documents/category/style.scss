@@ -75,30 +75,24 @@
       background: white;
     }
 
-    li.no-match {
-      display: none;
-    }
-
-    a {
+    li {
       display: flex;
-      align-items: center;
-      color: $blue-0;
-      width: 100%;
-      overflow: hidden;
-      picture {
-        flex-shrink: 0;
+      justify-content: space-between;
+      &.no-match {
+        display: none;
       }
-      span,
-      p {
-        &:last-child {
-          color: $blue-0;
-          width: 100%;
-          text-align: right;
-          margin-left: 20px;
+      .left {
+        p {
+          mark {
+            background: yellow;
+          }
         }
       }
-      mark {
-        background: yellow;
+      .right {
+        display: flex;
+        a + a {
+          margin-left: 10px;
+        }
       }
     }
     .liner {
