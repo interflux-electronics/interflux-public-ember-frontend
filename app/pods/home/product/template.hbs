@@ -2,37 +2,23 @@
   <Page @id="product">
     <Header />
 
-    <Breadcrumbs>
-      <ol>
-        <li>
-          <a href={{href-to 'home'}}>Interflux</a>
-          <Svg::ArrowRight />
-        </li>
-        <li>
-          <a href={{href-to 'home.products'}}>Products</a>
-          <Svg::ArrowRight />
-        </li>
-        <li>
-          <a href={{href-to 'home.products.subset' product.family.id}}>{{product.family.label}}</a>
-          <Svg::ArrowRight />
-        </li>
-        <li>
-          <p>{{product.name}}</p>
-        </li>
-      </ol>
-    </Breadcrumbs>
+    <Breadcrumbs @crumbs={{array
+      (hash label='Interflux' route='home')
+      (hash label='Products' route='home.products')
+      (hash label=product.family.label route='home.products.subset' model=product.family.id)
+      (hash label=product.name)
+    }} />
 
     <main
       aria-labelledby="h1"
       aria-describedby="description"
     >
       <div class="liner">
-        <nav>
-          <a href={{href-to 'home.products.subset' product.family.id}}>
-            <Svg::ArrowLeft />
-            <span>{{product.family.label}}</span>
-          </a>
-        </nav>
+        <BackNav
+          @backRoute="home.products.subset"
+          @backModel={{product.family.id}}
+          @backLabel="Back to {{product.family.namePlural}}"
+        />
 
         <div class="columns">
           <article

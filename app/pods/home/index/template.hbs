@@ -72,32 +72,32 @@
       <p>Find products by type</p>
       <nav>
         <Button::Route
-          @route="processes.process"
-          @model="wave-soldering"
+          @route="home.products.subset"
+          @model="for-wave-soldering"
           @text="Wave Soldering"
           {{on 'mouseover' (fn this.showImage 6)}}
         />
         <Button::Route
-          @route="processes.process"
-          @model="selective-soldering"
+          @route="home.products.subset"
+          @model="for-selective-soldering"
           @text="Selective Soldering"
           {{on 'mouseover' (fn this.showImage 7)}}
         />
         <Button::Route
-          @route="processes.process"
-          @model="reflow-soldering"
+          @route="home.products.subset"
+          @model="for-reflow-soldering"
           @text="Reflow Soldering"
           {{on 'mouseover' (fn this.showImage 8)}}
         />
         <Button::Route
-          @route="processes.process"
-          @model="rework-and-repair"
+          @route="home.products.subset"
+          @model="for-rework-and-repair"
           @text="Rework & Repair"
           {{on 'mouseover' (fn this.showImage 9)}}
         />
         <Button::Route
-          @route="processes.process"
-          @model="pre-tinning"
+          @route="home.products.subset"
+          @model="for-pre-tinning"
           @text="Pre-tinning"
           {{on 'mouseover' (fn this.showImage 10)}}
         />

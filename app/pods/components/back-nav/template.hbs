@@ -1,0 +1,13 @@
+<nav id="back-nav">
+  {{#if @backModel}}
+    <a href={{href-to @backRoute @backModel}}>
+      <Svg::ArrowLeft />
+      <span>{{@backLabel}}</span>
+    </a>
+  {{else}}
+    <a href={{href-to @backRoute}}>
+      <Svg::ArrowLeft />
+      <span>{{@backLabel}}</span>
+    </a>
+  {{/if}}
+</nav>

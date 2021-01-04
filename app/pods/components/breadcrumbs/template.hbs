@@ -2,5 +2,20 @@
   id="breadcrumbs"
   aria-label="breadcrumbs"
 >
-  {{yield}}
+  <ol>
+    {{#each @crumbs as |crumb|}}
+      <li>
+        {{#if crumb.route}}
+          {{#if crumb.model}}
+            <a href={{href-to crumb.route crumb.model}}>{{crumb.label}}</a>
+          {{else}}
+            <a href={{href-to crumb.route}}>{{crumb.label}}</a>
+          {{/if}}
+          <Svg::ArrowRight />
+        {{else}}
+          <p>{{crumb.label}}</p>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ol>
 </nav>
