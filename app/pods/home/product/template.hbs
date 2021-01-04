@@ -17,7 +17,7 @@
         <BackNav
           @backRoute="home.products.subset"
           @backModel={{product.family.id}}
-          @backLabel="Back to {{product.family.namePlural}}"
+          @backLabel="All {{product.family.namePlural}}"
         />
 
         <div class="columns">
@@ -29,37 +29,49 @@
               <div id="intro">
                 <h1 id="h1">{{product.name}}</h1>
                 <h2>{{product.family.nameSingle}}</h2>
-                <p id="description">{{markdown product.pitch}}</p>
+                {{#if product.pitch}}
+                  <p id="pitch">{{markdown product.pitch}}</p>
+                {{/if}}
               </div>
 
               <div id="hero">
                 <ResponsiveImage @image={{this.heroImage}} />
               </div>
 
-              <div id="thumbs">
-                <div>
-                  {{#each this.images as |image|}}
-                    <button
-                      type="button"
-                      {{on 'click' (fn this.setHero image)}}
-                      class={{if (eq image this.heroImage) 'active'}}
-                    >
-                      <ResponsiveImage @image={{image}} />
-                    </button>
-                  {{/each}}
-                </div>
+              <div id="images">
+                {{#each this.images as |image|}}
+                  <button
+                    type="button"
+                    class={{if (eq image this.heroImage) 'active'}}
+                    {{on 'click' (fn this.setHero image)}}
+                  >
+                    <ResponsiveImage @image={{image}} />
+                  </button>
+                {{/each}}
               </div>
             </section>
 
             <section aria-labelledby="h3-uses">
               {{#if product.uses}}
                 <div id="uses">
-                  <h3>Purpose</h3>
+                  <h3>Developer for</h3>
                   <ul>
                     {{#each product.uses as |use|}}
                       <li>
-                        <Image @src={{use.iconURL}} />
-                        <p>{{capitalise use.text}}</p>
+                        <div class="left">
+                          <div class="icon">
+                            <Image @src={{use.iconURL}} />
+                          </div>
+
+                          <div class="text">
+                            <h4>{{capitalise use.text}}</h4>
+                            {{!-- {{#if use.gist}}
+                              <div class="gist">
+                                <p>{{use.gist}}</p>
+                              </div>
+                            {{/if}} --}}
+                          </div>
+                        </div>
                       </li>
                     {{/each}}
                   </ul>
@@ -74,12 +86,22 @@
                   <ul>
                     {{#each product.qualities as |quality|}}
                       <li>
-                        <Image @src={{quality.iconURL}} />
-                        <div class="text">
-                          <h4>{{quality.text}}</h4>
-                          {{#if quality.gist}}
-                            <p>{{quality.gist}}</p>
-                          {{/if}}
+                        <div class="left">
+                          <div class="icon">
+                            <Image @src={{quality.iconURL}} />
+                          </div>
+                          <div class="text">
+                            <h4>{{quality.text}}</h4>
+                            {{#if quality.gist}}
+                              <div class="gist">
+                                <p>{{quality.gist}}</p>
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+
+                        <div class="right arrow">
+                          <Svg::ArrowRight />
                         </div>
                       </li>
                     {{/each}}
@@ -96,15 +118,19 @@
                     {{#each product.documents as |document|}}
                       <li>
                         <div class="left">
-                          <Image
-                            @src="{{env 'cdnHost'}}/images/icons/download.svg"
-                            @width="100"
-                            @height="100"
-                          />
-                          <p>{{document.name}} (PDF)</p>
+                          <div class="icon">
+                            <Image
+                              @src="{{env 'cdnHost'}}/images/icons/download.svg"
+                              @width="100"
+                              @height="100"
+                            />
+                          </div>
+                          <div class="text">
+                            <h4>{{document.name}} (PDF)</h4>
+                          </div>
                         </div>
 
-                        <div class="right">
+                        <div class="right links">
                           {{#each document.files as |file|}}
                             <Button
                               @url={{file.url}}
@@ -126,43 +152,41 @@
                 <dl>
                   <dt>Price:</dt>
                   <dd>
-                    <a
-                      href="mailto:order@interflux.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >request</a>
+                    <a href="javascript:void(0)">request</a>
                   </dd>
                 </dl>
 
                 <dl>
                   <dt>Availability:</dt>
                   <dd>
-                    <a
-                      href="mailto:order@interflux.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >request</a>
+                    <a href="javascript:void(0)">request</a>
                   </dd>
                 </dl>
 
-                <Button::Url
-                  @href="mailto:order@interflux.com"
-                  @text="Order"
-                  @size="big"
-                  @style="orange-3"
-                />
+                <button
+                  class="button-base big orange-3"
+                  type="button"
+                  id="order"
+                >
+                  <span>Order</span>
+                </button>
               </div>
 
               <div class="box outlined">
                 <h4>Need more information?</h4>
                 <p>Ask us anything.</p>
-                <textarea></textarea>
-                <Button::Url
-                  @href="mailto:order@interflux.com"
-                  @text="Ask"
-                  @size="medium"
-                  @style="green"
-                />
+                <textarea
+                  rows="4"
+                  placeholder="Your question"
+                ></textarea>
+
+                <button
+                  class="button-base medium green"
+                  type="button"
+                  id="ask"
+                >
+                  <span>Ask</span>
+                </button>
               </div>
             </div>
           </aside>

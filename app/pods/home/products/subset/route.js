@@ -27,7 +27,6 @@ export default class ProductsSubsetRoute extends Route {
         include: ['products'].join(','),
         reload: true
       })
-      // delay: new Promise(resolve => setTimeout(resolve, 1000))
     });
   }
 }

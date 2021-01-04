@@ -1,4 +1,16 @@
-<Page @id="products-index-loading">
-  <LoadingSpinner />
-  <p>Loading ...</p>
+<Page @id="products-loading">
+  <Header />
+
+  <main>
+    <Breadcrumbs @crumbs={{array
+      (hash label='Interflux' route='home')
+      (hash label='Loading ...')
+    }} />
+
+    <article>
+      <LoadingSpinner @message="Loading products ..." />
+    </article>
+  </main>
+
+  <Footer />
 </Page>

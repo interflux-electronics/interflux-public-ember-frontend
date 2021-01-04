@@ -19,7 +19,7 @@ export default class ProductRoute extends Route {
         ].join(','),
         reload: true
       })
-      // delay: new Promise(resolve => setTimeout(resolve, 30000))
+      // delay: new Promise(resolve => setTimeout(resolve, 300000))
     });
   }
 }

@@ -2,17 +2,10 @@
   <Header />
 
   <main>
-    <Breadcrumbs>
-      <ol>
-        <li>
-          <a href={{href-to 'home'}}>Interflux</a>
-          <Svg::ArrowRight />
-        </li>
-        <li>
-          <p>Products</p>
-        </li>
-      </ol>
-    </Breadcrumbs>
+    <Breadcrumbs @crumbs={{array
+      (hash label='Interflux' route='home')
+      (hash label='Products')
+    }} />
 
     <article aria-label="products">
       <div class="liner">

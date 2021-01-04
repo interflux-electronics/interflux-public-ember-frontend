@@ -15,6 +15,7 @@ nav#back-nav {
     display: flex;
     align-items: center;
     transition: all 200ms ease-out;
+    transition-property: transform, padding border-color;
     &:hover,
     &:focus {
       border-color: $blue-0;

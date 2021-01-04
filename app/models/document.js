@@ -29,7 +29,7 @@ export default class DocumentModel extends Model {
         EN: 'English',
         DE: 'Deutsch',
         FR: 'Français',
-        JP: '日本語'
+        JA: '日本語'
       }[locale];
 
       return { url, language };

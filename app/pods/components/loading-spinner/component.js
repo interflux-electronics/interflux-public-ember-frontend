@@ -26,6 +26,7 @@ export default class LoadingSpinnerComponent extends Component {
     let i = 0;
 
     while (i < 6) {
+      await this.delay(1);
       this.side = array[i];
       i = i < 5 ? i + 1 : 0;
       await this.delay(1400);

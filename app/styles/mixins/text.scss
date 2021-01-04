@@ -3,7 +3,7 @@
 // @include paragraph(0.8);
 @mixin paragraph($scale: 1) {
   font-family: $regular;
-  color: $paragraph-color-2;
+  color: $grey-7;
   line-height: 180%;
   margin: 0;
   @include widescreen {
@@ -27,7 +27,7 @@
 // @include light-font(0.8);
 @mixin light-font($scale: 1) {
   font-family: $light;
-  color: $paragraph-color-1;
+  color: $grey-7;
   line-height: 150%;
   text-align: center;
   @include widescreen {
@@ -53,7 +53,7 @@
 // @include bold-sub-heading(0.8);
 @mixin bold-sub-heading($scale: 1) {
   font-family: $bold;
-  color: $paragraph-color-1;
+  color: $grey-7;
   line-height: 150%;
   text-align: left;
   @include widescreen {
