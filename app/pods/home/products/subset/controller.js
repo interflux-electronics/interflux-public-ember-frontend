@@ -1,98 +1,154 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class ProductsSubsetController extends Controller {
-  @tracked whitelist = [
-    'soldering-fluxes',
-    'solder-pastes',
-    'solder-wires',
-    'solder-alloys',
-    'auxiliaries'
-  ];
+  @service store;
 
-  get filters() {
-    const families = [];
-    const uses = [];
+  @tracked groupBy = 'none'; // 'none', 'family', 'use', 'quality'
 
-    // const families = this.model.families.sortBy('rank').map(family => {
-    //   return {
-    //     id: family.id,
-    //     label: capitalize(family.namePlural),
-    //     checked: this.whitelist.includes(family.id)
-    //   };
-    // });
-    //
-    // const uses = this.model.uses.map(use => {
-    //   return {
-    //     id: use.id,
-    //     label: capitalize(use.text),
-    //     checked: this.whitelist.includes(use.id)
-    //   };
-    // });
-
-    return { families, uses };
+  @action
+  setGroup() {
+    console.log('on insert');
+    if (this.isFamily) {
+      console.log('is family, set use');
+      this.groupBy = 'use';
+    }
+    if (this.isUse) {
+      console.log('is use, set family');
+      this.groupBy = 'family';
+    }
   }
 
-  groupBy = 'family'; // 'none', 'family', 'use', 'quality'
-
-  get noGrouping() {
-    return this.groupBy === 'none';
-  }
-
-  get groupByFamily() {
-    return this.groupBy === 'family';
-  }
-
-  get groupByUse() {
-    return this.groupBy === 'use';
-  }
-
-  get groupByQuality() {
-    return this.groupBy === 'quality';
+  get products() {
+    if (this.isFamily) {
+      return this.model.family.get('products');
+    }
+    if (this.isUse) {
+      return this.model.use.get('products');
+    }
+    return [];
   }
 
   get groups() {
-    const { groupByFamily } = this;
+    const { groupBy } = this;
 
-    const arr = [];
+    if (groupBy === 'family') {
+      console.debug('grouping by family');
 
-    if (groupByFamily) {
-      const families = this.products.mapBy('family');
+      const uniq = this.products
+        .mapBy('family')
+        .sortBy('rank')
+        .mapBy('id')
+        .uniq();
 
-      families.forEach(family => {
-        const exists = arr.find(x => x.id === family.get('id'));
+      return uniq.map(id => {
+        const family = this.store.peekRecord('product-family', id);
 
-        if (!exists) {
-          arr.push({
-            id: family.get('id'),
-            title: family.get('namePlural'),
-            description: family.get('description'),
-            products: family.get('products')
-          });
-        }
+        return {
+          id,
+          title: family.get('namePlural'),
+          // description: family.get('description'),
+          products: this.products.filterBy('family.id', id)
+        };
       });
     }
 
-    // this.families.sortBy('rank').forEach(family => {
-    //   const products = family.products.filter(product => {
-    //     return this.whitelist.includes(product.family.get('id'));
-    //   });
-    //
-    //   if (products.length) {
-    //     arr.push({
-    //       id: family.id,
-    //       title: family.namePlural,
-    //       description: family.description,
-    //       products
-    //     });
-    //   }
-    // });
+    if (groupBy === 'use') {
+      return this.uses.map(use => {
+        return {
+          id: use.id,
+          title: use.get('label'),
+          // description: use.get('gist'),
+          products: this.products.filter(product => {
+            return product
+              .get('uses')
+              .mapBy('id')
+              .includes(use.id);
+          })
+        };
+      });
+    }
 
-    console.debug(arr);
+    if (groupBy === 'quality') {
+      return this.qualities.map(quality => {
+        return {
+          id: quality.id,
+          title: quality.get('text'),
+          // description: quality.get('gist'),
+          products: this.products.filter(product => {
+            return product.qualities.mapBy('id').includes(quality.id);
+          })
+        };
+      });
+    }
 
-    return arr;
+    return [];
   }
+
+  get families() {
+    const uniq = this.products.mapBy('family.id').uniq();
+
+    return uniq
+      .map(id => this.store.peekRecord('product-family', id))
+      .sortBy('rank');
+  }
+
+  get uses() {
+    const uniq = this.products
+      .mapBy('uses')
+      .map(arr => {
+        return arr.mapBy('id');
+      })
+      .flat()
+      .uniq();
+
+    return uniq.map(id => this.store.peekRecord('use', id)).sortBy('rank');
+  }
+
+  get qualities() {
+    const uniq = this.products
+      .mapBy('qualities')
+      .map(arr => {
+        return arr.mapBy('id');
+      })
+      .flat()
+      .uniq();
+
+    return uniq.map(id => this.store.peekRecord('quality', id)).sortBy('rank');
+  }
+
+  // @tracked whitelist = [
+  //   'soldering-fluxes',
+  //   'solder-pastes',
+  //   'solder-wires',
+  //   'solder-alloys',
+  //   'auxiliaries'
+  // ];
+
+  // get filters() {
+  //   const families = [];
+  //   const uses = [];
+  //
+  //   // const families = this.model.families.sortBy('rank').map(family => {
+  //   //   return {
+  //   //     id: family.id,
+  //   //     label: capitalize(family.namePlural),
+  //   //     checked: this.whitelist.includes(family.id)
+  //   //   };
+  //   // });
+  //   //
+  //   // const uses = this.model.uses.map(use => {
+  //   //   return {
+  //   //     id: use.id,
+  //   //     label: capitalize(use.text),
+  //   //     checked: this.whitelist.includes(use.id)
+  //   //   };
+  //   // });
+  //
+  //   return { families, uses };
+  // }
 
   @action
   toggle(id) {
@@ -150,21 +206,11 @@ export default class ProductsSubsetController extends Controller {
 
   get pageTitle() {
     if (this.isFamily) {
-      return this.model.family.label;
+      return this.model.family.get('label');
     }
     if (this.isUse) {
-      return `For ${this.model.use.text}`;
+      return `For ${this.model.use.get('text')}`;
     }
     return '???';
-  }
-
-  get products() {
-    if (this.isFamily) {
-      return this.model.family.products;
-    }
-    if (this.isUse) {
-      return this.model.use.products;
-    }
-    return [];
   }
 }

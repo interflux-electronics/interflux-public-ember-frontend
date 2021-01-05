@@ -9,12 +9,12 @@ export default class ProductRoute extends Route {
           'image',
           'documents',
           'qualities',
+          'product_qualities',
           'uses',
+          'product_uses',
           'product_family',
           'product_images',
           'product_images.image',
-          'product_qualities',
-          'product_uses',
           'product_documents'
         ].join(','),
         reload: true

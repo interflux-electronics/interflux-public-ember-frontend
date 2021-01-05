@@ -9,8 +9,11 @@ export default class UseModel extends Model {
   @attr('number') rank;
 
   @hasMany('product-use') productUses;
-  @hasMany('product') products;
   @hasMany('image') images;
+
+  get products() {
+    return this.productUses.sortBy('rank').mapBy('product');
+  }
 
   get families() {
     return this.products.mapBy('family').uniqBy('id');
@@ -20,8 +23,11 @@ export default class UseModel extends Model {
     return `${ENV.cdnHost}/${this.icon}`;
   }
 
-  get name() {
-    const str = this.text || '';
-    return str[0].toUpperCase() + str.slice(1);
+  get label() {
+    return `For ${this.text}`;
+  }
+
+  get slug() {
+    return `for-${this.id}`;
   }
 }

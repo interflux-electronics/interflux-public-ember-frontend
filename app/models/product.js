@@ -20,11 +20,16 @@ export default class ProductModel extends Model {
 
   @hasMany('image', { inverse: 'products' }) images;
   @hasMany('document') documents;
-  @hasMany('quality') qualities;
-  @hasMany('use') uses;
-
   @hasMany('product-image') productImages;
   @hasMany('product-document') productDocuments;
   @hasMany('product-quality') productQualities;
   @hasMany('product-use') productUses;
+
+  get uses() {
+    return this.productUses.sortBy('rank').mapBy('use');
+  }
+
+  get qualities() {
+    return this.productQualities.sortBy('rank').mapBy('quality');
+  }
 }

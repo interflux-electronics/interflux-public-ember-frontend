@@ -36,7 +36,7 @@
           {{#each this.sortedUses as |use|}}
             <section aria-labelledby="h2-{{use.id}}">
               <h2 id="h2-{{use.id}}">For {{use.text}}</h2>
-              <a href={{href-to 'home.products.subset' use.id}}>
+              <a href={{href-to 'home.products.subset' (concat "for-" use.id)}}>
                 {{#each use.images as |image|}}
                   <ResponsiveImage @image={{image}} />
                 {{/each}}
