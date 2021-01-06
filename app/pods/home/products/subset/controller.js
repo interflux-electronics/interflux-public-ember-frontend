@@ -48,7 +48,7 @@ export default class ProductsSubsetController extends Controller {
 
         return {
           id,
-          title: family.get('namePlural'),
+          title: family.get('label'),
           // description: family.get('description'),
           products: this.products.filterBy('family.id', id)
         };
@@ -59,6 +59,7 @@ export default class ProductsSubsetController extends Controller {
       return this.uses.map(use => {
         return {
           id: use.id,
+          icon: use.iconURL,
           title: use.get('label'),
           // description: use.get('gist'),
           products: this.products.filter(product => {
@@ -75,10 +76,14 @@ export default class ProductsSubsetController extends Controller {
       return this.qualities.map(quality => {
         return {
           id: quality.id,
+          icon: quality.iconURL,
           title: quality.get('text'),
           // description: quality.get('gist'),
           products: this.products.filter(product => {
-            return product.qualities.mapBy('id').includes(quality.id);
+            return product
+              .get('qualities')
+              .mapBy('id')
+              .includes(quality.id);
           })
         };
       });

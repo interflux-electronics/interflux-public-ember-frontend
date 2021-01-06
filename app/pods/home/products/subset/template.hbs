@@ -27,7 +27,14 @@
           {{#each this.groups as |group|}}
             <section labelledby="h2-{{group.id}}">
               <div class="intro">
-                <h2 id="h2-{{group.id}}">{{group.title}}</h2>
+                <div class="title">
+                  {{#if group.icon}}
+                    <div class="icon">
+                      <Image @src={{group.icon}} />
+                    </div>
+                  {{/if}}
+                  <h2 id="h2-{{group.id}}">{{group.title}}</h2>
+                </div>
                 {{#if group.description}}
                   <p>{{group.description}}</p>
                 {{/if}}
@@ -35,10 +42,20 @@
 
               <ol>
                 {{#each group.products as |product|}}
-                  <li data-name={{lowercase product.name}}>
+                  <li data-name={{product.id}}>
                     <a href={{href-to 'home.product' product.id}}>
                       <div class="left">
-                        <ResponsiveImage @image={{product.image}} />
+                        {{#if product.image}}
+                          <ResponsiveImage @image={{product.image}} />
+                        {{else}}
+                          <figure class="no-image">
+                            <Image
+                              @src="{{env 'cdnHost'}}/images/icons/unknown.svg"
+                              @width="50"
+                              @height="50"
+                            />
+                          </figure>
+                        {{/if}}
                       </div>
 
                       <div class="center">

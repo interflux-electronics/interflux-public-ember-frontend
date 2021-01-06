@@ -24,10 +24,42 @@
     }
     .intro {
       padding: 60px;
+      .title {
+        display: flex;
+        align-items: center;
+        .icon {
+          flex-shrink: 0;
+          picture {
+            display: block;
+            height: auto;
+            flex-shrink: 0;
+            @include widescreen {
+              width: px(5vw);
+              height: px(5vw);
+              margin-right: px(2vw);
+            }
+            @include desktop {
+              width: 5vw;
+              height: 5vw;
+              margin-right: 2vw;
+            }
+            @include tablet {
+              width: 8vw;
+              height: 8vw;
+              margin-right: 3vw;
+            }
+            @include mobile {
+              width: 12vw;
+              height: 12vw;
+              margin-right: 5vw;
+            }
+          }
+        }
+      }
       h2 {
         font-family: $light;
         font-size: 30px;
-        line-height: 100%;
+        line-height: 48px;
         color: $grey-7;
         & + p {
           margin-top: 20px;
@@ -72,6 +104,10 @@
           flex-shrink: 0;
           figure {
             width: 240px;
+            &.no-image {
+              margin: 0;
+              filter: grayscale(1) opacity(0.15);
+            }
           }
         }
         .center {
