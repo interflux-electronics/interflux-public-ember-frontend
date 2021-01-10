@@ -6,19 +6,59 @@ import { inject as service } from '@ember/service';
 export default class ProductsSubsetController extends Controller {
   @service store;
 
-  @tracked groupBy = 'none'; // 'none', 'family', 'use', 'quality'
+  get isFamily() {
+    return this.model.family ? true : false;
+  }
+
+  get isUse() {
+    return this.model.use ? true : false;
+  }
+
+  get pageTitle() {
+    if (this.isFamily) {
+      return this.model.family.get('label');
+    }
+    if (this.isUse) {
+      return `For ${this.model.use.get('text')}`;
+    }
+    return '?';
+  }
+
+  get searchPlaceHolder() {
+    return (
+      this.products
+        .sortBy('rank')
+        .firstObject.get('name')
+        .slice(0, -1) + '...'
+    );
+  }
+
+  @tracked groupBy = 'status'; // 'status', 'family', 'use', 'quality'
 
   @action
-  setGroup() {
-    console.log('on insert');
+  onInsert() {
     if (this.isFamily) {
-      console.log('is family, set use');
       this.groupBy = 'use';
     }
     if (this.isUse) {
-      console.log('is use, set family');
       this.groupBy = 'family';
     }
+  }
+
+  get groupByStatus() {
+    return this.groupBy === 'status';
+  }
+
+  get groupByFamily() {
+    return this.groupBy === 'family';
+  }
+
+  get groupByUse() {
+    return this.groupBy === 'use';
+  }
+
+  get groupByQuality() {
+    return this.groupBy === 'quality';
   }
 
   get products() {
@@ -31,65 +71,73 @@ export default class ProductsSubsetController extends Controller {
     return [];
   }
 
-  get groups() {
-    const { groupBy } = this;
+  get familySubsets() {
+    const uniq = this.products
+      .mapBy('family')
+      .sortBy('rank')
+      .mapBy('id')
+      .uniq();
 
-    if (groupBy === 'family') {
-      console.debug('grouping by family');
+    return uniq.map(id => {
+      const family = this.store.peekRecord('product-family', id);
+      const products = this.products.filterBy('family.id', id);
 
-      const uniq = this.products
-        .mapBy('family')
-        .sortBy('rank')
-        .mapBy('id')
-        .uniq();
+      return { family, products };
+    });
+  }
 
-      return uniq.map(id => {
-        const family = this.store.peekRecord('product-family', id);
-
-        return {
-          id,
-          title: family.get('label'),
-          // description: family.get('description'),
-          products: this.products.filterBy('family.id', id)
-        };
+  get useSubsets() {
+    return this.uses.map(use => {
+      const products = this.products.filter(product => {
+        return product
+          .get('uses')
+          .mapBy('id')
+          .includes(use.id);
       });
-    }
 
-    if (groupBy === 'use') {
-      return this.uses.map(use => {
-        return {
-          id: use.id,
-          icon: use.iconURL,
-          title: use.get('label'),
-          // description: use.get('gist'),
-          products: this.products.filter(product => {
-            return product
-              .get('uses')
-              .mapBy('id')
-              .includes(use.id);
-          })
-        };
+      return { use, products };
+    });
+  }
+
+  get qualitySubsets() {
+    return this.qualities.map(quality => {
+      const products = this.products.filter(product => {
+        return product
+          .get('qualities')
+          .mapBy('id')
+          .includes(quality.id);
       });
-    }
 
-    if (groupBy === 'quality') {
-      return this.qualities.map(quality => {
-        return {
-          id: quality.id,
-          icon: quality.iconURL,
-          title: quality.get('text'),
-          // description: quality.get('gist'),
-          products: this.products.filter(product => {
-            return product
-              .get('qualities')
-              .mapBy('id')
-              .includes(quality.id);
-          })
-        };
-      });
-    }
+      return { quality, products };
+    });
+  }
 
-    return [];
+  get statuses() {
+    return [
+      {
+        id: 'new',
+        label: 'New',
+        products: this.products.filterBy('new', true)
+      },
+      {
+        id: 'popular',
+        label: 'Popular',
+        products: this.products.filterBy('popular', true)
+      },
+      {
+        id: 'recommended',
+        label: 'Recommended',
+        products: this.products.rejectBy('new', true).rejectBy('popular', true)
+      },
+      {
+        id: 'outdated',
+        label: 'Outdated'
+      },
+      {
+        id: 'out-of-production',
+        label: 'Out of production'
+      }
+    ];
   }
 
   get families() {
@@ -199,23 +247,5 @@ export default class ProductsSubsetController extends Controller {
         section.classList.remove('hide');
       }
     });
-  }
-
-  get isFamily() {
-    return this.model.family ? true : false;
-  }
-
-  get isUse() {
-    return this.model.use ? true : false;
-  }
-
-  get pageTitle() {
-    if (this.isFamily) {
-      return this.model.family.get('label');
-    }
-    if (this.isUse) {
-      return `For ${this.model.use.get('text')}`;
-    }
-    return '???';
   }
 }

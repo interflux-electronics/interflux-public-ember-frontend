@@ -9,7 +9,7 @@
 
   <main
     aria-labelledby="h1"
-    {{did-insert this.setGroup}}
+    {{did-insert this.onInsert}}
   >
     <div class="liner">
       <BackNav
@@ -18,110 +18,51 @@
       />
 
       <div class="columns">
-        <article
-          id="products"
-          {{did-insert this.didInsertProducts}}
-        >
-          <h1 id="h1">{{this.pageTitle}}</h1>
-
-          {{#each this.groups as |group|}}
-            <section labelledby="h2-{{group.id}}">
-              <div class="intro">
-                <div class="title">
-                  {{#if group.icon}}
-                    <div class="icon">
-                      <Image @src={{group.icon}} />
-                    </div>
-                  {{/if}}
-                  <h2 id="h2-{{group.id}}">{{group.title}}</h2>
-                </div>
-                {{#if group.description}}
-                  <p>{{group.description}}</p>
-                {{/if}}
-              </div>
-
-              <ol>
-                {{#each group.products as |product|}}
-                  <li data-name={{product.id}}>
-                    <a href={{href-to 'home.product' product.id}}>
-                      <div class="left">
-                        {{#if product.image}}
-                          <ResponsiveImage @image={{product.image}} />
-                        {{else}}
-                          <figure class="no-image">
-                            <Image
-                              @src="{{env 'cdnHost'}}/images/icons/unknown.svg"
-                              @width="50"
-                              @height="50"
-                            />
-                          </figure>
-                        {{/if}}
-                      </div>
-
-                      <div class="center">
-                        <h3>{{product.name}}</h3>
-                        <h4>{{product.family.nameSingle}}</h4>
-                        {{#if product.pitch}}
-                          <p>{{markdown product.pitch}}</p>
-                        {{/if}}
-                      </div>
-
-                      <div class="right">
-                        <Svg::ArrowRight />
-                      </div>
-                    </a>
-                  </li>
-                {{/each}}
-              </ol>
-            </section>
-          {{/each}}
-        </article>
-
         <aside>
           <div class="sticky">
             <fieldset>
               <legend>Search by name</legend>
               <input
                 type="text"
-                placeholder="DP 560..."
+                placeholder={{this.searchPlaceHolder}}
                 {{on 'keyup' this.filterByName}}
               >
             </fieldset>
 
             <fieldset>
-              <legend>Group by</legend>
+              <legend>Group by {{this.groupBy}}</legend>
               <div class="buttons">
                 {{#unless this.isFamily}}
                   <button
                     type="button"
-                    class={{if (eq this.groupBy 'family') 'active' 'idle'}}
+                    class={{if this.groupByFamily 'active' 'idle'}}
                     {{on 'click' (fn (mut this.groupBy) 'family')}}
                   >Family</button>
                 {{/unless}}
+
                 {{#unless this.isUse}}
                   <button
                     type="button"
-                    class={{if (eq this.groupBy 'use') 'active' 'idle'}}
+                    class={{if this.groupByUse 'active' 'idle'}}
                     {{on 'click' (fn (mut this.groupBy) 'use')}}
                   >Process</button>
                 {{/unless}}
+
                 <button
                   type="button"
-                  class={{if (eq this.groupBy 'quality') 'active' 'idle'}}
+                  class={{if this.groupByQuality 'active' 'idle'}}
                   {{on 'click' (fn (mut this.groupBy) 'quality')}}
                 >Quality</button>
 
-                {{!--
                 <button
                   type="button"
-                  class={{if (eq this.groupBy 'status') 'active' 'idle'}}
+                  class={{if this.groupByStatus 'active' 'idle'}}
                   {{on 'click' (fn (mut this.groupBy) 'status')}}
                 >Status</button>
-                --}}
               </div>
             </fieldset>
 
-            {{#unless this.isFamily}}
+            {{#if this.groupByFamily}}
               <fieldset>
                 <legend>Families</legend>
 
@@ -136,9 +77,9 @@
                   </div>
                 {{/each}}
               </fieldset>
-            {{/unless}}
+            {{/if}}
 
-            {{#unless this.isUse}}
+            {{#if this.groupByUse}}
               <fieldset>
                 <legend>Processes</legend>
 
@@ -153,24 +94,130 @@
                   </div>
                 {{/each}}
               </fieldset>
-            {{/unless}}
+            {{/if}}
 
-            <fieldset>
-              <legend>Qualities</legend>
+            {{#if this.groupByQuality}}
+              <fieldset>
+                <legend>Qualities</legend>
 
-              {{#each this.qualities as |quality|}}
-                <div class="checkbox-group">
-                  <Checkbox
-                    @id={{quality.id}}
-                    @checked="true"
-                    @onClick={{fn this.toggle quality.id}}
-                  />
-                  <label for="input-{{quality.id}}">{{quality.text}}</label>
-                </div>
-              {{/each}}
-            </fieldset>
+                {{#each this.qualities as |quality|}}
+                  <div class="checkbox-group">
+                    <Checkbox
+                      @id={{quality.id}}
+                      @checked="true"
+                      @onClick={{fn this.toggle quality.id}}
+                    />
+                    <label for="input-{{quality.id}}">{{quality.text}}</label>
+                  </div>
+                {{/each}}
+              </fieldset>
+            {{/if}}
+
+            {{#if this.groupByStatus}}
+              <fieldset>
+                <legend>Status</legend>
+
+                {{#each this.statuses as |status|}}
+                  <div class="checkbox-group">
+                    <Checkbox
+                      @id={{status.id}}
+                      @checked="true"
+                      @onClick={{fn this.toggle status.id}}
+                    />
+                    <label for="input-{{status.id}}">{{status.label}}</label>
+                  </div>
+                {{/each}}
+              </fieldset>
+            {{/if}}
           </div>
         </aside>
+
+        <article {{did-insert this.didInsertProducts}}>
+          <h1 id="h1">{{this.pageTitle}}</h1>
+
+          {{!-- Note: For SEO we render all <a> and hide with CSS so they remain crawlable. --}}
+
+          <div class="view by-family {{if this.groupByFamily 'show' 'hide'}}">
+            {{#each this.familySubsets as |set|}}
+              <section labelledby="h2-{{set.family.id}}">
+                <div class="intro">
+                  <div class="title">
+                    <h2 id="h2-{{set.family.id}}">{{set.family.label}}</h2>
+                  </div>
+                </div>
+
+                <ol>
+                  {{#each set.products as |product|}}
+                    <ProductRow @product={{product}} />
+                  {{/each}}
+                </ol>
+              </section>
+            {{/each}}
+          </div>
+
+          <div class="view by-use {{if this.groupByUse 'show' 'hide'}}">
+            {{#each this.useSubsets as |set|}}
+              <section labelledby="h2-{{set.use.id}}">
+                <div class="intro">
+                  <div class="title">
+                    <div class="icon">
+                      <Image @src={{set.use.iconURL}} />
+                    </div>
+                    <h2 id="h2-{{set.use.id}}">{{set.use.label}}</h2>
+                  </div>
+                </div>
+
+                <ol>
+                  {{#each set.products as |product|}}
+                    <ProductRow @product={{product}} />
+                  {{/each}}
+                </ol>
+              </section>
+            {{/each}}
+          </div>
+
+          <div class="view by-quality {{if this.groupByQuality 'show' 'hide'}}">
+            {{#each this.qualitySubsets as |set|}}
+              <section labelledby="h2-{{set.quality.id}}">
+                <div class="intro">
+                  <div class="title">
+                    <div class="icon">
+                      <Image @src={{set.quality.iconURL}} />
+                    </div>
+                    <h2 id="h2-{{set.quality.id}}">{{set.quality.label}}</h2>
+                  </div>
+                </div>
+
+                <ol>
+                  {{#each set.products as |product|}}
+                    <ProductRow @product={{product}} />
+                  {{/each}}
+                </ol>
+              </section>
+            {{/each}}
+          </div>
+
+          <div class="view by-status {{if this.groupByStatus 'show' 'hide'}}">
+            {{#each this.statusSubsets as |set|}}
+              <section labelledby="h2-{{set.status.id}}">
+                <div class="intro">
+                  <div class="title">
+                    <div class="icon">
+                      <Image @src={{set.status.icon}} />
+                    </div>
+                    <h2 id="h2-{{set.status.id}}">{{set.status.label}}</h2>
+                  </div>
+                </div>
+
+                <ol>
+                  {{#each set.products as |product|}}
+                    <ProductRow @product={{product}} />
+                  {{/each}}
+                </ol>
+              </section>
+            {{/each}}
+          </div>
+        </article>
       </div>
     </div>
   </main>

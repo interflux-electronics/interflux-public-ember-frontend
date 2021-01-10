@@ -1,0 +1,29 @@
+<li class="product-row">
+  <a href={{href-to 'home.product' @product.id}}>
+    <div class="left">
+      {{#if @product.image}}
+        <ResponsiveImage @image={{@product.image}} />
+      {{else}}
+        <figure class="no-image">
+          <Image
+            @src="{{env 'cdnHost'}}/images/icons/unknown.svg"
+            @width="50"
+            @height="50"
+          />
+        </figure>
+      {{/if}}
+    </div>
+
+    <div class="center">
+      <h3>{{@product.name}}</h3>
+      <h4>{{@product.family.nameSingle}}</h4>
+      {{#if @product.pitch}}
+        <p>{{markdown @product.pitch}}</p>
+      {{/if}}
+    </div>
+
+    <div class="right">
+      <Svg::ArrowRight />
+    </div>
+  </a>
+</li>

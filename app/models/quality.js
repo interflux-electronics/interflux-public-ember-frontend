@@ -17,4 +17,10 @@ export default class QualityModel extends Model {
   get iconURL() {
     return `${ENV.cdnHost}/${this.icon}`;
   }
+
+  // Capitalise first letter only
+  get label() {
+    const str = this.text || '';
+    return str[0].toUpperCase() + str.slice(1);
+  }
 }

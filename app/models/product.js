@@ -13,6 +13,15 @@ export default class ProductModel extends Model {
   @attr('boolean') popular;
   @attr('boolean') new;
 
+  // STATUS
+  //
+  // new                 = in production + highlight as new + move to top of the list = for drawing attention
+  // popular             = in production + highlight as popular + move second in the list = for the best sellers
+  // common              = in production + no highlights
+  // outdated            = in production + indicate there is a better product + hidden from most views = for products we still serve because few customers still rely on them but cannot upgrade to better
+  // discontinued        = out of production + not orderable + indicate there is a better product + hidden from most views = for legacy products
+  // offline             = out of production + not orderable + not shown on website
+
   @belongsTo('product-family') productFamily;
   @alias('productFamily') family;
 
