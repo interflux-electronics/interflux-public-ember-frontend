@@ -6,21 +6,7 @@ export default class ProductModel extends Model {
   @attr('string') name;
   @attr('string') label;
   @attr('string') pitch;
-
-  @attr('boolean') public;
-  @attr('boolean') orderable;
-  @attr('boolean') featured;
-  @attr('boolean') popular;
-  @attr('boolean') new;
-
-  // STATUS
-  //
-  // new                 = in production + highlight as new + move to top of the list = for drawing attention
-  // popular             = in production + highlight as popular + move second in the list = for the best sellers
-  // common              = in production + no highlights
-  // outdated            = in production + indicate there is a better product + hidden from most views = for products we still serve because few customers still rely on them but cannot upgrade to better
-  // discontinued        = out of production + not orderable + indicate there is a better product + hidden from most views = for legacy products
-  // offline             = out of production + not orderable + not shown on website
+  @attr('string') status;
 
   @belongsTo('product-family') productFamily;
   @alias('productFamily') family;
@@ -34,11 +20,34 @@ export default class ProductModel extends Model {
   @hasMany('product-quality') productQualities;
   @hasMany('product-use') productUses;
 
+  @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
+  @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
+
   get uses() {
     return this.productUses.sortBy('rank').mapBy('use');
   }
 
   get qualities() {
     return this.productQualities.sortBy('rank').mapBy('quality');
+  }
+
+  get isNew() {
+    return this.status === 'new';
+  }
+
+  get isPopular() {
+    return this.status === 'popular';
+  }
+
+  get isCommon() {
+    return this.status === 'common';
+  }
+
+  get isOutdated() {
+    return this.status === 'outdated';
+  }
+
+  get isDiscontinued() {
+    return this.status === 'discontinued';
   }
 }

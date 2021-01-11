@@ -20,18 +20,27 @@
       <div class="columns">
         <aside>
           <div class="sticky">
-            <fieldset>
-              <legend>Search by name</legend>
-              <input
-                type="text"
-                placeholder={{this.searchPlaceHolder}}
-                {{on 'keyup' this.filterByName}}
-              >
+            <fieldset id="search">
+              <legend>Search</legend>
+              <Search
+                @placeholder={{this.searchPlaceHolder}}
+                @onSelect={{this.openProductPage}}
+                @searchModel='product'
+                @searchLabel='name'
+                @searchFilter='name'
+                @minKeyStrokes='1'
+              />
             </fieldset>
 
-            <fieldset>
-              <legend>Group by {{this.groupBy}}</legend>
+            <fieldset id="group-by">
+              <legend>Group by</legend>
               <div class="buttons">
+                <button
+                  type="button"
+                  class={{if this.groupByStatus 'active' 'idle'}}
+                  {{on 'click' (fn (mut this.groupBy) 'status')}}
+                >Status</button>
+
                 {{#unless this.isFamily}}
                   <button
                     type="button"
@@ -53,12 +62,6 @@
                   class={{if this.groupByQuality 'active' 'idle'}}
                   {{on 'click' (fn (mut this.groupBy) 'quality')}}
                 >Quality</button>
-
-                <button
-                  type="button"
-                  class={{if this.groupByStatus 'active' 'idle'}}
-                  {{on 'click' (fn (mut this.groupBy) 'status')}}
-                >Status</button>
               </div>
             </fieldset>
 
@@ -199,14 +202,14 @@
 
           <div class="view by-status {{if this.groupByStatus 'show' 'hide'}}">
             {{#each this.statusSubsets as |set|}}
-              <section labelledby="h2-{{set.status.id}}">
+              <section labelledby="h2-{{set.id}}">
                 <div class="intro">
                   <div class="title">
-                    <div class="icon">
-                      <Image @src={{set.status.icon}} />
-                    </div>
-                    <h2 id="h2-{{set.status.id}}">{{set.status.label}}</h2>
+                    <h2 id="h2-{{set.id}}">{{set.label}}</h2>
                   </div>
+                  {{#if set.description}}
+                    <p>{{set.description}}</p>
+                  {{/if}}
                 </div>
 
                 <ol>

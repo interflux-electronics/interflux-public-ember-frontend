@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default class ProductsSubsetController extends Controller {
   @service store;
+  @service router;
 
   get isFamily() {
     return this.model.family ? true : false;
@@ -38,10 +39,10 @@ export default class ProductsSubsetController extends Controller {
   @action
   onInsert() {
     if (this.isFamily) {
-      this.groupBy = 'use';
+      this.groupBy = 'status';
     }
     if (this.isUse) {
-      this.groupBy = 'family';
+      this.groupBy = 'status';
     }
   }
 
@@ -112,30 +113,75 @@ export default class ProductsSubsetController extends Controller {
     });
   }
 
-  get statuses() {
-    return [
+  get statusSubsets() {
+    const arr = [];
+
+    const statuses = [
       {
         id: 'new',
         label: 'New',
-        products: this.products.filterBy('new', true)
+        description: 'The newest in soldering chemistry.'
       },
       {
         id: 'popular',
         label: 'Popular',
-        products: this.products.filterBy('popular', true)
+        description: 'In high demand for years.'
+      },
+      {
+        id: 'common',
+        label: 'Recommended',
+        description: 'Niche products for specific use cases.'
+      },
+      {
+        id: 'outdated',
+        label: 'Outdated',
+        description:
+          'At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!'
+      },
+      {
+        id: 'discontinued',
+        label: 'Discontinued',
+        description:
+          'When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.'
+      }
+    ];
+
+    statuses.forEach(status => {
+      const products = this.products
+        .filterBy('status', status.id)
+        .sortBy('rank');
+
+      console.log(status, products.length);
+
+      if (products.length) {
+        arr.push({ ...status, products });
+      }
+    });
+
+    return arr;
+  }
+
+  get statuses() {
+    return [
+      {
+        id: 'new',
+        label: 'New'
+      },
+      {
+        id: 'popular',
+        label: 'Popular'
       },
       {
         id: 'recommended',
-        label: 'Recommended',
-        products: this.products.rejectBy('new', true).rejectBy('popular', true)
+        label: 'Recommended'
       },
       {
         id: 'outdated',
         label: 'Outdated'
       },
       {
-        id: 'out-of-production',
-        label: 'Out of production'
+        id: 'discontinued',
+        label: 'Discontinued'
       }
     ];
   }
@@ -170,6 +216,11 @@ export default class ProductsSubsetController extends Controller {
       .uniq();
 
     return uniq.map(id => this.store.peekRecord('quality', id)).sortBy('rank');
+  }
+
+  @action
+  openProductPage(product) {
+    this.router.transitionTo('home.product', product.id);
   }
 
   // @tracked whitelist = [
