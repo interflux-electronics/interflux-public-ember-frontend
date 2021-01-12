@@ -15,15 +15,15 @@
   }
   &.not-checked {
     background: white;
-    border: 1px solid #ddd;
+    border: 1px solid $grey-2;
   }
   &:focus,
   &:hover {
-    box-shadow: 0 0 0 2px white, 0 0 0 4px $blue-0;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px $green-1;
   }
   svg {
     [fill] {
-      fill: #fff;
+      fill: white;
     }
   }
 }

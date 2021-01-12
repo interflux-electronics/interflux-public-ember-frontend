@@ -12,6 +12,7 @@
     <main
       aria-labelledby="h1"
       aria-describedby="description"
+      {{did-insert this.onInsert}}
     >
       <div class="liner">
         <BackNav
@@ -21,10 +22,7 @@
         />
 
         <div class="columns">
-          <article
-            id="products"
-            {{did-insert this.didInsertProducts}}
-          >
+          <article>
             <section>
               <div id="intro">
                 <h1 id="h1">{{product.name}}</h1>
@@ -34,21 +32,25 @@
                 {{/if}}
               </div>
 
-              <div id="hero">
-                <ResponsiveImage @image={{this.heroImage}} />
-              </div>
+              {{#if this.heroImage}}
+                <div id="hero">
+                  <ResponsiveImage @image={{this.heroImage}} />
+                </div>
+              {{/if}}
 
-              <div id="images">
-                {{#each this.images as |image|}}
-                  <button
-                    type="button"
-                    class={{if (eq image this.heroImage) 'active'}}
-                    {{on 'click' (fn this.setHero image)}}
-                  >
-                    <ResponsiveImage @image={{image}} />
-                  </button>
-                {{/each}}
-              </div>
+              {{#if (gt this.images.length 1)}}
+                <div id="images">
+                  {{#each this.images as |image|}}
+                    <button
+                      type="button"
+                      class={{if (eq image this.heroImage) 'active'}}
+                      {{on 'click' (fn this.setHero image)}}
+                    >
+                      <ResponsiveImage @image={{image}} />
+                    </button>
+                  {{/each}}
+                </div>
+              {{/if}}
             </section>
 
             <section aria-labelledby="h3-uses">

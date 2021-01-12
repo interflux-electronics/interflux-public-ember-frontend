@@ -116,37 +116,7 @@ export default class ProductsSubsetController extends Controller {
   get statusSubsets() {
     const arr = [];
 
-    const statuses = [
-      {
-        id: 'new',
-        label: 'New',
-        description: 'The newest in soldering chemistry.'
-      },
-      {
-        id: 'popular',
-        label: 'Popular',
-        description: 'In high demand for years.'
-      },
-      {
-        id: 'common',
-        label: 'Recommended',
-        description: 'Niche products for specific use cases.'
-      },
-      {
-        id: 'outdated',
-        label: 'Outdated',
-        description:
-          'At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!'
-      },
-      {
-        id: 'discontinued',
-        label: 'Discontinued',
-        description:
-          'When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.'
-      }
-    ];
-
-    statuses.forEach(status => {
+    this.statuses.forEach(status => {
       const products = this.products
         .filterBy('status', status.id)
         .sortBy('rank');
@@ -165,23 +135,30 @@ export default class ProductsSubsetController extends Controller {
     return [
       {
         id: 'new',
-        label: 'New'
+        label: 'New',
+        description: 'The newest in soldering chemistry.'
       },
       {
         id: 'popular',
-        label: 'Popular'
+        label: 'Popular',
+        description: 'In high demand for years.'
       },
       {
         id: 'recommended',
-        label: 'Recommended'
+        label: 'Recommended',
+        description: 'Niche products for specific use cases.'
       },
       {
         id: 'outdated',
-        label: 'Outdated'
+        label: 'Outdated',
+        description:
+          'At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!'
       },
       {
         id: 'discontinued',
-        label: 'Discontinued'
+        label: 'Discontinued',
+        description:
+          'When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.'
       }
     ];
   }
@@ -223,80 +200,111 @@ export default class ProductsSubsetController extends Controller {
     this.router.transitionTo('home.product', product.id);
   }
 
-  // @tracked whitelist = [
-  //   'soldering-fluxes',
-  //   'solder-pastes',
-  //   'solder-wires',
-  //   'solder-alloys',
-  //   'auxiliaries'
-  // ];
+  @tracked statusHideList = ['outdated', 'discontinued'];
+  @tracked familyHideList = [];
+  @tracked useHideList = [];
+  @tracked qualityHideList = [];
 
-  // get filters() {
-  //   const families = [];
-  //   const uses = [];
-  //
-  //   // const families = this.model.families.sortBy('rank').map(family => {
-  //   //   return {
-  //   //     id: family.id,
-  //   //     label: capitalize(family.namePlural),
-  //   //     checked: this.whitelist.includes(family.id)
-  //   //   };
-  //   // });
-  //   //
-  //   // const uses = this.model.uses.map(use => {
-  //   //   return {
-  //   //     id: use.id,
-  //   //     label: capitalize(use.text),
-  //   //     checked: this.whitelist.includes(use.id)
-  //   //   };
-  //   // });
-  //
-  //   return { families, uses };
-  // }
-
-  @action
-  toggle(id) {
-    console.log('toggle', id);
-    let arr = [...this.whitelist];
-    if (arr.includes(id)) {
-      arr = arr.reject(x => x === id);
-    } else {
-      arr.push(id);
-    }
-    this.whitelist = arr;
+  get checkboxLabel() {
+    return this.groupByStatus
+      ? 'Statuses'
+      : this.groupByQuality
+      ? 'Qualities'
+      : this.groupByUse
+      ? 'Processes'
+      : this.groupByFamily
+      ? 'Product families'
+      : null;
   }
 
-  template;
+  get checkboxes() {
+    if (this.groupByStatus) {
+      const { statuses, statusHideList } = this;
 
-  @action
-  didInsertProducts(element) {
-    this.template = element;
-  }
+      return statuses.map(status => {
+        const id = status.id;
+        const label = status.label;
+        const checked = !statusHideList.includes(id);
 
-  @action
-  filterByName(event) {
-    const query = event.target.value.toLowerCase();
-    if (!query) {
-      const toShow = this.template.querySelectorAll('.hide');
-      toShow.forEach(x => {
-        x.classList.remove('hide');
+        return { id, label, checked };
       });
-      return;
     }
-    const toShow = this.template.querySelectorAll(`li[data-name*="${query}"]`);
-    const toHide = this.template.querySelectorAll(
-      `li:not([data-name*="${query}"])`
-    );
-    toShow.forEach(x => x.classList.remove('hide'));
-    toHide.forEach(x => x.classList.add('hide'));
-    const sections = this.template.querySelectorAll('section');
-    sections.forEach(section => {
-      const n = section.querySelectorAll('li:not(.hide)').length;
-      if (n < 1) {
-        section.classList.add('hide');
+
+    if (this.groupByFamily) {
+      const { families, familyHideList } = this;
+
+      return families.map(family => {
+        const id = family.id;
+        const label = family.namePlural;
+        const checked = !familyHideList.includes(id);
+
+        return { id, label, checked };
+      });
+    }
+
+    if (this.groupByQuality) {
+      const { qualities, qualityHideList } = this;
+
+      return qualities.map(use => {
+        const id = use.id;
+        const label = use.label;
+        const checked = !qualityHideList.includes(id);
+
+        return { id, label, checked };
+      });
+    }
+
+    if (this.groupByUse) {
+      const { uses, useHideList } = this;
+
+      return uses.map(use => {
+        const id = use.id;
+        const label = `For ${use.text}`;
+        const checked = !useHideList.includes(id);
+
+        return { id, label, checked };
+      });
+    }
+
+    return [];
+  }
+
+  @action
+  toggleCheckbox(id) {
+    if (this.groupByStatus) {
+      const arr = this.statusHideList;
+      if (arr.includes(id)) {
+        this.statusHideList = arr.filter(x => x !== id);
       } else {
-        section.classList.remove('hide');
+        this.statusHideList = arr.concat([id]);
       }
-    });
+    }
+
+    if (this.groupByFamily) {
+      const arr = this.familyHideList;
+      if (arr.includes(id)) {
+        this.familyHideList = arr.filter(x => x !== id);
+      } else {
+        this.familyHideList = arr.concat([id]);
+      }
+    }
+
+    if (this.groupByUse) {
+      const arr = this.useHideList;
+      if (arr.includes(id)) {
+        this.useHideList = arr.filter(x => x !== id);
+      } else {
+        this.useHideList = arr.concat([id]);
+      }
+    }
+
+    if (this.groupByQuality) {
+      const arr = this.qualityHideList;
+      if (arr.includes(id)) {
+        this.qualityHideList = arr.filter(x => x !== id);
+      } else {
+        this.qualityHideList = arr.concat([id]);
+      }
+    }
   }
 }

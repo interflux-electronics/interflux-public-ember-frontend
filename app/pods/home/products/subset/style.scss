@@ -88,13 +88,14 @@
     .sticky {
       padding: 20px;
       border: 1px solid #e3e3e3;
-      // position: sticky;
-      // top: 30px;
+      position: sticky;
+      top: 30px;
       bottom: 0;
     }
     fieldset {
       padding: 0;
       border: 0;
+      margin: 0;
       & + fieldset {
         margin-top: 30px;
       }
@@ -155,8 +156,12 @@
       & + .checkbox-group {
         margin-top: 12px;
       }
+      .checkbox {
+        flex-shrink: 0;
+      }
       label {
-        margin-left: 12px;
+        margin: 0 0 0 12px;
+        line-height: 20px;
       }
     }
   }

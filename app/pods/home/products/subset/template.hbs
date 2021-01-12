@@ -33,7 +33,7 @@
             </fieldset>
 
             <fieldset id="group-by">
-              <legend>Group by</legend>
+              <legend>Group by ...</legend>
               <div class="buttons">
                 <button
                   type="button"
@@ -65,77 +65,23 @@
               </div>
             </fieldset>
 
-            {{#if this.groupByFamily}}
-              <fieldset>
-                <legend>Families</legend>
-
-                {{#each this.families as |family|}}
-                  <div class="checkbox-group">
-                    <Checkbox
-                      @id={{family.id}}
-                      @checked="true"
-                      @onClick={{fn this.toggle family.id}}
-                    />
-                    <label for="input-{{family.id}}">{{family.namePlural}}</label>
-                  </div>
-                {{/each}}
-              </fieldset>
-            {{/if}}
-
-            {{#if this.groupByUse}}
-              <fieldset>
-                <legend>Processes</legend>
-
-                {{#each this.uses as |use|}}
-                  <div class="checkbox-group">
-                    <Checkbox
-                      @id={{use.id}}
-                      @checked="true"
-                      @onClick={{fn this.toggle use.id}}
-                    />
-                    <label for="input-{{use.id}}">{{use.label}}</label>
-                  </div>
-                {{/each}}
-              </fieldset>
-            {{/if}}
-
-            {{#if this.groupByQuality}}
-              <fieldset>
-                <legend>Qualities</legend>
-
-                {{#each this.qualities as |quality|}}
-                  <div class="checkbox-group">
-                    <Checkbox
-                      @id={{quality.id}}
-                      @checked="true"
-                      @onClick={{fn this.toggle quality.id}}
-                    />
-                    <label for="input-{{quality.id}}">{{quality.text}}</label>
-                  </div>
-                {{/each}}
-              </fieldset>
-            {{/if}}
-
-            {{#if this.groupByStatus}}
-              <fieldset>
-                <legend>Status</legend>
-
-                {{#each this.statuses as |status|}}
-                  <div class="checkbox-group">
-                    <Checkbox
-                      @id={{status.id}}
-                      @checked="true"
-                      @onClick={{fn this.toggle status.id}}
-                    />
-                    <label for="input-{{status.id}}">{{status.label}}</label>
-                  </div>
-                {{/each}}
-              </fieldset>
-            {{/if}}
+            <fieldset>
+              <legend>{{this.checkboxLabel}}</legend>
+              {{#each this.checkboxes as |checkbox|}}
+                <div class="checkbox-group">
+                  <Checkbox
+                    @id={{checkbox.id}}
+                    @checked={{checkbox.checked}}
+                    @onClick={{fn this.toggleCheckbox checkbox.id}}
+                  />
+                  <label for="input-{{checkbox.id}}">{{checkbox.label}}</label>
+                </div>
+              {{/each}}
+            </fieldset>
           </div>
         </aside>
 
-        <article {{did-insert this.didInsertProducts}}>
+        <article>
           <h1 id="h1">{{this.pageTitle}}</h1>
 
           {{!-- Note: For SEO we render all <a> and hide with CSS so they remain crawlable. --}}

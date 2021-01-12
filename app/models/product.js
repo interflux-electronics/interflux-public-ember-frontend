@@ -39,8 +39,8 @@ export default class ProductModel extends Model {
     return this.status === 'popular';
   }
 
-  get isCommon() {
-    return this.status === 'common';
+  get isRecommended() {
+    return this.status === 'recommended';
   }
 
   get isOutdated() {
