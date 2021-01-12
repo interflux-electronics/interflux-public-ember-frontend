@@ -34,18 +34,29 @@ export default class ProductsSubsetController extends Controller {
     );
   }
 
+  // Subset product lists are either for families or uses.
+  get products() {
+    if (this.isFamily) {
+      return this.model.family.get('products');
+    }
+    if (this.isUse) {
+      return this.model.use.get('products');
+    }
+    return [];
+  }
+
   delay(ms) {
     return new Promise(approve => {
       window.setTimeout(approve, ms);
     });
   }
 
-  @tracked groupBy = 'status'; // 'status', 'family', 'use', 'quality'
-
   @action
   onInsert() {
     // TODO: Set group to something else than status?
   }
+
+  @tracked groupBy = 'status'; // 'status', 'family', 'use', 'quality'
 
   // By adding a render delay, the UI will feel less sluggish. The <aside> panel buttons and
   // checkboxes will respond instantly. The slower, heaver render of the products is deferred.
@@ -54,19 +65,6 @@ export default class ProductsSubsetController extends Controller {
     this.groupBy = name;
     await this.delay(1);
     this.refreshSubsets();
-  }
-
-  @action
-  refreshSubsets() {
-    this.subsets = this.groupByStatus
-      ? this.statusSubsets
-      : this.groupByQuality
-      ? this.qualitySubsets
-      : this.groupByUse
-      ? this.useSubsets
-      : this.groupByFamily
-      ? this.familySubsets
-      : null;
   }
 
   get groupByStatus() {
@@ -85,17 +83,20 @@ export default class ProductsSubsetController extends Controller {
     return this.groupBy === 'quality';
   }
 
-  get products() {
-    if (this.isFamily) {
-      return this.model.family.get('products');
-    }
-    if (this.isUse) {
-      return this.model.use.get('products');
-    }
-    return [];
-  }
-
   @tracked subsets = this.statusSubsets;
+
+  @action
+  refreshSubsets() {
+    this.subsets = this.groupByStatus
+      ? this.statusSubsets
+      : this.groupByQuality
+      ? this.qualitySubsets
+      : this.groupByUse
+      ? this.useSubsets
+      : this.groupByFamily
+      ? this.familySubsets
+      : null;
+  }
 
   get familySubsets() {
     const uniq = this.products

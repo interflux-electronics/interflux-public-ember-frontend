@@ -1,22 +1,33 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
+import { inject as service } from '@ember/service';
 
 export default class ProductsRoute extends Route {
+  @service cache;
+
   model() {
-    return hash({
-      products: this.store.findAll('product', {
-        include: ['image'].join(',')
-      }),
-      families: this.store.findAll('productFamily', {
-        include: ['images'].join(',')
-      }),
-      uses: this.store.findAll('use', {
-        include: ['images'].join(',')
-      }),
-      qualities: this.store.findAll('quality'),
-      productUses: this.store.findAll('product-use'),
-      productQualities: this.store.findAll('product-quality')
-      // delay: new Promise(resolve => setTimeout(resolve, 300000))
-    });
+    if (this.cache.hasProductIndex) {
+      return {
+        products: this.store.peekAll('product'),
+        families: this.store.peekAll('productFamily'),
+        uses: this.store.peekAll('use')
+      };
+    } else {
+      return hash({
+        products: this.store.findAll('product', {
+          include: ['image'].join(',')
+        }),
+        families: this.store.findAll('productFamily', {
+          include: ['images'].join(',')
+        }),
+        uses: this.store.findAll('use', {
+          include: ['images'].join(',')
+        })
+      });
+    }
+  }
+
+  afterModel() {
+    this.cache.hasProductIndex = true;
   }
 }

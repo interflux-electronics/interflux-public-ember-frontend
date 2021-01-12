@@ -10,4 +10,7 @@ export default class CacheService extends Service {
   addPath(path) {
     this.paths.push(path);
   }
+
+  hasProductIndex = false;
+  hasProductSubset = false;
 }
