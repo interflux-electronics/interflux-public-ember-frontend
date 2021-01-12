@@ -34,16 +34,39 @@ export default class ProductsSubsetController extends Controller {
     );
   }
 
+  delay(ms) {
+    return new Promise(approve => {
+      window.setTimeout(approve, ms);
+    });
+  }
+
   @tracked groupBy = 'status'; // 'status', 'family', 'use', 'quality'
 
   @action
   onInsert() {
-    if (this.isFamily) {
-      this.groupBy = 'status';
-    }
-    if (this.isUse) {
-      this.groupBy = 'status';
-    }
+    // TODO: Set group to something else than status?
+  }
+
+  // By adding a render delay, the UI will feel less sluggish. The <aside> panel buttons and
+  // checkboxes will respond instantly. The slower, heaver render of the products is deferred.
+  @action
+  async setGroup(name) {
+    this.groupBy = name;
+    await this.delay(1);
+    this.refreshSubsets();
+  }
+
+  @action
+  refreshSubsets() {
+    this.subsets = this.groupByStatus
+      ? this.statusSubsets
+      : this.groupByQuality
+      ? this.qualitySubsets
+      : this.groupByUse
+      ? this.useSubsets
+      : this.groupByFamily
+      ? this.familySubsets
+      : null;
   }
 
   get groupByStatus() {
@@ -72,61 +95,79 @@ export default class ProductsSubsetController extends Controller {
     return [];
   }
 
+  @tracked subsets = this.statusSubsets;
+
   get familySubsets() {
     const uniq = this.products
       .mapBy('family')
+      .filter(family => {
+        return !this.familyHideList.includes(family.get('id'));
+      })
       .sortBy('rank')
       .mapBy('id')
       .uniq();
 
     return uniq.map(id => {
       const family = this.store.peekRecord('product-family', id);
+      const label = family.label;
       const products = this.products.filterBy('family.id', id);
 
-      return { family, products };
+      return { id, label, products };
     });
   }
 
   get useSubsets() {
-    return this.uses.map(use => {
-      const products = this.products.filter(product => {
-        return product
-          .get('uses')
-          .mapBy('id')
-          .includes(use.id);
-      });
+    return this.uses
+      .filter(use => {
+        return !this.useHideList.includes(use.id);
+      })
+      .map(use => {
+        const { id, label, iconURL } = use;
+        const products = this.products.filter(product => {
+          return product
+            .get('uses')
+            .mapBy('id')
+            .includes(use.id);
+        });
 
-      return { use, products };
-    });
+        return { id, label, iconURL, products };
+      });
   }
 
   get qualitySubsets() {
-    return this.qualities.map(quality => {
-      const products = this.products.filter(product => {
-        return product
-          .get('qualities')
-          .mapBy('id')
-          .includes(quality.id);
-      });
+    return this.qualities
+      .filter(quality => {
+        return !this.qualityHideList.includes(quality.id);
+      })
+      .map(quality => {
+        const { id, label, iconURL } = quality;
+        const products = this.products.filter(product => {
+          return product
+            .get('qualities')
+            .mapBy('id')
+            .includes(quality.id);
+        });
 
-      return { quality, products };
-    });
+        return { id, label, iconURL, products };
+      });
   }
 
   get statusSubsets() {
     const arr = [];
 
-    this.statuses.forEach(status => {
-      const products = this.products
-        .filterBy('status', status.id)
-        .sortBy('rank');
+    this.statuses
+      .filter(status => {
+        return !this.statusHideList.includes(status.id);
+      })
+      .forEach(status => {
+        const products = this.products
+          .filterBy('status', status.id)
+          .sortBy('rank');
 
-      console.log(status, products.length);
-
-      if (products.length) {
-        arr.push({ ...status, products });
-      }
-    });
+        if (products.length) {
+          arr.push({ ...status, products });
+        }
+      });
 
     return arr;
   }
@@ -136,28 +177,28 @@ export default class ProductsSubsetController extends Controller {
       {
         id: 'new',
         label: 'New',
-        description: 'The newest in soldering chemistry.'
+        blurb: 'The newest in soldering chemistry.'
       },
       {
         id: 'popular',
         label: 'Popular',
-        description: 'In high demand for years.'
+        blurb: 'In high demand for years.'
       },
       {
         id: 'recommended',
         label: 'Recommended',
-        description: 'Niche products for specific use cases.'
+        blurb: 'Niche products for specific use cases.'
       },
       {
         id: 'outdated',
         label: 'Outdated',
-        description:
+        blurb:
           'At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!'
       },
       {
         id: 'discontinued',
         label: 'Discontinued',
-        description:
+        blurb:
           'When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.'
       }
     ];
@@ -306,5 +347,7 @@ export default class ProductsSubsetController extends Controller {
         this.qualityHideList = arr.concat([id]);
       }
     }
+
+    this.refreshSubsets();
   }
 }

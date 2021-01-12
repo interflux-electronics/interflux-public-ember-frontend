@@ -38,14 +38,14 @@
                 <button
                   type="button"
                   class={{if this.groupByStatus 'active' 'idle'}}
-                  {{on 'click' (fn (mut this.groupBy) 'status')}}
+                  {{on 'click' (fn this.setGroup 'status')}}
                 >Status</button>
 
                 {{#unless this.isFamily}}
                   <button
                     type="button"
                     class={{if this.groupByFamily 'active' 'idle'}}
-                    {{on 'click' (fn (mut this.groupBy) 'family')}}
+                    {{on 'click' (fn this.setGroup 'family')}}
                   >Family</button>
                 {{/unless}}
 
@@ -53,14 +53,14 @@
                   <button
                     type="button"
                     class={{if this.groupByUse 'active' 'idle'}}
-                    {{on 'click' (fn (mut this.groupBy) 'use')}}
+                    {{on 'click' (fn this.setGroup 'use')}}
                   >Process</button>
                 {{/unless}}
 
                 <button
                   type="button"
                   class={{if this.groupByQuality 'active' 'idle'}}
-                  {{on 'click' (fn (mut this.groupBy) 'quality')}}
+                  {{on 'click' (fn this.setGroup 'quality')}}
                 >Quality</button>
               </div>
             </fieldset>
@@ -84,88 +84,33 @@
         <article>
           <h1 id="h1">{{this.pageTitle}}</h1>
 
-          {{!-- Note: For SEO we render all <a> and hide with CSS so they remain crawlable. --}}
-
-          <div class="view by-family {{if this.groupByFamily 'show' 'hide'}}">
-            {{#each this.familySubsets as |set|}}
-              <section labelledby="h2-{{set.family.id}}">
-                <div class="intro">
-                  <div class="title">
-                    <h2 id="h2-{{set.family.id}}">{{set.family.label}}</h2>
-                  </div>
-                </div>
-
-                <ol>
-                  {{#each set.products as |product|}}
-                    <ProductRow @product={{product}} />
-                  {{/each}}
-                </ol>
-              </section>
-            {{/each}}
-          </div>
-
-          <div class="view by-use {{if this.groupByUse 'show' 'hide'}}">
-            {{#each this.useSubsets as |set|}}
-              <section labelledby="h2-{{set.use.id}}">
-                <div class="intro">
-                  <div class="title">
+          {{#each this.subsets as |set|}}
+            <section labelledby="h2-{{set.id}}">
+              <div class="intro">
+                <div class="title">
+                  {{#if set.iconURL}}
                     <div class="icon">
-                      <Image @src={{set.use.iconURL}} />
+                      <Image @src={{set.iconURL}} />
                     </div>
-                    <h2 id="h2-{{set.use.id}}">{{set.use.label}}</h2>
-                  </div>
-                </div>
-
-                <ol>
-                  {{#each set.products as |product|}}
-                    <ProductRow @product={{product}} />
-                  {{/each}}
-                </ol>
-              </section>
-            {{/each}}
-          </div>
-
-          <div class="view by-quality {{if this.groupByQuality 'show' 'hide'}}">
-            {{#each this.qualitySubsets as |set|}}
-              <section labelledby="h2-{{set.quality.id}}">
-                <div class="intro">
-                  <div class="title">
-                    <div class="icon">
-                      <Image @src={{set.quality.iconURL}} />
-                    </div>
-                    <h2 id="h2-{{set.quality.id}}">{{set.quality.label}}</h2>
-                  </div>
-                </div>
-
-                <ol>
-                  {{#each set.products as |product|}}
-                    <ProductRow @product={{product}} />
-                  {{/each}}
-                </ol>
-              </section>
-            {{/each}}
-          </div>
-
-          <div class="view by-status {{if this.groupByStatus 'show' 'hide'}}">
-            {{#each this.statusSubsets as |set|}}
-              <section labelledby="h2-{{set.id}}">
-                <div class="intro">
-                  <div class="title">
-                    <h2 id="h2-{{set.id}}">{{set.label}}</h2>
-                  </div>
-                  {{#if set.description}}
-                    <p>{{set.description}}</p>
                   {{/if}}
+                  <h2 id="h2-{{set.id}}">{{set.label}}</h2>
                 </div>
+                {{#if set.blurb}}
+                  <p>{{set.blurb}}</p>
+                {{/if}}
+              </div>
 
-                <ol>
-                  {{#each set.products as |product|}}
-                    <ProductRow @product={{product}} />
-                  {{/each}}
-                </ol>
-              </section>
-            {{/each}}
-          </div>
+              <ol>
+                {{#each set.products as |product|}}
+                  <ProductRow @product={{product}} />
+                {{/each}}
+              </ol>
+            </section>
+          {{else}}
+            <div class="no-data">
+              <p>No products for chosen filters.</p>
+            </div>
+          {{/each}}
         </article>
       </div>
     </div>

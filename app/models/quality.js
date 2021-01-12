@@ -15,7 +15,7 @@ export default class QualityModel extends Model {
   }
 
   get iconURL() {
-    return `${ENV.cdnHost}/${this.icon}`;
+    return this.icon ? `${ENV.cdnHost}/${this.icon}` : null;
   }
 
   // Capitalise first letter only
