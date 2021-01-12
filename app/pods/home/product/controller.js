@@ -20,4 +20,11 @@ export default class ProductController extends Controller {
   setHero(image) {
     this.chosenImage = image;
   }
+
+  // HACK: for some reason the chosenImage remains set when navigating between products. The
+  // solution is to reset this value on each insert.
+  @action
+  onInsert() {
+    this.chosenImage = null;
+  }
 }
