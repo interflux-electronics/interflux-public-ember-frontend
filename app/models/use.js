@@ -20,7 +20,9 @@ export default class UseModel extends Model {
   }
 
   get iconURL() {
-    return this.icon ? `${ENV.cdnHost}/${this.icon}` : null;
+    return this.icon
+      ? `${ENV.cdnHost}/${this.icon}`
+      : `${ENV.cdnHost}/images/logos/secondary-interflux-electronics-symbol-2.svg`;
   }
 
   get label() {

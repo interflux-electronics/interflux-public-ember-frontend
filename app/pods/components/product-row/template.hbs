@@ -1,17 +1,7 @@
 <li class="product-row">
   <a href={{href-to 'home.product' @product.id}}>
     <div class="left">
-      {{#if @product.image}}
-        <ResponsiveImage @image={{@product.image}} />
-      {{else}}
-        <figure class="no-image">
-          <Image
-            @src="{{env 'cdnHost'}}/images/icons/unknown.svg"
-            @width="50"
-            @height="50"
-          />
-        </figure>
-      {{/if}}
+      <ResponsiveImage @image={{@product.image}} />
     </div>
 
     <div class="center">

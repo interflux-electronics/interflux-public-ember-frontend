@@ -13,7 +13,7 @@ i.load-spinner {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(#eee, 0.7);
+  // background: rgba(#eee, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ i.load-spinner {
     width: 30px;
     height: 30px;
     position: relative;
-    border: 4px solid #ddd;
+    border: 4px solid $grey-2;
     animation: loader 3s infinite ease;
     border-radius: 3px;
   }
@@ -32,7 +32,7 @@ i.load-spinner {
     vertical-align: top;
     display: inline-block;
     width: 100%;
-    background-color: #ddd;
+    background-color: $grey-2;
     animation: loader-inner 3s infinite ease-in;
   }
 
