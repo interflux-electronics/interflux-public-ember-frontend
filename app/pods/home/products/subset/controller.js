@@ -53,6 +53,13 @@ export default class ProductsSubsetController extends Controller {
 
   @action
   onInsert() {
+    // HACK: for some reason the chosenImage remains set when navigating between products. The
+    // solution is to reset these value on each insert.
+    this.groupBy = 'status';
+    this.subsets = this.statusSubsets;
+    this.familyHideList = [];
+    this.useHideList = [];
+    this.qualityHideList = [];
     // TODO: Set group to something else than status?
   }
 
