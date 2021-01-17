@@ -9,22 +9,21 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('home', { path: '/:language' }, function() {
     this.route('product', { path: '/product/:id' });
-    // this.route('product', { path: '/products/:query' });
     this.route('products', function() {
       this.route('subset', { path: '/:slug' });
     });
-    // TODO: revisit
-    this.route('processes', { resetNamespace: true }, function() {
-      this.route('process', { path: '/:process' });
-    });
-    this.route('articles', { resetNamespace: true }, function() {
-      this.route('article', { path: '/:article' });
-    });
-    this.route('documents', { resetNamespace: true }, function() {
+    this.route('company');
+    this.route('documents', function() {
       this.route('category', { path: '/:category' });
     });
-    this.route('contact', { resetNamespace: true });
-    this.route('company', { resetNamespace: true });
+    this.route('contact');
+    // TODO: revisit
+    // this.route('processes', { resetNamespace: true }, function() {
+    //   this.route('process', { path: '/:process' });
+    // });
+    // this.route('articles', { resetNamespace: true }, function() {
+    //   this.route('article', { path: '/:article' });
+    // });
     this.route('catchall', { path: '*:', resetNamespace: true });
   });
 
