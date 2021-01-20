@@ -1,62 +1,69 @@
 <Page @id="contact">
   <Header />
 
-  <Section @id="map">
-    <Map @markers={{@model.companies}} />
-  </Section>
+  <main>
+    <Section @id="map">
+      <Map @markers={{@model.companies}} />
+    </Section>
 
-  <Section @id="list">
-    <SearchList
-      @input-placeholder="Search"
-      @input-class="big white shadow"
-    >
-      <ul>
-        {{#each this.companies as |company|}}
-          <li>
-            <h2 data-search="me">{{company.businessName}}</h2>
+    <Section @id="list">
+      <SearchList
+        @input-placeholder="Search"
+        @input-class="big white shadow"
+      >
+        <ul>
+          {{#each this.companies as |company|}}
+            <li>
+              <h2 data-search="me">{{company.businessName}}</h2>
 
-            {{#if company.phone}}
-              <p>Tel: <a
-                  href="tel:{{company.phone}}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >{{company.phone}}</a></p>
-            {{/if}}
+              {{#each company.companyMembers as |companyMember|}}
+                <p>{{companyMember.title}} - {{companyMember.person.fullName}} - {{companyMember.email}} - {{companyMember.phone}}</p>
+              {{/each}}
 
-            {{#if company.fax}}
-              <p>Fax: <a
-                  href="fax:{{company.fax}}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >{{company.fax}}</a></p>
-            {{/if}}
-
-            {{#if company.emails}}
-              {{#each company.emails as |email|}}
-                <p>Email: <a
-                    href="mailto:{{email}}"
+              {{#if company.phone}}
+                <p>Tel: <a
+                    href="tel:{{company.phone}}"
                     target="_blank"
                     rel="noopener noreferrer"
-                  >{{email}}</a></p>
-              {{/each}}
-            {{/if}}
+                  >{{company.phone}}</a></p>
+              {{/if}}
 
-            {{#if company.website}}
-              <p>Website: <a
-                  href={{company.website}}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >{{company.website}}</a></p>
-            {{/if}}
+              {{#if company.fax}}
+                <p>Fax: <a
+                    href="fax:{{company.fax}}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{{company.fax}}</a></p>
+              {{/if}}
 
-            <p data-search="me">{{company.legalName}}</p>
-            <p data-search="me">{{company.address}}</p>
-            <h3 data-search="me">{{company.country.nameEnglish}}</h3>
-          </li>
-        {{/each}}
-      </ul>
-    </SearchList>
-  </Section>
+              {{#if company.emails}}
+                {{#each company.emails as |email|}}
+                  <p>Email: <a
+                      href="mailto:{{email}}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >{{email}}</a></p>
+                {{/each}}
+              {{/if}}
+
+              {{#if company.website}}
+                <p>Website: <a
+                    href={{company.website}}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{{company.website}}</a></p>
+              {{/if}}
+
+              <p data-search="me">{{company.legalName}}</p>
+              <p data-search="me">{{company.address}}</p>
+              <h3 data-search="me">{{company.country.name}}</h3>
+            </li>
+          {{/each}}
+        </ul>
+      </SearchList>
+    </Section>
+
+  </main>
 
   <Footer />
 </Page>

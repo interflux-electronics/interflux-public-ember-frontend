@@ -17,4 +17,11 @@ export default class CountryModel extends Model {
   @attr('array') timezones;
   @attr('array') topLevelDomains;
   @attr('array') callingCodes;
+
+  get name() {
+    return (
+      this.nameEnglish +
+      (this.nameNative !== this.nameEnglish ? ` - ${this.nameNative}` : '')
+    );
+  }
 }
