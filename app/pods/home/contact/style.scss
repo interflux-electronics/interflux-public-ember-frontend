@@ -31,14 +31,24 @@
   }
   li {
     align-items: flex-start;
+    padding: 60px;
+    box-shadow: 0 2px 4px RGBA(0, 0, 0, 0.1);
+    background-color: white;
     & + li {
-      margin-top: 60px;
+      margin-top: 30px;
     }
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      font-family: $extrabold;
     }
     p {
       margin: 0;
+    }
+    p.country {
+      font-family: $bold;
+    }
+    div + div {
+      margin-top: 12px;
     }
   }
   #list {

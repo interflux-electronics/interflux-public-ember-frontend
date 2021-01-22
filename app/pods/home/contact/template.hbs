@@ -16,47 +16,83 @@
             <li>
               <h2 data-search="me">{{company.businessName}}</h2>
 
-              {{#each company.companyMembers as |companyMember|}}
-                <p>{{companyMember.title}} - {{companyMember.person.fullName}} - {{companyMember.email}} - {{companyMember.phone}}</p>
-              {{/each}}
+              <div>
+                {{#if company.legalName}}
+                  <p data-search="me">{{company.legalName}}</p>
+                {{/if}}
+                {{#if company.address}}
+                  <p data-search="me">{{company.address}}</p>
+                {{/if}}
+                <p
+                  data-search="me"
+                  class="country"
+                >{{company.country.name}}</p>
+              </div>
 
-              {{#if company.phone}}
-                <p>Tel: <a
-                    href="tel:{{company.phone}}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >{{company.phone}}</a></p>
-              {{/if}}
-
-              {{#if company.fax}}
-                <p>Fax: <a
-                    href="fax:{{company.fax}}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >{{company.fax}}</a></p>
-              {{/if}}
-
-              {{#if company.emails}}
-                {{#each company.emails as |email|}}
-                  <p>Email: <a
-                      href="mailto:{{email}}"
+              <div>
+                {{#if company.phone}}
+                  <p>Tel: <a
+                      href="tel:{{company.phone}}"
                       target="_blank"
                       rel="noopener noreferrer"
-                    >{{email}}</a></p>
+                    >{{company.phone}}</a></p>
+                {{/if}}
+
+                {{#if company.fax}}
+                  <p>Fax: <a
+                      href="fax:{{company.fax}}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >{{company.fax}}</a></p>
+                {{/if}}
+
+                {{#if company.emails}}
+                  {{#each company.emails as |email|}}
+                    <p>Email: <a
+                        href="mailto:{{email}}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >{{email}}</a></p>
+                  {{/each}}
+                {{/if}}
+
+                {{#if company.website}}
+                  <p>Website: <a
+                      href={{company.website}}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >{{company.website}}</a></p>
+                {{/if}}
+              </div>
+
+              {{#if company.companyMembers}}
+                {{#each company.companyMembers as |member|}}
+                  <div>
+                    {{#if member.person.fullName}}
+                      <p><span>{{member.person.fullName}}</span>
+                        {{#if member.title}}
+                          <span>({{member.title}})</span>
+                        {{/if}}
+                      </p>
+                    {{/if}}
+
+                    {{#if member.email}}
+                      <p><a
+                          href="mailto:{{member.email}}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >{{member.email}}</a></p>
+                    {{/if}}
+                    {{#if member.phone}}
+                      <p><a
+                          href="tel:{{member.phone}}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >{{member.phone}}</a></p>
+                    {{/if}}
+                  </div>
                 {{/each}}
               {{/if}}
-
-              {{#if company.website}}
-                <p>Website: <a
-                    href={{company.website}}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >{{company.website}}</a></p>
-              {{/if}}
-
-              <p data-search="me">{{company.legalName}}</p>
-              <p data-search="me">{{company.address}}</p>
-              <h3 data-search="me">{{company.country.name}}</h3>
             </li>
           {{/each}}
         </ul>
