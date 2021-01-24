@@ -29,6 +29,10 @@ export default class CompanyModel extends Model {
     return this.order || 999;
   }
 
+  get websiteForHumans() {
+    return this.website ? this.website.replace('https://', '') : null;
+  }
+
   get hasOneEmail() {
     return (
       this.emailGeneral &&

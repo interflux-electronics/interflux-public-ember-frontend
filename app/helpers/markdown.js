@@ -14,7 +14,7 @@ export default helper(function markdown(params) {
   }
   // Wrap all **bolded** words with <strong> tags
   let html = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  html = text.replace(/\s\s/g, '<br />');
+  html = html.replace(/\s\s/g, '<br />');
 
   return htmlSafe(html);
 });
