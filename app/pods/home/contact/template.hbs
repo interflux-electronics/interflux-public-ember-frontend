@@ -21,7 +21,7 @@
                   <p data-search="me">{{company.legalName}}</p>
                 {{/if}}
                 {{#if company.address}}
-                  <p data-search="me">{{company.address}}</p>
+                  <p data-search="me">{{markdown company.address}}</p>
                 {{/if}}
                 <p
                   data-search="me"
@@ -47,27 +47,27 @@
                 {{/if}}
 
                 {{#if company.emailGeneral}}
-                  <p>General enquiries: <a
+                  <p>{{if company.hasOneEmail 'Email:' 'Email for general enquiries:'}} <a
                       href="mailto:{{company.emailGeneral}}"
                       target="_blank"
                       rel="noopener noreferrer"
                     >{{company.emailGeneral}}</a></p>
                 {{/if}}
 
-                {{#if company.emailSupport}}
-                  <p>Technical support: <a
-                      href="mailto:{{company.emailSupport}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.emailSupport}}</a></p>
-                {{/if}}
-
                 {{#if company.emailOrders}}
-                  <p>Orders: <a
+                  <p>Email for placing orders: <a
                       href="mailto:{{company.emailOrders}}"
                       target="_blank"
                       rel="noopener noreferrer"
                     >{{company.emailOrders}}</a></p>
+                {{/if}}
+
+                {{#if company.emailSupport}}
+                  <p>Email for technical support: <a
+                      href="mailto:{{company.emailSupport}}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >{{company.emailSupport}}</a></p>
                 {{/if}}
 
                 {{#if company.emailAccounting}}
@@ -90,6 +90,7 @@
               {{#if company.companyMembers}}
                 {{#each company.companyMembers as |member|}}
                   <div>
+                    <p>Best contact:</p>
                     {{#if member.person.fullName}}
                       <p><span>{{member.person.fullName}}</span>
                         {{#if member.title}}

@@ -28,4 +28,11 @@ export default class CompanyModel extends Model {
   get rank() {
     return this.order || 999;
   }
+
+  get hasOneEmail() {
+    return (
+      this.emailGeneral &&
+      !(this.emailSupport || this.emailOrders || this.emailAccounting)
+    );
+  }
 }
