@@ -6,7 +6,7 @@
     <nav>
       {{#each this.categories as |category|}}
         <LinkTo
-          @route="documents.category"
+          @route="home.documents.category"
           @model={{category.slug}}
         >
           <Icon @name={{category.icon}} />
