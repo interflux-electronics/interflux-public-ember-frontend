@@ -32,7 +32,7 @@
               <div>
                 {{#if company.phone}}
                   <p>Tel: <a
-                      href="tel:{{company.phone}}"
+                      href="tel:{{company.phoneForRobots}}"
                       target="_blank"
                       rel="noopener noreferrer"
                     >{{company.phone}}</a></p>
@@ -40,7 +40,7 @@
 
                 {{#if company.fax}}
                   <p>Fax: <a
-                      href="fax:{{company.fax}}"
+                      href="fax:{{company.faxForRobots}}"
                       target="_blank"
                       rel="noopener noreferrer"
                     >{{company.fax}}</a></p>
@@ -88,9 +88,9 @@
               </div>
 
               {{#if company.companyMembers}}
-                {{#each company.companyMembers as |member|}}
-                  <div>
-                    <p>Best contact:</p>
+                <div>
+                  <p>Best contact{{if company.hasMultipleContacts 's'}}:</p>
+                  {{#each company.companyMembers as |member|}}
                     {{#if member.person.fullName}}
                       <p><span>{{member.person.fullName}}</span>
                         {{#if member.title}}
@@ -113,8 +113,8 @@
                           rel="noopener noreferrer"
                         >{{member.phone}}</a></p>
                     {{/if}}
-                  </div>
-                {{/each}}
+                  {{/each}}
+                </div>
               {{/if}}
             </li>
           {{/each}}

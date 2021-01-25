@@ -39,4 +39,16 @@ export default class CompanyModel extends Model {
       !(this.emailSupport || this.emailOrders || this.emailAccounting)
     );
   }
+
+  get phoneForRobots() {
+    return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
+  }
+
+  get faxForRobots() {
+    return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
+  }
+
+  get hasMultipleContacts() {
+    return this.companyMembers && this.companyMembers.length > 1;
+  }
 }
