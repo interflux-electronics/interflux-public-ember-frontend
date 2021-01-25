@@ -92,7 +92,7 @@
                   <p>Best contact{{if company.hasMultipleContacts 's'}}:</p>
                   {{#each company.companyMembers as |member|}}
                     {{#if member.person.fullName}}
-                      <p><span>{{member.person.fullName}}</span>
+                      <p><span data-search="me">{{member.person.fullName}}</span>
                         {{#if member.title}}
                           <span>({{member.title}})</span>
                         {{/if}}
