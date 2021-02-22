@@ -1,8 +1,9 @@
-import Model, { belongsTo, attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class ProductUseModel extends Model {
+  @attr('number') rankAmongProducts;
+  @attr('number') rankAmongUses;
+
   @belongsTo('product') product;
   @belongsTo('use') use;
-
-  @attr('number', { defaultValue: 999 }) rank;
 }
