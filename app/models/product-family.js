@@ -9,7 +9,17 @@ export default class ProductFamilyModel extends Model {
   @attr('number') order;
 
   @hasMany('product') products;
-  @hasMany('image') images;
+  @hasMany('product-family-image') productFamilyImages;
+
+  get images() {
+    const rank = 'rankAmongImages';
+    const records = this.productFamilyImages;
+    const ranked = records.filterBy(rank).sortBy(rank);
+    const rankless = records.rejectBy(rank);
+    const sorted = [...ranked, ...rankless];
+
+    return sorted.map(record => record.image);
+  }
 
   get count() {
     return this.products.length;

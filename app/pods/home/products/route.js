@@ -18,10 +18,13 @@ export default class ProductsRoute extends Route {
           include: ['image'].join(',')
         }),
         families: this.store.findAll('productFamily', {
-          include: ['images'].join(',')
+          include: [
+            'product_family_images',
+            'product_family_images.image'
+          ].join(',')
         }),
         uses: this.store.findAll('use', {
-          include: ['images'].join(',')
+          include: ['use_images', 'use_images.image'].join(',')
         })
       });
     }
