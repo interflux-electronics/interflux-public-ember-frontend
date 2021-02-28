@@ -9,15 +9,22 @@ export default class UseModel extends Model {
   @attr('number') rank;
 
   @hasMany('product-use') productUses;
-  @hasMany('use-image') useImages;
 
-  get products() {
-    return this.productUses.sortBy('rank').mapBy('product');
+  get productsByRank() {
+    const rank = 'rankAmongProducts';
+    const records = this.productUses;
+    const ranked = records.filterBy(rank).sortBy(rank);
+    const rankless = records.rejectBy(rank);
+    const sorted = [...ranked, ...rankless];
+
+    return sorted.map(record => record.product);
   }
 
   get families() {
     return this.products.mapBy('family').uniqBy('id');
   }
+
+  @hasMany('use-image') useImages;
 
   get images() {
     const rank = 'rankAmongImages';

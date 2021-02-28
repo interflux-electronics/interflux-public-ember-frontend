@@ -10,7 +10,10 @@ export default class ProductsRoute extends Route {
       return {
         products: this.store.peekAll('product'),
         families: this.store.peekAll('productFamily'),
-        uses: this.store.peekAll('use')
+        uses: this.store.peekAll('use'),
+        qualities: this.store.peekAll('quality'),
+        productUses: this.store.peekAll('product-use'),
+        productQualities: this.store.peekAll('product-quality')
       };
     } else {
       return hash({
@@ -25,7 +28,10 @@ export default class ProductsRoute extends Route {
         }),
         uses: this.store.findAll('use', {
           include: ['use_images', 'use_images.image'].join(',')
-        })
+        }),
+        qualities: this.store.findAll('quality'),
+        productUses: this.store.findAll('product-use'),
+        productQualities: this.store.findAll('product-quality')
       });
     }
   }

@@ -1,4 +1,7 @@
-<li class="product-row">
+<li
+  id={{@product.slug}}
+  class="product-row {{@product.status}} {{@product.family.slug}}"
+>
   <a href={{href-to 'home.product' @product.id}}>
     <div class="left">
       <ResponsiveImage @image={{@product.image}} />
@@ -6,7 +9,21 @@
 
     <div class="center">
       <h3>{{@product.name}}</h3>
-      <h4>{{@product.family.nameSingle}}</h4>
+      <div class="tags">
+        <h4 class="blue">{{@product.family.nameSingle}}</h4>
+        {{#if @product.isNew}}
+          <h4 class="orange">NEW</h4>
+        {{/if}}
+        {{#if @product.isPopular}}
+          <h4 class="orange">popular</h4>
+        {{/if}}
+        {{#if @product.isOutdated}}
+          <h4 class="grey">outdated</h4>
+        {{/if}}
+        {{#if @product.isDiscontinued}}
+          <h4 class="red">discontinued</h4>
+        {{/if}}
+      </div>
       {{#if @product.pitch}}
         <p>{{markdown @product.pitch}}</p>
       {{/if}}

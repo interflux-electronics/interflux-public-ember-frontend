@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { hash } from 'rsvp';
+// import { hash } from 'rsvp';
 
 export default class ProductsSubsetRoute extends Route {
   @service cache;
@@ -8,25 +8,40 @@ export default class ProductsSubsetRoute extends Route {
   model(params) {
     const { slug } = params;
 
-    const promises = this.cache.hasProductSubset
-      ? {
-          qualities: this.store.peekAll('quality'),
-          productUses: this.store.peekAll('product-use'),
-          productQualities: this.store.peekAll('product-quality')
-        }
-      : {
-          qualities: this.store.findAll('quality'),
-          productUses: this.store.findAll('product-use'),
-          productQualities: this.store.findAll('product-quality')
-        };
+    // const promises = this.cache.hasProductSubset
+    //   ? {
+    //       qualities: this.store.peekAll('quality'),
+    //       productUses: this.store.peekAll('product-use'),
+    //       productQualities: this.store.peekAll('product-quality')
+    //     }
+    //   : {
+    //       qualities: this.store.findAll('quality'),
+    //       productUses: this.store.findAll('product-use'),
+    //       productQualities: this.store.findAll('product-quality')
+    //     };
+
+    // if (slug.startsWith('for-')) {
+    //   promises.use = this.store.peekRecord('use', slug.slice(4));
+    // } else {
+    //   promises.family = this.store.peekRecord('productFamily', slug);
+    // }
+
+    // promises.products = this.modelFor('home.products').products;
+    // promises.families = this.modelFor('home.products').families;
+    // promises.uses = this.modelFor('home.products').uses;
+    // promises.slug = slug;
+
+    // return hash(promises);
+
+    const model = this.modelFor('home.products');
 
     if (slug.startsWith('for-')) {
-      promises.use = this.store.peekRecord('use', slug.slice(4));
+      model.use = this.store.peekRecord('use', slug.slice(4));
     } else {
-      promises.family = this.store.peekRecord('productFamily', slug);
+      model.family = this.store.peekRecord('productFamily', slug);
     }
 
-    return hash(promises);
+    return model;
   }
 
   afterModel() {

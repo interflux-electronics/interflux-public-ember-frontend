@@ -7,181 +7,37 @@ export default class ProductsSubsetController extends Controller {
   @service store;
   @service router;
 
-  get isFamily() {
-    return this.model.family ? true : false;
-  }
+  @tracked family; // The family record matching the slug in the URL
+  @tracked use; // The use record matching the slug in the URL
+  @tracked statuses;
+  @tracked shownStatuses = ['new', 'popular', 'recommended'];
 
-  get isUse() {
-    return this.model.use ? true : false;
-  }
-
-  get pageTitle() {
-    if (this.isFamily) {
-      return this.model.family.get('label');
-    }
-    if (this.isUse) {
-      return `For ${this.model.use.get('text')}`;
-    }
-    return '?';
-  }
-
-  get searchPlaceHolder() {
-    return (
-      this.products
-        .sortBy('rank')
-        .firstObject.get('name')
-        .slice(0, -1) + '...'
-    );
-  }
-
-  // Subset product lists are either for families or uses.
-  get products() {
-    if (this.isFamily) {
-      return this.model.family.get('products');
-    }
-    if (this.isUse) {
-      return this.model.use.get('products');
-    }
-    return [];
-  }
-
-  delay(ms) {
-    return new Promise(approve => {
-      window.setTimeout(approve, ms);
-    });
-  }
+  main; // The <main> element in the DOM
 
   @action
-  onInsert() {
-    // HACK: for some reason the chosenImage remains set when navigating between products. The
-    // solution is to reset these value on each insert.
-    this.groupBy = 'status';
-    this.subsets = this.statusSubsets;
-    this.familyHideList = [];
-    this.useHideList = [];
-    this.qualityHideList = [];
-    // TODO: Set group to something else than status?
+  async onInsert(main) {
+    // Remember the <main> element for later use.
+    this.main = main;
+
+    // Set the model records locally so we can overwrite them with our radio buttons.
+    this.family = this.model.family;
+    this.use = this.model.use;
+
+    this.renderStatusSections();
+
+    await this.delay(1); // Allow all <section> to be rendered first
+
+    this.filterAndSortProducts();
+    this.filterSections();
   }
 
-  @tracked groupBy = 'status'; // 'status', 'family', 'use', 'quality'
-
-  // By adding a render delay, the UI will feel less sluggish. The <aside> panel buttons and
-  // checkboxes will respond instantly. The slower, heaver render of the products is deferred.
-  @action
-  async setGroup(name) {
-    this.groupBy = name;
-    await this.delay(1);
-    this.refreshSubsets();
-  }
-
-  get groupByStatus() {
-    return this.groupBy === 'status';
-  }
-
-  get groupByFamily() {
-    return this.groupBy === 'family';
-  }
-
-  get groupByUse() {
-    return this.groupBy === 'use';
-  }
-
-  get groupByQuality() {
-    return this.groupBy === 'quality';
-  }
-
-  @tracked subsets = this.statusSubsets;
-
-  @action
-  refreshSubsets() {
-    this.subsets = this.groupByStatus
-      ? this.statusSubsets
-      : this.groupByQuality
-      ? this.qualitySubsets
-      : this.groupByUse
-      ? this.useSubsets
-      : this.groupByFamily
-      ? this.familySubsets
-      : null;
-  }
-
-  get familySubsets() {
-    const uniq = this.products
-      .mapBy('family')
-      .filter(family => {
-        return !this.familyHideList.includes(family.get('id'));
-      })
-      .sortBy('rank')
-      .mapBy('id')
-      .uniq();
-
-    return uniq.map(id => {
-      const family = this.store.peekRecord('product-family', id);
-      const label = family.label;
-      const products = this.products.filterBy('family.id', id);
-
-      return { id, label, products };
-    });
-  }
-
-  get useSubsets() {
-    return this.uses
-      .filter(use => {
-        return !this.useHideList.includes(use.id);
-      })
-      .map(use => {
-        const { id, label, iconURL } = use;
-        const products = this.products.filter(product => {
-          return product
-            .get('uses')
-            .mapBy('id')
-            .includes(use.id);
-        });
-
-        return { id, label, iconURL, products };
-      });
-  }
-
-  get qualitySubsets() {
-    return this.qualities
-      .filter(quality => {
-        return !this.qualityHideList.includes(quality.id);
-      })
-      .map(quality => {
-        const { id, label, iconURL } = quality;
-        const products = this.products.filter(product => {
-          return product
-            .get('qualities')
-            .mapBy('id')
-            .includes(quality.id);
-        });
-
-        return { id, label, iconURL, products };
-      });
-  }
-
-  get statusSubsets() {
-    const arr = [];
-
-    this.statuses
-      .filter(status => {
-        return !this.statusHideList.includes(status.id);
-      })
-      .forEach(status => {
-        const products = this.products
-          .filterBy('status', status.id)
-          .sortBy('rank');
-
-        if (products.length) {
-          arr.push({ ...status, products });
-        }
-      });
-
-    return arr;
-  }
-
-  get statuses() {
-    return [
+  // Rendering all products is a heavy operation which we do not want to trigger every time the
+  // filters update. Thus we only run it once on initial render. All products are rendered onto
+  // one page, dividided in one <section> per status. It's only moments after we will use query
+  // selectors to hide, show and sort the products.
+  //
+  renderStatusSections() {
+    const arr = [
       {
         id: 'new',
         label: 'New',
@@ -195,167 +51,173 @@ export default class ProductsSubsetController extends Controller {
       {
         id: 'recommended',
         label: 'Recommended',
-        blurb: 'Niche products for specific use cases.'
+        blurb: 'Niche products, often for specialised use cases.'
       },
       {
         id: 'outdated',
         label: 'Outdated',
-        blurb:
-          'At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!'
+        blurb: `At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!`
       },
       {
         id: 'discontinued',
         label: 'Discontinued',
-        blurb:
-          'When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.'
+        blurb: `When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.`
       }
     ];
+
+    arr.forEach(status => {
+      status.products = this.model.products.filter(p => p.status === status.id);
+    });
+
+    this.statuses = arr;
   }
 
-  get families() {
-    const uniq = this.products.mapBy('family.id').uniq();
+  filterAndSortProducts() {
+    const { main, statuses, family, use } = this;
 
-    return uniq
-      .map(id => this.store.peekRecord('product-family', id))
-      .sortBy('rank');
+    main.querySelectorAll('li.product-row').forEach(li => {
+      li.classList.add('hide');
+      li.style.order = 9999;
+    });
+
+    const productSubset = family ? family.productsByRank : use.productsByRank;
+
+    statuses.forEach(status => {
+      const section = main.querySelector(`section#${status.id}`);
+      const productsForStatus = productSubset.filterBy('status', status.id);
+
+      productsForStatus.filterBy('status', status.id).forEach((product, i) => {
+        const id = product.get('id');
+        const li = section.querySelector(`li.product-row#${id}`);
+        li.classList.remove('hide');
+        li.style.order = i;
+      });
+
+      if (productsForStatus.length > 0) {
+        section.classList.add('has-products');
+        section.classList.remove('no-products');
+      } else {
+        section.classList.remove('has-products');
+        section.classList.add('no-products');
+      }
+    });
   }
 
-  get uses() {
-    const uniq = this.products
-      .mapBy('uses')
-      .map(arr => {
-        return arr.mapBy('id');
-      })
-      .flat()
-      .uniq();
+  filterSections() {
+    const { main, statuses, shownStatuses } = this;
 
-    return uniq.map(id => this.store.peekRecord('use', id)).sortBy('rank');
+    statuses.forEach(status => {
+      const section = main.querySelector(`section#${status.id}`);
+      const show =
+        section.classList.contains('has-products') &&
+        shownStatuses.includes(status.id);
+
+      if (show) {
+        section.classList.remove('hide');
+      } else {
+        section.classList.add('hide');
+      }
+    });
   }
 
-  get qualities() {
-    const uniq = this.products
-      .mapBy('qualities')
-      .map(arr => {
-        return arr.mapBy('id');
-      })
-      .flat()
-      .uniq();
+  get pageTitle() {
+    const { family, use } = this;
+    if (family) {
+      return family.get('label');
+    }
+    if (use) {
+      return `For ${use.get('text')}`;
+    }
+    return '?';
+  }
 
-    return uniq.map(id => this.store.peekRecord('quality', id)).sortBy('rank');
+  // TODO: add smarts
+  get searchPlaceHolder() {
+    return 'LMPA Q6';
+  }
+
+  delay(ms) {
+    return new Promise(approve => {
+      window.setTimeout(approve, ms);
+    });
+  }
+
+  get familyRadios() {
+    return this.model.families.sortBy('rank').map(family => {
+      const label = family.namePlural;
+      const slug = family.slug;
+      const isChecked = this.family && this.family.slug === slug;
+
+      return { label, slug, isChecked };
+    });
+  }
+
+  get useRadios() {
+    return this.model.uses.sortBy('rank').map(use => {
+      const label = `For ${use.text}`;
+      const slug = `for-${use.slug}`;
+      const isChecked = this.use && this.use.slug === use.slug;
+
+      return { label, slug, isChecked };
+    });
+  }
+
+  get statusCheckboxes() {
+    const { statuses, family, use } = this;
+
+    if (!statuses) {
+      return [];
+    }
+
+    const productSubset = family ? family.productsByRank : use.productsByRank;
+
+    return statuses.map(status => {
+      const { id, label } = status;
+      const isChecked = this.shownStatuses.includes(id);
+      const productsForStatus = productSubset.filterBy('status', status.id);
+      const count = productsForStatus.length;
+
+      return { id, label, isChecked, count };
+    });
+  }
+
+  @action
+  toggleStatus(id) {
+    const arr = this.shownStatuses;
+
+    // If status is shown, then hide it.
+    // If status is hidden, then show it.
+    if (arr.includes(id)) {
+      this.shownStatuses = arr.filter(x => x !== id);
+    } else {
+      this.shownStatuses = arr.concat([id]);
+    }
+
+    this.filterSections();
+  }
+
+  @action
+  openSubsetPage(slug) {
+    if (slug.startsWith('for-')) {
+      this.use = this.model.uses.find(use => use.slug === slug.slice(4));
+      this.family = null;
+    } else {
+      this.family = this.model.families.find(family => family.slug === slug);
+      this.use = null;
+    }
+
+    this.filterAndSortProducts();
+    this.filterSections();
+
+    window.scrollTo({
+      top: this.main.offsetTop,
+      left: 100,
+      behavior: 'smooth'
+    });
   }
 
   @action
   openProductPage(product) {
     this.router.transitionTo('home.product', product.id);
-  }
-
-  @tracked statusHideList = ['outdated', 'discontinued'];
-  @tracked familyHideList = [];
-  @tracked useHideList = [];
-  @tracked qualityHideList = [];
-
-  get checkboxLabel() {
-    return this.groupByStatus
-      ? 'Statuses'
-      : this.groupByQuality
-      ? 'Qualities'
-      : this.groupByUse
-      ? 'Processes'
-      : this.groupByFamily
-      ? 'Product families'
-      : null;
-  }
-
-  get checkboxes() {
-    if (this.groupByStatus) {
-      const { statuses, statusHideList } = this;
-
-      return statuses.map(status => {
-        const id = status.id;
-        const label = status.label;
-        const checked = !statusHideList.includes(id);
-
-        return { id, label, checked };
-      });
-    }
-
-    if (this.groupByFamily) {
-      const { families, familyHideList } = this;
-
-      return families.map(family => {
-        const id = family.id;
-        const label = family.namePlural;
-        const checked = !familyHideList.includes(id);
-
-        return { id, label, checked };
-      });
-    }
-
-    if (this.groupByQuality) {
-      const { qualities, qualityHideList } = this;
-
-      return qualities.map(use => {
-        const id = use.id;
-        const label = use.label;
-        const checked = !qualityHideList.includes(id);
-
-        return { id, label, checked };
-      });
-    }
-
-    if (this.groupByUse) {
-      const { uses, useHideList } = this;
-
-      return uses.map(use => {
-        const id = use.id;
-        const label = `For ${use.text}`;
-        const checked = !useHideList.includes(id);
-
-        return { id, label, checked };
-      });
-    }
-
-    return [];
-  }
-
-  @action
-  toggleCheckbox(id) {
-    if (this.groupByStatus) {
-      const arr = this.statusHideList;
-      if (arr.includes(id)) {
-        this.statusHideList = arr.filter(x => x !== id);
-      } else {
-        this.statusHideList = arr.concat([id]);
-      }
-    }
-
-    if (this.groupByFamily) {
-      const arr = this.familyHideList;
-      if (arr.includes(id)) {
-        this.familyHideList = arr.filter(x => x !== id);
-      } else {
-        this.familyHideList = arr.concat([id]);
-      }
-    }
-
-    if (this.groupByUse) {
-      const arr = this.useHideList;
-      if (arr.includes(id)) {
-        this.useHideList = arr.filter(x => x !== id);
-      } else {
-        this.useHideList = arr.concat([id]);
-      }
-    }
-
-    if (this.groupByQuality) {
-      const arr = this.qualityHideList;
-      if (arr.includes(id)) {
-        this.qualityHideList = arr.filter(x => x !== id);
-      } else {
-        this.qualityHideList = arr.concat([id]);
-      }
-    }
-
-    this.refreshSubsets();
   }
 }

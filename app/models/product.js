@@ -7,6 +7,7 @@ export default class ProductModel extends Model {
   @attr('string') label;
   @attr('string') pitch;
   @attr('string') status;
+  @attr('number') rankAmongFamily;
 
   @belongsTo('image', { inverse: 'product' }) image;
   @alias('image') avatar;

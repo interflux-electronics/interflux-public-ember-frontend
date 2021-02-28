@@ -21,7 +21,7 @@
         <aside>
           <div class="sticky">
             <fieldset id="search">
-              <legend>Search</legend>
+              <legend>Find a product</legend>
               <Search
                 @placeholder={{this.searchPlaceHolder}}
                 @onSelect={{this.openProductPage}}
@@ -32,7 +32,57 @@
               />
             </fieldset>
 
-            <fieldset id="group-by">
+            <fieldset>
+              <legend>Product we develop</legend>
+              <ul class="links">
+                {{#each this.familyRadios as |radio|}}
+                  <li>
+                    <a
+                      href={{href-to 'home.products.subset' radio.slug}}
+                      class={{if radio.isChecked 'active'}}
+                      {{on 'click' (fn this.openSubsetPage radio.slug)}}
+                    >
+                      <span class="label">{{radio.label}}</span>
+                      <Svg::ArrowRight />
+                    </a>
+                  </li>
+                {{/each}}
+              </ul>
+            </fieldset>
+
+            <fieldset>
+              <legend>Processes we support</legend>
+              <ul class="links">
+                {{#each this.useRadios as |radio|}}
+                  <li>
+                    <a
+                      href={{href-to 'home.products.subset' radio.slug}}
+                      class={{if radio.isChecked 'active'}}
+                      {{on 'click' (fn this.openSubsetPage radio.slug)}}
+                    >
+                      <span class="label">{{radio.label}}</span>
+                      <Svg::ArrowRight />
+                    </a>
+                  </li>
+                {{/each}}
+              </ul>
+            </fieldset>
+
+            <fieldset>
+              <legend>Filter</legend>
+              {{#each this.statusCheckboxes as |checkbox|}}
+                <div class="checkbox-group">
+                  <Checkbox
+                    @id={{checkbox.id}}
+                    @checked={{checkbox.isChecked}}
+                    @onClick={{fn this.toggleStatus checkbox.id}}
+                  />
+                  <label for="input-{{checkbox.id}}"><span>{{checkbox.label}}&nbsp;</span><small>{{checkbox.count}}</small></label>
+                </div>
+              {{/each}}
+            </fieldset>
+
+            {{!-- <fieldset id="group-by">
               <legend>Group by ...</legend>
               <div class="buttons">
                 <button
@@ -63,45 +113,30 @@
                   {{on 'click' (fn this.setGroup 'quality')}}
                 >Quality</button>
               </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>{{this.checkboxLabel}}</legend>
-              {{#each this.checkboxes as |checkbox|}}
-                <div class="checkbox-group">
-                  <Checkbox
-                    @id={{checkbox.id}}
-                    @checked={{checkbox.checked}}
-                    @onClick={{fn this.toggleCheckbox checkbox.id}}
-                  />
-                  <label for="input-{{checkbox.id}}">{{checkbox.label}}</label>
-                </div>
-              {{/each}}
-            </fieldset>
+            </fieldset> --}}
           </div>
         </aside>
 
         <article>
           <h1 id="h1">{{this.pageTitle}}</h1>
 
-          {{#each this.subsets as |set|}}
-            <section labelledby="h2-{{set.id}}">
+          {{#each this.statuses as |status|}}
+            <section
+              id={{status.id}}
+              class="status"
+              labelledby="h2-{{status.id}}"
+            >
               <div class="intro">
                 <div class="title">
-                  {{#if set.iconURL}}
-                    <div class="icon">
-                      <Image @src={{set.iconURL}} />
-                    </div>
-                  {{/if}}
-                  <h2 id="h2-{{set.id}}">{{set.label}}</h2>
+                  <h2 id="h2-{{status.id}}">{{status.label}}</h2>
                 </div>
-                {{#if set.blurb}}
-                  <p>{{set.blurb}}</p>
+                {{#if status.blurb}}
+                  <p>{{status.blurb}}</p>
                 {{/if}}
               </div>
 
               <ol>
-                {{#each set.products as |product|}}
+                {{#each status.products as |product|}}
                   <ProductRow @product={{product}} />
                 {{/each}}
               </ol>
