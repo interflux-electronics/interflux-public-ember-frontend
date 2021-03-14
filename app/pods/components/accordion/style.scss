@@ -1,0 +1,137 @@
+ul.accordion {
+  > li {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid $grey-1;
+    &:last-child {
+      border-bottom: 0;
+    }
+    &.expanded {
+      .content {
+        height: auto;
+      }
+    }
+    button {
+      background: none;
+      border: 0;
+      outline: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      @include widescreen {
+        padding: px(0.8vw) 0;
+      }
+      @include desktop {
+        padding: 0.8vw 0;
+      }
+      @include tablet {
+        padding: 1.2vw 0;
+      }
+      @include mobile {
+        padding: 2vw 0;
+      }
+      &:hover,
+      &:focus {
+        span {
+          color: $blue-0;
+          // box-shadow: 0 0 0 4px white, 0 0 0 6px $blue-0;
+        }
+        .arrow {
+          svg {
+            [fill] {
+              fill: $blue-0;
+            }
+          }
+        }
+      }
+      .left {
+        flex-shrink: 0;
+        picture {
+          display: block;
+          height: auto;
+          flex-shrink: 0;
+          @include widescreen {
+            width: px(4vw);
+            height: px(4vw);
+          }
+          @include desktop {
+            width: 4vw;
+            height: 4vw;
+          }
+          @include tablet {
+            width: 8vw;
+            height: 8vw;
+          }
+          @include mobile {
+            width: 12vw;
+            height: 12vw;
+          }
+        }
+      }
+      .middle {
+        width: 100%;
+        text-align: left;
+        @include widescreen {
+          padding-left: px(2vw);
+        }
+        @include desktop {
+          padding-left: 2vw;
+        }
+        @include tablet {
+          padding-left: 3vw;
+        }
+        @include mobile {
+          padding-left: 5vw;
+        }
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        @include widescreen {
+          width: px(4vw);
+          height: px(4vw);
+        }
+        @include desktop {
+          width: 4vw;
+          height: 4vw;
+        }
+        @include tablet {
+          width: 8vw;
+          height: 8vw;
+        }
+        @include mobile {
+          width: 12vw;
+          height: 12vw;
+        }
+        svg {
+          width: 7px;
+          height: auto;
+          transform: rotate(90deg);
+          [fill] {
+            fill: $grey-3;
+          }
+        }
+      }
+    }
+    .content {
+      height: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+      @include widescreen {
+        padding-left: px(6vw);
+      }
+      @include desktop {
+        padding-left: 6vw;
+      }
+      @include tablet {
+        padding-left: 11vw;
+      }
+      @include mobile {
+        padding-left: 17vw;
+      }
+    }
+  }
+}

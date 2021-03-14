@@ -12,7 +12,6 @@
     <main
       aria-labelledby="h1"
       aria-describedby="description"
-      {{did-insert this.onInsert}}
     >
       <div class="liner">
         <BackNav
@@ -24,7 +23,7 @@
         <div class="columns">
           <article>
             <section>
-              <div id="intro">
+              <div id="title">
                 <h1 id="h1">{{product.name}}</h1>
                 <h2>{{product.family.nameSingle}}</h2>
                 {{#if product.pitch}}
@@ -53,30 +52,48 @@
               {{/if}}
             </section>
 
+            <section
+              id="properties"
+              class="markdown"
+            >
+              <div>
+                <h3>Summary</h3>
+                <blockquote>
+                  <p>
+                    {{{span-each-word "OSPI 3311M is a No-Clean, halide free soldering flux for OSP"}}}
+                  </p>
+                </blockquote>
+                <div class="two-columns">
+                  <p>Interflux® OSPI 3311M is a no-clean flux
+                    that especially has been developed for
+                    high volume soldering of OSP-boards that
+                    have passed one or more reflow processes.</p>
+                  <p>OSPI 3311M is an optimised version of
+                    OSPI 3311 for residue formation and
+                    odour.</p>
+                  <p>Most OSP-finishings will degrade quickly
+                    after reflow, making (through hole)
+                    wetting in wave or selective soldering a
+                    challenge, especially with lead-free alloys.</p>
+                  <p>The elements of OSPI 3311M have been
+                    carefully chosen to promote (through
+                    hole) wetting on these degraded OSPs,
+                    especially with high conveyor speeds and
+                    low preheat temperatures.</p>
+                  <p>Moreover, the flux is absolutely halogen
+                    free and has been designed to be safe
+                    and reliable.</p>
+                  <p>OSPI 3311M meets IPC requirements.</p>
+                </div>
+
+              </div>
+            </section>
+
             <section aria-labelledby="h3-uses">
               {{#if product.uses}}
                 <div id="uses">
-                  <h3>Suitable for</h3>
-                  <ul>
-                    {{#each product.uses as |use|}}
-                      <li>
-                        <div class="left">
-                          <div class="icon">
-                            <Image @src={{use.iconURL}} />
-                          </div>
-
-                          <div class="text">
-                            <h4>{{capitalise use.text}}</h4>
-                            {{!-- {{#if use.gist}}
-                              <div class="gist">
-                                <p>{{use.gist}}</p>
-                              </div>
-                            {{/if}} --}}
-                          </div>
-                        </div>
-                      </li>
-                    {{/each}}
-                  </ul>
+                  <h3 id="h3-uses">Developed for</h3>
+                  <Accordion @sections={{this.useAccordionSections}} />
                 </div>
               {{/if}}
             </section>
@@ -84,32 +101,181 @@
             <section aria-labelledby="h3-qualities">
               {{#if product.qualities}}
                 <div id="qualities">
-                  <h3>Qualities</h3>
-                  <ul>
-                    {{#each product.qualities as |quality|}}
-                      <li>
-                        <div class="left">
-                          <div class="icon">
-                            <Image @src={{quality.iconURL}} />
-                          </div>
-                          <div class="text">
-                            <h4>{{quality.text}}</h4>
-                            {{#if quality.gist}}
-                              <div class="gist">
-                                <p>{{quality.gist}}</p>
-                              </div>
-                            {{/if}}
-                          </div>
-                        </div>
-
-                        <div class="right arrow">
-                          <Svg::ArrowRight />
-                        </div>
-                      </li>
-                    {{/each}}
-                  </ul>
+                  <h3 id="h3-qualities">Key advantages</h3>
+                  <Accordion @sections={{this.qualityAccordionSections}} />
                 </div>
               {{/if}}
+            </section>
+
+            <section class="markdown">
+              <div>
+                <h3>Physical &amp; chemical properties</h3>
+                <table class="chemistry">
+                  <tbody>
+                    <tr>
+                      <td>Appearance</td>
+                      <td>Clear colourless liquid</td>
+                    </tr>
+                    <tr>
+                      <td>Solid content</td>
+                      <td>5.3% +/- 0.5%</td>
+                    </tr>
+                    <tr>
+                      <td>Halide content</td>
+                      <td>0.00%</td>
+                    </tr>
+                    <tr>
+                      <td>Density</td>
+                      <td>at 20°C 0.825 g/ml ±0.01</td>
+                    </tr>
+                    <tr>
+                      <td>Acid number</td>
+                      <td>42 mg KOH/g ±5</td>
+                    </tr>
+                    <tr>
+                      <td>Odour</td>
+                      <td>Alcohol</td>
+                    </tr>
+                    <tr>
+                      <td>IPC/EN</td>
+                      <td>OR/L0</td>
+                    </tr>
+                    <tr>
+                      <td>Packaging</td>
+                      <td>
+                        <div>1L</div>
+                        <div>10L</div>
+                        <div>25L</div>
+                        <div>200L</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Alloys</td>
+                      <td>
+                        <div>SnCuAg</div>
+                        <div>SnPbAg</div>
+                        <div>SnPb</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section
+              id="compliance"
+              class="markdown"
+            >
+              <div>
+                <h3>Quality standards</h3>
+                <h4>ISO 9001</h4>
+                <p>
+                  <span>{{product.name}} is produced at Interflux Electronics in Belgium, which has complied with the </span>
+                  <Link
+                    @label="ISO 9001"
+                    @url="https://www.iso.org/"
+                  />
+                  <span> quality management standards since 1998.</span></p>
+                <h4>RoHS</h4>
+                <p>
+                  <span>{{product.name}} complies with the EU </span>
+                  <Link
+                    @label="RoHS"
+                    @url="https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive"
+                  />
+                  <span>directive for hazardous substances.</span>
+                </p>
+                <h4>IEC</h4>
+                <p>
+                  <span>{{product.name}} complies with the IEC </span>
+                  <Link
+                    @label="EN 61190-1-1(2002)"
+                    @url="https://www.iec.ch/"
+                  />
+                  <span> standard for reliable soldering of electronics.</span>
+                </p>
+                <h4>IPC</h4>
+                <p>
+                  <span>{{product.name}} complies with the IPC </span>
+                  <Link
+                    @label="J-STD-004A"
+                    @url="https://www.ipc.org/"
+                  />
+                  <span> standard for quality soldering of soldering.</span>
+                </p>
+                <table class="tests">
+                  <tbody>
+                    <tr>
+                      <th>Test method</th>
+                      <th>Property</th>
+                      <th>Result</th>
+                    </tr>
+                    <tr>
+                      <td>J-STD-004A</td>
+                      <td>Flux designator</td>
+                      <td><mark>OR L0</mark></td>
+                    </tr>
+                    <tr>
+                      <td>J-STD-004A IPC-TM-650 2.3.32</td>
+                      <td>Qualitative copper mirror</td>
+                      <td><mark>pass</mark></td>
+                    </tr>
+                    <tr>
+                      <td>J-STD-004A IPC-TM-650 2.3.33D</td>
+                      <td>
+                        <div>Qualitative halide - Silver chromate (Cl, Br)</div>
+                      </td>
+                      <td><mark>pass</mark></td>
+                    </tr>
+                    <tr>
+                      <td>J-STD-004A IPC-TM-650 2.3.35.1A</td>
+                      <td>
+                        <div>Qualitative halide - Spot test (F)</div>
+                      </td>
+                      <td><mark>pass</mark></td>
+                    </tr>
+                    <tr>
+                      <td>J-STD-004A IPC-TM-650 2.3.35C</td>
+                      <td>Quantitative halide</td>
+                      <td><mark>0,00%</mark></td>
+                    </tr>
+                    <tr>
+                      <td>J-STD-004A IPC-TM-650 2.6.3.3B</td>
+                      <td>SIR test</td>
+                      <td><mark>pass</mark></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="markdown">
+              <div>
+                <h3>How to use {{product.name}}</h3>
+                <h4>Through hole filling</h4>
+                <p>OSP finished boards can benefit with enough flux, lower preheat temperatures and high solder pressure on the
+                  (first) wave to get good through hole filling.</p>
+                <h4>Applying the flux</h4>
+                <p>Spray fluxing: It is advised to use a double spray stroke during fluxing, whenever possible and to keep the flux air
+                  pressure low. The nozzle traverse speed is set to a value which ensures that every point on the board is sprayed
+                  twice, (once from each side). Resulting in a 50% overlap on the spray pattern. This will give the most uniform spray
+                  pattern coverage. Spray pattern coverage can be checked by passing a piece of cardboard through the spray fluxer. Remove it before the preheat unit. Additionally the spray fluxer settings need to be checked by passing a glass
+                  plate or empty circuit board through the fluxer. Remove it from the machine before it reaches the pre heater unit
+                  and check it on flux quantity. There may be no drops present. Drops are a sign of excessive flux and are difficult to
+                  evaporate. Reduce the flux amount until defects typical for a too low flux amount like, webbing, flagging, shorts
+                  and icicles are observed. From this point increase the flux level again until defects disappear.</p>
+                <h4>Preheating</h4>
+                <p>The flux has been designed to perform well on low preheating settings. The recommended preheat temperature
+                  measured on the topside of the boards is 80°C-100°C (176°-212°F) . Higher preheating is possible for electronic
+                  units with high thermal mass. More preheating can promote through hole wetting on these units but beware not to
+                  exhaust the flux. The flux itself has no lower limit for the preheating but the solvent should be evaporated before
+                  wave contact.</p>
+                <p>Preheat slope: 1-3°C/s</p>
+                <h4>Wave contact</h4>
+                <p>Typical wave contact or dwell time value is 3-4s when using a single solder wave. For double wave soldering systems typical values are 1-2s for the first wave and 2-4s for the second wave. Lower total dwell time limit is 2s. Solder wetting can be optimal at lower contact times however longer contact times facilitate total flux wash off from
+                  the boards. The maximum upper limit will be determined by flux exhaustion and physical limitations of the board
+                  and components. Indications for flux exhaustion are bridging, icicling, webbing,…</p>
+              </div>
             </section>
 
             <section aria-labelledby="h3-documents">
@@ -155,16 +321,16 @@
               <div class="box white">
                 <dl>
                   <dt>Price:</dt>
-                  <dd>
+                  <td>
                     <a href="javascript:void(0)">request</a>
-                  </dd>
+                  </td>
                 </dl>
 
                 <dl>
                   <dt>Availability:</dt>
-                  <dd>
+                  <td>
                     <a href="javascript:void(0)">request</a>
-                  </dd>
+                  </td>
                 </dl>
 
                 <button
