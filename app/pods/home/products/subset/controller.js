@@ -23,101 +23,100 @@ export default class ProductsSubsetController extends Controller {
     this.family = this.model.family;
     this.use = this.model.use;
 
-    this.renderStatusSections();
-
     await this.delay(1); // Allow all <section> to be rendered first
 
     this.filterAndSortProducts();
-    this.filterSections();
   }
 
-  // Rendering all products is a heavy operation which we do not want to trigger every time the
-  // filters update. Thus we only run it once on initial render. All products are rendered onto
-  // one page, dividided in one <section> per status. It's only moments after we will use query
-  // selectors to hide, show and sort the products.
-  //
-  renderStatusSections() {
-    const arr = [
-      {
-        id: 'new',
-        label: 'New',
-        blurb: 'The newest in soldering chemistry.'
-      },
-      {
-        id: 'popular',
-        label: 'Popular',
-        blurb: 'In high demand for years.'
-      },
-      {
-        id: 'recommended',
-        label: 'Recommended',
-        blurb: 'Niche products, often for specialised use cases.'
-      },
-      {
-        id: 'outdated',
-        label: 'Outdated',
-        blurb: `At Interflux we continuously improve the chemistry and production techniques of our products. As we innovate, some products will become outdated. This means a better product is available. Outdated products are still in production and can still be ordered. However, consider upgrading soon!`
-      },
-      {
-        id: 'discontinued',
-        label: 'Discontinued',
-        blurb: `When products are outdated and nobody is ordering them anymore, we take them out of production (discontinued). For reference, we keep them available on our website.`
-      }
-    ];
-
-    arr.forEach(status => {
-      status.products = this.model.products.filter(p => p.status === status.id);
-    });
-
-    this.statuses = arr;
-  }
+  statuses = [
+    {
+      id: 'new',
+      label: 'New',
+      blurb: 'The newest in soldering chemistry.'
+    },
+    {
+      id: 'popular',
+      label: 'Popular',
+      blurb: 'In high demand for years.'
+    },
+    {
+      id: 'recommended',
+      label: 'Recommended',
+      blurb: 'Our main stream products.'
+    },
+    {
+      id: 'outdated',
+      label: 'Legacy',
+      blurb: `These products are the precursors of even better products. At Interflux we continuously do research to find better soldering chemistry and to improve our production techniques. As we innovate, some products are replaced by new better products. You can still order legacy products. We still produce them. But, do consider upgrading!`
+    },
+    {
+      id: 'discontinued',
+      label: 'Out of production',
+      blurb: `These products can no longer be ordered. We keep them on our website for reference only.`
+    }
+  ];
 
   filterAndSortProducts() {
-    const { main, statuses, family, use } = this;
+    const { main, family, use, shownStatuses } = this;
+    const { products } = this.model;
 
-    main.querySelectorAll('li.product-row').forEach(li => {
+    // TODO: enter loading state
+
+    // First we hide all <li>
+    main.querySelectorAll('li').forEach(li => {
       li.classList.add('hide');
-      li.style.order = 9999;
+      li.style.order = null;
     });
 
-    const productSubset = family ? family.productsByRank : use.productsByRank;
+    // For robust sorting
+    const n = products.length;
 
-    statuses.forEach(status => {
-      const section = main.querySelector(`section#${status.id}`);
-      const productsForStatus = productSubset.filterBy('status', status.id);
+    // If the subset is a use (process) we group by family
+    if (use) {
+      // Show only the products of the use and sort
+      use.families.sortBy('rank').forEach((family, i) => {
+        const id = family.get('id');
+        const li = main.querySelector(`li.family#${id}`);
 
-      productsForStatus.filterBy('status', status.id).forEach((product, i) => {
-        const id = product.get('id');
-        const li = section.querySelector(`li.product-row#${id}`);
-        li.classList.remove('hide');
-        li.style.order = i;
+        // Iterate over all products which have this use and family and which status is shown.
+        use
+          .get('productsByRank')
+          .filterBy('family.id', family.get('id'))
+          .filter(product => shownStatuses.includes(product.get('status')))
+          .forEach((product, ii) => {
+            const id2 = product.get('id');
+            const li2 = main.querySelector(`li.product-row#${id2}`);
+
+            // Show and sort the family header
+            li.classList.remove('hide');
+            li.style.order = i * n;
+
+            // Show and sort all products of that family
+            li2.style.order = i * n + ii;
+            li2.classList.remove('hide');
+          });
       });
+    }
 
-      if (productsForStatus.length > 0) {
-        section.classList.add('has-products');
-        section.classList.remove('no-products');
-      } else {
-        section.classList.remove('has-products');
-        section.classList.add('no-products');
-      }
-    });
-  }
+    // If the subset is a family we use different grouping per family
+    if (family) {
+      // Soldering fluxes are grouped by sub family
+      // if (family.id === 'solderin-fluxes') {
+      //   //
+      // }
 
-  filterSections() {
-    const { main, statuses, shownStatuses } = this;
+      family
+        .get('productsByRank')
+        .filter(product => shownStatuses.includes(product.get('status')))
+        .forEach((product, i) => {
+          const id = product.get('id');
+          const li = main.querySelector(`li.product-row#${id}`);
 
-    statuses.forEach(status => {
-      const section = main.querySelector(`section#${status.id}`);
-      const show =
-        section.classList.contains('has-products') &&
-        shownStatuses.includes(status.id);
-
-      if (show) {
-        section.classList.remove('hide');
-      } else {
-        section.classList.add('hide');
-      }
-    });
+          // Show and sort all products of that family
+          li.style.order = i;
+          li.classList.remove('hide');
+        });
+    }
   }
 
   get pageTitle() {
@@ -126,7 +125,7 @@ export default class ProductsSubsetController extends Controller {
       return family.get('label');
     }
     if (use) {
-      return `For ${use.get('text')}`;
+      return use.get('forLabel');
     }
     return '?';
   }
@@ -144,7 +143,7 @@ export default class ProductsSubsetController extends Controller {
 
   get familyRadios() {
     return this.model.families.sortBy('rank').map(family => {
-      const label = family.namePlural;
+      const label = family.label;
       const slug = family.slug;
       const isChecked = this.family && this.family.slug === slug;
 
@@ -154,7 +153,7 @@ export default class ProductsSubsetController extends Controller {
 
   get useRadios() {
     return this.model.uses.sortBy('rank').map(use => {
-      const label = `For ${use.text}`;
+      const label = use.label;
       const slug = `for-${use.slug}`;
       const isChecked = this.use && this.use.slug === use.slug;
 
@@ -163,19 +162,20 @@ export default class ProductsSubsetController extends Controller {
   }
 
   get statusCheckboxes() {
-    const { statuses, family, use } = this;
+    const { statuses } = this;
 
     if (!statuses) {
       return [];
     }
 
-    const productSubset = family ? family.productsByRank : use.productsByRank;
+    // const productSubset = family ? family.productsByRank : use.productsByRank;
 
     return statuses.map(status => {
       const { id, label } = status;
       const isChecked = this.shownStatuses.includes(id);
-      const productsForStatus = productSubset.filterBy('status', status.id);
-      const count = productsForStatus.length;
+      const count = '?';
+      // const productsForStatus = productSubset.filterBy('status', status.id);
+      // const count = productsForStatus.length;
 
       return { id, label, isChecked, count };
     });
@@ -193,7 +193,7 @@ export default class ProductsSubsetController extends Controller {
       this.shownStatuses = arr.concat([id]);
     }
 
-    this.filterSections();
+    this.filterAndSortProducts();
   }
 
   @action
@@ -207,7 +207,6 @@ export default class ProductsSubsetController extends Controller {
     }
 
     this.filterAndSortProducts();
-    this.filterSections();
 
     window.scrollTo({
       top: this.main.offsetTop,

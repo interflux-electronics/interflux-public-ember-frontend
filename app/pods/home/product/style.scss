@@ -1,4 +1,18 @@
 #product.page {
+  &.discontinued {
+    main section {
+      h1,
+      h2.blue,
+      h3,
+      h4,
+      img,
+      p,
+      a,
+      table {
+        filter: grayscale(1) opacity(0.6);
+      }
+    }
+  }
   main {
     background: $grey-0;
     .liner {
@@ -16,29 +30,29 @@
     section {
       background: white;
       box-shadow: 0 4px 8px rgba(black, 0.05);
+      padding: 60px;
       & + section {
         margin-top: 10px;
       }
-    }
-    #title {
-      padding: 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      > div {
+        display: flex;
+        flex-direction: column;
+      }
       h1 {
         font-family: $extrabold;
         background: $blue-3;
         color: white;
         line-height: 145%;
+        border-radius: 2px;
         @include widescreen {
-          font-size: px(2.8vw);
+          font-size: px(2.9vw);
           padding: px(0.2vw) px(1.4vw) 0;
-          margin-bottom: px(1.1vw);
+          margin-bottom: px(1.4vw);
         }
         @include desktop {
-          font-size: 2.8vw;
+          font-size: 2.9vw;
           padding: 0.2vw 1.4vw 0;
-          margin-bottom: 1.1vw;
+          margin-bottom: 1.4vw;
         }
         @include tablet {
           font-size: 4.8vw;
@@ -53,9 +67,10 @@
       }
       h2 {
         font-family: $regular;
-        background: $blue-0;
+        background: $grey-1;
         color: white;
         line-height: 165%;
+        border-radius: 2px;
         @include widescreen {
           font-size: px(1.5vw);
           padding: px(0.1vw) px(0.8vw) 0;

@@ -82,6 +82,11 @@
     ol {
       display: flex;
       flex-direction: column;
+      li {
+        &.hide {
+          display: none;
+        }
+      }
     }
     .no-data {
       min-height: 300px;
@@ -136,7 +141,7 @@
           justify-content: space-between;
           padding: 0 20px;
           line-height: 38px;
-          transition: transform 300ms ease-out;
+          text-decoration: none;
           .label {
             color: $blue-0;
           }

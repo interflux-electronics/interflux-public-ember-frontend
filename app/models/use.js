@@ -43,10 +43,15 @@ export default class UseModel extends Model {
   }
 
   get label() {
+    const str = this.text || '';
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
+  get forLabel() {
     return `For ${this.text}`;
   }
 
-  get slug() {
+  get forSlug() {
     return `for-${this.id}`;
   }
 }

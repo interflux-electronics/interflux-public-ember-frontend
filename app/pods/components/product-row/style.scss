@@ -13,6 +13,11 @@ li.product-row {
   &.hide {
     display: none;
   }
+  &.outdated {
+    img {
+      filter: grayscale(1) opacity(0.5);
+    }
+  }
   &.discontinued {
     h3,
     h4.blue,
@@ -32,6 +37,7 @@ li.product-row {
     margin-top: -1px;
     background: white;
     transition: all 150ms ease-out;
+    text-decoration: none;
     &:hover,
     &:focus {
       outline: 1px solid $blue-0;

@@ -119,8 +119,47 @@
 
         <article>
           <h1 id="h1">{{this.pageTitle}}</h1>
+          <ol>
+            {{#each this.statuses as |status|}}
+              <li
+                id={{status.id}}
+                class="status"
+                labelledby="h2-{{status.id}}"
+              >
+                <div class="intro">
+                  <div class="title">
+                    <h2 id="h2-{{status.id}}">{{status.label}}</h2>
+                  </div>
+                  {{#if status.blurb}}
+                    <p>{{status.blurb}}</p>
+                  {{/if}}
+                </div>
+              </li>
+            {{/each}}
 
-          {{#each this.statuses as |status|}}
+            {{#each @model.families as |family|}}
+              <li
+                id={{family.id}}
+                class="family"
+                labelledby="h2-{{family.id}}"
+              >
+                <div class="intro">
+                  <div class="title">
+                    <h2 id="h2-{{family.id}}">{{family.label}} for {{this.use.text}}</h2>
+                  </div>
+                  {{!-- {{#if family.gist}}
+                    <p>{{family.gist}}</p>
+                  {{/if}} --}}
+                </div>
+              </li>
+            {{/each}}
+
+            {{#each @model.products as |product|}}
+              <ProductRow @product={{product}} />
+            {{/each}}
+          </ol>
+
+          <!-- {{#each this.statuses as |status|}}
             <section
               id={{status.id}}
               class="status"
@@ -145,7 +184,7 @@
             <div class="no-data">
               <p>No products for chosen filters.</p>
             </div>
-          {{/each}}
+          {{/each}} -->
         </article>
       </div>
     </div>

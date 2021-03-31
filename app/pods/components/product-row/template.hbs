@@ -18,14 +18,16 @@
           <h4 class="orange">popular</h4>
         {{/if}}
         {{#if @product.isOutdated}}
-          <h4 class="grey">outdated</h4>
+          <h4 class="grey">{{if @product.superiorProduct (concat 'replaced by ' @product.superiorProduct.name) 'outdated'}}</h4>
         {{/if}}
         {{#if @product.isDiscontinued}}
-          <h4 class="red">discontinued</h4>
+          <h4 class="red">out of production</h4>
         {{/if}}
       </div>
       {{#if @product.pitch}}
-        <p>{{markdown @product.pitch}}</p>
+        <div class="pitch">
+          {{markdown @product.pitch}}
+        </div>
       {{/if}}
     </div>
 
