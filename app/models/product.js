@@ -7,7 +7,19 @@ export default class ProductModel extends Model {
   @attr('string') label;
   @attr('string') pitch;
   @attr('string') status;
+
+  @attr('string') pitch;
+  @attr('string') summary;
+  @attr('string') properties;
+  @attr('string') instructions;
+
   @attr('number') rankAmongFamily;
+
+  @attr('boolean') compliesWithROHS;
+  @attr('boolean') compliesWithIEC;
+  @attr('boolean') compliesWithIPC;
+  @attr('boolean') compliesWithISO;
+  @attr('string') testResults;
 
   @belongsTo('image', { inverse: 'product' }) image;
   @alias('image') avatar;
@@ -22,6 +34,14 @@ export default class ProductModel extends Model {
   @hasMany('product-quality') productQualities;
   @hasMany('product-document') productDocuments;
   @hasMany('product-image') productImages;
+
+  get hasUses() {
+    return this.uses && this.uses.length > 0;
+  }
+
+  get hasQualities() {
+    return this.qualities && this.qualities.length > 0;
+  }
 
   get uses() {
     const rank = 'rankAmongUses';
@@ -81,5 +101,9 @@ export default class ProductModel extends Model {
 
   get isDiscontinued() {
     return this.status === 'discontinued';
+  }
+
+  get testResultsArray() {
+    return JSON.parse(this.testResults);
   }
 }

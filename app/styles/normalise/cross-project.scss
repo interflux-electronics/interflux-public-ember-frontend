@@ -98,9 +98,7 @@ h6 {
   color: $blue-3;
 }
 
-p,
-td,
-li {
+p {
   @include paragraph;
   margin: 0; // Counter the browser defaults
   a {

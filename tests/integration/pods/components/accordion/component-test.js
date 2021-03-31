@@ -7,20 +7,29 @@ module('Integration | Component | accordion', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    assert.expect(1);
 
-    await render(hbs`<Accordion />`);
+    this.set('sections', [
+      {
+        iconURL: 'leaves',
+        buttonLabel: 'Button 1',
+        textShownOnExpand: 'Content 1'
+      },
+      {
+        iconURL: 'strong',
+        buttonLabel: 'Button 2',
+        textShownOnExpand: 'Content 2'
+      }
+    ]);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
     await render(hbs`
-      <Accordion>
-        template block text
-      </Accordion>
+      <Accordion @sections={{this.sections}} />
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    const sections = this.element.querySelectorAll('ul li.section');
+
+    assert.equal(sections.length, 2);
   });
+
+  // TODO: test interaction
 });

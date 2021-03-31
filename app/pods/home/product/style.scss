@@ -72,150 +72,307 @@
           font-size: 4.6vw;
           padding: 0.1vw 2.8vw 0;
         }
-      }
-      #pitch {
-        @include widescreen {
-          margin-top: px(3vw);
+        &.blue {
+          background: $blue-0;
         }
-        @include desktop {
-          margin-top: 3vw;
+        &.orange {
+          background: $orange-2;
+          font-family: $bold;
         }
-        @include tablet {
-          margin-top: 6vw;
+        &.grey {
+          background: $grey-3;
         }
-        @include mobile {
-          margin-top: 10vw;
+        &.red {
+          background: $red-1;
         }
-      }
-      p {
-        line-height: 160%;
-        margin: 0;
-        @include widescreen {
-          font-size: px(1.4vw);
-        }
-        @include desktop {
-          font-size: 1.4vw;
-        }
-        @include tablet {
-          font-size: 2.8vw;
-        }
-        @include mobile {
-          font-size: 4.6vw;
-        }
-        & + p {
+        & + h2 {
+          margin-left: 10px;
           @include widescreen {
-            margin-top: px(1vw);
+            margin-left: px(1.4vw);
           }
           @include desktop {
-            margin-top: 1vw;
+            margin-left: 1.4vw;
           }
           @include tablet {
-            margin-top: 3vw;
+            margin-left: 3vw;
           }
           @include mobile {
-            margin-top: 5vw;
+            margin-left: 3vw;
           }
         }
-        a {
-          color: $orange-3;
-          text-decoration: underline;
-        }
       }
-    }
-    #avatar {
-      //
-    }
-    #images {
-      display: flex;
-      flex-flow: wrap;
-      justify-content: center;
-      @include widescreen {
-        padding: px(0.3vw);
-      }
-      @include desktop {
-        padding: 0.3vw;
-      }
-      button {
-        outline: 0;
-        border: 0;
-        padding: 0;
-        @include widescreen {
-          padding: px(0.2vw);
-        }
-        @include desktop {
-          padding: 0.2vw;
-        }
-      }
-      figure {
-        transition: transform 100ms ease;
-        outline: 0 solid white;
-        box-shadow: 0;
-        transform: scale(1);
-        cursor: pointer; // because clickable
-        @include widescreen {
-          width: px((100vw / 15));
-          height: px((100vw / 15));
-          outline: px(0.4vw) solid white;
-        }
-        @include desktop {
-          width: calc(100vw / 15);
-          height: calc(100vw / 15);
-          outline: 0.4vw solid white;
-        }
-        @include tablet {
-          width: calc(100vw / 9);
-          height: calc(100vw / 9);
-        }
-        @include mobile {
-          width: calc(100vw / 6);
-          height: calc(100vw / 6);
-        }
-        &.active {
-          z-index: 1;
-          transform: scale(1.2);
-        }
-        &:hover,
-        &:focus {
-          z-index: 2;
-          transform: scale(1.3);
-        }
-        &:hover,
-        &:focus,
-        &.active {
-          transform-origin: center;
-          @include widescreen {
-            box-shadow: 0 px(0.2vw) px(0.3vw) rgba(black, 0.5);
-          }
-          @include desktop {
-            box-shadow: 0 0.2vw 0.3vw rgba(black, 0.5);
-          }
-          @include tablet {
-            box-shadow: 0 0.5vw 0.8vw rgba(black, 0.2);
-            outline: 0.8vw solid white;
-          }
-          @include mobile {
-            box-shadow: 0 1vw 2vw rgba(black, 0.2);
-            outline: 1.3vw solid white;
-          }
-        }
-        figcaption {
-          display: none;
-        }
-      }
-    }
-
-    #uses,
-    #qualities,
-    #documents {
-      padding: 60px;
       h3 {
         font-family: $extrabold;
-        font-size: 18px;
+        font-size: 19px;
         color: $grey-7;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
+      }
+      h4 {
+        font-family: $bold;
+        font-size: 16px;
+        color: white;
+        background: $green-1;
+        background: $blue-3;
+        align-self: flex-start;
+        padding: 3px 7px 2px;
+      }
+      h3 + h4 {
+        margin-top: 0;
+      }
+      h4 + p {
+        margin-top: 16px;
+      }
+      p + h4,
+      table + h4 {
+        margin-top: 32px;
+      }
+      p + p {
+        margin-top: 16px;
+      }
+      blockquote + p {
+        margin-top: 30px;
+      }
+      .two-columns {
+        column-count: 2;
+        column-gap: 50px;
+      }
+      blockquote {
+        p {
+          color: white;
+          font-size: 25px;
+          line-height: 150%;
+          font-family: $semibold;
+          display: flex;
+          flex-flow: wrap;
+          span {
+            flex-shrink: 0;
+            line-height: 100%;
+            margin-bottom: 2px;
+            &.word {
+              background: $green-1;
+              padding: 6px 6px 4px;
+              margin-right: -5px;
+            }
+            &.space {
+              width: 2px;
+            }
+          }
+          sup {
+            font-size: 65%;
+          }
+        }
+      }
+      dl {
+        display: flex;
+        flex-wrap: wrap;
+        transform: translateX(-15px);
+        width: calc(100% + 20px);
+        margin: 0;
+        // border-left: 1px solid $grey-1;
+        // border-top: 1px solid $grey-1;
+        dt,
+        dd {
+          box-sizing: border-box;
+          padding: 10px 15px;
+          line-height: 150%;
+          // border-right: 1px solid $grey-1;
+          // border-bottom: 1px solid $grey-1;
+          &:nth-of-type(odd) {
+            background: $grey-0;
+          }
+        }
+        dt {
+          width: 30%;
+        }
+        dd {
+          width: 70%;
+          margin: 0; // to get rid of browser default
+          ul {
+            li {
+              line-height: 150%;
+            }
+          }
+        }
+      }
+      table {
+        transform: translateX(-15px);
+        width: calc(100% + 20px);
+        tr {
+          display: flex;
+          &:first-child {
+            th {
+              border-top: 1px solid $grey-1;
+            }
+          }
+          td,
+          th {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px 15px;
+            flex-shrink: 0;
+            text-align: left;
+            box-sizing: border-box;
+            line-height: 150%;
+            border-bottom: 1px solid $grey-1;
+            border-right: 1px solid $grey-1;
+            &:first-child {
+              border-left: 1px solid $grey-1;
+            }
+          }
+          th {
+            font-family: $regular;
+            color: $grey-7;
+            background: $grey-0;
+          }
+        }
       }
     }
 
+    #hero {
+      padding: 0;
+      #title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 60px;
+
+        .tags {
+          display: flex;
+        }
+
+        #replaced-by,
+        #pitch {
+          @include widescreen {
+            margin-top: px(3vw);
+          }
+          @include desktop {
+            margin-top: 3vw;
+          }
+          @include tablet {
+            margin-top: 6vw;
+          }
+          @include mobile {
+            margin-top: 10vw;
+          }
+        }
+        p {
+          line-height: 160%;
+          margin: 0;
+          @include widescreen {
+            font-size: px(1.4vw);
+          }
+          @include desktop {
+            font-size: 1.4vw;
+          }
+          @include tablet {
+            font-size: 2.8vw;
+          }
+          @include mobile {
+            font-size: 4.6vw;
+          }
+          & + p {
+            @include widescreen {
+              margin-top: px(1vw);
+            }
+            @include desktop {
+              margin-top: 1vw;
+            }
+            @include tablet {
+              margin-top: 3vw;
+            }
+            @include mobile {
+              margin-top: 5vw;
+            }
+          }
+        }
+      }
+      #avatar {
+        padding: 0;
+      }
+      #images {
+        padding: 0;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center;
+        @include widescreen {
+          padding: px(0.3vw);
+        }
+        @include desktop {
+          padding: 0.3vw;
+        }
+        button {
+          outline: 0;
+          border: 0;
+          padding: 0;
+          @include widescreen {
+            padding: px(0.2vw);
+          }
+          @include desktop {
+            padding: 0.2vw;
+          }
+        }
+        figure {
+          transition: transform 100ms ease;
+          outline: 0 solid white;
+          box-shadow: 0;
+          transform: scale(1);
+          cursor: pointer; // because clickable
+          @include widescreen {
+            width: px((100vw / 15));
+            height: px((100vw / 15));
+            outline: px(0.4vw) solid white;
+          }
+          @include desktop {
+            width: calc(100vw / 15);
+            height: calc(100vw / 15);
+            outline: 0.4vw solid white;
+          }
+          @include tablet {
+            width: calc(100vw / 9);
+            height: calc(100vw / 9);
+          }
+          @include mobile {
+            width: calc(100vw / 6);
+            height: calc(100vw / 6);
+          }
+          &.active {
+            z-index: 1;
+            transform: scale(1.2);
+          }
+          &:hover,
+          &:focus {
+            z-index: 2;
+            transform: scale(1.3);
+          }
+          &:hover,
+          &:focus,
+          &.active {
+            transform-origin: center;
+            @include widescreen {
+              box-shadow: 0 px(0.2vw) px(0.3vw) rgba(black, 0.5);
+            }
+            @include desktop {
+              box-shadow: 0 0.2vw 0.3vw rgba(black, 0.5);
+            }
+            @include tablet {
+              box-shadow: 0 0.5vw 0.8vw rgba(black, 0.2);
+              outline: 0.8vw solid white;
+            }
+            @include mobile {
+              box-shadow: 0 1vw 2vw rgba(black, 0.2);
+              outline: 1.3vw solid white;
+            }
+          }
+          figcaption {
+            display: none;
+          }
+        }
+      }
+    }
+
+    // TODO: review
     #documents {
       ul {
         li {
@@ -268,18 +425,13 @@
               }
             }
             .text {
-              h4,
+              display: flex;
+              align-items: center;
               p {
                 font-family: $regular;
                 font-size: 16px;
                 line-height: 24px;
                 color: $grey-7;
-              }
-              h4 {
-                // padding: 12px 0;
-              }
-              .gist {
-                padding-bottom: 10px;
               }
             }
           }
@@ -335,122 +487,22 @@
       }
     }
 
-    section.markdown {
-      padding: 60px;
-      > div {
-        display: flex;
-        flex-direction: column;
-        + div {
-          border-top: 1px solid $grey-1;
-          padding-top: 50px;
-          margin-top: 50px;
-        }
-        > h3 {
-          margin-bottom: 40px;
-        }
-      }
-      h3 {
-        font-family: $extrabold;
-        font-size: 18px;
-        color: $grey-7;
-      }
-      h4 {
-        font-family: $bold;
-        font-size: 16px;
-        color: white;
-        background: $green-1;
-        background: $blue-3;
-        align-self: flex-start;
-        padding: 3px 7px 2px;
-      }
-      h3 + h4 {
-        margin-top: 0;
-      }
-      .two-columns {
-        column-count: 2;
-        column-gap: 50px;
-        p + p {
-          margin-top: 20px;
-        }
-      }
-      blockquote {
-        p {
-          color: white;
-          font-size: 25px;
-          line-height: 150%;
-          font-family: $semibold;
-          display: flex;
-          flex-flow: wrap;
-          span {
-            flex-shrink: 0;
-            background: $green-1;
-            &.blank {
-              width: 4px;
-            }
-          }
-        }
-        & + .two-columns {
-          margin-top: 40px;
-        }
-      }
-      table {
-        transform: translateX(-15px);
-        width: calc(100% + 20px);
-        &.chemistry {
-          td,
-          th {
-            &:first-child {
-              width: 20%;
-            }
-          }
-        }
-        tr {
-          display: flex;
-          &:nth-child(even) {
-            background: $grey-0;
-            border: 1px solid $grey-1;
-            // border-left: 0;
-            // border-right: 0;
-          }
-          td,
-          th {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 5px 15px;
-            flex-shrink: 0;
-            text-align: left;
-            box-sizing: border-box;
-          }
-          th {
-            font-family: $bold;
-            color: $grey-7;
-          }
-        }
-      }
-    }
     section#compliance {
-      h4 + p {
-        margin-top: 10px;
-      }
-      p + h4 {
-        margin-top: 20px;
-      }
       table {
         margin-top: 20px;
         td,
         th {
           &:nth-child(1) {
-            width: 45%;
+            flex: 4;
           }
           &:nth-child(2) {
-            width: 40%;
+            flex: 1;
           }
           &:nth-child(3) {
-            width: 15%;
+            flex: 5;
           }
           mark {
+            display: inline-block;
             font-family: $semibold;
             background: $green-1;
             color: white;
@@ -460,17 +512,15 @@
           }
         }
       }
-      // ul {
-      //   li {
-      //     display: flex;
-      //     align-items: center;
-      //     .left {
-      //       width: 70px;
-      //       display: flex;
-      //       align-items: center;
-      //     }
-      //   }
-      // }
+    }
+
+    ul.accordion {
+      width: calc(100% + 60px + 60px); // match the padding on sections
+      transform: translateX(-60px); // match the padding on sections
+      > li {
+        padding-left: 60px;
+        padding-right: 60px;
+      }
     }
   }
 

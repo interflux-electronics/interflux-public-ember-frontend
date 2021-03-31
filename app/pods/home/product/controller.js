@@ -80,4 +80,13 @@ export default class ProductController extends Controller {
       };
     });
   }
+
+  get showCompliance() {
+    return (
+      this.model.product.compliesWithIPC ||
+      this.model.product.compliesWithIEC ||
+      this.model.product.compliesWithROHS ||
+      this.model.product.compliesWithISO
+    );
+  }
 }

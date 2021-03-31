@@ -21,7 +21,7 @@ export default class UseModel extends Model {
   }
 
   get families() {
-    return this.products.mapBy('family').uniqBy('id');
+    return this.productsByRank.mapBy('family').uniqBy('id');
   }
 
   @hasMany('use-image') useImages;

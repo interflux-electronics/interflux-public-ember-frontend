@@ -2,9 +2,9 @@ ul.accordion {
   > li {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid $grey-1;
-    &:last-child {
-      border-bottom: 0;
+    border-bottom: 1px solid $grey-0;
+    &:first-child {
+      border-top: 1px solid $grey-0;
     }
     &.expanded {
       .content {
@@ -70,7 +70,7 @@ ul.accordion {
         }
       }
       .middle {
-        width: 100%;
+        // width: 100%;
         text-align: left;
         @include widescreen {
           padding-left: px(2vw);

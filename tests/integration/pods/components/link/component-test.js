@@ -7,20 +7,19 @@ module('Integration | Component | link', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    assert.expect(3);
 
-    await render(hbs`<Link />`);
-
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
     await render(hbs`
-      <Link>
-        template block text
-      </Link>
+      <Link
+        @label="ISO 9001"
+        @url="https://www.iso.org/"
+      />
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    const a = this.element.querySelector('a');
+
+    assert.equal(a.innerText, 'ISO 9001');
+    assert.equal(a.getAttribute('href'), 'https://www.iso.org/');
+    assert.equal(a.getAttribute('rel'), 'noopener noreferrer');
   });
 });
