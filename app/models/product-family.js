@@ -6,7 +6,8 @@ export default class ProductFamilyModel extends Model {
   @attr('string') nameSingle;
   @attr('string') namePlural;
   @attr('string') gist;
-  @attr('number') order;
+  @attr('string') fullMonty;
+  @attr('number') rank;
 
   @hasMany('product') products;
 
@@ -33,10 +34,6 @@ export default class ProductFamilyModel extends Model {
 
   get count() {
     return this.products.length;
-  }
-
-  get rank() {
-    return this.order || 999;
   }
 
   // Returns plural family name with first letter capitalised
