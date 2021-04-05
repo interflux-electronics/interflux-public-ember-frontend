@@ -78,6 +78,7 @@ export default helper(function markdown(params) {
   });
 
   html = html.replace(/™/g, '<sup>&trade;</sup>');
+  html = html.replace(/®/g, '<sup>&reg;</sup>');
 
   return htmlSafe(html);
 });
