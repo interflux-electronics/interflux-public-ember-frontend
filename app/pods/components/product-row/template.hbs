@@ -10,7 +10,9 @@
     <div class="center">
       <h3>{{@product.name}}</h3>
       <div class="tags">
-        <h4 class="blue">{{@product.family.nameSingle}}</h4>
+        {{#if @product.familyLabel}}
+          <h4 class="blue">{{@product.familyLabel}}</h4>
+        {{/if}}
         {{#if @product.isNew}}
           <h4 class="orange">NEW</h4>
         {{/if}}

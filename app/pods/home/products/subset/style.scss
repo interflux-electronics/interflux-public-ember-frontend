@@ -74,11 +74,6 @@
         color: $grey-7;
       }
     }
-    section {
-      &.hide {
-        display: none;
-      }
-    }
     ol {
       display: flex;
       flex-direction: column;
@@ -86,15 +81,6 @@
         &.hide {
           display: none;
         }
-      }
-    }
-    .no-data {
-      min-height: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        color: $grey-6;
       }
     }
   }

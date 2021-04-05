@@ -27,6 +27,12 @@ export default class ProductModel extends Model {
   @belongsTo('product-family') productFamily;
   @alias('productFamily') family;
 
+  get mainFamily() {
+    return this.productFamily.get('isMainFamily')
+      ? this.productFamily
+      : this.productFamily.productFamily;
+  }
+
   @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
   @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
 
@@ -105,5 +111,12 @@ export default class ProductModel extends Model {
 
   get testResultsArray() {
     return JSON.parse(this.testResults);
+  }
+
+  get familyLabel() {
+    const family = this.family.get('nameSingle');
+    const label = this.label;
+
+    return label ? label : family;
   }
 }

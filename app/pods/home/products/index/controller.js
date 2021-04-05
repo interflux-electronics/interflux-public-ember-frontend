@@ -2,9 +2,9 @@ import Controller from '@ember/controller';
 
 export default class ProductsIndexController extends Controller {
   get sortedFamilies() {
-    const families = this.model.families;
-    const ranked = families.filter(x => x.rank).sortBy('rank');
-    const noRank = families.reject(x => x.rank).sortBy('label');
+    const mainFamilies = this.model.families.filterBy('isMainFamily');
+    const ranked = mainFamilies.filter(x => x.rank).sortBy('rank');
+    const noRank = mainFamilies.reject(x => x.rank).sortBy('label');
     return [...ranked, ...noRank];
   }
 

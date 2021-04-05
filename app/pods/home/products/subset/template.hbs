@@ -81,39 +81,6 @@
                 </div>
               {{/each}}
             </fieldset>
-
-            {{!-- <fieldset id="group-by">
-              <legend>Group by ...</legend>
-              <div class="buttons">
-                <button
-                  type="button"
-                  class={{if this.groupByStatus 'active' 'idle'}}
-                  {{on 'click' (fn this.setGroup 'status')}}
-                >Status</button>
-
-                {{#unless this.isFamily}}
-                  <button
-                    type="button"
-                    class={{if this.groupByFamily 'active' 'idle'}}
-                    {{on 'click' (fn this.setGroup 'family')}}
-                  >Family</button>
-                {{/unless}}
-
-                {{#unless this.isUse}}
-                  <button
-                    type="button"
-                    class={{if this.groupByUse 'active' 'idle'}}
-                    {{on 'click' (fn this.setGroup 'use')}}
-                  >Process</button>
-                {{/unless}}
-
-                <button
-                  type="button"
-                  class={{if this.groupByQuality 'active' 'idle'}}
-                  {{on 'click' (fn this.setGroup 'quality')}}
-                >Quality</button>
-              </div>
-            </fieldset> --}}
           </div>
         </aside>
 
@@ -137,54 +104,60 @@
               </li>
             {{/each}}
 
-            {{#each @model.families as |family|}}
+            {{#each this.mainFamilies as |mainFamily|}}
               <li
-                id={{family.id}}
-                class="family"
-                labelledby="h2-{{family.id}}"
+                id={{mainFamily.id}}
+                class="main-family-for-use"
+                labelledby="h2-{{mainFamily.id}}"
               >
                 <div class="intro">
                   <div class="title">
-                    <h2 id="h2-{{family.id}}">{{family.label}} for {{this.use.text}}</h2>
+                    <h2 id="h2-{{mainFamily.id}}">{{mainFamily.label}} for {{this.use.text}}</h2>
                   </div>
-                  {{!-- {{#if family.gist}}
-                    <p>{{family.gist}}</p>
-                  {{/if}} --}}
+                  {{!--
+                  {{#if mainFamily.gist}}
+                    <p>{{mainFamily.gist}}</p>
+                  {{/if}}
+                  --}}
+                </div>
+              </li>
+
+              <li
+                id="other-{{mainFamily.id}}"
+                class="sub-family"
+                labelledby="h2-other-{{mainFamily.id}}"
+              >
+                <div class="intro">
+                  <div class="title">
+                    <h2 id="h2-other-{{mainFamily.id}}">Other {{mainFamily.namePlural}}</h2>
+                  </div>
                 </div>
               </li>
             {{/each}}
 
-            {{#each @model.products as |product|}}
+            {{#each this.subFamilies as |subFamily|}}
+              <li
+                id={{subFamily.id}}
+                class="sub-family"
+                labelledby="h2-{{subFamily.id}}"
+              >
+                <div class="intro">
+                  <div class="title">
+                    <h2 id="h2-{{subFamily.id}}">{{subFamily.label}}</h2>
+                  </div>
+                  {{!--
+                  {{#if subFamily.gist}}
+                    <p>{{subFamily.gist}}</p>
+                  {{/if}}
+                  --}}
+                </div>
+              </li>
+            {{/each}}
+
+            {{#each this.sortedProducts as |product|}}
               <ProductRow @product={{product}} />
             {{/each}}
           </ol>
-
-          {{!-- {{#each this.statuses as |status|}}
-            <section
-              id={{status.id}}
-              class="status"
-              labelledby="h2-{{status.id}}"
-            >
-              <div class="intro">
-                <div class="title">
-                  <h2 id="h2-{{status.id}}">{{status.label}}</h2>
-                </div>
-                {{#if status.blurb}}
-                  <p>{{status.blurb}}</p>
-                {{/if}}
-              </div>
-
-              <ol>
-                {{#each status.products as |product|}}
-                  <ProductRow @product={{product}} />
-                {{/each}}
-              </ol>
-            </section>
-          {{else}}
-            <div class="no-data">
-              <p>No products for chosen filters.</p>
-            </div>
-          {{/each}} --}}
         </article>
       </div>
     </div>

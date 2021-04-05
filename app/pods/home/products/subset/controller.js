@@ -74,47 +74,88 @@ export default class ProductsSubsetController extends Controller {
     // If the subset is a use (process) we group by family
     if (use) {
       // Show only the products of the use and sort
-      use.families.sortBy('rank').forEach((family, i) => {
-        const id = family.get('id');
-        const li = main.querySelector(`li.family#${id}`);
+      use.families
+        .filterBy('isMainFamily')
+        .sortBy('rank')
+        .forEach((family, i) => {
+          const id = family.get('id');
+          const li = main.querySelector(`li.main-family-for-use#${id}`);
 
-        // Iterate over all products which have this use and family and which status is shown.
-        use
+          if (!li) {
+            console.warn('NOT FOUND', id);
+            return;
+          }
+
+          // Iterate over all products which have this use and family and which status is shown.
+          use
+            .get('productsByRank')
+            .filterBy('family.id', family.get('id'))
+            .filter(product => shownStatuses.includes(product.get('status')))
+            .forEach((product, ii) => {
+              const id2 = product.get('id');
+              const li2 = main.querySelector(`li.product-row#${id2}`);
+
+              // Show and sort the family header
+              li.classList.remove('hide');
+              li.style.order = i * n;
+
+              // Show and sort all products of that family
+              li2.style.order = i * n + ii;
+              li2.classList.remove('hide');
+            });
+        });
+    }
+
+    // If the subset is a family we use different grouping per family
+    if (family) {
+      family.subFamilies.sortBy('rank').forEach((subFamily, i) => {
+        const id = subFamily.get('id');
+        const li = main.querySelector(`li.sub-family#${id}`);
+
+        subFamily
           .get('productsByRank')
-          .filterBy('family.id', family.get('id'))
           .filter(product => shownStatuses.includes(product.get('status')))
           .forEach((product, ii) => {
             const id2 = product.get('id');
             const li2 = main.querySelector(`li.product-row#${id2}`);
 
-            // Show and sort the family header
+            // Show and sort the sub family header
             li.classList.remove('hide');
             li.style.order = i * n;
 
-            // Show and sort all products of that family
+            // Show and sort all products of that sub family
             li2.style.order = i * n + ii;
             li2.classList.remove('hide');
           });
       });
-    }
 
-    // If the subset is a family we use different grouping per family
-    if (family) {
-      // Soldering fluxes are grouped by sub family
-      // if (family.id === 'solderin-fluxes') {
-      //   //
-      // }
+      const id = family.get('id');
+      const li = main.querySelector(`li.sub-family#other-${id}`);
+      const i = 999;
 
       family
         .get('productsByRank')
         .filter(product => shownStatuses.includes(product.get('status')))
-        .forEach((product, i) => {
-          const id = product.get('id');
-          const li = main.querySelector(`li.product-row#${id}`);
+        .forEach((product, ii) => {
+          console.log('product', product.name);
+          const id2 = product.get('id');
+          const li2 = main.querySelector(`li.product-row#${id2}`);
 
-          // Show and sort all products of that family
-          li.style.order = i;
-          li.classList.remove('hide');
+          // Show and sort the sub family header
+          if (li) {
+            li.classList.remove('hide');
+            li.style.order = i * n;
+          } else {
+            console.warn(`cannot find: li.sub-family#other-${id}`);
+          }
+
+          // Show and sort all products of that sub family
+          if (li2) {
+            li2.style.order = i * n + ii;
+            li2.classList.remove('hide');
+          } else {
+            console.warn(`cannot find: li.product-row#${id2}`);
+          }
         });
     }
   }
@@ -142,13 +183,16 @@ export default class ProductsSubsetController extends Controller {
   }
 
   get familyRadios() {
-    return this.model.families.sortBy('rank').map(family => {
-      const label = family.label;
-      const slug = family.slug;
-      const isChecked = this.family && this.family.slug === slug;
+    return this.model.families
+      .filterBy('isMainFamily')
+      .sortBy('rank')
+      .map(family => {
+        const label = family.label;
+        const slug = family.slug;
+        const isChecked = this.family && this.family.slug === slug;
 
-      return { label, slug, isChecked };
-    });
+        return { label, slug, isChecked };
+      });
   }
 
   get useRadios() {
@@ -218,5 +262,17 @@ export default class ProductsSubsetController extends Controller {
   @action
   openProductPage(product) {
     this.router.transitionTo('home.product', product.id);
+  }
+
+  get mainFamilies() {
+    return this.model.families.filterBy('isMainFamily');
+  }
+
+  get subFamilies() {
+    return this.model.families.filterBy('isSubFamily');
+  }
+
+  get sortedProducts() {
+    return this.model.products.sortBy('name');
   }
 }

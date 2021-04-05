@@ -1,4 +1,4 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 import { alias } from '@ember/object/computed';
 
 export default class ProductFamilyModel extends Model {
@@ -8,6 +8,9 @@ export default class ProductFamilyModel extends Model {
   @attr('string') gist;
   @attr('string') fullMonty;
   @attr('number') rank;
+
+  @belongsTo('product-family', { inverse: 'subFamilies' }) productFamily;
+  @hasMany('product-family', { inverse: 'productFamily' }) subFamilies;
 
   @hasMany('product') products;
 
@@ -34,6 +37,14 @@ export default class ProductFamilyModel extends Model {
 
   get count() {
     return this.products.length;
+  }
+
+  get isSubFamily() {
+    return this.productFamily.get('id') ? true : false;
+  }
+
+  get isMainFamily() {
+    return !this.isSubFamily;
   }
 
   // Returns plural family name with first letter capitalised

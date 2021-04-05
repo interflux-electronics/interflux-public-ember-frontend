@@ -30,7 +30,9 @@
                 <h1 id="h1">{{product.name}}</h1>
 
                 <div class="tags">
-                  <h2 class="blue">{{product.family.nameSingle}}</h2>
+                  {{#if product.familyLabel}}
+                    <h2 class="blue">{{product.familyLabel}}</h2>
+                  {{/if}}
                   {{#if product.isNew}}
                     <h2 class="orange">NEW</h2>
                   {{/if}}
