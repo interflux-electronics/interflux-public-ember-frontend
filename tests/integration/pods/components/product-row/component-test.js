@@ -14,7 +14,7 @@ module('Integration | Component | product-row', function(hooks) {
       name: 'IF 2005M',
       pitch: 'This is a **markdown** description.',
       family: {
-        familyLabel: 'soldering flux'
+        nameSingle: 'soldering flux'
       }
     });
 
@@ -28,6 +28,8 @@ module('Integration | Component | product-row', function(hooks) {
     const h4 = this.element.querySelector('.product-row h4');
     const p = this.element.querySelector('.product-row .pitch p');
     const strong = this.element.querySelector('.product-row .pitch p strong');
+
+    console.log(this.element.innerHTML);
 
     assert.equal(h3.innerText, 'IF 2005M');
     assert.equal(h4.innerText, 'soldering flux');
