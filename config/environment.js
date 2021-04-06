@@ -22,8 +22,8 @@ const apiHosts = {
 };
 
 // Where this Ember app is located
-const appHosts = {
-  production: 'https://app.interflux.com',
+const publicHosts = {
+  production: 'https://new.interflux.com',
   development: {
     web: 'http://localhost:4400',
     ios: 'http://localhost:4400',
@@ -70,7 +70,9 @@ module.exports = function(env) {
 
   // Hosts
   const apiHost = isDevelopment ? apiHosts[env][platform] : apiHosts[env];
-  const appHost = isDevelopment ? appHosts[env][platform] : appHosts[env];
+  const publicHost = isDevelopment
+    ? publicHosts[env][platform]
+    : publicHosts[env];
   const cdnHost = isDevelopment ? cdnHosts[env][platform] : cdnHosts[env];
   const oldHost = oldHosts[env];
 
@@ -97,7 +99,7 @@ module.exports = function(env) {
     isTest,
     isProduction,
     apiHost,
-    appHost,
+    publicHost,
     cdnHost,
     oldHost,
     apiNamespace,
