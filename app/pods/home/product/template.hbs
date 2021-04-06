@@ -40,18 +40,17 @@
                     <h2 class="orange">popular</h2>
                   {{/if}}
                   {{#if product.isOutdated}}
-                    <h2 class="grey">legacy</h2>
+                    <h2 class="grey">{{if product.superiorProduct (concat 'replaced by ' product.superiorProduct.name) 'outdated'}}</h2>
                   {{/if}}
                   {{#if product.isDiscontinued}}
-                    <h2 class="red">discontinued</h2>
+                    <h2 class="red">out of production{{if product.superiorProduct (concat '- replaced by ' product.superiorProduct.name)}}</h2>
                   {{/if}}
                 </div>
 
                 {{#if product.superiorProduct}}
                   <div id="replaced-by">
-                    <p>{{product.name}} been superseded by <a href={{href-to 'home.product' product.superiorProduct.id}}>{{product.superiorProduct.name}}</a>.</p>
-                    <p>Why? &mdash; Because Interflux never stops researching for even better soldering chemistry so that you can have the best of the best. ;)</p>
-                    <p>We recommend you to upgrade.</p>
+                    <p>{{product.name}} been replaced by <a href={{href-to 'home.product' product.superiorProduct.id}}>{{product.superiorProduct.name}}</a>.</p>
+                    <p>Why? &mdash; Because Interflux never stops innovating. We've found even beter soldering chemistry for you. Do consider upgrading! ;)</p>
                     {{#if product.pitch}}
                       <p>For those still interested:</p>
                       <div id="pitch">

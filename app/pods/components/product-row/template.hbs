@@ -23,7 +23,7 @@
           <h4 class="grey">{{if @product.superiorProduct (concat 'replaced by ' @product.superiorProduct.name) 'outdated'}}</h4>
         {{/if}}
         {{#if @product.isDiscontinued}}
-          <h4 class="red">out of production</h4>
+          <h4 class="red">out of production{{if @product.superiorProduct (concat '- replaced by ' @product.superiorProduct.name)}}</h4>
         {{/if}}
       </div>
       {{#if @product.pitch}}
