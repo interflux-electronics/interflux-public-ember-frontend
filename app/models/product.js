@@ -17,7 +17,9 @@ export default class ProductModel extends Model {
 
   @attr('boolean') compliesWithROHS;
   @attr('boolean') compliesWithIEC;
-  @attr('boolean') compliesWithIPC;
+  @attr('boolean') compliesWithIPCJSTD004A;
+  @attr('boolean') compliesWithIPCJSTD004B;
+  @attr('boolean') compliesWithIPCJSTD005;
   @attr('boolean') compliesWithISO;
   @attr('string') testResults;
 
@@ -30,7 +32,7 @@ export default class ProductModel extends Model {
   get mainFamily() {
     return this.productFamily.get('isMainFamily')
       ? this.productFamily
-      : this.productFamily.productFamily;
+      : this.productFamily.get('productFamily');
   }
 
   @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
@@ -118,5 +120,25 @@ export default class ProductModel extends Model {
     const label = this.label;
 
     return label ? label : family;
+  }
+
+  get compliesWithIPC() {
+    return (
+      this.compliesWithIPCJSTD004A ||
+      this.compliesWithIPCJSTD004B ||
+      this.compliesWithIPCJSTD005
+    );
+  }
+
+  get listForIPC() {
+    const arr = [
+      this.compliesWithIPCJSTD004A ? 'J-STD-004A' : null,
+      this.compliesWithIPCJSTD004B ? 'J-STD-004B' : null,
+      this.compliesWithIPCJSTD005 ? 'J-STD-005' : null
+    ].filter(x => !!x);
+
+    const last = arr.pop();
+
+    return arr.join(', ') + ' and ' + last;
   }
 }

@@ -153,12 +153,12 @@
                   {{#if product.compliesWithIPC}}
                     <h4>IPC</h4>
                     <p>
-                      <span>{{product.name}} complies with the IPC </span>
+                      <span>{{product.name}} complies with the </span>
                       <Link
-                        @label="J-STD-004A"
+                        @label="IPC"
                         @url="https://www.ipc.org/"
                       />
-                      <span> standard for quality soldering of soldering.</span>
+                      <span> {{product.listForIPC}} standard for quality soldering of soldering.</span>
                     </p>
                   {{/if}}
 
