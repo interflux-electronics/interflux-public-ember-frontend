@@ -17,7 +17,7 @@ export default class QualityModel extends Model {
   get iconURL() {
     return this.icon
       ? `${ENV.cdnHost}/${this.icon}`
-      : `${ENV.cdnHost}/images/icons/interflux.svg`;
+      : `${ENV.cdnHost}/images/icons/check.svg`;
   }
 
   // Capitalise first letter only
