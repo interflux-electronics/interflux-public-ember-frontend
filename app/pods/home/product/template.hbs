@@ -152,14 +152,38 @@
                   <h3 id="h3-compliance">Quality compliance</h3>
                   {{#if product.compliesWithIPC}}
                     <h4>IPC</h4>
-                    <p>
-                      <span>{{product.name}} complies with the </span>
-                      <Link
-                        @label="IPC"
-                        @url="https://www.ipc.org/"
-                      />
-                      <span> {{product.listForIPC}} standard for quality soldering of soldering.</span>
-                    </p>
+                    {{#if product.compliesWithIPCJSTD004A}}
+                      <p>
+                        <span>{{product.name}} complies with the </span>
+                        <Link
+                          @label="IPC J-STD-004A"
+                          @url="https://www.ipc.org/"
+                        />
+                        <span> standars making high quality electronic interconnections with soldering fluxes.</span>
+                      </p>
+                    {{/if}}
+
+                    {{#if product.compliesWithIPCJSTD004B}}
+                      <p>
+                        <span>{{product.name}} complies with the </span>
+                        <Link
+                          @label="IPC J-STD-004B"
+                          @url="https://www.ipc.org/"
+                        />
+                        <span> standars making high quality electronic interconnections with soldering fluxes.</span>
+                      </p>
+                    {{/if}}
+
+                    {{#if product.compliesWithIPCJSTD005}}
+                      <p>
+                        <span>{{product.name}} complies with the </span>
+                        <Link
+                          @label="IPC J-STD-005"
+                          @url="https://www.ipc.org/"
+                        />
+                        <span> standars making high quality electronic interconnections with solder pastes.</span>
+                      </p>
+                    {{/if}}
                   {{/if}}
 
                   {{#if product.compliesWithIEC}}
