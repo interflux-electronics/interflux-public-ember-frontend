@@ -4,32 +4,43 @@
 >
   {{#each @sections as |section i|}}
     <li class="section">
-      <button
-        type="button"
-        {{on 'click' (fn this.onButtonClick i)}}
-      >
-        <div class="left">
-          <Image @src={{section.iconURL}} />
+      {{#if section.textShownOnExpand}}
+        <button
+          type="button"
+          {{on 'click' (fn this.onButtonClick i)}}
+        >
+          <div class="left">
+            <Image @src={{section.iconURL}} />
+          </div>
+          <div class="middle">
+            <p>{{section.buttonLabel}}</p>
+          </div>
+          <div class="right">
+            <Svg::ArrowRight />
+          </div>
+        </button>
+        <div class="content">
+          <p>
+            {{section.textShownOnExpand}}
+          </p>
+          <ul class="links">
+            {{#each section.links as |link|}}
+              <li>
+                <a href="#">{{link.label}}</a>
+              </li>
+            {{/each}}
+          </ul>
         </div>
-        <div class="middle">
-          <p>{{section.buttonLabel}}</p>
+      {{else}}
+        <div class="no-content">
+          <div class="left">
+            <Image @src={{section.iconURL}} />
+          </div>
+          <div class="middle">
+            <p>{{section.buttonLabel}}</p>
+          </div>
         </div>
-        <div class="right">
-          <Svg::ArrowRight />
-        </div>
-      </button>
-      <div class="content">
-        <p>
-          {{section.textShownOnExpand}}
-        </p>
-        <ul class="links">
-          {{#each section.links as |link|}}
-            <li>
-              <a href="#">{{link.label}}</a>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
+      {{/if}}
     </li>
   {{/each}}
 </ul>

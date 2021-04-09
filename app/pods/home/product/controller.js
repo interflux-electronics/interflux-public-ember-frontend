@@ -42,19 +42,19 @@ export default class ProductController extends Controller {
       return {
         iconURL: use.get('iconURL'),
         buttonLabel: use.get('label'),
-        textShownOnExpand: use.get('gist'),
-        links: [
-          {
-            label: `Learn more about ${use.get('text')}`,
-            route: 'home.article',
-            model: 'article-123'
-          },
-          {
-            label: `All products for ${use.get('text')}`,
-            route: 'home.products',
-            model: use.get('slug')
-          }
-        ]
+        textShownOnExpand: use.get('gist')
+        // links: [
+        //   {
+        //     label: `Learn more about ${use.get('text')}`,
+        //     route: 'home.article',
+        //     model: 'article-123'
+        //   },
+        //   {
+        //     label: `All products for ${use.get('text')}`,
+        //     route: 'home.products',
+        //     model: use.get('slug')
+        //   }
+        // ]
       };
     });
   }
@@ -64,19 +64,19 @@ export default class ProductController extends Controller {
       return {
         iconURL: use.get('iconURL'),
         buttonLabel: use.get('label'),
-        textShownOnExpand: use.get('gist'),
-        links: [
-          {
-            label: `Learn more about ${use.get('text')}`,
-            route: 'home.article',
-            model: 'article-123'
-          },
-          {
-            label: `All products with ${use.get('text')}`,
-            route: 'home.products',
-            model: use.get('slug')
-          }
-        ]
+        textShownOnExpand: use.get('gist')
+        // links: [
+        //   {
+        //     label: `Learn more about ${use.get('text')}`,
+        //     route: 'home.article',
+        //     model: 'article-123'
+        //   },
+        //   {
+        //     label: `All products with ${use.get('text')}`,
+        //     route: 'home.products',
+        //     model: use.get('slug')
+        //   }
+        // ]
       };
     });
   }
