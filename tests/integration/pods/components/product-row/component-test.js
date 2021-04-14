@@ -30,8 +30,6 @@ module('Integration | Component | product-row', function(hooks) {
     const p = this.element.querySelector('.product-row .pitch p');
     const strong = this.element.querySelector('.product-row .pitch p strong');
 
-    console.log(this.element.innerHTML);
-
     assert.equal(h3.innerText, 'IF 2005M');
     // assert.equal(h4.innerText, 'soldering flux');
     assert.equal(p.innerText, 'This is a markdown description.');
