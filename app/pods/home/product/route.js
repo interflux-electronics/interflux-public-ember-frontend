@@ -8,8 +8,8 @@ export default class ProductRoute extends Route {
         include: [
           'documents',
           'qualities',
-          'product_qualities',
           'uses',
+          'product_qualities',
           'product_uses',
           'product_family',
           'product_images',
