@@ -24,7 +24,12 @@ export default class ProductModel extends Model {
   @attr('string') testResults;
 
   @belongsTo('image', { inverse: 'product' }) image;
-  @alias('image') avatar;
+
+  // Avatar image properties are cached on the product record as to avoid N+1 when loading long lists of products
+  @attr('string') avatarPath;
+  @attr('string') avatarAlt;
+  @attr('string') avatarCaption;
+  @attr('string') avatarVariations;
 
   @belongsTo('product-family') productFamily;
   @alias('productFamily') family;

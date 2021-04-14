@@ -6,7 +6,6 @@ export default class ProductRoute extends Route {
     return hash({
       product: this.store.findRecord('product', params.id, {
         include: [
-          'image',
           'documents',
           'qualities',
           'product_qualities',

@@ -17,9 +17,7 @@ export default class ProductsRoute extends Route {
       };
     } else {
       return hash({
-        products: this.store.findAll('product', {
-          include: ['image'].join(',')
-        }),
+        products: this.store.findAll('product'),
         families: this.store.findAll('productFamily', {
           include: [
             'product_family_images',

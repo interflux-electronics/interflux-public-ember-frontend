@@ -17,7 +17,12 @@
               <h2 id="h2-{{family.id}}">{{family.label}}</h2>
               <a href={{href-to 'home.products.subset' family.id}}>
                 {{#each family.images as |image|}}
-                  <ResponsiveImage @image={{image}} />
+                  <ResponsiveImage
+                    @path={{image.path}}
+                    @variations={{image.variations}}
+                    @caption={{image.caption}}
+                    @alt={{image.alt}}
+                  />
                 {{/each}}
                 <div>
                   <p class="button">
@@ -38,7 +43,12 @@
               <h2 id="h2-{{use.id}}">For {{use.text}}</h2>
               <a href={{href-to 'home.products.subset' (concat "for-" use.id)}}>
                 {{#each use.images as |image|}}
-                  <ResponsiveImage @image={{image}} />
+                  <ResponsiveImage
+                    @path={{image.path}}
+                    @variations={{image.variations}}
+                    @caption={{image.caption}}
+                    @alt={{image.alt}}
+                  />
                 {{/each}}
                 <div>
                   <p class="button">

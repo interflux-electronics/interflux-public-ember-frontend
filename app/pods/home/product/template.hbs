@@ -69,7 +69,12 @@
 
               {{#if this.heroImage}}
                 <div id="avatar">
-                  <ResponsiveImage @image={{this.heroImage}} />
+                  <ResponsiveImage
+                    @path={{this.heroImage.path}}
+                    @variations={{this.heroImage.variations}}
+                    @caption={{this.heroImage.caption}}
+                    @alt={{this.heroImage.alt}}
+                  />
                 </div>
               {{/if}}
 
@@ -81,7 +86,12 @@
                       class={{if (eq image this.heroImage) 'active'}}
                       {{on 'click' (fn this.setHero image)}}
                     >
-                      <ResponsiveImage @image={{image}} />
+                      <ResponsiveImage
+                        @path={{image.path}}
+                        @variations={{image.variations}}
+                        @caption={{image.caption}}
+                        @alt={{image.alt}}
+                      />
                     </button>
                   {{/each}}
                 </div>

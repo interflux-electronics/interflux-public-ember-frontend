@@ -4,40 +4,40 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-function arg(object, property) {
-  return {
-    get() {
-      const value = this.args[property];
-      if (!value) {
-        console.warn(`missing argument: ${property}`);
-      }
-      return value;
-    },
-    set() {
-      console.warn(`argument ${property} is read-only`);
-    }
-  };
-}
+// function arg(object, property) {
+//   return {
+//     get() {
+//       const value = this.args[property];
+//       if (!value) {
+//         console.warn(`missing argument: ${property}`);
+//       }
+//       return value;
+//     },
+//     set() {
+//       console.warn(`argument ${property} is read-only`);
+//     }
+//   };
+// }
 
 export default class ResponsiveImageComponent extends Component {
-  @arg image;
+  // @arg image;
 
   @service browser;
 
-  get variations() {
-    return this.image ? this.image.get('variations') : null;
+  get path() {
+    return this.args.path;
   }
 
-  get path() {
-    return this.image ? this.image.get('path') : null;
+  get variations() {
+    return this.args.variations;
   }
 
   get caption() {
-    return this.image ? this.image.get('caption') : null;
+    return this.args.caption;
   }
 
   get alt() {
-    return this.image ? this.image.get('alt') : null;
+    return this.args.alt;
   }
 
   get hasJPG() {

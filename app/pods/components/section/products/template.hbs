@@ -30,9 +30,6 @@
           @formats={{array 'jpg' 'webp'}}
         />
 
-        {{!-- <ResponsiveImage @image={{get product 'avatar'}} /> --}}
-
-
         {{#if (or product.new product.popular product.featured)}}
           <button type="button">
             {{#if product.new}}
@@ -58,7 +55,7 @@
         <h2>{{product.name}}</h2>
         <h3>{{if product.label product.label product.family.nameSingle}}</h3>
         {{#if this.showAll}}
-          <ResponsiveImage @image={{get product 'avatar'}} />
+          {{!-- <ResponsiveImage @image={{get product 'avatar'}} /> --}}
         {{/if}}
         {{#if (or product.new product.popular product.featured)}}
           <button type="button">

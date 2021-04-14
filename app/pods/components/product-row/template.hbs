@@ -4,7 +4,12 @@
 >
   <a href={{href-to 'home.product' @product.id}}>
     <div class="left">
-      <ResponsiveImage @image={{@product.image}} />
+      <ResponsiveImage
+        @path={{@product.avatarPath}}
+        @variations={{@product.avatarVariations}}
+        @captions={{@product.avatarCaptions}}
+        @alt={{@product.avatarAlt}}
+      />
     </div>
 
     <div class="center">
