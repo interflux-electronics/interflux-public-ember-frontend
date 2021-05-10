@@ -36,16 +36,16 @@ li.product-row {
     border-bottom: 1px solid $grey-1;
     margin-top: -1px;
     background: white;
-    transition: all 150ms ease-out;
     text-decoration: none;
+    min-height: 266px;
+    outline-offset: -1px;
     &:hover,
     &:focus {
       outline: 1px solid $blue-0;
-      outline-offset: -1px;
-      transform: scale(1.03);
       z-index: 2;
       box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1);
       .right {
+        transform: translateX(50px);
         svg {
           [fill] {
             fill: $blue-0;
@@ -54,10 +54,11 @@ li.product-row {
       }
     }
     .left {
-      padding: 10px;
+      padding: 12px;
       flex-shrink: 0;
       figure {
         width: 240px;
+        height: 240px;
         &.no-image {
           margin: 0;
           filter: grayscale(1) opacity(0.4);
@@ -88,6 +89,7 @@ li.product-row {
           font-family: $regular;
           color: white;
           padding: 1px 10px 0;
+          flex-shrink: 0;
           border-radius: 2px;
           &.blue {
             background: $blue-0;
@@ -107,18 +109,37 @@ li.product-row {
           }
         }
       }
-      p {
-        font-family: $regular;
-        line-height: 24px;
-        font-size: 16px;
-        color: $grey-7;
-        max-height: calc(4 * 24px);
-        overflow: hidden;
+      .pitch {
+        p {
+          position: relative;
+          font-family: $regular;
+          line-height: 24px;
+          font-size: 16px;
+          color: $grey-7;
+          height: calc(3 * 24px);
+          max-height: calc(3 * 24px);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 24px;
+            background: linear-gradient(
+              to right,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(255, 255, 255, 1) 100%
+            );
+          }
+        }
       }
     }
     .right {
       padding: 20px;
       flex-shrink: 0;
+      transition: transform 150ms ease-out;
       svg {
         width: 10px;
         height: auto;
@@ -126,6 +147,49 @@ li.product-row {
           fill: #c5c5c5;
           transition: fill 150ms ease-out;
         }
+      }
+    }
+  }
+  .features {
+    display: flex;
+    margin-top: 15px;
+    .feature {
+      position: relative;
+      width: 25px;
+      height: 25px;
+      margin-right: 5px;
+      flex-shrink: 0;
+      &:hover {
+        z-index: 1;
+        cursor: pointer;
+        picture {
+          transform: scale(2.2);
+          box-shadow: 0 2px 4px rgba(black, 0.2);
+        }
+        .callout {
+          opacity: 1;
+        }
+      }
+      .callout {
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+        opacity: 0;
+        white-space: nowrap;
+        transform: translateY(20px);
+        span {
+          background: $blue-3;
+          background: white;
+          color: white;
+          color: $grey-7;
+          padding: 3px 7px;
+          box-shadow: 0 2px 4px rgba(black, 0.2);
+        }
+      }
+      picture {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
       }
     }
   }

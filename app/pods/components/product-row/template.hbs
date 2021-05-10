@@ -36,6 +36,16 @@
           {{markdown @product.pitch}}
         </div>
       {{/if}}
+      {{#if this.features}}
+        <div class="features">
+          {{#each this.features as |feature|}}
+            <div class="feature">
+              <Image @src={{feature.iconURL}} />
+              <div class="callout"><span>{{feature.text}}</span></div>
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
     </div>
 
     <div class="right">

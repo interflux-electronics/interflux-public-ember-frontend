@@ -15,7 +15,7 @@
   article {
     background: white;
     box-shadow: 0 4px 8px rgba(black, 0.1);
-    width: 800px;
+    width: 880px;
     h1 {
       font-family: $extrabold;
       font-size: 36px;
@@ -86,7 +86,7 @@
   }
 
   aside {
-    width: 320px;
+    width: 260px;
     flex-shrink: 0;
     margin-right: 30px;
     .sticky {

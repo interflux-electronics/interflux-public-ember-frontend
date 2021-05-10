@@ -56,24 +56,30 @@ export default class ProductModel extends Model {
     return this.qualities && this.qualities.length > 0;
   }
 
-  get uses() {
+  get productUsesSorted() {
     const rank = 'rankAmongUses';
     const records = this.productUses;
     const ranked = records.filterBy(rank).sortBy(rank);
     const rankless = records.rejectBy(rank);
-    const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.use);
+    return [...ranked, ...rankless];
   }
 
-  get qualities() {
+  get uses() {
+    return this.productUsesSorted.map(record => record.use);
+  }
+
+  get productQualitiesSorted() {
     const rank = 'rankAmongQualities';
     const records = this.productQualities;
     const ranked = records.filterBy(rank).sortBy(rank);
     const rankless = records.rejectBy(rank);
-    const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.quality);
+    return [...ranked, ...rankless];
+  }
+
+  get qualities() {
+    return this.productQualitiesSorted.map(record => record.quality);
   }
 
   get documents() {

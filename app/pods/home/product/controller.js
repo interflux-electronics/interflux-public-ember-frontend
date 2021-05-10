@@ -60,11 +60,11 @@ export default class ProductController extends Controller {
   }
 
   get qualityAccordionSections() {
-    return this.model.product.qualities.map(use => {
+    return this.model.product.qualities.map(quality => {
       return {
-        iconURL: use.get('iconURL'),
-        buttonLabel: use.get('label'),
-        textShownOnExpand: use.get('gist')
+        iconURL: quality.get('iconURL'),
+        buttonLabel: quality.get('label'),
+        textShownOnExpand: quality.get('gist')
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
