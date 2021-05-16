@@ -50,7 +50,19 @@ const oldHosts = {
   test: 'http://localhost:9100'
 };
 
-const deployTime = 'TODO';
+// The UTC date and time of when this build was compiled
+const d = new Date();
+const utc = Date.UTC(
+  d.getUTCFullYear(),
+  d.getUTCMonth(),
+  d.getUTCDate(),
+  d.getUTCHours(),
+  d.getUTCMinutes(),
+  d.getUTCSeconds()
+);
+const date = utc.toLocaleDateString('sv');
+const time = utc.toLocaleTimeString('sv');
+const buildTimestamp = `${date} ${time} UTC`;
 
 module.exports = function(env) {
   // Environments
@@ -103,7 +115,7 @@ module.exports = function(env) {
     apiNamespace,
     gitBranch,
     gitRevision,
-    deployTime,
+    buildTimestamp,
 
     'mapbox-gl': {
       accessToken: `pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug`

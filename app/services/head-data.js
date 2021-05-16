@@ -37,8 +37,8 @@ export default class HeadDataService extends Service {
     return ENV.gitRevision;
   }
 
-  get deployTime() {
-    return ENV.deployTime;
+  get buildTimestamp() {
+    return ENV.buildTimestamp;
   }
 
   get environment() {
