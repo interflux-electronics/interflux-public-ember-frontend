@@ -12,7 +12,7 @@ export default class ProductsRoute extends Route {
     this.headData.description =
       'Get an overview of all the products Interflux researches and develops: soldering fluxes, solder pastes, solder wire, solder alloys and more.';
 
-    this.headData.imageURL = 'https://...';
+    this.headData.imagePath = 'images/logos/something.png';
     this.headData.imageMime = 'image/jpeg';
     this.headData.imageWidth = '1200';
     this.headData.imageHeight = '600';
