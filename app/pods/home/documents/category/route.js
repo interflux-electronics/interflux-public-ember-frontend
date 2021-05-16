@@ -4,6 +4,8 @@ import { inject as service } from '@ember/service';
 export default class DocumentCategoryRoute extends Route {
   @service store;
   @service modal;
+  @service window;
+  @service document;
 
   model(params) {
     return {
@@ -31,9 +33,10 @@ export default class DocumentCategoryRoute extends Route {
   activate() {
     this.modal.setProperties({
       active: true,
-      scroll: window.pageYOffset || document.documentElement.scrollTop
+      scroll:
+        this.window.pageYOffset() || this.document.documentElement.scrollTop
     });
-    window.scrollTo(0, 0);
+    this.window.scrollTo(0, 0);
   }
 
   // Allow <main> page to scroll again
@@ -43,6 +46,6 @@ export default class DocumentCategoryRoute extends Route {
       active: false,
       scroll: 0
     });
-    window.scrollTo(0, scroll);
+    this.window.scrollTo(0, scroll);
   }
 }

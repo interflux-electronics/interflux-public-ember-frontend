@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 export default class ProductsSubsetController extends Controller {
   @service store;
   @service router;
+  @service window;
 
   @tracked family; // The family record matching the slug in the URL
   @tracked use; // The use record matching the slug in the URL
@@ -23,7 +24,7 @@ export default class ProductsSubsetController extends Controller {
     this.family = this.model.family;
     this.use = this.model.use;
 
-    await this.delay(1); // Allow all <section> to be rendered first
+    await this.window.delay(1); // Allow all <section> to be rendered first
 
     this.filterAndSortProducts();
   }
@@ -176,12 +177,6 @@ export default class ProductsSubsetController extends Controller {
     return 'LMPA Q6';
   }
 
-  delay(ms) {
-    return new Promise(approve => {
-      window.setTimeout(approve, ms);
-    });
-  }
-
   get familyRadios() {
     return this.model.families
       .filterBy('isMainFamily')
@@ -252,7 +247,7 @@ export default class ProductsSubsetController extends Controller {
 
     this.filterAndSortProducts();
 
-    window.scrollTo({
+    this.window.scrollTo({
       top: this.main.offsetTop,
       left: 100,
       behavior: 'smooth'

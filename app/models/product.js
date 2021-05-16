@@ -5,9 +5,7 @@ export default class ProductModel extends Model {
   @alias('id') slug;
   @attr('string') name;
   @attr('string') label;
-  @attr('string') pitch;
   @attr('string') status;
-
   @attr('string') pitch;
   @attr('string') summary;
   @attr('string') properties;

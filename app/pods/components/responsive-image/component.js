@@ -26,6 +26,7 @@ export default class ResponsiveImageComponent extends Component {
   // @arg alt;
 
   @service browser;
+  @service window;
 
   get path() {
     return this.args.path;
@@ -93,7 +94,8 @@ export default class ResponsiveImageComponent extends Component {
   // This component looks at the actual width the <picture> element and the screen density and
   // decideds which width is the smallest width, which still renders a sharp image.
   get optimalWidth() {
-    const pixelRatio = window.devicePixelRatio || 1;
+    const pixelRatio = this.window.devicePixelRatio();
+
     return this.picture.offsetWidth * pixelRatio;
   }
 

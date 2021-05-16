@@ -50,9 +50,7 @@ const oldHosts = {
   test: 'http://localhost:9100'
 };
 
-// The mobile browser's theme colour
-// https://developers.google.com/web/fundamentals/design-and-ux/browser-customization/
-const themeColour = '#23578c';
+const deployTime = 'TODO';
 
 module.exports = function(env) {
   // Environments
@@ -105,13 +103,22 @@ module.exports = function(env) {
     apiNamespace,
     gitBranch,
     gitRevision,
-    themeColour,
+    deployTime,
 
     'mapbox-gl': {
       accessToken: `pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug`
     },
 
-    showdown: {}
+    showdown: {},
+
+    fastboot: {
+      hostWhitelist: [
+        'interflux.com',
+        'www.interflux.com',
+        'new.interflux.com',
+        'localhost:4400'
+      ]
+    }
   };
 
   if (isTest) {

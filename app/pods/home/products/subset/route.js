@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class ProductsSubsetRoute extends Route {
   @service cache;
+  @service headData;
 
   model(params) {
     const { slug } = params;
@@ -46,6 +47,10 @@ export default class ProductsSubsetRoute extends Route {
 
   afterModel() {
     this.cache.hasProductSubset = true;
+
+    this.headData.title = `Products develop by Interflux`;
+    this.headData.description =
+      'Get an overview of all the products Interflux researches and develops: soldering fluxes, solder pastes, solder wire, solder alloys and more.';
   }
 
   // HACK: when navigating into a subset route, then out and back into another, the controller

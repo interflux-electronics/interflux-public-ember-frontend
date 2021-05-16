@@ -4,6 +4,20 @@ import { inject as service } from '@ember/service';
 
 export default class ProductsRoute extends Route {
   @service cache;
+  @service headData;
+
+  beforeModel() {
+    this.headData.path = '/products';
+    this.headData.title = `Products developed by Interflux`;
+    this.headData.description =
+      'Get an overview of all the products Interflux researches and develops: soldering fluxes, solder pastes, solder wire, solder alloys and more.';
+
+    this.headData.imageURL = 'https://...';
+    this.headData.imageMime = 'image/jpeg';
+    this.headData.imageWidth = '1200';
+    this.headData.imageHeight = '600';
+    this.headData.imageAlt = 'logo';
+  }
 
   model() {
     if (this.cache.hasProductIndex) {
