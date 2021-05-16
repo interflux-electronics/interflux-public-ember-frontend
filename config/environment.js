@@ -51,18 +51,8 @@ const oldHosts = {
 };
 
 // The UTC date and time of when this build was compiled
-const d = new Date();
-const utc = Date.UTC(
-  d.getUTCFullYear(),
-  d.getUTCMonth(),
-  d.getUTCDate(),
-  d.getUTCHours(),
-  d.getUTCMinutes(),
-  d.getUTCSeconds()
-);
-const date = utc.toLocaleDateString('sv');
-const time = utc.toLocaleTimeString('sv');
-const buildTimestamp = `${date} ${time} UTC`;
+const date = new Date();
+const buildTimestamp = date.toUTCString();
 
 module.exports = function(env) {
   // Environments
