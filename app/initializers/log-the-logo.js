@@ -45,12 +45,12 @@
 // ' ''.  -' .- --.'- ''   .-'''.  ' . ' '' '''-'-  .'-''.-  '''-.'.- '    ''  '  - '-'-'- ''.-
 // `;
 //
-// export function initialize() {
-//   if (ENV.isProduction) {
-//     console.log(`%c${asciLogo}`, 'color: #23578c');
-//   }
-// }
-//
-// export default {
-//   initialize
-// };
+export function initialize() {
+  // if (ENV.isProduction) {
+  //   console.log(`%c${asciLogo}`, 'color: #23578c');
+  // }
+}
+
+export default {
+  initialize
+};
