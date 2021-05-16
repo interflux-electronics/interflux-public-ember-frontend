@@ -80,7 +80,7 @@ module.exports = function(env) {
   const locationType = isMobileApp && !isTest ? 'hash' : 'history';
   const rootURL = isMobileApp && !isTest ? '' : '/';
 
-  let ENV = {
+  const ENV = {
     appName: PKG.name,
     modulePrefix: PKG.name,
     podModulePrefix: `${PKG.name}/pods`,
@@ -118,7 +118,7 @@ module.exports = function(env) {
         'interflux.com',
         'www.interflux.com',
         'new.interflux.com',
-        'localhost:4400'
+        /^localhost:\d+$/
       ]
     }
   };
