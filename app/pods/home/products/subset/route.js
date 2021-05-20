@@ -45,7 +45,7 @@ export default class ProductsSubsetRoute extends Route {
     return model;
   }
 
-  afterModel(model) {
+  afterModel() {
     this.cache.hasProductSubset = true;
 
     this.headData.setProperties({
