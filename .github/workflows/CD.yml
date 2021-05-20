@@ -52,22 +52,21 @@ jobs:
 
       # Build Ember app, once built Fastboot restarts
       - run: ssh $URL "cd $ROOT; yarn build"
-
-      # For sanity checking the deploy we'll need pup to pull in interpet the live HTML
-      - run: sudo apt-get install pup
-
-      # The Git revision of this build
-      - run: echo "BUILD_REVISION=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
-
-      # The Git revision currently live and served by Ember Fastboot
-      - run: echo "LIVE_REVISION=$(curl 'https://new.interflux.com/en/product/IF-2005M' | pup 'meta[name="git-revision"] attr{content}')"
-
-      # Fail the work flow, something is wrong.
-      - name: 'Sanity check: FAIL'
-        run: exit -1
-        if: env.BUILD_REVISION != env.LIVE_REVISION
-
-      # All green, deploy was successful!
-      - name: 'Sanity check: PASS'
-        if: env.BUILD_REVISION == env.LIVE_REVISION
-        run: exit 0
+      # # For sanity checking the deploy we'll need pup to pull in interpet the live HTML
+      # - run: sudo apt-get install pup
+      #
+      # # The Git revision of this build
+      # - run: echo "BUILD_REVISION=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+      #
+      # # The Git revision currently live and served by Ember Fastboot
+      # - run: echo "LIVE_REVISION=$(curl 'https://new.interflux.com/en/product/IF-2005M' | pup 'meta[name="git-revision"] attr{content}')"
+      #
+      # # Fail the work flow, something is wrong.
+      # - name: 'Sanity check: FAIL'
+      #   run: exit -1
+      #   if: env.BUILD_REVISION != env.LIVE_REVISION
+      #
+      # # All green, deploy was successful!
+      # - name: 'Sanity check: PASS'
+      #   if: env.BUILD_REVISION == env.LIVE_REVISION
+      #   run: exit 0
