@@ -1,12 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-// For AJAX
-// https://github.com/ember-cli/ember-ajax/issues/57
-
-// Documentation on DS.AdaptorErrors
-// http://docs.w3cub.com/ember/classes/ds.adaptererror/
-
 export function initialize() {
   Route.reopen({
     auth: service(),
