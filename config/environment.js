@@ -118,7 +118,7 @@ module.exports = function(env) {
         'interflux.com',
         'www.interflux.com',
         'new.interflux.com',
-        /^localhost:\d+$/
+        /^127.0.0.1:\d+$/
       ]
     }
   };
