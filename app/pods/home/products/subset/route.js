@@ -45,12 +45,20 @@ export default class ProductsSubsetRoute extends Route {
     return model;
   }
 
-  afterModel() {
+  afterModel(model) {
     this.cache.hasProductSubset = true;
 
-    this.headData.title = `Products develop by Interflux`;
-    this.headData.description =
-      'Get an overview of all the products Interflux researches and develops: soldering fluxes, solder pastes, solder wire, solder alloys and more.';
+    this.headData.setProperties({
+      path: '/products',
+      title: 'Interflux Electronics - Soldering fluxes, pastes, wires, alloys',
+      description:
+        'We research and develop the chemistry you need for soldering electronics with high-reliability. Products: soldering fluxes, solder pastes, solder wires, solder alloys, fluxing systems, solder masks, tip tinners and more.',
+      imagePath: '/images/logos/secondary-interflux-electronics-logo-1.png',
+      imageMime: 'image/png',
+      imageWidth: '3960',
+      imageHeight: '1000',
+      imageAlt: 'secondary Interflux Electronics logo 1'
+    });
   }
 
   // HACK: when navigating into a subset route, then out and back into another, the controller

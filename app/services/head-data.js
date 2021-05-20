@@ -5,14 +5,17 @@ import { inject as service } from '@ember/service';
 
 export default class HeadDataService extends Service {
   @service language;
+  @service router;
 
   @tracked type = 'website';
   @tracked locale = 'en_US';
   @tracked robot = 'index, follow';
   @tracked path = '';
 
+  // Why not just do window.location.href?
+  // Because Fastboot runs in Node and has no concept of the browser window.
   get url() {
-    return `${ENV.publicHost}/${this.language.locale}/${this.path}`;
+    return `${ENV.publicHost}/${this.language.locale}${this.path}`;
   }
 
   @tracked title = 'Interflux Electronics';
@@ -26,7 +29,7 @@ export default class HeadDataService extends Service {
   @tracked imageAlt = 'logo';
 
   get imageURL() {
-    return `${ENV.cdnHost}/${this.imagePath}`;
+    return `${ENV.cdnHost}${this.imagePath}`;
   }
 
   get gitBranch() {
