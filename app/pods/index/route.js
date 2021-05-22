@@ -1,8 +1,13 @@
 import Route from '@ember/routing/route';
-// import { inject as service } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
+  @service fastboot;
   // @service headData;
+
+  get isFastBoot() {
+    return this.fastboot.isFastBoot;
+  }
 
   beforeModel() {
     // TODO: Once we remove the redirect, we need to set <head> meta tags
@@ -17,7 +22,8 @@ export default class IndexRoute extends Route {
     //   imageHeight: '600',
     //   imageAlt: 'logo'
     // });
-
-    this.transitionTo('home', 'en');
+    if (!this.isFastBoot) {
+      this.transitionTo('home', 'en');
+    }
   }
 }
