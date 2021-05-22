@@ -3,10 +3,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | checkbox', function(hooks) {
+module('Integration | Component | checkbox', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     assert.expect(1);
 
     this.set('id', '123');
@@ -23,7 +23,7 @@ module('Integration | Component | checkbox', function(hooks) {
     assert.equal(checkbox.getAttribute('aria-labelledby'), 'input-123');
   });
 
-  test('it toggles', async function(assert) {
+  test('it toggles', async function (assert) {
     assert.expect(2);
 
     this.set('checked', true);

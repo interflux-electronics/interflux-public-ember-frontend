@@ -40,10 +40,10 @@ export default class SearchListComponent extends Component {
   filter(query) {
     // If no user query, clear all <mark> and show all <li>
     if (!query) {
-      this.element.querySelectorAll('li').forEach(li => {
+      this.element.querySelectorAll('li').forEach((li) => {
         li.removeAttribute('style');
       });
-      this.element.querySelectorAll('[data-search="me"]').forEach(el => {
+      this.element.querySelectorAll('[data-search="me"]').forEach((el) => {
         el.innerHTML = el.textContent;
       });
 
@@ -54,7 +54,7 @@ export default class SearchListComponent extends Component {
     let count = 0;
 
     // Mark all text that matches the query with <mark>
-    this.element.querySelectorAll('[data-search="me"]').forEach(el => {
+    this.element.querySelectorAll('[data-search="me"]').forEach((el) => {
       if (!regex.test(el.textContent)) {
         el.innerHTML = el.textContent;
       } else {
@@ -64,7 +64,7 @@ export default class SearchListComponent extends Component {
     });
 
     // Hide all <li> that do not have <mark>
-    this.element.querySelectorAll('li').forEach(li => {
+    this.element.querySelectorAll('li').forEach((li) => {
       const n = li.querySelectorAll('mark').length;
       if (n > 0) {
         li.removeAttribute('style'); // show

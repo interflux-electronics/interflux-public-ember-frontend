@@ -10,7 +10,7 @@ export function capitalise(params) {
   }
 
   const words = phrase.split(' ');
-  const arr = words.map(word => capitalize(word));
+  const arr = words.map((word) => capitalize(word));
   const str = arr.join(' ');
   return str;
 }

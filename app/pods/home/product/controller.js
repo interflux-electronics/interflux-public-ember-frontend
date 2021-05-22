@@ -38,7 +38,7 @@ export default class ProductController extends Controller {
   }
 
   get useAccordionSections() {
-    return this.model.product.uses.map(use => {
+    return this.model.product.uses.map((use) => {
       return {
         iconURL: use.get('iconURL'),
         buttonLabel: use.get('label'),
@@ -60,7 +60,7 @@ export default class ProductController extends Controller {
   }
 
   get qualityAccordionSections() {
-    return this.model.product.qualities.map(quality => {
+    return this.model.product.qualities.map((quality) => {
       return {
         iconURL: quality.get('iconURL'),
         buttonLabel: quality.get('label'),

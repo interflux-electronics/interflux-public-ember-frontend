@@ -33,10 +33,10 @@ Available alloys:
 - Bogus
 `;
 
-module('Integration | Helper | to-definition-list', function(hooks) {
+module('Integration | Helper | to-definition-list', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it converts one key value pair', async function(assert) {
+  test('it converts one key value pair', async function (assert) {
     assert.expect(1);
     this.set('string', onePair);
     await render(hbs`{{to-definition-list string}}`);
@@ -46,7 +46,7 @@ module('Integration | Helper | to-definition-list', function(hooks) {
     );
   });
 
-  test('it converts multiple key value pairs', async function(assert) {
+  test('it converts multiple key value pairs', async function (assert) {
     assert.expect(1);
     this.set('string', multiplePairs);
     await render(hbs`{{to-definition-list string}}`);
@@ -56,7 +56,7 @@ module('Integration | Helper | to-definition-list', function(hooks) {
     );
   });
 
-  test('it converts list items', async function(assert) {
+  test('it converts list items', async function (assert) {
     assert.expect(1);
     this.set('string', multiplePairsWithList);
     await render(hbs`{{to-definition-list string}}`);
@@ -66,7 +66,7 @@ module('Integration | Helper | to-definition-list', function(hooks) {
     );
   });
 
-  test('it filters out invalid lines', async function(assert) {
+  test('it filters out invalid lines', async function (assert) {
     assert.expect(1);
     this.set('string', multiplePairsInvalidLines);
     await render(hbs`{{to-definition-list string}}`);
@@ -76,7 +76,7 @@ module('Integration | Helper | to-definition-list', function(hooks) {
     );
   });
 
-  test('it gracefully handles undefined', async function(assert) {
+  test('it gracefully handles undefined', async function (assert) {
     assert.expect(1);
     this.set('string', undefined);
     await render(hbs`{{to-definition-list string}}`);

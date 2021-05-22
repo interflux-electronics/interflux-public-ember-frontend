@@ -49,17 +49,17 @@ This is a paragraph.
 This is a paragraph.
 `;
 
-module('Integration | Helper | markdown', function(hooks) {
+module('Integration | Helper | markdown', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it converts one paragraph', async function(assert) {
+  test('it converts one paragraph', async function (assert) {
     assert.expect(1);
     this.set('string', 'This is paragraph one.');
     await render(hbs`{{markdown string}}`);
     assert.equal(this.element.innerHTML, '<p>This is paragraph one.</p>');
   });
 
-  test('it converts three paragraphs and single line breaks', async function(assert) {
+  test('it converts three paragraphs and single line breaks', async function (assert) {
     assert.expect(1);
     this.set('string', twoParagraphsWithBreak);
     await render(hbs`{{markdown string}}`);
@@ -69,7 +69,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it converts headings', async function(assert) {
+  test('it converts headings', async function (assert) {
     assert.expect(1);
     this.set('string', headings);
     await render(hbs`{{markdown string}}`);
@@ -79,7 +79,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it emphasises words', async function(assert) {
+  test('it emphasises words', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is *bolded*.');
     await render(hbs`{{markdown string}}`);
@@ -89,7 +89,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it bolds words', async function(assert) {
+  test('it bolds words', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is **bolded**.');
     await render(hbs`{{markdown string}}`);
@@ -99,7 +99,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it marks words', async function(assert) {
+  test('it marks words', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is ***bolded***.');
     await render(hbs`{{markdown string}}`);
@@ -109,7 +109,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it creates internal hyperlinks', async function(assert) {
+  test('it creates internal hyperlinks', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is a [hyperlink](/en/products).');
     await render(hbs`{{markdown string}}`);
@@ -119,7 +119,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it creates external hyperlinks', async function(assert) {
+  test('it creates external hyperlinks', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is a [hyperlink](https://wikipedia.com).');
     await render(hbs`{{markdown string}}`);
@@ -129,7 +129,7 @@ module('Integration | Helper | markdown', function(hooks) {
     );
   });
 
-  test('it converts blockquotes', async function(assert) {
+  test('it converts blockquotes', async function (assert) {
     assert.expect(1);
     this.set('string', blockquote);
     await render(hbs`{{markdown string}}`);

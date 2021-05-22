@@ -24,7 +24,7 @@ export default helper(function markdown(params) {
     .replace(/\n{3,}/g, '\n\n')
     .split(/\n\n/g);
 
-  blocks.forEach(block => {
+  blocks.forEach((block) => {
     let b = block.trim();
 
     if (b.startsWith('# ')) {
@@ -61,7 +61,7 @@ export default helper(function markdown(params) {
       // Wrap [hyperlinks](https://wikipedia.com) with <a>
       const links = content.match(/\[.*?\)/g);
       if (links != null && links.length > 0) {
-        links.forEach(hyper => {
+        links.forEach((hyper) => {
           const text = hyper.match(/\[(.*?)\]/)[1];
           const url = hyper.match(/\((.*?)\)/)[1];
 

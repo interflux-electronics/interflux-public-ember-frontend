@@ -65,19 +65,19 @@ export default class ResponsiveImageComponent extends Component {
   }
 
   get JPGs() {
-    return this.variations.split(',').filter(x => x.split('.')[1] === 'jpg');
+    return this.variations.split(',').filter((x) => x.split('.')[1] === 'jpg');
   }
 
   get WEBPs() {
-    return this.variations.split(',').filter(x => x.split('.')[1] === 'webp');
+    return this.variations.split(',').filter((x) => x.split('.')[1] === 'webp');
   }
 
   get JPGsizes() {
-    return this.JPGs.map(x => x.split('.')[0].replace('@', ''));
+    return this.JPGs.map((x) => x.split('.')[0].replace('@', ''));
   }
 
   get WEBPsizes() {
-    return this.JPGs.map(x => x.split('.')[0].replace('@', ''));
+    return this.JPGs.map((x) => x.split('.')[0].replace('@', ''));
   }
 
   // PICTURE
@@ -112,19 +112,19 @@ export default class ResponsiveImageComponent extends Component {
   // Accepts and array of sizes "200x200".
   // Returns the one which is above and closest to the optimal width.
   closestSize(sizes) {
-    const distances = sizes.map(size => {
+    const distances = sizes.map((size) => {
       const width = size.split('x')[0];
       return width - this.optimalWidth;
     });
 
-    const larger = distances.filter(d => d >= 0);
-    const smaller = distances.filter(d => d < 0);
+    const larger = distances.filter((d) => d >= 0);
+    const smaller = distances.filter((d) => d < 0);
 
     const closestDistance = larger.length
       ? Math.min(...larger)
       : Math.max(...smaller);
 
-    return sizes.find(size => {
+    return sizes.find((size) => {
       const width = size.split('x')[0];
       return width - this.optimalWidth === closestDistance;
     });

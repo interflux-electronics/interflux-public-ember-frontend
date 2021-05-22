@@ -6,7 +6,7 @@
     class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}"
     {{on 'mouseenter' this.onHover}}
   >
-    {{#if hasBlock}}
+    {{#if has-block}}
       {{yield}}
     {{else}}
       {{#if @icon}}
@@ -24,7 +24,7 @@
     class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}"
     {{on 'mouseenter' this.onHover}}
   >
-    {{#if hasBlock}}
+    {{#if has-block}}
       {{yield}}
     {{else}}
       {{#if @icon}}

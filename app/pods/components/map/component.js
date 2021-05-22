@@ -43,7 +43,7 @@ export default class MapComponent extends Component {
   //
   get sources() {
     const arr = [];
-    this.args.markers.forEach(m => {
+    this.args.markers.forEach((m) => {
       const json = this.feature([m.longitude, m.latitude]); // lng lat! (not lat lng)
       arr.push(json);
     });

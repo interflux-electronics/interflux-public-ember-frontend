@@ -11,11 +11,11 @@ export default helper(function toDefinitionList(params) {
   const lines = string
     .replace(/\r?\n\*\s/g, ';;;')
     .split(/\r?\n/)
-    .filter(line => !!line && line.includes(':'));
+    .filter((line) => !!line && line.includes(':'));
 
   let html = '';
 
-  lines.forEach(line => {
+  lines.forEach((line) => {
     let key = line.split(':')[0].trim();
     let value = line.split(':')[1].trim();
 
@@ -23,8 +23,8 @@ export default helper(function toDefinitionList(params) {
       let list = '';
       value
         .split(/;;;/g)
-        .filter(x => !!x)
-        .forEach(li => {
+        .filter((x) => !!x)
+        .forEach((li) => {
           list += `<li>${li}</li>`;
         });
       value = `<ul>${list}</ul>`;

@@ -32,7 +32,7 @@ export default class ProductFamilyModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.image);
+    return sorted.map((record) => record.image);
   }
 
   get count() {

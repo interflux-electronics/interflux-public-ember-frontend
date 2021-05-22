@@ -23,7 +23,7 @@ export default class AuthService extends Service {
       method: 'POST',
       mode: 'cors',
       headers: new Headers(this.api.headers),
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password })
     });
 
     const response = await fetch(request).catch((error) => {

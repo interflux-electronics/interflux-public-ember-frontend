@@ -2,9 +2,9 @@
   class="search-list"
   {{did-insert this.onInsert}}
 >
-  <Input
+  <Input::String
     @type="text"
-    @onChange={{fn this.filter}}
+    @onChange={{this.filter}}
     @placeholder={{@input-placeholder}}
     @class={{@input-class}}
   />

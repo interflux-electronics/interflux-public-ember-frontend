@@ -19,7 +19,7 @@ export default class LoadingSpinnerComponent extends Component {
       return;
     }
 
-    const array = ['bottom', 'top', 'right', 'left', 'back'].sort(function() {
+    const array = ['bottom', 'top', 'right', 'left', 'back'].sort(function () {
       return 0.5 - Math.random();
     });
     // Make sure the first shown icon is shown at the end of the loop.

@@ -17,7 +17,7 @@ export default class UseModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.product);
+    return sorted.map((record) => record.product);
   }
 
   get families() {
@@ -33,7 +33,7 @@ export default class UseModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.image);
+    return sorted.map((record) => record.image);
   }
 
   get iconURL() {

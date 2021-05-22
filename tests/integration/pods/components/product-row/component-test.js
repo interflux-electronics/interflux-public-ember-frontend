@@ -3,10 +3,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | product-row', function(hooks) {
+module('Integration | Component | product-row', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders the headings and pitch', async function(assert) {
+  test('it renders the headings and pitch', async function (assert) {
     assert.expect(3);
 
     this.set('product', {

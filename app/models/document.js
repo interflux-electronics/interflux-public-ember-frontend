@@ -22,7 +22,7 @@ export default class DocumentModel extends Model {
       return [];
     }
 
-    return this.variations.split(',').map(v => {
+    return this.variations.split(',').map((v) => {
       const url = `${ENV.cdnHost}/${this.path}-${v}`;
       const locale = v.split('.')[0];
       const language = {

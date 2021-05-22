@@ -64,7 +64,7 @@ export default class ProductModel extends Model {
   }
 
   get uses() {
-    return this.productUsesSorted.map(record => record.use);
+    return this.productUsesSorted.map((record) => record.use);
   }
 
   get productQualitiesSorted() {
@@ -77,7 +77,7 @@ export default class ProductModel extends Model {
   }
 
   get qualities() {
-    return this.productQualitiesSorted.map(record => record.quality);
+    return this.productQualitiesSorted.map((record) => record.quality);
   }
 
   get documents() {
@@ -87,7 +87,7 @@ export default class ProductModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.document);
+    return sorted.map((record) => record.document);
   }
 
   get images() {
@@ -97,7 +97,7 @@ export default class ProductModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map(record => record.image);
+    return sorted.map((record) => record.image);
   }
 
   get isNew() {
