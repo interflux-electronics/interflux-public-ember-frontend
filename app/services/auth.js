@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency-decorators';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
@@ -15,8 +14,7 @@ export default class AuthService extends Service {
   @tracked expiry;
   @tracked error;
 
-  @task()
-  *getToken(email, password) {
+  async getToken(email, password) {
     this.error = null;
 
     const url = `${this.api.host}/${this.api.namespace}/auth-token`;
