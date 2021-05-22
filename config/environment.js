@@ -54,7 +54,7 @@ const oldHosts = {
 const date = new Date();
 const buildTimestamp = date.toUTCString();
 
-module.exports = function(env) {
+module.exports = function (env) {
   // Environments
   const isProduction = env === 'production';
   const isDevelopment = env === 'development';
