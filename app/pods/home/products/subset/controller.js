@@ -64,7 +64,7 @@ export default class ProductsSubsetController extends Controller {
     // TODO: enter loading state
 
     // First we hide all <li>
-    main.querySelectorAll('li').forEach(li => {
+    main.querySelectorAll('li').forEach((li) => {
       li.classList.add('hide');
       li.style.order = null;
     });
@@ -91,7 +91,7 @@ export default class ProductsSubsetController extends Controller {
           use
             .get('productsByRank')
             .filterBy('family.id', family.get('id'))
-            .filter(product => shownStatuses.includes(product.get('status')))
+            .filter((product) => shownStatuses.includes(product.get('status')))
             .forEach((product, ii) => {
               const id2 = product.get('id');
               const li2 = main.querySelector(`li.product-row#${id2}`);
@@ -115,7 +115,7 @@ export default class ProductsSubsetController extends Controller {
 
         subFamily
           .get('productsByRank')
-          .filter(product => shownStatuses.includes(product.get('status')))
+          .filter((product) => shownStatuses.includes(product.get('status')))
           .forEach((product, ii) => {
             const id2 = product.get('id');
             const li2 = main.querySelector(`li.product-row#${id2}`);
@@ -136,7 +136,7 @@ export default class ProductsSubsetController extends Controller {
 
       family
         .get('productsByRank')
-        .filter(product => shownStatuses.includes(product.get('status')))
+        .filter((product) => shownStatuses.includes(product.get('status')))
         .forEach((product, ii) => {
           console.log('product', product.name);
           const id2 = product.get('id');
@@ -181,7 +181,7 @@ export default class ProductsSubsetController extends Controller {
     return this.model.families
       .filterBy('isMainFamily')
       .sortBy('rank')
-      .map(family => {
+      .map((family) => {
         const label = family.label;
         const slug = family.slug;
         const isChecked = this.family && this.family.slug === slug;
@@ -191,7 +191,7 @@ export default class ProductsSubsetController extends Controller {
   }
 
   get useRadios() {
-    return this.model.uses.sortBy('rank').map(use => {
+    return this.model.uses.sortBy('rank').map((use) => {
       const label = use.label;
       const slug = `for-${use.slug}`;
       const isChecked = this.use && this.use.slug === use.slug;
@@ -209,7 +209,7 @@ export default class ProductsSubsetController extends Controller {
 
     // const productSubset = family ? family.productsByRank : use.productsByRank;
 
-    return statuses.map(status => {
+    return statuses.map((status) => {
       const { id, label } = status;
       const isChecked = this.shownStatuses.includes(id);
       const count = '?';
@@ -227,7 +227,7 @@ export default class ProductsSubsetController extends Controller {
     // If status is shown, then hide it.
     // If status is hidden, then show it.
     if (arr.includes(id)) {
-      this.shownStatuses = arr.filter(x => x !== id);
+      this.shownStatuses = arr.filter((x) => x !== id);
     } else {
       this.shownStatuses = arr.concat([id]);
     }
@@ -238,10 +238,10 @@ export default class ProductsSubsetController extends Controller {
   @action
   openSubsetPage(slug) {
     if (slug.startsWith('for-')) {
-      this.use = this.model.uses.find(use => use.slug === slug.slice(4));
+      this.use = this.model.uses.find((use) => use.slug === slug.slice(4));
       this.family = null;
     } else {
-      this.family = this.model.families.find(family => family.slug === slug);
+      this.family = this.model.families.find((family) => family.slug === slug);
       this.use = null;
     }
 
