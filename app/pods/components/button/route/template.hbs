@@ -3,10 +3,12 @@
     @route={{@route}}
     @model={{@model}}
     id={{@id}}
-    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}"
+    class='button-base button-route
+      {{if @size @size 'medium'}}
+      {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}'
     {{on 'mouseenter' this.onHover}}
   >
-    {{#if has-block}}
+    {{#if (has-block)}}
       {{yield}}
     {{else}}
       {{#if @icon}}
@@ -21,10 +23,12 @@
   <LinkTo
     @route={{@route}}
     id={{@id}}
-    class="button-base button-route {{if @size @size 'medium'}} {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}"
+    class='button-base button-route
+      {{if @size @size 'medium'}}
+      {{if @style @style 'primary'}}{{if @class (concat ' ' @class)}}'
     {{on 'mouseenter' this.onHover}}
   >
-    {{#if has-block}}
+    {{#if (has-block)}}
       {{yield}}
     {{else}}
       {{#if @icon}}

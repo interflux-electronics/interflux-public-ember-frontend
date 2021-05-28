@@ -3,7 +3,7 @@
   {{on 'click' this.perform}}
   type="button"
 >
-  {{#if has-block}}
+  {{#if (has-block)}}
     {{yield}}
   {{else}}
     {{#if @icon}}
