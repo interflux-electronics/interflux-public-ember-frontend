@@ -19,7 +19,7 @@ export default class DocumentCategoryRoute extends BaseRoute {
   afterModel(model) {
     if (!model.category) {
       console.warn('redirecting back to documents page');
-      this.transitionTo('documents');
+      this.router.transitionTo('documents');
     }
   }
 

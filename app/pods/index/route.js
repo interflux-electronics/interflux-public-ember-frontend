@@ -24,7 +24,7 @@ export default class IndexRoute extends BaseRoute {
     //   imageAlt: 'logo'
     // });
     if (!this.isFastBoot) {
-      this.transitionTo('home', 'en');
+      this.router.transitionTo('home', 'en');
     }
   }
 }
