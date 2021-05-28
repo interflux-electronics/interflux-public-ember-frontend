@@ -1,3 +1,3 @@
-import Route from '@ember/routing/route';
+import BaseRoute from 'interflux/pods/base/route';
 
-export default class ProductsIndexErrorRoute extends Route {}
+export default class ProductsIndexErrorRoute extends BaseRoute {}

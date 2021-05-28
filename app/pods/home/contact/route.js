@@ -1,8 +1,9 @@
-import Route from '@ember/routing/route';
+// import BaseRoute from 'interflux/pods/base/route';
+import BaseRoute from 'interflux/pods/base/route';
 import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 
-export default class ContactRoute extends Route {
+export default class ContactRoute extends BaseRoute {
   @service store;
 
   model() {

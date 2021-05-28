@@ -1,7 +1,8 @@
-import Route from '@ember/routing/route';
+import BaseRoute from 'interflux/pods/base/route';
 import { inject as service } from '@ember/service';
 
-export default class DocumentCategoryRoute extends Route {
+export default class DocumentCategoryRoute extends BaseRoute {
+  @service router;
   @service store;
   @service modal;
   @service window;

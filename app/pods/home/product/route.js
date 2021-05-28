@@ -1,8 +1,9 @@
-import Route from '@ember/routing/route';
+import BaseRoute from 'interflux/pods/base/route';
 import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 
-export default class ProductRoute extends Route {
+export default class ProductRoute extends BaseRoute {
+  @service store;
   @service headData;
 
   model(params) {
