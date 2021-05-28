@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-export default class WindowService extends Service {
+export default class DocumentService extends Service {
   @service fastboot;
 
   get isFastBoot() {
