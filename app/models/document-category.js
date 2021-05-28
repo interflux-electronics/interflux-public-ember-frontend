@@ -9,10 +9,6 @@ export default class DocumentCategoryModel extends Model {
 
   @hasMany('document') documents;
 
-  get id() {
-    return this.slug;
-  }
-
   get cta() {
     return this.slug === 'REACH' || this.slug === 'SDS'
       ? 'request'
