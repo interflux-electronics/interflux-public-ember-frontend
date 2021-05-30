@@ -13,12 +13,15 @@ const notifier = new FastBootWatchNotifier({
   }
 });
 
+// 8000 lmpa.interflux.com
+// 8001 new.interflux.com
+
 const server = new FastBootAppServer({
   distPath,
   notifier,
   gzip: true,
   host: '0.0.0.0',
-  port: 8000
+  port: 8001
 });
 
 server.start();
