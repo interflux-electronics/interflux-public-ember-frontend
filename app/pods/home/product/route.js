@@ -1,11 +1,7 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 
 export default class ProductRoute extends BaseRoute {
-  @service store;
-  @service headData;
-
   model(params) {
     return hash({
       product: this.store.findRecord('product', params.id, {
@@ -27,19 +23,42 @@ export default class ProductRoute extends BaseRoute {
   }
 
   afterModel(model) {
-    const product = model.product.name;
-    const family =
-      model.product.label || model.product.productFamily.get('nameSingle');
+    const {
+      slug,
+      name,
+      mainFamily,
+      familyLabel,
+      pitch,
+      avatarPath,
+      avatarAlt,
+      avatarCaption,
+      avatarVariations
+    } = model.product;
 
-    this.headData.path = `product/${model.product.slug}`;
-    this.headData.title = `Interflux ${product} ${family}`;
-    this.headData.description = model.product.pitch.replace(/\*\*/g, '');
+    this.seo.setProperties({
+      path: `product/${slug}`,
+      title: `Interflux ${name} ${familyLabel}`,
+      description: pitch.replace(/\*\*/g, ''),
+      imagePath: avatarPath,
+      imageMime: 'image/jpeg',
+      imageWidth: avatarVariations.split(',')[0].split('x')[0], // TODO: get largest
+      imageHeight: avatarVariations.split(',')[0].split('x')[1], // TODO: get largest
+      imageAlt: `${avatarAlt} ${avatarCaption}`
+    });
 
-    this.headData.imagePath = 'https://...';
-    this.headData.imageMime = 'image/jpeg';
-    this.headData.imageWidth = '1200';
-    this.headData.imageHeight = '600';
-    this.headData.imageAlt = 'logo';
+    this.header.setProperties({
+      title: name,
+      crumbs: [
+        { label: 'Interflux', route: 'home' },
+        { label: 'Products', route: 'home.products' },
+        {
+          label: mainFamily.get('label'),
+          route: 'home.products.subset',
+          model: mainFamily.get('id')
+        },
+        { label: name }
+      ]
+    });
   }
 
   // HACK: when navigating into a subset route, then out and back into another, the controller

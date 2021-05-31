@@ -102,11 +102,24 @@ p {
   @include paragraph;
   margin: 0; // Counter the browser defaults
   a {
-    color: $blue-0;
     text-decoration: underline;
+    color: $blue-0;
+    background: white;
+    outline: 0;
+    border-radius: 3px;
     &:hover {
-      text-decoration: none;
       color: $orange-3;
     }
+    &:focus {
+      color: $blue-0;
+      box-shadow: white 0 0 0 1px, 0 0 0 3px $blue-0;
+    }
+  }
+}
+
+dl {
+  margin: 0; // Undo the browser default
+  dd {
+    margin: 0; // Undo the browser default
   }
 }

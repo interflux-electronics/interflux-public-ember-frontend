@@ -1,20 +1,4 @@
 footer {
-  section#spacer {
-    flex: 1;
-    @include widescreen {
-      min-height: px(10vw);
-    }
-    @include desktop {
-      min-height: 10vw;
-    }
-    @include tablet {
-      min-height: 20vw;
-    }
-    @include mobile {
-      min-height: 30vw;
-    }
-  }
-
   section#languages {
     background: $blue-4;
     .liner {

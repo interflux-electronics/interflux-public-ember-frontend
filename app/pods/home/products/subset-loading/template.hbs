@@ -1,17 +1,5 @@
-<Page @id="products-subset-loading">
-  <Header />
-
-  <main>
-    <Breadcrumbs @crumbs={{array
-      (hash label='Interflux' route='home')
-      (hash label='Products' route='home.products')
-      (hash label='Loading ...')
-    }} />
-
-    <article>
-      <LoadingSpinner />
-    </article>
-  </main>
-
-  <Footer />
-</Page>
+<Main @id='products-subset-loading'>
+  <article>
+    <LoadingSpinner />
+  </article>
+</Main>

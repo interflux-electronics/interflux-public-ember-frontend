@@ -1,1 +1,5 @@
-{{outlet}}
+<h1>Welcome to Interflux</h1>
+
+{{#each this.translation.languages as |lang|}}
+  <a href={{href-to 'home' lang.id}}>{{markdown (translate 'index.continue' lang.id)}}</a>
+{{/each}}

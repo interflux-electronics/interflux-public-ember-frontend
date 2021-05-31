@@ -1,8 +1,6 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
-import { alias } from '@ember/object/computed';
 
 export default class ProductModel extends Model {
-  @alias('id') slug;
   @attr('string') name;
   @attr('string') label;
   @attr('string') status;
@@ -30,12 +28,15 @@ export default class ProductModel extends Model {
   @attr('string') avatarVariations;
 
   @belongsTo('product-family') productFamily;
-  @alias('productFamily') family;
+
+  get family() {
+    return this.productFamily;
+  }
 
   get mainFamily() {
-    return this.productFamily.get('isMainFamily')
-      ? this.productFamily
-      : this.productFamily.get('productFamily');
+    return this.family.get('isMainFamily')
+      ? this.family
+      : this.family.get('productFamily');
   }
 
   @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;

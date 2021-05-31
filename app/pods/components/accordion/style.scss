@@ -2,9 +2,9 @@ ul.accordion {
   > li {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid $grey-0;
+    border-bottom: 1px solid $grey-1;
     &:first-child {
-      border-top: 1px solid $grey-0;
+      border-top: 1px solid $grey-1;
     }
     &.expanded {
       .right {
@@ -12,8 +12,37 @@ ul.accordion {
           transform: rotate(90deg);
         }
       }
+      button,
+      .no-content {
+        @include widescreen {
+          padding-top: px(2vw);
+        }
+        @include desktop {
+          padding-top: 2vw;
+        }
+        @include tablet {
+          padding-top: 6vw; // TODO
+          padding-bottom: 6vw; // TODO
+        }
+        @include mobile {
+          padding-top: 6vw;
+          padding-bottom: 6vw;
+        }
+      }
       .content {
         height: auto;
+        @include widescreen {
+          padding-bottom: px(4vw);
+        }
+        @include desktop {
+          padding-bottom: 4vw;
+        }
+        @include tablet {
+          padding-bottom: 12vw; // TODO
+        }
+        @include mobile {
+          padding-bottom: 12vw;
+        }
       }
     }
     button {
@@ -27,6 +56,7 @@ ul.accordion {
       padding: 0;
       display: flex;
       align-items: center;
+      transition: 500ms padding $easeOutExpo;
       @include widescreen {
         padding: px(0.8vw) 0;
       }
@@ -37,13 +67,12 @@ ul.accordion {
         padding: 1.2vw 0;
       }
       @include mobile {
-        padding: 2vw 0;
+        padding: 4vw 0;
       }
       &:hover,
       &:focus {
         span {
           color: $blue-0;
-          // box-shadow: 0 0 0 4px white, 0 0 0 6px $blue-0;
         }
         .arrow {
           svg {
@@ -72,8 +101,8 @@ ul.accordion {
             height: 8vw;
           }
           @include mobile {
-            width: 12vw;
-            height: 12vw;
+            width: 13vw;
+            height: 13vw;
           }
         }
       }
@@ -90,7 +119,7 @@ ul.accordion {
           padding-left: 3vw;
         }
         @include mobile {
-          padding-left: 5vw;
+          padding-left: 4vw;
         }
       }
       .right {
@@ -107,18 +136,18 @@ ul.accordion {
           height: 4vw;
         }
         @include tablet {
-          width: 8vw;
+          width: 4vw;
           height: 8vw;
         }
         @include mobile {
-          width: 12vw;
+          width: 6vw;
           height: 12vw;
         }
         svg {
           width: 7px;
           height: auto;
           transform: rotate(0deg);
-          transition: transform 200ms ease;
+          transition: transform 500ms $easeOutExpo;
           [fill] {
             fill: $grey-3;
           }
@@ -129,17 +158,13 @@ ul.accordion {
       height: 0;
       overflow: hidden;
       box-sizing: border-box;
+      transition: 500ms all $easeOutExpo;
+      transition-property: padding, height;
       @include widescreen {
         padding-left: px(6vw);
       }
       @include desktop {
         padding-left: 6vw;
-      }
-      @include tablet {
-        padding-left: 11vw;
-      }
-      @include mobile {
-        padding-left: 17vw;
       }
     }
   }

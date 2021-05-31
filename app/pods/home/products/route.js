@@ -4,21 +4,6 @@ import { inject as service } from '@ember/service';
 
 export default class ProductsRoute extends BaseRoute {
   @service cache;
-  @service headData;
-  @service store;
-
-  beforeModel() {
-    this.headData.path = '/products';
-    this.headData.title = `Products developed by Interflux`;
-    this.headData.description =
-      'Get an overview of all the products Interflux researches and develops: soldering fluxes, solder pastes, solder wire, solder alloys and more.';
-
-    this.headData.imagePath = 'images/logos/something.png';
-    this.headData.imageMime = 'image/jpeg';
-    this.headData.imageWidth = '1200';
-    this.headData.imageHeight = '600';
-    this.headData.imageAlt = 'logo';
-  }
 
   model() {
     if (this.cache.hasProductIndex) {

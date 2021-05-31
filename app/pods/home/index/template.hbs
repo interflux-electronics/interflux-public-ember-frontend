@@ -1,4 +1,4 @@
-<Page @id="home">
+<Main @id="home">
   <Header />
 
   <Section
@@ -9,31 +9,31 @@
       <h2>Products</h2>
       <p>Find products by type</p>
       <nav>
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="soldering-fluxes"
           @text="Soldering Fluxes"
           {{on 'mouseover' (fn this.showImage 1)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="solder-pastes"
           @text="Soldering Pastes"
           {{on 'mouseover' (fn this.showImage 2)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="solder-wires"
           @text="Soldering Wires"
           {{on 'mouseover' (fn this.showImage 3)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="fluxing-systems"
           @text="Fluxing Systems"
           {{on 'mouseover' (fn this.showImage 4)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="auxiliaries"
           @text="Auxiliaries"
@@ -71,31 +71,31 @@
       <h2>Processes</h2>
       <p>Find products by type</p>
       <nav>
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="for-wave-soldering"
           @text="Wave Soldering"
           {{on 'mouseover' (fn this.showImage 6)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="for-selective-soldering"
           @text="Selective Soldering"
           {{on 'mouseover' (fn this.showImage 7)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="for-reflow-soldering"
           @text="Reflow Soldering"
           {{on 'mouseover' (fn this.showImage 8)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="for-rework-and-repair"
           @text="Rework & Repair"
           {{on 'mouseover' (fn this.showImage 9)}}
         />
-        <Button::Route
+        <Button
           @route="home.products.subset"
           @model="for-pre-tinning"
           @text="Pre-tinning"
@@ -130,22 +130,22 @@
     </div>
 
     <div class="bottom">
-      <Button::Route @route="home.company">
+      <Button @route="home.company">
         <p>Company</p>
         <p class="small">Learn about Interflux</p>
-      </Button::Route>
+      </Button>
 
-      <Button::Route @route="home.documents">
+      <Button @route="home.documents">
         <p>Documents</p>
         <p class="small">Find technical data</p>
-      </Button::Route>
+      </Button>
 
-      <Button::Route @route="home.contact">
+      <Button @route="home.contact">
         <p>Contact</p>
         <p class="small">Get in touch</p>
-      </Button::Route>
+      </Button>
     </div>
   </Section>
 
   <Section::Languages />
-</Page>
+</Main>

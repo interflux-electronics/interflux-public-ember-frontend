@@ -1,6 +1,7 @@
 @use "sass:math";
 
-#product.page {
+main#product {
+  background: $grey-0;
   &.discontinued {
     main section {
       h1,
@@ -15,264 +16,486 @@
       }
     }
   }
-  main {
-    background: $grey-0;
-    .liner {
-      // max-width: 1150px;
-      max-width: 800px; // TEMPORARY
-      padding: 30px;
-      margin: 0 auto;
+  .liner {
+    margin: 0 auto;
+    max-width: 800px;
+    // TEMPORARY: until we can place orders via website
+    // max-width: 1150px;
+    @include widescreen {
+      padding: px(2.5vw);
     }
-    .columns {
-      display: flex;
+    @include desktop {
+      padding: 2.5vw;
+    }
+    @include tablet {
+      padding: 10vw; // TODO
+    }
+    @include mobile {
+      padding: 0;
     }
   }
+  .columns {
+    display: flex;
+  }
   article {
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     section {
       background: white;
       box-shadow: 0 4px 8px rgba(black, 0.05);
-      padding: 60px;
+      @include widescreen {
+        padding: px(5vw);
+      }
+      @include desktop {
+        padding: 5vw;
+      }
+      @include tablet {
+        padding: 10vw; // TODO
+      }
+      @include mobile {
+        padding: 16vw 6vw;
+      }
       & + section {
-        margin-top: 10px;
+        @include widescreen {
+          margin-top: px(0.83vw);
+        }
+        @include desktop {
+          margin-top: 0.83vw;
+        }
+        @include tablet {
+          margin-top: 10vw; // TODO
+        }
+        @include mobile {
+          margin-top: 6vw;
+        }
       }
       > div {
         display: flex;
         flex-direction: column;
       }
-      h1 {
-        font-family: $extrabold;
-        background: $blue-3;
-        color: white;
-        line-height: 145%;
-        border-radius: 2px;
-        @include widescreen {
-          font-size: px(2.9vw);
-          padding: px(0.2vw) px(1.4vw) 0;
-          margin-bottom: px(1.4vw);
-        }
-        @include desktop {
-          font-size: 2.9vw;
-          padding: 0.2vw 1.4vw 0;
-          margin-bottom: 1.4vw;
-        }
-        @include tablet {
-          font-size: 4.8vw;
-          padding: 0.36vw 1.8vw 0;
-          margin-bottom: 3vw;
-        }
-        @include mobile {
-          font-size: 8vw;
-          padding: 0.6vw 3vw 0;
-          margin-bottom: 3vw;
-        }
+    }
+    h1 {
+      font-family: $extrabold;
+      background: $blue-3;
+      color: white;
+      line-height: 145%;
+      border-radius: 2px;
+      @include widescreen {
+        font-size: px(2.9vw);
+        padding: px(0.2vw) px(1.4vw) 0;
       }
-      h2 {
-        font-family: $regular;
-        background: $grey-1;
-        color: white;
-        line-height: 165%;
-        border-radius: 2px;
-        @include widescreen {
-          font-size: px(1.5vw);
-          padding: px(0.1vw) px(0.8vw) 0;
-        }
-        @include desktop {
-          font-size: 1.5vw;
-          padding: 0.1vw 0.8vw 0;
-        }
-        @include tablet {
-          font-size: 2.76vw;
-          padding: 0.06vw 1.68vw 0;
-        }
-        @include mobile {
-          font-size: 4.6vw;
-          padding: 0.1vw 2.8vw 0;
-        }
-        &.blue {
-          background: $blue-0;
-        }
-        &.orange {
-          background: $orange-2;
-          font-family: $bold;
-        }
-        &.grey {
-          background: $grey-3;
-        }
-        &.red {
-          background: $red-1;
-        }
-        & + h2 {
-          margin-left: 10px;
-          @include widescreen {
-            margin-left: px(1.4vw);
-          }
-          @include desktop {
-            margin-left: 1.4vw;
-          }
-          @include tablet {
-            margin-left: 3vw;
-          }
-          @include mobile {
-            margin-left: 3vw;
-          }
-        }
+      @include desktop {
+        font-size: 2.9vw;
+        padding: 0.2vw 1.4vw 0;
       }
-      h3 {
-        font-family: $extrabold;
-        font-size: 19px;
-        color: $grey-7;
-        margin-bottom: 50px;
+      @include tablet {
+        font-size: 4.8vw; // TODO
+        padding: 0.36vw 1.8vw 0;
       }
-      h4 {
+      @include mobile {
+        font-size: 9vw;
+        padding: 0.6vw 3vw 0;
+      }
+    }
+    h2 {
+      font-family: $regular;
+      background: $grey-1;
+      color: white;
+      line-height: 165%;
+      border-radius: 2px;
+      @include widescreen {
+        font-size: px(1.5vw);
+        padding: px(0.1vw) px(0.8vw) 0;
+      }
+      @include desktop {
+        font-size: 1.5vw;
+        padding: 0.1vw 0.8vw 0;
+      }
+      @include tablet {
+        font-size: 2.76vw; // TODO
+        padding: 0.06vw 1.68vw 0;
+      }
+      @include mobile {
+        font-size: 5vw;
+        padding: 0.2vw 3vw 0;
+      }
+      &.blue {
+        background: $blue-0;
+      }
+      &.orange {
+        background: $orange-2;
         font-family: $bold;
-        font-size: 16px;
-        color: white;
-        background: $green-1;
-        background: $blue-3;
-        align-self: flex-start;
-        padding: 3px 7px 2px;
       }
-      h3 + h4 {
-        margin-top: 0;
+      &.grey {
+        background: $grey-3;
       }
-      h4 + p {
-        margin-top: 16px;
+      &.red {
+        background: $red-1;
       }
-      p + h4,
-      table + h4 {
-        margin-top: 32px;
+    }
+    h3 {
+      font-family: $extrabold;
+      color: $grey-7;
+      @include widescreen {
+        font-size: px(1.583vw);
       }
-      p + p {
-        margin-top: 16px;
+      @include desktop {
+        font-size: 1.583vw;
       }
-      blockquote + p {
-        margin-top: 30px;
+      @include tablet {
+        font-size: 10vw; // TODO
       }
-      .two-columns {
+      @include mobile {
+        font-size: 6vw;
+      }
+    }
+    h4 {
+      font-family: $bold;
+      font-size: 16px;
+      color: white;
+      background: $green-1;
+      background: $blue-3;
+      align-self: flex-start;
+      @include widescreen {
+        font-size: px(1.33vw);
+        padding: px(0.5vw) px(0.5vw) px(0.35vw);
+      }
+      @include desktop {
+        font-size: 1.33vw;
+        padding: 0.5vw 0.5vw 0.35vw;
+      }
+      @include tablet {
+        font-size: 6vw; // TODO
+        padding: 2vw 3vw 1.4vw; // TODO
+      }
+      @include mobile {
+        font-size: 5vw;
+        padding: 1.2vw 2vw 1vw;
+      }
+    }
+    h1 + .tags {
+      @include widescreen {
+        margin-top: px(1.4vw);
+      }
+      @include desktop {
+        margin-top: 1.4vw;
+      }
+      @include tablet {
+        margin-top: 3vw; // TODO
+      }
+      @include mobile {
+        margin-top: 3vw;
+      }
+    }
+    h2 + h2 {
+      @include widescreen {
+        margin-left: px(1.4vw);
+      }
+      @include desktop {
+        margin-left: 1.4vw;
+      }
+      @include tablet {
+        margin-left: 3vw; // TODO
+      }
+      @include mobile {
+        margin-left: 3vw;
+      }
+    }
+    .tags {
+      & + #pitch,
+      & + #replaced-by {
+        @include widescreen {
+          margin-top: px(3vw);
+        }
+        @include desktop {
+          margin-top: 3vw;
+        }
+        @include tablet {
+          margin-top: 6vw; // TODO
+        }
+        @include mobile {
+          margin-top: 7vw;
+        }
+      }
+    }
+    #title + #avatar {
+      @include widescreen {
+        margin-top: px(1.66vw);
+      }
+      @include desktop {
+        margin-top: 1.66vw;
+      }
+      @include tablet {
+        margin-top: 6vw; // TODO
+      }
+      @include mobile {
+        margin-top: 6vw;
+      }
+    }
+    h3 + * {
+      @include widescreen {
+        margin-top: px(4.1vw);
+      }
+      @include desktop {
+        margin-top: 4.1vw;
+      }
+      @include tablet {
+        margin-top: 10vw; // TODO
+      }
+      @include mobile {
+        margin-top: 12vw;
+      }
+    }
+    h4 + p,
+    p + p {
+      @include widescreen {
+        margin-top: px(1.33vw);
+      }
+      @include desktop {
+        margin-top: 1.33vw;
+      }
+      @include tablet {
+        margin-top: 10vw; // TODO
+      }
+      @include mobile {
+        margin-top: 6vw;
+      }
+    }
+    p + h4,
+    table + h4,
+    blockquote + p {
+      @include widescreen {
+        margin-top: px(2.66vw);
+      }
+      @include desktop {
+        margin-top: 2.66vw;
+      }
+      @include tablet {
+        margin-top: 24vw; // TODO
+      }
+      @include mobile {
+        margin-top: 12vw;
+      }
+    }
+    .two-columns {
+      @include widescreen {
         column-count: 2;
-        column-gap: 50px;
+        column-gap: px(4.16vw);
       }
-      blockquote {
-        p {
-          color: white;
-          font-size: 25px;
-          line-height: 150%;
-          font-family: $semibold;
-          display: flex;
-          flex-flow: wrap;
-          span {
-            flex-shrink: 0;
-            line-height: 100%;
-            margin-bottom: 2px;
-            &.word {
-              background: $green-1;
-              padding: 6px 6px 4px;
-              margin-right: -5px;
-            }
-            &.space {
-              width: 2px;
-            }
-          }
-          sup {
-            font-size: 65%;
-          }
-        }
+      @include desktop {
+        column-count: 2;
+        column-gap: 4.16vw;
       }
-      dl {
+    }
+    blockquote {
+      p {
+        color: white;
+        line-height: 150%;
+        font-family: $semibold;
         display: flex;
-        flex-wrap: wrap;
-        transform: translateX(-15px);
-        width: calc(100% + 20px);
-        margin: 0;
-        // border-left: 1px solid $grey-1;
-        // border-top: 1px solid $grey-1;
-        dt,
-        dd {
-          box-sizing: border-box;
-          padding: 10px 15px;
-          line-height: 150%;
-          // border-right: 1px solid $grey-1;
-          // border-bottom: 1px solid $grey-1;
-          &:nth-of-type(odd) {
-            background: $grey-0;
+        flex-flow: wrap;
+        @include widescreen {
+          font-size: px(2.4vw);
+        }
+        @include desktop {
+          font-size: 2.4vw;
+        }
+        @include tablet {
+          font-size: 10vw; // TODO
+        }
+        @include mobile {
+          font-size: 7vw;
+        }
+        span {
+          flex-shrink: 0;
+          line-height: 100%;
+          margin-bottom: 2px;
+          &.word {
+            background: $green-1;
+            padding: 6px 6px 4px;
+            margin-right: -5px;
+          }
+          &.space {
+            width: 2px;
           }
         }
-        dt {
+        sup {
+          font-size: 65%;
+        }
+      }
+    }
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+      @include tablet {
+        transform: translateX(-6vw); // TODO
+        width: 100vw;
+      }
+      @include mobile {
+        transform: translateX(-6vw);
+        width: 100vw;
+      }
+      dt,
+      dd {
+        box-sizing: border-box;
+        line-height: 150%;
+        @include widescreen {
+          padding: px(0.833vw) px(1.25vw);
+        }
+        @include desktop {
+          padding: 0.833vw 1.25vw;
+        }
+        @include tablet {
+          padding: 10vw; // TODO
+        }
+        @include mobile {
+          padding: 6vw;
+        }
+        &:nth-of-type(odd) {
+          background: $grey-0;
+        }
+      }
+      dt {
+        @include widescreen {
           width: 30%;
         }
-        dd {
-          width: 70%;
-          margin: 0; // to get rid of browser default
-          ul {
-            li {
-              line-height: 150%;
-            }
+        @include desktop {
+          width: 30%;
+        }
+        @include tablet {
+          width: 100%;
+          padding-bottom: 1vw; // TODO
+        }
+        @include mobile {
+          width: 100%;
+          padding-bottom: 1vw;
+        }
+        &:after {
+          @include tablet {
+            content: ':';
           }
+          @include mobile {
+            content: ':';
+          }
+          content: ':';
         }
       }
-      table {
-        transform: translateX(-15px);
-        width: calc(100% + 20px);
-        tr {
-          display: flex;
-          &:first-child {
-            th {
-              border-top: 1px solid $grey-1;
-            }
-          }
-          td,
-          th {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 10px 15px;
-            flex-shrink: 0;
-            text-align: left;
-            box-sizing: border-box;
+      dd {
+        @include widescreen {
+          width: 70%;
+        }
+        @include desktop {
+          width: 70%;
+        }
+        @include tablet {
+          width: 100%;
+          padding-top: 0;
+        }
+        @include mobile {
+          width: 100%;
+          padding-top: 0;
+        }
+        ul {
+          li {
             line-height: 150%;
-            border-bottom: 1px solid $grey-1;
-            border-right: 1px solid $grey-1;
-            &:first-child {
-              border-left: 1px solid $grey-1;
-            }
-          }
-          th {
-            font-family: $regular;
-            color: $grey-7;
-            background: $grey-0;
           }
         }
       }
     }
-
+    table {
+      @include tablet {
+        width: 100vw;
+        transform: translateX(-6vw);
+      }
+      @include mobile {
+        width: 100vw;
+        transform: translateX(-6vw);
+      }
+      thead {
+        @include tablet {
+          display: none;
+        }
+        @include mobile {
+          display: none;
+        }
+      }
+      tr {
+        display: flex;
+        @include tablet {
+          flex-direction: column;
+          padding: 6vw; // TODO
+        }
+        @include mobile {
+          flex-direction: column;
+          padding: 6vw;
+        }
+        &:nth-child(odd) {
+          @include tablet {
+            background: $grey-0;
+          }
+          @include mobile {
+            background: $grey-0;
+          }
+        }
+        &:first-child {
+          th {
+            @include widescreen {
+              border-top: 1px solid $grey-1;
+            }
+            @include desktop {
+              border-top: 1px solid $grey-1;
+            }
+          }
+        }
+        td,
+        th {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          flex-shrink: 0;
+          text-align: left;
+          box-sizing: border-box;
+          line-height: 150%;
+          @include widescreen {
+            border-bottom: 1px solid $grey-1;
+            border-right: 1px solid $grey-1;
+            padding: px(0.833vw) px(1.25vw);
+          }
+          @include desktop {
+            border-bottom: 1px solid $grey-1;
+            border-right: 1px solid $grey-1;
+            padding: 0.833vw 1.25vw;
+          }
+          @include tablet {
+            width: 100%;
+          }
+          @include mobile {
+            width: 100%;
+          }
+          &:first-child {
+            @include widescreen {
+              border-left: 1px solid $grey-1;
+            }
+            @include desktop {
+              border-left: 1px solid $grey-1;
+            }
+          }
+        }
+        th {
+          font-family: $regular;
+          color: $grey-7;
+          background: $grey-0;
+        }
+      }
+    }
     #hero {
-      padding: 0;
       #title {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding: 60px;
-
         .tags {
           display: flex;
-        }
-
-        #replaced-by,
-        #pitch {
-          @include widescreen {
-            margin-top: px(3vw);
-          }
-          @include desktop {
-            margin-top: 3vw;
-          }
-          @include tablet {
-            margin-top: 6vw;
-          }
-          @include mobile {
-            margin-top: 10vw;
-          }
         }
         p {
           line-height: 160%;
@@ -306,8 +529,12 @@
         }
       }
       #avatar {
-        padding: 0 60px;
-        margin-top: -20px;
+        @include widescreen {
+          margin-top: px(3vw);
+        }
+        @include desktop {
+          margin-top: 3vw;
+        }
       }
       #images {
         padding: 0;
@@ -391,119 +618,119 @@
     }
 
     // TODO: review
-    #documents {
-      ul {
-        li {
-          display: flex;
-          border-bottom: 1px solid $grey-1;
-          &:last-child {
-            border-bottom: 0;
-          }
-          @include widescreen {
-            padding: px(0.8vw) 0;
-          }
-          @include desktop {
-            padding: 0.8vw 0;
-          }
-          @include tablet {
-            padding: 1.2vw 0;
-          }
-          @include mobile {
-            padding: 2vw 0;
-          }
-          .left {
-            display: flex;
-            width: 100%;
-            .icon {
-              flex-shrink: 0;
-              picture {
-                display: block;
-                height: auto;
-                flex-shrink: 0;
-                @include widescreen {
-                  width: px(4vw);
-                  height: px(4vw);
-                  margin-right: px(2vw);
-                }
-                @include desktop {
-                  width: 4vw;
-                  height: 4vw;
-                  margin-right: 2vw;
-                }
-                @include tablet {
-                  width: 8vw;
-                  height: 8vw;
-                  margin-right: 3vw;
-                }
-                @include mobile {
-                  width: 12vw;
-                  height: 12vw;
-                  margin-right: 5vw;
-                }
-              }
-            }
-            .text {
-              display: flex;
-              align-items: center;
-              p {
-                font-family: $regular;
-                font-size: 16px;
-                line-height: 24px;
-                color: $grey-7;
-              }
-            }
-          }
-          .right {
-            display: flex;
-            flex-shrink: 0;
-            &.links {
-              align-items: center;
-              a {
-                font-size: 16px;
-                &:hover,
-                &:focus {
-                  color: $orange-3;
-                }
-                &:focus {
-                  outline: 0;
-                  box-shadow: 0 0 0 4px white, 0 0 0 6px $orange-3;
-                  border-radius: 1px;
-                }
-                & + a {
-                  margin-left: 12px;
-                }
-              }
-            }
-            &.arrow {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 20px;
-              @include widescreen {
-                height: px(4vw);
-              }
-              @include desktop {
-                height: 4vw;
-              }
-              @include tablet {
-                height: 8vw;
-              }
-              @include mobile {
-                height: 12vw;
-              }
-              svg {
-                height: 10px;
-                width: auto;
-                transform: rotate(90deg);
-                [fill] {
-                  fill: $grey-3;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    // #documents {
+    //   ul {
+    //     li {
+    //       display: flex;
+    //       border-bottom: 1px solid $grey-1;
+    //       &:last-child {
+    //         border-bottom: 0;
+    //       }
+    //       @include widescreen {
+    //         padding: px(0.8vw) 0;
+    //       }
+    //       @include desktop {
+    //         padding: 0.8vw 0;
+    //       }
+    //       @include tablet {
+    //         padding: 1.2vw 0;
+    //       }
+    //       @include mobile {
+    //         padding: 2vw 0;
+    //       }
+    //       .left {
+    //         display: flex;
+    //         width: 100%;
+    //         .icon {
+    //           flex-shrink: 0;
+    //           picture {
+    //             display: block;
+    //             height: auto;
+    //             flex-shrink: 0;
+    //             @include widescreen {
+    //               width: px(4vw);
+    //               height: px(4vw);
+    //               margin-right: px(2vw);
+    //             }
+    //             @include desktop {
+    //               width: 4vw;
+    //               height: 4vw;
+    //               margin-right: 2vw;
+    //             }
+    //             @include tablet {
+    //               width: 8vw;
+    //               height: 8vw;
+    //               margin-right: 3vw;
+    //             }
+    //             @include mobile {
+    //               width: 12vw;
+    //               height: 12vw;
+    //               margin-right: 5vw;
+    //             }
+    //           }
+    //         }
+    //         .text {
+    //           display: flex;
+    //           align-items: center;
+    //           p {
+    //             font-family: $regular;
+    //             font-size: 16px;
+    //             line-height: 24px;
+    //             color: $grey-7;
+    //           }
+    //         }
+    //       }
+    //       .right {
+    //         display: flex;
+    //         flex-shrink: 0;
+    //         &.links {
+    //           align-items: center;
+    //           a {
+    //             font-size: 16px;
+    //             &:hover,
+    //             &:focus {
+    //               color: $orange-3;
+    //             }
+    //             &:focus {
+    //               outline: 0;
+    //               box-shadow: 0 0 0 4px white, 0 0 0 6px $orange-3;
+    //               border-radius: 1px;
+    //             }
+    //             & + a {
+    //               margin-left: 12px;
+    //             }
+    //           }
+    //         }
+    //         &.arrow {
+    //           display: flex;
+    //           align-items: center;
+    //           justify-content: center;
+    //           width: 20px;
+    //           @include widescreen {
+    //             height: px(4vw);
+    //           }
+    //           @include desktop {
+    //             height: 4vw;
+    //           }
+    //           @include tablet {
+    //             height: 8vw;
+    //           }
+    //           @include mobile {
+    //             height: 12vw;
+    //           }
+    //           svg {
+    //             height: 10px;
+    //             width: auto;
+    //             transform: rotate(90deg);
+    //             [fill] {
+    //               fill: $grey-3;
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     section#compliance {
       table {
@@ -533,103 +760,132 @@
     }
 
     ul.accordion {
-      width: calc(100% + 60px + 60px); // match the padding on sections
-      transform: translateX(-60px); // match the padding on sections
+      @include widescreen {
+        width: calc(100% + #{px(5vw)} + #{px(5vw)});
+        transform: translateX(px(-5vw));
+      }
+      @include desktop {
+        width: calc(100% + 5vw + 5vw);
+        transform: translateX(-5vw);
+      }
+      @include tablet {
+        width: 100vw;
+        transform: translateX(-6vw); // TODO
+      }
+      @include mobile {
+        width: 100vw;
+        transform: translateX(-6vw);
+      }
       > li {
-        padding-left: 60px;
-        padding-right: 60px;
+        @include widescreen {
+          padding-left: px(5vw);
+          padding-right: px(5vw);
+        }
+        @include desktop {
+          padding-left: 5vw;
+          padding-right: 5vw;
+        }
+        @include tablet {
+          padding-left: 6vw; // TODO
+          padding-right: 6vw; // TODO
+        }
+        @include mobile {
+          padding-left: 6vw;
+          padding-right: 6vw;
+        }
       }
     }
   }
 
-  aside {
-    width: 320px;
-    flex-shrink: 0;
-    margin-left: 30px;
-    .sticky {
-      position: sticky;
-      top: 30px;
-      bottom: 0;
-      .box {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        &.outlined {
-          border: 1px solid #e3e3e3;
-        }
-        &.white {
-          background: white;
-          box-shadow: 0 4px 8px rgba(black, 0.1);
-        }
-        & + .box {
-          margin-top: 30px;
-        }
-      }
-    }
-    dl {
-      display: flex;
-      justify-content: space-between;
-      margin: 0;
-      & + dl {
-        margin-top: 10px;
-      }
-      dt {
-        font-size: 16px;
-        font-family: $bold;
-        line-height: 24px;
-        color: $grey-7;
-      }
-      dd {
-        a {
-          color: $blue-0;
-          text-decoration: underline;
-          font-size: 16px;
-          &:hover,
-          &:focus {
-            color: $orange-3;
-          }
-          &:focus {
-            outline: 0;
-            box-shadow: 0 0 0 4px white, 0 0 0 6px $orange-3;
-            border-radius: 1px;
-          }
-        }
-      }
-    }
-    button#order {
-      margin-top: 20px;
-      width: 100%;
-    }
-    h4 {
-      font-size: 16px;
-      font-family: $bold;
-      line-height: 24px;
-      color: $grey-7;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 16px;
-      font-family: $regular;
-      line-height: 24px;
-      color: $grey-7;
-    }
-    textarea {
-      max-width: 100%;
-      min-width: 100%;
-      width: 100%;
-      border-radius: 3px;
-      border: 1px solid $grey-1;
-      background: white;
-      padding: 10px;
-      box-sizing: border-box;
-      margin: 20px 0;
-      color: $grey-7;
-      &:focus {
-        outline: 0;
-      }
-    }
-    button#ask {
-      align-self: flex-start;
-    }
-  }
+  // TEMPORARY: until we can place orders via website
+  // aside {
+  //   width: 320px;
+  //   flex-shrink: 0;
+  //   margin-left: 30px;
+  //   .sticky {
+  //     position: sticky;
+  //     top: 30px;
+  //     bottom: 0;
+  //     .box {
+  //       padding: 20px;
+  //       display: flex;
+  //       flex-direction: column;
+  //       &.outlined {
+  //         border: 1px solid #e3e3e3;
+  //       }
+  //       &.white {
+  //         background: white;
+  //         box-shadow: 0 4px 8px rgba(black, 0.1);
+  //       }
+  //       & + .box {
+  //         margin-top: 30px;
+  //       }
+  //     }
+  //   }
+  //   dl {
+  //     display: flex;
+  //     justify-content: space-between;
+  //     margin: 0;
+  //     & + dl {
+  //       margin-top: 10px;
+  //     }
+  //     dt {
+  //       font-size: 16px;
+  //       font-family: $bold;
+  //       line-height: 24px;
+  //       color: $grey-7;
+  //     }
+  //     dd {
+  //       a {
+  //         color: $blue-0;
+  //         text-decoration: underline;
+  //         font-size: 16px;
+  //         &:hover,
+  //         &:focus {
+  //           color: $orange-3;
+  //         }
+  //         &:focus {
+  //           outline: 0;
+  //           box-shadow: 0 0 0 4px white, 0 0 0 6px $orange-3;
+  //           border-radius: 1px;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   button#order {
+  //     margin-top: 20px;
+  //     width: 100%;
+  //   }
+  //   h4 {
+  //     font-size: 16px;
+  //     font-family: $bold;
+  //     line-height: 24px;
+  //     color: $grey-7;
+  //     margin-bottom: 10px;
+  //   }
+  //   p {
+  //     font-size: 16px;
+  //     font-family: $regular;
+  //     line-height: 24px;
+  //     color: $grey-7;
+  //   }
+  //   textarea {
+  //     max-width: 100%;
+  //     min-width: 100%;
+  //     width: 100%;
+  //     border-radius: 3px;
+  //     border: 1px solid $grey-1;
+  //     background: white;
+  //     padding: 10px;
+  //     box-sizing: border-box;
+  //     margin: 20px 0;
+  //     color: $grey-7;
+  //     &:focus {
+  //       outline: 0;
+  //     }
+  //   }
+  //   button#ask {
+  //     align-self: flex-start;
+  //   }
+  // }
 }

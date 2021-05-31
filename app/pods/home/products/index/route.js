@@ -1,15 +1,12 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { inject as service } from '@ember/service';
 
 export default class ProductsIndexRoute extends BaseRoute {
-  @service headData;
-
   model() {
     return this.modelFor('home.products');
   }
 
   beforeModel() {
-    this.headData.setProperties({
+    this.seo.setProperties({
       path: '/products',
       title: 'Products',
       description:
@@ -20,6 +17,11 @@ export default class ProductsIndexRoute extends BaseRoute {
       imageWidth: '1920',
       imageHeight: '720',
       imageAlt: 'selective soldering mini wave'
+    });
+
+    this.header.setProperties({
+      title: 'Products',
+      crumbs: [{ label: 'Interflux', route: 'home' }, { label: 'Products' }]
     });
   }
 }

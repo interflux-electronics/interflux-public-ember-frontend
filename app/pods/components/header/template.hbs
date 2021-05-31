@@ -1,111 +1,52 @@
-{{#if (or this.media.isMobile this.media.isTablet)}}
-  <header
-    id="mobile"
-    role="banner"
-    aria-label="site"
-  >
-    <nav
-      class="liner"
-      aria-label="page"
-    >
-      <Button::Route
-        @route="index"
-        @id="logo"
-      >
-        <i>
-          <Svg::Hamburger />
-        </i>
-        <img
-          src="{{env 'cdnHost'}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg"
-          width="100"
-          height="100"
-          alt="Interflux Electronics"
-        />
-      </Button::Route>
-
-      {{!-- <Button::Route
-      @route="index"
-      @icon="search"
-    />
-
-    <Button::Route
-      @route="index"
-      @icon="user"
-    /> --}}
-    </nav>
-  </header>
-{{/if}}
-
-{{#if (or this.media.isDesktop this.media.isWidescreen)}}
-  <header
-    id="desktop"
-    role="banner"
-    aria-label="site"
-  >
-    <nav
-      class="liner"
-      aria-label="page"
-    >
-      <div class="left">
-        <Button::Route
-          @route="index"
-          @text="Home"
-          @id="logo"
-        >
+<header role='banner' aria-label='site'>
+  {{#if (or this.media.isMobile this.media.isTablet)}}
+    <nav id='mobile' aria-label='page'>
+      {{#if this.header.showLogo}}
+        <Button>
           <img
-            src="{{env 'cdnHost'}}/images/logos/primary-interflux-electronics-logo-1.svg"
-            width="3960"
-            height="1000"
-            alt="Interflux Electronics"
+            src='{{env
+              'cdnHost'
+            }}/images/logos/primary-interflux-electronics-symbol-1.svg'
+            width='100'
+            height='100'
+            alt='Interflux Electronics'
           />
-        </Button::Route>
-
-        <Button::Route
-          @route="home.products"
-          @text="Products"
+        </Button>
+      {{else}}
+        <Button
+          @route={{this.header.backRoute}}
+          @model={{this.header.backModel}}
+          @icon='chevron-left'
+          @theme='square outlined'
         />
-
-        {{!-- <Button::Route
-          @route="processes"
-          @text="Processes"
-        /> --}}
-
-        <Button::Route
-          @route="home.company"
-          @text="Company"
-        />
-
-        <Button::Route
-          @route="home.documents"
-          @text="Documents"
-        />
-
-        <Button::Route
-          @route="home.contact"
-          @text="Contact"
-        />
-      </div>
-
-      {{!-- <Svg::ArrowRight /> --}}
-
-      {{!-- <div class="right">
-      <Button::Route
-        @route="index"
-        @icon="search"
+      {{/if}}
+      <h1 aria-hidden='true'>{{this.header.title}}</h1>
+      <Button
+        @icon='hamburger'
+        @theme='square outlined'
+        @onClick={{this.openMenu}}
       />
-      <Button::Route
-        @route="index"
-        @icon="geo-marker"
-      />
-      <Button::Route
-        @route="index"
-        @icon="shopping-cart"
-      />
-      <Button::Route
-        @route="index"
-        @icon="user"
-      />
-    </div> --}}
     </nav>
-  </header>
-{{/if}}
+  {{/if}}
+
+  {{#if (or this.media.isDesktop this.media.isWidescreen)}}
+    <nav id='desktop' class='liner' aria-label='page'>
+      <div class='left'>
+        <Button @route='index' @id='logo'>
+          <img
+            src='{{env
+              'cdnHost'
+            }}/images/logos/primary-interflux-electronics-logo-1.svg'
+            width='3960'
+            height='1000'
+            alt='Interflux Electronics'
+          />
+        </Button>
+        <Button @route='home.products' @text='Products' />
+        <Button @route='home.company' @text='Company' />
+        <Button @route='home.documents' @text='Documents' />
+        <Button @route='home.contact' @text='Contact' />
+      </div>
+    </nav>
+  {{/if}}
+</header>

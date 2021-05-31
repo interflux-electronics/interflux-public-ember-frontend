@@ -4,27 +4,27 @@ import { inject as service } from '@ember/service';
 export default class IndexRoute extends BaseRoute {
   @service router;
   @service fastboot;
-  // @service headData;
+  @service headData;
 
   get isFastBoot() {
     return this.fastboot.isFastBoot;
   }
 
   beforeModel() {
-    // TODO: Once we remove the redirect, we need to set <head> meta tags
-    // this.headData.setProperties({
-    //   path: '/products',
-    //   title: 'Products developed by Interflux',
-    //   description:
-    //     'Get an overview of all the products Interflux researches and develops: soldering fluxes, solder pastes, solder wire, solder alloys and more.',
-    //   imagePath: 'images/logos/something.png',
-    //   imageMime: 'image/jpeg',
-    //   imageWidth: '1200',
-    //   imageHeight: '600',
-    //   imageAlt: 'logo'
-    // });
-    if (!this.isFastBoot) {
-      this.router.transitionTo('home', 'en');
-    }
+    this.headData.setProperties({
+      path: '/',
+      title: 'Interflux = chemistry + electronics + metallurgy',
+      description:
+        'Interflux researches & develop the chemistry needed for soldering electronics: soldering fluxes, solder pastes, solder wires, fluxing systems and more for wave soldering, selective, reflow, stencil printing, BGA rework, ...',
+      imagePath: 'images/logos/secondary-interflux-electronics-logo-2.png',
+      imageMime: 'image/png',
+      imageWidth: '1000',
+      imageHeight: '1000',
+      imageAlt: 'Interflux Electronics logo'
+    });
+
+    // if (!this.isFastBoot) {
+    //   this.router.transitionTo('home', 'en');
+    // }
   }
 }

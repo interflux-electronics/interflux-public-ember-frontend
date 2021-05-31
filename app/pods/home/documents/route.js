@@ -11,4 +11,10 @@ export default class DocumentssRoute extends BaseRoute {
       categories: this.store.findAll('documentCategory')
     });
   }
+
+  // model() {
+  //   // this.translation.languages.forEach((language) => {
+  //   //   this.store.createRecord('language', language);
+  //   // });
+  // }
 }

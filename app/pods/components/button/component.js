@@ -3,14 +3,7 @@ import { action } from '@ember/object';
 
 export default class ButtonComponent extends Component {
   get classes() {
-    return [
-      'button',
-      this.type,
-      this.theme,
-      this.icon,
-      this.text,
-      this.isBusy
-    ].join(' ');
+    return ['button', this.type, this.theme, this.icon, this.isBusy].join(' ');
   }
 
   get type() {
@@ -22,11 +15,7 @@ export default class ButtonComponent extends Component {
   }
 
   get icon() {
-    return this.args.icon || 'no-icon';
-  }
-
-  get text() {
-    return this.args.text ? 'has-text' : 'no-text';
+    return `has-icon ${this.args.icon}` || 'no-icon';
   }
 
   get isBusy() {

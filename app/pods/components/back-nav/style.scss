@@ -1,6 +1,12 @@
 nav#back-nav {
   display: flex;
   padding-bottom: 30px;
+  @include tablet {
+    display: none;
+  }
+  @include mobile {
+    display: none;
+  }
   a {
     box-sizing: border-box;
     height: 42px;

@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import ENV from 'interflux/config/environment';
 
 export default class ProductController extends Controller {
   @tracked chosenImage = null;
@@ -41,8 +42,8 @@ export default class ProductController extends Controller {
     return this.model.product.uses.map((use) => {
       return {
         iconURL: use.get('iconURL'),
-        buttonLabel: use.get('label'),
-        textShownOnExpand: use.get('gist')
+        label: use.get('label'),
+        content: use.get('gist')
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -63,8 +64,8 @@ export default class ProductController extends Controller {
     return this.model.product.qualities.map((quality) => {
       return {
         iconURL: quality.get('iconURL'),
-        buttonLabel: quality.get('label'),
-        textShownOnExpand: quality.get('gist')
+        label: quality.get('label'),
+        content: quality.get('gist')
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -77,6 +78,24 @@ export default class ProductController extends Controller {
         //     model: use.get('slug')
         //   }
         // ]
+      };
+    });
+  }
+
+  get documentAccordionSections() {
+    return this.model.product.documents.map((doc) => {
+      const links = doc.get('files').map((file) => {
+        return {
+          label: file.language,
+          url: file.url
+        };
+      });
+
+      return {
+        iconURL: `${ENV.cdnHost}/images/icons/file-download.svg`,
+        label: `${doc.get('name')} (PDF)`,
+        content: `Available in ${links.length} languages:`,
+        links
       };
     });
   }

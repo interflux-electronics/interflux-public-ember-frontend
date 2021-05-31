@@ -1,167 +1,140 @@
-<Page @id="products-subset">
-  <Header />
+<Main @id='products-subset' @aria-labelledby='h1'>
+  <div class='liner'>
+    <BackNav @backRoute='home.products' @backLabel='All products' />
 
-  <Breadcrumbs @crumbs={{array
-      (hash label='Interflux' route='home')
-      (hash label='Products' route='home.products')
-      (hash label=this.pageTitle)
-    }} />
+    <div class='columns'>
+      <aside>
+        <div class='sticky'>
+          <fieldset id='search'>
+            <legend>Find a product</legend>
+            <Search
+              @placeholder={{this.searchPlaceHolder}}
+              @onSelect={{this.openProductPage}}
+              @searchModel='product'
+              @searchLabel='name'
+              @searchFilter='name'
+              @minKeyStrokes='1'
+            />
+          </fieldset>
 
-  <main
-    aria-labelledby="h1"
-    {{did-insert this.onInsert}}
-  >
-    <div class="liner">
-      <BackNav
-        @backRoute="home.products"
-        @backLabel="All products"
-      />
-
-      <div class="columns">
-        <aside>
-          <div class="sticky">
-            <fieldset id="search">
-              <legend>Find a product</legend>
-              <Search
-                @placeholder={{this.searchPlaceHolder}}
-                @onSelect={{this.openProductPage}}
-                @searchModel='product'
-                @searchLabel='name'
-                @searchFilter='name'
-                @minKeyStrokes='1'
-              />
-            </fieldset>
-
-            <fieldset>
-              <legend>Product we develop</legend>
-              <ul class="links">
-                {{#each this.familyRadios as |radio|}}
-                  <li>
-                    <a
-                      href={{href-to 'home.products.subset' radio.slug}}
-                      class={{if radio.isChecked 'active'}}
-                      {{on 'click' (fn this.openSubsetPage radio.slug)}}
-                    >
-                      <span class="label">{{radio.label}}</span>
-                      <Svg::ArrowRight />
-                    </a>
-                  </li>
-                {{/each}}
-              </ul>
-            </fieldset>
-
-            <fieldset>
-              <legend>Processes we support</legend>
-              <ul class="links">
-                {{#each this.useRadios as |radio|}}
-                  <li>
-                    <a
-                      href={{href-to 'home.products.subset' radio.slug}}
-                      class={{if radio.isChecked 'active'}}
-                      {{on 'click' (fn this.openSubsetPage radio.slug)}}
-                    >
-                      <span class="label">{{radio.label}}</span>
-                      <Svg::ArrowRight />
-                    </a>
-                  </li>
-                {{/each}}
-              </ul>
-            </fieldset>
-
-            <fieldset>
-              <legend>Filter</legend>
-              {{#each this.statusCheckboxes as |checkbox|}}
-                <div class="checkbox-group">
-                  <Checkbox
-                    @id={{checkbox.id}}
-                    @checked={{checkbox.isChecked}}
-                    @onClick={{fn this.toggleStatus checkbox.id}}
-                  />
-                  <label for="input-{{checkbox.id}}"><span>{{checkbox.label}}&nbsp;</span><small>{{checkbox.count}}</small></label>
-                </div>
+          <fieldset>
+            <legend>Product we develop</legend>
+            <ul class='links'>
+              {{#each this.familyRadios as |radio|}}
+                <li>
+                  <a
+                    href={{href-to 'home.products.subset' radio.id}}
+                    class={{if radio.isChecked 'active'}}
+                    {{on 'click' (fn this.openSubsetPage radio.id)}}
+                  >
+                    <span class='label'>{{radio.label}}</span>
+                    <Svg::ArrowRight />
+                  </a>
+                </li>
               {{/each}}
-            </fieldset>
-          </div>
-        </aside>
+            </ul>
+          </fieldset>
 
-        <article>
-          <h1 id="h1">{{this.pageTitle}}</h1>
-          <ol>
-            {{#each this.statuses as |status|}}
-              <li
-                id={{status.id}}
-                class="status"
-                labelledby="h2-{{status.id}}"
-              >
-                <div class="intro">
-                  <div class="title">
-                    <h2 id="h2-{{status.id}}">{{status.label}}</h2>
-                  </div>
-                  {{#if status.blurb}}
-                    <p>{{status.blurb}}</p>
-                  {{/if}}
-                </div>
-              </li>
+          <fieldset>
+            <legend>Processes we support</legend>
+            <ul class='links'>
+              {{#each this.useRadios as |radio|}}
+                <li>
+                  <a
+                    href={{href-to 'home.products.subset' radio.id}}
+                    class={{if radio.isChecked 'active'}}
+                    {{on 'click' (fn this.openSubsetPage radio.id)}}
+                  >
+                    <span class='label'>{{radio.label}}</span>
+                    <Svg::ArrowRight />
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+          </fieldset>
+
+          <fieldset>
+            <legend>Filter</legend>
+            {{#each this.statusCheckboxes as |checkbox|}}
+              <div class='checkbox-group'>
+                <Checkbox
+                  @id={{checkbox.id}}
+                  @checked={{checkbox.isChecked}}
+                  @onClick={{fn this.toggleStatus checkbox.id}}
+                />
+                <label for='input-{{checkbox.id}}'><span
+                  >{{checkbox.label}}&nbsp;</span><small
+                  >{{checkbox.count}}</small></label>
+              </div>
             {{/each}}
+          </fieldset>
+        </div>
+      </aside>
 
-            {{#each this.mainFamilies as |mainFamily|}}
-              <li
-                id={{mainFamily.id}}
-                class="main-family-for-use"
-                labelledby="h2-{{mainFamily.id}}"
-              >
-                <div class="intro">
-                  <div class="title">
-                    <h2 id="h2-{{mainFamily.id}}">{{mainFamily.label}} for {{this.use.text}}</h2>
-                  </div>
-                  {{!--
-                  {{#if mainFamily.gist}}
-                    <p>{{mainFamily.gist}}</p>
-                  {{/if}}
-                  --}}
+      <article {{did-insert this.onInsertArticle}}>
+        <h1 id='h1'>{{this.pageTitle}}</h1>
+        <ol>
+          {{#each this.statuses as |status|}}
+            <li id={{status.id}} class='status' labelledby='h2-{{status.id}}'>
+              <div class='intro'>
+                <div class='title'>
+                  <h2 id='h2-{{status.id}}'>{{status.label}}</h2>
                 </div>
-              </li>
+                {{#if status.blurb}}
+                  <p>{{status.blurb}}</p>
+                {{/if}}
+              </div>
+            </li>
+          {{/each}}
 
-              <li
-                id="other-{{mainFamily.id}}"
-                class="sub-family"
-                labelledby="h2-other-{{mainFamily.id}}"
-              >
-                <div class="intro">
-                  <div class="title">
-                    <h2 id="h2-other-{{mainFamily.id}}">Other {{mainFamily.namePlural}}</h2>
-                  </div>
+          {{#each this.mainFamilies as |mainFamily|}}
+            <li
+              id={{mainFamily.id}}
+              class='main-family-for-use'
+              labelledby='h2-{{mainFamily.id}}'
+            >
+              <div class='intro'>
+                <div class='title'>
+                  <h2 id='h2-{{mainFamily.id}}'>{{mainFamily.label}}
+                    for
+                    {{this.use.text}}</h2>
                 </div>
-              </li>
-            {{/each}}
+              </div>
+            </li>
 
-            {{#each this.subFamilies as |subFamily|}}
-              <li
-                id={{subFamily.id}}
-                class="sub-family"
-                labelledby="h2-{{subFamily.id}}"
-              >
-                <div class="intro">
-                  <div class="title">
-                    <h2 id="h2-{{subFamily.id}}">{{subFamily.label}}</h2>
-                  </div>
-                  {{!--
-                  {{#if subFamily.gist}}
-                    <p>{{subFamily.gist}}</p>
-                  {{/if}}
-                  --}}
+            <li
+              id='other-{{mainFamily.id}}'
+              class='sub-family'
+              labelledby='h2-other-{{mainFamily.id}}'
+            >
+              <div class='intro'>
+                <div class='title'>
+                  <h2 id='h2-other-{{mainFamily.id}}'>Other
+                    {{mainFamily.namePlural}}</h2>
                 </div>
-              </li>
-            {{/each}}
+              </div>
+            </li>
+          {{/each}}
 
-            {{#each this.sortedProducts as |product|}}
-              <ProductRow @product={{product}} />
-            {{/each}}
-          </ol>
-        </article>
-      </div>
+          {{#each this.subFamilies as |subFamily|}}
+            <li
+              id={{subFamily.id}}
+              class='sub-family'
+              labelledby='h2-{{subFamily.id}}'
+            >
+              <div class='intro'>
+                <div class='title'>
+                  <h2 id='h2-{{subFamily.id}}'>{{subFamily.label}}</h2>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+
+          {{#each this.sortedProducts as |product|}}
+            <ProductRow @product={{product}} />
+          {{/each}}
+        </ol>
+      </article>
     </div>
-  </main>
-
-  <Footer />
-</Page>
+  </div>
+</Main>

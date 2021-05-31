@@ -1,17 +1,14 @@
-#products-subset.page {
-  main {
-    background: $grey-0;
-    .liner {
-      max-width: 1150px;
-      padding: 30px;
-      margin: 0 auto;
-      .columns {
-        display: flex;
-        align-items: flex-start;
-      }
+main#products-subset {
+  background: $grey-0;
+  .liner {
+    max-width: 1150px;
+    padding: 30px;
+    margin: 0 auto;
+    .columns {
+      display: flex;
+      align-items: flex-start;
     }
   }
-
   article {
     background: white;
     box-shadow: 0 4px 8px rgba(black, 0.1);
@@ -89,6 +86,12 @@
     width: 260px;
     flex-shrink: 0;
     margin-right: 30px;
+    @include tablet {
+      display: none;
+    }
+    @include mobile {
+      display: none;
+    }
     .sticky {
       padding: 20px;
       border: 1px solid #e3e3e3;

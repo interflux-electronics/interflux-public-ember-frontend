@@ -12,13 +12,13 @@ module('Integration | Component | accordion', function (hooks) {
     this.set('sections', [
       {
         iconURL: 'leaves',
-        buttonLabel: 'Button 1',
-        textShownOnExpand: 'Content 1'
+        label: 'Button 1',
+        content: 'Content 1'
       },
       {
         iconURL: 'strong',
-        buttonLabel: 'Button 2',
-        textShownOnExpand: 'Content 2'
+        label: 'Button 2',
+        content: 'Content 2'
       }
     ]);
 
