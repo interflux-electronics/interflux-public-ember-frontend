@@ -2,8 +2,10 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class TranslationService extends Service {
-  @tracked locale = 'zh';
+  // The language in which the website is currently translated to.
+  @tracked locale = 'en';
 
+  // All available languages.
   @tracked languages = [
     {
       id: 'en',

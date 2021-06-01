@@ -2,14 +2,16 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-// This route includes behaviour we need all routes to inherit.
-
 export default class BaseRoute extends Route {
-  @service auth;
+  // These services are available in all routes which inherit BaseRoute.
   @service api;
-  @service store;
-  @service header;
+  @service auth;
+  @service fastboot;
   @service headData;
+  @service header;
+  @service router;
+  @service store;
+  @service translation;
   @service window;
 
   // Alias to avoid confusion with the header service.
@@ -19,9 +21,12 @@ export default class BaseRoute extends Route {
     return this.headData;
   }
 
+  get isNode() {
+    return this.fastboot.isFastBoot;
+  }
+
   // This initializer makes sure each route transition resets the scroll position
   // of the viewport to the top. Override ad hoc per route to prevent this behaviour.
-  //
   resetScroll = true;
 
   activate() {

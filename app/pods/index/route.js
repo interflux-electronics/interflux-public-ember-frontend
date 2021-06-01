@@ -3,12 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends BaseRoute {
   @service router;
-  @service fastboot;
-  @service headData;
-
-  get isFastBoot() {
-    return this.fastboot.isFastBoot;
-  }
+  @service translation;
 
   beforeModel() {
     this.headData.setProperties({
@@ -23,8 +18,22 @@ export default class IndexRoute extends BaseRoute {
       imageAlt: 'Interflux Electronics logo'
     });
 
-    // if (!this.isFastBoot) {
-    //   this.router.transitionTo('home', 'en');
-    // }
+    this.header.setProperties({
+      title: 'Choose language'
+    });
+
+    // Fastboot (Node) doesn't have localStorage and doesn't handle redirects well.
+    if (!this.isNode) {
+      const locale = localStorage.getItem('preferred-language');
+      const language = this.translation.languages.find((l) => l.id === locale);
+
+      if (language) {
+        // Skip the language page if user has previously selected a language.
+        this.router.transitionTo('home', locale);
+      } else {
+        // Clear localStorage if it contains an invalid locale.
+        localStorage.removeItem('preferred-language');
+      }
+    }
   }
 }

@@ -1,151 +1,144 @@
-<Main @id="home">
-  <Header />
-
-  <Section
-    @id="links"
-    class="legacy"
-  >
-    <div class="left {{this.imageLeft}}">
+<Main @id='home'>
+  <Section @id='links' class='legacy'>
+    <div class='left {{this.imageLeft}}'>
       <h2>Products</h2>
       <p>Find products by type</p>
       <nav>
         <Button
-          @route="home.products.subset"
-          @model="soldering-fluxes"
-          @text="Soldering Fluxes"
+          @route='home.products.subset'
+          @model='soldering-fluxes'
+          @text='Soldering Fluxes'
           {{on 'mouseover' (fn this.showImage 1)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="solder-pastes"
-          @text="Soldering Pastes"
+          @route='home.products.subset'
+          @model='solder-pastes'
+          @text='Soldering Pastes'
           {{on 'mouseover' (fn this.showImage 2)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="solder-wires"
-          @text="Soldering Wires"
+          @route='home.products.subset'
+          @model='solder-wires'
+          @text='Soldering Wires'
           {{on 'mouseover' (fn this.showImage 3)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="fluxing-systems"
-          @text="Fluxing Systems"
+          @route='home.products.subset'
+          @model='fluxing-systems'
+          @text='Fluxing Systems'
           {{on 'mouseover' (fn this.showImage 4)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="auxiliaries"
-          @text="Auxiliaries"
+          @route='home.products.subset'
+          @model='auxiliaries'
+          @text='Auxiliaries'
           {{on 'mouseover' (fn this.showImage 5)}}
         />
       </nav>
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg"
-        class="image-1"
-        alt="electronics"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
+        class='image-1'
+        alt='electronics'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-2"
-        alt="electronics"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-2'
+        alt='electronics'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-3"
-        alt="electronics"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-3'
+        alt='electronics'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-4"
-        alt="electronics"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-4'
+        alt='electronics'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-5"
-        alt="electronics"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-5'
+        alt='electronics'
+      />
     </div>
 
-    <div class="right {{this.imageRight}}">
+    <div class='right {{this.imageRight}}'>
       <h2>Processes</h2>
       <p>Find products by type</p>
       <nav>
         <Button
-          @route="home.products.subset"
-          @model="for-wave-soldering"
-          @text="Wave Soldering"
+          @route='home.products.subset'
+          @model='for-wave-soldering'
+          @text='Wave Soldering'
           {{on 'mouseover' (fn this.showImage 6)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="for-selective-soldering"
-          @text="Selective Soldering"
+          @route='home.products.subset'
+          @model='for-selective-soldering'
+          @text='Selective Soldering'
           {{on 'mouseover' (fn this.showImage 7)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="for-reflow-soldering"
-          @text="Reflow Soldering"
+          @route='home.products.subset'
+          @model='for-reflow-soldering'
+          @text='Reflow Soldering'
           {{on 'mouseover' (fn this.showImage 8)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="for-rework-and-repair"
-          @text="Rework & Repair"
+          @route='home.products.subset'
+          @model='for-rework-and-repair'
+          @text='Rework & Repair'
           {{on 'mouseover' (fn this.showImage 9)}}
         />
         <Button
-          @route="home.products.subset"
-          @model="for-pre-tinning"
-          @text="Pre-tinning"
+          @route='home.products.subset'
+          @model='for-pre-tinning'
+          @text='Pre-tinning'
           {{on 'mouseover' (fn this.showImage 10)}}
         />
       </nav>
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg"
-        class="image-6"
-        alt="soldering process"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
+        class='image-6'
+        alt='soldering process'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-7"
-        alt="soldering process"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-7'
+        alt='soldering process'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-8"
-        alt="soldering process"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-8'
+        alt='soldering process'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-9"
-        alt="soldering process"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-9'
+        alt='soldering process'
+      />
       <img
-        src="{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg"
-        class="image-10"
-        alt="soldering process"
-      >
+        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+        class='image-10'
+        alt='soldering process'
+      />
     </div>
 
-    <div class="bottom">
-      <Button @route="home.company">
+    <div class='bottom'>
+      <Button @route='home.company'>
         <p>Company</p>
-        <p class="small">Learn about Interflux</p>
+        <p class='small'>Learn about Interflux</p>
       </Button>
 
-      <Button @route="home.documents">
+      <Button @route='home.documents'>
         <p>Documents</p>
-        <p class="small">Find technical data</p>
+        <p class='small'>Find technical data</p>
       </Button>
 
-      <Button @route="home.contact">
+      <Button @route='home.contact'>
         <p>Contact</p>
-        <p class="small">Get in touch</p>
+        <p class='small'>Get in touch</p>
       </Button>
     </div>
   </Section>
-
-  <Section::Languages />
 </Main>

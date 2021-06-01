@@ -7,7 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('home', { path: '/:language' }, function () {
+  this.route('home', { path: '/:locale' }, function () {
     this.route('product', { path: '/product/:id' });
     this.route('products', function () {
       this.route('subset', { path: '/:slug' });

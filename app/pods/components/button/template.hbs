@@ -11,11 +11,23 @@
     />
    --}}
   {{#if @model}}
-    <a href={{href-to @route @model}} class={{this.classes}} id={{@id}}>
-      <Button::Content @text={{@text}} @icon={{@icon}} />
+    <a
+      id={{@id}}
+      class={{this.classes}}
+      href={{href-to @route @model}}
+      onclick={{this.onClick}}
+    >
+      <Button::Content @text={{@text}} @icon={{@icon}}>
+        {{yield}}
+      </Button::Content>
     </a>
   {{else}}
-    <a href={{href-to @route}} class={{this.classes}} id={{@id}}>
+    <a
+      id={{@id}}
+      class={{this.classes}}
+      href={{href-to @route}}
+      onclick={{this.onClick}}
+    >
       <Button::Content @text={{@text}} @icon={{@icon}}>
         {{yield}}
       </Button::Content>
@@ -34,11 +46,12 @@
     />
    }}
   <a
+    id={{@id}}
+    class={{this.classes}}
     href={{@url}}
     target='_blank'
     rel='noopener noreferrer'
-    class={{this.classes}}
-    id={{@id}}
+    onclick={{this.onClick}}
   >
     <Button::Content @text={{@text}} @icon={{@icon}}>
       {{yield}}
@@ -59,11 +72,11 @@
     />
    --}}
   <button
-    onclick={{this.handleClick}}
+    id={{@id}}
     class={{this.classes}}
     type='button'
     disabled={{@isBusy}}
-    id={{@id}}
+    onclick={{this.onClick}}
   >
     <Button::Content @text={{@text}} @icon={{@icon}}>
       {{yield}}

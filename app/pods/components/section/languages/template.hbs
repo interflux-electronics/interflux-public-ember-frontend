@@ -1,4 +1,19 @@
-<Section @id="languages">
+<Section @id='languages'>
+  {{#each this.languages as |language|}}
+    <Button
+      @route='home'
+      @model={{language.id}}
+      @onClick={{fn this.onLanguageClick language.id}}
+    >
+      <img
+        src='{{env 'cdnHost'}}/images/flags/{{language.id}}.png'
+        alt='flag {{language.nameNative}}'
+      />
+      <p>{{language.nameNative}}</p>
+    </Button>
+  {{/each}}
+
+  {{!--
   {{#each this.languages as |language|}}
     {{#if language.ready}}
       <Button
@@ -21,4 +36,5 @@
       </Link>
     {{/if}}
   {{/each}}
+--}}
 </Section>

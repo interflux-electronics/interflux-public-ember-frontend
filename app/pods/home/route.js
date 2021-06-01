@@ -1,9 +1,6 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { inject as service } from '@ember/service';
 
 export default class HomeRoute extends BaseRoute {
-  @service headData;
-
   beforeModel() {
     this.headData.setProperties({
       path: '/products',
@@ -16,5 +13,31 @@ export default class HomeRoute extends BaseRoute {
       imageHeight: '1000',
       imageAlt: 'secondary Interflux Electronics logo 1'
     });
+
+    this.header.setProperties({
+      title: 'Interflux'
+    });
+  }
+
+  model(params) {
+    // Fastboot (Node) doesn't have localStorage and doesn't handle redirects well.
+    if (this.isNode) {
+      return {};
+    }
+
+    const routeLocale = params.locale;
+    const routeLanguage = this.translation.languages.find(
+      (l) => l.id === routeLocale
+    );
+
+    // Redirect invalid route locals to either the preffered language or the English homepage.
+    if (!routeLanguage) {
+      const userLocale = localStorage.getItem('preferred-language');
+      const userLanguage = this.translation.languages.find(
+        (l) => l.id === userLocale
+      );
+      const model = userLanguage ? userLocale : 'en';
+      this.router.transitionTo('home', model);
+    }
   }
 }
