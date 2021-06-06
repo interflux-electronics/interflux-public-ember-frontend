@@ -1,0 +1,57 @@
+header#desktop {
+  box-shadow: 0 2px 2px rgba(black, 0.1);
+  background: white;
+  z-index: 1;
+  .liner {
+    display: flex;
+    justify-content: space-between;
+  }
+  .left {
+    display: flex;
+    a#logo {
+      display: flex;
+      justify-content: center;
+      @include widescreen {
+        padding: px(1vw) px(2vw);
+      }
+      @include desktop {
+        padding: 1vw 2vw;
+      }
+      img {
+        width: auto; // don't make height auto or Safari will explode
+        @include widescreen {
+          height: px(4.5vw);
+        }
+        @include desktop {
+          height: 4.5vw;
+        }
+      }
+    }
+    a:not(#logo) {
+      position: relative;
+      color: $grey-7;
+      display: flex;
+      align-items: center;
+      @include widescreen {
+        margin-right: px(2vw);
+      }
+      @include desktop {
+        margin-right: 2vw;
+      }
+      span {
+        font-family: $bold;
+      }
+      &:hover {
+        span {
+          color: $blue-0;
+          text-decoration: underline;
+        }
+      }
+      &:focus {
+        span {
+          color: $orange-3;
+        }
+      }
+    }
+  }
+}

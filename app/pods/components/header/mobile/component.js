@@ -1,0 +1,48 @@
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+
+export default class HeaderMobileComponent extends Component {
+  @service header;
+  @service media;
+  @service modal;
+  @service window;
+  @service scroll;
+
+  get state() {
+    return [
+      this.menuIsOpen ? 'open' : 'closed',
+      this.scroll.goingDown ? 'scrolling-down' : 'scrolling-up'
+    ].join(' ');
+  }
+
+  @tracked menuIsOpen = false;
+
+  @action toggleMenu() {
+    if (this.menuIsOpen) {
+      this.closeMenu();
+    } else {
+      this.openMenu();
+    }
+  }
+
+  openMenu() {
+    this.menuIsOpen = true;
+    this.modal.setProperties({
+      showModal: true,
+      pageScrollY: window.pageYOffset || document.documentElement.scrollTop
+    });
+    window.scrollTo(0, 0);
+  }
+
+  async closeMenu() {
+    this.menuIsOpen = false;
+    const { pageScrollY } = this.modal;
+    this.modal.setProperties({
+      showModal: false,
+      pageScrollY: 0
+    });
+    window.scrollTo(0, pageScrollY);
+  }
+}

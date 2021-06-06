@@ -1,0 +1,20 @@
+<header id='desktop' role='banner' aria-label='site'>
+  <nav class='liner' aria-label='page'>
+    <div class='left'>
+      <Button @route='index' @id='logo'>
+        <img
+          src='{{env
+            'cdnHost'
+          }}/images/logos/primary-interflux-electronics-logo-1.svg'
+          width='3960'
+          height='1000'
+          alt='Interflux Electronics'
+        />
+      </Button>
+      <Button @route='home.products' @text='Products' />
+      <Button @route='home.company' @text='Company' />
+      <Button @route='home.documents' @text='Documents' />
+      <Button @route='home.contact' @text='Contact' />
+    </div>
+  </nav>
+</header>

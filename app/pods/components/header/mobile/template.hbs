@@ -1,0 +1,37 @@
+<header id='mobile' role='banner' aria-label='site' class={{this.state}}>
+  <nav aria-label='page'>
+    <div class='top'>
+      {{#if @backRoute}}
+        <Button
+          @route={{@backRoute}}
+          @model={{@backModel}}
+          @icon='chevron-left'
+          @theme='square outlined'
+        />
+      {{else}}
+        <Image
+          @id='logo'
+          @src='{{env
+            'cdnHost'
+          }}/images/logos/primary-interflux-electronics-symbol-1.svg'
+          @width='100'
+          @height='100'
+          @alt='Interflux Electronics'
+        />
+      {{/if}}
+      <h1 aria-hidden='true'>{{@title}}</h1>
+      <Button
+        @icon='hamburger'
+        @theme='square outlined {{if this.menuIsOpen 'close'}}'
+        @onClick={{this.toggleMenu}}
+      />
+    </div>
+
+    <div class='mid'>
+      <Button @route='home.products' @text='Products' @theme='link white' />
+      <Button @route='home.company' @text='Company' @theme='link white' />
+      <Button @route='home.documents' @text='Documents' @theme='link white' />
+      <Button @route='home.contact' @text='Contact' @theme='link white' />
+    </div>
+  </nav>
+</header>
