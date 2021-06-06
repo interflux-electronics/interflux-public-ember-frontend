@@ -11,7 +11,6 @@ export default class SectionLanguagesComponent extends Component {
 
   @action
   onLanguageClick(locale) {
-    debugger;
     // Remember the user's preferred language for next visit.
     localStorage.setItem('preferred-language', locale);
   }
