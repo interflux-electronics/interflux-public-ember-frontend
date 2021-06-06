@@ -12,6 +12,7 @@ export default class BaseRoute extends Route {
   @service router;
   @service store;
   @service translation;
+  @service modal;
   @service window;
 
   // Alias to avoid confusion with the header service.
@@ -34,6 +35,9 @@ export default class BaseRoute extends Route {
     if (this.resetScroll) {
       this.window.scrollTo(0, 0);
     }
+    // On route transtion, close whatever modal was still open.
+    // TODO: find a better way
+    this.modal.showModal = false;
   }
 
   @action

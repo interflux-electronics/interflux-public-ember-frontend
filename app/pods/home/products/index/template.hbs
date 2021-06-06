@@ -1,4 +1,12 @@
-<Main @id='products-index'>
+<Page
+  @id='products-index'
+  @title='Products'
+  @backRoute='home'
+  @crumbs={{array
+    (hash label='Interflux' route='home')
+    (hash label='Products')
+  }}
+>
   <article aria-label='products'>
     <div class='liner'>
       <div class='box'>
@@ -58,4 +66,4 @@
       </div>
     </div>
   </article>
-</Main>
+</Page>

@@ -1,15 +1,23 @@
 {{#with @model.product as |product|}}
-  <Main
+  <Page
     @id='product'
+    @title='Products'
+    @backRoute='home.products.subset'
+    @backModel={{@model.product.mainFamily.id}}
     @class={{product.status}}
     @ariaLabelledby='h1'
     @ariaDescribedby={{if product.pitch 'pitch'}}
+    @crumbs={{array
+      (hash label='Interflux' route='home')
+      (hash label='Products' route='home.products')
+      (hash label=@model.product)
+    }}
   >
     <div class='liner'>
       <BackNav
         @backRoute='home.products.subset'
-        @backModel={{product.family.id}}
-        @backLabel='All {{product.family.namePlural}}'
+        @backModel={{product.mainFamily.id}}
+        @backLabel='All {{product.mainFamily.namePlural}}'
       />
 
       <div class='columns'>
@@ -328,5 +336,5 @@
           }}
       </div>
     </div>
-  </Main>
+  </Page>
 {{/with}}

@@ -1,4 +1,14 @@
-<Main @id='products-subset' @aria-labelledby='h1'>
+<Page
+  @id='products-subset'
+  @title={{this.pageTitle}}
+  @backRoute='home.products'
+  @aria-labelledby='h1'
+  @crumbs={{array
+    (hash label='Interflux' route='home')
+    (hash label='Products' route='home.products')
+    (hash label=this.pageTitle)
+  }}
+>
   <div class='liner'>
     <BackNav @backRoute='home.products' @backLabel='All products' />
 
@@ -137,4 +147,4 @@
       </article>
     </div>
   </div>
-</Main>
+</Page>

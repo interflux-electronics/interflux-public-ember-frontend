@@ -1,10 +1,6 @@
 import BaseRoute from 'interflux/pods/base/route';
 
 export default class ProductsIndexRoute extends BaseRoute {
-  model() {
-    return this.modelFor('home.products');
-  }
-
   beforeModel() {
     this.seo.setProperties({
       path: '/products',
@@ -18,10 +14,9 @@ export default class ProductsIndexRoute extends BaseRoute {
       imageHeight: '720',
       imageAlt: 'selective soldering mini wave'
     });
+  }
 
-    this.header.setProperties({
-      title: 'Products',
-      crumbs: [{ label: 'Interflux', route: 'home' }, { label: 'Products' }]
-    });
+  model() {
+    return this.modelFor('home.products');
   }
 }

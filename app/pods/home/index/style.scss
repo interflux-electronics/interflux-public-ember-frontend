@@ -76,8 +76,9 @@ main#home-mobile {
       position: absolute;
       left: 0;
       top: 0;
+      right: 0;
+      bottom: 0;
       display: flex;
-      max-height: 100%;
       align-items: center;
       z-index: 0;
     }
@@ -166,9 +167,11 @@ main#home-mobile {
         background: $grey-1;
         li {
           background: white;
-          display: flex;
           & + li {
             margin-top: 1px;
+          }
+          a {
+            display: flex;
           }
           .left {
             padding: 2vw;

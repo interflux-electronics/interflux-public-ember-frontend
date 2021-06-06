@@ -1,5 +1,9 @@
-<Main @id='products-subset-loading'>
-  <article>
-    <LoadingSpinner />
-  </article>
-</Main>
+<Page
+  @id='products-subset-loading'
+  @loading='true'
+  @crumbs={{array
+    (hash label='Interflux' route='home')
+    (hash label='Products' route='home.products')
+    (hash label='Loading...')
+  }}
+/>

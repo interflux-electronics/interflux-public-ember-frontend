@@ -1,5 +1,8 @@
-<Main @id='products-loading'>
-  <article>
-    <LoadingSpinner @message='Loading products ...' />
-  </article>
-</Main>
+<Page
+  @id='products-loading'
+  @loading='true'
+  @crumbs={{array
+    (hash label='Interflux' route='home')
+    (hash label='Loading...')
+  }}
+/>

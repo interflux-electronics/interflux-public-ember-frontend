@@ -1,3 +1,32 @@
+{{#if this.showMobileHeader}}
+  <Header::Mobile
+    @title={{if @error 'Whoops' @title}}
+    @backRoute={{@backRoute}}
+    @backModel={{@backModel}}
+  />
+{{/if}}
 <div id='page' class={{this.pageClasses}} style={{this.pageStyle}}>
-  {{yield}}
+  {{#if this.showDesktopHeader}}
+    <Header::Desktop />
+    {{#if @crumbs}}
+      <Breadcrumbs @crumbs={{@crumbs}} />
+    {{/if}}
+  {{/if}}
+  <main
+    id={{@id}}
+    class={{@class}}
+    aria-labelledby={{@ariaLabelledby}}
+    aria-describedby={{@ariaDescribedby}}
+  >
+    {{#if @loading}}
+      <LoadingSpinner @message='Loading ...' />
+    {{else if @error}}
+      <RouteErrorMessage />
+    {{else}}
+      {{yield}}
+    {{/if}}
+  </main>
+  {{#if this.showFooter}}
+    <Footer />
+  {{/if}}
 </div>
