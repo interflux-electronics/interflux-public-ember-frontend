@@ -1,15 +1,2 @@
 <HeadLayout />
-
-<div id='app'>
-  <div id='page' class={{this.pageClasses}} style={{this.pageStyle}}>
-    <Header @title={{this.header.title}} />
-    <Breadcrumbs @crumbs={{this.header.crumbs}} />
-    {{outlet}}
-    <div></div>
-    <Footer />
-  </div>
-
-  <div id='modal'>
-    {{outlet 'modal'}}
-  </div>
-</div>
+{{outlet}}

@@ -19,6 +19,9 @@ export default class ProductModel extends Model {
   @attr('boolean') compliesWithISO;
   @attr('string') testResults;
 
+  @attr('boolean') featured;
+  @attr('boolean') featuredMore;
+
   @belongsTo('image', { inverse: 'product' }) image;
 
   // Avatar image properties are cached on the product record as to avoid N+1 when loading long lists of products

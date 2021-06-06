@@ -33,8 +33,8 @@ export default class DocumentCategoryRoute extends BaseRoute {
   // Prevent <main> page from scrolling
   activate() {
     this.modal.setProperties({
-      active: true,
-      scroll:
+      showModal: true,
+      pageScrollY:
         this.window.pageYOffset() || this.document.documentElement.scrollTop
     });
     this.window.scrollTo(0, 0);
@@ -42,11 +42,11 @@ export default class DocumentCategoryRoute extends BaseRoute {
 
   // Allow <main> page to scroll again
   deactivate() {
-    const scroll = this.modal.scroll;
+    const { pageScrollY } = this.modal;
     this.modal.setProperties({
-      active: false,
-      scroll: 0
+      showModal: false,
+      pageScrollY: 0
     });
-    this.window.scrollTo(0, scroll);
+    this.window.scrollTo(0, pageScrollY);
   }
 }

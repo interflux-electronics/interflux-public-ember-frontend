@@ -1,144 +1,281 @@
-<Main @id='home'>
-  <Section @id='links' class='legacy'>
-    <div class='left {{this.imageLeft}}'>
-      <h2>Products</h2>
-      <p>Find products by type</p>
-      <nav>
-        <Button
-          @route='home.products.subset'
-          @model='soldering-fluxes'
-          @text='Soldering Fluxes'
-          {{on 'mouseover' (fn this.showImage 1)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='solder-pastes'
-          @text='Soldering Pastes'
-          {{on 'mouseover' (fn this.showImage 2)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='solder-wires'
-          @text='Soldering Wires'
-          {{on 'mouseover' (fn this.showImage 3)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='fluxing-systems'
-          @text='Fluxing Systems'
-          {{on 'mouseover' (fn this.showImage 4)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='auxiliaries'
-          @text='Auxiliaries'
-          {{on 'mouseover' (fn this.showImage 5)}}
-        />
-      </nav>
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
-        class='image-1'
-        alt='electronics'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-2'
-        alt='electronics'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-3'
-        alt='electronics'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-4'
-        alt='electronics'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-5'
-        alt='electronics'
-      />
-    </div>
+{{#if this.media.isMobileTablet}}
+  <Header::Mobile @title='Interflux' />
+{{/if}}
 
-    <div class='right {{this.imageRight}}'>
-      <h2>Processes</h2>
-      <p>Find products by type</p>
-      <nav>
-        <Button
-          @route='home.products.subset'
-          @model='for-wave-soldering'
-          @text='Wave Soldering'
-          {{on 'mouseover' (fn this.showImage 6)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='for-selective-soldering'
-          @text='Selective Soldering'
-          {{on 'mouseover' (fn this.showImage 7)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='for-reflow-soldering'
-          @text='Reflow Soldering'
-          {{on 'mouseover' (fn this.showImage 8)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='for-rework-and-repair'
-          @text='Rework & Repair'
-          {{on 'mouseover' (fn this.showImage 9)}}
-        />
-        <Button
-          @route='home.products.subset'
-          @model='for-pre-tinning'
-          @text='Pre-tinning'
-          {{on 'mouseover' (fn this.showImage 10)}}
-        />
-      </nav>
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
-        class='image-6'
-        alt='soldering process'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-7'
-        alt='soldering process'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-8'
-        alt='soldering process'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-9'
-        alt='soldering process'
-      />
-      <img
-        src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-        class='image-10'
-        alt='soldering process'
-      />
-    </div>
+<Page>
+  {{#if this.media.isDesktopWidescreen}}
+    <Header::Desktop />
+  {{/if}}
 
-    <div class='bottom'>
-      <Button @route='home.company'>
-        <p>Company</p>
-        <p class='small'>Learn about Interflux</p>
-      </Button>
+  {{#if this.media.isMobileTablet}}
+    <Main @id='home-mobile'>
+      <Section @id='hero'>
+        <div class='text'>
+          <h1>Solder your electronics with <strong>zero defects</strong></h1>
+          <p>Impossible?</p>
+          <p>Ask Interflux :)</p>
+        </div>
 
-      <Button @route='home.documents'>
-        <p>Documents</p>
-        <p class='small'>Find technical data</p>
-      </Button>
+        <div class='cta'>
+          <Button
+            @onClick={{this.showNextSection}}
+            @icon='chevron-down'
+            @theme='square outlined'
+          />
+        </div>
 
-      <Button @route='home.contact'>
-        <p>Contact</p>
-        <p class='small'>Get in touch</p>
-      </Button>
-    </div>
-  </Section>
-</Main>
+        <div class='image'>
+          <ResponsiveImage
+            @path='images/public/home-hero'
+            @variations='@640x1136.jpg,@640x1136.webp'
+          />
+        </div>
+      </Section>
+
+      <Section @id='what-we-do'>
+        <h2>What we do</h2>
+        <blockquote>
+          We research & develop the
+          <strong>chemistry</strong>
+          needed for soldering electronics.
+        </blockquote>
+      </Section>
+
+      <Section @id='popular'>
+        <h2>Popular products</h2>
+        <ul class='rows'>
+          {{#each this.featuredProducts as |product|}}
+            <li>
+              <div class='left'>
+                <ResponsiveImage
+                  @path={{product.avatarPath}}
+                  @variations={{product.avatarVariations}}
+                  @captions={{product.avatarCaptions}}
+                  @alt={{@roduct.avatarAlt}}
+                />
+              </div>
+
+              <div class='right'>
+                <h3>{{product.name}}</h3>
+                <h4>{{product.productFamily.nameSingle}}</h4>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </Section>
+
+      <Section @id='new'>
+        <h2>New and upcoming!</h2>
+        <ul class='tiles'>
+          {{#each this.featuredMoreProducts as |product|}}
+            <li>
+              <ResponsiveImage
+                @path={{product.avatarPath}}
+                @variations={{product.avatarVariations}}
+                @captions={{product.avatarCaptions}}
+                @alt={{@roduct.avatarAlt}}
+              />
+
+              <div class='text'>
+                <h3>{{product.name}}</h3>
+                <h4>{{product.productFamily.nameSingle}}</h4>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        <div class='cta'>
+          <Button
+            @route='home.products'
+            @text='See all products'
+            @theme='link orange'
+          />
+        </div>
+      </Section>
+
+      <Section @id='why'>
+        <h2>Why Interflux?</h2>
+        <blockquote>
+          We've been pioneering soldering chemistry for electronics since 1980.
+          That's
+          <strong>{{this.yearCount}}+ years</strong>
+          of accumulated experience.
+        </blockquote>
+        <div class='cta'>
+          <Button
+            @route='home.company'
+            @text='See timeline'
+            @theme='link white'
+          />
+        </div>
+      </Section>
+
+      <Section @id='trusted-by'>
+        <h2>Trusted by</h2>
+        <div class='logos'>
+          <Image
+            @src='{{env 'cdnHost'}}/images/public/logo-kurtz-ersa@300x168.png'
+            @width='300'
+            @height='168'
+            @alt='logo Kurtz Ersa'
+          />
+          <Image
+            @src='{{env 'cdnHost'}}/images/public/logo-oritech.png'
+            @width='300'
+            @height='168'
+            @alt='logo Oritech Australia'
+            @class='oritech'
+          />
+        </div>
+      </Section>
+    </Main>
+  {{/if}}
+
+  {{#if this.media.isDesktopWidescreen}}
+    <Main @id='home-desktop'>
+      <Section @id='links' class='legacy'>
+        <div class='left {{this.imageLeft}}'>
+          <h2>Products</h2>
+          <p>Find products by type</p>
+          <nav>
+            <Button
+              @route='home.products.subset'
+              @model='soldering-fluxes'
+              @text='Soldering Fluxes'
+              {{on 'mouseover' (fn this.showImage 1)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='solder-pastes'
+              @text='Soldering Pastes'
+              {{on 'mouseover' (fn this.showImage 2)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='solder-wires'
+              @text='Soldering Wires'
+              {{on 'mouseover' (fn this.showImage 3)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='fluxing-systems'
+              @text='Fluxing Systems'
+              {{on 'mouseover' (fn this.showImage 4)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='auxiliaries'
+              @text='Auxiliaries'
+              {{on 'mouseover' (fn this.showImage 5)}}
+            />
+          </nav>
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
+            class='image-1'
+            alt='electronics'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-2'
+            alt='electronics'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-3'
+            alt='electronics'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-4'
+            alt='electronics'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-5'
+            alt='electronics'
+          />
+        </div>
+
+        <div class='right {{this.imageRight}}'>
+          <h2>Processes</h2>
+          <p>Find products by type</p>
+          <nav>
+            <Button
+              @route='home.products.subset'
+              @model='for-wave-soldering'
+              @text='Wave Soldering'
+              {{on 'mouseover' (fn this.showImage 6)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='for-selective-soldering'
+              @text='Selective Soldering'
+              {{on 'mouseover' (fn this.showImage 7)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='for-reflow-soldering'
+              @text='Reflow Soldering'
+              {{on 'mouseover' (fn this.showImage 8)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='for-rework-and-repair'
+              @text='Rework & Repair'
+              {{on 'mouseover' (fn this.showImage 9)}}
+            />
+            <Button
+              @route='home.products.subset'
+              @model='for-pre-tinning'
+              @text='Pre-tinning'
+              {{on 'mouseover' (fn this.showImage 10)}}
+            />
+          </nav>
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
+            class='image-6'
+            alt='soldering process'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-7'
+            alt='soldering process'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-8'
+            alt='soldering process'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-9'
+            alt='soldering process'
+          />
+          <img
+            src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
+            class='image-10'
+            alt='soldering process'
+          />
+        </div>
+
+        <div class='bottom'>
+          <Button @route='home.company'>
+            <p>Company</p>
+            <p class='small'>Learn about Interflux</p>
+          </Button>
+
+          <Button @route='home.documents'>
+            <p>Documents</p>
+            <p class='small'>Find technical data</p>
+          </Button>
+
+          <Button @route='home.contact'>
+            <p>Contact</p>
+            <p class='small'>Get in touch</p>
+          </Button>
+        </div>
+      </Section>
+    </Main>
+  {{/if}}
+
+  <Footer />
+</Page>

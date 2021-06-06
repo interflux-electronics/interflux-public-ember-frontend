@@ -1,4 +1,247 @@
-main#home {
+main#home-mobile {
+  h2 {
+    text-align: center;
+    font-family: $semibold;
+    color: $grey-7;
+    @include tablet {
+      font-size: 5vw; // TODO
+    }
+    @include mobile {
+      font-size: 5vw;
+    }
+  }
+  #hero {
+    position: relative;
+    overflow: hidden;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 5vw;
+      background: rgba($blue-4, 0.7);
+    }
+    .liner {
+      padding: 55vw 10vw;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    .text {
+      position: relative;
+      z-index: 2;
+      h1,
+      p {
+        text-align: center;
+        color: white;
+      }
+      h1 {
+        line-height: 150%;
+        @include tablet {
+          font-size: 8vw; // TODO
+          margin-bottom: 10vw;
+        }
+        @include mobile {
+          font-size: 8vw;
+          margin-bottom: 10vw;
+        }
+        strong {
+          display: block;
+          background: $orange-0;
+          font-family: $extrabold;
+        }
+      }
+      p {
+        line-height: 150%;
+        @include tablet {
+          font-size: 5.9375vw; // TODO
+        }
+        @include mobile {
+          font-size: 5.9375vw;
+        }
+      }
+    }
+    .cta {
+      position: relative;
+      z-index: 1;
+      position: absolute;
+      bottom: 5vw;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .image {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      max-height: 100%;
+      align-items: center;
+      z-index: 0;
+    }
+  }
+  #what-we-do,
+  #why {
+    background: $blue-5;
+    @include tablet {
+      border-bottom: 5vw solid $blue-4; // TODO
+      border-top: 5vw solid $blue-4; // TODO
+      padding: 42vw 10vw; // TODO
+    }
+    @include mobile {
+      border-bottom: 5vw solid $blue-4;
+      border-top: 5vw solid $blue-4;
+      padding: 42vw 10vw;
+    }
+    h2 {
+      color: white;
+      @include tablet {
+        margin-bottom: 10vw; // TODO
+      }
+      @include mobile {
+        margin-bottom: 10vw;
+      }
+    }
+    blockquote {
+      @include tablet {
+        font-size: 6.875vw; // TODO
+      }
+      @include mobile {
+        font-size: 6.875vw;
+      }
+      font-family: $regular;
+      text-align: center;
+      color: white;
+      line-height: 130%;
+      strong {
+        font-family: $extrabold;
+      }
+    }
+    .cta {
+      margin-top: 10vw;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  #popular,
+  #new {
+    h2 {
+      margin: 30vw auto 20vw;
+    }
+    h3 {
+      font-family: $extrabold;
+      background: $blue-3;
+      color: white;
+      @include tablet {
+        font-size: 6vw; // TODO
+        padding: 1vw; // TODO
+        margin-bottom: 2vw; // TODO
+      }
+      @include mobile {
+        font-size: 6vw;
+        padding: 2vw 3vw;
+        margin-bottom: 2vw;
+      }
+    }
+    h4 {
+      font-family: $regular;
+      background: $blue-0;
+      color: white;
+      @include tablet {
+        font-size: 5vw; // TODO
+        padding: 2vw 3vw; // TODO
+        margin-bottom: 2vw; // TODO
+      }
+      @include mobile {
+        font-size: 5vw;
+        padding: 1.5vw 2.5vw;
+        margin-bottom: 2vw;
+      }
+    }
+    ul {
+      &.rows {
+        padding: 1px 0;
+        background: $grey-1;
+        li {
+          background: white;
+          display: flex;
+          & + li {
+            margin-top: 1px;
+          }
+          .left {
+            padding: 2vw;
+            picture {
+              width: 32vw;
+              height: 32vw;
+            }
+          }
+          .right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+          }
+        }
+      }
+      &.tiles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        picture {
+          width: 80vw;
+          height: 80vw;
+        }
+        li {
+          position: relative;
+          & + li {
+            margin-top: 5vw;
+          }
+        }
+        .text {
+          position: absolute;
+          left: 4vw;
+          top: 4vw;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    }
+    .cta {
+      padding: 20vw 10vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  #trusted-by {
+    .liner {
+      padding: 30vw 5vw;
+    }
+    h2 {
+      margin: 0 auto 20vw;
+    }
+    .logos {
+      display: flex;
+      flex-flow: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    picture {
+      width: 45vw;
+      height: auto;
+      &.oritech {
+        background: #006464;
+        padding: 2vw;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+main#home-desktop {
   #links {
     background-color: $blue-3;
     background: linear-gradient(0deg, $blue-3, $blue-4 80%, $blue-5 100%);

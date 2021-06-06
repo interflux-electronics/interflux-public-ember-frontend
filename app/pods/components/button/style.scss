@@ -17,6 +17,136 @@ button {
     user-select: none;
     cursor: pointer;
 
+    // For the mobile chevron navigation buttons
+    // For the mobile hamburger button
+    &.square {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include tablet {
+        margin: 4.5vw; // TODO
+        height: 10vw; // TODO
+      }
+      @include mobile {
+        margin: 4.5vw;
+        width: 12vw;
+        height: 12vw;
+        border: 0.625vw solid rgba(white, 0.33);
+        border-radius: 1vw;
+      }
+      &.hamburger {
+        path {
+          transition: all 300ms ease;
+          transition-property: transform, opacity;
+          transform-origin: center;
+        }
+        &.close {
+          path:nth-child(1) {
+            transform: rotate(45deg) translate(0%, 30%);
+          }
+          path:nth-child(2) {
+            transform: scale(1.2, 0);
+            opacity: 0;
+          }
+          path:nth-child(3) {
+            transform: rotate(-45deg) translate(0%, -30%);
+          }
+        }
+      }
+      &:hover {
+        border-color: $blue-0;
+        background: $blue-4;
+      }
+      &:focus {
+        border-color: white;
+        background: $blue-4;
+      }
+      svg {
+        &.hamburger {
+          @include tablet {
+            height: 6.5vw; // TODO
+          }
+          @include mobile {
+            height: 6.5vw;
+          }
+          width: auto;
+        }
+        &.chevron-left {
+          @include tablet {
+            height: 5.5vw; // TODO
+          }
+          @include mobile {
+            height: 5.5vw;
+          }
+          width: auto;
+        }
+        &.chevron-down {
+          @include tablet {
+            width: 5.5vw; // TODO
+          }
+          @include mobile {
+            width: 5.5vw;
+          }
+          height: auto;
+        }
+        [fill] {
+          fill: white;
+        }
+      }
+    }
+
+    &.link {
+      background: none;
+      text-decoration: underline;
+      // @include widescreen {
+      // }
+      // @include desktop {
+      // }
+      @include tablet {
+        font-size: 5.9375vw; // TODO
+        border-radius: 2vw; // TODO
+        padding: 3vw; // TODO
+      }
+      @include mobile {
+        font-size: 5.9375vw;
+        border-radius: 0.8vw;
+        padding: 3vw;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+      &.blue {
+        color: $blue-0;
+        background: white;
+        &:hover {
+          color: $orange-3;
+        }
+        &:hover,
+        &:focus {
+          color: $orange-3;
+          box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+        }
+      }
+      &.orange {
+        color: $orange-3;
+        background: white;
+        &:hover,
+        &:focus {
+          color: $orange-2;
+          box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+        }
+      }
+      &.white {
+        color: white;
+        &:hover,
+        &:focus {
+          box-shadow: rgba(white, 0.1) 0 0 0 1px, 0 0 0 3px white;
+          background: rgba(white, 0.1);
+        }
+      }
+    }
+
     &.big {
       font-family: $extrabold;
       line-height: 270%;
@@ -164,16 +294,6 @@ button {
       &:hover {
         color: $orange-3;
         border-color: $orange-1;
-      }
-    }
-
-    &.link {
-      background: none;
-      color: white;
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-        background: none;
       }
     }
   }

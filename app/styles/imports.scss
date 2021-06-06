@@ -20,7 +20,8 @@
 @import 'app/pods/components/breadcrumbs/style';
 @import 'app/pods/components/button/style';
 @import 'app/pods/components/footer/style';
-@import 'app/pods/components/header/style';
+@import 'app/pods/components/header/mobile/style';
+@import 'app/pods/components/header/desktop/style';
 @import 'app/pods/components/icon/style';
 @import 'app/pods/components/image/style';
 @import 'app/pods/components/input/string/style';
@@ -28,6 +29,7 @@
 @import 'app/pods/components/loading-spinner/style';
 @import 'app/pods/components/map/style';
 @import 'app/pods/components/modal/style';
+@import 'app/pods/components/page/style';
 @import 'app/pods/components/responsive-image/style';
 @import 'app/pods/components/search-list/style';
 @import 'app/pods/components/section/style';
@@ -37,7 +39,6 @@
 @import 'app/pods/components/search/style';
 
 // Pages
-@import 'app/pods/application/style';
 @import 'app/pods/home/index/style';
 @import 'app/pods/home/company/style';
 @import 'app/pods/home/contact/style';
