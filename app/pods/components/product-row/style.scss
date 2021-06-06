@@ -10,6 +10,14 @@
 }
 li.product-row {
   animation: grow 500ms ease;
+  @include tablet {
+    border-top: 1px solid $grey-1; // TODO
+    padding: 5vw 0 15vw; // TODO
+  }
+  @include mobile {
+    border-top: 1px solid $grey-1;
+    padding: 5vw 0 15vw;
+  }
   &.hide {
     display: none;
   }
@@ -29,9 +37,6 @@ li.product-row {
   a {
     position: relative;
     z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-top: 1px solid $grey-1;
     border-bottom: 1px solid $grey-1;
     margin-top: -1px;
@@ -39,11 +44,27 @@ li.product-row {
     text-decoration: none;
     min-height: 266px;
     outline-offset: -1px;
+    @include widescreen {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @include desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     &:hover,
     &:focus {
-      outline: 1px solid $blue-0;
       z-index: 2;
-      box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1);
+      @include widescreen {
+        outline: 1px solid $blue-0; // TODO
+        box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1); // TODO
+      }
+      @include desktop {
+        outline: 1px solid $blue-0;
+        box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1);
+      }
       .right {
         transform: translateX(50px);
         svg {
@@ -54,11 +75,38 @@ li.product-row {
       }
     }
     .left {
-      padding: 12px;
       flex-shrink: 0;
+      @include widescreen {
+        padding: px(1vw);
+      }
+      @include desktop {
+        padding: 1vw;
+      }
+      @include tablet {
+        display: flex;
+        justify-content: center;
+      }
+      @include mobile {
+        display: flex;
+        justify-content: center;
+      }
       figure {
-        width: 240px;
-        height: 240px;
+        @include widescreen {
+          width: px(20vw); // TODO
+          height: px(20vw); // TODO
+        }
+        @include desktop {
+          width: 20vw;
+          height: 20vw;
+        }
+        @include tablet {
+          width: 90vw;
+          height: 90vw;
+        }
+        @include mobile {
+          width: 90vw;
+          height: 90vw;
+        }
         &.no-image {
           margin: 0;
           filter: grayscale(1) opacity(0.4);
@@ -69,8 +117,20 @@ li.product-row {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 20px;
       width: 100%;
+      box-sizing: border-box;
+      @include widescreen {
+        padding: px(1.666vw);
+      }
+      @include desktop {
+        padding: 1.666vw;
+      }
+      @include tablet {
+        padding: 6vw 5vw; // TODO
+      }
+      @include mobile {
+        padding: 6vw 5vw;
+      }
       h3 {
         background: $blue-3;
         font-size: 25px;
@@ -83,6 +143,22 @@ li.product-row {
       .tags {
         display: flex;
         margin: 10px 0 15px;
+        @include widescreen {
+          margin: px(0.8333vw) 0 px(1.25vw);
+        }
+        @include desktop {
+          margin: 0.8333vw 0 1.25vw;
+        }
+        @include tablet {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 2vw 0 6vw;
+        }
+        @include mobile {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 2vw 0 6vw;
+        }
         h4 {
           line-height: 24px;
           font-size: 16px;
@@ -105,20 +181,41 @@ li.product-row {
             background: $red-1;
           }
           & + h4 {
-            margin-left: 5px;
+            @include widescreen {
+              margin-left: px(0.41666vw);
+            }
+            @include desktop {
+              margin-left: 0.41666vw;
+            }
+            @include tablet {
+              margin: 2vw 1vw 0 0;
+            }
+            @include mobile {
+              margin: 2vw 1vw 0 0;
+            }
           }
         }
       }
       .pitch {
         p {
+          @include paragraph;
+          // font-family: $regular;
+          // line-height: 24px;
+          // font-size: 16px;
+          // color: $grey-7;
           position: relative;
-          font-family: $regular;
-          line-height: 24px;
-          font-size: 16px;
-          color: $grey-7;
-          max-height: calc(3 * 24px);
           overflow: hidden;
           text-overflow: ellipsis;
+          @include widescreen {
+            max-height: calc(3 * 24px);
+          }
+          @include desktop {
+            max-height: calc(3 * 24px);
+          }
+          @include tablet {
+          }
+          @include mobile {
+          }
           &:after {
             content: '';
             position: absolute;

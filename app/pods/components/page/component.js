@@ -25,6 +25,6 @@ export default class PageComponent extends Component {
   }
 
   get showFooter() {
-    return this.media.isDesktopWidescreen && !this.args.loading;
+    return !this.args.loading;
   }
 }

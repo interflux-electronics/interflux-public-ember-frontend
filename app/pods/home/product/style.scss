@@ -2,6 +2,12 @@
 
 main#product {
   background: $grey-0;
+  @include tablet {
+    padding-top: 21vw; // TODO
+  }
+  @include mobile {
+    padding-top: 21vw;
+  }
   &.discontinued {
     main section {
       h1,
