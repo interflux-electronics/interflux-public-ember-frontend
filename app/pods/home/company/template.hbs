@@ -1,88 +1,84 @@
-<Main @id="company">
-  <Header />
-
-  <Section @id="iso">
-    <div class="text">
+<Page
+  @id='company'
+  @title='Company'
+  @backRoute='home'
+  @crumbs={{array (hash label='Interflux' route='home') (hash label='Company')}}
+>
+  <Section @id='iso'>
+    <div class='text'>
       <h2>{{this.count}}+ YEARS OF HIGH QUALITY, HIGH RELIABILITY SOLDERING
         CHEMISTRY</h2>
       <p>Established in 1980, Interflux® Electronics N.V. provides more than 30
         years of experience in high quality, high reliability soldering
-        chemistry
-        to the electronics assembly industry. Our focal points are No-residueTM;
-        Technology fluxes, absolutely halide-free chemistry, VOC-free fluxes,
-        rosin- and resin-free formulations and much more ...</p>
+        chemistry to the electronics assembly industry. Our focal points are
+        No-residue&trade; Technology fluxes, absolutely halide-free chemistry,
+        VOC-free fluxes, rosin- and resin-free formulations and much more ...</p>
       <p>Interflux® Electronics N.V. is <strong>ISO 9001 certified</strong>.</p>
     </div>
     <img
-      class="label"
-      src="{{env 'cdnHost'}}/images/legacy/iso-label.jpg"
-      alt="ISO 9001"
-    >
+      class='label'
+      src='{{env 'cdnHost'}}/images/legacy/iso-label.jpg'
+      alt='ISO 9001'
+    />
     <img
-      class="daniel"
-      src="{{env 'cdnHost'}}/images/legacy/daniel-werkhoven.jpg"
-      alt="Daniel Werkhoven"
-    >
+      class='daniel'
+      src='{{env 'cdnHost'}}/images/legacy/daniel-werkhoven.jpg'
+      alt='Daniel Werkhoven'
+    />
   </Section>
 
-  <Section @id="pioneer">
+  <Section @id='pioneer'>
     <img
-      src="{{env 'cdnHost'}}/images/legacy/img-pioneer.jpg"
-      alt="pioneer boy"
-    >
-    <div class="text">
+      src='{{env 'cdnHost'}}/images/legacy/img-pioneer.jpg'
+      alt='pioneer boy'
+    />
+    <div class='text'>
       <h2>A true pioneer</h2>
       <p>Interflux® Electronics N.V. has always been in the forefront when it
-        comes
-        to innovative development of soldering chemistry.
-        <strong>IF2005M</strong>,
-        the first of its kind body-free, <strong>No-residue&trade;</strong> flux
-        was conceived, produced and made successful by the Interflux® Group.
-        Furthermore, Interflux was one of the first to offer a high performance,
-        high quality completely VOC-free line of soldering fluxes: the
-        <strong>PacIFic series</strong>. With <strong>IF 14</strong>, Interflux
-        introduced a solder wire chemistry with brushable residues, a property
-        that is still unique today.</p>
+        comes to innovative development of soldering chemistry.
+        <strong>IF2005M</strong>, the first of its kind body-free,
+        <strong>No-residue&trade;</strong>
+        flux was conceived, produced and made successful by the Interflux®
+        Group. Furthermore, Interflux was one of the first to offer a high
+        performance, high quality completely VOC-free line of soldering fluxes:
+        the
+        <strong>PacIFic series</strong>. With
+        <strong>IF 14</strong>, Interflux introduced a solder wire chemistry
+        with brushable residues, a property that is still unique today.</p>
     </div>
   </Section>
 
-  <Section @id="durable">
-    <div class="text">
+  <Section @id='durable'>
+    <div class='text'>
       <h2>Responsible & durable</h2>
       <p>By installing photovoltaic panels and solar water heating in Ghent,
-        Interflux® Electronics N.V. has committed itself to become <strong>a low
-          carbon emission facility</strong>. Today the annual CO2-exhaust has
-        been
-        reduced with more than 50%. Interflux® Electronics N.V. has a
-        <strong>biological waste water treatment system</strong> which grants
-        our
-        facility the ‘zero discharge’ label from the Flemish Government for
-        sewage
-        water.</p>
+        Interflux® Electronics N.V. has committed itself to become
+        <strong>a low carbon emission facility</strong>. Today the annual
+        CO2-exhaust has been reduced with more than 50%. Interflux® Electronics
+        N.V. has a
+        <strong>biological waste water treatment system</strong>
+        which grants our facility the ‘zero discharge’ label from the Flemish
+        Government for sewage water.</p>
     </div>
     <img
-      src="{{env 'cdnHost'}}/images/legacy/img-durable.jpg"
-      alt="hands holding a tree"
-    >
+      src='{{env 'cdnHost'}}/images/legacy/img-durable.jpg'
+      alt='hands holding a tree'
+    />
   </Section>
 
-  <Section @id="support">
+  <Section @id='support'>
     <img
-      src="{{env 'cdnHost'}}/images/legacy/img-support.jpg"
-      alt="electronics circuit"
-    >
-    <div class="text">
+      src='{{env 'cdnHost'}}/images/legacy/img-support.jpg'
+      alt='electronics circuit'
+    />
+    <div class='text'>
       <h2>Support worldwide</h2>
       <p>With 12 international daughter companies and 3 strategic production
         plants under the Interflux® name and a global network of agents and
         distributors, Interflux® Electronics N.V. provides a vast support
-        network.
-        High quality,
-        technical, logistical, sales and on-site <strong>customer
-          support</strong>
+        network. High quality, technical, logistical, sales and on-site
+        <strong>customer support</strong>
         for Interflux® products is widely available.</p>
     </div>
   </Section>
-
-  <Footer />
-</Main>
+</Page>
