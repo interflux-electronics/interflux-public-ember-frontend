@@ -1,6 +1,9 @@
 header#mobile {
   position: relative;
-  z-index: 10;
+  // z-index: 1 is for #page
+  // z-index: 2 is for header#mobile
+  // z-index: 3 is for #modal
+  z-index: 2;
   &.open {
     .top {
       background: rgba($blue-5, 0.95);

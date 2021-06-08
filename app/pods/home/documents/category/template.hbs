@@ -1,27 +1,24 @@
 {{#if (eq @model.category.slug 'REACH')}}
 
-  <Modal @id="reach">
+  <Modal @id='reach'>
     <Section>
-      <Icon @name="file-medical" />
+      <Icon @name='file-medical' />
       <h3>{{@model.category.name}}</h3>
       <p>REACH is the legislation of the European Union regulating chemical
-        substances across Europe. Interflux is subject to and in compliance
-        with
+        substances across Europe. Interflux is subject to and in compliance with
         this legislation. If you have any questions or need specific documents
         regarding REACH, please contact our friendly team in Belgium:
       </p>
-      <Link
-        @href="mailto:reach@interflux.com"
-        @text="reach@interflux.com"
-        @size="medium"
-        @style="orange-3"
+      <Button
+        @url='mailto:reach@interflux.com'
+        @text='reach@interflux.com'
+        @theme='medium orange-3'
       />
       <p>
         Alternatively, visit the
         <Link
-          @href="https://osha.europa.eu/en/themes/dangerous-substances/reach"
-          @text="REACH website"
-          @size="inline"
+          @url='https://osha.europa.eu/en/themes/dangerous-substances/reach'
+          @label='REACH website'
         />.
       </p>
     </Section>
@@ -29,54 +26,45 @@
 
 {{else if (eq @model.category.slug 'SDS')}}
 
-  <Modal @id="sds">
+  <Modal @id='sds'>
     <Section>
-      <Icon @name="file-medical" />
+      <Icon @name='file-medical' />
       <h3>{{@model.category.name}}</h3>
-      <p>To obtain Safety Data Sheets, please contact our friendly REACH team in Belgium:</p>
-      <Link
-        @href="mailto:reach@interflux.com"
-        @text="reach@interflux.com"
-        @size="medium"
-        @style="orange-3"
+      <p>To obtain Safety Data Sheets, please contact our friendly REACH team in
+        Belgium:</p>
+      <Button
+        @url='mailto:reach@interflux.com'
+        @text='reach@interflux.com'
+        @theme='medium orange-3'
       />
     </Section>
   </Modal>
 
 {{else}}
 
-  <Modal @id="documents">
-    <Section @class="text">
-      <div class="left">
+  <Modal @id='document-category'>
+    <Section @class='text'>
+      <div class='left'>
         <Icon @name={{@model.category.icon}} />
       </div>
-      <div class="right">
+      <div class='right'>
         <h3>{{@model.category.name}}</h3>
         <p>{{@model.category.gist}}</p>
       </div>
     </Section>
 
-    <Section
-      @id="documents"
-      @class="list"
-    >
-      <SearchList
-        @input-placeholder="Search"
-        @input-class="big white shadow"
-      >
+    <Section @id='documents' @class='list'>
+      <SearchList @input-placeholder='Search' @input-class='big white shadow'>
         <ul>
           {{#each @model.category.documents as |document|}}
             <li>
-              <div class="left">
-                <p data-search="me">{{document.name}} (PDF)</p>
+              <div class='left'>
+                <p data-search='me'>{{document.name}} (PDF)</p>
               </div>
 
-              <div class="right">
+              <div class='right'>
                 {{#each document.files as |file|}}
-                  <Button
-                    @url={{file.url}}
-                    @text={{file.language}}
-                  />
+                  <Button @url={{file.url}} @text={{file.language}} />
                 {{/each}}
               </div>
 

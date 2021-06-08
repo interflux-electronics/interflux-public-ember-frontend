@@ -1,126 +1,171 @@
-#documents.modal {
-  .box {
-    @include widescreen {
-      width: px(60vw);
-    }
-    @include desktop {
-      width: 60vw;
-    }
-    @include tablet {
-      width: 100%;
-    }
-    @include mobile {
-      width: 100%;
-    }
-  }
-  section.text {
-    .liner {
-      width: auto;
-      display: flex;
+#modal {
+  #document-category {
+    .box {
       @include widescreen {
-        padding: px(2.8vw);
+        width: px(60vw);
       }
       @include desktop {
-        padding: 2.8vw;
+        width: 60vw;
       }
       @include tablet {
-        padding: 5vw;
+        width: 100%;
       }
       @include mobile {
-        padding: 8vw;
-        flex-direction: column;
-        align-items: center;
+        width: 100%;
       }
-      .right {
+    }
+    section.text {
+      .liner {
+        width: auto;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         @include widescreen {
-          margin-left: px(1.5vw);
+          padding: px(2.8vw);
         }
         @include desktop {
-          margin-left: 1.5vw;
+          padding: 2.8vw;
         }
         @include tablet {
-          margin-left: 4vw;
+          padding: 5vw;
         }
-      }
-      h3 {
-        @include paragraph;
-        font-family: $bold;
-      }
-      h3,
-      p {
-        margin: 0;
-        line-height: 135%;
         @include mobile {
-          text-align: center;
-          margin: 3vw 0;
+          padding: 8vw;
+          flex-direction: column;
+          align-items: center;
         }
-      }
-    }
-  }
-
-  section.list {
-    margin-top: 0; // to counter <Section> margins
-
-    h3 {
-      margin: 5vw 0;
-      & + p {
-        margin-bottom: 3vw;
-      }
-    }
-
-    input {
-      background: white;
-    }
-
-    li {
-      display: flex;
-      justify-content: space-between;
-      &.no-match {
-        display: none;
-      }
-      .left {
+        .right {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          @include widescreen {
+            margin-left: px(1.5vw);
+          }
+          @include desktop {
+            margin-left: 1.5vw;
+          }
+          @include tablet {
+            margin-left: 4vw;
+          }
+        }
+        h3 {
+          @include paragraph;
+          font-family: $bold;
+        }
+        h3,
         p {
-          mark {
-            background: yellow;
+          margin: 0;
+          line-height: 135%;
+          @include mobile {
+            text-align: center;
+            margin: 3vw 0;
           }
         }
       }
-      .right {
+    }
+
+    section.list {
+      margin-top: 0; // to counter <Section> margins
+
+      h3 {
+        margin: 5vw 0;
+        & + p {
+          margin-bottom: 3vw;
+        }
+      }
+
+      input {
+        background: white;
+      }
+
+      li {
         display: flex;
-        a + a {
-          margin-left: 10px;
-        }
-      }
-    }
-    .liner {
-      width: auto;
-      padding: 0;
-    }
-    .search-list {
-      position: relative;
-      > .input {
-        background: $grey-0;
-        box-sizing: border-box;
-        @include widescreen {
-          padding: px(2vw);
-        }
-        @include desktop {
-          padding: 2vw;
-        }
-        @include tablet {
-          padding: 2vw;
-        }
+        justify-content: space-between;
         @include mobile {
-          padding: 3vw;
+          flex-direction: column;
+          padding: 4vw;
+        }
+        &.no-match {
+          display: none;
+        }
+        .left {
+          p {
+            mark {
+              background: yellow;
+            }
+          }
+        }
+        .right {
+          display: flex;
+          a + a {
+            margin-left: 10px;
+          }
         }
       }
-      > p {
-        display: none; // TODO
+      .liner {
+        width: auto;
+        padding: 0;
       }
-      > ul {
+      .search-list {
+        position: relative;
+        > .input {
+          background: $grey-0;
+          box-sizing: border-box;
+          @include widescreen {
+            padding: px(2vw);
+          }
+          @include desktop {
+            padding: 2vw;
+          }
+          @include tablet {
+            padding: 2vw;
+          }
+          @include mobile {
+            padding: 3vw;
+          }
+        }
+        > p {
+          display: none; // TODO
+        }
+        > ul {
+          @include widescreen {
+            padding: px(3.8vw) px(2vw);
+          }
+          @include desktop {
+            padding: 3.8vw 2vw;
+          }
+          @include tablet {
+            padding: 5vw;
+          }
+          @include mobile {
+            padding: 8vw;
+          }
+        }
+      }
+    }
+  }
+
+  #reach,
+  #sds {
+    .box {
+      @include widescreen {
+        width: px(42vw);
+      }
+      @include desktop {
+        width: 42vw;
+      }
+      @include tablet {
+        width: 64vw;
+      }
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    section {
+      .liner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
         @include widescreen {
           padding: px(3.8vw) px(2vw);
         }
@@ -133,80 +178,41 @@
         @include mobile {
           padding: 8vw;
         }
-      }
-    }
-  }
-}
-
-#reach.modal,
-#sds.modal {
-  .box {
-    @include widescreen {
-      width: px(42vw);
-    }
-    @include desktop {
-      width: 42vw;
-    }
-    @include tablet {
-      width: 64vw;
-    }
-    @include mobile {
-      width: 100%;
-    }
-  }
-
-  section {
-    .liner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: auto;
-      @include widescreen {
-        padding: px(3.8vw) px(2vw);
-      }
-      @include desktop {
-        padding: 3.8vw 2vw;
-      }
-      @include tablet {
-        padding: 5vw;
-      }
-      @include mobile {
-        padding: 8vw;
-      }
-      p {
-        text-align: center;
-      }
-      h3 {
-        @include paragraph;
-        font-family: $bold;
-        @include widescreen {
-          margin: px(3vw) 0 px(2.6vw);
+        p {
+          text-align: center;
         }
-        @include desktop {
-          margin: 3vw 0 2.6vw;
+        h3 {
+          @include paragraph;
+          font-family: $bold;
+          @include widescreen {
+            margin: px(3vw) 0 px(2.6vw);
+          }
+          @include desktop {
+            margin: 3vw 0 2.6vw;
+          }
+          @include tablet {
+            margin: 4vw 0 3vw;
+          }
+          @include mobile {
+            margin: 7vw 0 5vw;
+          }
         }
-        @include tablet {
-          margin: 4vw 0 3vw;
-        }
-        @include mobile {
-          margin: 7vw 0 5vw;
-        }
-      }
-      p + a {
-        display: block;
-        width: 80%;
-        @include widescreen {
-          margin: px(3vw) auto;
-        }
-        @include desktop {
-          margin: 3vw auto;
-        }
-        @include tablet {
-          margin: 4vw auto;
-        }
-        @include mobile {
-          margin: 7vw 0;
-          width: 100%;
+        p + a {
+          display: block;
+          width: 80%;
+          @include widescreen {
+            margin: px(3vw) auto;
+          }
+          @include desktop {
+            margin: 3vw auto;
+          }
+          @include tablet {
+            margin: 4vw auto;
+          }
+          @include mobile {
+            margin: 7vw 0;
+            width: 100%;
+          }
         }
       }
     }

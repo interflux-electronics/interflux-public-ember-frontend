@@ -6,6 +6,7 @@
   &.no-scroll {
     position: fixed;
     width: 100%;
+    z-index: 1;
   }
   header,
   nav#breadcrumbs,
@@ -13,7 +14,7 @@
   footer {
     flex-shrink: 0;
   }
-  main + div {
+  .spacer {
     height: 100%;
   }
 }

@@ -12,29 +12,4 @@
       <p>{{language.nameNative}}</p>
     </Button>
   {{/each}}
-
-  {{!--
-  {{#each this.languages as |language|}}
-    {{#if language.ready}}
-      <Button
-        @route="home"
-        @model={{language.id}}
-      >
-        <img
-          src="{{env 'cdnHost'}}/images/flags/{{language.id}}.png"
-          alt="flag {{language.nameNative}}"
-        >
-        <p>{{language.nameNative}}</p>
-      </Button>
-    {{else}}
-      <Link @href="{{env 'oldHost'}}/{{language.id}}">
-        <img
-          src="{{env 'cdnHost'}}/images/flags/{{language.id}}.png"
-          alt="flag {{language.nameNative}}"
-        >
-        <p>{{language.nameNative}}</p>
-      </Link>
-    {{/if}}
-  {{/each}}
---}}
 </Section>

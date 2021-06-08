@@ -7,7 +7,12 @@
   }
 }
 
-body > .modal {
+#modal {
+  position: relative;
+  // z-index: 1 is for #page
+  // z-index: 2 is for header#mobile
+  // z-index: 3 is for #modal
+  z-index: 3;
   > .overlay {
     position: fixed;
     background: rgba($blue-5, 0.9);
@@ -57,6 +62,15 @@ body > .modal {
       animation-duration: 400ms;
       animation-timing-function: ease-out;
       animation-fill-mode: both;
+      &.error {
+        padding-top: 40px;
+        text-align: center;
+        svg {
+          width: 30px;
+          height: 30px;
+          margin-bottom: 20px;
+        }
+      }
     }
   }
 }

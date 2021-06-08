@@ -1,13 +1,19 @@
-<div
-  id="{{@id}}"
-  class="modal{{if @class (concat ' ' @class)}}"
->
-  <div class="overlay">
-    <LinkTo @route={{this.parentRoute}}></LinkTo>
+<div id='modal'>
+  <div class='overlay'>
+    <a href={{href-to this.parentRoute}}></a>
   </div>
-  <div class="content">
-    <div class="box">
-      {{yield}}
-    </div>
+  <div class='content' id={{@id}}>
+    {{#if @loading}}
+      <p>Loading ...</p>
+    {{else if @error}}
+      <div class='box error'>
+        <Svg::Error />
+        <RouteErrorMessage />
+      </div>
+    {{else}}
+      <div class='box'>
+        {{yield}}
+      </div>
+    {{/if}}
   </div>
 </div>

@@ -1,34 +1,37 @@
-#documents.page {
-  section#categories {
+main#documents {
+  background: $grey-0;
+  & + .spacer {
     background: $grey-0;
+  }
+  section#categories {
     .liner {
       @include widescreen {
-        padding: 0 px(10vw);
+        padding: 72px 120px 100px;
       }
       @include desktop {
-        padding: 0 10vw;
+        padding: vw(72px) vw(120px) vw(100px);
       }
       @include tablet {
-        padding: 0 3vw 3vw;
+        padding: 31vw 3vw;
       }
       @include mobile {
-        padding: 0 5vw 5vw;
+        padding: 36vw 5vw;
       }
     }
     h3 {
       @include light-font(0.9);
       @include widescreen {
-        margin: px(6vw) auto;
+        margin: 0 auto 72px;
       }
       @include desktop {
-        margin: 6vw auto;
+        margin: 0 auto vw(72px);
       }
       @include tablet {
-        margin: 10vw auto;
+        margin: 0 auto 10vw;
       }
       @include mobile {
         width: 90%;
-        margin: 15vw auto;
+        margin: 0 auto 15vw;
       }
     }
     nav {
