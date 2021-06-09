@@ -1,15 +1,1 @@
-<Main @id="contact-loading">
-  <Header />
-
-  <main>
-    <Section @id="map">
-      <Map @markers={{@model.companies}} />
-
-      <div class="loading">
-        <p>Loading ...</p>
-      </div>
-    </Section>
-  </main>
-
-  <Footer />
-</Main>
+<Page @id='contact-loading' @loading='true' />

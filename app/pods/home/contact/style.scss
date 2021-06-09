@@ -1,4 +1,8 @@
-#contact.page {
+main#contact {
+  background: $grey-0;
+  & + .spacer {
+    background: $grey-0;
+  }
   #map {
     .liner {
       padding: 0;
@@ -16,42 +20,23 @@
         margin-bottom: 5vw;
       }
       @include tablet {
-        height: 70vw;
-        margin-bottom: 8vw;
+        height: 100vw;
+        margin: 21vw 0 8vw; // TODO
       }
       @include mobile {
-        height: 100vw;
-        margin-bottom: 12vw;
+        height: 130vw;
+        margin: 21vw 0 12vw;
       }
-
       .mapboxgl-map {
         height: 100%;
       }
     }
   }
-  li {
-    align-items: flex-start;
-    padding: 60px;
-    box-shadow: 0 2px 4px RGBA(0, 0, 0, 0.1);
-    background-color: white;
-    & + li {
-      margin-top: 30px;
-    }
-    h2 {
-      margin-bottom: 16px;
-      font-family: $extrabold;
-    }
-    p {
-      margin: 0;
-    }
-    p.country {
-      font-family: $bold;
-    }
-    div + div {
-      margin-top: 12px;
-    }
-  }
   #list {
+    .input-string {
+      width: 90vw;
+      margin: 0 auto;
+    }
     .liner {
       @include widescreen {
         width: px(50vw);
@@ -60,10 +45,10 @@
         width: 50vw;
       }
       @include tablet {
-        width: 80vw;
+        width: 90vw; // TODO
       }
       @include mobile {
-        width: 90vw;
+        width: 100vw;
       }
     }
     .search-list {
@@ -85,6 +70,73 @@
       }
       @include mobile {
         margin-top: 12vw;
+      }
+      li {
+        align-items: flex-start;
+        box-shadow: 0 2px 4px RGBA(0, 0, 0, 0.1);
+        background-color: white;
+        @include widescreen {
+          padding: 60px;
+        }
+        @include desktop {
+          padding: vw(60px);
+        }
+        @include tablet {
+          padding: 18vw 5vw; // TODO
+        }
+        @include mobile {
+          padding: 18vw 5vw;
+        }
+        & + li {
+          @include widescreen {
+            margin-top: 30px;
+          }
+          @include desktop {
+            margin-top: vw(30px);
+          }
+          @include tablet {
+            margin-top: 10vw; // TODO
+          }
+          @include mobile {
+            margin-top: 10vw;
+          }
+        }
+        h2 {
+          font-family: $extrabold;
+          line-height: 140%;
+          @include widescreen {
+            margin-top: 16px;
+          }
+          @include desktop {
+            margin-top: vw(16px);
+          }
+          @include tablet {
+            margin-bottom: 10vw; // TODO
+          }
+          @include mobile {
+            margin-bottom: 8vw;
+          }
+        }
+        p {
+          margin: 0;
+        }
+        p.country {
+          font-family: $bold;
+        }
+        div + div {
+          @include widescreen {
+            margin-top: 12px;
+          }
+          @include desktop {
+            margin-top: vw(12px);
+          }
+          @include tablet {
+            margin-top: 10vw; // TODO
+          }
+          @include mobile {
+            margin-top: 6vw;
+          }
+        }
       }
     }
     h3 {

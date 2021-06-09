@@ -1,128 +1,131 @@
-<Main @id="contact">
-  <Header />
+<Page
+  @id='contact'
+  @title='Contact'
+  @backRoute='home'
+  @crumbs={{array (hash label='Interflux' route='home') (hash label='Company')}}
+>
+  <Section @id='map'>
+    <Map @markers={{@model.companies}} />
+  </Section>
 
-  <main>
-    <Section @id="map">
-      <Map @markers={{@model.companies}} />
-    </Section>
+  <Section @id='list'>
+    <SearchList @input-placeholder='Search' @input-class='big white shadow'>
+      <ul>
+        {{#each this.companies as |company|}}
+          <li>
+            <h2 data-search='me'>{{company.businessName}}</h2>
 
-    <Section @id="list">
-      <SearchList
-        @input-placeholder="Search"
-        @input-class="big white shadow"
-      >
-        <ul>
-          {{#each this.companies as |company|}}
-            <li>
-              <h2 data-search="me">{{company.businessName}}</h2>
-
-              <div>
-                {{#if company.legalName}}
-                  <p data-search="me">{{company.legalName}}</p>
-                {{/if}}
-                {{#if company.address}}
-                  <p data-search="me">{{markdown company.address}}</p>
-                {{/if}}
-                <p
-                  data-search="me"
-                  class="country"
-                >{{company.country.name}}</p>
-              </div>
-
-              <div>
-                {{#if company.phone}}
-                  <p>Tel: <a
-                      href="tel:{{company.phoneForRobots}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.phone}}</a></p>
-                {{/if}}
-
-                {{#if company.fax}}
-                  <p>Fax: <a
-                      href="fax:{{company.faxForRobots}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.fax}}</a></p>
-                {{/if}}
-
-                {{#if company.emailGeneral}}
-                  <p>{{if company.hasOneEmail 'Email:' 'Email for general enquiries:'}} <a
-                      href="mailto:{{company.emailGeneral}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.emailGeneral}}</a></p>
-                {{/if}}
-
-                {{#if company.emailOrders}}
-                  <p>Email for placing orders: <a
-                      href="mailto:{{company.emailOrders}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.emailOrders}}</a></p>
-                {{/if}}
-
-                {{#if company.emailSupport}}
-                  <p>Email for technical support: <a
-                      href="mailto:{{company.emailSupport}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.emailSupport}}</a></p>
-                {{/if}}
-
-                {{#if company.emailAccounting}}
-                  <p>Accounting: <a
-                      href="mailto:{{company.emailAccounting}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.emailAccounting}}</a></p>
-                {{/if}}
-
-                {{#if company.website}}
-                  <p>Website: <a
-                      href={{company.website}}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >{{company.websiteForHumans}}</a></p>
-                {{/if}}
-              </div>
-
-              {{#if company.companyMembers}}
-                <div>
-                  <p>Best contact{{if company.hasMultipleContacts 's'}}:</p>
-                  {{#each company.companyMembers as |member|}}
-                    {{#if member.person.fullName}}
-                      <p><span data-search="me">{{member.person.fullName}}</span>
-                        {{#if member.title}}
-                          <span>({{member.title}})</span>
-                        {{/if}}
-                      </p>
-                    {{/if}}
-
-                    {{#if member.email}}
-                      <p><a
-                          href="mailto:{{member.email}}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >{{member.email}}</a></p>
-                    {{/if}}
-                    {{#if member.phone}}
-                      <p><a
-                          href="tel:{{member.phone}}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >{{member.phone}}</a></p>
-                    {{/if}}
-                  {{/each}}
-                </div>
+            <div>
+              {{#if company.legalName}}
+                <p data-search='me'>{{company.legalName}}</p>
               {{/if}}
-            </li>
-          {{/each}}
-        </ul>
-      </SearchList>
-    </Section>
+              {{#if company.address}}
+                <p data-search='me'>{{markdown company.address}}</p>
+              {{/if}}
+              <p data-search='me' class='country'>{{company.country.name}}</p>
+            </div>
 
-  </main>
+            <div>
+              {{#if company.phone}}
+                <p>Tel:
+                  <a
+                    href='tel:{{company.phoneForRobots}}'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.phone}}</a></p>
+              {{/if}}
 
-  <Footer />
-</Main>
+              {{#if company.fax}}
+                <p>Fax:
+                  <a
+                    href='fax:{{company.faxForRobots}}'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.fax}}</a></p>
+              {{/if}}
+
+              {{#if company.emailGeneral}}
+                <p>{{if
+                    company.hasOneEmail
+                    'Email:'
+                    'Email for general enquiries:'
+                  }}
+                  <a
+                    href='mailto:{{company.emailGeneral}}'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.emailGeneral}}</a></p>
+              {{/if}}
+
+              {{#if company.emailOrders}}
+                <p>Email for placing orders:
+                  <a
+                    href='mailto:{{company.emailOrders}}'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.emailOrders}}</a></p>
+              {{/if}}
+
+              {{#if company.emailSupport}}
+                <p>Email for technical support:
+                  <a
+                    href='mailto:{{company.emailSupport}}'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.emailSupport}}</a></p>
+              {{/if}}
+
+              {{#if company.emailAccounting}}
+                <p>Accounting:
+                  <a
+                    href='mailto:{{company.emailAccounting}}'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.emailAccounting}}</a></p>
+              {{/if}}
+
+              {{#if company.website}}
+                <p>Website:
+                  <a
+                    href={{company.website}}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >{{company.websiteForHumans}}</a></p>
+              {{/if}}
+            </div>
+
+            {{#if company.companyMembers}}
+              <div>
+                <p>Best contact{{if company.hasMultipleContacts 's'}}:</p>
+                {{#each company.companyMembers as |member|}}
+                  {{#if member.person.fullName}}
+                    <p><span data-search='me'>{{member.person.fullName}}</span>
+                      {{#if member.title}}
+                        <span>({{member.title}})</span>
+                      {{/if}}
+                    </p>
+                  {{/if}}
+
+                  {{#if member.email}}
+                    <p><a
+                        href='mailto:{{member.email}}'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >{{member.email}}</a></p>
+                  {{/if}}
+                  {{#if member.phone}}
+                    <p><a
+                        href='tel:{{member.phone}}'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >{{member.phone}}</a></p>
+                  {{/if}}
+                {{/each}}
+              </div>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </SearchList>
+  </Section>
+</Page>

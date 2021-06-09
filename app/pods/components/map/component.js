@@ -4,15 +4,20 @@
 
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class MapComponent extends Component {
+  @service media;
+
   get initOptions() {
+    const zoom = this.media.isMobile ? 0.3 : 1.7;
+
     return {
       style: 'mapbox://styles/jw-floatplane-dev/ck8mcsfr50uwe1iohs6xv6n0d',
       minZoom: '0',
       maxZoom: '24',
-      interactive: false,
-      zoom: 1.7,
+      interactive: true,
+      zoom,
       center: [67.5172053, 14.199253] // lng lat! (not lat lng)
     };
   }
@@ -43,7 +48,8 @@ export default class MapComponent extends Component {
   //
   get sources() {
     const arr = [];
-    this.args.markers.forEach((m) => {
+    this.args.markers.sortBy('latitude').forEach((m) => {
+      console.log(m.latitude, m.longitude, m.businessName);
       const json = this.feature([m.longitude, m.latitude]); // lng lat! (not lat lng)
       arr.push(json);
     });
@@ -60,11 +66,13 @@ export default class MapComponent extends Component {
   }
 
   get sourceLayer() {
+    const radius = this.media.isMobile ? 4 : 10;
+
     return {
       type: 'circle',
       paint: {
         'circle-color': '#ff7300',
-        'circle-radius': 10
+        'circle-radius': radius
       }
     };
   }
