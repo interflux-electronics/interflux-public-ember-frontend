@@ -29,29 +29,24 @@ module.exports = function (defaults) {
       remove: false
     },
 
-    // Prevent CSS minification in development and tests
-    minifyCSS: {
-      enabled: ENV.isProduction
-    },
-
-    // Prevent JS minification in development and tests
-    minifyJS: {
-      enabled: ENV.isProduction
-    },
-
-    // Enable source maps in all environments because it helps debugging.
-    sourcemaps: {
-      enabled: true,
-      extensions: ['js']
-    },
-
     // Because the 2 JS and 2 CSS bundles are being HTTP2 pushed alongside the
     // index.html by Nginx, we need the name to be predictable and thus have
     // no fingerprints. Cache busting is not needed because the JS and CSS
     // bundles we'll never cache (they update too often). Images, videos and
     // fonts we'll highly cache though.
-    fingerprint: {
-      enabled: false
+    // fingerprint: {
+    //   enabled: false
+    // },
+
+    'ember-cli-terser': {
+      terser: {
+        compress: {
+          sequences: 20
+        }
+      },
+
+      // Tell broccoli-terser-sourcemap to not add sourcemap URLs
+      hiddenSourceMap: true
     }
   });
 
