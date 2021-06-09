@@ -27,7 +27,7 @@ module.exports = function (defaults) {
     autoprefixer: {
       cascade: false,
       remove: false
-    },
+    }
 
     // Because the 2 JS and 2 CSS bundles are being HTTP2 pushed alongside the
     // index.html by Nginx, we need the name to be predictable and thus have
@@ -37,17 +37,6 @@ module.exports = function (defaults) {
     // fingerprint: {
     //   enabled: false
     // },
-
-    'ember-cli-terser': {
-      terser: {
-        compress: {
-          sequences: 20
-        }
-      },
-
-      // Tell broccoli-terser-sourcemap to not add sourcemap URLs
-      hiddenSourceMap: true
-    }
   });
 
   return app.toTree();
