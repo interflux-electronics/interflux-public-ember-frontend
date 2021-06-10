@@ -21,16 +21,22 @@ export default class HomeIndexController extends Controller {
     }
   }
 
+  @action
   showNextSection() {
-    console.log('showNextSection');
+    const top = document.getElementById('what-we-do').offsetTop;
+    window.scrollTo({ top, behavior: 'smooth' });
   }
 
-  get featuredProducts() {
-    return this.model.products.filterBy('featured').rejectBy('featuredMore');
+  get popularProducts() {
+    return this.model.products
+      .filterBy('status', 'popular')
+      .sortBy('mainFamily.rank');
   }
 
-  get featuredMoreProducts() {
-    return this.model.products.filterBy('featuredMore');
+  get newProducts() {
+    return this.model.products
+      .filterBy('status', 'new')
+      .sortBy('mainFamily.rank');
   }
 
   get yearCount() {

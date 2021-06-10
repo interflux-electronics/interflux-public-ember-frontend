@@ -30,7 +30,7 @@ main#home-mobile {
     }
     .text {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       h1,
       p {
         text-align: center;
@@ -81,6 +81,9 @@ main#home-mobile {
       display: flex;
       align-items: center;
       z-index: 0;
+      picture {
+        height: auto;
+      }
     }
   }
   #what-we-do,

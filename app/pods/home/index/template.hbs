@@ -38,24 +38,26 @@
     <Section @id='popular'>
       <h2>Popular products</h2>
       <ul class='rows'>
-        {{#each this.featuredProducts as |product|}}
-          <li>
-            <a href={{href-to 'home.product' product.id}}>
-              <div class='left'>
-                <ResponsiveImage
-                  @path={{product.avatarPath}}
-                  @variations={{product.avatarVariations}}
-                  @captions={{product.avatarCaptions}}
-                  @alt={{@roduct.avatarAlt}}
-                />
-              </div>
+        {{#each this.popularProducts as |product|}}
+          {{#if product.id}}
+            <li>
+              <a href={{href-to 'home.product' product.id}}>
+                <div class='left'>
+                  <ResponsiveImage
+                    @path={{product.avatarPath}}
+                    @variations={{product.avatarVariations}}
+                    @captions={{product.avatarCaptions}}
+                    @alt={{@roduct.avatarAlt}}
+                  />
+                </div>
 
-              <div class='right'>
-                <h3>{{product.name}}</h3>
-                <h4>{{product.productFamily.nameSingle}}</h4>
-              </div>
-            </a>
-          </li>
+                <div class='right'>
+                  <h3>{{product.name}}</h3>
+                  <h4>{{product.family.nameSingle}}</h4>
+                </div>
+              </a>
+            </li>
+          {{/if}}
         {{/each}}
       </ul>
     </Section>
@@ -63,22 +65,24 @@
     <Section @id='new'>
       <h2>New and upcoming!</h2>
       <ul class='tiles'>
-        {{#each this.featuredMoreProducts as |product|}}
-          <li>
-            <a href={{href-to 'home.product' product.id}}>
-              <ResponsiveImage
-                @path={{product.avatarPath}}
-                @variations={{product.avatarVariations}}
-                @captions={{product.avatarCaptions}}
-                @alt={{@roduct.avatarAlt}}
-              />
+        {{#each this.newProducts as |product|}}
+          {{#if product.id}}
+            <li>
+              <a href={{href-to 'home.product' product.id}}>
+                <ResponsiveImage
+                  @path={{product.avatarPath}}
+                  @variations={{product.avatarVariations}}
+                  @captions={{product.avatarCaptions}}
+                  @alt={{@roduct.avatarAlt}}
+                />
 
-              <div class='text'>
-                <h3>{{product.name}}</h3>
-                <h4>{{product.productFamily.nameSingle}}</h4>
-              </div>
-            </a>
-          </li>
+                <div class='text'>
+                  <h3>{{product.name}}</h3>
+                  <h4>{{product.family.nameSingle}}</h4>
+                </div>
+              </a>
+            </li>
+          {{/if}}
         {{/each}}
       </ul>
       <div class='cta'>
