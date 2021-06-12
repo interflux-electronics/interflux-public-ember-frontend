@@ -13,7 +13,8 @@ export default class HeaderMobileComponent extends Component {
   get state() {
     return [
       this.menuIsOpen ? 'open' : 'closed',
-      this.scroll.goingDown ? 'scrolling-down' : 'scrolling-up'
+      this.scroll.goingDown ? 'scrolling-down' : 'scrolling-up',
+      this.args.backRoute ? 'has-back-button' : 'no-back-button'
     ].join(' ');
   }
 

@@ -9,15 +9,11 @@
           @theme='square outlined'
         />
       {{else}}
-        <Image
-          @id='logo'
-          @src='{{env
-            'cdnHost'
-          }}/images/logos/primary-interflux-electronics-symbol-1.svg'
-          @width='100'
-          @height='100'
-          @alt='Interflux Electronics'
-        />
+        <div id='logo'>
+          <div class='clip'>
+            <Svg::PrimaryInterfluxLogo />
+          </div>
+        </div>
       {{/if}}
       <h1 aria-hidden='true'>{{@title}}</h1>
       <Button
@@ -28,10 +24,33 @@
     </div>
 
     <div class='mid'>
-      <Button @route='home.products' @text='Products' @theme='link white' />
-      <Button @route='home.company' @text='Company' @theme='link white' />
-      <Button @route='home.documents' @text='Documents' @theme='link white' />
-      <Button @route='home.contact' @text='Contact' @theme='link white' />
+      <div class='logo'>
+        <Svg::PrimaryInterfluxLogo />
+      </div>
+      <Button
+        @route='home.products'
+        @text='Products'
+        @theme='stack white'
+        @icon='flask'
+      />
+      <Button
+        @route='home.company'
+        @text='Company'
+        @theme='stack white'
+        @icon='microchip'
+      />
+      <Button
+        @route='home.documents'
+        @text='Documents'
+        @theme='stack white'
+        @icon='document'
+      />
+      <Button
+        @route='home.contact'
+        @text='Contact'
+        @theme='stack white'
+        @icon='street-view'
+      />
     </div>
   </nav>
 </header>

@@ -55,7 +55,8 @@ button {
         }
       }
       &:hover {
-        border-color: $blue-0;
+        // border-color: $blue-0;
+        border-color: white;
         background: $blue-4;
       }
       &:focus {
@@ -143,6 +144,82 @@ button {
         &:focus {
           box-shadow: rgba(white, 0.1) 0 0 0 1px, 0 0 0 3px white;
           background: rgba(white, 0.1);
+        }
+      }
+    }
+
+    &.stack {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      // @include widescreen {
+      // }
+      // @include desktop {
+      // }
+      @include tablet {
+        font-size: 5.9375vw; // TODO
+        border-radius: 2vw; // TODO
+        padding: 3vw; // TODO
+      }
+      @include mobile {
+        font-size: 5.9375vw;
+        border-radius: 0.8vw;
+        padding: 4vw;
+      }
+      svg {
+        // @include widescreen {
+        // }
+        // @include desktop {
+        // }
+        @include tablet {
+          max-width: 9vw; // TODO
+          max-height: 9vw; // TODO
+          margin-right: 4vw; // TODO
+        }
+        @include mobile {
+          max-width: 9vw;
+          max-height: 9vw;
+          margin-right: 4vw;
+        }
+      }
+      span {
+        text-align: left;
+        // @include widescreen {
+        // }
+        // @include desktop {
+        // }
+        @include tablet {
+          width: 35vw; // TODO
+        }
+        @include mobile {
+          width: 55vw;
+        }
+      }
+      &.white {
+        color: white;
+        transition: background $easeOutExpo 300ms;
+        svg {
+          [fill] {
+            fill: white;
+          }
+        }
+        &:hover,
+        &:focus {
+          box-shadow: rgba(white, 0.1) 0 0 0 1px, 0 0 0 3px white;
+          background: rgba(white, 0.1);
+        }
+      }
+      & + .button {
+        // @include widescreen {
+        // }
+        // @include desktop {
+        // }
+        @include tablet {
+          margin-top: 3vw; // TODO
+        }
+        @include mobile {
+          margin-top: 3vw;
         }
       }
     }

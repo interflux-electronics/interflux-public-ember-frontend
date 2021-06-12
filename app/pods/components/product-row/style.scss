@@ -36,7 +36,7 @@ li.product-row {
   }
   a {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     border-top: 1px solid $grey-1;
     border-bottom: 1px solid $grey-1;
     margin-top: -1px;
@@ -56,7 +56,7 @@ li.product-row {
     }
     &:hover,
     &:focus {
-      z-index: 2;
+      z-index: 1;
       @include widescreen {
         outline: 1px solid $blue-0; // TODO
         box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1); // TODO
