@@ -23,7 +23,7 @@ main#home-mobile {
       background: rgba($blue-4, 0.7);
     }
     .liner {
-      padding: 55vw 10vw;
+      padding: 16vw 10vw 10vw;
       height: 90vh;
       display: flex;
       align-items: center;
@@ -38,22 +38,35 @@ main#home-mobile {
       }
       h1 {
         line-height: 150%;
+        font-family: $bold;
         @include tablet {
-          font-size: 8vw; // TODO
+          font-size: 9vw; // TODO
           margin-bottom: 10vw;
         }
         @include mobile {
-          font-size: 8vw;
+          font-size: 9vw;
           margin-bottom: 10vw;
         }
         strong {
           display: block;
-          background: $orange-0;
           font-family: $extrabold;
+          span {
+            position: relative;
+            &:after {
+              content: '';
+              position: absolute;
+              left: -1.8vw;
+              top: 1vw;
+              width: calc(100% + 3.6vw);
+              height: 10.5vw;
+              background: $orange-0;
+              z-index: -1;
+            }
+          }
         }
       }
       p {
-        line-height: 150%;
+        line-height: 180%;
         @include tablet {
           font-size: 5.9375vw; // TODO
         }

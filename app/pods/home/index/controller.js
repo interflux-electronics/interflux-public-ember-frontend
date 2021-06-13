@@ -9,8 +9,43 @@ import { inject as service } from '@ember/service';
 export default class HomeIndexController extends Controller {
   @service media;
 
+  @tracked heroWord;
   @tracked imageLeft = 'image-1';
   @tracked imageRight = 'image-6';
+
+  constructor() {
+    super(...arguments);
+
+    this.startHeroWordLoop();
+  }
+
+  async startHeroWordLoop() {
+    // if (this.fastboot.isFastBoot) {
+    //   return;
+    // }
+
+    const array = [
+      'zero defects',
+      'lead-free',
+      'high reliability',
+      'no residue!',
+      'low temperature',
+      'VOC-free',
+      'halide-free'
+    ].sort(function () {
+      return 0.5 - Math.random();
+    });
+
+    let i = 0;
+
+    while (i < 6) {
+      this.heroWord = array[i];
+      i = i < 5 ? i + 1 : 0;
+      await new Promise((approve) => {
+        window.setTimeout(approve, 2000);
+      });
+    }
+  }
 
   @action
   showImage(i) {

@@ -42,11 +42,7 @@ header#mobile {
     }
     .mid {
       background: rgba($blue-5, 0.95);
-      background: radial-gradient(
-        circle,
-        rgba($blue-4, 0.95) 0%,
-        rgba($blue-5, 0.95) 80%
-      );
+      background: radial-gradient(circle, $blue-4 0%, $blue-5 80%);
       padding: 12vw 0;
       min-height: calc(100vh - 21vw);
       a,
@@ -72,7 +68,7 @@ header#mobile {
   }
 
   &.closed {
-    &.scrolling-down {
+    &.scrolling-down.not-near-top {
       .top {
         transform: translateY(-21vw);
       }
@@ -106,7 +102,7 @@ header#mobile {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all $easeOutExpo 500ms;
+    transition: all $easeOutExpo 800ms;
     transition-property: background, transform;
     @include tablet {
       height: 21vw; // TODO

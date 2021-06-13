@@ -5,7 +5,10 @@
   {{#if this.media.isMobileTablet}}
     <Section @id='hero'>
       <div class='text'>
-        <h1>Solder your electronics with <strong>zero defects</strong></h1>
+        <h1>
+          <span>Solder your electronics with </span>
+          <strong>{{span-each-word this.heroWord}}</strong>
+        </h1>
         <p>Impossible?</p>
         <p>Ask Interflux :)</p>
       </div>
@@ -29,7 +32,7 @@
     <Section @id='what-we-do'>
       <h2>What we do</h2>
       <blockquote>
-        We research & develop the
+        We research & develop the metallurgical
         <strong>chemistry</strong>
         needed for soldering electronics.
       </blockquote>
@@ -100,7 +103,7 @@
         We've been pioneering soldering chemistry for electronics since 1980.
         That's
         <strong>{{this.yearCount}}+ years</strong>
-        of accumulated experience.
+        of accumulated experience in soldering electronics.
       </blockquote>
       <div class='cta'>
         <Button

@@ -13,6 +13,7 @@ export default class HeaderMobileComponent extends Component {
   get state() {
     return [
       this.menuIsOpen ? 'open' : 'closed',
+      this.nearTop ? 'near-top' : 'not-near-top',
       this.scroll.goingDown ? 'scrolling-down' : 'scrolling-up',
       this.args.backRoute ? 'has-back-button' : 'no-back-button'
     ].join(' ');
@@ -45,5 +46,9 @@ export default class HeaderMobileComponent extends Component {
       pageScrollY: 0
     });
     window.scrollTo(0, pageScrollY);
+  }
+
+  get nearTop() {
+    return this.scroll.currentY < 100;
   }
 }

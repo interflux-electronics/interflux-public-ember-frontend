@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 
 export default class IndexController extends Controller {
   @service translation;
+  @service fastboot;
 
   @action
   onLanguageClick(locale) {

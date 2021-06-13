@@ -5,7 +5,12 @@
     @backModel={{@backModel}}
   />
 {{/if}}
-<div id='page' class={{this.pageClasses}} style={{this.pageStyle}}>
+<div
+  id='page'
+  class={{this.pageClasses}}
+  style={{this.pageStyle}}
+  data-main={{@id}}
+>
   {{#if this.showDesktopHeader}}
     <Header::Desktop />
     {{#if @crumbs}}

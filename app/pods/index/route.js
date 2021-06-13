@@ -7,7 +7,9 @@ export default class IndexRoute extends BaseRoute {
 
   beforeModel() {
     // TEMPORARY: until translations are ready
-    this.router.transitionTo('home', 'en');
+    if (!this.fastboot.isFastBoot) {
+      this.router.transitionTo('home', 'en');
+    }
 
     // this.headData.setProperties({
     //   path: '/',

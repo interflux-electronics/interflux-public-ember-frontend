@@ -75,14 +75,14 @@
     "ember-cli-head": "^1.0.0",
     "ember-cli-sass": "^10.0.1",
     "ember-href-to": "^4.1.0",
+    "ember-mapbox-gl": "^0.16.0",
     "ember-responsive": "^4.0.1",
     "ember-truth-helpers": "^3.0.0",
     "fastboot-app-server": "^3.0.0",
     "fastboot-watch-notifier": "^3.0.0",
     "git-rev-sync": "^3.0.1",
-    "sass": "^1.33.0",
-    "ember-mapbox-gl": "^0.16.0",
-    "mapbox-gl": "^1.0.0"
+    "mapbox-gl": "^1.0.0",
+    "sass": "^1.33.0"
   },
   "engines": {
     "node": "10.* || >= 12"

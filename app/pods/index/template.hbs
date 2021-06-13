@@ -1,8 +1,14 @@
-{{#each this.translation.languages as |lang|}}
-  <a
-    href={{href-to 'home' lang.id}}
-    {{on 'click' (fn this.onLanguageClick lang.id)}}
-  >
-    {{markdown (translate 'index.continue' lang.id)}}
-  </a>
-{{/each}}
+{{#if this.fastboot.isFastBoot}}
+  <Page @id='index-loading' @loading='true' />
+{{else}}
+  <Page>
+    {{#each this.translation.languages as |lang|}}
+      <a
+        href={{href-to 'home' lang.id}}
+        {{on 'click' (fn this.onLanguageClick lang.id)}}
+      >
+        {{markdown (translate 'index.continue' lang.id)}}
+      </a>
+    {{/each}}
+  </Page>
+{{/if}}
