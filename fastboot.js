@@ -1,5 +1,10 @@
 /*eslint-env node*/
 
+// TODO: reinstate once stable:
+// "ember-cli-fastboot": "^2.2.3",
+// "fastboot-app-server": "^3.0.0",
+// "fastboot-watch-notifier": "^3.0.0",
+
 const FastBootAppServer = require('fastboot-app-server');
 const FastBootWatchNotifier = require('fastboot-watch-notifier');
 

@@ -27,16 +27,16 @@ module.exports = function (defaults) {
     autoprefixer: {
       cascade: false,
       remove: false
-    }
+    },
 
     // Because the 2 JS and 2 CSS bundles are being HTTP2 pushed alongside the
     // index.html by Nginx, we need the name to be predictable and thus have
     // no fingerprints. Cache busting is not needed because the JS and CSS
     // bundles we'll never cache (they update too often). Images, videos and
     // fonts we'll highly cache though.
-    // fingerprint: {
-    //   enabled: false
-    // },
+    fingerprint: {
+      enabled: false
+    }
   });
 
   return app.toTree();
