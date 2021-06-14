@@ -6,9 +6,9 @@ set -o pipefail
 user1=bot
 user2=jw
 server=server.interflux.com
-domain=app.interflux.com
+domain=new.interflux.com
 redirect_www=false
-repo=git@github.com:interflux-electronics/app.interflux.com.git
+repo=git@github.com:interflux-electronics/interflux-public-ember-frontend.git
 
 echo "----------"
 echo "Setting up $domain on server $server"

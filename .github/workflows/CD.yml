@@ -22,7 +22,7 @@ jobs:
     env:
       PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
       URL: bot@server.interflux.com
-      ROOT: /var/www/app.interflux.com
+      ROOT: /var/www/new.interflux.com
     steps:
       - uses: actions/checkout@v2
 
