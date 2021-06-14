@@ -28,14 +28,14 @@ button {
         margin: 1.5vw;
         width: 6vw;
         height: 6vw;
-        border: 0.325vw solid rgba(white, 0.33);
+        border: 0.325vw solid rgba(white, 0.2);
         border-radius: 0.6vw;
       }
       @include mobile {
         margin: 4.5vw;
         width: 12vw;
         height: 12vw;
-        border: 0.625vw solid rgba(white, 0.33);
+        border: 0.625vw solid rgba(white, 0.2);
         border-radius: 1vw;
       }
       &.hamburger {
@@ -161,12 +161,12 @@ button {
       // @include desktop {
       // }
       @include tablet {
-        font-size: 3vw; // TODO
-        border-radius: 2vw; // TODO
-        padding: 3vw; // TODO
+        font-size: 3vw;
+        border-radius: 0.4vw;
+        padding: 2vw;
       }
       @include mobile {
-        font-size: 5.9375vw;
+        font-size: 5.6vw;
         border-radius: 0.8vw;
         padding: 4vw;
       }
@@ -181,8 +181,8 @@ button {
           margin-right: 3vw;
         }
         @include mobile {
-          max-width: 9vw;
-          max-height: 9vw;
+          max-width: 8vw;
+          max-height: 8vw;
           margin-right: 4vw;
         }
       }
@@ -196,7 +196,7 @@ button {
           width: 35vw; // TODO
         }
         @include mobile {
-          width: 55vw;
+          width: 31vw;
         }
       }
       &.white {

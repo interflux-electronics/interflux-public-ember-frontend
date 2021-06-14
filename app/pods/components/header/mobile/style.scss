@@ -22,20 +22,26 @@ header#mobile {
       #logo {
         .clip {
           @include tablet {
-            top: 33vw; // TODO
-            left: 15vw; // TODO
-            width: 70vw; // TODO
-            height: 19vw; // TODO
+            top: 20vw;
+            left: 27vw;
+            width: 46vw;
+            height: 14vw;
           }
           @include mobile {
-            top: 31vw;
+            top: 28vw;
             left: 13vw;
             width: 70vw;
             height: 19vw;
           }
           svg {
-            width: 63vw;
-            transform: translate(1.4vw, 1.7vw);
+            @include tablet {
+              width: 42vw;
+              transform: translate(1.8vw, 1.7vw);
+            }
+            @include mobile {
+              width: 63vw;
+              transform: translate(1.4vw, 1.7vw);
+            }
           }
         }
       }
@@ -92,10 +98,11 @@ header#mobile {
   }
 
   &.no-back-button {
-    .logo {
-      visibility: hidden;
+    #mid a:first-child {
+      margin-top: 29vw;
     }
   }
+
   #top {
     display: flex;
     align-items: center;
@@ -109,6 +116,7 @@ header#mobile {
       height: 21vw;
     }
   }
+
   #mid {
     display: flex;
     flex-direction: column;
