@@ -4,7 +4,7 @@ main#home-mobile {
     font-family: $semibold;
     color: $grey-7;
     @include tablet {
-      font-size: 5vw; // TODO
+      font-size: 3vw;
     }
     @include mobile {
       font-size: 5vw;
@@ -19,14 +19,25 @@ main#home-mobile {
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 5vw;
       background: rgba($blue-4, 0.7);
+      @include tablet {
+        height: 3vw;
+      }
+      @include mobile {
+        height: 5vw;
+      }
     }
     .liner {
-      padding: 16vw 10vw 10vw;
       height: 90vh;
       display: flex;
       align-items: center;
+      justify-content: center;
+      @include tablet {
+        padding: 16vw 20vw 10vw;
+      }
+      @include mobile {
+        padding: 16vw 10vw 10vw;
+      }
     }
     .text {
       position: relative;
@@ -40,8 +51,8 @@ main#home-mobile {
         line-height: 150%;
         font-family: $bold;
         @include tablet {
-          font-size: 9vw; // TODO
-          margin-bottom: 10vw;
+          font-size: 6vw;
+          margin-bottom: 7vw;
         }
         @include mobile {
           font-size: 9vw;
@@ -68,7 +79,7 @@ main#home-mobile {
       p {
         line-height: 180%;
         @include tablet {
-          font-size: 5.9375vw; // TODO
+          font-size: 4.8vw;
         }
         @include mobile {
           font-size: 5.9375vw;
@@ -96,6 +107,9 @@ main#home-mobile {
       z-index: 0;
       picture {
         height: auto;
+        img {
+          width: 100vw;
+        }
       }
     }
   }
@@ -103,9 +117,9 @@ main#home-mobile {
   #why {
     background: $blue-5;
     @include tablet {
-      border-bottom: 5vw solid $blue-4; // TODO
-      border-top: 5vw solid $blue-4; // TODO
-      padding: 42vw 10vw; // TODO
+      border-bottom: 3vw solid $blue-4;
+      border-top: 3vw solid $blue-4;
+      padding: 28vw 10vw;
     }
     @include mobile {
       border-bottom: 5vw solid $blue-4;
@@ -123,7 +137,7 @@ main#home-mobile {
     }
     blockquote {
       @include tablet {
-        font-size: 6.875vw; // TODO
+        font-size: 4.7vw;
       }
       @include mobile {
         font-size: 6.875vw;
@@ -142,10 +156,23 @@ main#home-mobile {
       justify-content: center;
     }
   }
+  #what-we-do {
+    blockquote {
+      @include tablet {
+        max-width: 50vw;
+        margin: 0 auto;
+      }
+    }
+  }
   #popular,
   #new {
     h2 {
-      margin: 30vw auto 20vw;
+      @include tablet {
+        margin: 20vw auto 10vw;
+      }
+      @include mobile {
+        margin: 30vw auto 20vw;
+      }
     }
     h3 {
       font-family: $extrabold;

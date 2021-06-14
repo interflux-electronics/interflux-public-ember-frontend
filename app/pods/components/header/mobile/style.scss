@@ -9,15 +9,15 @@
   }
 }
 
+// z-index: 1 is for #page
+// z-index: 2 is for header#mobile
+// z-index: 3 is for #modal
 header#mobile {
   position: relative;
-  // z-index: 1 is for #page
-  // z-index: 2 is for header#mobile
-  // z-index: 3 is for #modal
   z-index: 2;
 
   &.open {
-    .top {
+    #top {
       background: rgba($blue-5, 0.95);
       #logo {
         .clip {
@@ -40,11 +40,10 @@ header#mobile {
         }
       }
     }
-    .mid {
+    #mid {
       background: rgba($blue-5, 0.95);
-      background: radial-gradient(circle, $blue-4 0%, $blue-5 80%);
       padding: 12vw 0;
-      min-height: calc(100vh - 21vw);
+      min-height: calc(100vh - 9vw);
       a,
       .logo {
         animation-name: fade-slide-in-from-left;
@@ -69,11 +68,11 @@ header#mobile {
 
   &.closed {
     &.scrolling-down.not-near-top {
-      .top {
+      #top {
         transform: translateY(-21vw);
       }
     }
-    .top {
+    #top {
       position: fixed;
       top: 0;
       left: 0;
@@ -85,7 +84,7 @@ header#mobile {
       pointer-events: none;
       height: 0;
     }
-    .mid {
+    #mid {
       background: rgba($blue-5, 0);
       pointer-events: none;
       height: 0;
@@ -97,21 +96,20 @@ header#mobile {
       visibility: hidden;
     }
   }
-
-  .top {
+  #top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: all $easeOutExpo 800ms;
     transition-property: background, transform;
     @include tablet {
-      height: 21vw; // TODO
+      height: 9vw;
     }
     @include mobile {
       height: 21vw;
     }
   }
-  .mid {
+  #mid {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,9 +132,8 @@ header#mobile {
   #logo {
     position: relative;
     @include tablet {
-      margin: 2vw; // TODO
-      width: 17vw; // TODO
-      height: 17vw; // TODO
+      width: 9vw;
+      height: 9vw;
     }
     @include mobile {
       margin: 2vw;
@@ -152,8 +149,8 @@ header#mobile {
       top: 0;
       left: 0;
       @include tablet {
-        width: 17vw; // TODO
-        height: 17vw; // TODO
+        width: 9vw;
+        height: 9vw;
       }
       @include mobile {
         width: 17vw;
@@ -163,8 +160,8 @@ header#mobile {
         height: auto;
         transition: all $easeOutExpo 800ms;
         @include tablet {
-          width: 80vw; // TODO
-          transform: translate(-10.5vw, 1.3vw); // TODO
+          width: 44vw;
+          transform: translate(-5.8vw, 0.3vw);
         }
         @include mobile {
           width: 80vw;
@@ -178,13 +175,14 @@ header#mobile {
     color: white;
     line-height: 120%;
     text-align: center;
-    max-height: calc(5.625vw * 1.3 * 2); // max 2 lines
     overflow: hidden;
     @include tablet {
-      font-size: 5.625vw; // TODO
+      font-size: 3.2vw;
+      max-height: calc(3.625vw * 1.3 * 2); // max 2 lines
     }
     @include mobile {
       font-size: 5.625vw;
+      max-height: calc(5.625vw * 1.3 * 2); // max 2 lines
     }
   }
 }

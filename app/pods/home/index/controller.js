@@ -8,6 +8,7 @@ import { inject as service } from '@ember/service';
 
 export default class HomeIndexController extends Controller {
   @service media;
+  @service window;
 
   @tracked heroWord;
   @tracked imageLeft = 'image-1';
@@ -20,30 +21,28 @@ export default class HomeIndexController extends Controller {
   }
 
   async startHeroWordLoop() {
-    // if (this.fastboot.isFastBoot) {
-    //   return;
-    // }
-
     const array = [
       'zero defects',
       'lead-free',
       'high reliability',
-      'no residue!',
-      'low temperature',
+      'no residue',
+      'low temperatures',
       'VOC-free',
-      'halide-free'
+      '0.00% halides',
+      'repeatable precision',
+      'confidence'
     ].sort(function () {
       return 0.5 - Math.random();
     });
 
+    const n = array.length - 1;
+
     let i = 0;
 
-    while (i < 6) {
+    while (i <= n) {
       this.heroWord = array[i];
-      i = i < 5 ? i + 1 : 0;
-      await new Promise((approve) => {
-        window.setTimeout(approve, 2000);
-      });
+      i = i < n ? i + 1 : 0;
+      await this.window.delay(2000);
     }
   }
 

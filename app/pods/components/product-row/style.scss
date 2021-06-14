@@ -54,6 +54,11 @@ li.product-row {
       justify-content: space-between;
       align-items: center;
     }
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     &:hover,
     &:focus {
       z-index: 1;
@@ -100,8 +105,8 @@ li.product-row {
           height: 20vw;
         }
         @include tablet {
-          width: 90vw;
-          height: 90vw;
+          width: 30vw;
+          height: 30vw;
         }
         @include mobile {
           width: 90vw;

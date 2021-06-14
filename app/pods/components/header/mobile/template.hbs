@@ -1,6 +1,6 @@
 <header id='mobile' role='banner' aria-label='site' class={{this.state}}>
   <nav aria-label='page'>
-    <div class='top'>
+    <div id='top'>
       {{#if @backRoute}}
         <Button
           @route={{@backRoute}}
@@ -23,10 +23,13 @@
       />
     </div>
 
-    <div class='mid'>
-      <div class='logo'>
-        <Svg::PrimaryInterfluxLogo />
-      </div>
+    <div id='mid'>
+      {{#if @backRoute}}
+        <div class='logo'>
+          <Svg::PrimaryInterfluxLogo />
+        </div>
+      {{/if}}
+
       <Button
         @route='home.products'
         @text='Products'
