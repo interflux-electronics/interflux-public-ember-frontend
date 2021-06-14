@@ -87,7 +87,7 @@ button {
         }
         &.chevron-down {
           @include tablet {
-            width: 5.5vw; // TODO
+            width: 2.8vw;
           }
           @include mobile {
             width: 5.5vw;
@@ -103,14 +103,10 @@ button {
     &.link {
       background: none;
       text-decoration: underline;
-      // @include widescreen {
-      // }
-      // @include desktop {
-      // }
       @include tablet {
-        font-size: 5.9375vw; // TODO
-        border-radius: 2vw; // TODO
-        padding: 3vw; // TODO
+        font-size: 3.8vw;
+        border-radius: 1vw;
+        padding: 2.4vw;
       }
       @include mobile {
         font-size: 5.9375vw;

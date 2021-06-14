@@ -46,7 +46,7 @@
           {{#if product.id}}
             <li>
               <a href={{href-to 'home.product' product.id}}>
-                <div class='left'>
+                <div class='image'>
                   <ResponsiveImage
                     @path={{product.avatarPath}}
                     @variations={{product.avatarVariations}}
@@ -55,9 +55,9 @@
                   />
                 </div>
 
-                <div class='right'>
+                <div class='text'>
                   <h3>{{product.name}}</h3>
-                  <h4>{{product.family.nameSingle}}</h4>
+                  <h4>{{span-each-word product.family.nameSingle}}</h4>
                 </div>
               </a>
             </li>
@@ -73,16 +73,18 @@
           {{#if product.id}}
             <li>
               <a href={{href-to 'home.product' product.id}}>
-                <ResponsiveImage
-                  @path={{product.avatarPath}}
-                  @variations={{product.avatarVariations}}
-                  @captions={{product.avatarCaptions}}
-                  @alt={{@roduct.avatarAlt}}
-                />
+                <div class='image'>
+                  <ResponsiveImage
+                    @path={{product.avatarPath}}
+                    @variations={{product.avatarVariations}}
+                    @captions={{product.avatarCaptions}}
+                    @alt={{@roduct.avatarAlt}}
+                  />
+                </div>
 
                 <div class='text'>
                   <h3>{{product.name}}</h3>
-                  <h4>{{product.family.nameSingle}}</h4>
+                  <h4>{{span-each-word product.family.nameSingle}}</h4>
                 </div>
               </a>
             </li>
