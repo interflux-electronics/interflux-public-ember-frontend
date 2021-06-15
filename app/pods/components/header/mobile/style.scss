@@ -50,8 +50,8 @@ header#mobile {
       background: rgba($blue-5, 0.95);
       padding: 12vw 0;
       min-height: calc(100vh - 9vw);
-      a,
-      .logo {
+      #logo,
+      a {
         animation-name: fade-slide-in-from-left;
         animation-duration: 1000ms;
         animation-timing-function: $easeOutExpo;
@@ -115,6 +115,47 @@ header#mobile {
     @include mobile {
       height: 21vw;
     }
+    #logo {
+      position: relative;
+      @include tablet {
+        width: 9vw;
+        height: 9vw;
+      }
+      @include mobile {
+        margin: 2vw;
+        width: 17vw;
+        height: 17vw;
+      }
+      .clip {
+        position: absolute;
+        overflow: hidden;
+        background: white;
+        z-index: 1;
+        transition: all $easeOutExpo 800ms;
+        top: 0;
+        left: 0;
+        @include tablet {
+          width: 9vw;
+          height: 9vw;
+        }
+        @include mobile {
+          width: 17vw;
+          height: 17vw;
+        }
+        svg {
+          height: auto;
+          transition: all $easeOutExpo 800ms;
+          @include tablet {
+            width: 44vw;
+            transform: translate(-5.8vw, 0.3vw);
+          }
+          @include mobile {
+            width: 80vw;
+            transform: translate(-10.5vw, 1.3vw);
+          }
+        }
+      }
+    }
   }
 
   #mid {
@@ -124,60 +165,33 @@ header#mobile {
     transition: background $easeOutExpo 500ms;
     overflow: hidden;
     box-sizing: border-box;
-  }
-  .logo {
-    box-sizing: border-box;
-    padding: 2vw 5vw;
-    width: 70vw;
-    background: white;
-    margin-bottom: 10vw;
-    svg {
-      width: 100%;
-      height: auto;
-      transform: translateX(-3vw);
-    }
-  }
-  #logo {
-    position: relative;
-    @include tablet {
-      width: 9vw;
-      height: 9vw;
-    }
-    @include mobile {
-      margin: 2vw;
-      width: 17vw;
-      height: 17vw;
-    }
-    .clip {
-      position: absolute;
-      overflow: hidden;
+    #logo {
+      box-sizing: border-box;
       background: white;
-      z-index: 1;
-      transition: all $easeOutExpo 800ms;
-      top: 0;
-      left: 0;
       @include tablet {
-        width: 9vw;
-        height: 9vw;
+        width: 36vw;
+        margin-bottom: 12vw;
+        padding: 2vw;
       }
       @include mobile {
-        width: 17vw;
-        height: 17vw;
+        padding: 2vw 5vw;
+        width: 70vw;
+        margin-bottom: 10vw;
       }
       svg {
+        width: 100%;
         height: auto;
-        transition: all $easeOutExpo 800ms;
         @include tablet {
-          width: 44vw;
-          transform: translate(-5.8vw, 0.3vw);
+          max-width: 100%;
+          max-height: 100%;
         }
         @include mobile {
-          width: 80vw;
-          transform: translate(-10.5vw, 1.3vw);
+          transform: translateX(-3vw);
         }
       }
     }
   }
+
   h1 {
     font-family: $extrabold;
     color: white;

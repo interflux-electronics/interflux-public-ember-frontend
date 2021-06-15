@@ -10,7 +10,7 @@
     @crumbs={{array
       (hash label='Interflux' route='home')
       (hash label='Products' route='home.products')
-      (hash label=@model.product)
+      (hash label=product.name)
     }}
   >
     <div class='liner'>
@@ -155,115 +155,118 @@
             <section id='compliance' aria-labelledby='h3-compliance'>
               <div>
                 <h3 id='h3-compliance'>Quality compliance</h3>
-                {{#if product.compliesWithIPC}}
-                  <h4>IPC</h4>
-                  {{#if product.compliesWithIPCJSTD004A}}
+                <div class='single-column'>
+
+                  {{#if product.compliesWithIPC}}
+                    <h4>IPC</h4>
+                    {{#if product.compliesWithIPCJSTD004A}}
+                      <p>
+                        <span>{{product.name}} complies with the </span>
+                        <Link
+                          @label='IPC J-STD-004A'
+                          @url='https://www.ipc.org/'
+                        />
+                        <span>
+                          standars making high quality electronic
+                          interconnections with soldering fluxes.</span>
+                      </p>
+                    {{/if}}
+
+                    {{#if product.compliesWithIPCJSTD004B}}
+                      <p>
+                        <span>{{product.name}} complies with the </span>
+                        <Link
+                          @label='IPC J-STD-004B'
+                          @url='https://www.ipc.org/'
+                        />
+                        <span>
+                          standars making high quality electronic
+                          interconnections with soldering fluxes.</span>
+                      </p>
+                    {{/if}}
+
+                    {{#if product.compliesWithIPCJSTD005}}
+                      <p>
+                        <span>{{product.name}} complies with the </span>
+                        <Link
+                          @label='IPC J-STD-005'
+                          @url='https://www.ipc.org/'
+                        />
+                        <span>
+                          standars making high quality electronic
+                          interconnections with solder pastes.</span>
+                      </p>
+                    {{/if}}
+                  {{/if}}
+
+                  {{#if product.compliesWithIEC}}
+                    <h4>IEC</h4>
                     <p>
-                      <span>{{product.name}} complies with the </span>
+                      <span>{{product.name}}
+                        complies with the European Standard
+                      </span>
                       <Link
-                        @label='IPC J-STD-004A'
-                        @url='https://www.ipc.org/'
+                        @label='EN 61190-1-1(2002)'
+                        @url='https://www.standards.govt.nz/shop/iec-61190-1-12002/'
                       />
                       <span>
-                        standars making high quality electronic interconnections
-                        with soldering fluxes.</span>
+                        which outlines the requirements for soldering fluxes for
+                        high-quality interconnections in electronics assembly.</span>
                     </p>
                   {{/if}}
 
-                  {{#if product.compliesWithIPCJSTD004B}}
+                  {{#if product.compliesWithROHS}}
+                    <h4>RoHS</h4>
                     <p>
-                      <span>{{product.name}} complies with the </span>
+                      <span>{{product.name}}
+                        complies with the European Union's
+                      </span>
                       <Link
-                        @label='IPC J-STD-004B'
-                        @url='https://www.ipc.org/'
+                        @label='RoHS'
+                        @url='https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive'
                       />
                       <span>
-                        standars making high quality electronic interconnections
-                        with soldering fluxes.</span>
+                        directive for restricting the use of certain hazardous
+                        substances in electrical and electronic equipment.</span>
                     </p>
                   {{/if}}
 
-                  {{#if product.compliesWithIPCJSTD005}}
+                  {{#if product.compliesWithISO}}
+                    <h4>ISO 9001</h4>
                     <p>
-                      <span>{{product.name}} complies with the </span>
-                      <Link
-                        @label='IPC J-STD-005'
-                        @url='https://www.ipc.org/'
-                      />
+                      <span>{{product.name}}
+                        is produced at Interflux Electronics in Belgium, which
+                        has been certified year after year with the
+                      </span>
+                      <Link @label='ISO 9001' @url='https://www.iso.org/' />
                       <span>
-                        standars making high quality electronic interconnections
-                        with solder pastes.</span>
+                        standard for reliable quality management systems.</span>
                     </p>
                   {{/if}}
-                {{/if}}
 
-                {{#if product.compliesWithIEC}}
-                  <h4>IEC</h4>
-                  <p>
-                    <span>{{product.name}}
-                      complies with the European Standard
-                    </span>
-                    <Link
-                      @label='EN 61190-1-1(2002)'
-                      @url='https://www.standards.govt.nz/shop/iec-61190-1-12002/'
-                    />
-                    <span>
-                      which outlines the requirements for soldering fluxes for
-                      high-quality interconnections in electronics assembly.</span>
-                  </p>
-                {{/if}}
-
-                {{#if product.compliesWithROHS}}
-                  <h4>RoHS</h4>
-                  <p>
-                    <span>{{product.name}}
-                      complies with the European Union's
-                    </span>
-                    <Link
-                      @label='RoHS'
-                      @url='https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive'
-                    />
-                    <span>
-                      directive for restricting the use of certain hazardous
-                      substances in electrical and electronic equipment.</span>
-                  </p>
-                {{/if}}
-
-                {{#if product.compliesWithISO}}
-                  <h4>ISO 9001</h4>
-                  <p>
-                    <span>{{product.name}}
-                      is produced at Interflux Electronics in Belgium, which has
-                      been certified year after year with the
-                    </span>
-                    <Link @label='ISO 9001' @url='https://www.iso.org/' />
-                    <span>
-                      standard for reliable quality management systems.</span>
-                  </p>
-                {{/if}}
-
-                {{#if product.testResults}}
-                  <h4>Test results</h4>
-                  <table class='results'>
-                    <thead>
-                      <tr>
-                        <th>Property</th>
-                        <th>Result</th>
-                        <th>Method</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {{#each product.testResultsArray as |row|}}
+                  {{#if product.testResults}}
+                    <h4>Test results</h4>
+                    <table class='results'>
+                      <thead>
                         <tr>
-                          {{#each row as |cell|}}
-                            <td>{{markdown cell}}</td>
-                          {{/each}}
+                          <th>Property</th>
+                          <th>Result</th>
+                          <th>Method</th>
                         </tr>
-                      {{/each}}
-                    </tbody>
-                  </table>
-                {{/if}}
+                      </thead>
+
+                      <tbody>
+                        {{#each product.testResultsArray as |row|}}
+                          <tr>
+                            {{#each row as |cell|}}
+                              <td>{{markdown cell}}</td>
+                            {{/each}}
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/if}}
+                </div>
               </div>
             </section>
           {{/if}}
@@ -272,7 +275,9 @@
             <section id='instructions' aria-labelledby='h3-instructions'>
               <div>
                 <h3 id='h3-instructions'>How to use {{product.name}}</h3>
-                {{markdown product.instructions}}
+                <div class='single-column'>
+                  {{markdown product.instructions}}
+                </div>
               </div>
             </section>
           {{/if}}

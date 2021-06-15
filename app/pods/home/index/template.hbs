@@ -32,16 +32,16 @@
     <Section @id='what-we-do'>
       <h2>What we do</h2>
       <blockquote>
-        <span>We develop the specialised </span>
+        <span>We develop specialised </span>
         <strong>chemistry</strong>
-        <span> needed for soldering </span>
+        <span> for soldering </span>
         <strong>electronics</strong>.
       </blockquote>
     </Section>
 
     <Section @id='popular'>
       <h2>Popular products</h2>
-      <ul class='rows'>
+      <ul class='products rows'>
         {{#each this.popularProducts as |product|}}
           {{#if product.id}}
             <li>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class='text'>
-                  <h3>{{product.name}}</h3>
+                  <h3>{{span-each-word product.name}}</h3>
                   <h4>{{span-each-word product.family.nameSingle}}</h4>
                 </div>
               </a>
@@ -67,8 +67,8 @@
     </Section>
 
     <Section @id='new'>
-      <h2>New and upcoming!</h2>
-      <ul class='tiles'>
+      <h2>Our newest innovations</h2>
+      <ul class='products rows'>
         {{#each this.newProducts as |product|}}
           {{#if product.id}}
             <li>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class='text'>
-                  <h3>{{product.name}}</h3>
+                  <h3>{{span-each-word product.name}}</h3>
                   <h4>{{span-each-word product.family.nameSingle}}</h4>
                 </div>
               </a>

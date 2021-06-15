@@ -12,10 +12,10 @@ header#desktop {
       display: flex;
       justify-content: center;
       @include widescreen {
-        padding: px(1vw) px(2vw);
+        padding: 12px 34px 12px 24px;
       }
       @include desktop {
-        padding: 1vw 2vw;
+        padding: vw(12px) vw(34px) vw(12px) vw(24px);
       }
       img {
         width: auto; // don't make height auto or Safari will explode
@@ -33,10 +33,10 @@ header#desktop {
       display: flex;
       align-items: center;
       @include widescreen {
-        margin-right: px(2vw);
+        margin-right: 40px;
       }
       @include desktop {
-        margin-right: 2vw;
+        margin-right: vw(40px);
       }
       span {
         font-family: $bold;

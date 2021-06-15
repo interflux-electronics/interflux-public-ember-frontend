@@ -104,9 +104,9 @@ button {
       background: none;
       text-decoration: underline;
       @include tablet {
-        font-size: 3.8vw;
+        font-size: 3.2vw;
         border-radius: 1vw;
-        padding: 2.4vw;
+        padding: 2.1vw;
       }
       @include mobile {
         font-size: 5.9375vw;
@@ -180,19 +180,6 @@ button {
           max-width: 8vw;
           max-height: 8vw;
           margin-right: 4vw;
-        }
-      }
-      span {
-        text-align: left;
-        // @include widescreen {
-        // }
-        // @include desktop {
-        // }
-        @include tablet {
-          width: 35vw; // TODO
-        }
-        @include mobile {
-          width: 31vw;
         }
       }
       &.white {

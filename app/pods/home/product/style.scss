@@ -2,8 +2,14 @@
 
 main#product {
   background: $grey-0;
+  @include widescreen {
+    padding-bottom: 40px;
+  }
+  @include desktop {
+    padding-bottom: vw(40px);
+  }
   @include tablet {
-    padding-top: 21vw; // TODO
+    padding-top: 9vw; // TODO
   }
   @include mobile {
     padding-top: 21vw;
@@ -24,17 +30,18 @@ main#product {
   }
   .liner {
     margin: 0 auto;
-    max-width: 800px;
     // TEMPORARY: until we can place orders via website
     // max-width: 1150px;
     @include widescreen {
-      padding: px(2.5vw);
+      max-width: 720px;
+      padding: 30px;
     }
     @include desktop {
-      padding: 2.5vw;
+      max-width: vw(720px);
+      padding: vw(30px);
     }
     @include tablet {
-      padding: 10vw; // TODO
+      padding: 2vw;
     }
     @include mobile {
       padding: 0;
@@ -45,31 +52,24 @@ main#product {
   }
   article {
     width: 100%;
-    max-width: 800px;
+    @include widescreen {
+      max-width: 720px;
+    }
+    @include desktop {
+      max-width: vw(720px);
+    }
     section {
       background: white;
       box-shadow: 0 4px 8px rgba(black, 0.05);
-      @include widescreen {
-        padding: px(5vw);
-      }
-      @include desktop {
-        padding: 5vw;
-      }
-      @include tablet {
-        padding: 10vw; // TODO
-      }
-      @include mobile {
-        padding: 16vw 6vw;
-      }
       & + section {
         @include widescreen {
-          margin-top: px(0.83vw);
+          margin-top: 20px;
         }
         @include desktop {
-          margin-top: 0.83vw;
+          margin-top: vw(20px);
         }
         @include tablet {
-          margin-top: 10vw; // TODO
+          margin-top: 2vw;
         }
         @include mobile {
           margin-top: 6vw;
@@ -144,16 +144,35 @@ main#product {
       color: $grey-7;
       @include widescreen {
         font-size: px(1.583vw);
+        padding: 50px;
       }
       @include desktop {
         font-size: 1.583vw;
+        padding: vw(50px);
       }
       @include tablet {
-        font-size: 10vw; // TODO
+        font-size: 3vw;
+        padding: 60px; // TODO
       }
       @include mobile {
         font-size: 6vw;
+        padding: 60px; // TODO
       }
+
+      // h3 + * {
+      //   @include widescreen {
+      //     margin-top: 60px;
+      //   }
+      //   @include desktop {
+      //     margin-top: vw(60px);
+      //   }
+      //   @include tablet {
+      //     margin-top: 10vw; // TODO
+      //   }
+      //   @include mobile {
+      //     margin-top: 12vw;
+      //   }
+      // }
     }
     h4 {
       font-family: $bold;
@@ -238,20 +257,20 @@ main#product {
         margin-top: 6vw;
       }
     }
-    h3 + * {
-      @include widescreen {
-        margin-top: px(4.1vw);
-      }
-      @include desktop {
-        margin-top: 4.1vw;
-      }
-      @include tablet {
-        margin-top: 10vw; // TODO
-      }
-      @include mobile {
-        margin-top: 12vw;
-      }
-    }
+    // h3 + * {
+    //   @include widescreen {
+    //     margin-top: 60px;
+    //   }
+    //   @include desktop {
+    //     margin-top: vw(60px);
+    //   }
+    //   @include tablet {
+    //     margin-top: 10vw; // TODO
+    //   }
+    //   @include mobile {
+    //     margin-top: 12vw;
+    //   }
+    // }
     h4 + p,
     p + p {
       @include widescreen {
@@ -282,6 +301,25 @@ main#product {
       @include mobile {
         margin-top: 12vw;
       }
+    }
+    .single-column,
+    .two-columns {
+      @include widescreen {
+        padding: 0 50px 50px;
+      }
+      @include desktop {
+        padding: 0 vw(50px) vw(50px);
+      }
+      @include tablet {
+        padding: 8vw;
+      }
+      @include mobile {
+        padding: 16vw 6vw;
+      }
+    }
+    .single-column {
+      display: flex;
+      flex-direction: column;
     }
     .two-columns {
       @include widescreen {
@@ -333,23 +371,27 @@ main#product {
     dl {
       display: flex;
       flex-wrap: wrap;
+      @include widescreen {
+        padding: 0 35px 35px;
+      }
+      @include desktop {
+        padding: 0 vw(35px) vw(35px);
+      }
       @include tablet {
-        transform: translateX(-6vw); // TODO
-        width: 100vw;
+        padding: 0 35px; // TODO
       }
       @include mobile {
-        transform: translateX(-6vw);
-        width: 100vw;
+        padding: 0 35px; // TODO
       }
       dt,
       dd {
         box-sizing: border-box;
         line-height: 150%;
         @include widescreen {
-          padding: px(0.833vw) px(1.25vw);
+          padding: 10px 15px;
         }
         @include desktop {
-          padding: 0.833vw 1.25vw;
+          padding: vw(10px) vw(15px);
         }
         @include tablet {
           padding: 10vw; // TODO
@@ -496,6 +538,18 @@ main#product {
       }
     }
     #hero {
+      @include widescreen {
+        padding: 50px;
+      }
+      @include desktop {
+        padding: vw(50px);
+      }
+      @include tablet {
+        padding: 8vw;
+      }
+      @include mobile {
+        padding: 16vw 6vw;
+      }
       #title {
         display: flex;
         flex-direction: column;
@@ -623,121 +677,6 @@ main#product {
       }
     }
 
-    // TODO: review
-    // #documents {
-    //   ul {
-    //     li {
-    //       display: flex;
-    //       border-bottom: 1px solid $grey-1;
-    //       &:last-child {
-    //         border-bottom: 0;
-    //       }
-    //       @include widescreen {
-    //         padding: px(0.8vw) 0;
-    //       }
-    //       @include desktop {
-    //         padding: 0.8vw 0;
-    //       }
-    //       @include tablet {
-    //         padding: 1.2vw 0;
-    //       }
-    //       @include mobile {
-    //         padding: 2vw 0;
-    //       }
-    //       .left {
-    //         display: flex;
-    //         width: 100%;
-    //         .icon {
-    //           flex-shrink: 0;
-    //           picture {
-    //             display: block;
-    //             height: auto;
-    //             flex-shrink: 0;
-    //             @include widescreen {
-    //               width: px(4vw);
-    //               height: px(4vw);
-    //               margin-right: px(2vw);
-    //             }
-    //             @include desktop {
-    //               width: 4vw;
-    //               height: 4vw;
-    //               margin-right: 2vw;
-    //             }
-    //             @include tablet {
-    //               width: 8vw;
-    //               height: 8vw;
-    //               margin-right: 3vw;
-    //             }
-    //             @include mobile {
-    //               width: 12vw;
-    //               height: 12vw;
-    //               margin-right: 5vw;
-    //             }
-    //           }
-    //         }
-    //         .text {
-    //           display: flex;
-    //           align-items: center;
-    //           p {
-    //             font-family: $regular;
-    //             font-size: 16px;
-    //             line-height: 24px;
-    //             color: $grey-7;
-    //           }
-    //         }
-    //       }
-    //       .right {
-    //         display: flex;
-    //         flex-shrink: 0;
-    //         &.links {
-    //           align-items: center;
-    //           a {
-    //             font-size: 16px;
-    //             &:hover,
-    //             &:focus {
-    //               color: $orange-3;
-    //             }
-    //             &:focus {
-    //               outline: 0;
-    //               box-shadow: 0 0 0 4px white, 0 0 0 6px $orange-3;
-    //               border-radius: 1px;
-    //             }
-    //             & + a {
-    //               margin-left: 12px;
-    //             }
-    //           }
-    //         }
-    //         &.arrow {
-    //           display: flex;
-    //           align-items: center;
-    //           justify-content: center;
-    //           width: 20px;
-    //           @include widescreen {
-    //             height: px(4vw);
-    //           }
-    //           @include desktop {
-    //             height: 4vw;
-    //           }
-    //           @include tablet {
-    //             height: 8vw;
-    //           }
-    //           @include mobile {
-    //             height: 12vw;
-    //           }
-    //           svg {
-    //             height: 10px;
-    //             width: auto;
-    //             transform: rotate(90deg);
-    //             [fill] {
-    //               fill: $grey-3;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
     section#compliance {
       table {
         margin-top: 20px;
@@ -760,6 +699,7 @@ main#product {
             line-height: 100%;
             padding: 4px;
             border-radius: 2px;
+            white-space: nowrap;
           }
         }
       }
@@ -767,29 +707,25 @@ main#product {
 
     ul.accordion {
       @include widescreen {
-        width: calc(100% + #{px(5vw)} + #{px(5vw)});
-        transform: translateX(px(-5vw));
+        margin-bottom: 50px;
       }
       @include desktop {
-        width: calc(100% + 5vw + 5vw);
-        transform: translateX(-5vw);
+        margin-bottom: vw(50px);
       }
       @include tablet {
-        width: 100vw;
-        transform: translateX(-6vw); // TODO
+        margin-bottom: 50px; // TODO
       }
       @include mobile {
-        width: 100vw;
-        transform: translateX(-6vw);
+        margin-bottom: 50px; // TODO
       }
       > li {
         @include widescreen {
-          padding-left: px(5vw);
-          padding-right: px(5vw);
+          padding-left: 50px;
+          padding-right: 50px;
         }
         @include desktop {
-          padding-left: 5vw;
-          padding-right: 5vw;
+          padding-left: vw(50px);
+          padding-right: vw(50px);
         }
         @include tablet {
           padding-left: 6vw; // TODO
