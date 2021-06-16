@@ -48,8 +48,14 @@ header#mobile {
     }
     #mid {
       background: rgba($blue-5, 0.95);
-      padding: 12vw 0;
-      min-height: calc(100vh - 9vw);
+      @include tablet {
+        min-height: calc(100vh - 9vw);
+        padding: 12vw 0;
+      }
+      @include mobile {
+        min-height: calc(100vh - 21vw);
+        padding: 12vw 0;
+      }
       #logo,
       a {
         animation-name: fade-slide-in-from-left;

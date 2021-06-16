@@ -272,13 +272,14 @@ main#home-mobile {
           }
           a {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
             @include tablet {
               padding: 0 5vw 0 15vw;
+              justify-content: flex-start;
             }
             @include mobile {
+              flex-direction: column;
+              justify-content: center;
               padding: 9vw;
             }
           }

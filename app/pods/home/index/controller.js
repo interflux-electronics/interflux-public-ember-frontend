@@ -64,13 +64,15 @@ export default class HomeIndexController extends Controller {
   get popularProducts() {
     return this.model.products
       .filterBy('status', 'popular')
-      .sortBy('mainFamily.rank');
+      .filterBy('onFrontPage')
+      .sortBy('frontPageRank');
   }
 
   get newProducts() {
     return this.model.products
       .filterBy('status', 'new')
-      .sortBy('mainFamily.rank');
+      .filterBy('onFrontPage')
+      .sortBy('frontPageRank');
   }
 
   get yearCount() {

@@ -18,6 +18,8 @@ export default class ProductModel extends Model {
   @attr('boolean') compliesWithIPCJSTD005;
   @attr('boolean') compliesWithISO;
   @attr('string') testResults;
+  @attr('boolean') onFrontPage;
+  @attr('number') frontPageRank;
 
   @belongsTo('image', { inverse: 'product' }) image;
 
