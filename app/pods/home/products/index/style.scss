@@ -1,11 +1,7 @@
 main#products-index {
   background: $grey-0;
-  @include widescreen {
-  }
-  @include desktop {
-  }
   @include tablet {
-    margin-top: 21vw; // TODO
+    margin-top: 9vw;
   }
   @include mobile {
     margin-top: 21vw;
@@ -21,7 +17,7 @@ main#products-index {
         padding: 2.5vw;
       }
       @include tablet {
-        padding: 0 0 10vw; // TODO
+        padding: 0 0 10vw;
       }
       @include mobile {
         padding: 0 0 10vw;
@@ -41,7 +37,7 @@ main#products-index {
             padding: 5vw;
           }
           @include tablet {
-            padding: 18vw 6vw; // TODO
+            padding: 8vw 4vw;
           }
           @include mobile {
             padding: 18vw 6vw;
@@ -49,7 +45,7 @@ main#products-index {
           > a {
             display: flex;
             @include tablet {
-              flex-flow: wrap;
+              justify-content: space-between;
             }
             @include mobile {
               flex-flow: wrap;
@@ -75,8 +71,8 @@ main#products-index {
                 height: 16.333vw;
               }
               @include tablet {
-                width: 50%;
-                height: 50%;
+                width: 18vw;
+                height: 18vw;
               }
               @include mobile {
                 width: 50%;
@@ -84,11 +80,6 @@ main#products-index {
               }
             }
             .cta {
-              @include tablet {
-                background: none;
-                width: 100%; // TODO
-                margin-top: 4vw; // TODO
-              }
               @include mobile {
                 background: none;
                 width: 100%;
@@ -98,26 +89,52 @@ main#products-index {
                 background: $green-1;
                 color: white;
                 font-family: $semibold;
-                font-size: 20px;
-                border-radius: 3px;
-                line-height: 44px;
-                padding: 1px 20px 0;
+                line-height: 200%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                @include widescreen {
+                  font-size: 20px;
+                  border-radius: 3px;
+                  padding: 1px 20px 0;
+                }
+                @include desktop {
+                  font-size: vw(20px);
+                  border-radius: vw(3px);
+                  padding: vw(1px) vw(20px) 0;
+                }
                 @include tablet {
-                  width: 100%;
+                  font-size: 2vw;
+                  border-radius: 0.5vw;
+                  padding: 0 1.5vw;
                 }
                 @include mobile {
                   width: 100%;
+                  font-size: 5vw;
+                  border-radius: 0.7vw;
+                  padding: 1.2vw 0;
                 }
                 &:hover {
                   background: $green-2;
                 }
                 svg {
-                  width: 10px;
                   height: auto;
-                  margin-left: 15px;
+                  @include widescreen {
+                    width: 10px;
+                    margin-left: 15px;
+                  }
+                  @include desktop {
+                    width: vw(10px);
+                    margin-left: vw(15px);
+                  }
+                  @include tablet {
+                    width: 0.8vw;
+                    margin-left: 1vw;
+                  }
+                  @include mobile {
+                    width: 2vw;
+                    margin-left: 3vw;
+                  }
                   [fill] {
                     fill: white;
                   }
@@ -144,14 +161,15 @@ main#products-index {
       padding: 5vw;
     }
     @include tablet {
+      display: flex;
       line-height: 120%;
-      font-size: 10vw; // TODO
-      padding: 18vw 6vw; // TODO
+      font-size: 4.2vw;
+      padding: 8vw 4vw;
     }
     @include mobile {
       line-height: 120%;
-      font-size: 12vw;
-      padding: 18vw 6vw;
+      font-size: 10vw;
+      padding: 14vw 6vw;
     }
     small {
       font-family: $regular;
@@ -179,13 +197,13 @@ main#products-index {
     }
     @include tablet {
       line-height: 120%;
-      font-size: 10vw; // TODO
-      margin-bottom: 9vw; // TODO
+      font-size: 3.6vw;
+      margin-bottom: 3vw;
     }
     @include mobile {
       line-height: 120%;
-      font-size: 9vw;
-      margin-bottom: 9vw;
+      font-size: 8vw;
+      margin-bottom: 7vw;
     }
   }
 }

@@ -10,7 +10,7 @@
   <article aria-label='products'>
     <div class='liner'>
       <div class='box'>
-        <h1 id='h1'>Products <small>by family</small></h1>
+        <h1 id='h1'><span>Products&nbsp;</span><small>by family</small></h1>
 
         {{#each this.sortedFamilies as |family|}}
           <section aria-labelledby='h2-{{family.id}}'>
@@ -38,7 +38,7 @@
       </div>
 
       <div class='box'>
-        <h1 id='h1'>Products <small>by process</small></h1>
+        <h1 id='h1'><span>Products&nbsp;</span><small>by process</small></h1>
 
         {{#each this.sortedUses as |use|}}
           <section aria-labelledby='h2-{{use.id}}'>

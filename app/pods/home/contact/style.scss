@@ -82,7 +82,7 @@ main#contact {
           padding: vw(60px);
         }
         @include tablet {
-          padding: 18vw 5vw; // TODO
+          padding: 8vw 5vw;
         }
         @include mobile {
           padding: 18vw 5vw;
@@ -95,7 +95,7 @@ main#contact {
             margin-top: vw(30px);
           }
           @include tablet {
-            margin-top: 10vw; // TODO
+            margin-top: 2vw;
           }
           @include mobile {
             margin-top: 10vw;
