@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class ProductsSubsetController extends Controller {
+  @service media;
   @service store;
   @service router;
   @service window;
@@ -183,7 +184,7 @@ export default class ProductsSubsetController extends Controller {
         const label = family.label;
         const id = family.id;
         const isChecked = this.family && this.family.id === id;
-        console.log({ label, id });
+
         return { label, id, isChecked };
       });
   }
@@ -193,7 +194,7 @@ export default class ProductsSubsetController extends Controller {
       const label = use.label;
       const id = `for-${use.id}`;
       const isChecked = this.use && this.use.id === use.id;
-      console.log({ label, id });
+
       return { label, id, isChecked };
     });
   }
@@ -236,10 +237,10 @@ export default class ProductsSubsetController extends Controller {
   @action
   openSubsetPage(slug) {
     if (slug.startsWith('for-')) {
-      this.use = this.model.uses.find((use) => use.slug === slug.slice(4));
+      this.use = this.model.uses.find((use) => use.id === slug.slice(4));
       this.family = null;
     } else {
-      this.family = this.model.families.find((family) => family.slug === slug);
+      this.family = this.model.families.find((family) => family.id === slug);
       this.use = null;
     }
 

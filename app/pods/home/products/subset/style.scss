@@ -1,20 +1,20 @@
 main#products-subset {
   background: $grey-0;
   @include tablet {
-    padding-top: 21vw; // TODO
+    padding-top: 9vw;
   }
   @include mobile {
     padding-top: 21vw;
   }
   .liner {
     @include widescreen {
-      max-width: px(95.8333vw);
-      padding: px(2.5vw);
+      max-width: 1150px;
+      padding: 30px 30px 90px;
       margin: 0 auto;
     }
     @include desktop {
-      max-width: 95.8333vw;
-      padding: 2.5vw;
+      max-width: vw(1150px);
+      padding: vw(30px) vw(30px) vw(90px);
       margin: 0 auto;
     }
     .columns {
@@ -54,12 +54,10 @@ main#products-subset {
         padding: 5vw;
       }
       @include tablet {
-        padding: 5vw; // TODO
+        padding: 9vw 5vw;
       }
       @include mobile {
-        padding: 20vw 10vw;
-        text-align: center;
-        border-top: 1px solid $grey-1;
+        padding: 16vw 10vw;
       }
       .title {
         display: flex;
@@ -104,10 +102,14 @@ main#products-subset {
           font-size: 2.5vw;
         }
         @include tablet {
-          font-size: 4vw; // TODO
+          font-size: 4vw;
+          text-align: center;
+          width: 100%;
         }
         @include mobile {
           font-size: 8vw;
+          text-align: center;
+          width: 100%;
         }
         & + p {
           margin-top: 20px;

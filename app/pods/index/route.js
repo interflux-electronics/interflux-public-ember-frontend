@@ -23,10 +23,6 @@ export default class IndexRoute extends BaseRoute {
     //   imageAlt: 'Interflux Electronics logo'
     // });
     //
-    // this.header.setProperties({
-    //   title: 'Choose language'
-    // });
-    //
     // Fastboot (Node) doesn't have localStorage and doesn't handle redirects well.
     // if (!this.isNode) {
     //

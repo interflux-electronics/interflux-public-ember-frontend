@@ -26,7 +26,6 @@ export default class ProductRoute extends BaseRoute {
     const {
       slug,
       name,
-      mainFamily,
       familyLabel,
       pitch,
       avatarPath,
@@ -44,20 +43,6 @@ export default class ProductRoute extends BaseRoute {
       imageWidth: avatarVariations.split(',')[0].split('x')[0], // TODO: get largest
       imageHeight: avatarVariations.split(',')[0].split('x')[1], // TODO: get largest
       imageAlt: `${avatarAlt} ${avatarCaption}`
-    });
-
-    this.header.setProperties({
-      title: name,
-      crumbs: [
-        { label: 'Interflux', route: 'home' },
-        { label: 'Products', route: 'home.products' },
-        {
-          label: mainFamily.get('label'),
-          route: 'home.products.subset',
-          model: mainFamily.get('id')
-        },
-        { label: name }
-      ]
     });
   }
 

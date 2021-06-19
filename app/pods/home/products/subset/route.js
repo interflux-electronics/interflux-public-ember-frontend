@@ -30,15 +30,6 @@ export default class ProductsSubsetRoute extends BaseRoute {
       imageHeight: '1000',
       imageAlt: 'secondary Interflux Electronics logo 1'
     });
-
-    this.header.setProperties({
-      title: pageTitle,
-      crumbs: [
-        { label: 'Interflux', route: 'home' },
-        { label: 'Products', route: 'home.products' },
-        { label: pageTitle }
-      ]
-    });
   }
 
   // HACK: when navigating into a subset route, then out and back into another, the controller
@@ -49,11 +40,12 @@ export default class ProductsSubsetRoute extends BaseRoute {
   //
   // resetController(controller, isExiting, transition) {
   //   if (isExiting && transition.targetName !== 'error') {
-  //     controller.set('groupBy', 'status');
-  //     controller.set('subsets', this.statusSubsets);
-  //     controller.set('familyHideList', []);
-  //     controller.set('useHideList', []);
-  //     controller.set('qualityHideList ', []);
+  //     console.log('resetController');
+  //     controller.set('family', null);
+  //     controller.set('use', null);
+  //     // controller.set('groupBy', 'status');
+  //     // controller.set('subsets', this.statusSubsets);
+  //     // controller.set('qualityHideList ', []);
   //   }
   // }
 }

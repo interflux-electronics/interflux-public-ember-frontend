@@ -13,10 +13,6 @@ export default class HomeRoute extends BaseRoute {
       imageHeight: '1000',
       imageAlt: 'secondary Interflux Electronics logo 1'
     });
-
-    this.header.setProperties({
-      title: 'Interflux'
-    });
   }
 
   model(params) {
