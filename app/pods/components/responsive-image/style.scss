@@ -11,6 +11,7 @@ figure.responsive-image {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 0;
   max-width: 100%;
   max-height: 100%;
@@ -83,6 +84,35 @@ figure.responsive-image {
       width: 100%;
       height: auto;
       font-size: 1px; // To prevent the alt text from showing if load failed
+    }
+  }
+  figcaption {
+    width: 100%;
+    .caption,
+    .copyright {
+      position: absolute;
+      font-size: 85%;
+      opacity: 0.8;
+      @include widescreen {
+        padding: 6px 12px;
+      }
+      @include desktop {
+        padding: vw(6px) vw(12px);
+      }
+      @include tablet {
+        padding: 1.3vw 2.3vw;
+      }
+      @include mobile {
+        display: none;
+      }
+    }
+    .caption {
+      top: 0;
+      left: 0;
+    }
+    .copyright {
+      bottom: 0;
+      right: 0;
     }
   }
 }
