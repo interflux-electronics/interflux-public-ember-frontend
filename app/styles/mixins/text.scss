@@ -13,7 +13,7 @@
     font-size: 1.333vw * $scale;
   }
   @include tablet {
-    font-size: 2.2vw * $scale;
+    font-size: 2.3vw * $scale;
   }
   @include mobile {
     font-size: 5vw * $scale;
@@ -73,7 +73,7 @@
 // @include white-on-blue-text;
 // @include white-on-blue-text(0.8);
 @mixin white-on-blue-text($scale: 1) {
-  font-family: $bold;
+  font-family: $extrabold;
   color: white;
   background: $blue-3;
   line-height: 100%;

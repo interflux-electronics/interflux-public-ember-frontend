@@ -93,7 +93,7 @@
                 {{#each this.images as |image|}}
                   <button
                     type='button'
-                    class={{if (eq image this.heroImage) 'active'}}
+                    class={{if (eq image this.heroImage) 'hero'}}
                     {{on 'click' (fn this.setHero image)}}
                   >
                     <ResponsiveImage

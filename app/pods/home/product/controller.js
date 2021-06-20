@@ -7,7 +7,9 @@ export default class ProductController extends Controller {
   @tracked chosenImage = null;
 
   get avatar() {
-    return this.model.product.image;
+    return this.model.product.productImages.find(
+      (img) => img.path === this.model.product.avatarPath
+    );
   }
 
   get firstImage() {

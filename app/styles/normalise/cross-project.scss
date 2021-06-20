@@ -70,7 +70,7 @@ tbody,
 tr,
 th,
 td {
-  display: block;
+  // display: block;
 }
 th {
   font-weight: normal; // We use font-families instead of weights
@@ -114,6 +114,21 @@ p {
       color: $blue-0;
       box-shadow: white 0 0 0 1px, 0 0 0 3px $blue-0;
     }
+  }
+}
+
+p + p {
+  @include widescreen {
+    margin-top: 16px;
+  }
+  @include desktop {
+    margin-top: 1.333vw;
+  }
+  @include tablet {
+    margin-top: 2.2vw;
+  }
+  @include mobile {
+    margin-top: 5vw;
   }
 }
 

@@ -1,5 +1,3 @@
-@use "sass:math";
-
 main#product {
   background: $grey-0;
   @include widescreen {
@@ -9,7 +7,7 @@ main#product {
     padding-bottom: vw(40px);
   }
   @include tablet {
-    padding-top: 9vw; // TODO
+    padding-top: 9vw;
   }
   @include mobile {
     padding-top: 21vw;
@@ -41,10 +39,10 @@ main#product {
       padding: vw(30px);
     }
     @include tablet {
-      padding: 2vw;
+      padding: 3vw;
     }
     @include mobile {
-      padding: 0;
+      padding: 0 0 16vw;
     }
   }
   .columns {
@@ -81,6 +79,7 @@ main#product {
       }
     }
     h1 {
+      // @include white-on-blue-text(1);
       font-family: $extrabold;
       background: $blue-3;
       color: white;
@@ -95,7 +94,7 @@ main#product {
         padding: 0.2vw 1.4vw 0;
       }
       @include tablet {
-        font-size: 4.8vw; // TODO
+        font-size: 4.8vw;
         padding: 0.36vw 1.8vw 0;
       }
       @include mobile {
@@ -118,7 +117,7 @@ main#product {
         padding: 0.1vw 0.8vw 0;
       }
       @include tablet {
-        font-size: 2.76vw; // TODO
+        font-size: 2.5vw;
         padding: 0.06vw 1.68vw 0;
       }
       @include mobile {
@@ -151,34 +150,18 @@ main#product {
         padding: vw(50px);
       }
       @include tablet {
-        font-size: 3vw;
-        padding: 60px; // TODO
+        font-size: 2.9vw;
+        padding: 8vw 6vw;
       }
       @include mobile {
         font-size: 6vw;
-        padding: 60px; // TODO
+        padding: 16vw 6vw;
       }
-
-      // h3 + * {
-      //   @include widescreen {
-      //     margin-top: 60px;
-      //   }
-      //   @include desktop {
-      //     margin-top: vw(60px);
-      //   }
-      //   @include tablet {
-      //     margin-top: 10vw; // TODO
-      //   }
-      //   @include mobile {
-      //     margin-top: 12vw;
-      //   }
-      // }
     }
     h4 {
       font-family: $bold;
       font-size: 16px;
       color: white;
-      background: $green-1;
       background: $blue-3;
       align-self: flex-start;
       @include widescreen {
@@ -190,8 +173,8 @@ main#product {
         padding: 0.5vw 0.5vw 0.35vw;
       }
       @include tablet {
-        font-size: 6vw; // TODO
-        padding: 2vw 3vw 1.4vw; // TODO
+        font-size: 2.2vw;
+        padding: 1vw 1.6vw 0.8vw;
       }
       @include mobile {
         font-size: 5vw;
@@ -206,7 +189,7 @@ main#product {
         margin-top: 1.4vw;
       }
       @include tablet {
-        margin-top: 3vw; // TODO
+        margin-top: 2vw;
       }
       @include mobile {
         margin-top: 3vw;
@@ -220,7 +203,7 @@ main#product {
         margin-left: 1.4vw;
       }
       @include tablet {
-        margin-left: 3vw; // TODO
+        margin-left: 2vw;
       }
       @include mobile {
         margin-left: 3vw;
@@ -236,7 +219,7 @@ main#product {
           margin-top: 3vw;
         }
         @include tablet {
-          margin-top: 6vw; // TODO
+          margin-top: 4vw;
         }
         @include mobile {
           margin-top: 7vw;
@@ -251,28 +234,14 @@ main#product {
         margin-top: 1.66vw;
       }
       @include tablet {
-        margin-top: 6vw; // TODO
+        margin-top: 4vw;
       }
       @include mobile {
         margin-top: 6vw;
       }
     }
-    // h3 + * {
-    //   @include widescreen {
-    //     margin-top: 60px;
-    //   }
-    //   @include desktop {
-    //     margin-top: vw(60px);
-    //   }
-    //   @include tablet {
-    //     margin-top: 10vw; // TODO
-    //   }
-    //   @include mobile {
-    //     margin-top: 12vw;
-    //   }
-    // }
     h4 + p,
-    p + p {
+    h4 + table {
       @include widescreen {
         margin-top: px(1.33vw);
       }
@@ -280,7 +249,7 @@ main#product {
         margin-top: 1.33vw;
       }
       @include tablet {
-        margin-top: 10vw; // TODO
+        margin-top: 3vw;
       }
       @include mobile {
         margin-top: 6vw;
@@ -296,7 +265,7 @@ main#product {
         margin-top: 2.66vw;
       }
       @include tablet {
-        margin-top: 24vw; // TODO
+        margin-top: 5vw;
       }
       @include mobile {
         margin-top: 12vw;
@@ -311,10 +280,10 @@ main#product {
         padding: 0 vw(50px) vw(50px);
       }
       @include tablet {
-        padding: 8vw;
+        padding: 0 6vw 6vw;
       }
       @include mobile {
-        padding: 16vw 6vw;
+        padding: 0 6vw 16vw;
       }
     }
     .single-column {
@@ -324,11 +293,11 @@ main#product {
     .two-columns {
       @include widescreen {
         column-count: 2;
-        column-gap: px(4.16vw);
+        column-gap: 50px;
       }
       @include desktop {
         column-count: 2;
-        column-gap: 4.16vw;
+        column-gap: vw(50px);
       }
     }
     blockquote {
@@ -345,7 +314,7 @@ main#product {
           font-size: 2.4vw;
         }
         @include tablet {
-          font-size: 10vw; // TODO
+          font-size: 10vw;
         }
         @include mobile {
           font-size: 7vw;
@@ -378,13 +347,16 @@ main#product {
         padding: 0 vw(35px) vw(35px);
       }
       @include tablet {
-        padding: 0 35px; // TODO
+        padding: 0 6vw 3vw;
+        width: calc(100% - 6vw);
+        transform: translateX(-3vw);
       }
       @include mobile {
-        padding: 0 35px; // TODO
+        width: 100vw;
       }
       dt,
       dd {
+        @include paragraph;
         box-sizing: border-box;
         line-height: 150%;
         @include widescreen {
@@ -394,10 +366,10 @@ main#product {
           padding: vw(10px) vw(15px);
         }
         @include tablet {
-          padding: 10vw; // TODO
+          padding: 2vw 3vw;
         }
         @include mobile {
-          padding: 6vw;
+          padding: 4vw 6vw;
         }
         &:nth-of-type(odd) {
           background: $grey-0;
@@ -412,7 +384,7 @@ main#product {
         }
         @include tablet {
           width: 100%;
-          padding-bottom: 1vw; // TODO
+          padding-bottom: 1vw;
         }
         @include mobile {
           width: 100%;
@@ -451,36 +423,32 @@ main#product {
       }
     }
     table {
+      border-spacing: 0;
       @include tablet {
-        width: 100vw;
-        transform: translateX(-6vw);
+        width: calc(100% + 6vw);
+        transform: translateX(-3vw);
       }
       @include mobile {
         width: 100vw;
         transform: translateX(-6vw);
       }
       thead {
-        @include tablet {
-          display: none;
-        }
         @include mobile {
           display: none;
         }
       }
       tr {
-        display: flex;
-        @include tablet {
-          flex-direction: column;
-          padding: 6vw; // TODO
-        }
         @include mobile {
+          display: flex;
           flex-direction: column;
           padding: 6vw;
         }
-        &:nth-child(odd) {
+        &:nth-child(even) {
           @include tablet {
             background: $grey-0;
           }
+        }
+        &:nth-child(odd) {
           @include mobile {
             background: $grey-0;
           }
@@ -493,14 +461,14 @@ main#product {
             @include desktop {
               border-top: 1px solid $grey-1;
             }
+            @include tablet {
+              border-top: 1px solid $grey-1;
+            }
           }
         }
         td,
         th {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
+          @include paragraph;
           flex-shrink: 0;
           text-align: left;
           box-sizing: border-box;
@@ -508,20 +476,29 @@ main#product {
           @include widescreen {
             border-bottom: 1px solid $grey-1;
             border-right: 1px solid $grey-1;
-            padding: px(0.833vw) px(1.25vw);
+            padding: 10px 15px;
           }
           @include desktop {
             border-bottom: 1px solid $grey-1;
             border-right: 1px solid $grey-1;
-            padding: 0.833vw 1.25vw;
+            padding: vw(10px) vw(15px);
           }
           @include tablet {
-            width: 100%;
+            border-bottom: 1px solid $grey-1;
+            border-right: 1px solid $grey-1;
+            padding: 1vw 3vw;
           }
           @include mobile {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
             width: 100%;
           }
           &:first-child {
+            @include tablet {
+              border-left: 1px solid $grey-1;
+            }
             @include widescreen {
               border-left: 1px solid $grey-1;
             }
@@ -545,7 +522,7 @@ main#product {
         padding: vw(50px);
       }
       @include tablet {
-        padding: 8vw;
+        padding: 6vw;
       }
       @include mobile {
         padding: 16vw 6vw;
@@ -557,36 +534,6 @@ main#product {
         .tags {
           display: flex;
         }
-        p {
-          line-height: 160%;
-          margin: 0;
-          @include widescreen {
-            font-size: px(1.4vw);
-          }
-          @include desktop {
-            font-size: 1.4vw;
-          }
-          @include tablet {
-            font-size: 2.8vw;
-          }
-          @include mobile {
-            font-size: 4.6vw;
-          }
-          & + p {
-            @include widescreen {
-              margin-top: px(1vw);
-            }
-            @include desktop {
-              margin-top: 1vw;
-            }
-            @include tablet {
-              margin-top: 3vw;
-            }
-            @include mobile {
-              margin-top: 5vw;
-            }
-          }
-        }
       }
       #avatar {
         @include widescreen {
@@ -595,6 +542,13 @@ main#product {
         @include desktop {
           margin-top: 3vw;
         }
+        @include tablet {
+          //
+        }
+        @include mobile {
+          width: calc(100vw);
+          transform: translateX(-6vw);
+        }
       }
       #images {
         padding: 0;
@@ -602,64 +556,52 @@ main#product {
         flex-flow: wrap;
         justify-content: center;
         @include widescreen {
-          padding: px(0.3vw);
+          gap: 5px;
+          margin-top: 5px;
         }
         @include desktop {
-          padding: 0.3vw;
+          gap: vw(5px);
+          margin-top: vw(5px);
+        }
+        @include tablet {
+          gap: 1vw;
+          margin-top: 1vw;
+        }
+        @include mobile {
+          gap: 1.5vw;
+          margin-top: 1.5vw;
+          width: calc(100vw);
+          transform: translateX(-6vw);
         }
         button {
           outline: 0;
           border: 0;
           padding: 0;
-          @include widescreen {
-            padding: px(0.2vw);
-          }
-          @include desktop {
-            padding: 0.2vw;
-          }
-        }
-        figure {
           transition: transform 100ms ease;
           outline: 0 solid white;
           box-shadow: 0;
           transform: scale(1);
-          cursor: pointer; // because clickable
-          @include widescreen {
-            width: px(math.div(100vw, 15));
-            height: px(math.div(100vw, 15));
-            outline: px(0.4vw) solid white;
-          }
-          @include desktop {
-            width: calc(100vw / 15);
-            height: calc(100vw / 15);
-            outline: 0.4vw solid white;
-          }
-          @include tablet {
-            width: calc(100vw / 9);
-            height: calc(100vw / 9);
-          }
-          @include mobile {
-            width: calc(100vw / 6);
-            height: calc(100vw / 6);
-          }
-          &.active {
-            z-index: 1;
-            transform: scale(1.2);
-          }
+          cursor: pointer;
           &:hover,
           &:focus {
+            z-index: 1;
+            transform: scale(1.15);
+          }
+          &.hero {
             z-index: 2;
             transform: scale(1.3);
           }
           &:hover,
           &:focus,
-          &.active {
+          &.hero {
             transform-origin: center;
             @include widescreen {
-              box-shadow: 0 px(0.2vw) px(0.3vw) rgba(black, 0.5);
+              box-shadow: 0 px(0.2vw) px(0.3vw) rgba(black, 0.2);
+              outline: 4px solid white;
             }
             @include desktop {
-              box-shadow: 0 0.2vw 0.3vw rgba(black, 0.5);
+              box-shadow: 0 0.2vw 0.3vw rgba(black, 0.2);
+              outline: vw(4px) solid white;
             }
             @include tablet {
               box-shadow: 0 0.5vw 0.8vw rgba(black, 0.2);
@@ -667,11 +609,38 @@ main#product {
             }
             @include mobile {
               box-shadow: 0 1vw 2vw rgba(black, 0.2);
-              outline: 1.3vw solid white;
+              outline: 1.5vw solid white;
             }
           }
-          figcaption {
-            display: none;
+          figure {
+            @include widescreen {
+              // max 10 thumbs in a row
+              // keep even number so that 11th would center more aesthetically
+              // 620 - (57.5 * 10) - (5 * 9) = 57.5px
+              width: 57.5px;
+              height: 57.5px;
+            }
+            @include desktop {
+              width: vw(57.5px);
+              height: vw(57.5px);
+            }
+            @include tablet {
+              // max 8 thumbs in one row
+              // keep even number so that 9th would center more aesthetically
+              // 100 - 3 - 6 - 6 - 3 - 7 = 75vw to divide by 8
+              width: calc(75vw / 8);
+              height: calc(75vw / 8);
+            }
+            @include mobile {
+              // max 6 thumbs in one row
+              // keep even number so that 7th would center more aesthetically
+              // 100 - (7 * 1.5) = 89.5vw to divide by 6
+              width: calc(89.5vw / 6);
+              height: calc(89.5vw / 6);
+            }
+            figcaption {
+              display: none;
+            }
           }
         }
       }
@@ -679,7 +648,6 @@ main#product {
 
     section#compliance {
       table {
-        margin-top: 20px;
         td,
         th {
           &:nth-child(1) {
@@ -713,10 +681,10 @@ main#product {
         margin-bottom: vw(50px);
       }
       @include tablet {
-        margin-bottom: 50px; // TODO
+        margin-bottom: 6vw;
       }
       @include mobile {
-        margin-bottom: 50px; // TODO
+        margin-bottom: 6vw;
       }
       > li {
         @include widescreen {
@@ -728,12 +696,10 @@ main#product {
           padding-right: vw(50px);
         }
         @include tablet {
-          padding-left: 6vw; // TODO
-          padding-right: 6vw; // TODO
+          padding: 0 6vw;
         }
         @include mobile {
-          padding-left: 6vw;
-          padding-right: 6vw;
+          padding: 0 6vw;
         }
       }
     }
