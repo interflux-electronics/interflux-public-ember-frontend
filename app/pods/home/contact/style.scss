@@ -1,5 +1,17 @@
 main#contact {
   background: $grey-0;
+  @include widescreen {
+    padding-bottom: 40px;
+  }
+  @include desktop {
+    padding-bottom: vw(40px);
+  }
+  @include tablet {
+    padding-bottom: 10vw;
+  }
+  @include mobile {
+    padding-bottom: 20vw;
+  }
   & + .spacer {
     background: $grey-0;
   }
@@ -21,7 +33,7 @@ main#contact {
       }
       @include tablet {
         height: 100vw;
-        margin: 21vw 0 8vw; // TODO
+        margin: 0 0 8vw;
       }
       @include mobile {
         height: 130vw;
@@ -34,18 +46,20 @@ main#contact {
   }
   #list {
     .input-string {
-      width: 90vw;
       margin: 0 auto;
+      @include mobile {
+        width: 90vw;
+      }
     }
     .liner {
       @include widescreen {
-        width: px(50vw);
+        width: 600px;
       }
       @include desktop {
-        width: 50vw;
+        width: vw(600px);
       }
       @include tablet {
-        width: 90vw; // TODO
+        width: 96vw;
       }
       @include mobile {
         width: 100vw;
@@ -76,23 +90,23 @@ main#contact {
         box-shadow: 0 2px 4px RGBA(0, 0, 0, 0.1);
         background-color: white;
         @include widescreen {
-          padding: 60px;
+          padding: 50px;
         }
         @include desktop {
-          padding: vw(60px);
+          padding: vw(50px);
         }
         @include tablet {
-          padding: 8vw 5vw;
+          padding: 5vw;
         }
         @include mobile {
           padding: 18vw 5vw;
         }
         & + li {
           @include widescreen {
-            margin-top: 30px;
+            margin-top: 20px;
           }
           @include desktop {
-            margin-top: vw(30px);
+            margin-top: vw(20px);
           }
           @include tablet {
             margin-top: 2vw;
@@ -105,13 +119,13 @@ main#contact {
           font-family: $extrabold;
           line-height: 140%;
           @include widescreen {
-            margin-top: 16px;
+            margin-bottom: 16px;
           }
           @include desktop {
-            margin-top: vw(16px);
+            margin-bottom: vw(16px);
           }
           @include tablet {
-            margin-bottom: 10vw; // TODO
+            margin-bottom: 3vw;
           }
           @include mobile {
             margin-bottom: 8vw;
@@ -125,13 +139,13 @@ main#contact {
         }
         div + div {
           @include widescreen {
-            margin-top: 12px;
+            margin-top: 16px;
           }
           @include desktop {
-            margin-top: vw(12px);
+            margin-top: vw(16px);
           }
           @include tablet {
-            margin-top: 10vw; // TODO
+            margin-top: 3vw;
           }
           @include mobile {
             margin-top: 6vw;

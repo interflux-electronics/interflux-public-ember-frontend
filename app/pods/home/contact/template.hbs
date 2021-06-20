@@ -1,9 +1,4 @@
-<Page
-  @id='contact'
-  @title='Contact'
-  @backRoute='home'
-  @crumbs={{array (hash label='Interflux' route='home') (hash label='Company')}}
->
+<Page @id='contact' @title='Contact' @backRoute='home'>
   <Section @id='map'>
     <Map @markers={{@model.companies}} />
   </Section>

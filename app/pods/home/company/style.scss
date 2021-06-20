@@ -7,10 +7,10 @@ main#company {
     padding-bottom: vw(150px);
   }
   @include tablet {
-    padding-bottom: 10vw; // TODO
+    padding-bottom: 10vw;
   }
   @include mobile {
-    padding-bottom: 10vw; // TODO
+    padding-bottom: 10vw;
   }
   #iso,
   #pioneer,
@@ -219,10 +219,6 @@ main#company {
 
   #support {
     img {
-      @include widescreen {
-      }
-      @include desktop {
-      }
       @include tablet {
         margin: 10vw 0 5vw;
       }
