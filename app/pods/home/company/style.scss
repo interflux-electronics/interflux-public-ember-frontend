@@ -19,8 +19,8 @@ main#company {
     .liner {
       display: flex;
       @include tablet {
+        padding: 0 5vw;
         flex-direction: column;
-        padding: 10vw 5vw;
       }
       @include mobile {
         flex-direction: column;
@@ -58,7 +58,8 @@ main#company {
     }
     .text {
       h2 {
-        margin-bottom: 20px;
+        font-family: $extrabold;
+        line-height: 150%;
         @include widescreen {
           margin-bottom: px(1.666vw);
         }
@@ -66,19 +67,16 @@ main#company {
           margin-bottom: 1.666vw;
         }
         @include tablet {
-          margin: 10vw 0;
+          margin: 0 0 3vw;
+          font-size: 3.5vw;
         }
         @include mobile {
-          margin: 10vw 0;
+          margin: 0 0 9vw;
+          font-size: 7vw;
         }
       }
       p {
-        @include tablet {
-          margin: 10vw 0;
-        }
-        @include mobile {
-          margin: 10vw 0;
-        }
+        @include paragraph;
       }
     }
   }
@@ -91,7 +89,7 @@ main#company {
       margin-top: 8.333vw;
     }
     @include tablet {
-      margin-top: 41vw; // TODO
+      margin-top: 14vw;
     }
     @include mobile {
       margin-top: 41vw;
@@ -106,10 +104,11 @@ main#company {
         padding: 4.1666vw;
       }
       @include tablet {
-        padding-top: 80vw; // TODO
+        padding: 5vw 40vw 5vw 5vw;
       }
       @include mobile {
         padding-top: 80vw;
+        padding-bottom: 80vw;
       }
       h2,
       p {
@@ -117,8 +116,6 @@ main#company {
       }
       img {
         position: absolute;
-        top: 0;
-        right: 0;
         &.label {
           @include widescreen {
             top: -24px;
@@ -129,14 +126,14 @@ main#company {
             right: 210px;
           }
           @include tablet {
-            width: 40vw; // TODO
-            top: -6vw; // TODO
-            right: 57vw; // TODO
+            width: 20vw;
+            top: -3.1vw;
+            right: 7vw;
           }
           @include mobile {
             width: 40vw;
-            top: -6vw;
-            right: 57vw;
+            top: -6.2vw;
+            right: 32vw;
           }
         }
         &.daniel {
@@ -151,12 +148,12 @@ main#company {
             right: -0.833vw;
           }
           @include tablet {
-            right: -6vw; // TODO
-            top: 4vw; // TODO
+            right: 4vw;
+            bottom: -8vw;
           }
           @include mobile {
-            right: -6vw;
-            top: 4vw;
+            right: 8vw;
+            bottom: -6vw;
           }
         }
       }
@@ -172,12 +169,24 @@ main#company {
   }
 
   #pioneer {
-    img {
+    .liner {
       @include tablet {
-        margin-bottom: -10vw; // TODO
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
       }
-      @include mobile {
-        margin-bottom: -10vw;
+      .text {
+        @include tablet {
+          width: 60%;
+        }
+      }
+      img {
+        @include tablet {
+          margin: 9vw 0 -3vw;
+        }
+        @include mobile {
+          margin: 10vw 0 -5vw;
+        }
       }
     }
   }
@@ -187,10 +196,13 @@ main#company {
       @include tablet {
         align-self: flex-end;
         transform: translateX(5vw);
+        margin-bottom: -3vw;
+        margin-top: -30vw;
       }
       @include mobile {
         align-self: flex-end;
         transform: translateX(5vw);
+        margin-bottom: 9vw;
       }
     }
     .liner {
@@ -206,6 +218,18 @@ main#company {
   }
 
   #support {
-    //
+    img {
+      @include widescreen {
+      }
+      @include desktop {
+      }
+      @include tablet {
+        margin: 10vw 0 5vw;
+      }
+      @include mobile {
+        margin-bottom: 9vw;
+        width: 100%;
+      }
+    }
   }
 }
