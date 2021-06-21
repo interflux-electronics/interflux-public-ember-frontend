@@ -1,6 +1,9 @@
 import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 
 export default class ProductRowComponent extends Component {
+  @service media;
+
   get features() {
     const { product } = this.args;
 
