@@ -45,6 +45,10 @@ export default class ProductFamilyModel extends Model {
     return !this.isSubFamily;
   }
 
+  get topFamily() {
+    return this.isMainFamily ? this : this.productFamily;
+  }
+
   // Returns plural family name with first letter capitalised
   get label() {
     const str = this.namePlural;

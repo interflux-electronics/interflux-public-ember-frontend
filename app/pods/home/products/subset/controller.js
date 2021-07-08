@@ -76,7 +76,8 @@ export default class ProductsSubsetController extends Controller {
     if (use) {
       // Show only the products of the use and sort
       use.families
-        .filterBy('isMainFamily')
+        .mapBy('topFamily')
+        .uniq()
         .sortBy('rank')
         .forEach((family, i) => {
           const id = family.get('id');
@@ -90,7 +91,7 @@ export default class ProductsSubsetController extends Controller {
           // Iterate over all products which have this use and family and which status is shown.
           use
             .get('productsByRank')
-            .filterBy('family.id', family.get('id'))
+            .filterBy('family.topFamily.id', id)
             .filter((product) => shownStatuses.includes(product.get('status')))
             .forEach((product, ii) => {
               const id2 = product.get('id');
