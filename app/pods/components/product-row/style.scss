@@ -56,13 +56,12 @@ li.product-row {
     &:hover,
     &:focus {
       z-index: 1;
+      outline: 0;
       @include widescreen {
-        outline: 1px solid $blue-0; // TODO
-        box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1); // TODO
+        box-shadow: 0 0 0 1px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
       }
       @include desktop {
-        outline: 1px solid $blue-0;
-        box-shadow: 0 4px 8px RGBA(0, 0, 0, 0.1);
+        box-shadow: 0 0 0 1px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
       }
       .right {
         transform: translateX(50px);
