@@ -6,7 +6,7 @@ set -o pipefail
 user1=bot
 user2=jw
 server=server.interflux.com
-domain=new.interflux.com
+domain=interflux.com
 redirect_www=false
 repo=git@github.com:interflux-electronics/interflux-public-ember-frontend.git
 
