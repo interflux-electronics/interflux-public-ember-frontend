@@ -284,7 +284,7 @@ export default class SearchComponent extends Component {
     // If minimum 1 character was typed, do a filtered search.
     const filter = {};
     if (query) {
-      filter[searchFilter] = `${query}*`;
+      filter[searchFilter] = `~${query}`;
     }
 
     // Then we send the API request and wait
