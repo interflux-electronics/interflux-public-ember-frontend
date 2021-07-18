@@ -9,11 +9,17 @@
 <meta property='og:url' content='{{this.model.url}}' />
 <meta property='og:title' content='{{this.model.title}}' />
 <meta property='og:description' content='{{this.model.description}}' />
-<meta property='og:image' content={{this.model.imageURL}} />
-<meta property='og:image:secure_url' content={{this.model.imageURL}} />
-<meta property='og:image:type' content={{this.model.imageMime}} />
-<meta property='og:image:width' content={{this.model.imageWidth}} />
-<meta property='og:image:height' content={{this.model.imageHeight}} />
+{{#if this.model.imageURL}}
+  <meta property='og:image' content={{this.model.imageURL}} />
+  <meta property='og:image:secure_url' content={{this.model.imageURL}} />
+  <meta property='og:image:type' content={{this.model.imageMime}} />
+  {{#if this.model.imageWidth}}
+    <meta property='og:image:width' content={{this.model.imageWidth}} />
+  {{/if}}
+  {{#if this.model.imageHeight}}
+    <meta property='og:image:height' content={{this.model.imageHeight}} />
+  {{/if}}
+{{/if}}
 <meta name='robots' content={{this.model.robot}} />
 <meta name='copyright' content='© since 1980 by Interflux Electronics ®' />
 <meta name='built-by' content='Jan Werkhoven, j.werkhoven@interflux.com' />
