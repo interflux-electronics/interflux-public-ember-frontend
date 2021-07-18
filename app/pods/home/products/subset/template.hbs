@@ -86,19 +86,6 @@
       <article {{did-insert this.onInsertArticle}}>
         <h1 id='h1'>{{this.pageTitle}}</h1>
         <ol>
-          {{#each this.statuses as |status|}}
-            <li id={{status.id}} class='status' labelledby='h2-{{status.id}}'>
-              <div class='intro'>
-                <div class='title'>
-                  <h2 id='h2-{{status.id}}'>{{status.label}}</h2>
-                </div>
-                {{#if status.blurb}}
-                  <p>{{status.blurb}}</p>
-                {{/if}}
-              </div>
-            </li>
-          {{/each}}
-
           {{#each this.mainFamilies as |mainFamily|}}
             <li
               id={{mainFamily.id}}
