@@ -23,7 +23,7 @@ const apiHosts = {
 
 // Where this Ember app is located
 const publicHosts = {
-  production: 'https://new.interflux.com',
+  production: 'https://interflux.com',
   development: {
     web: 'http://localhost:4400',
     ios: 'http://localhost:4400',
@@ -45,7 +45,7 @@ const cdnHosts = {
 
 // Where the old website is located
 const oldHosts = {
-  production: 'https://www.interflux.com',
+  production: 'https://old.interflux.com',
   development: 'http://localhost:9100',
   test: 'http://localhost:9100'
 };

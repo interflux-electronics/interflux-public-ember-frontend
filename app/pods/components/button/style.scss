@@ -139,10 +139,19 @@ button {
       }
       &.white {
         color: white;
-        &:hover,
+        &:hover {
+          text-decoration: none;
+        }
         &:focus {
-          box-shadow: rgba(white, 0.1) 0 0 0 1px, 0 0 0 3px white;
+          box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
           background: rgba(white, 0.1);
+          border-radius: 3px;
+        }
+        &.inverse {
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -192,7 +201,7 @@ button {
         }
         &:hover,
         &:focus {
-          box-shadow: rgba(white, 0.1) 0 0 0 1px, 0 0 0 3px white;
+          box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
           background: rgba(white, 0.1);
         }
       }
@@ -326,9 +335,14 @@ button {
     &.green {
       background: $green-1;
       color: white;
+      text-decoration: none;
       &:hover,
       &:focus {
         background: $green-2;
+        text-decoration: underline;
+      }
+      &:focus {
+        box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
       }
     }
 
