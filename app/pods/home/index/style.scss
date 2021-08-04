@@ -152,26 +152,34 @@ main#homepage {
   #what-we-do,
   #why {
     background: $blue-5;
+    @include widescreen {
+      border-bottom: 25px solid $blue-4;
+      border-top: 25px solid $blue-4;
+    }
+    @include desktop {
+      border-bottom: vw(25px) solid $blue-4;
+      border-top: vw(25px) solid $blue-4;
+    }
+    @include tablet {
+      border-bottom: 3vw solid $blue-4;
+      border-top: 3vw solid $blue-4;
+    }
+    @include mobile {
+      border-bottom: 5vw solid $blue-4;
+      border-top: 5vw solid $blue-4;
+    }
     .liner {
       @include widescreen {
         padding: 150px 50px;
-        border-bottom: 25px solid $blue-4;
-        border-top: 25px solid $blue-4;
       }
       @include desktop {
         padding: vw(150px) vw(50px);
-        border-bottom: vw(25px) solid $blue-4;
-        border-top: vw(25px) solid $blue-4;
       }
       @include tablet {
         padding: 28vw 10vw;
-        border-bottom: 3vw solid $blue-4;
-        border-top: 3vw solid $blue-4;
       }
       @include mobile {
         padding: 42vw 10vw;
-        border-bottom: 5vw solid $blue-4;
-        border-top: 5vw solid $blue-4;
       }
     }
     h2 {
