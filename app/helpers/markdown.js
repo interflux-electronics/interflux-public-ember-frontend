@@ -11,7 +11,7 @@ export default helper(function markdown(params) {
   const string = params[0];
 
   // { noParagraphs: true }
-  const options = params[1];
+  const options = params[1] || {};
 
   if (!string) {
     return string;
