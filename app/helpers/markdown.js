@@ -10,6 +10,9 @@ import { htmlSafe } from '@ember/template';
 export default helper(function markdown(params) {
   const string = params[0];
 
+  // { noParagraphs: true }
+  const options = params[1];
+
   if (!string) {
     return string;
   }
@@ -73,7 +76,11 @@ export default helper(function markdown(params) {
         });
       }
 
-      html += `<p>${content}</p>`;
+      if (options.noParagraphs) {
+        html += `${content}`;
+      } else {
+        html += `<p>${content}</p>`;
+      }
     }
   });
 
