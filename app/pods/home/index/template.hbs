@@ -1,281 +1,140 @@
-<Page
-  @id={{if this.media.isMobileTablet 'home-mobile' 'home-desktop'}}
-  @title='Interflux'
->
-  {{#if this.media.isMobileTablet}}
-    <Section @id='hero'>
-      <div class='text'>
-        <h1>
-          <span>Solder your electronics with </span>
-          <strong>{{span-each-word this.heroWord}}</strong>
-        </h1>
-        <p>Impossible?</p>
-        <p>Ask Interflux :)</p>
-      </div>
+<Page @id='homepage' @title='Interflux'>
+  <Section @id='hero'>
+    <div class='text'>
+      <h1>
+        <small>Yes, you can solder electronics ...</small>
+        <strong>{{markdown this.heroPhrase (hash noParagraphs=true)}}</strong>
+        <small>Ask Interflux.</small>
+      </h1>
+    </div>
 
-      <div class='cta'>
-        <Button
-          @onClick={{this.showNextSection}}
-          @icon='chevron-down'
-          @theme='square outlined'
-        />
-      </div>
+    <div class='cta'>
+      <Button
+        @onClick={{this.showNextSection}}
+        @icon='chevron-down'
+        @theme='square outlined'
+      />
+    </div>
 
-      <div class='image'>
+    <div class='image'>
+      {{#if this.media.isMobile}}
         <ResponsiveImage
-          @path='images/public/home-hero'
-          @variations='@640x1136.jpg,@640x1136.webp'
+          @path='images/public/homepage-hero-mobile'
+          @variations='@640x1200.jpg,@640x1200.webp'
         />
-      </div>
-    </Section>
+      {{/if}}
+      {{#if this.media.isTablet}}
+        <ResponsiveImage
+          @path='images/public/homepage-hero-tablet'
+          @variations='@1200x1200.jpg,@1200x1200.webp'
+        />
+      {{/if}}
+      {{#if this.media.isDesktopWidescreen}}
+        <ResponsiveImage
+          @path='images/public/homepage-hero-desktop'
+          @variations='@2400x1200.jpg,@2400x1200.webp'
+        />
+      {{/if}}
+    </div>
+  </Section>
 
-    <Section @id='what-we-do'>
-      <h2>What we do</h2>
-      <blockquote>
-        <span>We develop specialised </span>
-        <strong>chemistry</strong>
-        <span> for soldering </span>
-        <strong>electronics</strong>.
-      </blockquote>
-    </Section>
+  <Section @id='what-we-do'>
+    <h2>In a nutshell...</h2>
+    <blockquote>
+      <span>We research &amp; develop the </span>
+      <strong>chemistry</strong>
+      <span> needed for soldering </span>
+      <strong>electronics</strong>.
+    </blockquote>
+  </Section>
 
-    <Section @id='popular'>
-      <h2>Popular products</h2>
-      <ul class='products rows'>
-        {{#each this.popularProducts as |product|}}
-          {{#if product.id}}
-            <li>
-              <a href={{href-to 'home.product' product.id}}>
-                <div class='image'>
-                  <ResponsiveImage
-                    @path={{product.avatarPath}}
-                    @variations={{product.avatarVariations}}
-                    @alt={{@roduct.avatarAlt}}
-                  />
-                </div>
+  <Section @id='popular'>
+    <h2>Our best-selling products</h2>
+    <ul class='products {{this.popularLayout}}'>
+      {{#each this.popularProducts as |product|}}
+        {{#if product.id}}
+          <li>
+            <a href={{href-to 'home.product' product.id}}>
+              <div class='image'>
+                <ResponsiveImage
+                  @path={{product.avatarPath}}
+                  @variations={{product.avatarVariations}}
+                  @alt={{@roduct.avatarAlt}}
+                />
+              </div>
 
-                <div class='text'>
-                  <h3>{{span-each-word product.name}}</h3>
-                  <h4>{{span-each-word product.family.nameSingle}}</h4>
-                </div>
-              </a>
-            </li>
-          {{/if}}
-        {{/each}}
-      </ul>
-    </Section>
+              <div class='text'>
+                <h3>{{span-each-word product.name}}</h3>
+                <h4>{{span-each-word product.family.nameSingle}}</h4>
+              </div>
+            </a>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </Section>
 
-    <Section @id='new'>
-      <h2>Our newest innovations</h2>
-      <ul class='products rows'>
-        {{#each this.newProducts as |product|}}
-          {{#if product.id}}
-            <li>
-              <a href={{href-to 'home.product' product.id}}>
-                <div class='image'>
-                  <ResponsiveImage
-                    @path={{product.avatarPath}}
-                    @variations={{product.avatarVariations}}
-                    @alt={{@roduct.avatarAlt}}
-                  />
-                </div>
+  <Section @id='new'>
+    <h2>Our newest inventions</h2>
+    <ul class='products {{this.newLayout}}'>
+      {{#each this.newProducts as |product|}}
+        {{#if product.id}}
+          <li>
+            <a href={{href-to 'home.product' product.id}}>
+              <div class='image'>
+                <ResponsiveImage
+                  @path={{product.avatarPath}}
+                  @variations={{product.avatarVariations}}
+                  @alt={{@roduct.avatarAlt}}
+                />
+              </div>
 
-                <div class='text'>
-                  <h3>{{span-each-word product.name}}</h3>
-                  <h4>{{span-each-word product.family.nameSingle}}</h4>
-                </div>
-              </a>
-            </li>
-          {{/if}}
-        {{/each}}
-      </ul>
-      <div class='cta'>
-        <Button
-          @route='home.products'
-          @text='See all products'
-          @theme='link orange'
-        />
-      </div>
-    </Section>
+              <div class='text'>
+                <h3>{{span-each-word product.name}}</h3>
+                <h4>{{span-each-word product.family.nameSingle}}</h4>
+              </div>
+            </a>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+    <div class='cta'>
+      <Button
+        @route='home.products'
+        @text='See all products'
+        @theme='link orange'
+      />
+    </div>
+  </Section>
 
-    <Section @id='why'>
-      <h2>Why Interflux?</h2>
-      <blockquote>
-        We've been pioneering electronics soldering chemistry since 1980. That's
-        <strong>{{this.yearCount}}+ years</strong>
-        of accumulated experience in soldering electronics.
-      </blockquote>
-      <div class='cta'>
-        <Button
-          @route='home.company'
-          @text='See timeline'
-          @theme='link white'
-        />
-      </div>
-    </Section>
+  <Section @id='why'>
+    <h2>Why Interflux?</h2>
+    <blockquote>
+      We've been pioneering soldering chemistry since 1980. That's
+      <strong>{{this.yearCount}}+ years</strong>
+      of accumulated experience in soldering electronics.
+    </blockquote>
+    <div class='cta'>
+      <Button @route='home.company' @text='Learn more' @theme='link white' />
+    </div>
+  </Section>
 
-    <Section @id='trusted-by'>
-      <h2>Trusted by</h2>
-      <div class='logos'>
-        <Image
-          @src='{{env 'cdnHost'}}/images/public/logo-kurtz-ersa@300x168.png'
-          @width='300'
-          @height='168'
-          @alt='logo Kurtz Ersa'
-        />
-        <Image
-          @src='{{env 'cdnHost'}}/images/public/logo-oritech.png'
-          @width='300'
-          @height='168'
-          @alt='logo Oritech Australia'
-          @class='oritech'
-        />
-      </div>
-    </Section>
-  {{/if}}
-
-  {{#if this.media.isDesktopWidescreen}}
-    <Section @id='links' class='legacy'>
-      <div class='left {{this.imageLeft}}'>
-        <h2>Products</h2>
-        <p>Find products by type</p>
-        <nav>
-          <Button
-            @route='home.products.subset'
-            @model='soldering-fluxes'
-            @text='Soldering Fluxes'
-            {{on 'mouseover' (fn this.showImage 1)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='solder-pastes'
-            @text='Solder Pastes'
-            {{on 'mouseover' (fn this.showImage 2)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='solder-wires'
-            @text='Solder Wires'
-            {{on 'mouseover' (fn this.showImage 3)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='fluxing-systems'
-            @text='Fluxing Systems'
-            {{on 'mouseover' (fn this.showImage 4)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='auxiliaries'
-            @text='Auxiliaries'
-            {{on 'mouseover' (fn this.showImage 5)}}
-          />
-        </nav>
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
-          class='image-1'
-          alt='electronics'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-2'
-          alt='electronics'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-3'
-          alt='electronics'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-4'
-          alt='electronics'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-5'
-          alt='electronics'
-        />
-      </div>
-
-      <div class='right {{this.imageRight}}'>
-        <h2>Processes</h2>
-        <p>Find products by type</p>
-        <nav>
-          <Button
-            @route='home.products.subset'
-            @model='for-wave-soldering'
-            @text='Wave Soldering'
-            {{on 'mouseover' (fn this.showImage 6)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='for-selective-soldering'
-            @text='Selective Soldering'
-            {{on 'mouseover' (fn this.showImage 7)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='for-reflow-soldering'
-            @text='Reflow Soldering'
-            {{on 'mouseover' (fn this.showImage 8)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='for-rework-and-repair'
-            @text='Rework & Repair'
-            {{on 'mouseover' (fn this.showImage 9)}}
-          />
-          <Button
-            @route='home.products.subset'
-            @model='for-pre-tinning'
-            @text='Pre-tinning'
-            {{on 'mouseover' (fn this.showImage 10)}}
-          />
-        </nav>
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-1.jpg'
-          class='image-6'
-          alt='soldering process'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-7'
-          alt='soldering process'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-8'
-          alt='soldering process'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-9'
-          alt='soldering process'
-        />
-        <img
-          src='{{env 'cdnHost'}}/images/legacy/homepage-images-2.jpg'
-          class='image-10'
-          alt='soldering process'
-        />
-      </div>
-
-      <div class='bottom'>
-        <Button @route='home.company'>
-          <p>Company</p>
-          <p class='small'>Learn about Interflux</p>
-        </Button>
-
-        <Button @route='home.documents'>
-          <p>Documents</p>
-          <p class='small'>Find technical data</p>
-        </Button>
-
-        <Button @route='home.contact'>
-          <p>Contact</p>
-          <p class='small'>Get in touch</p>
-        </Button>
-      </div>
-    </Section>
-  {{/if}}
+  <Section @id='trusted-by'>
+    <h2>Trusted by</h2>
+    <div class='logos'>
+      <Image
+        @src='{{env 'cdnHost'}}/images/public/logo-kurtz-ersa@300x168.png'
+        @width='300'
+        @height='168'
+        @alt='logo Kurtz Ersa'
+      />
+      <Image
+        @src='{{env 'cdnHost'}}/images/public/logo-oritech.png'
+        @width='300'
+        @height='168'
+        @alt='logo Oritech Australia'
+        @class='oritech'
+      />
+    </div>
+  </Section>
 </Page>

@@ -10,7 +10,7 @@ export default class HomeIndexController extends Controller {
   @service media;
   @service window;
 
-  @tracked heroWord;
+  @tracked heroPhrase;
   @tracked imageLeft = 'image-1';
   @tracked imageRight = 'image-6';
 
@@ -22,15 +22,14 @@ export default class HomeIndexController extends Controller {
 
   async startHeroWordLoop() {
     const array = [
-      'zero defects',
-      'lead-free',
-      'high reliability',
-      'no residue',
-      'low temperatures',
-      'VOC-free',
-      '0.00% halides',
-      'repeatable precision',
-      'confidence'
+      'with ***zero defects***',
+      'with ***lead-free*** alloys',
+      'with high ***reliability***',
+      'with ***zero residue***',
+      'with ***No Clean***',
+      'at ***low temperatures***',
+      '***VOC-free***',
+      '***0.00% halides***'
     ].sort(function () {
       return 0.5 - Math.random();
     });
@@ -40,9 +39,9 @@ export default class HomeIndexController extends Controller {
     let i = 0;
 
     while (i <= n) {
-      this.heroWord = array[i];
+      this.heroPhrase = array[i];
       i = i < n ? i + 1 : 0;
-      await this.window.delay(2000);
+      await this.window.delay(3000);
     }
   }
 
@@ -73,6 +72,14 @@ export default class HomeIndexController extends Controller {
       .filterBy('status', 'new')
       .filterBy('onFrontPage')
       .sortBy('frontPageRank');
+  }
+
+  get popularLayout() {
+    return this.popularProducts.length === 4 ? 'two-columns' : 'three-columns';
+  }
+
+  get newLayout() {
+    return this.newProducts.length === 4 ? 'two-columns' : 'three-columns';
   }
 
   get yearCount() {

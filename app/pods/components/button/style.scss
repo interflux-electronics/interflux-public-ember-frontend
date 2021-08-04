@@ -103,6 +103,16 @@ button {
     &.link {
       background: none;
       text-decoration: underline;
+      @include widescreen {
+        font-size: 20px;
+        border-radius: 5px;
+        padding: 14px 20px;
+      }
+      @include desktop {
+        font-size: vw(20px);
+        border-radius: vw(5px);
+        padding: vw(14px) vw(20px);
+      }
       @include tablet {
         font-size: 3.2vw;
         border-radius: 1vw;
@@ -161,10 +171,6 @@ button {
       justify-content: center;
       align-items: center;
       background: none;
-      // @include widescreen {
-      // }
-      // @include desktop {
-      // }
       @include tablet {
         font-size: 3vw;
         border-radius: 0.4vw;
@@ -176,10 +182,6 @@ button {
         padding: 4vw;
       }
       svg {
-        // @include widescreen {
-        // }
-        // @include desktop {
-        // }
         @include tablet {
           max-width: 5vw;
           max-height: 5vw;
