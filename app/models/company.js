@@ -20,11 +20,24 @@ export default class CompanyModel extends Model {
 
   @belongsTo('country') country;
 
-  @hasMany('person') people;
   @hasMany('country') markets;
 
   @hasMany('company-member') companyMembers;
   @hasMany('company-market') companyMarkets;
+
+  get members() {
+    const publicMembers = this.companyMembers
+      .filterBy('public')
+      .mapBy('person');
+
+    if (publicMembers.length !== this.companyMembers.length) {
+      console.warn(
+        `a non-public member of ${this.businessName} has been serialised`
+      );
+    }
+
+    return publicMembers.sortBy('rankAmongMembers');
+  }
 
   get rank() {
     return this.order || 999;

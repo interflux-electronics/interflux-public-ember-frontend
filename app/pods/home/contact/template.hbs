@@ -89,7 +89,7 @@
               {{/if}}
             </div>
 
-            {{#if company.companyMembers}}
+            {{#if company.members}}
               <div>
                 <p>Best contact{{if company.hasMultipleContacts 's'}}:</p>
                 {{#each company.companyMembers as |member|}}
@@ -101,19 +101,19 @@
                     </p>
                   {{/if}}
 
-                  {{#if member.email}}
+                  {{#if member._email}}
                     <p><a
-                        href='mailto:{{member.email}}'
+                        href='mailto:{{member._email}}'
                         target='_blank'
                         rel='noopener noreferrer'
-                      >{{member.email}}</a></p>
+                      >{{member._email}}</a></p>
                   {{/if}}
-                  {{#if member.phone}}
+                  {{#if member._phone}}
                     <p><a
-                        href='tel:{{member.phone}}'
+                        href='tel:{{member._phone}}'
                         target='_blank'
                         rel='noopener noreferrer'
-                      >{{member.phone}}</a></p>
+                      >{{member._phone}}</a></p>
                   {{/if}}
                 {{/each}}
               </div>
