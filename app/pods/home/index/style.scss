@@ -587,6 +587,23 @@ main#homepage {
       flex-flow: wrap;
       justify-content: center;
       align-items: center;
+      margin: 0 auto;
+      @include widescreen {
+        gap: 80px;
+        max-width: 1000px;
+      }
+      @include desktop {
+        gap: vw(80px);
+        max-width: vw(1000px);
+      }
+      @include tablet {
+        gap: 10vw;
+        width: 80%;
+      }
+      @include mobile {
+        gap: 5vw;
+        width: 60%;
+      }
     }
     picture {
       height: auto;
@@ -597,15 +614,22 @@ main#homepage {
         width: vw(300px);
       }
       @include tablet {
-        width: 36vw;
+        width: 30vw;
       }
       @include mobile {
         width: 45vw;
       }
-      &.oritech {
+      &#amw {
+        transform: scale(0.7);
+      }
+      &#aban {
+        transform: scale(0.8);
+      }
+      &#oritech {
         background: #006464;
         padding: 2vw;
         box-sizing: border-box;
+        transform: scale(0.9);
       }
     }
   }
