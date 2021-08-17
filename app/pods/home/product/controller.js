@@ -110,4 +110,20 @@ export default class ProductController extends Controller {
       this.model.product.compliesWithISO
     );
   }
+
+  @action
+  openOrderModal() {
+    console.log('openShareModal');
+  }
+
+  @action
+  openShareModal() {
+    console.log('openShareModal');
+  }
+
+  @action
+  openChat() {
+    console.log('openChat');
+    window.LiveChatWidget.call('maximize');
+  }
 }

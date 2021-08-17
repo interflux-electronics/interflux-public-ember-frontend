@@ -37,17 +37,20 @@
                   <h2 class='orange'>popular</h2>
                 {{/if}}
                 {{#if product.isOutdated}}
-                  <h2 class='grey'>{{if
+                  <h2 class='grey'>
+                    {{if
                       product.superiorProduct
                       (concat 'replaced by ' product.superiorProduct.name)
                       'outdated'
-                    }}</h2>
+                    }}
+                  </h2>
                 {{/if}}
                 {{#if product.isDiscontinued}}
                   <h2 class='red'>out of production{{if
                       product.superiorProduct
                       (concat '- replaced by ' product.superiorProduct.name)
-                    }}</h2>
+                    }}
+                  </h2>
                 {{/if}}
               </div>
 
@@ -291,53 +294,47 @@
           </section>
         </article>
 
-        {{! TEMPORARY }}
-        {{!
-          <aside>
-            <div class="sticky">
-              <div class="box white">
-                <dl>
-                  <dt>Price:</dt>
-                  <td>
-                    <a href="javascript:void(0)">request</a>
-                  </td>
-                </dl>
+        <aside>
+          <div class='sticky'>
+            <div class='box'>
+              {{!--
+              <Button
+                @text='Add to order'
+                @icon='truck'
+                @theme='primary green'
+                @onClick={{this.openOrderModal}}
+              />
 
-                <dl>
-                  <dt>Availability:</dt>
-                  <td>
-                    <a href="javascript:void(0)">request</a>
-                  </td>
-                </dl>
+              <Button
+                @text='Favourite'
+                @icon='star'
+                @theme='secondary orange'
+                @onClick={{this.addToFavourites}}
+              />
 
-                <button
-                  class="button-base big orange-3"
-                  type="button"
-                  id="order"
-                >
-                  <span>Order</span>
-                </button>
-              </div>
+              <Button
+                @text='Share'
+                @icon='share'
+                @theme='secondary light-blue'
+                @onClick={{this.openShareModal}}
+              />
+              --}}
 
-              <div class="box outlined">
-                <h4>Need more information?</h4>
-                <p>Ask us anything.</p>
-                <textarea
-                  rows="4"
-                  placeholder="Your question"
-                ></textarea>
+              <h4>Need help?</h4>
+              <p>
+                Ask someone with decades of fields experience in soldering
+                electronics.
+              </p>
 
-                <button
-                  class="button-base medium green"
-                  type="button"
-                  id="ask"
-                >
-                  <span>Ask</span>
-                </button>
-              </div>
+              <Button
+                @text='Ask Interflux'
+                @icon='people'
+                @theme='primary orange'
+                @onClick={{this.openChat}}
+              />
             </div>
-          </aside>
-          }}
+          </div>
+        </aside>
       </div>
     </div>
   </Page>

@@ -28,14 +28,12 @@ main#product {
   }
   .liner {
     margin: 0 auto;
-    // TEMPORARY: until we can place orders via website
-    // max-width: 1150px;
     @include widescreen {
-      max-width: 720px;
+      max-width: calc(1070px); // 720px + 30px + 320px
       padding: 30px;
     }
     @include desktop {
-      max-width: vw(720px);
+      max-width: vw(1070px);
       padding: vw(30px);
     }
     @include tablet {
@@ -47,6 +45,12 @@ main#product {
   }
   .columns {
     display: flex;
+    @include tablet {
+      flex-direction: column;
+    }
+    @include mobile {
+      flex-direction: column;
+    }
   }
   article {
     width: 100%;
@@ -705,95 +709,77 @@ main#product {
     }
   }
 
-  // TEMPORARY: until we can place orders via website
-  // aside {
-  //   width: 320px;
-  //   flex-shrink: 0;
-  //   margin-left: 30px;
-  //   .sticky {
-  //     position: sticky;
-  //     top: 30px;
-  //     bottom: 0;
-  //     .box {
-  //       padding: 20px;
-  //       display: flex;
-  //       flex-direction: column;
-  //       &.outlined {
-  //         border: 1px solid #e3e3e3;
-  //       }
-  //       &.white {
-  //         background: white;
-  //         box-shadow: 0 4px 8px rgba(black, 0.1);
-  //       }
-  //       & + .box {
-  //         margin-top: 30px;
-  //       }
-  //     }
-  //   }
-  //   dl {
-  //     display: flex;
-  //     justify-content: space-between;
-  //     margin: 0;
-  //     & + dl {
-  //       margin-top: 10px;
-  //     }
-  //     dt {
-  //       font-size: 16px;
-  //       font-family: $bold;
-  //       line-height: 24px;
-  //       color: $grey-7;
-  //     }
-  //     dd {
-  //       a {
-  //         color: $blue-0;
-  //         text-decoration: underline;
-  //         font-size: 16px;
-  //         &:hover,
-  //         &:focus {
-  //           color: $orange-3;
-  //         }
-  //         &:focus {
-  //           outline: 0;
-  //           box-shadow: 0 0 0 4px white, 0 0 0 6px $orange-3;
-  //           border-radius: 1px;
-  //         }
-  //       }
-  //     }
-  //   }
-  //   button#order {
-  //     margin-top: 20px;
-  //     width: 100%;
-  //   }
-  //   h4 {
-  //     font-size: 16px;
-  //     font-family: $bold;
-  //     line-height: 24px;
-  //     color: $grey-7;
-  //     margin-bottom: 10px;
-  //   }
-  //   p {
-  //     font-size: 16px;
-  //     font-family: $regular;
-  //     line-height: 24px;
-  //     color: $grey-7;
-  //   }
-  //   textarea {
-  //     max-width: 100%;
-  //     min-width: 100%;
-  //     width: 100%;
-  //     border-radius: 3px;
-  //     border: 1px solid $grey-1;
-  //     background: white;
-  //     padding: 10px;
-  //     box-sizing: border-box;
-  //     margin: 20px 0;
-  //     color: $grey-7;
-  //     &:focus {
-  //       outline: 0;
-  //     }
-  //   }
-  //   button#ask {
-  //     align-self: flex-start;
-  //   }
-  // }
+  aside {
+    flex-shrink: 0;
+    @include widescreen {
+      width: 320px;
+      margin-left: 30px;
+    }
+    @include desktop {
+      width: vw(320px);
+      margin-left: vw(30px);
+    }
+    @include tablet {
+      margin: 3vw 0 6vw;
+      width: 100%;
+    }
+    @include mobile {
+      margin: 10vw 0 10vw;
+      width: 100%;
+    }
+    .sticky {
+      @include widescreen {
+        position: sticky;
+        top: 30px;
+        bottom: 0;
+      }
+      @include desktop {
+        position: sticky;
+        top: vw(30px);
+        bottom: 0;
+      }
+      .box {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #e3e3e3;
+        @include widescreen {
+          padding: 20px;
+        }
+        @include desktop {
+          padding: vw(20px);
+        }
+        @include tablet {
+          max-width: 45%;
+          margin: 0 auto;
+          padding: 4vw;
+        }
+        @include mobile {
+          padding: 20px; // TODO
+        }
+      }
+    }
+    button {
+      & + button {
+        margin-top: 12px;
+      }
+    }
+    h4 {
+      @include paragraph;
+      font-family: $bold;
+      padding: 0 15px;
+      margin-top: 10px;
+    }
+    p {
+      padding: 0 15px;
+    }
+    button + h4 {
+      margin-top: 40px;
+    }
+    h4 + p {
+      margin-top: 10px;
+    }
+    p + button {
+      margin-top: 20px;
+    }
+  }
 }
