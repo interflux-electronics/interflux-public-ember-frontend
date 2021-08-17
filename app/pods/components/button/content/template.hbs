@@ -2,7 +2,11 @@
   {{yield}}
 {{/if}}
 {{#if @icon}}
-  {{component (concat 'svg/' @icon)}}
+  {{#if this.iconIsValid}}
+    <div class='icon'>
+      {{component (concat 'svg/' @icon)}}
+    </div>
+  {{/if}}
 {{/if}}
 {{#if @text}}
   <span>{{@text}}</span>

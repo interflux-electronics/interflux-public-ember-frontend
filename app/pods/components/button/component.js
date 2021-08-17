@@ -1,6 +1,17 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
+// TODO: convert to Typescript
+//
+// interface <Args> {
+//   text?: string;
+//   icon?: string;
+//   url?: string;
+//   theme?: string;
+//   isBusy?: string;
+//   onClick?: function;
+// }
+
 export default class ButtonComponent extends Component {
   get classes() {
     return ['button', this.type, this.theme, this.icon, this.isBusy].join(' ');

@@ -9,13 +9,196 @@ button {
     display: inline-block;
     background: none;
     border: 0;
-    outline: 0 !important;
+    outline: 0;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
     user-select: none;
     cursor: pointer;
+
+    // In design system
+
+    &.primary {
+      @include paragraph;
+      font-family: $bold;
+      text-decoration: none;
+      @include widescreen {
+        line-height: 46px;
+        border-radius: 3px;
+        padding: 0 30px;
+      }
+      @include desktop {
+        line-height: vw(46px);
+        border-radius: vw(3px);
+        padding: 0 vw(30px);
+      }
+      @include tablet {
+        line-height: 46px; // TODO
+        border-radius: 3px; // TODO
+        padding: 0 30px; // TODO
+      }
+      @include mobile {
+        line-height: 46px; // TODO
+        border-radius: 3px; // TODO
+        padding: 0 30px; // TODO
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+      &.green {
+        background: $green-1;
+        color: white;
+        &:hover {
+          background: $green-2;
+        }
+        &:focus {
+          box-shadow: white 0 0 0 2px, 0 0 0 4px $green-1;
+          &:hover {
+            box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
+          }
+        }
+      }
+      &.orange {
+        background: $orange-1;
+        color: white;
+        &:hover {
+          background: $orange-3;
+        }
+        &:focus {
+          box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-1;
+          &:hover {
+            box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-3;
+          }
+        }
+      }
+      &.has-icon {
+        position: relative;
+        padding: 0 46px;
+        .icon {
+          position: absolute;
+          width: 46px;
+          height: 100%;
+          left: 0;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            max-width: 60%;
+            max-height: 60%;
+            height: auto;
+            &.truck {
+              transform: translate(12%, 2%);
+              width: 55%;
+            }
+            &.people {
+              transform: translate(11%, 1%);
+              width: 55%;
+            }
+            [fill] {
+              fill: white;
+            }
+          }
+        }
+      }
+    }
+
+    &.secondary {
+      @include paragraph;
+      font-family: $semibold;
+      text-decoration: none;
+      background: transparent;
+      border: 1px solid $grey-2;
+      line-height: 287.5%;
+      @include widescreen {
+        // line-height: 46px;
+
+        border-radius: 3px;
+        padding: 0 30px;
+      }
+      @include desktop {
+        // line-height: vw(46px);
+        border-radius: vw(3px);
+        padding: 0 vw(30px);
+      }
+      @include tablet {
+        // line-height: 46px; // TODO
+        border-radius: 3px; // TODO
+        padding: 0 30px; // TODO
+      }
+      @include mobile {
+        // line-height: 46px; // TODO
+        border-radius: 3px; // TODO
+        padding: 0 30px; // TODO
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+      &.has-icon {
+        position: relative;
+        .icon {
+          position: absolute;
+          width: 46px;
+          height: 46px;
+          left: 0;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            max-width: 60%;
+            max-height: 60%;
+            height: auto;
+            &.share {
+              transform: translate(5%, 5%);
+              width: 50%;
+            }
+            &.star {
+              transform: translate(6%, 1%);
+              width: 54%;
+            }
+            [fill] {
+              fill: $grey-2;
+            }
+          }
+        }
+      }
+      &.light-blue {
+        &:hover,
+        &:focus {
+          color: $blue-0;
+          border-color: $blue-0;
+          svg {
+            [fill] {
+              fill: $blue-0;
+            }
+          }
+        }
+        &:focus {
+          box-shadow: 0 0 0 1px $blue-0;
+        }
+      }
+      &.orange {
+        &:hover,
+        &:focus {
+          color: $orange-1;
+          border-color: $orange-1;
+          svg {
+            [fill] {
+              fill: $orange-1;
+            }
+          }
+        }
+        &:focus {
+          box-shadow: 0 0 0 1px $orange-1;
+        }
+      }
+    }
+
+    // -----------------
+    // NOT design system
 
     // For the mobile chevron navigation buttons
     // For the mobile hamburger button
@@ -334,19 +517,19 @@ button {
       }
     }
 
-    &.green {
-      background: $green-1;
-      color: white;
-      text-decoration: none;
-      &:hover,
-      &:focus {
-        background: $green-2;
-        text-decoration: underline;
-      }
-      &:focus {
-        box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
-      }
-    }
+    // &.green {
+    //   background: $green-1;
+    //   color: white;
+    //   text-decoration: none;
+    //   &:hover,
+    //   &:focus {
+    //     background: $green-2;
+    //     text-decoration: underline;
+    //   }
+    //   &:focus {
+    //     box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
+    //   }
+    // }
 
     &.grey {
       background: $grey-0;
