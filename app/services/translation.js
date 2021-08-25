@@ -9,6 +9,7 @@ export default class TranslationService extends Service {
   @tracked languages = [
     {
       id: 'en',
+      legacy: 'en',
       nameEnglish: 'English',
       nameNative: 'English',
       supported: true,
@@ -16,6 +17,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'es',
+      legacy: 'es',
       nameEnglish: 'Spanish',
       nameNative: 'Español',
       supported: true,
@@ -23,6 +25,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'de',
+      legacy: 'de',
       nameEnglish: 'German',
       nameNative: 'Deutsch',
       supported: true,
@@ -30,6 +33,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'fr',
+      legacy: 'fr',
       nameEnglish: 'French',
       nameNative: 'français',
       supported: true,
@@ -37,13 +41,15 @@ export default class TranslationService extends Service {
     },
     {
       id: 'sv',
+      legacy: 'sv',
       nameEnglish: 'Swedish',
       nameNative: 'Svenska',
-      supported: true,
+      supported: false,
       ready: false
     },
     {
       id: 'pl',
+      legacy: 'pl',
       nameEnglish: 'Polish',
       nameNative: 'Polski',
       supported: true,
@@ -51,6 +57,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'tr',
+      legacy: 'tr',
       nameEnglish: 'Turkish',
       nameNative: 'Türkçe',
       supported: true,
@@ -58,6 +65,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'th',
+      legacy: 'th',
       nameEnglish: 'Thai',
       nameNative: 'ภาษาไทย',
       supported: true,
@@ -65,6 +73,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'ru',
+      legacy: 'ru',
       nameEnglish: 'Russian',
       nameNative: 'Русский',
       supported: true,
@@ -72,6 +81,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'ro',
+      legacy: 'ro',
       nameEnglish: 'Romanian',
       nameNative: 'Română',
       supported: true,
@@ -79,6 +89,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'pt',
+      legacy: 'pt-pt',
       nameEnglish: 'Portugese',
       nameNative: 'Português',
       supported: true,
@@ -86,6 +97,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'id',
+      legacy: 'id',
       nameEnglish: 'Indonesian',
       nameNative: 'Bahasa Indonesia',
       supported: true,
@@ -93,6 +105,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'it',
+      legacy: 'it',
       nameEnglish: 'Italian',
       nameNative: 'Italiano',
       supported: true,
@@ -100,6 +113,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'cs',
+      legacy: 'cs',
       nameEnglish: 'Chech',
       nameNative: 'Čeština',
       supported: true,
@@ -107,6 +121,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'zh',
+      old: 'zh-hans',
       nameEnglish: 'Chinese',
       nameNative: '中文',
       supported: true,
@@ -114,6 +129,7 @@ export default class TranslationService extends Service {
     },
     {
       id: 'ja',
+      legacy: 'ja',
       nameEnglish: 'Japanese',
       nameNative: '日本語 (にほんご)',
       supported: false,
