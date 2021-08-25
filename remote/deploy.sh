@@ -5,7 +5,7 @@ set -o pipefail
 
 user=bot
 server=server.interflux.com
-domain=app.interflux.com
+domain=interflux.com
 
 echo "----------"
 echo "Deploying:"

@@ -7,7 +7,7 @@ user1=bot
 user2=jw
 server=server.interflux.com
 domain=interflux.com
-redirect_www=false
+redirect_www=true
 repo=git@github.com:interflux-electronics/interflux-public-ember-frontend.git
 
 echo "----------"
