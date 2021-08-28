@@ -20,12 +20,12 @@ export default class ProductsSubsetRoute extends BaseRoute {
       ? `Products for ${use.get('label')}`
       : family.get('label');
 
+    this.headData.reset();
     this.headData.setProperties({
-      path: `/products/${use ? use.forSlug : family.slug}`,
       title: `${pageTitle} | Interflux`,
-      description: 'TODO',
+      // description: 'TODO',
+      canonicalPath: `products/${use ? use.forSlug : family.slug}`,
       imagePath: '/images/logos/secondary-interflux-electronics-logo-1.png',
-      imageMime: 'image/png',
       imageWidth: '3960',
       imageHeight: '1000',
       imageAlt: 'secondary Interflux Electronics logo 1'

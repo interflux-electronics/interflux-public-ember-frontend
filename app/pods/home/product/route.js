@@ -24,7 +24,7 @@ export default class ProductRoute extends BaseRoute {
 
   afterModel(model) {
     const {
-      slug,
+      id,
       name,
       familyLabel,
       pitch,
@@ -34,24 +34,18 @@ export default class ProductRoute extends BaseRoute {
       avatarVariations
     } = model.product;
 
-    // TODO: get largest imageWidth and imageHeight
-
-    const obj = {
-      path: `product/${slug}`,
+    this.headData.reset();
+    this.headData.setProperties({
       title: `Interflux ${name} ${familyLabel}`,
       description: pitch.replace(/\*\*/g, ''),
-      imagePath: avatarPath,
-      imageMime: 'image/jpeg',
-      imageWidth: avatarVariations
-        ? avatarVariations.split(',')[0].split('x')[0]
-        : null,
-      imageHeight: avatarVariations
-        ? avatarVariations.split(',')[0].split('x')[1]
-        : null,
-      imageAlt: [avatarAlt, avatarCaption].filter((x) => !!x).join(' ')
-    };
-
-    this.seo.setProperties(obj);
+      canonicalPath: `product/${id}`,
+      ogType: 'product'
+    });
+    this.headData.setImage({
+      path: avatarPath,
+      variations: avatarVariations,
+      alt: [avatarAlt, avatarCaption].filter((x) => !!x).join(' ')
+    });
   }
 
   // HACK: when navigating into a subset route, then out and back into another, the controller

@@ -12,12 +12,11 @@ export default class IndexRoute extends BaseRoute {
     }
 
     // this.headData.setProperties({
-    //   path: '/',
     //   title: 'Interflux = chemistry + electronics + metallurgy',
     //   description:
     //     'Interflux researches & develop the chemistry needed for soldering electronics: soldering fluxes, solder pastes, solder wires, fluxing systems and more for wave soldering, selective, reflow, stencil printing, BGA rework, ...',
-    //   imagePath: 'images/logos/secondary-interflux-electronics-logo-2.png',
-    //   imageMime: 'image/png',
+    //   canonicalPath: '',
+    //   imagePath: '/images/logos/secondary-interflux-electronics-logo-2.png',
     //   imageWidth: '1000',
     //   imageHeight: '1000',
     //   imageAlt: 'Interflux Electronics logo'

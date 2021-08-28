@@ -2,57 +2,61 @@
 {{! https://developers.facebook.com/docs/sharing/webmasters/ }}
 {{! https://developers.facebook.com/docs/sharing/best-practices#images }}
 
+{{! template-lint-disable no-forbidden-elements  }}
+
+{{! SEO basics  }}
+
 <title>{{this.model.title}}</title>
 <meta name='description' content='{{this.model.description}}' />
-<meta property='og:type' content={{this.model.type}} />
-<meta property='og:locale' content={{this.model.locale}} />
-<meta property='og:url' content='{{this.model.url}}' />
-<meta property='og:title' content='{{this.model.title}}' />
-<meta property='og:description' content='{{this.model.description}}' />
-{{#if this.model.imageURL}}
-  <meta property='og:image' content={{this.model.imageURL}} />
-  <meta property='og:image:secure_url' content={{this.model.imageURL}} />
-  <meta property='og:image:type' content={{this.model.imageMime}} />
-  {{#if this.model.imageWidth}}
-    <meta property='og:image:width' content={{this.model.imageWidth}} />
-  {{/if}}
-  {{#if this.model.imageHeight}}
-    <meta property='og:image:height' content={{this.model.imageHeight}} />
-  {{/if}}
+<meta name='robots' content='index, follow' />
+
+{{#if this.model.canonicalURL}}
+  <link rel='canonical' href='{{this.model.canonicalURL}}' />
 {{/if}}
-<meta name='robots' content={{this.model.robot}} />
-<meta name='copyright' content='© since 1980 by Interflux Electronics ®' />
-<meta name='built-by' content='Jan Werkhoven, j.werkhoven@interflux.com' />
-<meta name='built-with' content='Ember Octane, https://emberjs.com/' />
-<meta name='deploy-time' content={{this.model.buildTimestamp}} />
-<meta name='environment' content={{this.model.environment}} />
-<meta
-  name='git-repo'
-  content='https://github.com/interflux-electronics/interflux-public-ember-frontend'
-/>
-<meta name='git-branch' content={{this.model.gitBranch}} />
-<meta name='git-revision' content={{this.model.gitRevision}} />
-<meta name='theme-color' content='#23578c' />
+
 <link
   rel='icon'
   type='image/png'
   href='{{env 'cdnHost'}}/images/favicons/interflux-blue-favicon@228x228.png'
   sizes='228x228'
 />
-<link rel='canonical' href='{{this.model.url}}' />
 
-{{!
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="1000x1000" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="228x228" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="196x196" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="192x192" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="180x180" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="152x152" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="144x144" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="128x128" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="120x120" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="96x96" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@76x76.png" sizes="76x76" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@57x57.png" sizes="57x57" />
-<link rel="icon" type="image/png" href="https://cdn.interflux.com/images/favicons/interflux-blue-favicon@32x32.png" sizes="32x32" />
-}}
+{{! Open graph, for social media  }}
+
+<meta property='og:type' content={{this.model.ogType}} />
+<meta property='og:title' content='{{this.model.title}}' />
+<meta property='og:description' content='{{this.model.description}}' />
+
+{{#if this.model.canonicalURL}}
+  <meta property='og:url' content='{{this.model.canonicalURL}}' />
+{{/if}}
+
+{{#if this.model.showImage}}
+  <meta property='og:image' content={{this.model.imageURL}} />
+  <meta property='og:image:url' content={{this.model.imageURL}} />
+  <meta property='og:image:secure_url' content={{this.model.imageURL}} />
+  <meta property='og:image:width' content={{this.model.imageWidth}} />
+  <meta property='og:image:height' content={{this.model.imageHeight}} />
+  <meta property='og:image:alt' content={{this.model.imageAlt}} />
+{{/if}}
+
+{{! For developers  }}
+
+<meta name='environment' content={{this.model.environment}} />
+<meta name='build-timestamp' content={{this.model.buildTimestamp}} />
+<meta name='git-branch' content={{this.model.gitBranch}} />
+<meta name='git-revision' content={{this.model.gitRevision}} />
+<meta
+  name='git-repo'
+  content='https://github.com/interflux-electronics/interflux-public-ember-frontend'
+/>
+<meta name='built-by' content='Jan Werkhoven, j.werkhoven@interflux.com' />
+<meta name='built-with' content='Ember Octane, https://emberjs.com/' />
+
+{{! For browsers  }}
+
+<meta name='theme-color' content='#23578c' />
+
+{{! Legal  }}
+
+<meta name='copyright' content='© since 1980 by Interflux Electronics NV ®' />
