@@ -18,6 +18,7 @@
 
     <div class='image'>
       {{#if this.media.isMobile}}
+        {{! template-lint-disable no-potential-path-strings  }}
         <ResponsiveImage
           @path='images/public/homepage-hero-mobile'
           @variations='@640x1200.jpg,@640x1200.webp'
@@ -35,6 +36,7 @@
           @variations='@2400x1200.jpg,@2400x1200.webp'
         />
       {{/if}}
+      {{! template-lint-enable no-potential-path-strings  }}
     </div>
   </Section>
 
@@ -122,34 +124,59 @@
   <Section @id='trusted-by'>
     <h2>Trusted by</h2>
     <div class='logos'>
-      <Image
-        @src='{{env 'cdnHost'}}/images/public/logo-kurtz-ersa@300x168.png'
-        @width='300'
-        @height='168'
-        @alt='logo Kurtz Ersa in Germany'
-        @id='ersa'
-      />
-      <Image
-        @src='{{env 'cdnHost'}}/images/public/logo-AMW-the-EMS-solution.png'
-        @width='300'
-        @height='121'
-        @alt='logo AMW the EMS solution in Thailand'
-        @id='amw'
-      />
-      <Image
-        @src='{{env 'cdnHost'}}/images/public/logo-aban-electronics@300x121.jpg'
-        @width='300'
-        @height='121'
-        @alt='logo ABAN Electronics in India'
-        @id='aban'
-      />
-      <Image
-        @src='{{env 'cdnHost'}}/images/public/logo-oritech.svg'
-        @width='300'
-        @height='168'
-        @alt='logo Oritech in Australia'
-        @id='oritech'
-      />
+      <Link @url='https://www.kurtzersa.com/'>
+        <Image
+          @src='{{env 'cdnHost'}}/images/public/logo-kurtz-ersa@300x168.png'
+          @width='300'
+          @height='168'
+          @alt='logo Kurtz Ersa in Germany'
+          @id='ersa'
+        />
+      </Link>
+
+      <Link @url='https://www.amw-ems.com/'>
+        <Image
+          @src='{{env 'cdnHost'}}/images/public/logo-AMW-the-EMS-solution.png'
+          @width='300'
+          @height='121'
+          @alt='logo AMW the EMS solution in Thailand'
+          @id='amw'
+        />
+      </Link>
+
+      <Link @url='https://abanelectronics.com/'>
+        <Image
+          @src='{{env
+            'cdnHost'
+          }}/images/public/logo-aban-electronics@300x121.jpg'
+          @width='300'
+          @height='121'
+          @alt='logo ABAN Electronics in India'
+          @id='aban'
+        />
+      </Link>
+
+      <Link @url='https://www.oritech.com.au/'>
+        <Image
+          @src='{{env 'cdnHost'}}/images/public/logo-oritech.svg'
+          @width='300'
+          @height='168'
+          @alt='logo Oritech in Australia'
+          @id='oritech'
+        />
+      </Link>
+
+      <Link @url='https://www.vlktechno.com/'>
+        <Image
+          @src='{{env
+            'cdnHost'
+          }}/images/public/logo-VLK-techno-trade@300x180.png'
+          @width='300'
+          @height='180'
+          @alt='logo VLK Techno in Thailand'
+          @id='vlk-techno'
+        />
+      </Link>
     </div>
   </Section>
 </Page>

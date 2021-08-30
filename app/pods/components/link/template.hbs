@@ -1,5 +1,7 @@
-<a
-  href={{@url}}
-  target="_blank"
-  rel="noopener noreferrer"
->{{@label}}</a>
+<a href={{@url}} target='_blank' rel='noopener noreferrer'>
+  {{#if (has-block)}}
+    {{yield}}
+  {{else}}
+    {{if @label @label}}
+  {{/if}}
+</a>
