@@ -19,7 +19,7 @@ export default class HeadDataService extends Service {
   //
   // Omit the domain, locale and leading slash.
   // For example: 'products/for-wave-soldering'
-  @tracked canonicalPath;
+  @tracked canonicalPath = '';
 
   get canonicalURL() {
     return `https://interflux.com/${this.translation.locale}/${this.canonicalPath}`;
