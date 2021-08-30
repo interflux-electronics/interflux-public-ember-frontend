@@ -4,7 +4,7 @@ export default class HomeRoute extends BaseRoute {
   beforeModel() {
     this.headData.reset();
     this.headData.setProperties({
-      title: 'Interflux Electronics - Soldering fluxes, pastes, wires, alloys',
+      title: 'Interflux – soldering fluxes, pastes, wires & alloys',
       description:
         'We research and develop the chemistry you need for soldering electronics with high-reliability. Products: soldering fluxes, solder pastes, solder wires, solder alloys, fluxing systems, solder masks, tip tinners and more.',
       canoncialPath: 'products',

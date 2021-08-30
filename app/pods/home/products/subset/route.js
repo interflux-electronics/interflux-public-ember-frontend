@@ -22,7 +22,7 @@ export default class ProductsSubsetRoute extends BaseRoute {
 
     this.headData.reset();
     this.headData.setProperties({
-      title: `${pageTitle} | Interflux`,
+      title: `${pageTitle} – Interflux`,
       // description: 'TODO',
       canonicalPath: `products/${use ? use.forSlug : family.slug}`,
       imagePath: '/images/logos/secondary-interflux-electronics-logo-1.png',

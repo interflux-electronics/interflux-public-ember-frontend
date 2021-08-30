@@ -4,7 +4,7 @@ export default class ProductsIndexRoute extends BaseRoute {
   beforeModel() {
     this.headData.reset();
     this.headData.setProperties({
-      title: 'Products',
+      title: 'Products – Interflux',
       description:
         'Soldering fluxes, solder pastes, solder wires, solder alloys, fluxing systems, solder masks, tip tinners and more. For wave soldering, selective soldering, reflow soldering, rework, repair, jetting, and more.',
       canonicalPath: 'products',

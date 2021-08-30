@@ -1,9 +1,16 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 
-export default class DocumentssRoute extends BaseRoute {
-  @service store;
+export default class DocumentsRoute extends BaseRoute {
+  beforeModel() {
+    this.headData.reset();
+    this.headData.setProperties({
+      title: 'Documents – Interflux',
+      description:
+        'Technical data sheets (TD), medical & safety data sheets (SDS), REACH, guides, declarations and quality certificates.',
+      canonicalPath: 'documents'
+    });
+  }
 
   model() {
     return hash({
@@ -11,10 +18,4 @@ export default class DocumentssRoute extends BaseRoute {
       categories: this.store.findAll('documentCategory')
     });
   }
-
-  // model() {
-  //   // this.translation.languages.forEach((language) => {
-  //   //   this.store.createRecord('language', language);
-  //   // });
-  // }
 }

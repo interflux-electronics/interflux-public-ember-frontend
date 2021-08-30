@@ -36,7 +36,7 @@ export default class ProductRoute extends BaseRoute {
 
     this.headData.reset();
     this.headData.setProperties({
-      title: `Interflux ${name} ${familyLabel}`,
+      title: `${name} ${familyLabel} – Interflux`,
       description: pitch.replace(/\*\*/g, ''),
       canonicalPath: `product/${id}`,
       ogType: 'product'
