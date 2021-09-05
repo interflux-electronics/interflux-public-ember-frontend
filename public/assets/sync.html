@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body>
+    <script>
+      var onMessage = function (event) {
+        // Only accept messages from subdomain admin.interflux.com
+        if (event.origin !== 'https://admin.interflux.com') {
+          return;
+        }
+
+        // Set the received data in localStorage of Public (interflux.com)
+        localStorage.setItem('token', event.data.token);
+        localStorage.setItem('uuid', event.data.uuid);
+        localStorage.setItem('expiry', event.data.expiry);
+        localStorage.setItem('email', event.data.email);
+        localStorage.setItem('name', event.data.name);
+
+        // Tell Admin the data has been well received.
+        event.source.postMessage(
+          'sync-complete',
+          'https://admin.interflux.com'
+        );
+      };
+
+      // Listen for messages from parent <iframe>.
+      window.addEventListener('message', onMessage, false);
+    </script>
+  </body>
+</html>
