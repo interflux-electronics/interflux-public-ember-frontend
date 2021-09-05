@@ -2,6 +2,8 @@ import BaseRoute from 'interflux/pods/base/route';
 
 export default class HomeRoute extends BaseRoute {
   beforeModel() {
+    // TODO: use router.urlFor to generate canoncialPath
+    // https://api.emberjs.com/ember/3.27/classes/RouterService/methods/cacheFor?anchor=cacheFor
     this.headData.reset();
     this.headData.setProperties({
       title: 'Interflux – soldering fluxes, pastes, wires & alloys',
