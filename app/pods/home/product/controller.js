@@ -123,7 +123,6 @@ export default class ProductController extends Controller {
 
   @action
   openChat() {
-    console.log('openChat');
     window.LiveChatWidget.call('maximize');
   }
 }
