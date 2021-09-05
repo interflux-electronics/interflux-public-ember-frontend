@@ -7,10 +7,14 @@
   <body>
     <script>
       var onMessage = function (event) {
+        console.log('PUBLIC: onMessage', event.origin);
+
         // Only accept messages from subdomain admin.interflux.com
         if (event.origin !== 'https://admin.interflux.com') {
           return;
         }
+
+        console.log('PUBLIC: is from Admin, setting localStorage', event.data);
 
         // Set the received data in localStorage of Public (interflux.com)
         localStorage.setItem('token', event.data.token);
