@@ -32,6 +32,11 @@ const publicHosts = {
   test: 'http://localhost:4400'
 };
 
+const adminHosts = {
+  development: 'http://localhost:4300',
+  production: 'https://admin.interflux.com'
+};
+
 // Where the CDN is located
 const cdnHosts = {
   production: 'https://cdn.interflux.com',
@@ -73,6 +78,7 @@ module.exports = function (env) {
   const publicHost = isDevelopment
     ? publicHosts[env][platform]
     : publicHosts[env];
+  const adminHost = adminHosts[env];
   const cdnHost = isDevelopment ? cdnHosts[env][platform] : cdnHosts[env];
   const oldHost = oldHosts[env];
 
@@ -100,6 +106,7 @@ module.exports = function (env) {
     isProduction,
     apiHost,
     publicHost,
+    adminHost,
     cdnHost,
     oldHost,
     apiNamespace,
