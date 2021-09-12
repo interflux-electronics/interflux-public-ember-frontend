@@ -595,11 +595,11 @@ main#homepage {
       align-items: center;
       margin: 0 auto;
       @include widescreen {
-        gap: 80px;
+        gap: 40px;
         max-width: 1000px;
       }
       @include desktop {
-        gap: vw(80px);
+        gap: vw(40px);
         max-width: vw(1000px);
       }
       @include tablet {
@@ -614,10 +614,10 @@ main#homepage {
     picture {
       height: auto;
       @include widescreen {
-        width: 300px;
+        width: 240px;
       }
       @include desktop {
-        width: vw(300px);
+        width: vw(240px);
       }
       @include tablet {
         width: 30vw;
