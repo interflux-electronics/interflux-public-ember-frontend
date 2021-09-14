@@ -542,15 +542,17 @@ main#product {
       #avatar {
         @include widescreen {
           margin-top: px(3vw);
-          height: calc(720px - 50px - 50px);
+          height: 720px - 50px - 50px;
         }
         @include desktop {
           margin-top: 3vw;
+          height: vw(720px - 50px - 50px);
         }
         @include tablet {
-          //
+          height: 100vw - 6vw - 6vw - 3vw - 3vw;
         }
         @include mobile {
+          height: 100vw - 6vw - 6vw;
           width: calc(100vw);
           transform: translateX(-6vw);
         }
