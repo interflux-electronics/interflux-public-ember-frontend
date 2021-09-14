@@ -542,6 +542,7 @@ main#product {
       #avatar {
         @include widescreen {
           margin-top: px(3vw);
+          height: calc(720px - 50px - 50px);
         }
         @include desktop {
           margin-top: 3vw;
