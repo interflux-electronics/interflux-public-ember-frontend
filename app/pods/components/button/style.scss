@@ -1,12 +1,11 @@
-// These button-base styles are inherited by all buttons.
-// Reuse these classes as much as possible.
-// Resist styling buttons per component, instead extend this base.
-
 a,
 button {
   &.button {
-    position: relative;
+    //
+    // True for all buttons
+    //
     display: inline-block;
+    position: relative;
     background: none;
     border: 0;
     outline: 0;
@@ -16,36 +15,19 @@ button {
     white-space: nowrap;
     user-select: none;
     cursor: pointer;
-
-    // In design system
-
+    //
+    // Primary buttons have white text and opaque background colours to stand out
+    //
     &.primary {
-      @include paragraph;
-      font-family: $bold;
       text-decoration: none;
-      @include widescreen {
-        line-height: 46px;
-        border-radius: 3px;
-        padding: 0 30px;
-      }
-      @include desktop {
-        line-height: vw(46px);
-        border-radius: vw(3px);
-        padding: 0 vw(30px);
-      }
-      @include tablet {
-        line-height: 46px; // TODO
-        border-radius: 3px; // TODO
-        padding: 0 30px; // TODO
-      }
-      @include mobile {
-        line-height: 46px; // TODO
-        border-radius: 3px; // TODO
-        padding: 0 30px; // TODO
-      }
       &:hover {
         text-decoration: underline;
       }
+
+      // Colours
+
+      color: white;
+
       &.green {
         background: $green-1;
         color: white;
@@ -59,6 +41,7 @@ button {
           }
         }
       }
+
       &.orange {
         background: $orange-1;
         color: white;
@@ -72,37 +55,141 @@ button {
           }
         }
       }
+
+      // Sizes
+
+      &.large {
+        font-family: $bold;
+
+        @include widescreen {
+          font-size: 16px;
+          line-height: 46px;
+          border-radius: 3px;
+          padding: 0 30px;
+        }
+        @include desktop {
+          font-size: vw(16px);
+          line-height: vw(46px);
+          border-radius: vw(3px);
+          padding: 0 vw(30px);
+        }
+        @include tablet {
+          font-size: 2.3vw; // TODO
+          line-height: 46px; // TODO
+          border-radius: 3px; // TODO
+          padding: 0 30px; // TODO
+        }
+        @include mobile {
+          font-size: 5vw; // TODO
+          line-height: 46px; // TODO
+          border-radius: 3px; // TODO
+          padding: 0 30px; // TODO
+        }
+      }
+
+      &.medium {
+        font-family: $bold;
+
+        @include widescreen {
+          font-size: 16px;
+          line-height: 34px;
+          border-radius: 3px;
+          padding: 0 13px;
+        }
+        @include desktop {
+          font-size: vw(16px);
+          line-height: vw(34px);
+          border-radius: vw(3px);
+          padding: 0 vw(13px);
+        }
+        @include tablet {
+          font-size: 2.3vw; // TODO
+          line-height: 46px; // TODO
+          border-radius: 3px; // TODO
+          padding: 0 30px; // TODO
+        }
+        @include mobile {
+          font-size: 5vw; // TODO
+          line-height: 46px; // TODO
+          border-radius: 3px; // TODO
+          padding: 0 30px; // TODO
+        }
+      }
+
       &.has-icon {
         position: relative;
-        padding: 0 46px;
-        .icon {
-          position: absolute;
-          width: 46px;
-          height: 100%;
-          left: 0;
-          top: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          svg {
-            max-width: 60%;
-            max-height: 60%;
-            height: auto;
-            &.truck {
-              transform: translate(12%, 2%);
-              width: 55%;
+        svg {
+          [fill] {
+            fill: white;
+          }
+        }
+        &.large {
+          padding: 0 46px;
+          .icon {
+            position: absolute;
+            width: 46px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+              max-width: 60%;
+              max-height: 60%;
+              height: auto;
+              &.truck {
+                transform: translate(12%, 2%);
+                width: 55%;
+              }
+              &.people {
+                transform: translate(11%, 1%);
+                width: 55%;
+              }
             }
-            &.people {
-              transform: translate(11%, 1%);
-              width: 55%;
+          }
+        }
+
+        &.medium {
+          &.icon-right,
+          &.icon-left {
+            display: flex;
+            align-items: center;
+          }
+          &.icon-left {
+            .icon {
+              @include widescreen {
+                margin-right: 10px;
+              }
+              @include desktop {
+                margin-right: vw(10px);
+              }
+              @include tablet {
+                margin-right: 10px; // TODO
+              }
+              @include mobile {
+                margin-right: 10px; // TODO
+              }
             }
-            [fill] {
-              fill: white;
+          }
+          &.email {
+            svg {
+              width: 20px;
+              height: auto;
+            }
+          }
+          &.lightbulb {
+            svg {
+              width: 15px;
+              height: auto;
             }
           }
         }
       }
     }
+
+    // Secondary are meant to look less important than primary buttons, yet relevant to notice.
+    // These typically have transparent backgrounds and border outlines.
 
     &.secondary {
       @include paragraph;
