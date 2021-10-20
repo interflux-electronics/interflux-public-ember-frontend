@@ -12,6 +12,7 @@ Router.map(function () {
     this.route('products', function () {
       this.route('subset', { path: '/:slug' });
     });
+    this.route('webinars');
     this.route('company');
     this.route('documents', function () {
       this.route('category', { path: '/:category' });
