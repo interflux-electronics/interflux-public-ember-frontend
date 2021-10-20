@@ -1,0 +1,73 @@
+<Page
+  @id='webinars'
+  @title='Webinars'
+  @backRoute='home'
+  @ariaLabelledby='h1'
+  @ariaDescribedby='description'
+>
+  <section id='hero' aria-labelledby='h1'>
+    <div class='liner'>
+      <h1 id='h1'>Webinars</h1>
+    </div>
+
+    <div class='blur'></div>
+  </section>
+
+  <section id='upcoming' aria-labelledby='upcoming-h2'>
+    <h2 id='upcoming-h2'>Upcoming webinars</h2>
+    {{#if this.noUpcoming}}
+      <p>Sorry, no webinars are planned. We're hard at work organising the next
+        one!</p>
+    {{/if}}
+
+    <ul>
+      {{#each this.upcomingWebinars as |webinar|}}
+        <li>
+          <h2>{{webinar.title}}</h2>
+          <p>Topic: {{webinar.topic}}</p>
+          <p>Audience: {{webinar.audience}}</p>
+          <p>Start time: {{webinar.startTimeUTC}} UTC</p>
+          <p>Duration: {{webinar.duration}}</p>
+          <p>Speaker: Steven Teliszewski</p>
+        </li>
+      {{/each}}
+    </ul>
+    <div id='cta'>
+      <div id='suggest'>
+        <h4>Got ideas?</h4>
+        <p>Which topic should we cover in the next webinar?</p>
+        <Button
+          @text='Suggest topic'
+          @icon='lightbulb'
+          @theme='primary medium orange icon-left'
+        />
+      </div>
+
+      <div id='subscribe'>
+        <h4>Get notified</h4>
+        <p>Receive an email when new webinar are planned.</p>
+        <Button
+          @text='Subscribe'
+          @icon='email'
+          @theme='primary medium green icon-left'
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id='past' aria-labelledby='past-h2'>
+    <h2 id='past-h2'>Past webinars</h2>
+    <ul>
+      {{#each this.pastWebinars as |webinar|}}
+        <li>
+          <h2>{{webinar.title}}</h2>
+          <p>Topic: {{webinar.topic}}</p>
+          <p>Audience: {{webinar.audience}}</p>
+          <p>Start time: {{webinar.startTimeUTC}} UTC</p>
+          <p>Duration: {{webinar.duration}}</p>
+          <p>Speaker: Steven Teliszewski</p>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+</Page>
