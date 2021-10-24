@@ -25,19 +25,19 @@ main#webinars {
     text-align: center;
     @include widescreen {
       font-size: 30px;
-      margin: 80px 0;
+      margin-bottom: 80px;
     }
     @include desktop {
       font-size: vw(30px);
-      margin: vw(80px) 0;
+      margin-bottom: vw(80px);
     }
     @include tablet {
       font-size: 30px; // TODO
-      margin: 80px 0; // TODO
+      margin-bottom: 80px; // TODO
     }
     @include mobile {
       font-size: 30px; // TODO
-      margin: 80px 0; // TODO
+      margin-bottom: 80px; // TODO
     }
   }
 
@@ -73,6 +73,22 @@ main#webinars {
       top: -20px;
       bottom: -20px;
       filter: blur(10px);
+    }
+  }
+
+  #upcoming,
+  #past {
+    @include widescreen {
+      padding: 80px 0;
+    }
+    @include desktop {
+      padding: vw(80px) 0;
+    }
+    @include tablet {
+      padding: 80px 0; // TODO
+    }
+    @include mobile {
+      padding: 80px 0; // TODO
     }
   }
 
@@ -171,5 +187,137 @@ main#webinars {
 
   #past {
     background: $grey-0;
+    ul {
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-image: url('#{$cdn}/images/public/dash-horizontal.svg');
+      }
+      li {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        .video,
+        .info {
+          flex: 1;
+          @include widescreen {
+            padding: 60px;
+            max-width: 400px;
+          }
+          @include desktop {
+            padding: vw(60px);
+            max-width: vw(400px);
+          }
+          @include tablet {
+            padding: 60px; // TODO
+            max-width: 400px; // TODO
+          }
+          @include mobile {
+            padding: 60px; // TODO
+            max-width: 400px; // TODO
+          }
+        }
+        .info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        h3 {
+          font-family: $semibold;
+          font-size: 16px;
+          line-height: 27px;
+          height: 27px;
+          color: white;
+          background-color: $blue-3;
+          padding: 0 5px;
+          display: flex;
+          align-items: center;
+          position: relative;
+          @include widescreen {
+            margin-top: 40px;
+          }
+          @include desktop {
+            margin-top: vw(40px);
+          }
+          @include tablet {
+            margin-top: 40px; // TODO
+          }
+          @include mobile {
+            margin-top: 40px; // TODO
+          }
+          time {
+            line-height: 100%;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            border-right: 11px solid $blue-3;
+            left: -11px;
+            top: 4.5px;
+          }
+        }
+        h4 {
+          color: white;
+          display: flex;
+          flex-wrap: wrap;
+          span {
+            font-family: $extrabold;
+            font-size: 20px;
+            line-height: 27px;
+            height: 27px;
+            &:nth-child(odd) {
+              background-color: $blue-3;
+              padding: 0 5px;
+              margin: 4px -5px 0 0;
+            }
+            &:nth-child(even) {
+              width: 0;
+            }
+            time {
+              font-family: $semibold;
+              font-size: 16px;
+              line-height: 31px;
+            }
+          }
+        }
+        .vertical-line {
+          background: $grey-2;
+          position: absolute;
+          width: 2px;
+          height: 100%;
+          left: 50%;
+          top: 0;
+        }
+        .dashed-line {
+          background-image: url('#{$cdn}/images/public/dash-horizontal.svg');
+          position: absolute;
+          height: 1px;
+          width: 100%;
+          left: 0;
+          top: 0;
+        }
+        .dot {
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          border: 3px solid $grey-2;
+          background: $grey-0;
+          left: 50%;
+          top: 106px;
+          border-radius: 50%;
+          transform: translateX(-7px);
+          box-sizing: border-box;
+        }
+      }
+    }
   }
 }

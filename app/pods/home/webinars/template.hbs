@@ -32,6 +32,7 @@
         </li>
       {{/each}}
     </ul>
+
     <div id='cta'>
       <div id='suggest'>
         <h4>Got ideas?</h4>
@@ -57,15 +58,46 @@
 
   <section id='past' aria-labelledby='past-h2'>
     <h2 id='past-h2'>Past webinars</h2>
+
     <ul>
       {{#each this.pastWebinars as |webinar|}}
         <li>
-          <h2>{{webinar.title}}</h2>
-          <p>Topic: {{webinar.topic}}</p>
-          <p>Audience: {{webinar.audience}}</p>
-          <p>Start time: {{webinar.startTimeUTC}} UTC</p>
-          <p>Duration: {{webinar.duration}}</p>
-          <p>Speaker: Steven Teliszewski</p>
+          <div class='video'>
+            <video width='400' controls>
+              <source
+                src='{{env 'cdnHost'}}/videos/LMPA-Q-30mms.mp4'
+                type='video/mp4'
+              />
+              <source src='mov_bbb.ogg' type='video/ogg' />
+            </video>
+          </div>
+
+          <div class='info'>
+            <h3>
+              <time datetime={{webinar.kebabStartDate}}>
+                {{webinar.humanStartDate}}
+              </time>
+            </h3>
+            <h4>
+              {{span-each-word webinar.title}}
+            </h4>
+            <details>
+              <summary>
+                More info
+              </summary>
+              <div>
+                <p>Topic: {{webinar.topic}}</p>
+                <p>Audience: {{webinar.audience}}</p>
+                <p>Start time: {{webinar.startTimeUTC}} UTC</p>
+                <p>Duration: {{webinar.duration}}</p>
+                <p>Speaker: Steven Teliszewski</p>
+              </div>
+            </details>
+          </div>
+
+          <div class='vertical-line'></div>
+          <div class='dashed-line'></div>
+          <div class='dot'></div>
         </li>
       {{/each}}
     </ul>

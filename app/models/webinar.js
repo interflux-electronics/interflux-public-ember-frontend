@@ -43,4 +43,12 @@ export default class WebinarModel extends Model {
           .replace(' ', ', ')
       : null;
   }
+
+  get humanStartDate() {
+    return '16 Oct 2021'; // TODO
+  }
+
+  get kebabStartDate() {
+    return '2021-10-16'; // TODO
+  }
 }
