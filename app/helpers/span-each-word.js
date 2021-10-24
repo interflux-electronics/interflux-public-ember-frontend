@@ -5,7 +5,7 @@ export function spanEachWord(params) {
   const phrase = params[0];
   const words = phrase.split(' ');
 
-  const html = `<span>${words.join('</span>&#32;<span>')}</span>`;
+  const html = `<span>${words.join('</span><span>&nbsp;</span><span>')}</span>`;
 
   return htmlSafe(html);
 }
