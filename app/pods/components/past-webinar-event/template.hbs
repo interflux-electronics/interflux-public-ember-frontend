@@ -1,0 +1,77 @@
+<li class='past-webinar-event'>
+  <div class='video'>
+    <div class='cta'>
+      <Button
+        @text='Watch replay'
+        @icon='play'
+        @theme='primary medium orange icon-left'
+      />
+    </div>
+
+    <ResponsiveImage
+      @path={{@webinar.image.path}}
+      @variations={{@webinar.image.variations}}
+      @caption={{@webinar.image.caption}}
+      @alt={{@webinar.image.alt}}
+    />
+  </div>
+
+  <div class='info'>
+    <h3>
+      {{span-each-word @webinar.title}}
+      <time datetime={{@webinar.kebabStartDate}}>
+        <span>{{@webinar.humanStartDate}}</span>
+      </time>
+    </h3>
+
+    {{#if this.showContent}}
+      <h4>Who should watch</h4>
+      {{markdown @webinar.audience}}
+
+      <h4>Topic</h4>
+      {{markdown @webinar.topic}}
+
+      <h4>Speaker</h4>
+      <div class='host'>
+        <p>
+          <span>Steven Teliszewski</span>
+          <span>COO at Interflux Electronics</span>
+          <span>30+ years of field experience</span>
+        </p>
+        <Image
+          @src='{{env 'cdnHost'}}/images/public/avatar-steven@160x160.jpg'
+        />
+      </div>
+
+      <div class='buttons'>
+        <Button
+          @text='Download slides (PDF)'
+          @icon='cloud-download'
+          @theme='primary medium green icon-left'
+          @onClick={{this.collapse}}
+          @class='collapse'
+        />
+
+        <Button
+          @text='Show less'
+          @icon='arrow-up'
+          @theme='secondary medium grey-border blue-focus icon-right'
+          @onClick={{this.collapse}}
+          @class='collapse'
+        />
+      </div>
+    {{else}}
+      <Button
+        @text='Show more'
+        @icon='arrow-down'
+        @theme='secondary medium grey-border blue-focus icon-right'
+        @onClick={{this.expand}}
+        @class='expand'
+      />
+    {{/if}}
+  </div>
+
+  <div class='vertical-line'></div>
+  <div class='dashed-line'></div>
+  <div class='dot'></div>
+</li>

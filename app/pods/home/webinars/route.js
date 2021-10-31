@@ -14,8 +14,10 @@ export default class WebinarsRoute extends BaseRoute {
 
   model() {
     return hash({
-      webinars: this.store.findAll('webinar'),
-      delay: new Promise((resolve) => setTimeout(resolve, 1 * 1000))
+      webinars: this.store.query('webinar', {
+        include: ['image', 'video', 'person'].join(',')
+      })
+      // delay: new Promise((resolve) => setTimeout(resolve, 1 * 100000))
     });
   }
 }

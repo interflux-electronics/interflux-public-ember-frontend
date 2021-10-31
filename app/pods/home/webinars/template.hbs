@@ -32,8 +32,32 @@
         </li>
       {{/each}}
     </ul>
+  </section>
 
-    <div id='cta'>
+  <section id='past' aria-labelledby='past-h2'>
+    <h2 id='past-h2'>Past webinars</h2>
+
+    <div role='presentation' class='today'>
+      <p>today</p>
+      <div class='dot'></div>
+      <div class='vertical-line'></div>
+    </div>
+
+    <ul>
+      {{#each this.pastWebinars as |webinar|}}
+        <PastWebinarEvent @webinar={{webinar}} />
+      {{/each}}
+    </ul>
+
+    <div role='presentation' class='past'>
+      <div class='vertical-line'></div>
+      <div class='dot'></div>
+      <p>past</p>
+    </div>
+  </section>
+
+  <section id='cta' aria-label="suggest next webinar's topic and subscribe">
+    <div class='liner'>
       <div id='suggest'>
         <h4>Got ideas?</h4>
         <p>Which topic should we cover in the next webinar?</p>
@@ -54,52 +78,5 @@
         />
       </div>
     </div>
-  </section>
-
-  <section id='past' aria-labelledby='past-h2'>
-    <h2 id='past-h2'>Past webinars</h2>
-
-    <ul>
-      {{#each this.pastWebinars as |webinar|}}
-        <li>
-          <div class='video'>
-            <video width='400' controls>
-              <source
-                src='{{env 'cdnHost'}}/videos/LMPA-Q-30mms.mp4'
-                type='video/mp4'
-              />
-              <source src='mov_bbb.ogg' type='video/ogg' />
-            </video>
-          </div>
-
-          <div class='info'>
-            <h3>
-              <time datetime={{webinar.kebabStartDate}}>
-                {{webinar.humanStartDate}}
-              </time>
-            </h3>
-            <h4>
-              {{span-each-word webinar.title}}
-            </h4>
-            <details>
-              <summary>
-                More info
-              </summary>
-              <div>
-                <p>Topic: {{webinar.topic}}</p>
-                <p>Audience: {{webinar.audience}}</p>
-                <p>Start time: {{webinar.startTimeUTC}} UTC</p>
-                <p>Duration: {{webinar.duration}}</p>
-                <p>Speaker: Steven Teliszewski</p>
-              </div>
-            </details>
-          </div>
-
-          <div class='vertical-line'></div>
-          <div class='dashed-line'></div>
-          <div class='dot'></div>
-        </li>
-      {{/each}}
-    </ul>
   </section>
 </Page>

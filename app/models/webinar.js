@@ -10,7 +10,14 @@ export default class WebinarModel extends Model {
   @attr('boolean') public;
   @attr('boolean') isUpcoming;
 
+  @attr('string') imagePath;
+  @attr('string') imageVariations;
+  @attr('string') imageCaption;
+  @attr('string') imageAlt;
+
   @belongsTo('person') person;
+  @belongsTo('image') image;
+  @belongsTo('video') video;
 
   @hasMany('person') people;
   @hasMany('webinar-invitees') webinarInvitees;
