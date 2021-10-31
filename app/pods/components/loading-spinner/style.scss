@@ -1,15 +1,17 @@
-#load-spinner {
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: white;
+.load-spinner {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  &.fixed {
+    background: white;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
   svg {
     height: 100%;
     width: 100%;
