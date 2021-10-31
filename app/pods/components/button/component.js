@@ -14,7 +14,14 @@ import { action } from '@ember/object';
 
 export default class ButtonComponent extends Component {
   get classes() {
-    return ['button', this.type, this.theme, this.icon, this.isBusy].join(' ');
+    return [
+      'button',
+      this.type,
+      this.theme,
+      this.icon,
+      this.isBusy,
+      this.args.class
+    ].join(' ');
   }
 
   get type() {

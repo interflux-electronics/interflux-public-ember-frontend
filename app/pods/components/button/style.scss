@@ -1,230 +1,266 @@
-a,
-button {
-  &.button {
-    //
-    // True for all buttons
-    //
-    display: inline-block;
-    position: relative;
-    background: none;
-    border: 0;
-    outline: 0;
-    box-sizing: border-box;
-    text-align: center;
+.button {
+  display: inline-block;
+  position: relative;
+  background: none;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+
+  // Sizes
+
+  &.large {
+    font-family: $bold;
+    border: 1px solid transparent;
+
+    @include widescreen {
+      font-size: 16px;
+      line-height: 44px;
+      border-radius: 3px;
+      padding: 0 30px;
+    }
+    @include desktop {
+      font-size: vw(16px);
+      line-height: vw(44px);
+      border-radius: vw(3px);
+      padding: 0 vw(30px);
+    }
+    @include tablet {
+      font-size: 2.3vw; // TODO
+      line-height: 44px; // TODO
+      border-radius: 3px; // TODO
+      padding: 0 30px; // TODO
+    }
+    @include mobile {
+      font-size: 5vw; // TODO
+      line-height: 44px; // TODO
+      border-radius: 3px; // TODO
+      padding: 0 30px; // TODO
+    }
+  }
+
+  &.medium {
+    font-family: $semibold;
+    border: 1px solid transparent;
+
+    @include widescreen {
+      font-size: 16px;
+      line-height: 32px;
+      border-radius: 3px;
+      padding: 0 13px;
+    }
+    @include desktop {
+      font-size: vw(16px);
+      line-height: vw(32px);
+      border-radius: vw(3px);
+      padding: 0 vw(13px);
+    }
+    @include tablet {
+      font-size: 2.3vw; // TODO
+      line-height: 46px; // TODO
+      border-radius: 3px; // TODO
+      padding: 0 30px; // TODO
+    }
+    @include mobile {
+      font-size: 5vw; // TODO
+      line-height: 46px; // TODO
+      border-radius: 3px; // TODO
+      padding: 0 30px; // TODO
+    }
+  }
+
+  &.small {
+    // Needed?
+  }
+
+  //
+  // Primary buttons have white text and opaque background colours to stand out
+  //
+  &.primary {
     text-decoration: none;
-    white-space: nowrap;
-    user-select: none;
-    cursor: pointer;
-    //
-    // Primary buttons have white text and opaque background colours to stand out
-    //
-    &.primary {
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
 
-      // Colours
+    // Colours
 
+    color: white;
+
+    &.green {
+      background: $green-1;
+      border-color: $green-1;
       color: white;
-
-      &.green {
-        background: $green-1;
-        color: white;
+      &:hover {
+        background: $green-2;
+        border-color: $green-2;
+      }
+      &:focus {
+        box-shadow: white 0 0 0 2px, 0 0 0 4px $green-1;
         &:hover {
-          background: $green-2;
-        }
-        &:focus {
-          box-shadow: white 0 0 0 2px, 0 0 0 4px $green-1;
-          &:hover {
-            box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
-          }
-        }
-      }
-
-      &.orange {
-        background: $orange-1;
-        color: white;
-        &:hover {
-          background: $orange-3;
-        }
-        &:focus {
-          box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-1;
-          &:hover {
-            box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-3;
-          }
-        }
-      }
-
-      // Sizes
-
-      &.large {
-        font-family: $bold;
-
-        @include widescreen {
-          font-size: 16px;
-          line-height: 46px;
-          border-radius: 3px;
-          padding: 0 30px;
-        }
-        @include desktop {
-          font-size: vw(16px);
-          line-height: vw(46px);
-          border-radius: vw(3px);
-          padding: 0 vw(30px);
-        }
-        @include tablet {
-          font-size: 2.3vw; // TODO
-          line-height: 46px; // TODO
-          border-radius: 3px; // TODO
-          padding: 0 30px; // TODO
-        }
-        @include mobile {
-          font-size: 5vw; // TODO
-          line-height: 46px; // TODO
-          border-radius: 3px; // TODO
-          padding: 0 30px; // TODO
-        }
-      }
-
-      &.medium {
-        font-family: $bold;
-
-        @include widescreen {
-          font-size: 16px;
-          line-height: 34px;
-          border-radius: 3px;
-          padding: 0 13px;
-        }
-        @include desktop {
-          font-size: vw(16px);
-          line-height: vw(34px);
-          border-radius: vw(3px);
-          padding: 0 vw(13px);
-        }
-        @include tablet {
-          font-size: 2.3vw; // TODO
-          line-height: 46px; // TODO
-          border-radius: 3px; // TODO
-          padding: 0 30px; // TODO
-        }
-        @include mobile {
-          font-size: 5vw; // TODO
-          line-height: 46px; // TODO
-          border-radius: 3px; // TODO
-          padding: 0 30px; // TODO
-        }
-      }
-
-      &.has-icon {
-        position: relative;
-        svg {
-          [fill] {
-            fill: white;
-          }
-        }
-        &.large {
-          padding: 0 46px;
-          .icon {
-            position: absolute;
-            width: 46px;
-            height: 100%;
-            left: 0;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            svg {
-              max-width: 60%;
-              max-height: 60%;
-              height: auto;
-              &.truck {
-                transform: translate(12%, 2%);
-                width: 55%;
-              }
-              &.people {
-                transform: translate(11%, 1%);
-                width: 55%;
-              }
-            }
-          }
-        }
-
-        &.medium {
-          &.icon-right,
-          &.icon-left {
-            display: flex;
-            align-items: center;
-          }
-          &.icon-left {
-            .icon {
-              @include widescreen {
-                margin-right: 10px;
-              }
-              @include desktop {
-                margin-right: vw(10px);
-              }
-              @include tablet {
-                margin-right: 10px; // TODO
-              }
-              @include mobile {
-                margin-right: 10px; // TODO
-              }
-            }
-          }
-          &.email {
-            svg {
-              width: 20px;
-              height: auto;
-            }
-          }
-          &.lightbulb {
-            svg {
-              width: 15px;
-              height: auto;
-            }
-          }
+          box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
         }
       }
     }
 
-    // Secondary are meant to look less important than primary buttons, yet relevant to notice.
-    // These typically have transparent backgrounds and border outlines.
-
-    &.secondary {
-      @include paragraph;
-      font-family: $semibold;
-      text-decoration: none;
-      background: transparent;
-      border: 1px solid $grey-2;
-      line-height: 287.5%;
-      @include widescreen {
-        // line-height: 46px;
-
-        border-radius: 3px;
-        padding: 0 30px;
-      }
-      @include desktop {
-        // line-height: vw(46px);
-        border-radius: vw(3px);
-        padding: 0 vw(30px);
-      }
-      @include tablet {
-        // line-height: 46px; // TODO
-        border-radius: 3px; // TODO
-        padding: 0 30px; // TODO
-      }
-      @include mobile {
-        // line-height: 46px; // TODO
-        border-radius: 3px; // TODO
-        padding: 0 30px; // TODO
-      }
-
+    &.orange {
+      background: $orange-1;
+      border-color: $orange-1;
+      color: white;
       &:hover {
-        text-decoration: underline;
+        background: $orange-3;
+        border-color: $orange-3;
       }
-      &.has-icon {
-        position: relative;
+      &:focus {
+        box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-1;
+        &:hover {
+          box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-3;
+        }
+      }
+    }
+
+    // Icons
+
+    &.has-icon {
+      position: relative;
+      svg {
+        [fill] {
+          fill: white;
+        }
+      }
+      &.large {
+        padding: 0 46px;
+        .icon {
+          position: absolute;
+          width: 46px;
+          height: 100%;
+          left: 0;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            max-width: 60%;
+            max-height: 60%;
+            height: auto;
+            &.truck {
+              transform: translate(12%, 2%);
+              width: 55%;
+            }
+            &.people {
+              transform: translate(11%, 1%);
+              width: 55%;
+            }
+          }
+        }
+      }
+
+      &.medium {
+        &.icon-right,
+        &.icon-left {
+          display: flex;
+          align-items: center;
+        }
+        &.icon-left {
+          .icon {
+            @include widescreen {
+              margin-right: 10px;
+            }
+            @include desktop {
+              margin-right: vw(10px);
+            }
+            @include tablet {
+              margin-right: 10px; // TODO
+            }
+            @include mobile {
+              margin-right: 10px; // TODO
+            }
+          }
+        }
+        &.email {
+          svg {
+            width: 20px;
+            height: auto;
+          }
+        }
+        &.lightbulb {
+          svg {
+            width: 15px;
+            height: auto;
+          }
+        }
+        &.play {
+          svg {
+            width: 20px;
+            height: auto;
+          }
+        }
+        &.cloud-download {
+          svg {
+            width: 24px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  // Secondary are meant to look less important than primary buttons, yet relevant to notice.
+  // These typically have transparent backgrounds and border outlines.
+
+  &.secondary {
+    background: transparent;
+    text-decoration: none;
+
+    // Colors
+
+    &.grey-border {
+      border-color: $grey-2;
+      color: $grey-6;
+      svg {
+        [fill] {
+          fill: $grey-2;
+        }
+      }
+    }
+
+    &.blue-focus {
+      &:hover,
+      &:focus {
+        color: $blue-0;
+        border-color: $blue-0;
+        svg {
+          [fill] {
+            fill: $blue-0;
+          }
+        }
+      }
+      &:focus {
+        box-shadow: 0 0 0 1px $blue-0 inset;
+      }
+    }
+
+    &.orange {
+      &:hover,
+      &:focus {
+        color: $orange-1;
+        border-color: $orange-1;
+        svg {
+          [fill] {
+            fill: $orange-1;
+          }
+        }
+      }
+      &:focus {
+        box-shadow: 0 0 0 1px $orange-1;
+      }
+    }
+
+    // Icons
+
+    &.has-icon {
+      position: relative;
+      &.large {
         .icon {
           position: absolute;
           width: 46px;
@@ -246,421 +282,250 @@ button {
               transform: translate(6%, 1%);
               width: 54%;
             }
-            [fill] {
-              fill: $grey-2;
-            }
           }
         }
       }
-      &.light-blue {
-        &:hover,
-        &:focus {
-          color: $blue-0;
-          border-color: $blue-0;
-          svg {
-            [fill] {
-              fill: $blue-0;
+
+      &.medium {
+        &.icon-right,
+        &.icon-left {
+          display: flex;
+          align-items: center;
+        }
+        &.icon-right {
+          flex-direction: row-reverse;
+          .icon {
+            @include widescreen {
+              margin-left: 10px;
+            }
+            @include desktop {
+              margin-left: vw(10px);
+            }
+            @include tablet {
+              margin-left: 10px; // TODO
+            }
+            @include mobile {
+              margin-left: 10px; // TODO
             }
           }
         }
-        &:focus {
-          box-shadow: 0 0 0 1px $blue-0;
-        }
-      }
-      &.orange {
-        &:hover,
-        &:focus {
-          color: $orange-1;
-          border-color: $orange-1;
+        &.arrow-down,
+        &.arrow-up {
           svg {
-            [fill] {
-              fill: $orange-1;
-            }
+            width: 11px;
+            height: auto;
           }
-        }
-        &:focus {
-          box-shadow: 0 0 0 1px $orange-1;
         }
       }
     }
+  }
 
-    // -----------------
-    // NOT design system
+  // Tertiary buttons are meant to look less important than secondary and primary buttons.
+  // Typically they look like links, but with an extended clickable area compared to hyperlinks
+  // inline with paragraph text.
 
-    // For the mobile chevron navigation buttons
-    // For the mobile hamburger button
-    &.square {
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      @include tablet {
-        margin: 1.5vw;
-        width: 6vw;
-        height: 6vw;
-        border: 0.325vw solid rgba(white, 0.2);
-        border-radius: 0.6vw;
-      }
-      @include mobile {
-        margin: 4.5vw;
-        width: 12vw;
-        height: 12vw;
-        border: 0.625vw solid rgba(white, 0.2);
-        border-radius: 1vw;
-      }
-      &.hamburger {
-        path {
-          transition: all 300ms ease;
-          transition-property: transform, opacity;
-          transform-origin: center;
-        }
-        &.close {
-          path:nth-child(1) {
-            transform: rotate(45deg) translate(0%, 30%);
-          }
-          path:nth-child(2) {
-            transform: scale(1.2, 0);
-            opacity: 0;
-          }
-          path:nth-child(3) {
-            transform: rotate(-45deg) translate(0%, -30%);
-          }
-        }
-      }
+  &.tertiary {
+    background: none;
+    text-decoration: underline;
+    @include widescreen {
+      font-size: 20px;
+      border-radius: 5px;
+      padding: 14px 20px;
+    }
+    @include desktop {
+      font-size: vw(20px);
+      border-radius: vw(5px);
+      padding: vw(14px) vw(20px);
+    }
+    @include tablet {
+      font-size: 3.2vw;
+      border-radius: 1vw;
+      padding: 2.1vw;
+    }
+    @include mobile {
+      font-size: 5.9375vw;
+      border-radius: 0.8vw;
+      padding: 3vw;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+    &.blue {
+      color: $blue-0;
+      background: white;
       &:hover {
-        // border-color: $blue-0;
-        border-color: white;
-        background: $blue-4;
+        color: $orange-3;
+      }
+      &:hover,
+      &:focus {
+        color: $orange-3;
+        box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+      }
+    }
+    &.orange {
+      color: $orange-3;
+      background: white;
+      &:hover,
+      &:focus {
+        color: $orange-2;
+        box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+      }
+    }
+    &.white {
+      color: white;
+      &:hover {
+        text-decoration: none;
       }
       &:focus {
-        border-color: white;
-        background: $blue-4;
+        box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
+        background: rgba(white, 0.1);
+        border-radius: 3px;
       }
+      &.inverse {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // For the mobile chevron navigation buttons
+  // For the mobile hamburger button
+  &.square {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+      margin: 1.5vw;
+      width: 6vw;
+      height: 6vw;
+      border: 0.325vw solid rgba(white, 0.2);
+      border-radius: 0.6vw;
+    }
+    @include mobile {
+      margin: 4.5vw;
+      width: 12vw;
+      height: 12vw;
+      border: 0.625vw solid rgba(white, 0.2);
+      border-radius: 1vw;
+    }
+    &.hamburger {
+      path {
+        transition: all 300ms ease;
+        transition-property: transform, opacity;
+        transform-origin: center;
+      }
+      &.close {
+        path:nth-child(1) {
+          transform: rotate(45deg) translate(0%, 30%);
+        }
+        path:nth-child(2) {
+          transform: scale(1.2, 0);
+          opacity: 0;
+        }
+        path:nth-child(3) {
+          transform: rotate(-45deg) translate(0%, -30%);
+        }
+      }
+    }
+    &:hover {
+      // border-color: $blue-0;
+      border-color: white;
+      background: $blue-4;
+    }
+    &:focus {
+      border-color: white;
+      background: $blue-4;
+    }
+    svg {
+      &.hamburger {
+        @include tablet {
+          height: 3.2vw;
+        }
+        @include mobile {
+          height: 6.5vw;
+        }
+        width: auto;
+      }
+      &.chevron-left {
+        @include tablet {
+          height: 2.8vw;
+        }
+        @include mobile {
+          height: 5.5vw;
+        }
+        width: auto;
+      }
+      &.chevron-down {
+        @include tablet {
+          width: 2.8vw;
+        }
+        @include mobile {
+          width: 5.5vw;
+        }
+        height: auto;
+      }
+      [fill] {
+        fill: white;
+      }
+    }
+  }
+
+  // For mobile hamburger navigation
+  &.stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    @include tablet {
+      font-size: 3vw;
+      border-radius: 0.4vw;
+      padding: 2vw;
+    }
+    @include mobile {
+      font-size: 5.6vw;
+      border-radius: 0.8vw;
+      padding: 4vw;
+    }
+    svg {
+      @include tablet {
+        max-width: 5vw;
+        max-height: 5vw;
+        margin-right: 3vw;
+      }
+      @include mobile {
+        max-width: 8vw;
+        max-height: 8vw;
+        margin-right: 4vw;
+      }
+    }
+    &.white {
+      color: white;
+      transition: background $easeOutExpo 300ms;
       svg {
-        &.hamburger {
-          @include tablet {
-            height: 3.2vw;
-          }
-          @include mobile {
-            height: 6.5vw;
-          }
-          width: auto;
-        }
-        &.chevron-left {
-          @include tablet {
-            height: 2.8vw;
-          }
-          @include mobile {
-            height: 5.5vw;
-          }
-          width: auto;
-        }
-        &.chevron-down {
-          @include tablet {
-            width: 2.8vw;
-          }
-          @include mobile {
-            width: 5.5vw;
-          }
-          height: auto;
-        }
         [fill] {
           fill: white;
         }
       }
+      &:hover,
+      &:focus {
+        box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
+        background: rgba(white, 0.1);
+      }
     }
-
-    &.link {
-      background: none;
-      text-decoration: underline;
-      @include widescreen {
-        font-size: 20px;
-        border-radius: 5px;
-        padding: 14px 20px;
-      }
-      @include desktop {
-        font-size: vw(20px);
-        border-radius: vw(5px);
-        padding: vw(14px) vw(20px);
-      }
+    & + .button {
+      // @include widescreen {
+      // }
+      // @include desktop {
+      // }
       @include tablet {
-        font-size: 3.2vw;
-        border-radius: 1vw;
-        padding: 2.1vw;
+        margin-top: 3vw; // TODO
       }
       @include mobile {
-        font-size: 5.9375vw;
-        border-radius: 0.8vw;
-        padding: 3vw;
-      }
-      &:hover {
-        text-decoration: none;
-      }
-      &.blue {
-        color: $blue-0;
-        background: white;
-        &:hover {
-          color: $orange-3;
-        }
-        &:hover,
-        &:focus {
-          color: $orange-3;
-          box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
-        }
-      }
-      &.orange {
-        color: $orange-3;
-        background: white;
-        &:hover,
-        &:focus {
-          color: $orange-2;
-          box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
-        }
-      }
-      &.white {
-        color: white;
-        &:hover {
-          text-decoration: none;
-        }
-        &:focus {
-          box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
-          background: rgba(white, 0.1);
-          border-radius: 3px;
-        }
-        &.inverse {
-          text-decoration: none;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-
-    &.stack {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: none;
-      @include tablet {
-        font-size: 3vw;
-        border-radius: 0.4vw;
-        padding: 2vw;
-      }
-      @include mobile {
-        font-size: 5.6vw;
-        border-radius: 0.8vw;
-        padding: 4vw;
-      }
-      svg {
-        @include tablet {
-          max-width: 5vw;
-          max-height: 5vw;
-          margin-right: 3vw;
-        }
-        @include mobile {
-          max-width: 8vw;
-          max-height: 8vw;
-          margin-right: 4vw;
-        }
-      }
-      &.white {
-        color: white;
-        transition: background $easeOutExpo 300ms;
-        svg {
-          [fill] {
-            fill: white;
-          }
-        }
-        &:hover,
-        &:focus {
-          box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
-          background: rgba(white, 0.1);
-        }
-      }
-      & + .button {
-        // @include widescreen {
-        // }
-        // @include desktop {
-        // }
-        @include tablet {
-          margin-top: 3vw; // TODO
-        }
-        @include mobile {
-          margin-top: 3vw;
-        }
-      }
-    }
-
-    &.big {
-      font-family: $extrabold;
-      line-height: 270%;
-      @include widescreen {
-        font-size: px(1.5vw);
-        padding: 0 px(3vw);
-        border-radius: px(0.4vw);
-      }
-      @include desktop {
-        font-size: 1.5vw;
-        padding: 0 3vw;
-        border-radius: 0.4vw;
-      }
-      @include tablet {
-        font-size: 2.8vw;
-        padding: 0 4.9vw;
-        border-radius: 0.7vw;
-      }
-      @include mobile {
-        font-size: 4.5vw;
-        padding: 0 8vw;
-        border-radius: 1vw;
-        width: 90%;
-      }
-    }
-
-    &.medium {
-      font-family: $semibold;
-      line-height: 230%;
-      @include widescreen {
-        font-size: px(1.4vw);
-        padding: 0 px(2vw);
-        border-radius: px(0.4vw);
-      }
-      @include desktop {
-        font-size: 1.4vw;
-        padding: 0 2vw;
-        border-radius: 0.4vw;
-      }
-      @include tablet {
-        font-size: 2.3vw;
-        padding: 0 4.5vw;
-        border-radius: 0.7vw;
-      }
-      @include mobile {
-        font-size: 4.4vw;
-        padding: 0 8vw;
-        border-radius: 1vw;
-        width: 100%;
-      }
-    }
-
-    &.small {
-      padding: 0 6px;
-      line-height: 24px;
-      font-family: $regular;
-      font-size: 14px;
-      border-radius: 2px;
-    }
-
-    &.inline {
-      color: $blue-0;
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-        color: $orange-2;
-      }
-    }
-
-    &.blue-2 {
-      background: $blue-2;
-      color: white;
-      &.active.route-aware {
-        background: $orange-2;
-      }
-      &:hover {
-        background: $orange-1;
-      }
-    }
-
-    &.blue-3 {
-      background: $blue-3;
-      color: white;
-      &.active.route-aware {
-        background: $orange-3;
-      }
-      &:hover {
-        background: $orange-2;
-      }
-    }
-
-    &.blue-4 {
-      background: $blue-4;
-      color: white;
-      &.active.route-aware {
-        background: $orange-4;
-      }
-      &:hover {
-        background: $orange-3;
-      }
-    }
-
-    &.orange-3 {
-      background: $orange-3;
-      color: white;
-      &.active.route-aware {
-        background: $orange-5;
-      }
-      &:hover {
-        background: $orange-4;
-      }
-    }
-
-    // &.green {
-    //   background: $green-1;
-    //   color: white;
-    //   text-decoration: none;
-    //   &:hover,
-    //   &:focus {
-    //     background: $green-2;
-    //     text-decoration: underline;
-    //   }
-    //   &:focus {
-    //     box-shadow: white 0 0 0 2px, 0 0 0 4px $green-2;
-    //   }
-    // }
-
-    &.grey {
-      background: $grey-0;
-      color: $grey-5;
-      border: 1px solid #e4e4e4;
-      &.active {
-        background: $blue-1;
-        color: white;
-      }
-      &:hover {
-        background: $blue-0;
-        color: white;
-      }
-    }
-
-    &.grey-border {
-      background: white;
-      border: 1px solid $grey-1;
-      color: $blue-0;
-      color: $grey-6;
-      color: $grey-7;
-      font-family: $regular;
-
-      &:hover {
-        color: $orange-3;
-        border-color: $orange-1;
+        margin-top: 3vw;
       }
     }
   }
-}
-
-// These button styles are inherited by all buttons.
-// Reuse these classes as much as possible.
-// Resist styling buttons per component, instead extend this base.
-
-a.url {
-  color: $blue-0;
-  text-decoration: underline;
-}
-
-a.route {
-  //
-}
-
-button.action {
-  //
 }

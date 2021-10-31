@@ -10,8 +10,14 @@ import Component from '@glimmer/component';
 export default class ButtonContentComponent extends Component {
   get iconIsValid() {
     const valid = [
+      'arrow-down',
+      'arrow-left',
+      'arrow-right',
+      'arrow-up',
+      'calendar-check',
       'chevron-down',
       'chevron-left',
+      'cloud-download',
       'document',
       'email',
       'flask',
@@ -19,6 +25,7 @@ export default class ButtonContentComponent extends Component {
       'lightbulb',
       'microchip',
       'people',
+      'play',
       'podcast',
       'share',
       'star',
