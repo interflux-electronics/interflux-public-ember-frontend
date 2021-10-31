@@ -96,20 +96,9 @@ main#webinars {
   }
 
   #upcoming {
+    padding-bottom: 0;
     h2 + p {
       text-align: center;
-      @include widescreen {
-        margin-bottom: 80px;
-      }
-      @include desktop {
-        margin-bottom: vw(80px);
-      }
-      @include tablet {
-        margin-bottom: 80px; // TODO
-      }
-      @include mobile {
-        margin-bottom: 80px; // TODO
-      }
     }
   }
 

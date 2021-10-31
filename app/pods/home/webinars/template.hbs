@@ -34,28 +34,6 @@
     </ul>
   </section>
 
-  <section id='past' aria-labelledby='past-h2'>
-    <h2 id='past-h2'>Past webinars</h2>
-
-    <div role='presentation' class='today'>
-      <p>today</p>
-      <div class='dot'></div>
-      <div class='vertical-line'></div>
-    </div>
-
-    <ul>
-      {{#each this.pastWebinars as |webinar|}}
-        <PastWebinarEvent @webinar={{webinar}} />
-      {{/each}}
-    </ul>
-
-    <div role='presentation' class='past'>
-      <div class='vertical-line'></div>
-      <div class='dot'></div>
-      <p>past</p>
-    </div>
-  </section>
-
   <section id='cta' aria-label="suggest next webinar's topic and subscribe">
     <div class='liner'>
       <div id='suggest'>
@@ -77,6 +55,28 @@
           @theme='primary medium green icon-left'
         />
       </div>
+    </div>
+  </section>
+
+  <section id='past' aria-labelledby='past-h2'>
+    <h2 id='past-h2'>Past webinars</h2>
+
+    <div role='presentation' class='today'>
+      <p>today</p>
+      <div class='dot'></div>
+      <div class='vertical-line'></div>
+    </div>
+
+    <ul>
+      {{#each this.pastWebinars as |webinar|}}
+        <PastWebinarEvent @webinar={{webinar}} />
+      {{/each}}
+    </ul>
+
+    <div role='presentation' class='past'>
+      <div class='vertical-line'></div>
+      <div class='dot'></div>
+      <p>past</p>
     </div>
   </section>
 </Page>
