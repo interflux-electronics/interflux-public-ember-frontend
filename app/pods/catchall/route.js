@@ -5,5 +5,11 @@ export default class CatchallRoute extends BaseRoute {
     console.warn('Unknown route');
     console.warn(location.href);
     console.warn({ transition, location });
+
+    this.headData.reset();
+    this.headData.setProperties({
+      title: 'Sorry, there is no page here.',
+      description: 'Sorry, there is no page here.'
+    });
   }
 }
