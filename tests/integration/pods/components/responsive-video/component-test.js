@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import EmberObject from '@ember/object';
 
 module('Integration | Component | responsive-video', function (hooks) {
   setupRenderingTest(hooks);
@@ -9,7 +10,7 @@ module('Integration | Component | responsive-video', function (hooks) {
   test('it renders', async function (assert) {
     assert.expect(3);
 
-    this.set('video', {
+    this.video = EmberObject.create({
       path: 'videos/test/foo',
       variations: '@1920x1080.mp4,@1920x1080.webm'
     });
