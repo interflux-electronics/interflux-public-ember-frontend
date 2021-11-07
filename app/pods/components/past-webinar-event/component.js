@@ -3,13 +3,12 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class PastWebinarEventComponent extends Component {
-  @tracked showContent = false;
+  @tracked showDetails = false;
 
-  @action expand() {
-    this.showContent = true;
-  }
+  @action toggleDetails(event) {
+    this.showDetails = !this.showDetails;
 
-  @action collapse() {
-    this.showContent = false;
+    // Remove focus from the toggle button
+    event.currentTarget.blur();
   }
 }

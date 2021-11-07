@@ -17,6 +17,7 @@ export default class ButtonContentComponent extends Component {
       'calendar-check',
       'chevron-down',
       'chevron-left',
+      'close',
       'cloud-download',
       'document',
       'email',

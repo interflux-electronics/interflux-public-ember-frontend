@@ -5,7 +5,7 @@
         @route='home'
         @model={{language.id}}
         @onClick={{fn this.onLanguageClick language.id}}
-        @theme='tertiary white inverse'
+        @theme='legacy tertiary white inverse'
       >
         <img
           src='{{env 'cdnHost'}}/images/flags/{{language.id}}.png'
@@ -16,7 +16,7 @@
     {{else}}
       <Button
         @url='{{env 'oldHost'}}/{{language.legacy}}'
-        @theme='tertiary white inverse'
+        @theme='legacy tertiary white inverse'
       >
         <img
           src='{{env 'cdnHost'}}/images/flags/{{language.id}}.png'

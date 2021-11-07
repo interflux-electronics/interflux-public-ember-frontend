@@ -71,6 +71,87 @@
       border-radius: 3px; // TODO
       padding: 0 30px; // TODO
     }
+    &.has-icon {
+      display: flex;
+      align-items: center;
+      &.icon-left {
+        .icon {
+          @include widescreen {
+            margin-right: 10px;
+          }
+          @include desktop {
+            margin-right: vw(10px);
+          }
+          @include tablet {
+            margin-right: 10px; // TODO
+          }
+          @include mobile {
+            margin-right: 10px; // TODO
+          }
+        }
+      }
+      &.icon-right {
+        flex-direction: row-reverse;
+        .icon {
+          @include widescreen {
+            margin-left: 10px;
+          }
+          @include desktop {
+            margin-left: vw(10px);
+          }
+          @include tablet {
+            margin-left: 10px; // TODO
+          }
+          @include mobile {
+            margin-left: 10px; // TODO
+          }
+        }
+      }
+      &.arrow-down,
+      &.arrow-up {
+        svg {
+          width: 11px;
+          height: auto;
+        }
+      }
+      &.arrow-left,
+      &.arrow-right {
+        svg {
+          width: auto;
+          height: 11px;
+        }
+      }
+      &.email {
+        svg {
+          width: 20px;
+          height: auto;
+        }
+      }
+      &.lightbulb {
+        svg {
+          width: 15px;
+          height: auto;
+        }
+      }
+      &.play {
+        svg {
+          width: 20px;
+          height: auto;
+        }
+      }
+      &.cloud-download {
+        svg {
+          width: 24px;
+          height: auto;
+        }
+      }
+      &.close {
+        svg {
+          width: 20px;
+          height: auto;
+        }
+      }
+    }
   }
 
   &.small {
@@ -82,9 +163,6 @@
   //
   &.primary {
     text-decoration: none;
-
-    // Colours
-
     color: white;
 
     &.green {
@@ -128,6 +206,7 @@
           fill: white;
         }
       }
+      // TODO: move up?
       &.large {
         padding: 0 46px;
         .icon {
@@ -154,54 +233,6 @@
           }
         }
       }
-
-      &.medium {
-        &.icon-right,
-        &.icon-left {
-          display: flex;
-          align-items: center;
-        }
-        &.icon-left {
-          .icon {
-            @include widescreen {
-              margin-right: 10px;
-            }
-            @include desktop {
-              margin-right: vw(10px);
-            }
-            @include tablet {
-              margin-right: 10px; // TODO
-            }
-            @include mobile {
-              margin-right: 10px; // TODO
-            }
-          }
-        }
-        &.email {
-          svg {
-            width: 20px;
-            height: auto;
-          }
-        }
-        &.lightbulb {
-          svg {
-            width: 15px;
-            height: auto;
-          }
-        }
-        &.play {
-          svg {
-            width: 20px;
-            height: auto;
-          }
-        }
-        &.cloud-download {
-          svg {
-            width: 24px;
-            height: auto;
-          }
-        }
-      }
     }
   }
 
@@ -220,6 +251,16 @@
       svg {
         [fill] {
           fill: $grey-2;
+        }
+      }
+    }
+
+    &.white-border {
+      border-color: rgba(white, 0.5);
+      color: white;
+      svg {
+        [fill] {
+          fill: white;
         }
       }
     }
@@ -260,6 +301,8 @@
 
     &.has-icon {
       position: relative;
+
+      // TODO: move up?
       &.large {
         .icon {
           position: absolute;
@@ -285,38 +328,6 @@
           }
         }
       }
-
-      &.medium {
-        &.icon-right,
-        &.icon-left {
-          display: flex;
-          align-items: center;
-        }
-        &.icon-right {
-          flex-direction: row-reverse;
-          .icon {
-            @include widescreen {
-              margin-left: 10px;
-            }
-            @include desktop {
-              margin-left: vw(10px);
-            }
-            @include tablet {
-              margin-left: 10px; // TODO
-            }
-            @include mobile {
-              margin-left: 10px; // TODO
-            }
-          }
-        }
-        &.arrow-down,
-        &.arrow-up {
-          svg {
-            width: 11px;
-            height: auto;
-          }
-        }
-      }
     }
   }
 
@@ -325,66 +336,107 @@
   // inline with paragraph text.
 
   &.tertiary {
-    background: none;
-    text-decoration: underline;
-    @include widescreen {
-      font-size: 20px;
-      border-radius: 5px;
-      padding: 14px 20px;
-    }
-    @include desktop {
-      font-size: vw(20px);
-      border-radius: vw(5px);
-      padding: vw(14px) vw(20px);
-    }
-    @include tablet {
-      font-size: 3.2vw;
-      border-radius: 1vw;
-      padding: 2.1vw;
-    }
-    @include mobile {
-      font-size: 5.9375vw;
-      border-radius: 0.8vw;
-      padding: 3vw;
-    }
-    &:hover {
-      text-decoration: none;
-    }
-    &.blue {
-      color: $blue-0;
-      background: white;
-      &:hover {
-        color: $orange-3;
-      }
-      &:hover,
-      &:focus {
-        color: $orange-3;
-        box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+    padding: 0;
+    transition: padding 300ms $easeOutExpo;
+    &:hover,
+    &:focus {
+      &.medium {
+        @include widescreen {
+          padding: 0 8px;
+        }
+        @include desktop {
+          padding: 0 vw(8px);
+        }
+        @include tablet {
+          padding: 0 8px; // TODO
+        }
+        @include mobile {
+          padding: 0 8px; // TODO
+        }
       }
     }
-    &.orange {
-      color: $orange-3;
-      background: white;
-      &:hover,
-      &:focus {
-        color: $orange-2;
-        box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
-      }
-    }
-    &.white {
+
+    &.white-text {
       color: white;
+      &:hover,
+      &:focus {
+        background: rgba(white, 0.1);
+      }
+      &:focus {
+        border-color: white;
+        box-shadow: 0 0 0 1px white inset;
+      }
+      svg {
+        [fill] {
+          fill: white;
+        }
+      }
+    }
+  }
+
+  &.legacy {
+    &.tertiary {
+      background: none;
+      text-decoration: underline;
+      @include widescreen {
+        font-size: 20px;
+        border-radius: 5px;
+        padding: 14px 20px;
+      }
+      @include desktop {
+        font-size: vw(20px);
+        border-radius: vw(5px);
+        padding: vw(14px) vw(20px);
+      }
+      @include tablet {
+        font-size: 3.2vw;
+        border-radius: 1vw;
+        padding: 2.1vw;
+      }
+      @include mobile {
+        font-size: 5.9375vw;
+        border-radius: 0.8vw;
+        padding: 3vw;
+      }
       &:hover {
         text-decoration: none;
       }
-      &:focus {
-        box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
-        background: rgba(white, 0.1);
-        border-radius: 3px;
-      }
-      &.inverse {
-        text-decoration: none;
+      &.blue {
+        color: $blue-0;
+        background: white;
         &:hover {
-          text-decoration: underline;
+          color: $orange-3;
+        }
+        &:hover,
+        &:focus {
+          color: $orange-3;
+          box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+        }
+      }
+      &.orange {
+        color: $orange-3;
+        background: white;
+        &:hover,
+        &:focus {
+          color: $orange-2;
+          box-shadow: white 0 0 0 1px, 0 0 0 3px $orange-0;
+        }
+      }
+      &.white {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+        &:focus {
+          box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
+          background: rgba(white, 0.1);
+          border-radius: 3px;
+        }
+        &.inverse {
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

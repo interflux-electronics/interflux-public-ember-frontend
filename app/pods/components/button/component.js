@@ -41,9 +41,9 @@ export default class ButtonComponent extends Component {
   }
 
   @action
-  onClick() {
+  onClick(event) {
     if (this.args.onClick && !this.args.isBusy) {
-      this.args.onClick();
+      this.args.onClick(event);
     }
   }
 }

@@ -18,6 +18,7 @@ export default class WebinarModel extends Model {
   @belongsTo('person') person;
   @belongsTo('image') image;
   @belongsTo('video') video;
+  @belongsTo('document') document;
 
   @hasMany('person') people;
   @hasMany('webinar-invitees') webinarInvitees;

@@ -3,6 +3,20 @@ li.past-webinar-event {
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  @include widescreen {
+    //
+  }
+  @include desktop {
+    //
+  }
+  @include tablet {
+    flex-direction: column;
+    align-items: center;
+  }
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
   .video,
   .info {
     flex: 1;
@@ -15,12 +29,12 @@ li.past-webinar-event {
       max-width: vw(400px);
     }
     @include tablet {
-      padding: 60px; // TODO
-      max-width: 400px; // TODO
+      padding: 10vw; // TODO
+      max-width: 80vw; // TODO
     }
     @include mobile {
-      padding: 60px; // TODO
-      max-width: 400px; // TODO
+      padding: 10vw; // TODO
+      max-width: 80vw; // TODO
     }
   }
   .video {
@@ -107,6 +121,10 @@ li.past-webinar-event {
     font-family: $bold;
     color: $grey-7;
     line-height: 180%;
+    margin-bottom: 5px;
+    &:not(:first-of-type) {
+      margin-top: 25px;
+    }
     @include widescreen {
       font-size: 16px;
     }
@@ -119,14 +137,6 @@ li.past-webinar-event {
     @include mobile {
       font-size: 16px; // TODO
     }
-  }
-  p + h4,
-  ul + h4 {
-    margin-top: 25px;
-  }
-  h4 + p,
-  h4 + ul {
-    margin-top: 5px;
   }
   p {
     span {

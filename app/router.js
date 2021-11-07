@@ -12,7 +12,9 @@ Router.map(function () {
     this.route('products', function () {
       this.route('subset', { path: '/:slug' });
     });
-    this.route('webinars');
+    this.route('webinars', function () {
+      this.route('watch', { path: '/:webinar' });
+    });
     this.route('company');
     this.route('documents', function () {
       this.route('category', { path: '/:category' });
@@ -24,4 +26,8 @@ Router.map(function () {
   this.route('error');
   this.route('loading');
   this.route('application-loading');
+
+  this.route('webinars', function () {
+    this.route('watch');
+  });
 });
