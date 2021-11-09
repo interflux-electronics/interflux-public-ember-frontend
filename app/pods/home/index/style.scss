@@ -2,6 +2,7 @@ main#homepage {
   #hero {
     position: relative;
     overflow: hidden;
+    background-color: $blue-4;
     &:after {
       content: '';
       position: absolute;
@@ -130,10 +131,16 @@ main#homepage {
       @include desktop {
         max-height: vw(640px);
       }
-      picture {
-        height: auto;
-        img {
-          width: 100vw;
+      .overlay {
+        display: none;
+      }
+      figure {
+        background: transparent;
+        picture {
+          height: auto;
+          img {
+            width: 100vw;
+          }
         }
       }
     }
