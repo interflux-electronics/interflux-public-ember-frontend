@@ -1,0 +1,256 @@
+main#webinars {
+  h1 {
+    font-family: $extrabold;
+    color: white;
+    line-height: 100%;
+    text-align: center;
+    @include widescreen {
+      font-size: 40px;
+    }
+    @include desktop {
+      font-size: vw(40px);
+    }
+    @include tablet {
+      font-size: 40px;
+    }
+    @include mobile {
+      font-size: 40px;
+    }
+  }
+
+  h2 {
+    font-family: $light;
+    line-height: 100%;
+    color: $grey-7;
+    text-align: center;
+    @include widescreen {
+      font-size: 30px;
+      margin-bottom: 80px;
+    }
+    @include desktop {
+      font-size: vw(30px);
+      margin-bottom: vw(80px);
+    }
+    @include tablet {
+      font-size: 30px; // TODO
+      margin-bottom: 80px; // TODO
+    }
+    @include mobile {
+      font-size: 30px; // TODO
+      margin-bottom: 80px; // TODO
+    }
+  }
+
+  #hero {
+    position: relative;
+    overflow: hidden;
+    .liner {
+      position: relative;
+      z-index: 2;
+      max-width: 100vw;
+      background-image: url('#{$cdn}/images/public/hero-circuit-boards-green-2@1200x320.jpg');
+      background-size: cover;
+      background-position: 50% 100%;
+      @include widescreen {
+        padding: 120px 0;
+      }
+      @include desktop {
+        padding: vw(120px) 0;
+      }
+      @include tablet {
+        padding: 120px 0; // TODO
+      }
+      @include mobile {
+        padding: 120px 0; // TODO
+      }
+    }
+    .blur {
+      position: absolute;
+      z-index: 1;
+      background-image: url('#{$cdn}/images/public/hero-circuit-boards-green-2@1200x320.jpg');
+      background-size: auto 100%;
+      background-position: 50%;
+      left: -20px;
+      right: -20px;
+      top: -20px;
+      bottom: -20px;
+      filter: blur(5px);
+    }
+  }
+
+  #upcoming,
+  #past,
+  #cta {
+    @include widescreen {
+      padding: 80px 0;
+    }
+    @include desktop {
+      padding: vw(80px) 0;
+    }
+    @include tablet {
+      padding: 80px 0; // TODO
+    }
+    @include mobile {
+      padding: 80px 0; // TODO
+    }
+  }
+
+  #upcoming {
+    padding-bottom: 0;
+    h2 + p {
+      text-align: center;
+    }
+  }
+
+  #past {
+    // background: $grey-0;
+    > ul {
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-image: url('#{$cdn}/images/public/dash-horizontal.svg');
+      }
+    }
+  }
+
+  #cta {
+    .liner {
+      position: relative;
+      display: flex;
+      margin: 0 auto;
+      @include widescreen {
+        width: 640px;
+        padding: 40px 0;
+      }
+      @include desktop {
+        width: vw(640px);
+        padding: vw(40px) 0;
+      }
+      @include tablet {
+        width: 640px; // TODO
+        padding: 40px 0; // TODO:
+      }
+      @include mobile {
+        width: 640px; // TODO
+        padding: 40px 0; // TODO:
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: calc(50% - 0.5px);
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background-image: url('#{$cdn}/images/public/dash-vertical.svg');
+      }
+    }
+
+    #suggest,
+    #subscribe {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h4,
+      p {
+        color: $grey-7;
+        @include widescreen {
+          font-size: 16px;
+        }
+        @include desktop {
+          font-size: vw(16px);
+        }
+        @include tablet {
+          font-size: 16px; // TODO
+        }
+        @include mobile {
+          font-size: 16px; // TODO
+        }
+      }
+      h4 {
+        font-family: $bold;
+      }
+      p {
+        @include widescreen {
+          margin: 20px 0;
+          width: 230px;
+        }
+        @include desktop {
+          margin: 20px 0;
+          width: vw(230px);
+        }
+        @include tablet {
+          margin: 20px 0;
+          width: 230px; // TODO
+        }
+        @include mobile {
+          margin: 20px 0;
+          width: 230px; // TODO
+        }
+      }
+    }
+  }
+
+  [role='presentation'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &.today {
+      p {
+        margin-bottom: 10px;
+      }
+    }
+    &.past {
+      p {
+        margin-top: 10px;
+      }
+    }
+    p {
+      font-family: $semibold;
+      color: $grey-3;
+    }
+    .vertical-line {
+      background: $grey-2;
+      width: 2px;
+      height: 25px;
+      left: 50%;
+      top: 0;
+    }
+    .dot {
+      width: 16px;
+      height: 16px;
+      border: 3px solid $grey-2;
+      background: $grey-0;
+      left: 50%;
+      top: 106px;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+  }
+
+  .loading-cube {
+    background: $grey-0;
+    @include widescreen {
+      padding: 50px 0 100px;
+    }
+    @include desktop {
+      padding: vw(50px) ​0 vw(100px);
+    }
+    @include tablet {
+      padding: 100px 0; // TODO
+    }
+    @include mobile {
+      padding: 100px 0; // TODO
+    }
+  }
+
+  & + .spacer {
+    background: $grey-0;
+  }
+}

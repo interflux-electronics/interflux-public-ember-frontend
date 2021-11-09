@@ -2,7 +2,14 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
-export default class LoadingSpinnerComponent extends Component {
+export default class LoadingCubeComponent extends Component {
+  // @arg message;
+  // @arg fixedToViewport;
+  // get args {
+  //   message: 'loading products ...'
+  //   position: 'fixed'
+  // }
+
   @service window;
   @service fastboot;
 
@@ -33,5 +40,9 @@ export default class LoadingSpinnerComponent extends Component {
       i = i < 5 ? i + 1 : 0;
       await this.window.delay(1400);
     }
+  }
+
+  get fixedToViewport() {
+    return this.args.position === 'fixed';
   }
 }

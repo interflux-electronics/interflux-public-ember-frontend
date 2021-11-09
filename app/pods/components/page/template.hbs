@@ -24,7 +24,7 @@
     aria-describedby={{@ariaDescribedby}}
   >
     {{#if @loading}}
-      <LoadingSpinner @message='Loading ...' />
+      <LoadingCube @message='Loading ...' @fixed-to-viewport='true' />
     {{else if @error}}
       <RouteErrorMessage />
     {{else}}

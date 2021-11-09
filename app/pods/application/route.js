@@ -9,7 +9,7 @@ export default class ApplicationRoute extends BaseRoute {
     const name = localStorage.getItem('name');
     const email = localStorage.getItem('email');
 
-    if (name && email) {
+    if (name && email && window.LiveChatWidget) {
       window.LiveChatWidget.call('set_customer_name', name);
       window.LiveChatWidget.call('set_customer_email', email);
     }

@@ -13,6 +13,22 @@
   // z-index: 2 is for header#mobile
   // z-index: 3 is for #modal
   z-index: 3;
+  &.white-box {
+    .box {
+      background: white;
+    }
+  }
+  &.white-text {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: white;
+    }
+  }
   > .overlay {
     position: fixed;
     background: rgba($blue-5, 0.9);
@@ -54,8 +70,8 @@
       padding: 20vw 3vw;
     }
     > .box {
-      background: white;
       width: 100%;
+      max-width: 1000px;
       box-sizing: border-box;
       pointer-events: all; // So the overlay below doesn't get clicked when user interacts within white box
       animation-name: fade-in;
@@ -72,5 +88,10 @@
         }
       }
     }
+  }
+  .button.close {
+    position: fixed;
+    right: 10px;
+    top: 10px;
   }
 }

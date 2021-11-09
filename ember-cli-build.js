@@ -21,7 +21,7 @@ module.exports = function (defaults) {
     sassOptions: {
       includePaths: ['app/pods'],
       overwrite: true,
-      sourceMap: true
+      sourceMap: false
     },
 
     // Adds CSS browser prefixes

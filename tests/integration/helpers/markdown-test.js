@@ -49,6 +49,46 @@ This is a paragraph.
 This is a paragraph.
 `;
 
+const basicListMarkdown = `
+* Apple
+* Cherry
+* Mango
+`;
+
+const basicListHTML = `
+<ul>
+  <li>Apple</li>
+  <li>Cherry</li>
+  <li>Mango</li>
+</ul>
+`;
+
+const complexListMarkdown = `
+These are *fruits*:
+
+* Apple with *italic* text
+* Cherry with *italic ending*
+* Mango with **bold** text
+* Banana with ***highlights***
+
+... but not **all** of them.
+`;
+
+const complexListHTML = `
+<p>These are <em>fruits</em>:</p>
+<ul>
+  <li>Apple with <em>italic</em> text</li>
+  <li>Cherry with <em>italic ending</em></li>
+  <li>Mango with <strong>bold</strong> text</li>
+  <li>Banana with <mark>highlights</mark></li>
+</ul>
+<p>... but not <strong>all</strong> of them.</p>
+`;
+
+const flatten = (str) => {
+  return str.replace(/\n/g, '').replace(/\s\s/g, '');
+};
+
 module('Integration | Helper | markdown', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -81,11 +121,11 @@ module('Integration | Helper | markdown', function (hooks) {
 
   test('it emphasises words', async function (assert) {
     assert.expect(1);
-    this.set('string', 'This word is *bolded*.');
+    this.set('string', 'This word is *italic*.');
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is <em>bolded</em>.</p>'
+      '<p>This word is <em>italic</em>.</p>'
     );
   });
 
@@ -101,11 +141,11 @@ module('Integration | Helper | markdown', function (hooks) {
 
   test('it marks words', async function (assert) {
     assert.expect(1);
-    this.set('string', 'This word is ***bolded***.');
+    this.set('string', 'This word is ***highlighted***.');
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is <mark>bolded</mark>.</p>'
+      '<p>This word is <mark>highlighted</mark>.</p>'
     );
   });
 
@@ -137,5 +177,19 @@ module('Integration | Helper | markdown', function (hooks) {
       this.element.innerHTML,
       '<p>This is a paragraph.</p><blockquote><p><span class="word">Quote</span><span class="space"> </span><span class="word">me!</span></p></blockquote><p>This is a paragraph.</p>'
     );
+  });
+
+  test('it converts simple lists', async function (assert) {
+    assert.expect(1);
+    this.set('string', basicListMarkdown);
+    await render(hbs`{{markdown string}}`);
+    assert.equal(this.element.innerHTML, flatten(basicListHTML));
+  });
+
+  test('it converts complex lists', async function (assert) {
+    assert.expect(1);
+    this.set('string', complexListMarkdown);
+    await render(hbs`{{markdown string}}`);
+    assert.equal(this.element.innerHTML, flatten(complexListHTML));
   });
 });

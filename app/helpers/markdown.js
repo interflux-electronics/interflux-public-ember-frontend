@@ -7,6 +7,64 @@ import { htmlSafe } from '@ember/template';
 // Don't use triple curlies:
 // https://github.com/ember-template-lint/ember-template-lint/blob/master/docs/rule/no-triple-curlies.md
 
+const convertList = (str) => {
+  // 1. Split string on "* "
+  // 2. Remove all blank strings
+  // 3. Remove all line breaks
+  const items = str
+    .split(/^\*\s|\n\*\s/g)
+    .filter((x) => !!x)
+    .map((x) => x.replace(/\n/g, ''));
+
+  // Build the HTML
+  let html = '<ul>';
+  items.forEach((item) => {
+    html += `<li>${convertInlineElements(item)}</li>`;
+  });
+  html += '</ul>';
+
+  return html;
+};
+
+const convertBlockquote = (str) => {
+  const words = str.substring(2).split(' ');
+  const spans = `<span class="word">${words.join(
+    '</span><span class="space">&#32;</span><span class="word">'
+  )}</span>`;
+  return `<blockquote><p>${spans}</p></blockquote>`;
+};
+
+const convertInlineElements = (str) => {
+  // Replace single line breaks with <br>
+  let html = str.replace(/\n/g, '<br>');
+
+  // Wrap ***marked*** words with <mark>
+  html = html.replace(/\*{3}([^*]+)\*{3}/g, '<mark>$1</mark>');
+
+  // Wrap **bolded** words with <strong>
+  html = html.replace(/\*{2}([^*]+)\*{2}/g, '<strong>$1</strong>');
+
+  // Wrap *italic* words with <i>
+  html = html.replace(/\*{1}([^*]+)\*{1}/g, '<em>$1</em>');
+
+  // Wrap [hyperlinks](https://wikipedia.com) with <a>
+  const links = html.match(/\[.*?\)/g);
+  if (links != null && links.length > 0) {
+    links.forEach((hyper) => {
+      const text = hyper.match(/\[(.*?)\]/)[1];
+      const url = hyper.match(/\((.*?)\)/)[1];
+
+      const result = url.startsWith('http')
+        ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`
+        : `<a href="${url}">${text}</a>`;
+
+      html = html.replace(hyper, result);
+    });
+  }
+
+  return html;
+};
+
 export default helper(function markdown(params) {
   const string = params[0];
 
@@ -42,45 +100,14 @@ export default helper(function markdown(params) {
       html += `<h5>${b.substring(6)}</h5>`;
     } else if (b.startsWith('###### ')) {
       html += `<h6>${b.substring(7)}</h6>`;
+    } else if (b.startsWith('* ')) {
+      html += convertList(b);
     } else if (b.startsWith('> ')) {
-      const words = b.substring(2).split(' ');
-      const spans = `<span class="word">${words.join(
-        '</span><span class="space">&#32;</span><span class="word">'
-      )}</span>`;
-      html += `<blockquote><p>${spans}</p></blockquote>`;
+      html += convertBlockquote(b);
+    } else if (options.noParagraphs) {
+      html += `${convertInlineElements(b)}`;
     } else {
-      // Replace single line breaks with <br>
-      let content = b.replace(/\n/g, '<br>');
-
-      // Wrap ***marked*** words with <mark>
-      content = content.replace(/\*\*\*([^*]+)\*\*\*/g, '<mark>$1</mark>');
-
-      // Wrap **bolded** words with <strong>
-      content = content.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-
-      // Wrap *italic* words with <i>
-      content = content.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-
-      // Wrap [hyperlinks](https://wikipedia.com) with <a>
-      const links = content.match(/\[.*?\)/g);
-      if (links != null && links.length > 0) {
-        links.forEach((hyper) => {
-          const text = hyper.match(/\[(.*?)\]/)[1];
-          const url = hyper.match(/\((.*?)\)/)[1];
-
-          const result = url.startsWith('http')
-            ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`
-            : `<a href="${url}">${text}</a>`;
-
-          content = content.replace(hyper, result);
-        });
-      }
-
-      if (options.noParagraphs) {
-        html += `${content}`;
-      } else {
-        html += `<p>${content}</p>`;
-      }
+      html += `<p>${convertInlineElements(b)}</p>`;
     }
   });
 

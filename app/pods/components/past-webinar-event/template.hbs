@@ -1,0 +1,82 @@
+<li class='past-webinar-event'>
+  <div class='video'>
+    {{#if @webinar.image}}
+      <ResponsiveImage
+        @path={{@webinar.image.path}}
+        @variations={{@webinar.image.variations}}
+        @caption={{@webinar.image.caption}}
+        @alt={{@webinar.image.alt}}
+      />
+    {{/if}}
+  </div>
+
+  <div class='info'>
+    <h3>
+      {{span-each-word @webinar.title}}
+      <time datetime={{@webinar.kebabStartDate}}>
+        <span>{{@webinar.humanStartDate}}</span>
+      </time>
+    </h3>
+
+    <h4>Topic</h4>
+    {{markdown @webinar.topic}}
+
+    {{#if this.showDetails}}
+      <h4>Who should watch</h4>
+      {{markdown @webinar.audience}}
+
+      <h4>Speaker</h4>
+      <div class='host'>
+        <p>
+          <span>Steven Teliszewski</span>
+          <span>COO at Interflux Electronics</span>
+          <span>30+ years of field experience</span>
+        </p>
+        <Image
+          @src='{{env 'cdnHost'}}/images/public/avatar-steven@160x160.jpg'
+        />
+      </div>
+
+      <h4>Details</h4>
+      <p>
+        <span>Date: {{@webinar.humanStartDate}}</span>
+        <span>Attendees: 46</span>
+        <span>Replays: 520</span>
+      </p>
+    {{/if}}
+
+    <div class='buttons'>
+      {{#if @webinar.video}}
+        <Button
+          @route='home.webinars.watch'
+          @model={{@webinar.id}}
+          @text='Replay'
+          @icon='play'
+          @theme='primary medium orange icon-left'
+        />
+      {{/if}}
+
+      {{#if @webinar.document.id}}
+        <Button
+          @text='Slides'
+          @icon='cloud-download'
+          @theme='primary medium green icon-left'
+          @class='collapse'
+          @url='{{env 'cdnHost'}}/{{@webinar.document.path}}.pdf'
+        />
+      {{/if}}
+
+      <Button
+        @text={{if this.showDetails 'Hide details' 'Details'}}
+        @icon={{if this.showDetails 'arrow-up' 'arrow-down'}}
+        @theme='secondary medium grey-border blue-focus icon-right'
+        @onClick={{this.toggleDetails}}
+        @class='expand'
+      />
+    </div>
+  </div>
+
+  <div class='vertical-line'></div>
+  <div class='dashed-line'></div>
+  <div class='dot'></div>
+</li>
