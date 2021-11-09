@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
-export default class LoadingSpinnerComponent extends Component {
+export default class LoadingCubeComponent extends Component {
   // @arg message;
   // @arg fixedToViewport;
   // get args {
