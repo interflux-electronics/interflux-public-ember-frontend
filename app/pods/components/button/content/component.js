@@ -31,7 +31,9 @@ export default class ButtonContentComponent extends Component {
       'share',
       'star',
       'street-view',
-      'truck'
+      'truck',
+      'user',
+      'search'
     ].includes(this.args.icon);
 
     if (!valid) {

@@ -1,11 +1,11 @@
-<p>Sorry, something didn't quite go as planned.</p>
-<p>Nobody should ever see this message, so please inform our team:</p>
-<p>
-  <a
-    href='mailto:j.werkhoven@interflux.com'
-    target='_blank'
-    rel='noopener noreferrer'
-  >
-    j.werkhoven@interflux.com
-  </a>
-</p>
+<section class='route-error-message'>
+  <h1>Sorry, this page cannot be reached.</h1>
+  {{#if this.showBackButton}}
+    <Button
+      @route={{this.backRoute}}
+      @text={{this.backLabel}}
+      @icon='arrow-left'
+      @theme='primary medium green icon-left'
+    />
+  {{/if}}
+</section>

@@ -1,7 +1,7 @@
 import BaseRoute from 'interflux/pods/base/route';
 
 export default class ProductsIndexRoute extends BaseRoute {
-  beforeModel() {
+  activate() {
     this.headData.reset();
     this.headData.setProperties({
       title: 'Products – Interflux',
@@ -13,6 +13,11 @@ export default class ProductsIndexRoute extends BaseRoute {
       imageWidth: '1920',
       imageHeight: '720',
       imageAlt: 'selective soldering mini wave'
+    });
+    this.page.update({
+      id: 'products-index',
+      title: 'Products',
+      backRoute: 'home'
     });
   }
 

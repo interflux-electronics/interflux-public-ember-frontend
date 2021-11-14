@@ -1,3 +1,10 @@
 import BaseRoute from 'interflux/pods/base/route';
 
-export default class ContactLoadingRoute extends BaseRoute {}
+export default class DocumentsLoadingRoute extends BaseRoute {
+  activate() {
+    this.page.update({
+      id: 'documents-loading',
+      title: 'Loading ...'
+    });
+  }
+}

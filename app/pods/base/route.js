@@ -4,15 +4,16 @@ import { action } from '@ember/object';
 
 export default class BaseRoute extends Route {
   // These services are available in all routes which inherit BaseRoute.
-  @service api;
-  @service auth;
-  @service fastboot;
-  @service headData;
+  @service api; // Knows how to talk to the backend.
+  @service auth; // Manages user authentication.
+  @service fastboot; // Ember's pre-serve renderer.
+  @service headData; // Controls the <head> meta tags.
   @service header;
-  @service router;
-  @service store;
-  @service translation;
-  @service modal;
+  @service router; // Ember's route service.
+  @service store; // Ember's data store.
+  @service translation; // Helps with translations.
+  @service page; // Controls the <Page> component.
+  @service modal; // Controls the <Modal> component.
   @service window;
 
   get isNode() {

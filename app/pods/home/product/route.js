@@ -18,7 +18,8 @@ export default class ProductRoute extends BaseRoute {
         ].join(','),
         reload: true
       })
-      // delay: new Promise(resolve => setTimeout(resolve, 300000))
+      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
+      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });
   }
 
@@ -26,12 +27,14 @@ export default class ProductRoute extends BaseRoute {
     const {
       id,
       name,
+      status,
       familyLabel,
       pitch,
       avatarPath,
       avatarAlt,
       avatarCaption,
-      avatarVariations
+      avatarVariations,
+      mainFamily
     } = model.product;
 
     this.headData.reset();
@@ -45,6 +48,18 @@ export default class ProductRoute extends BaseRoute {
       path: avatarPath,
       variations: avatarVariations,
       alt: [avatarAlt, avatarCaption].filter((x) => !!x).join(' ')
+    });
+    this.page.update({
+      id: 'product',
+      title: name,
+      mainClasses: status,
+      backRoute: 'home.products.subset',
+      backModel: mainFamily.get('id'),
+      crumbs: [
+        { label: 'Interflux', route: 'home' },
+        { label: 'Products', route: 'home.products' },
+        { label: name }
+      ]
     });
   }
 

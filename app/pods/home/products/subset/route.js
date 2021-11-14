@@ -30,6 +30,16 @@ export default class ProductsSubsetRoute extends BaseRoute {
       imageHeight: '1000',
       imageAlt: 'secondary Interflux Electronics logo 1'
     });
+    this.page.update({
+      id: 'products-subset',
+      title: pageTitle,
+      backRoute: 'home.products',
+      crumbs: [
+        { label: 'Interflux', route: 'home' },
+        { label: 'Products', route: 'home.products' },
+        { label: pageTitle }
+      ]
+    });
   }
 
   // HACK: when navigating into a subset route, then out and back into another, the controller

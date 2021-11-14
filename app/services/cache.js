@@ -11,6 +11,5 @@ export default class CacheService extends Service {
     this.paths.push(path);
   }
 
-  hasProductIndex = false;
-  hasProductSubset = false;
+  hasProductsIndex = false;
 }

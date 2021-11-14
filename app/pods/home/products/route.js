@@ -6,7 +6,7 @@ export default class ProductsRoute extends BaseRoute {
   @service cache;
 
   model() {
-    if (this.cache.hasProductIndex) {
+    if (this.cache.hasProductsIndex) {
       return {
         products: this.store.peekAll('product'),
         families: this.store.peekAll('productFamily'),
@@ -30,11 +30,13 @@ export default class ProductsRoute extends BaseRoute {
         qualities: this.store.findAll('quality'),
         productUses: this.store.findAll('product-use'),
         productQualities: this.store.findAll('product-quality')
+        // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
+        // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
       });
     }
   }
 
   afterModel() {
-    this.cache.hasProductIndex = true;
+    this.cache.hasProductsIndex = true;
   }
 }
