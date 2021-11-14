@@ -1,15 +1,16 @@
 {{#if this.showMobileHeader}}
   <Header::Mobile
-    @title={{if @error 'Whoops' @title}}
-    @backRoute={{@backRoute}}
-    @backModel={{@backModel}}
+    @title={{if @error 'Whoops' this.title}}
+    @backRoute={{this.backRoute}}
+    @backModel={{this.backModel}}
   />
 {{/if}}
+
 <div
   id='page'
   class={{this.pageClasses}}
   style={{this.pageStyle}}
-  data-main={{@id}}
+  data-main={{this.id}}
 >
   {{#if this.showDesktopHeader}}
     <Header::Desktop />
@@ -17,9 +18,10 @@
       <Breadcrumbs @crumbs={{@crumbs}} />
     {{/if}}
   {{/if}}
+
   <main
-    id={{@id}}
-    class={{@class}}
+    id={{this.id}}
+    class={{this.mainClasses}}
     aria-labelledby={{@ariaLabelledby}}
     aria-describedby={{@ariaDescribedby}}
   >
@@ -31,7 +33,9 @@
       {{yield}}
     {{/if}}
   </main>
+
   <div class='spacer'></div>
+
   {{#if this.showFooter}}
     <Footer />
   {{/if}}
