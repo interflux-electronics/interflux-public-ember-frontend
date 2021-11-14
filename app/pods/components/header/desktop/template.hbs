@@ -1,21 +1,61 @@
 <header id='desktop' role='banner' aria-label='site'>
-  <nav class='liner' aria-label='page'>
-    <div class='left'>
-      <Button @route='index' @id='logo'>
-        <img
-          src='{{env
-            'cdnHost'
-          }}/images/logos/primary-interflux-electronics-logo-1.svg'
-          width='3960'
-          height='1000'
-          alt='Interflux Electronics'
-        />
-      </Button>
-      <Button @route='home.products' @text='Products' />
-      {{! <Button @route='home.webinars' @text='Webinars' /> }}
-      <Button @route='home.company' @text='Company' />
-      <Button @route='home.documents' @text='Docs' />
-      <Button @route='home.contact' @text='Contact' />
+  <nav aria-label='page'>
+    <Button @route='index' @id='logo' @class='left'>
+      <img
+        src='{{env
+          'cdnHost'
+        }}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg'
+        width='3960'
+        height='1000'
+        alt='Interflux Electronics'
+      />
+    </Button>
+
+    <ul class='center'>
+      <li id='products'>
+        <Button @text='Products' @onClick={{this.showProductsMenu}} />
+        <Header::Desktop::Menu::Products />
+      </li>
+
+      <li id='processes'>
+        <Button @text='Processes' @onClick={{this.showProcessesMenu}} />
+        <Header::Desktop::Menu::Processes />
+      </li>
+
+      <li id='know-how'>
+        <Button @text='Webinars' @route='home.webinars' />
+      </li>
+
+      <li id='company'>
+        <Button @text='Company' @route='home.company' />
+      </li>
+
+      <li id='docs'>
+        <Button @text='Docs' @route='home.documents' />
+      </li>
+
+      <li id='contact'>
+        <Button @text='Contact' @route='home.contact' />
+      </li>
+    </ul>
+
+    <div class='right'>
+      {{!--
+      <Button
+        @text='Order'
+        @onClick={{this.openOrderModal}}
+        @icon='truck'
+        @theme='large primary orange icon-left'
+      />
+
+      <Button @icon='search' @text='Search' @onClick={{this.openSearchModal}} />
+
+      <Button
+        @text='Your account'
+        @icon='user'
+        @onClick={{this.openAccountModal}}
+      />
+    --}}
     </div>
   </nav>
 </header>

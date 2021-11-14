@@ -1,0 +1,68 @@
+<Header::Desktop::Menu>
+  <div class='links'>
+    <h2>Products we develop</h2>
+    <Button
+      @text='LMPA™'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='for-low-melting-point-soldering'
+      @onFocus={{fn this.showImage 1}}
+      @onMouseEnter={{fn this.showImage 1}}
+    />
+    <Button
+      @text='Soldering fluxes'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='soldering-fluxes'
+      @onFocus={{fn this.showImage 2}}
+      @onMouseEnter={{fn this.showImage 2}}
+    />
+    <Button
+      @text='Solder wires'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='solder-wires'
+      @onFocus={{fn this.showImage 3}}
+      @onMouseEnter={{fn this.showImage 3}}
+    />
+    <Button
+      @text='Solder pastes'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='solder-pastes'
+      @onFocus={{fn this.showImage 4}}
+      @onMouseEnter={{fn this.showImage 4}}
+    />
+    <Button
+      @text='Solder alloys'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='solder-alloys'
+      @onFocus={{fn this.showImage 5}}
+      @onMouseEnter={{fn this.showImage 5}}
+    />
+    <Button
+      @text='Auxiliaries'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='auxiliaries'
+      @onFocus={{fn this.showImage 6}}
+      @onMouseEnter={{fn this.showImage 6}}
+    />
+    <Button
+      @text='Fluxing systems'
+      @icon='arrow-right'
+      @route='home.products.subset'
+      @model='fluxing-systems'
+      @onFocus={{fn this.showImage 7}}
+      @onMouseEnter={{fn this.showImage 7}}
+    />
+  </div>
+
+  <div class='image' data-position={{this.imagePosition}}>
+    <ResponsiveImage
+      @path='/images/public/products-menu-sprite'
+      @variations='@666x4662.webp,@666x4662.jpg'
+    />
+  </div>
+</Header::Desktop::Menu>

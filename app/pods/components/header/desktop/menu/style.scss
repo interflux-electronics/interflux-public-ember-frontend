@@ -1,0 +1,39 @@
+header#desktop {
+  .menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    animation: slide-down-and-fade-intro 400ms;
+    &:hover,
+    &:focus {
+      display: block;
+    }
+    &:before {
+      content: '';
+      background-image: url('#{$cdn}/images/public/menu-top-arrow.svg');
+      position: absolute;
+      top: 25px - 17px + 2px;
+      width: 52px;
+      height: 17px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+    .box {
+      display: flex;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 4px 4px rgba(black, 0.25);
+      margin-top: 25px;
+      overflow: hidden;
+      position: relative;
+    }
+    h2 {
+      font-family: $bold;
+      font-size: 15px;
+      color: $grey-7;
+      line-height: 46px;
+      padding: 0 18px;
+    }
+  }
+}
