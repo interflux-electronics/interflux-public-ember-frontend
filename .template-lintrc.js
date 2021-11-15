@@ -9,6 +9,7 @@ module.exports = {
     'no-duplicate-landmark-elements': 'off',
     'no-redundant-landmark-role': 'off',
     'require-input-label': 'off',
-    'no-potential-path-strings': 'warn'
+    'no-potential-path-strings': 'warn',
+    'no-invalid-interactive': 'warn'
   }
 };
