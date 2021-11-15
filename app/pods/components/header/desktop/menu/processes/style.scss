@@ -1,0 +1,107 @@
+header#desktop {
+  #processes {
+    .menu {
+      .box {
+        flex-direction: column;
+        @include widescreen {
+          width: 720px;
+        }
+        @include desktop {
+          width: vw(720px);
+        }
+      }
+      .callout {
+        @include widescreen {
+          left: 200px;
+        }
+        @include desktop {
+          left: vw(200px);
+        }
+      }
+      .links {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+        text-align: left;
+        width: 100%;
+        overflow: hidden;
+        @include widescreen {
+          padding-bottom: 1px;
+          border-radius: 0 0 0 8px;
+        }
+        @include desktop {
+          padding-bottom: vw(1px);
+          border-radius: 0 0 0 vw(8px);
+        }
+        a {
+          width: 33.33%;
+          color: white;
+          text-align: left;
+          border-top: 1px solid $grey-1;
+          color: $grey-7;
+          display: flex;
+          align-items: center;
+          @include widescreen {
+            height: 41px;
+            padding: 0 18px 0 1px;
+            font-size: 15px;
+          }
+          @include desktop {
+            height: vw(41px);
+            padding: 0 vw(18px) 0 vw(1px);
+            font-size: vw(15px);
+          }
+          &:first-child {
+            width: 66.66%;
+          }
+          &:hover,
+          &:focus {
+            span {
+              font-family: $semibold;
+              background: $orange-2;
+              color: white;
+            }
+          }
+          > img {
+            @include widescreen {
+              width: 40px;
+              height: 40px;
+            }
+            @include desktop {
+              width: vw(40px);
+              height: vw(40px);
+            }
+          }
+          span {
+            display: flex;
+            align-items: center;
+
+            @include widescreen {
+              line-height: 24px;
+              padding: 0 8px;
+              margin: 0 8px;
+            }
+            @include desktop {
+              line-height: vw(24px);
+              padding: 0 vw(8px);
+              margin: 0 vw(8px);
+            }
+          }
+          svg {
+            color: white;
+            @include widescreen {
+              width: 4px;
+              height: 6px;
+              margin-left: 8px;
+            }
+            @include desktop {
+              width: vw(4px);
+              height: vw(6px);
+              margin-left: vw(8px);
+            }
+          }
+        }
+      }
+    }
+  }
+}

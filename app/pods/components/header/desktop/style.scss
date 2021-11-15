@@ -1,57 +1,153 @@
 header#desktop {
-  box-shadow: 0 2px 2px rgba(black, 0.1);
-  background: white;
-  z-index: 1;
-  .liner {
+  position: relative;
+  background: $blue-5;
+  z-index: 3;
+  @include widescreen {
+    height: 80px;
+    box-shadow: 0 2px 2px rgba(black, 0.1);
+  }
+  @include desktop {
+    height: vw(80px);
+    box-shadow: 0 vw(2px) vw(2px) rgba(black, 0.1);
+  }
+  nav {
     display: flex;
     justify-content: space-between;
+    height: 100%;
+    margin: 0 auto;
+    @include widescreen {
+      max-width: 1200px;
+    }
+    @include desktop {
+      max-width: vw(1200px);
+    }
   }
-  .left {
+  a#logo {
     display: flex;
-    a#logo {
-      display: flex;
-      justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: transform 400ms $easeOutExpo;
+    &:focus,
+    &:hover {
+      transform: scale(1.1);
+    }
+    img {
+      width: auto; // don't make height auto or Safari will explode
       @include widescreen {
-        padding: 12px 34px 12px 24px;
+        height: 44px;
       }
       @include desktop {
-        padding: vw(12px) vw(34px) vw(12px) vw(24px);
+        height: vw(44px);
       }
-      img {
-        width: auto; // don't make height auto or Safari will explode
+    }
+  }
+  ul.center {
+    display: flex;
+    align-items: center;
+    & > li {
+      height: 100%;
+      & > .button {
+        height: 100%;
+        color: white;
+        font-family: $bold;
+        display: flex;
+        align-items: center;
         @include widescreen {
-          height: px(4.5vw);
+          font-size: 16px;
+          padding: 0 16px;
         }
         @include desktop {
-          height: 4.5vw;
+          font-size: vw(16px);
+          padding: 0 vw(16px);
+        }
+        &:hover,
+        &:focus {
+          span {
+            &:after {
+              transform: scaleX(1);
+            }
+          }
+        }
+        span {
+          position: relative;
+          &:after {
+            content: '';
+            background: white;
+            position: absolute;
+            transition: transform 400ms $easeOutExpo;
+            transform: scaleX(0);
+            @include widescreen {
+              width: calc(100% + 10px);
+              height: 2px;
+              left: -5px;
+              bottom: -15px;
+            }
+            @include desktop {
+              width: calc(100% + vw(10px));
+              height: vw(2px);
+              left: vw(-5px);
+              bottom: vw(-15px);
+            }
+          }
         }
       }
     }
-    a:not(#logo) {
-      position: relative;
-      color: $grey-7;
-      display: flex;
-      align-items: center;
-      @include widescreen {
-        margin-right: 40px;
-      }
-      @include desktop {
-        margin-right: vw(40px);
-      }
-      span {
-        font-family: $bold;
-      }
-      &:hover {
-        span {
-          color: $blue-0;
-          text-decoration: underline;
-        }
-      }
-      &:focus {
-        span {
-          color: $orange-3;
-        }
-      }
+  }
+  .right {
+    @include widescreen {
+      width: 174px; // TEMPORARY
     }
+    @include desktop {
+      width: vw(174px); // TEMPORARY
+    }
+    // display: flex;
+    // align-items: center;
+    // .button:not(.orange) {
+    //   height: 100%;
+    //   padding: 0;
+    //   color: white;
+    //   font-size: 15px;
+    //   font-family: $bold;
+    //   display: flex;
+    //   align-items: center;
+    //   border-left: 1px solid rgba(white, 0.1);
+    //   &:last-child {
+    //     border-right: 1px solid rgba(white, 0.1);
+    //   }
+    //   &:hover,
+    //   &:focus {
+    //     span {
+    //       width: 100px;
+    //     }
+    //   }
+    //   .icon {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     @include widescreen {
+    //       width: 60px;
+    //     }
+    //     @include desktop {
+    //       width: vw(60px);
+    //     }
+    //     svg {
+    //       height: auto;
+    //       @include widescreen {
+    //         width: 25px;
+    //       }
+    //       @include desktop {
+    //         width: vw(25px);
+    //       }
+    //       [fill] {
+    //         fill: white;
+    //       }
+    //     }
+    //   }
+    //   span {
+    //     transition: all 300ms $easeOutExpo;
+    //     width: 0;
+    //     overflow: hidden;
+    //   }
+    // }
   }
 }

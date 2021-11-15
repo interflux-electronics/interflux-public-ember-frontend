@@ -1,19 +1,12 @@
-<Page
-  @id='webinars'
-  @title='Webinars'
-  @backRoute='home'
-  @ariaLabelledby='h1'
-  @ariaDescribedby='description'
->
-  <section id='hero' aria-labelledby='h1'>
-    <div class='liner'>
-      <h1 id='h1'>Webinars</h1>
-    </div>
+<section id='hero' aria-labelledby='h1'>
+  <div class='liner'>
+    <h1 id='h1'>Webinars</h1>
+  </div>
 
-    <div class='blur'></div>
-  </section>
+  <div class='blur'></div>
+</section>
 
-  {{!-- <section id='upcoming' aria-labelledby='upcoming-h2'>
+{{!-- <section id='upcoming' aria-labelledby='upcoming-h2'>
     <h2 id='upcoming-h2'>Upcoming webinars</h2>
     {{#if this.noUpcoming}}
       <p>Sorry, no webinars are planned. We're hard at work organising the next
@@ -34,7 +27,7 @@
     </ul>
   </section> --}}
 
-  {{! <section id='cta' aria-label="suggest next webinar's topic and subscribe">
+{{! <section id='cta' aria-label="suggest next webinar's topic and subscribe">
     <div class='liner'>
       <div id='suggest'>
         <h4>Got ideas?</h4>
@@ -58,25 +51,24 @@
     </div>
   </section> }}
 
-  <section id='past' aria-labelledby='past-h2'>
-    <h2 id='past-h2'>Past webinars</h2>
+<section id='past' aria-labelledby='past-h2'>
+  <h2 id='past-h2'>Past webinars</h2>
 
-    <div role='presentation' class='today'>
-      <p>today</p>
-      <div class='dot'></div>
-      <div class='vertical-line'></div>
-    </div>
+  <div role='presentation' class='today'>
+    <p>today</p>
+    <div class='dot'></div>
+    <div class='vertical-line'></div>
+  </div>
 
-    <ul>
-      {{#each this.pastWebinars as |webinar|}}
-        <PastWebinarEvent @webinar={{webinar}} />
-      {{/each}}
-    </ul>
+  <ul>
+    {{#each this.pastWebinars as |webinar|}}
+      <PastWebinarEvent @webinar={{webinar}} />
+    {{/each}}
+  </ul>
 
-    <div role='presentation' class='past'>
-      <div class='vertical-line'></div>
-      <div class='dot'></div>
-      <p>past</p>
-    </div>
-  </section>
-</Page>
+  <div role='presentation' class='past'>
+    <div class='vertical-line'></div>
+    <div class='dot'></div>
+    <p>past</p>
+  </div>
+</section>

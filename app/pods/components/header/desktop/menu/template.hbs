@@ -1,0 +1,6 @@
+<div class='menu {{if @isOpen 'open' 'closed'}}'>
+  <div class='box' onclick={{this.preventClose}}>
+    <div class='callout'></div>
+    {{yield}}
+  </div>
+</div>

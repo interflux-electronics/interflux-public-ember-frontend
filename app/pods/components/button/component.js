@@ -33,7 +33,7 @@ export default class ButtonComponent extends Component {
   }
 
   get icon() {
-    return `has-icon ${this.args.icon}` || 'no-icon';
+    return this.args.icon ? `has-icon ${this.args.icon}` : 'no-icon';
   }
 
   get isBusy() {
@@ -44,6 +44,20 @@ export default class ButtonComponent extends Component {
   onClick(event) {
     if (this.args.onClick && !this.args.isBusy) {
       this.args.onClick(event);
+    }
+  }
+
+  @action
+  onMouseEnter(event) {
+    if (this.args.onMouseEnter) {
+      this.args.onMouseEnter(event);
+    }
+  }
+
+  @action
+  onFocus(event) {
+    if (this.args.onFocus) {
+      this.args.onFocus(event);
     }
   }
 }

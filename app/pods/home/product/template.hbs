@@ -1,303 +1,290 @@
 {{#with @model.product as |product|}}
-  <Page
-    @id='product'
-    @title='Products'
-    @backRoute='home.products.subset'
-    @backModel={{@model.product.mainFamily.id}}
-    @class={{product.status}}
-    @ariaLabelledby='h1'
-    @ariaDescribedby={{if product.pitch 'pitch'}}
-    @crumbs={{array
-      (hash label='Interflux' route='home')
-      (hash label='Products' route='home.products')
-      (hash label=product.name)
-    }}
-  >
-    <div class='liner'>
-      <BackNav
-        @backRoute='home.products.subset'
-        @backModel={{product.mainFamily.id}}
-        @backLabel='All {{product.mainFamily.namePlural}}'
-      />
 
-      <div class='columns'>
-        <article>
-          <section id='hero'>
-            <div id='title'>
-              <h1 id='h1'>{{product.name}}</h1>
+  <div class='liner'>
+    <BackNav
+      @backRoute='home.products.subset'
+      @backModel={{product.mainFamily.id}}
+      @backLabel='All {{product.mainFamily.namePlural}}'
+    />
 
-              <div class='tags'>
-                {{#if product.familyLabel}}
-                  <h2 class='blue'>{{product.familyLabel}}</h2>
-                {{/if}}
-                {{#if product.isNew}}
-                  <h2 class='orange'>NEW</h2>
-                {{/if}}
-                {{#if product.isPopular}}
-                  <h2 class='orange'>popular</h2>
-                {{/if}}
-                {{#if product.isOutdated}}
-                  <h2 class='grey'>
-                    {{if
-                      product.superiorProduct
-                      (concat 'replaced by ' product.superiorProduct.name)
-                      'outdated'
-                    }}
-                  </h2>
-                {{/if}}
-                {{#if product.isDiscontinued}}
-                  <h2 class='red'>out of production{{if
-                      product.superiorProduct
-                      (concat '- replaced by ' product.superiorProduct.name)
-                    }}
-                  </h2>
-                {{/if}}
-              </div>
+    <div class='columns'>
+      <article>
+        <section id='hero'>
+          <div id='title'>
+            <h1 id='h1'>{{product.name}}</h1>
 
-              {{#if product.superiorProduct}}
-                <div id='replaced-by'>
-                  <p>{{product.name}}
-                    been replaced by
-                    <a
-                      href={{href-to 'home.product' product.superiorProduct.id}}
-                    >{{product.superiorProduct.name}}</a>.</p>
-                  <p>Why? &mdash; Because Interflux never stops innovating.
-                    We've found even beter soldering chemistry for you. Do
-                    consider upgrading! ;)</p>
-                  {{#if product.pitch}}
-                    <p>For those still interested:</p>
-                    <div id='pitch'>
-                      {{markdown product.pitch}}
-                    </div>
-                  {{/if}}
-                </div>
-              {{else}}
+            <div class='tags'>
+              {{#if product.familyLabel}}
+                <h2 class='blue'>{{product.familyLabel}}</h2>
+              {{/if}}
+              {{#if product.isNew}}
+                <h2 class='orange'>NEW</h2>
+              {{/if}}
+              {{#if product.isPopular}}
+                <h2 class='orange'>popular</h2>
+              {{/if}}
+              {{#if product.isOutdated}}
+                <h2 class='grey'>
+                  {{if
+                    product.superiorProduct
+                    (concat 'replaced by ' product.superiorProduct.name)
+                    'outdated'
+                  }}
+                </h2>
+              {{/if}}
+              {{#if product.isDiscontinued}}
+                <h2 class='red'>out of production{{if
+                    product.superiorProduct
+                    (concat '- replaced by ' product.superiorProduct.name)
+                  }}
+                </h2>
+              {{/if}}
+            </div>
+
+            {{#if product.superiorProduct}}
+              <div id='replaced-by'>
+                <p>{{product.name}}
+                  been replaced by
+                  <a
+                    href={{href-to 'home.product' product.superiorProduct.id}}
+                  >{{product.superiorProduct.name}}</a>.</p>
+                <p>Why? &mdash; Because Interflux never stops innovating. We've
+                  found even beter soldering chemistry for you. Do consider
+                  upgrading! ;)</p>
                 {{#if product.pitch}}
+                  <p>For those still interested:</p>
                   <div id='pitch'>
                     {{markdown product.pitch}}
                   </div>
                 {{/if}}
+              </div>
+            {{else}}
+              {{#if product.pitch}}
+                <div id='pitch'>
+                  {{markdown product.pitch}}
+                </div>
               {{/if}}
+            {{/if}}
+          </div>
+
+          {{#if this.heroImage}}
+            <div id='avatar'>
+              <ResponsiveImage
+                @path={{this.heroImage.path}}
+                @variations={{this.heroImage.variations}}
+                @caption={{this.heroImage.caption}}
+                @alt={{this.heroImage.alt}}
+              />
             </div>
+          {{/if}}
 
-            {{#if this.heroImage}}
-              <div id='avatar'>
-                <ResponsiveImage
-                  @path={{this.heroImage.path}}
-                  @variations={{this.heroImage.variations}}
-                  @caption={{this.heroImage.caption}}
-                  @alt={{this.heroImage.alt}}
-                />
+          {{#if (gt this.images.length 1)}}
+            <div id='images'>
+              {{#each this.images as |image|}}
+                <button
+                  type='button'
+                  class={{if (eq image this.heroImage) 'hero'}}
+                  {{on 'click' (fn this.setHero image)}}
+                >
+                  <ResponsiveImage
+                    @path={{image.path}}
+                    @variations={{image.variations}}
+                    @alt={{image.alt}}
+                  />
+                </button>
+              {{/each}}
+            </div>
+          {{/if}}
+        </section>
+
+        {{#if product.summary}}
+          <section id='summary' class='markdown'>
+            <div>
+              <h3>Summary</h3>
+              <div class='two-columns'>
+                {{markdown product.summary}}
+              </div>
+            </div>
+          </section>
+        {{/if}}
+
+        {{#if product.hasUses}}
+          <section id='uses' aria-labelledby='h3-uses'>
+            {{#if product.uses}}
+              <div>
+                <h3 id='h3-uses'>Suitable for</h3>
+                <Accordion @sections={{this.useAccordionSections}} />
               </div>
             {{/if}}
+          </section>
+        {{/if}}
 
-            {{#if (gt this.images.length 1)}}
-              <div id='images'>
-                {{#each this.images as |image|}}
-                  <button
-                    type='button'
-                    class={{if (eq image this.heroImage) 'hero'}}
-                    {{on 'click' (fn this.setHero image)}}
-                  >
-                    <ResponsiveImage
-                      @path={{image.path}}
-                      @variations={{image.variations}}
-                      @alt={{image.alt}}
+        {{#if product.hasQualities}}
+          <section id='qualities' aria-labelledby='h3-qualities'>
+            {{#if product.qualities}}
+              <div>
+                <h3 id='h3-qualities'>Key advantages</h3>
+                <Accordion @sections={{this.qualityAccordionSections}} />
+              </div>
+            {{/if}}
+          </section>
+        {{/if}}
+
+        {{#if product.properties}}
+          <section id='properties' aria-labelledby='h3-properties'>
+            <div>
+              <h3 id='h3-properties'>Physical &amp; chemical properties</h3>
+
+              {{to-definition-list product.properties}}
+            </div>
+          </section>
+        {{/if}}
+
+        {{#if this.showCompliance}}
+          <section id='compliance' aria-labelledby='h3-compliance'>
+            <div>
+              <h3 id='h3-compliance'>Quality compliance</h3>
+              <div class='single-column'>
+
+                {{#if product.compliesWithIPC}}
+                  <h4>IPC</h4>
+                  {{#if product.compliesWithIPCJSTD004A}}
+                    <p>
+                      <span>{{product.name}} complies with the </span>
+                      <Link
+                        @label='IPC J-STD-004A'
+                        @url='https://www.ipc.org/'
+                      />
+                      <span>
+                        standars making high quality electronic interconnections
+                        with soldering fluxes.</span>
+                    </p>
+                  {{/if}}
+
+                  {{#if product.compliesWithIPCJSTD004B}}
+                    <p>
+                      <span>{{product.name}} complies with the </span>
+                      <Link
+                        @label='IPC J-STD-004B'
+                        @url='https://www.ipc.org/'
+                      />
+                      <span>
+                        standars making high quality electronic interconnections
+                        with soldering fluxes.</span>
+                    </p>
+                  {{/if}}
+
+                  {{#if product.compliesWithIPCJSTD005}}
+                    <p>
+                      <span>{{product.name}} complies with the </span>
+                      <Link
+                        @label='IPC J-STD-005'
+                        @url='https://www.ipc.org/'
+                      />
+                      <span>
+                        standars making high quality electronic interconnections
+                        with solder pastes.</span>
+                    </p>
+                  {{/if}}
+                {{/if}}
+
+                {{#if product.compliesWithIEC}}
+                  <h4>IEC</h4>
+                  <p>
+                    <span>{{product.name}}
+                      complies with the European Standard
+                    </span>
+                    <Link
+                      @label='EN 61190-1-1(2002)'
+                      @url='https://www.standards.govt.nz/shop/iec-61190-1-12002/'
                     />
-                  </button>
-                {{/each}}
-              </div>
-            {{/if}}
-          </section>
+                    <span>
+                      which outlines the requirements for soldering fluxes for
+                      high-quality interconnections in electronics assembly.</span>
+                  </p>
+                {{/if}}
 
-          {{#if product.summary}}
-            <section id='summary' class='markdown'>
-              <div>
-                <h3>Summary</h3>
-                <div class='two-columns'>
-                  {{markdown product.summary}}
-                </div>
-              </div>
-            </section>
-          {{/if}}
+                {{#if product.compliesWithROHS}}
+                  <h4>RoHS</h4>
+                  <p>
+                    <span>{{product.name}}
+                      complies with the European Union's
+                    </span>
+                    <Link
+                      @label='RoHS'
+                      @url='https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive'
+                    />
+                    <span>
+                      directive for restricting the use of certain hazardous
+                      substances in electrical and electronic equipment.</span>
+                  </p>
+                {{/if}}
 
-          {{#if product.hasUses}}
-            <section id='uses' aria-labelledby='h3-uses'>
-              {{#if product.uses}}
-                <div>
-                  <h3 id='h3-uses'>Suitable for</h3>
-                  <Accordion @sections={{this.useAccordionSections}} />
-                </div>
-              {{/if}}
-            </section>
-          {{/if}}
+                {{#if product.compliesWithISO}}
+                  <h4>ISO 9001</h4>
+                  <p>
+                    <span>{{product.name}}
+                      is produced at Interflux Electronics in Belgium, which has
+                      been certified year after year with the
+                    </span>
+                    <Link @label='ISO 9001' @url='https://www.iso.org/' />
+                    <span>
+                      standard for reliable quality management systems.</span>
+                  </p>
+                {{/if}}
 
-          {{#if product.hasQualities}}
-            <section id='qualities' aria-labelledby='h3-qualities'>
-              {{#if product.qualities}}
-                <div>
-                  <h3 id='h3-qualities'>Key advantages</h3>
-                  <Accordion @sections={{this.qualityAccordionSections}} />
-                </div>
-              {{/if}}
-            </section>
-          {{/if}}
+                {{#if product.testResults}}
+                  <h4>Test results</h4>
+                  <table class='results'>
+                    <thead>
+                      <tr>
+                        <th>Property</th>
+                        <th>Result</th>
+                        <th>Method</th>
+                      </tr>
+                    </thead>
 
-          {{#if product.properties}}
-            <section id='properties' aria-labelledby='h3-properties'>
-              <div>
-                <h3 id='h3-properties'>Physical &amp; chemical properties</h3>
-
-                {{to-definition-list product.properties}}
-              </div>
-            </section>
-          {{/if}}
-
-          {{#if this.showCompliance}}
-            <section id='compliance' aria-labelledby='h3-compliance'>
-              <div>
-                <h3 id='h3-compliance'>Quality compliance</h3>
-                <div class='single-column'>
-
-                  {{#if product.compliesWithIPC}}
-                    <h4>IPC</h4>
-                    {{#if product.compliesWithIPCJSTD004A}}
-                      <p>
-                        <span>{{product.name}} complies with the </span>
-                        <Link
-                          @label='IPC J-STD-004A'
-                          @url='https://www.ipc.org/'
-                        />
-                        <span>
-                          standars making high quality electronic
-                          interconnections with soldering fluxes.</span>
-                      </p>
-                    {{/if}}
-
-                    {{#if product.compliesWithIPCJSTD004B}}
-                      <p>
-                        <span>{{product.name}} complies with the </span>
-                        <Link
-                          @label='IPC J-STD-004B'
-                          @url='https://www.ipc.org/'
-                        />
-                        <span>
-                          standars making high quality electronic
-                          interconnections with soldering fluxes.</span>
-                      </p>
-                    {{/if}}
-
-                    {{#if product.compliesWithIPCJSTD005}}
-                      <p>
-                        <span>{{product.name}} complies with the </span>
-                        <Link
-                          @label='IPC J-STD-005'
-                          @url='https://www.ipc.org/'
-                        />
-                        <span>
-                          standars making high quality electronic
-                          interconnections with solder pastes.</span>
-                      </p>
-                    {{/if}}
-                  {{/if}}
-
-                  {{#if product.compliesWithIEC}}
-                    <h4>IEC</h4>
-                    <p>
-                      <span>{{product.name}}
-                        complies with the European Standard
-                      </span>
-                      <Link
-                        @label='EN 61190-1-1(2002)'
-                        @url='https://www.standards.govt.nz/shop/iec-61190-1-12002/'
-                      />
-                      <span>
-                        which outlines the requirements for soldering fluxes for
-                        high-quality interconnections in electronics assembly.</span>
-                    </p>
-                  {{/if}}
-
-                  {{#if product.compliesWithROHS}}
-                    <h4>RoHS</h4>
-                    <p>
-                      <span>{{product.name}}
-                        complies with the European Union's
-                      </span>
-                      <Link
-                        @label='RoHS'
-                        @url='https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive'
-                      />
-                      <span>
-                        directive for restricting the use of certain hazardous
-                        substances in electrical and electronic equipment.</span>
-                    </p>
-                  {{/if}}
-
-                  {{#if product.compliesWithISO}}
-                    <h4>ISO 9001</h4>
-                    <p>
-                      <span>{{product.name}}
-                        is produced at Interflux Electronics in Belgium, which
-                        has been certified year after year with the
-                      </span>
-                      <Link @label='ISO 9001' @url='https://www.iso.org/' />
-                      <span>
-                        standard for reliable quality management systems.</span>
-                    </p>
-                  {{/if}}
-
-                  {{#if product.testResults}}
-                    <h4>Test results</h4>
-                    <table class='results'>
-                      <thead>
+                    <tbody>
+                      {{#each product.testResultsArray as |row|}}
                         <tr>
-                          <th>Property</th>
-                          <th>Result</th>
-                          <th>Method</th>
+                          {{#each row as |cell|}}
+                            <td>{{markdown cell}}</td>
+                          {{/each}}
                         </tr>
-                      </thead>
-
-                      <tbody>
-                        {{#each product.testResultsArray as |row|}}
-                          <tr>
-                            {{#each row as |cell|}}
-                              <td>{{markdown cell}}</td>
-                            {{/each}}
-                          </tr>
-                        {{/each}}
-                      </tbody>
-                    </table>
-                  {{/if}}
-                </div>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                {{/if}}
               </div>
-            </section>
-          {{/if}}
-
-          {{#if product.instructions}}
-            <section id='instructions' aria-labelledby='h3-instructions'>
-              <div>
-                <h3 id='h3-instructions'>How to use {{product.name}}</h3>
-                <div class='single-column'>
-                  {{markdown product.instructions}}
-                </div>
-              </div>
-            </section>
-          {{/if}}
-
-          <section aria-labelledby='h3-documents'>
-            {{#if product.documents}}
-              <div id='documents'>
-                <h3>Documents</h3>
-                <Accordion @sections={{this.documentAccordionSections}} />
-              </div>
-            {{/if}}
+            </div>
           </section>
-        </article>
+        {{/if}}
 
-        <aside>
-          <div class='sticky'>
-            <div class='box'>
-              {{!--
+        {{#if product.instructions}}
+          <section id='instructions' aria-labelledby='h3-instructions'>
+            <div>
+              <h3 id='h3-instructions'>How to use {{product.name}}</h3>
+              <div class='single-column'>
+                {{markdown product.instructions}}
+              </div>
+            </div>
+          </section>
+        {{/if}}
+
+        <section aria-labelledby='h3-documents'>
+          {{#if product.documents}}
+            <div id='documents'>
+              <h3>Documents</h3>
+              <Accordion @sections={{this.documentAccordionSections}} />
+            </div>
+          {{/if}}
+        </section>
+      </article>
+
+      <aside>
+        <div class='sticky'>
+          <div class='box'>
+            {{!--
               <Button
                 @text='Add to order'
                 @icon='truck'
@@ -320,22 +307,21 @@
               />
               --}}
 
-              <h4>Need help?</h4>
-              <p>
-                Ask someone with decades of fields experience in soldering
-                electronics.
-              </p>
+            <h4>Need help?</h4>
+            <p>
+              Ask someone with decades of fields experience in soldering
+              electronics.
+            </p>
 
-              <Button
-                @text='Ask Interflux'
-                @icon='people'
-                @theme='primary large orange'
-                @onClick={{this.openChat}}
-              />
-            </div>
+            <Button
+              @text='Ask Interflux'
+              @icon='people'
+              @theme='primary large orange'
+              @onClick={{this.openChat}}
+            />
           </div>
-        </aside>
-      </div>
+        </div>
+      </aside>
     </div>
-  </Page>
+  </div>
 {{/with}}

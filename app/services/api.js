@@ -50,7 +50,12 @@ export default class ApiService extends Service {
   }
 
   logError(response) {
-    if (response.errors && response.errors[0]) {
+    if (
+      response &&
+      response.errors &&
+      response.errors.length &&
+      response.errors[0]
+    ) {
       const firstError = response.errors[0];
       const { status, code, detail } = firstError;
       if (status && code && detail) {
