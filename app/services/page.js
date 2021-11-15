@@ -10,6 +10,8 @@ export default class PageService extends Service {
   @tracked backModel = null; // For the back button on mobile <header>.
   @tracked crumbs = null; // For building the breadcrumbs.
   @tracked mainClasses = null; // For adding modifier CSS classes to the <main>.
+  @tracked headerTheme = null; //
+  @tracked shownHeaderMenu = null;
 
   update(props) {
     this.reset();

@@ -11,6 +11,7 @@
   class={{this.pageClasses}}
   style={{this.pageStyle}}
   data-main={{this.id}}
+  onclick={{this.onPageClick}}
 >
   {{#if this.showDesktopHeader}}
     <Header::Desktop />
@@ -25,13 +26,7 @@
     aria-labelledby={{@ariaLabelledby}}
     aria-describedby={{@ariaDescribedby}}
   >
-    {{#if @loading}}
-      <LoadingCube @message='Loading ...' @fixed-to-viewport='true' />
-    {{else if @error}}
-      <RouteErrorMessage />
-    {{else}}
-      {{yield}}
-    {{/if}}
+    {{yield}}
   </main>
 
   <div class='spacer'></div>

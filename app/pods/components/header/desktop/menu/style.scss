@@ -1,39 +1,80 @@
 header#desktop {
   .menu {
-    display: none;
     position: absolute;
     left: 0;
     top: 100%;
-    animation: slide-down-and-fade-intro 400ms;
-    &:hover,
-    &:focus {
-      display: block;
+    width: 100%;
+    transition: all 400ms $easeOutExpo;
+    transition-property: opacity, transform;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(
+      to bottom,
+      rgba(black, 0.1),
+      rgba(black, 0.1) 90%,
+      rgba(black, 0) 100%
+    );
+    @include widescreen {
+      padding: 25px 0 60px;
     }
-    &:before {
-      content: '';
-      background-image: url('#{$cdn}/images/public/menu-top-arrow.svg');
-      position: absolute;
-      top: 25px - 17px + 2px;
-      width: 52px;
-      height: 17px;
-      background-size: 100%;
-      background-repeat: no-repeat;
+    @include desktop {
+      padding: vw(25px) 0 vw(60px);
+    }
+    &.open {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    &.closed {
+      opacity: 0;
+      transform: translateX(-30px);
+      pointer-events: none;
     }
     .box {
       display: flex;
       background: white;
-      border-radius: 5px;
-      box-shadow: 0 4px 4px rgba(black, 0.25);
-      margin-top: 25px;
-      overflow: hidden;
       position: relative;
+      @include widescreen {
+        border-radius: 5px;
+        box-shadow: 0 4px 4px rgba(black, 0.25);
+      }
+      @include desktop {
+        border-radius: vw(5px);
+        box-shadow: 0 vw(4px) vw(4px) rgba(black, 0.25);
+      }
+    }
+    .callout {
+      content: '';
+      position: absolute;
+      background-image: url('#{$cdn}/images/public/menu-top-arrow.svg');
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      @include widescreen {
+        background-size: 52px 16px;
+        height: 16px;
+        width: 52px;
+        top: -15px;
+      }
+      @include desktop {
+        background-size: vw(52px) vw(16px);
+        height: vw(16px);
+        width: vw(52px);
+        top: vw(-15px);
+      }
     }
     h2 {
       font-family: $bold;
-      font-size: 15px;
       color: $grey-7;
-      line-height: 46px;
-      padding: 0 18px;
+      @include widescreen {
+        font-size: 15px;
+        line-height: 46px;
+        padding: 0 18px;
+      }
+      @include desktop {
+        font-size: vw(15px);
+        line-height: vw(46px);
+        padding: 0 vw(18px);
+      }
     }
   }
 }

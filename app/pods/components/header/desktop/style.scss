@@ -1,30 +1,26 @@
-@keyframes slide-down-and-fade-intro {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 header#desktop {
-  box-shadow: 0 2px 2px rgba(black, 0.1);
+  position: relative;
   background: $blue-5;
   z-index: 3;
   @include widescreen {
     height: 80px;
+    box-shadow: 0 2px 2px rgba(black, 0.1);
   }
   @include desktop {
-    height: 80vw;
+    height: vw(80px);
+    box-shadow: 0 vw(2px) vw(2px) rgba(black, 0.1);
   }
   nav {
     display: flex;
     justify-content: space-between;
     height: 100%;
     margin: 0 auto;
-    max-width: 1200px;
+    @include widescreen {
+      max-width: 1200px;
+    }
+    @include desktop {
+      max-width: vw(1200px);
+    }
   }
   a#logo {
     display: flex;
@@ -49,7 +45,6 @@ header#desktop {
     display: flex;
     align-items: center;
     & > li {
-      position: relative;
       height: 100%;
       & > .button {
         height: 100%;
@@ -58,9 +53,11 @@ header#desktop {
         display: flex;
         align-items: center;
         @include widescreen {
+          font-size: 16px;
           padding: 0 16px;
         }
         @include desktop {
+          font-size: vw(16px);
           padding: 0 vw(16px);
         }
         &:hover,
@@ -70,29 +67,39 @@ header#desktop {
               transform: scaleX(1);
             }
           }
-          & + .menu {
-            display: block;
-          }
         }
         span {
           position: relative;
           &:after {
             content: '';
-            width: calc(100% + 10px);
-            height: 2px;
             background: white;
             position: absolute;
-            left: -5px;
-            bottom: -15px;
             transition: transform 400ms $easeOutExpo;
             transform: scaleX(0);
+            @include widescreen {
+              width: calc(100% + 10px);
+              height: 2px;
+              left: -5px;
+              bottom: -15px;
+            }
+            @include desktop {
+              width: calc(100% + vw(10px));
+              height: vw(2px);
+              left: vw(-5px);
+              bottom: vw(-15px);
+            }
           }
         }
       }
     }
   }
   .right {
-    width: 174px; // TEMPORARY
+    @include widescreen {
+      width: 174px; // TEMPORARY
+    }
+    @include desktop {
+      width: vw(174px); // TEMPORARY
+    }
     // display: flex;
     // align-items: center;
     // .button:not(.orange) {

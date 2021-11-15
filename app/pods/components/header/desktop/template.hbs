@@ -13,13 +13,13 @@
 
     <ul class='center'>
       <li id='products'>
-        <Button @text='Products' @onClick={{this.showProductsMenu}} />
-        <Header::Desktop::Menu::Products />
+        <Button @text='Products' @onClick={{this.toggleMenu}} />
+        <Header::Desktop::Menu::Products @isOpen={{this.showProducts}} />
       </li>
 
       <li id='processes'>
-        <Button @text='Processes' @onClick={{this.showProcessesMenu}} />
-        <Header::Desktop::Menu::Processes />
+        <Button @text='Processes' @onClick={{this.toggleMenu}} />
+        <Header::Desktop::Menu::Processes @isOpen={{this.showProcesses}} />
       </li>
 
       <li id='know-how'>

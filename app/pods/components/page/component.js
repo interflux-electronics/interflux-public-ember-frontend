@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { htmlSafe } from '@ember/template';
+import { action } from '@ember/object';
 
 export default class PageComponent extends Component {
   @service page;
@@ -49,5 +50,10 @@ export default class PageComponent extends Component {
 
   get showFooter() {
     return !this.args.loading;
+  }
+
+  @action
+  onPageClick() {
+    this.page.shownHeaderMenu = null; // To close open menus in the <header>
   }
 }

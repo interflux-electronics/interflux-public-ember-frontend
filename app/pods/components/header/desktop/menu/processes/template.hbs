@@ -1,5 +1,5 @@
-<Header::Desktop::Menu>
-  <h2>Processes we research & develop products for</h2>
+<Header::Desktop::Menu @isOpen={{@isOpen}}>
+  <h2>Processes we develop products for</h2>
   <div class='links'>
     {{#each this.processes as |process|}}
       <Button @route='home.products.subset' @model={{process.routeModel}}>
