@@ -166,6 +166,15 @@ li.past-webinar-event {
     margin-top: 45px;
     display: flex;
     gap: 10px;
+    @include widescreen {
+    }
+    @include desktop {
+    }
+    @include tablet {
+    }
+    @include mobile {
+      flex-direction: column;
+    }
   }
   .vertical-line {
     background: $grey-2;

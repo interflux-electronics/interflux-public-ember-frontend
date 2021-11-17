@@ -37,10 +37,10 @@ main#webinars-loading {
         padding: vw(185px) 0 vw(95px);
       }
       @include tablet {
-        padding: 120px 0; // TODO
+        padding: 32vw 0 20vw;
       }
       @include mobile {
-        padding: 120px 0; // TODO
+        padding: 67vw 0 30vw;
       }
     }
   }

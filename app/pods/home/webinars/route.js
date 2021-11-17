@@ -12,7 +12,6 @@ export default class WebinarsRoute extends BaseRoute {
     });
     this.page.update({
       id: 'webinars',
-      title: 'Webinars',
       backRoute: 'home',
       theme: 'green'
     });

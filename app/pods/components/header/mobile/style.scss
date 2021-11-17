@@ -109,6 +109,25 @@ header#mobile {
     }
   }
 
+  &.green-theme {
+    @include tablet {
+      margin-bottom: -9vw;
+    }
+    @include mobile {
+      margin-bottom: -21vw;
+    }
+    &.open {
+      #top,
+      #mid {
+        background: rgba($green-3, 95%);
+      }
+    }
+    #top,
+    #mid {
+      background: rgba($green-3, 70%);
+    }
+  }
+
   #top {
     display: flex;
     align-items: center;

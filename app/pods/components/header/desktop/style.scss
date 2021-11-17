@@ -4,7 +4,12 @@ header#desktop {
   z-index: 3;
   &.green {
     background: rgba($green-3, 70%);
-    margin-bottom: -100px;
+    @include widescreen {
+      margin-bottom: -80px;
+    }
+    @include desktop {
+      margin-bottom: vw(-80px);
+    }
   }
   @include widescreen {
     height: 80px;

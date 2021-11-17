@@ -6,16 +6,18 @@ import { tracked } from '@glimmer/tracking';
 export default class HeaderMobileComponent extends Component {
   @service header;
   @service media;
+  @service page;
   @service modal;
   @service window;
   @service scroll;
 
-  get state() {
+  get classes() {
     return [
       this.menuIsOpen ? 'open' : 'closed',
       this.nearTop ? 'near-top' : 'not-near-top',
       this.scroll.goingDown ? 'scrolling-down' : 'scrolling-up',
-      this.args.backRoute ? 'has-back-button' : 'no-back-button'
+      this.args.backRoute ? 'has-back-button' : 'no-back-button',
+      this.page.theme ? `${this.page.theme}-theme` : 'no-theme'
     ].join(' ');
   }
 
