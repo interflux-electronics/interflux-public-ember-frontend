@@ -25,7 +25,7 @@ export default class PageComponent extends Component {
   }
 
   get pageClasses() {
-    return this.modal.showModal ? 'no-scroll' : null;
+    return this.modal.showModal ? 'prevent-scroll' : null;
   }
 
   get mainClasses() {

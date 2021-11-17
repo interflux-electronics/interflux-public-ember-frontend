@@ -1,4 +1,5 @@
-main#webinars {
+main#webinars,
+main#webinars-loading {
   h1 {
     font-family: $extrabold;
     color: white;
@@ -18,6 +19,34 @@ main#webinars {
     }
   }
 
+  #hero {
+    position: relative;
+    overflow: hidden;
+    .liner {
+      position: relative;
+      z-index: 1;
+      max-width: 100vw;
+      background-image: url('#{$cdn}/images/public/hero-circuit-boards-green-2@1200x320.jpg');
+      background-size: cover;
+      background-position: 50% 100%;
+      background-color: $green-3;
+      @include widescreen {
+        padding: 185px 0 95px;
+      }
+      @include desktop {
+        padding: vw(185px) 0 vw(95px);
+      }
+      @include tablet {
+        padding: 120px 0; // TODO
+      }
+      @include mobile {
+        padding: 120px 0; // TODO
+      }
+    }
+  }
+}
+
+main#webinars {
   h2 {
     font-family: $light;
     line-height: 100%;
@@ -38,43 +67,6 @@ main#webinars {
     @include mobile {
       font-size: 30px; // TODO
       margin-bottom: 80px; // TODO
-    }
-  }
-
-  #hero {
-    position: relative;
-    overflow: hidden;
-    .liner {
-      position: relative;
-      z-index: 2;
-      max-width: 100vw;
-      background-image: url('#{$cdn}/images/public/hero-circuit-boards-green-2@1200x320.jpg');
-      background-size: cover;
-      background-position: 50% 100%;
-      @include widescreen {
-        padding: 120px 0;
-      }
-      @include desktop {
-        padding: vw(120px) 0;
-      }
-      @include tablet {
-        padding: 120px 0; // TODO
-      }
-      @include mobile {
-        padding: 120px 0; // TODO
-      }
-    }
-    .blur {
-      position: absolute;
-      z-index: 1;
-      background-image: url('#{$cdn}/images/public/hero-circuit-boards-green-2@1200x320.jpg');
-      background-size: auto 100%;
-      background-position: 50%;
-      left: -20px;
-      right: -20px;
-      top: -20px;
-      bottom: -20px;
-      filter: blur(5px);
     }
   }
 

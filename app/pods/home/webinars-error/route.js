@@ -4,7 +4,8 @@ export default class WebinarsErrorRoute extends BaseRoute {
   activate() {
     this.page.update({
       id: 'webinars-error',
-      title: 'Whoops'
+      title: 'Whoops',
+      theme: 'green'
     });
   }
 }

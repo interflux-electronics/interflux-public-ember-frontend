@@ -4,17 +4,21 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class PageService extends Service {
-  @tracked id = null; // The ID attribute added to the <main>.
-  @tracked title = null; // The title shown on the mobile header.
-  @tracked backRoute = null; // For the back button on mobile <header>.
-  @tracked backModel = null; // For the back button on mobile <header>.
-  @tracked crumbs = null; // For building the breadcrumbs.
-  @tracked mainClasses = null; // For adding modifier CSS classes to the <main>.
-  @tracked headerTheme = null; //
-  @tracked shownHeaderMenu = null;
+  @tracked id; // The ID attribute added to the <main>.
+  @tracked title; // The title shown on the mobile header.
+  @tracked backRoute; // For the back button on mobile <header>.
+  @tracked backModel; // For the back button on mobile <header>.
+  @tracked crumbs; // For building the breadcrumbs.
+  @tracked mainClasses; // For adding modifier CSS classes to the <main>.
+  @tracked theme;
+
+  // To allow the <Page> component to close the menus in the <header>.
+  @tracked shownHeaderMenu = false;
 
   update(props) {
     this.reset();
+
+    // Iterate over all properties passed in an set them.
     for (const [key, value] of Object.entries(props)) {
       this[key] = value;
     }
@@ -27,5 +31,7 @@ export default class PageService extends Service {
     this.backModel = null;
     this.crumbs = null;
     this.mainClasses = null;
+    this.theme = null;
+    this.shownHeaderMenu = false;
   }
 }

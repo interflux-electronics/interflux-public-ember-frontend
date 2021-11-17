@@ -14,7 +14,7 @@
   onclick={{this.onPageClick}}
 >
   {{#if this.showDesktopHeader}}
-    <Header::Desktop />
+    <Header::Desktop @theme={{this.page.theme}} />
     {{#if @crumbs}}
       <Breadcrumbs @crumbs={{@crumbs}} />
     {{/if}}

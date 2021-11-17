@@ -4,7 +4,8 @@ export default class WebinarsLoadingRoute extends BaseRoute {
   activate() {
     this.page.update({
       id: 'webinars-loading',
-      title: 'Loading ...'
+      title: 'Loading ...',
+      theme: 'green'
     });
   }
 }
