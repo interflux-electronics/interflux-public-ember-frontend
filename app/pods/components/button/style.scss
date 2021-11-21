@@ -60,20 +60,21 @@
       padding: 0 vw(13px);
     }
     @include tablet {
-      font-size: 2.3vw; // TODO
-      line-height: 46px; // TODO
-      border-radius: 3px; // TODO
-      padding: 0 30px; // TODO
+      font-size: vw-tablet(16px);
+      line-height: vw-tablet(32px);
+      border-radius: vw-tablet(3px);
+      padding: 0 vw-tablet(13px);
     }
     @include mobile {
-      font-size: 5vw; // TODO
-      line-height: 46px; // TODO
-      border-radius: 3px; // TODO
-      padding: 0 30px; // TODO
+      font-size: vw-mobile(16px);
+      line-height: vw-mobile(40px);
+      border-radius: vw-mobile(3px);
+      padding: 0 vw-mobile(15px);
     }
     &.has-icon {
       display: flex;
       align-items: center;
+      justify-content: center;
       &.icon-left {
         .icon {
           @include widescreen {
@@ -83,10 +84,10 @@
             margin-right: vw(10px);
           }
           @include tablet {
-            margin-right: 10px; // TODO
+            margin-right: vw-tablet(10px);
           }
           @include mobile {
-            margin-right: 10px; // TODO
+            margin-right: vw-mobile(10px);
           }
         }
       }
@@ -100,55 +101,100 @@
             margin-left: vw(10px);
           }
           @include tablet {
-            margin-left: 10px; // TODO
+            margin-left: vw-tablet(10px);
           }
           @include mobile {
-            margin-left: 10px; // TODO
+            margin-left: vw-mobile(10px);
           }
         }
       }
       &.arrow-down,
       &.arrow-up {
         svg {
-          width: 11px;
           height: auto;
+          @include widescreen {
+            width: 11px;
+          }
+          @include desktop {
+            width: vw(11px);
+          }
+          @include tablet {
+            width: vw-tablet(11px);
+          }
+          @include mobile {
+            width: vw-mobile(11px);
+          }
         }
       }
       &.arrow-left,
       &.arrow-right {
         svg {
           width: auto;
-          height: 11px;
-        }
-      }
-      &.email {
-        svg {
-          width: 20px;
-          height: auto;
+          @include widescreen {
+            height: 11px;
+          }
+          @include desktop {
+            height: vw(11px);
+          }
+          @include tablet {
+            height: vw-tablet(11px);
+          }
+          @include mobile {
+            height: vw-mobile(11px);
+          }
         }
       }
       &.lightbulb {
         svg {
-          width: 15px;
           height: auto;
+          @include widescreen {
+            width: 15px;
+          }
+          @include desktop {
+            width: vw(15px);
+          }
+          @include tablet {
+            width: vw-tablet(15px);
+          }
+          @include mobile {
+            width: vw-mobile(15px);
+          }
         }
       }
-      &.play {
+      &.email,
+      &.play,
+      &.close {
         svg {
-          width: 20px;
           height: auto;
+          @include widescreen {
+            width: 20px;
+          }
+          @include desktop {
+            width: vw(20px);
+          }
+          @include tablet {
+            width: vw-tablet(20px);
+          }
+          @include mobile {
+            width: vw-mobile(20px);
+          }
         }
       }
       &.cloud-download {
         svg {
-          width: 24px;
           height: auto;
-        }
-      }
-      &.close {
-        svg {
-          width: 20px;
-          height: auto;
+          @include widescreen {
+            width: 24px;
+          }
+          @include desktop {
+            width: vw(24px);
+          }
+          @include tablet {
+            width: vw-tablet(24px);
+          }
+          @include mobile {
+            width: vw-mobile(24px);
+          }
         }
       }
     }

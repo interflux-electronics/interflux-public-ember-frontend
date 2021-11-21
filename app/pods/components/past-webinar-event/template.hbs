@@ -1,4 +1,11 @@
 <li class='past-webinar-event'>
+  <h3>
+    <time datetime={{@webinar.kebabStartDate}}>
+      <span>{{@webinar.humanStartDate}}</span>
+    </time>
+    {{span-each-word @webinar.title}}
+  </h3>
+
   <div class='video'>
     {{#if @webinar.image}}
       <ResponsiveImage
@@ -8,22 +15,31 @@
         @alt={{@webinar.image.alt}}
       />
     {{/if}}
+
+    <div class='cta'>
+      {{#if @webinar.video}}
+        <Button
+          @route='home.webinars.watch'
+          @model={{@webinar.id}}
+          @text='Watch replay'
+          @icon='play'
+          @theme='primary medium orange icon-left'
+        />
+      {{/if}}
+    </div>
   </div>
 
-  <div class='info'>
-    <h3>
-      {{span-each-word @webinar.title}}
-      <time datetime={{@webinar.kebabStartDate}}>
-        <span>{{@webinar.humanStartDate}}</span>
-      </time>
-    </h3>
-
-    <h4>Topic</h4>
-    {{markdown @webinar.topic}}
-
-    {{#if this.showDetails}}
+  <div
+    class='accordion {{if this.expanded 'expanded' 'collapsed'}}'
+    style={{this.accordionStyle}}
+    {{did-insert this.onInsertAccordion}}
+  >
+    <div class='content'>
       <h4>Who should watch</h4>
       {{markdown @webinar.audience}}
+
+      <h4>Topic</h4>
+      {{markdown @webinar.topic}}
 
       <h4>Speaker</h4>
       <div class='host'>
@@ -37,44 +53,34 @@
         />
       </div>
 
+      {{!--
       <h4>Details</h4>
       <p>
         <span>Date: {{@webinar.humanStartDate}}</span>
         <span>Attendees: 46</span>
         <span>Replays: 520</span>
       </p>
-    {{/if}}
-
-    <div class='buttons'>
-      {{#if @webinar.video}}
-        <Button
-          @route='home.webinars.watch'
-          @model={{@webinar.id}}
-          @text='Replay'
-          @icon='play'
-          @theme='primary medium orange icon-left'
-        />
-      {{/if}}
+      --}}
 
       {{#if @webinar.document.id}}
         <Button
-          @text='Slides'
+          @text='Download slides'
           @icon='cloud-download'
           @theme='primary medium green icon-left'
           @class='collapse'
           @url='{{env 'cdnHost'}}/{{@webinar.document.path}}.pdf'
         />
       {{/if}}
-
-      <Button
-        @text={{if this.showDetails 'Hide details' 'Details'}}
-        @icon={{if this.showDetails 'arrow-up' 'arrow-down'}}
-        @theme='secondary medium grey-border blue-focus icon-right'
-        @onClick={{this.toggleDetails}}
-        @class='expand'
-      />
     </div>
   </div>
+
+  <Button
+    @text={{if this.expanded 'Hide details' 'Show details'}}
+    @icon={{if this.expanded 'arrow-up' 'arrow-down'}}
+    @theme='secondary medium grey-border blue-focus icon-right'
+    @onClick={{this.toggleAccordion}}
+    @class='expand'
+  />
 
   <div class='vertical-line'></div>
   <div class='dashed-line'></div>

@@ -1,44 +1,56 @@
 li.past-webinar-event {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   position: relative;
+  @include desktop-and-up {
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      'video h3'
+      'video accordion'
+      'video button';
+    justify-content: center;
+  }
+  @include tablet-and-below {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   @include widescreen {
-    //
+    column-gap: 120px;
+    padding: 60px;
   }
   @include desktop {
-    //
+    column-gap: vw(120px);
+    padding: vw(60px);
   }
   @include tablet {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: vw-tablet(400px);
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      'h3'
+      'video'
+      'accordion'
+      'button';
+    justify-content: center;
+    padding: vw-tablet(60px) 0;
   }
   @include mobile {
-    flex-direction: column;
-    align-items: center;
-  }
-  .video,
-  .info {
-    flex: 1;
-    @include widescreen {
-      padding: 60px;
-      max-width: 400px;
-    }
-    @include desktop {
-      padding: vw(60px);
-      max-width: vw(400px);
-    }
-    @include tablet {
-      padding: 10vw; // TODO
-      max-width: 80vw; // TODO
-    }
-    @include mobile {
-      padding: 10vw; // TODO
-      max-width: 80vw; // TODO
-    }
+    padding: vw-mobile(60px) vw-mobile(30px);
   }
   .video {
     position: relative;
+    grid-area: video;
+    @include desktop-and-up {
+      align-self: start;
+      justify-self: end;
+    }
+    @include tablet {
+      margin: vw-tablet(30px) 0;
+    }
+    @include mobile {
+      margin: vw-mobile(30px) 0;
+    }
     .cta {
       position: absolute;
       z-index: 2;
@@ -55,27 +67,65 @@ li.past-webinar-event {
       z-index: 1;
     }
   }
-  .info {
+  .accordion {
+    grid-area: accordion;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow: hidden;
+    transition: all 1000ms $easeOutExpo;
+    transition-property: height, padding, opacity;
+    @include widescreen {
+      padding: 0 15px 15px;
+      width: calc(100% + 30px);
+      margin-left: -15px;
+    }
+    @include desktop {
+      padding: 0 vw(15px) vw(15px);
+      width: calc(100% + vw(30px));
+      margin-left: vw(-15px);
+    }
+    @include tablet {
+      padding: 0 vw-tablet(15px) vw-tablet(15px);
+      margin-left: vw-tablet(-15px);
+      width: 100%;
+    }
+    @include mobile {
+      padding: 0 vw-mobile(15px) vw-mobile(15px);
+      width: 100%;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &.expanded {
+      opacity: 1;
+    }
+    &.collapsed {
+      padding-bottom: 0;
+      opacity: 0;
+    }
   }
   h3 {
+    grid-area: h3;
     color: white;
     display: flex;
     flex-wrap: wrap;
     position: relative;
+    max-width: 80%;
+    @include desktop-and-up {
+      align-self: end;
+    }
     @include widescreen {
-      margin: 40px 0 30px;
+      margin: 0 0 30px;
     }
     @include desktop {
-      margin: vw(40px) 0 vw(30px);
+      margin: 0 0 vw(30px);
     }
     @include tablet {
-      margin: 40px 0 30px; // TODO
     }
     @include mobile {
-      margin: 40px 0 30px; // TODO
     }
     &:after {
       content: '';
@@ -87,20 +137,68 @@ li.past-webinar-event {
       border-right: 11px solid $blue-3;
       left: -11px;
       top: 4.5px;
+      @include desktop {
+        left: vw(-11px);
+        top: vw(4.5px);
+        border-top-width: vw(9px);
+        border-bottom-width: vw(9px);
+        border-right-width: vw(11px);
+      }
+      @include tablet {
+        left: vw-tablet(-11px);
+        top: vw-tablet(4.5px);
+        border-top-width: vw-tablet(9px);
+        border-bottom-width: vw-tablet(9px);
+        border-right-width: vw-tablet(11px);
+      }
+      @include mobile {
+        display: none;
+      }
     }
     span {
       font-family: $extrabold;
-      font-size: 20px;
-      line-height: 27px;
-      height: 27px;
+      @include widescreen {
+        font-size: 20px;
+        line-height: 27px;
+        height: 27px;
+      }
+      @include desktop {
+        font-size: vw(20px);
+        line-height: vw(27px);
+        height: vw(27px);
+      }
+      @include tablet {
+        font-size: vw-tablet(20px);
+        line-height: vw-tablet(27px);
+        height: vw-tablet(27px);
+      }
+      @include mobile {
+        font-size: vw-mobile(20px);
+        line-height: vw-mobile(27px);
+        height: vw-mobile(27px);
+      }
     }
     > span {
-      &:nth-child(odd) {
-        background-color: $blue-3;
-        padding: 0 5px;
-        margin: 0 -5px 4px 0;
-      }
       &:nth-child(even) {
+        background-color: $blue-3;
+        @include widescreen {
+          padding: 0 5px;
+          margin: 4px -5px 0 0;
+        }
+        @include desktop {
+          padding: 0 vw(5px);
+          margin: vw(4px) vw(-5px) 0 0;
+        }
+        @include tablet {
+          padding: 0 vw-tablet(5px);
+          margin: vw-tablet(4px) vw-tablet(-5px) 0 0;
+        }
+        @include mobile {
+          padding: 0 vw-mobile(5px);
+          margin: vw-mobile(4px) vw-mobile(-5px) 0 0;
+        }
+      }
+      &:nth-child(odd) {
         width: 0;
       }
     }
@@ -109,22 +207,37 @@ li.past-webinar-event {
       display: flex;
       span {
         font-family: $semibold;
-        font-size: 16px;
-        line-height: 25px;
-        height: 25px;
         background-color: $blue-3;
-        padding: 2px 5px 0;
+        @include widescreen {
+          font-size: 16px;
+          line-height: 25px;
+          height: 25px;
+          padding: 2px 5px 0;
+        }
+        @include desktop {
+          font-size: vw(16px);
+          line-height: vw(25px);
+          height: vw(25px);
+          padding: vw(2px) vw(5px) 0;
+        }
+        @include tablet {
+          font-size: vw-tablet(16px);
+          line-height: vw-tablet(25px);
+          height: vw-tablet(25px);
+          padding: vw-tablet(2px) vw-tablet(5px) 0;
+        }
+        @include mobile {
+          font-size: vw-mobile(16px);
+          line-height: vw-mobile(25px);
+          height: vw-mobile(25px);
+          padding: vw-mobile(2px) vw-mobile(5px) 0;
+        }
       }
     }
   }
-  h4 {
-    font-family: $bold;
-    color: $grey-7;
-    line-height: 180%;
-    margin-bottom: 5px;
-    &:not(:first-of-type) {
-      margin-top: 25px;
-    }
+  h4,
+  p,
+  li {
     @include widescreen {
       font-size: 16px;
     }
@@ -132,10 +245,41 @@ li.past-webinar-event {
       font-size: vw(16px);
     }
     @include tablet {
-      font-size: 16px; // TODO
+      font-size: vw-tablet(16px);
     }
     @include mobile {
-      font-size: 16px; // TODO
+      font-size: vw-mobile(16px);
+    }
+  }
+  h4 {
+    font-family: $bold;
+    color: $grey-7;
+    line-height: 180%;
+    @include widescreen {
+      margin-bottom: 5px;
+    }
+    @include desktop {
+      margin-bottom: vw(5px);
+    }
+    @include tablet {
+      margin-bottom: vw-tablet(5px);
+    }
+    @include mobile {
+      margin-bottom: vw-mobile(5px);
+    }
+    &:not(:first-of-type) {
+      @include widescreen {
+        margin-top: 25px;
+      }
+      @include desktop {
+        margin-top: vw(25px);
+      }
+      @include tablet {
+        margin-top: vw-tablet(25px);
+      }
+      @include mobile {
+        margin-top: vw-mobile(25px);
+      }
     }
   }
   p {
@@ -145,35 +289,75 @@ li.past-webinar-event {
   }
   ul {
     list-style: disc;
-    padding-left: 18px;
+    @include widescreen {
+      padding-left: 18px;
+    }
+    @include desktop {
+      padding-left: vw(18px);
+    }
+    @include tablet {
+      padding-left: vw-tablet(18px);
+    }
+    @include mobile {
+      padding-left: vw-mobile(18px);
+    }
     li {
-      font-size: 16px;
       line-height: 180%;
     }
   }
   .host {
-    margin-top: 5px;
     display: flex;
     align-items: center;
     picture {
-      width: 80px;
-      border-radius: 40px;
       overflow: hidden;
-      margin-left: 20px;
+      border-radius: 50%;
+      @include widescreen {
+        width: 80px;
+        margin-left: 20px;
+      }
+      @include desktop {
+        width: vw(80px);
+        margin-left: vw(20px);
+      }
+      @include tablet {
+        width: vw-tablet(80px);
+        margin-left: vw-tablet(20px);
+      }
+      @include mobile {
+        width: vw-mobile(80px);
+        margin-left: vw-mobile(20px);
+      }
     }
   }
-  .buttons {
-    margin-top: 45px;
-    display: flex;
-    gap: 10px;
-    @include widescreen {
+  .button {
+    &.green {
+      @include widescreen {
+        margin-top: 30px;
+      }
+      @include desktop {
+        margin-top: vw(30px);
+      }
+      @include tablet {
+        margin-top: vw-tablet(30px);
+      }
+      @include mobile {
+        margin-top: vw-mobile(60px);
+        width: 100%;
+      }
     }
-    @include desktop {
-    }
-    @include tablet {
-    }
-    @include mobile {
-      flex-direction: column;
+    &.grey-border {
+      grid-area: button;
+      align-self: start;
+      justify-self: left;
+      @include widescreen {
+      }
+      @include desktop {
+      }
+      @include tablet {
+      }
+      @include mobile {
+        width: 100%;
+      }
     }
   }
   .vertical-line {
@@ -181,8 +365,14 @@ li.past-webinar-event {
     position: absolute;
     width: 2px;
     height: 100%;
-    left: calc(50% - 1px);
     top: 0;
+    left: calc(50% - 1px);
+    @include tablet {
+      transform: translateX(#{vw-tablet(-240px)});
+    }
+    @include mobile {
+      display: none;
+    }
   }
   .dashed-line {
     background-image: url('#{$cdn}/images/public/dash-horizontal.svg');
@@ -194,13 +384,34 @@ li.past-webinar-event {
   }
   .dot {
     position: absolute;
-    width: 16px;
-    height: 16px;
-    border: 3px solid $grey-2;
     background: $grey-0;
-    left: calc(50% - 8px);
-    top: 106px;
+    border-color: $grey-2;
+    border-style: solid;
     border-radius: 50%;
     box-sizing: border-box;
+    @include widescreen {
+      width: 16px;
+      height: 16px;
+      top: 66px;
+      left: calc(50% - 8px);
+      border-width: 3px;
+    }
+    @include desktop {
+      width: vw(16px);
+      height: vw(16px);
+      top: vw(66px);
+      left: calc(50% - #{vw(8px)});
+      border-width: vw(3px);
+    }
+    @include tablet {
+      width: vw-tablet(16px);
+      height: vw-tablet(16px);
+      top: 8.25vw;
+      left: calc(50% - #{vw-tablet(8px)} - #{vw-tablet(240px)});
+      border-width: vw-tablet(3px);
+    }
+    @include mobile {
+      display: none;
+    }
   }
 }
