@@ -12,10 +12,10 @@ main#webinars-loading {
       font-size: vw(40px);
     }
     @include tablet {
-      font-size: 40px;
+      font-size: vw-tablet(40px);
     }
     @include mobile {
-      font-size: 40px;
+      font-size: vw-mobile(40px);
     }
   }
 
@@ -44,6 +44,21 @@ main#webinars-loading {
       }
     }
   }
+
+  .loading-cube {
+    @include widescreen {
+      padding: 50px 0 100px;
+    }
+    @include desktop {
+      padding: vw(50px) ​0 vw(100px);
+    }
+    @include tablet {
+      padding: vw-tablet(50px) ​0 vw-tablet(100px);
+    }
+    @include mobile {
+      padding: vw-mobile(50px) ​0 vw-mobile(100px);
+    }
+  }
 }
 
 main#webinars {
@@ -62,7 +77,7 @@ main#webinars {
     }
     @include tablet {
       font-size: vw-tablet(30px);
-      margin-bottom: -0.8vw;
+      margin-bottom: 10vw;
     }
     @include mobile {
       font-size: vw-mobile(30px);
@@ -80,7 +95,7 @@ main#webinars {
       padding: vw(80px) 0;
     }
     @include tablet {
-      padding: 80px 0; // TODO
+      padding: 10vw 0;
     }
     @include mobile {
       padding: 80px 0; // TODO
@@ -189,7 +204,24 @@ main#webinars {
   //   }
   // }
 
-  [role='presentation'] {
+  .vertical-line {
+    background: $grey-2;
+    width: 2px; // no need for vw
+  }
+
+  .dot {
+    background: $grey-0;
+    border-color: $grey-2;
+    border-style: solid;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 16px; // no need for vw
+    height: 16px; // no need for vw
+    border-width: 3px; // no need for vw
+  }
+
+  .today,
+  .past {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -198,16 +230,6 @@ main#webinars {
     }
     @include mobile {
       display: none;
-    }
-    &.today {
-      p {
-        margin-bottom: 10px;
-      }
-    }
-    &.past {
-      p {
-        margin-top: 10px;
-      }
     }
     p {
       font-family: $semibold;
@@ -226,37 +248,47 @@ main#webinars {
       }
     }
     .vertical-line {
-      background: $grey-2;
-      width: 2px;
-      height: 25px;
       left: 50%;
       top: 0;
+      @include widescreen {
+        height: 25px;
+      }
+      @include desktop {
+        height: vw(25px);
+      }
+      @include tablet {
+        height: vw-tablet(25px);
+      }
+      @include mobile {
+        height: vw-mobile(25px);
+      }
     }
     .dot {
-      width: 16px;
-      height: 16px;
-      border: 3px solid $grey-2;
-      background: $grey-0;
       left: 50%;
-      top: 106px;
-      border-radius: 50%;
-      box-sizing: border-box;
+      @include widescreen {
+        top: 106px;
+      }
+      @include desktop {
+        top: vw(106px);
+      }
+      @include tablet {
+        top: vw-tablet(106px);
+      }
+      @include mobile {
+        top: vw-mobile(106px);
+      }
     }
   }
 
-  .loading-cube {
-    background: $grey-0;
-    @include widescreen {
-      padding: 50px 0 100px;
+  .today {
+    p {
+      margin-bottom: 10px;
     }
-    @include desktop {
-      padding: vw(50px) ​0 vw(100px);
-    }
-    @include tablet {
-      padding: 100px 0; // TODO
-    }
-    @include mobile {
-      padding: 100px 0; // TODO
+  }
+
+  .past {
+    p {
+      margin-top: 10px;
     }
   }
 

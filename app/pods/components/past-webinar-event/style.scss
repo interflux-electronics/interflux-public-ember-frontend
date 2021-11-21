@@ -123,20 +123,22 @@ li.past-webinar-event {
     @include desktop {
       margin: 0 0 vw(30px);
     }
-    @include tablet {
-    }
-    @include mobile {
-    }
     &:after {
       content: '';
       position: absolute;
       width: 0;
       height: 0;
-      border-top: 9px solid transparent;
-      border-bottom: 9px solid transparent;
-      border-right: 11px solid $blue-3;
-      left: -11px;
-      top: 4.5px;
+      border-style: solid;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-right-color: $blue-3;
+      @include widescreen {
+        left: -11px;
+        top: 4.5px;
+        border-top-width: 9px;
+        border-bottom-width: 9px;
+        border-right-width: 11px;
+      }
       @include desktop {
         left: vw(-11px);
         top: vw(4.5px);
@@ -349,26 +351,36 @@ li.past-webinar-event {
       grid-area: button;
       align-self: start;
       justify-self: left;
-      @include widescreen {
-      }
-      @include desktop {
-      }
-      @include tablet {
-      }
       @include mobile {
         width: 100%;
       }
     }
   }
   .vertical-line {
-    background: $grey-2;
     position: absolute;
-    width: 2px;
     height: 100%;
     top: 0;
     left: calc(50% - 1px);
     @include tablet {
       transform: translateX(#{vw-tablet(-240px)});
+    }
+    @include mobile {
+      display: none;
+    }
+  }
+  .dot {
+    position: absolute;
+    @include widescreen {
+      top: 66px;
+      left: calc(50% - 8px);
+    }
+    @include desktop {
+      top: vw(66px);
+      left: calc(50% - 8px);
+    }
+    @include tablet {
+      top: 8.25vw;
+      left: calc(50% - 8px - #{vw-tablet(240px)});
     }
     @include mobile {
       display: none;
@@ -381,37 +393,5 @@ li.past-webinar-event {
     width: 100%;
     left: 0;
     top: 0;
-  }
-  .dot {
-    position: absolute;
-    background: $grey-0;
-    border-color: $grey-2;
-    border-style: solid;
-    border-radius: 50%;
-    box-sizing: border-box;
-    @include widescreen {
-      width: 16px;
-      height: 16px;
-      top: 66px;
-      left: calc(50% - 8px);
-      border-width: 3px;
-    }
-    @include desktop {
-      width: vw(16px);
-      height: vw(16px);
-      top: vw(66px);
-      left: calc(50% - #{vw(8px)});
-      border-width: vw(3px);
-    }
-    @include tablet {
-      width: vw-tablet(16px);
-      height: vw-tablet(16px);
-      top: 8.25vw;
-      left: calc(50% - #{vw-tablet(8px)} - #{vw-tablet(240px)});
-      border-width: vw-tablet(3px);
-    }
-    @include mobile {
-      display: none;
-    }
   }
 }

@@ -29,7 +29,10 @@
     width: 200px;
     height: 200px;
     perspective: 600px;
-    transform: scale(0.4);
+    transform: scale(0.35);
+    @include mobile {
+      transform: scale(0.3);
+    }
   }
   .cube {
     width: 100%;
@@ -87,8 +90,19 @@
     }
   }
   p {
-    font-size: 16px;
     line-height: 100%;
     color: $grey-7;
+    @include widescreen {
+      font-size: 16px;
+    }
+    @include desktop {
+      font-size: vw(16px);
+    }
+    @include tablet {
+      font-size: vw-tablet(16px);
+    }
+    @include mobile {
+      font-size: vw-mobile(16px);
+    }
   }
 }

@@ -24,7 +24,7 @@ export default class WebinarsRoute extends BaseRoute {
         include: ['image', 'video', 'document', 'person'].join(',')
       })
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
+      // delay: new Promise((resolve) => setTimeout(resolve, 30 * 1000))
     });
   }
 }
