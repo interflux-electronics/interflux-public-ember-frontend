@@ -40,7 +40,7 @@ export default class HeaderMobileComponent extends Component {
     window.scrollTo(0, 0);
   }
 
-  async closeMenu() {
+  @action async closeMenu() {
     this.menuIsOpen = false;
     const { pageScrollY } = this.modal;
     this.modal.setProperties({
