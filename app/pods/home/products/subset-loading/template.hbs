@@ -1,1 +1,82 @@
-<LoadingCube @message='Loading products ...' />
+<!-- <LoadingCube @message='Loading products ...' /> -->
+
+<div class='liner'>
+  <BackNav @backRoute='home.products' @backLabel='All products' />
+
+  <div class='columns'>
+    {{#if this.media.isDesktopWidescreen}}
+      <aside>
+        <div class='sticky'>
+          <fieldset id='search'>
+            <legend>Find a product</legend>
+            <Search
+              @placeholder={{this.searchPlaceHolder}}
+              @onSelect={{this.openProductPage}}
+              @searchModel='product'
+              @searchLabel='name'
+              @searchFilter='name'
+              @minKeyStrokes='1'
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>Products we develop</legend>
+            <ul class='links'>
+              {{#each this.familyRadios as |radio|}}
+                <li>
+                  <a
+                    href={{href-to 'home.products.subset' radio.id}}
+                    class={{if radio.isChecked 'active'}}
+                    {{on 'click' (fn this.openSubsetPage radio.id)}}
+                  >
+                    <span class='label'>{{radio.label}}</span>
+                    <Svg::ArrowRight />
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+          </fieldset>
+
+          <fieldset>
+            <legend>Processes we support</legend>
+            <ul class='links'>
+              {{#each this.useRadios as |radio|}}
+                <li>
+                  <a
+                    href={{href-to 'home.products.subset' radio.id}}
+                    class={{if radio.isChecked 'active'}}
+                    {{on 'click' (fn this.openSubsetPage radio.id)}}
+                  >
+                    <span class='label'>{{radio.label}}</span>
+                    <Svg::ArrowRight />
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+          </fieldset>
+
+          <fieldset>
+            <legend>Filter</legend>
+            {{#each this.statusCheckboxes as |checkbox|}}
+              <div class='checkbox-group'>
+                <Checkbox
+                  @id={{checkbox.id}}
+                  @checked={{checkbox.isChecked}}
+                  @onClick={{fn this.toggleStatus checkbox.id}}
+                />
+                <label for='input-{{checkbox.id}}'><span
+                  >{{checkbox.label}}&nbsp;</span><small
+                  >{{checkbox.count}}</small></label>
+              </div>
+            {{/each}}
+          </fieldset>
+        </div>
+      </aside>
+    {{/if}}
+
+    <article {{did-insert this.onInsertArticle}}>
+      <h1 id='h1'>{{this.pageTitle}}</h1>
+      <Shimmer::ProductRows::Desktop />
+    </article>
+  </div>
+</div>

@@ -18,7 +18,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Product we develop</legend>
+            <legend>Products we develop</legend>
             <ul class='links'>
               {{#each this.familyRadios as |radio|}}
                 <li>
@@ -62,9 +62,10 @@
                   @checked={{checkbox.isChecked}}
                   @onClick={{fn this.toggleStatus checkbox.id}}
                 />
-                <label for='input-{{checkbox.id}}'><span
-                  >{{checkbox.label}}&nbsp;</span><small
-                  >{{checkbox.count}}</small></label>
+                <label for='input-{{checkbox.id}}'>
+                  <span>{{checkbox.label}}&nbsp;</span>
+                  {{!--<small>{{checkbox.count}}</small>--}}
+                </label>
               </div>
             {{/each}}
           </fieldset>
@@ -74,54 +75,75 @@
 
     <article {{did-insert this.onInsertArticle}}>
       <h1 id='h1'>{{this.pageTitle}}</h1>
-      <ol>
-        {{#each this.mainFamilies as |mainFamily|}}
-          <li
-            id={{mainFamily.id}}
-            class='main-family-for-use'
-            labelledby='h2-{{mainFamily.id}}'
-          >
-            <div class='intro'>
-              <div class='title'>
-                <h2 id='h2-{{mainFamily.id}}'>{{mainFamily.label}}
-                  for
-                  {{this.use.text}}</h2>
-              </div>
-            </div>
-          </li>
 
-          <li
-            id='other-{{mainFamily.id}}'
-            class='sub-family'
-            labelledby='h2-other-{{mainFamily.id}}'
-          >
-            <div class='intro'>
-              <div class='title'>
-                <h2 id='h2-other-{{mainFamily.id}}'>Other
-                  {{mainFamily.namePlural}}</h2>
+      {{#if this.isLoading}}
+        <Shimmer::ProductRows::Desktop />
+      {{else}}
+        {{#if this.isAlloy}}
+          {{#each this.sections as |sec|}}
+            <section>
+              <div class='intro'>
+                <h2>{{sec.label}}</h2>
               </div>
-            </div>
-          </li>
-        {{/each}}
 
-        {{#each this.subFamilies as |subFamily|}}
-          <li
-            id={{subFamily.id}}
-            class='sub-family'
-            labelledby='h2-{{subFamily.id}}'
-          >
-            <div class='intro'>
-              <div class='title'>
-                <h2 id='h2-{{subFamily.id}}'>{{subFamily.label}}</h2>
-              </div>
-            </div>
-          </li>
-        {{/each}}
+              <ul>
+                {{#each sec.products as |product|}}
+                  <ProductRow @product={{product}} />
+                {{/each}}
+              </ul>
+            </section>
+          {{/each}}
+        {{else}}
+          <ol>
+            {{#each this.mainFamilies as |mainFamily|}}
+              <li
+                id={{mainFamily.id}}
+                class='main-family-for-use'
+                labelledby='h2-{{mainFamily.id}}'
+              >
+                <div class='intro'>
+                  <div class='title'>
+                    <h2 id='h2-{{mainFamily.id}}'>{{mainFamily.label}}
+                      for
+                      {{this.use.text}}</h2>
+                  </div>
+                </div>
+              </li>
 
-        {{#each this.sortedProducts as |product|}}
-          <ProductRow @product={{product}} />
-        {{/each}}
-      </ol>
+              <li
+                id='other-{{mainFamily.id}}'
+                class='sub-family'
+                labelledby='h2-other-{{mainFamily.id}}'
+              >
+                <div class='intro'>
+                  <div class='title'>
+                    <h2 id='h2-other-{{mainFamily.id}}'>Other
+                      {{mainFamily.namePlural}}</h2>
+                  </div>
+                </div>
+              </li>
+            {{/each}}
+
+            {{#each this.subFamilies as |subFamily|}}
+              <li
+                id={{subFamily.id}}
+                class='sub-family'
+                labelledby='h2-{{subFamily.id}}'
+              >
+                <div class='intro'>
+                  <div class='title'>
+                    <h2 id='h2-{{subFamily.id}}'>{{subFamily.label}}</h2>
+                  </div>
+                </div>
+              </li>
+            {{/each}}
+
+            {{#each this.sortedProducts as |product|}}
+              <ProductRow @product={{product}} />
+            {{/each}}
+          </ol>
+        {{/if}}
+      {{/if}}
     </article>
   </div>
 </div>

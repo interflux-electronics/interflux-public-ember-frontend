@@ -13,6 +13,7 @@ export default class ProductsSubsetController extends Controller {
   @tracked use; // The use record matching the slug in the URL
   @tracked statuses;
   @tracked shownStatuses = ['new', 'popular', 'recommended'];
+  @tracked isLoading = true;
 
   article; // The <article> element in the DOM
 
@@ -26,7 +27,73 @@ export default class ProductsSubsetController extends Controller {
 
     await this.window.delay(1); // Allow all <section> to be rendered first
 
-    this.filterAndSortProducts();
+    if (this.isAlloy) {
+      this.isLoading = false;
+    } else {
+      this.filterAndSortProducts();
+    }
+  }
+
+  get isAlloy() {
+    return (
+      this.family &&
+      ['solder-pastes', 'solder-wires', 'solder-alloys'].includes(
+        this.family.id
+      )
+    );
+  }
+
+  get products() {
+    return this.model.products || [];
+  }
+
+  get sections() {
+    const forFamily = this.products.filterBy('mainFamily.id', this.family.id);
+    const forLowMeltingPoint = forFamily.filter((p) => {
+      return (
+        p.uses.mapBy('id').includes('low-melting-point-soldering') &&
+        this.shownStatuses.includes(p.status)
+      );
+    });
+    const forLeadFree = forFamily.filter((p) => {
+      return (
+        p.uses.mapBy('id').includes('lead-free-soldering') &&
+        this.shownStatuses.includes(p.status)
+      );
+    });
+    const forLeadBased = forFamily.filter((p) => {
+      return (
+        p.uses.mapBy('id').includes('lead-based-soldering') &&
+        this.shownStatuses.includes(p.status)
+      );
+    });
+    const other = forFamily.filter((p) => {
+      return (
+        ![...forLowMeltingPoint, ...forLeadFree, ...forLeadBased].includes(p) &&
+        this.shownStatuses.includes(p.status)
+      );
+    });
+
+    const arr = [
+      {
+        label: 'For low melting point soldering',
+        products: forLowMeltingPoint
+      },
+      {
+        label: 'For lead-free soldering',
+        products: forLeadFree
+      },
+      {
+        label: 'For lead-based soldering',
+        products: forLeadBased
+      },
+      {
+        label: 'Other',
+        products: other
+      }
+    ];
+
+    return arr;
   }
 
   statuses = [
@@ -57,9 +124,17 @@ export default class ProductsSubsetController extends Controller {
     }
   ];
 
-  filterAndSortProducts() {
+  async filterAndSortProducts() {
     const { article, family, use, shownStatuses } = this;
     const { products } = this.model;
+
+    this.isLoading = true;
+
+    await this.window.delay(300);
+
+    this.isLoading = false;
+
+    await this.window.delay(1);
 
     // TODO: enter loading state
 
@@ -232,7 +307,9 @@ export default class ProductsSubsetController extends Controller {
       this.shownStatuses = arr.concat([id]);
     }
 
-    this.filterAndSortProducts();
+    if (!this.isAlloy) {
+      this.filterAndSortProducts();
+    }
   }
 
   @action
@@ -245,7 +322,11 @@ export default class ProductsSubsetController extends Controller {
       this.use = null;
     }
 
-    this.filterAndSortProducts();
+    if (this.isAlloy) {
+      // this.isLoading = false;
+    } else {
+      this.filterAndSortProducts();
+    }
 
     this.window.scrollTo({
       top: this.article.offsetTop,
