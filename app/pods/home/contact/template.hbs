@@ -26,6 +26,7 @@
                   href='tel:{{company.phoneForRobots}}'
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.phone}}</a></p>
             {{/if}}
 
@@ -35,6 +36,7 @@
                   href='fax:{{company.faxForRobots}}'
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.fax}}</a></p>
             {{/if}}
 
@@ -48,6 +50,7 @@
                   href='mailto:{{company.emailGeneral}}'
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.emailGeneral}}</a></p>
             {{/if}}
 
@@ -57,6 +60,7 @@
                   href='mailto:{{company.emailOrders}}'
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.emailOrders}}</a></p>
             {{/if}}
 
@@ -66,6 +70,7 @@
                   href='mailto:{{company.emailSupport}}'
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.emailSupport}}</a></p>
             {{/if}}
 
@@ -75,6 +80,7 @@
                   href='mailto:{{company.emailAccounting}}'
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.emailAccounting}}</a></p>
             {{/if}}
 
@@ -84,6 +90,7 @@
                   href={{company.website}}
                   target='_blank'
                   rel='noopener noreferrer'
+                  data-search='me'
                 >{{company.websiteForHumans}}</a></p>
             {{/if}}
           </div>
@@ -95,7 +102,7 @@
                 {{#if member.person.fullName}}
                   <p><span data-search='me'>{{member.person.fullName}}</span>
                     {{#if member.title}}
-                      <span>({{member.title}})</span>
+                      <span data-search='me'>({{member.title}})</span>
                     {{/if}}
                   </p>
                 {{/if}}
@@ -105,6 +112,7 @@
                       href='mailto:{{member._email}}'
                       target='_blank'
                       rel='noopener noreferrer'
+                      data-search='me'
                     >{{member._email}}</a></p>
                 {{/if}}
                 {{#if member._phone}}
@@ -112,6 +120,7 @@
                       href='tel:{{member._phone}}'
                       target='_blank'
                       rel='noopener noreferrer'
+                      data-search='me'
                     >{{member._phone}}</a></p>
                 {{/if}}
               {{/each}}
@@ -120,7 +129,7 @@
 
           {{#if company.description}}
             <div>
-              <p>{{company.description}}</p>
+              <p data-search='me'>{{company.description}}</p>
             </div>
           {{/if}}
         </li>
