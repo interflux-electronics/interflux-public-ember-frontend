@@ -10,6 +10,7 @@ module.exports = {
     'no-redundant-landmark-role': 'off',
     'require-input-label': 'off',
     'no-potential-path-strings': 'warn',
-    'no-invalid-interactive': 'warn'
+    'no-invalid-interactive': 'warn',
+    'no-html-comments': 'warn'
   }
 };
