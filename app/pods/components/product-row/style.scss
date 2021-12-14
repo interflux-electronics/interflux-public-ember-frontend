@@ -64,7 +64,6 @@ li.product-row {
         box-shadow: 0 0 0 1px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
       }
       .right {
-        transform: translateX(50px);
         svg {
           [fill] {
             fill: $blue-0;
@@ -275,7 +274,6 @@ li.product-row {
     }
     .right {
       flex-shrink: 0;
-      transition: transform 150ms ease-out;
       @include widescreen {
         padding: 20px;
       }
