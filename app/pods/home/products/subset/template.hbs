@@ -81,17 +81,19 @@
       {{else}}
         {{#if this.isAlloy}}
           {{#each this.sections as |sec|}}
-            <section>
-              <div class='intro'>
-                <h2>{{sec.label}}</h2>
-              </div>
+            {{#if sec.products.length}}
+              <section>
+                <div class='intro'>
+                  <h2>{{sec.label}}</h2>
+                </div>
 
-              <ul>
-                {{#each sec.products as |product|}}
-                  <ProductRow @product={{product}} />
-                {{/each}}
-              </ul>
-            </section>
+                <ul>
+                  {{#each sec.products as |product|}}
+                    <ProductRow @product={{product}} />
+                  {{/each}}
+                </ul>
+              </section>
+            {{/if}}
           {{/each}}
         {{else}}
           <ol>
