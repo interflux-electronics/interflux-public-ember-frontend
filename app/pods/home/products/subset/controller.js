@@ -58,13 +58,6 @@ export default class ProductsSubsetController extends Controller {
       this.family.id
     );
 
-    // TEMPORARY CHECK
-    productsForFamily.forEach((product) => {
-      if (product.status === 'offline') {
-        console.warn('offline product!');
-      }
-    });
-
     const usesToGroupBy = [
       'low-melting-point-soldering',
       'lead-free-soldering',
@@ -116,8 +109,6 @@ export default class ProductsSubsetController extends Controller {
         return { product };
       })
     });
-
-    console.log({ sections });
 
     return sections;
   }
@@ -348,9 +339,7 @@ export default class ProductsSubsetController extends Controller {
       this.use = null;
     }
 
-    if (this.groupByAlloy) {
-      // this.isLoading = false;
-    } else {
+    if (!this.groupByAlloy) {
       this.filterAndSortProducts();
     }
 
