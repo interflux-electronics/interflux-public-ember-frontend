@@ -27,20 +27,15 @@ export default class ProductsSubsetController extends Controller {
 
     await this.window.delay(1); // Allow all <section> to be rendered first
 
-    if (this.isAlloy) {
+    if (this.groupByAlloy) {
       this.isLoading = false;
     } else {
       this.filterAndSortProducts();
     }
   }
 
-  get isAlloy() {
-    return (
-      this.family &&
-      ['solder-pastes', 'solder-wires', 'solder-alloys'].includes(
-        this.family.id
-      )
-    );
+  get groupByAlloy() {
+    return this.family && this.family.hasAlloys;
   }
 
   get products() {
@@ -48,52 +43,83 @@ export default class ProductsSubsetController extends Controller {
   }
 
   get sections() {
-    const forFamily = this.products.filterBy('mainFamily.id', this.family.id);
-    const forLowMeltingPoint = forFamily.filter((p) => {
-      return (
-        p.uses.mapBy('id').includes('low-melting-point-soldering') &&
-        this.shownStatuses.includes(p.status)
-      );
-    });
-    const forLeadFree = forFamily.filter((p) => {
-      return (
-        p.uses.mapBy('id').includes('lead-free-soldering') &&
-        this.shownStatuses.includes(p.status)
-      );
-    });
-    const forLeadBased = forFamily.filter((p) => {
-      return (
-        p.uses.mapBy('id').includes('lead-based-soldering') &&
-        this.shownStatuses.includes(p.status)
-      );
-    });
-    const other = forFamily.filter((p) => {
-      return (
-        ![...forLowMeltingPoint, ...forLeadFree, ...forLeadBased].includes(p) &&
-        this.shownStatuses.includes(p.status)
-      );
+    if (!this.family) {
+      console.warn('no family');
+      return [];
+    }
+
+    if (!this.family.hasAlloys) {
+      console.warn('is not alloy');
+      return [];
+    }
+
+    const productsForFamily = this.products.filterBy(
+      'mainFamily.id',
+      this.family.id
+    );
+
+    // TEMPORARY CHECK
+    productsForFamily.forEach((product) => {
+      if (product.status === 'offline') {
+        console.warn('offline product!');
+      }
     });
 
-    const arr = [
-      {
-        label: 'For low melting point soldering',
-        products: forLowMeltingPoint
-      },
-      {
-        label: 'For lead-free soldering',
-        products: forLeadFree
-      },
-      {
-        label: 'For lead-based soldering',
-        products: forLeadBased
-      },
-      {
-        label: 'Other',
-        products: other
-      }
+    const usesToGroupBy = [
+      'low-melting-point-soldering',
+      'lead-free-soldering',
+      'lead-based-soldering'
     ];
 
-    return arr;
+    const sections = [];
+
+    usesToGroupBy.forEach((useId) => {
+      const use = this.store.peekRecord('use', useId);
+      const title = use.forLabel;
+      const productsForUse = productsForFamily.filter((product) => {
+        return product.uses.mapBy('id').includes(useId);
+      });
+
+      const rows = productsForUse.map((product) => {
+        const productUse = product.productUses.findBy('use.id', useId);
+        const rank = productUse.rankAmongProducts || 9999;
+        const hide = ['outdated', 'discontinued'].includes(product.status);
+
+        const avatar = productUse.showAlternativeAvatar
+          ? productUse.image
+          : null;
+
+        return {
+          product,
+          rank,
+          hide,
+          avatar
+        };
+      });
+
+      const sorted = rows.sortBy('rank');
+      const visibleRows = sorted.rejectBy('hide');
+      const hiddenRows = sorted.filterBy('hide');
+
+      sections.push({ title, visibleRows, hiddenRows });
+    });
+
+    const otherProducts = productsForFamily.filter((product) => {
+      return usesToGroupBy.every((useId) => {
+        return !product.uses.mapBy('id').includes(useId);
+      });
+    });
+
+    sections.push({
+      title: 'Other',
+      rows: otherProducts.map((product) => {
+        return { product };
+      })
+    });
+
+    console.log({ sections });
+
+    return sections;
   }
 
   statuses = [
@@ -307,7 +333,7 @@ export default class ProductsSubsetController extends Controller {
       this.shownStatuses = arr.concat([id]);
     }
 
-    if (!this.isAlloy) {
+    if (!this.groupByAlloy) {
       this.filterAndSortProducts();
     }
   }
@@ -322,7 +348,7 @@ export default class ProductsSubsetController extends Controller {
       this.use = null;
     }
 
-    if (this.isAlloy) {
+    if (this.groupByAlloy) {
       // this.isLoading = false;
     } else {
       this.filterAndSortProducts();
@@ -350,5 +376,16 @@ export default class ProductsSubsetController extends Controller {
 
   get sortedProducts() {
     return this.model.products.sortBy('name');
+  }
+
+  @action toggleHiddenRows(event) {
+    const button = event.currentTarget;
+    const section = button.closest('section');
+
+    if (section.classList.contains('expanded')) {
+      section.removeAttribute('class');
+    } else {
+      section.classList.add('expanded');
+    }
   }
 }

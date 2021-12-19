@@ -122,6 +122,32 @@ main#products-subset {
         color: $grey-7;
       }
     }
+    section {
+      &.expanded {
+        ul.hidden,
+        button.collapse {
+          display: flex;
+        }
+        button.expand {
+          display: none;
+        }
+      }
+      ul.hidden,
+      button.collapse {
+        display: none;
+      }
+      ul.hidden {
+        margin-top: -1px;
+      }
+    }
+    button.expand,
+    button.collapse {
+      width: 100%;
+      height: 50px;
+      border-radius: 0;
+      border: 0;
+      border-bottom: 1px solid $grey-1;
+    }
     ol {
       display: flex;
       flex-direction: column;

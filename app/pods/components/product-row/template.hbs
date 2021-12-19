@@ -4,12 +4,20 @@
 >
   <a href={{href-to 'home.product' @product.id}}>
     <div class='left'>
-      {{#if @product.avatarPath}}
+      {{#if @avatar}}
         <ResponsiveImage
-          @path={{@product.avatarPath}}
-          @variations={{@product.avatarVariations}}
-          @alt={{@product.avatarAlt}}
+          @path={{@avatar.path}}
+          @variations={{@avatar.variations}}
+          @alt={{@avatar.alt}}
         />
+      {{else}}
+        {{#if @product.avatarPath}}
+          <ResponsiveImage
+            @path={{@product.avatarPath}}
+            @variations={{@product.avatarVariations}}
+            @alt={{@product.avatarAlt}}
+          />
+        {{/if}}
       {{/if}}
     </div>
 

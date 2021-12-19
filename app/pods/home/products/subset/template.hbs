@@ -79,19 +79,48 @@
       {{#if this.isLoading}}
         <Shimmer::ProductRows::Desktop />
       {{else}}
-        {{#if this.isAlloy}}
-          {{#each this.sections as |sec|}}
-            {{#if sec.products.length}}
+        {{#if this.groupByAlloy}}
+          {{#each this.sections as |s|}}
+            {{#if (or s.visibleRows.length s.visibleRows.length)}}
               <section>
                 <div class='intro'>
-                  <h2>{{sec.label}}</h2>
+                  <h2>{{s.title}}</h2>
                 </div>
 
-                <ul>
-                  {{#each sec.products as |product|}}
-                    <ProductRow @product={{product}} />
+                <ul class='visible'>
+                  {{#each s.visibleRows as |row|}}
+                    <ProductRow
+                      @product={{row.product}}
+                      @avatar={{row.avatar}}
+                    />
                   {{/each}}
                 </ul>
+                {{#if s.hiddenRows.length}}
+                  <Button
+                    @text='Show {{s.hiddenRows.length}} more'
+                    @icon='arrow-down'
+                    @theme='secondary medium grey-border blue-focus icon-right'
+                    @onClick={{this.toggleHiddenRows}}
+                    @class='expand'
+                  />
+
+                  <ul class='hidden'>
+                    {{#each s.hiddenRows as |row|}}
+                      <ProductRow
+                        @product={{row.product}}
+                        @avatar={{row.avatar}}
+                      />
+                    {{/each}}
+                  </ul>
+
+                  <Button
+                    @text='Hide outdated products'
+                    @icon='arrow-up'
+                    @theme='secondary medium grey-border blue-focus icon-right'
+                    @onClick={{this.toggleHiddenRows}}
+                    @class='collapse'
+                  />
+                {{/if}}
               </section>
             {{/if}}
           {{/each}}
