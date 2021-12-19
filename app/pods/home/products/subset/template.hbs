@@ -80,11 +80,11 @@
         <Shimmer::ProductRows::Desktop />
       {{else}}
         {{#if this.groupByAlloy}}
-          {{#each this.sections as |s|}}
+          {{#each this.sections as |s i|}}
             {{#if (or s.visibleRows.length s.visibleRows.length)}}
-              <section>
+              <section aria-labelledby='h2-{{i}}'>
                 <div class='intro'>
-                  <h2>{{s.title}}</h2>
+                  <h2 id='h2-{{i}}'>{{s.title}}</h2>
                 </div>
 
                 <ul class='visible'>
