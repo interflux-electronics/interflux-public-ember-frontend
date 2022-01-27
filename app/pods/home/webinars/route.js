@@ -14,7 +14,7 @@ export default class WebinarsRoute extends BaseRoute {
       id: 'webinars',
       title: 'Webinars',
       backRoute: 'home',
-      theme: 'green'
+      theme: 'green overlap'
     });
   }
 

@@ -1,0 +1,319 @@
+main#contact {
+  #hero {
+    position: relative;
+    overflow: hidden;
+    height: 320px;
+    background-color: $blue-4;
+    .liner {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .bg {
+      width: 1200px;
+      height: 440px;
+      position: absolute;
+      .preload,
+      .high-res {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% auto;
+      }
+      // Whilst the high-res image is loading we an instant blurry base64 CSS version of the image
+      .preload {
+        background-image: url('data:image/webp;base64,#{$hero-circuit-boards-2-desktop}');
+        filter: blur(20px);
+      }
+      // High-resolution image
+      .high-res {
+        background-image: url('#{$cdn}/images/public/hero-circuit-board-2/hero-circuit-board-2-desktop@1200x440.webp');
+        @include retina {
+          background-image: url('#{$cdn}/images/public/hero-circuit-board-2/hero-circuit-board-2-desktop@2400x880.webp');
+        }
+      }
+    }
+    h1 {
+      font-family: $extrabold;
+      color: white;
+      line-height: 100%;
+      text-align: center;
+      position: relative;
+      background-color: $blue-4;
+      transform: translateY(40px);
+      padding: 6px 12px;
+      @include widescreen {
+        font-size: 40px;
+      }
+      @include desktop {
+        font-size: vw(40px);
+      }
+      @include tablet {
+        font-size: vw-tablet(40px); // TODO
+      }
+      @include mobile {
+        font-size: vw-mobile(40px); // TODO
+      }
+    }
+  }
+  h2 {
+    font-size: 32px;
+    font-family: $light;
+    line-height: 100%;
+    color: $grey-7;
+  }
+  h3 {
+    font-family: $bold;
+    font-size: 17px;
+    line-height: 150%;
+    color: $grey-7;
+  }
+  #map {
+    .liner {
+      padding: 80px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    p {
+      text-align: center;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+    .container {
+      position: relative;
+      width: 1000px;
+      height: 450px;
+      background-color: $blue-4;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        position: relative;
+        z-index: 2;
+        color: white;
+        margin: 0;
+      }
+      a.expand {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        z-index: 2;
+        color: white;
+      }
+      a.no-icon {
+        display: block;
+        position: relative;
+        z-index: 1;
+      }
+      .preload {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/webp;base64,#{$interflux-network-map}');
+        background-size: 100% 100%;
+        filter: blur(15px);
+      }
+      img {
+        position: relative;
+        z-index: 2;
+      }
+      button {
+        position: absolute;
+        z-index: 3;
+        color: white;
+      }
+    }
+  }
+
+  #find {
+    @include dashed-line-on-top;
+    .liner {
+      max-width: 800px;
+      padding: 100px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    h2 {
+      margin-bottom: 32px;
+    }
+    h3 + .pills,
+    h3 + .search {
+      margin-top: 20px;
+    }
+    h3 + p {
+      margin-top: 18px;
+    }
+    p + ul.bullets {
+      margin-top: 18px;
+    }
+    .search + .pills {
+      margin-top: 18px;
+    }
+    .step + .step {
+      @include dashed-line-on-top;
+      margin-top: 40px;
+      padding-top: 40px;
+    }
+    ul.bullets {
+      list-style: disc;
+      padding-left: 20px;
+      li {
+        font-size: 16px;
+        line-height: 180%;
+      }
+    }
+  }
+
+  #search {
+    background-color: $grey-0;
+
+    .liner {
+      max-width: 900px;
+      padding: 100px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .text-input {
+      margin: 12px 0 30px;
+      align-self: flex-start;
+    }
+
+    h3 {
+      font-family: $bold;
+      font-size: 16px;
+      color: white;
+      background-color: $blue-3;
+      padding: 0 4px;
+      line-height: 22px;
+    }
+
+    .column-headers {
+      display: flex;
+      width: 100%;
+      p {
+        margin: 0;
+        flex: 1;
+      }
+      p:nth-child(2) {
+        flex: 0.6;
+      }
+    }
+
+    .companies {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 5px;
+      a {
+        background: white;
+        border-radius: 3px;
+        border: 1px solid $grey-1;
+        padding: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: box-shadow 200ms ease;
+        white-space: normal; // override <Button> default
+        text-align: left; // override <Button> default
+        &:hover,
+        &:focus {
+          border-color: $blue-0;
+          box-shadow: 0 2px 4px rgba(black, 0.15);
+          [fill] {
+            fill: $blue-0;
+          }
+        }
+      }
+    }
+
+    .company {
+      flex: 1;
+      display: flex;
+    }
+
+    .country {
+      flex: 0.6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        width: 24px;
+        height: auto;
+        &.sg,
+        &.si,
+        &.bg,
+        &.rs,
+        &.cz,
+        &.fi,
+        &.pl,
+        &.pk,
+        &.kr,
+        &.ru,
+        &.ph,
+        &.id {
+          outline: 1px solid $grey-1;
+        }
+      }
+    }
+
+    .members {
+      flex: 1;
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    .arrow {
+      svg {
+        height: 10px;
+        width: auto;
+        [fill] {
+          fill: $grey-5;
+        }
+      }
+    }
+  }
+
+  #join {
+    .liner {
+      max-width: 900px;
+      padding: 100px 30px;
+      display: flex;
+      align-items: stretch;
+      gap: 35px;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  }
+}

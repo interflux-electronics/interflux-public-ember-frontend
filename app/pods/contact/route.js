@@ -13,7 +13,8 @@ export default class ContactRoute extends BaseRoute {
     this.page.update({
       id: 'contact',
       title: 'Contact',
-      backRoute: 'home'
+      backRoute: 'home',
+      theme: 'blue overlap'
     });
   }
 

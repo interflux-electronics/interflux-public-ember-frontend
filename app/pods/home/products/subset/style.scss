@@ -187,6 +187,9 @@ main#products-subset {
     #search {
       position: relative;
       z-index: 2;
+      input {
+        width: 100%;
+      }
     }
     ul.links {
       transform: translate(-20px);

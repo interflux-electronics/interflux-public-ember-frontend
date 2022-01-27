@@ -19,7 +19,9 @@ Router.map(function () {
     this.route('documents', function () {
       this.route('category', { path: '/:category' });
     });
-    this.route('contact');
+    this.route('contact', { resetNamespace: true }, function () {
+      this.route('map', { path: '/:company' });
+    });
     this.route('catchall', { path: '*:', resetNamespace: true });
   });
 

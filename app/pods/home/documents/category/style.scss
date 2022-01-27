@@ -14,6 +14,7 @@
         width: 100%;
       }
     }
+
     section.text {
       .liner {
         width: auto;
@@ -104,27 +105,24 @@
         width: auto;
         padding: 0;
       }
-      .search-list {
+      .text-input {
+        background: $grey-0;
+        box-sizing: border-box;
+        @include widescreen {
+          padding: px(2vw);
+        }
+        @include desktop {
+          padding: 2vw;
+        }
+        @include tablet {
+          padding: 2vw;
+        }
+        @include mobile {
+          padding: 3vw;
+        }
+      }
+      .filterable-list {
         position: relative;
-        > .input {
-          background: $grey-0;
-          box-sizing: border-box;
-          @include widescreen {
-            padding: px(2vw);
-          }
-          @include desktop {
-            padding: 2vw;
-          }
-          @include tablet {
-            padding: 2vw;
-          }
-          @include mobile {
-            padding: 3vw;
-          }
-        }
-        > p {
-          display: none; // TODO
-        }
         > ul {
           @include widescreen {
             padding: px(3.8vw) px(2vw);

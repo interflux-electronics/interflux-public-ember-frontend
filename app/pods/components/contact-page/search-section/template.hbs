@@ -1,0 +1,84 @@
+<Section @id='search' @aria-labelledby='search-h2'>
+  <h2 id='search-h2'>Search our network</h2>
+
+  {{#if @isLoading}}
+    <p>Loading ...</p>
+  {{else}}
+    <p>Enter the name of a company, person or country.</p>
+
+    <TextInput
+      @value={{this.query}}
+      @icon='search'
+      @theme='classic'
+      @onKeyUp={{this.onKeyUp}}
+    />
+
+    {{!
+    <div class='column-headers'>
+      <p>Company</p>
+      <p>Country</p>
+      <p>Recommended contacts</p>
+    </div>
+    }}
+
+    <FilterableList @updateCounter={{this.updateCounter}}>
+      <ul class='companies'>
+        {{#each this.sortedCompanies as |company|}}
+          <li data-search-parent>
+            <Button @route='contact.map' @model={{company.id}}>
+              <div class='company'>
+                <h3 data-search-me>{{company.businessName}}</h3>
+              </div>
+
+              <div class='country'>
+                <img
+                  src='{{env
+                    'cdnHost'
+                  }}/images/public/flags/{{company.country.id}}.svg'
+                  alt={{company.country.nameEnglish}}
+                  width='32'
+                  height='24'
+                  class={{lowercase company.country.id}}
+                />
+                <p data-search-me>{{company.country.nameEnglish}}</p>
+              </div>
+
+              <div class='members'>
+                <ul>
+                  {{#each company.members as |member|}}
+                    <li>
+                      <div class='avatar'>
+                        {{#if member.hasAvatar}}
+                          <img
+                            src={{member.avatarSrc}}
+                            alt={{member.fullName}}
+                          />
+                        {{else}}
+                          <img
+                            src='{{env 'cdnHost'}}/images/public/no-avatar.svg'
+                            aria-hidden='true'
+                            width='27'
+                            height='27'
+                          />
+                        {{/if}}
+                      </div>
+                      <p data-search-me>{{member.fullName}}</p>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+
+              <div class='arrow'>
+                <Svg::ArrowRight />
+              </div>
+            </Button>
+          </li>
+        {{/each}}
+      </ul>
+    </FilterableList>
+
+    {{#if (eq this.matches 0)}}
+      <p>No results for "{{this.query}}".</p>
+    {{/if}}
+  {{/if}}
+</Section>
