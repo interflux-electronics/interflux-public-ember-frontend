@@ -65,4 +65,8 @@ export default class CompanyModel extends Model {
   get hasMultipleContacts() {
     return this.companyMembers && this.companyMembers.length > 1;
   }
+
+  get slug() {
+    return this.businessName.replace(/\(|\)|®|,|\./g, '').replace(/\s/g, '-');
+  }
 }

@@ -1,5 +1,13 @@
 <Modal @id='contact-map' @theme='white-text'>
-  <h1>Interflux Group</h1>
+  <h1>{{@model.company.businessName}}</h1>
+
+  {{!--
+  {{#each @model.companies as |company|}}
+    <p>{{company.businessName}}</p>
+  {{/each}}
+  --}}
+
+  <div id='mapbox' {{did-insert this.onInsertMap}}></div>
 </Modal>
 
 {{!--
