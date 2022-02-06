@@ -1,0 +1,21 @@
+<Section @id='partners-map' @aria-labelledby='h1'>
+  <h1 id='h1'>Interflux Partners</h1>
+
+  <div id='mapbox' {{did-insert this.onInsertMap}}></div>
+
+  <div id='markers'>
+    {{#each @model.companies as |c|}}
+      <div id='marker-for-{{c.slug}}' class='marker'>
+        <Button @route='partners.map.partner' @model={{c.slug}}>
+          <Svg::MapboxMarker />
+        </Button>
+      </div>
+    {{/each}}
+  </div>
+
+  {{outlet}}
+</Section>
+
+<!-- <PartnersMap @companies={{@model.companies}}>
+  {{outlet}}
+</PartnersMap> -->

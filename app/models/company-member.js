@@ -24,7 +24,7 @@ export default class CompanyMemberModel extends Model {
     return null;
   }
 
-  get phoneForHumans() {
+  get verifiedPhone() {
     if (!this.publicPhone && this.phone) {
       console.warn(`a non-public phone was serialised for ${this.person.name}`);
     }

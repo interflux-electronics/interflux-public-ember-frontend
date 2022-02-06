@@ -1,0 +1,67 @@
+#partner {
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    > a {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  }
+  .card {
+    background: white;
+    width: 380px;
+    padding-top: 30px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+  }
+  h2 {
+    font-family: $extrabold;
+    font-size: 23px;
+    line-height: 150%;
+    padding: 0 30px;
+  }
+  h2 + p,
+  h2 + .description {
+    margin-top: 30px;
+  }
+  .description {
+    margin: 30px 0;
+    padding: 0 30px;
+  }
+  p.address,
+  p.website,
+  p.email,
+  p.phone,
+  p.fax {
+    padding-left: calc(30px + 40px);
+    padding-right: 30px;
+  }
+  p {
+    span {
+      display: block;
+    }
+  }
+  ul.members {
+    border-top: 1px solid $grey-1;
+    margin-top: 30px;
+    padding: 0 30px;
+    li {
+      padding: 30px 0;
+      display: flex;
+      img {
+        width: 72px;
+        height: 72px;
+        margin-right: 20px;
+      }
+      h3 {
+        font-family: $bold;
+      }
+    }
+  }
+}
