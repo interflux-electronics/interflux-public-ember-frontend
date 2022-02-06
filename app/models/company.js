@@ -43,8 +43,17 @@ export default class CompanyModel extends Model {
     return this.order || 999;
   }
 
+  get websiteForRobots() {
+    return this.website ? this.website.replace(/\/$/, '') : null;
+  }
+
   get websiteForHumans() {
-    return this.website ? this.website.replace('https://', '') : null;
+    return this.website
+      ? this.website
+          .replace('https://', '')
+          .replace('http://', '')
+          .replace(/\/$/, '')
+      : null;
   }
 
   get hasOneEmail() {
@@ -58,8 +67,12 @@ export default class CompanyModel extends Model {
     return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 
+  get faxForHumans() {
+    return this.fax ? this.fax.replace(/\s|-|\.|\(|\)/g, '') : null;
+  }
+
   get faxForRobots() {
-    return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
+    return this.fax ? this.fax.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 
   get hasMultipleContacts() {
