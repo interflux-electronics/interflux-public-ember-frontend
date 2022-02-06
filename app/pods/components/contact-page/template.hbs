@@ -22,14 +22,13 @@
       <div class='preload'></div>
     {{else}}
       <Button
-        @route='contact.map'
-        @model='map'
+        @route='partners.map'
         @text='Expand map'
         @icon='expand'
         @theme='large secondary white-text-on-blue'
       />
 
-      <Button @route='contact.map' @model='map'>
+      <Button @route='partners.map'>
         <img
           src='{{env
             'cdnHost'
@@ -41,7 +40,6 @@
         <div class='preload'></div>
       </Button>
     {{/if}}
-
   </div>
 </Section>
 

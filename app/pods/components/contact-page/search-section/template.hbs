@@ -25,7 +25,7 @@
       <ul class='companies'>
         {{#each this.sortedCompanies as |company|}}
           <li data-search-parent>
-            <Button @route='contact.map' @model={{company.slug}}>
+            <Button @route='partners.map.partner' @model={{company.slug}}>
               <div class='company'>
                 <h3 data-search-me>{{company.businessName}}</h3>
               </div>
