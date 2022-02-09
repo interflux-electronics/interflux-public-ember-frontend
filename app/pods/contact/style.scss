@@ -1,0 +1,161 @@
+#contact-legacy {
+  background: $grey-0;
+  @include widescreen {
+    padding-bottom: 40px;
+  }
+  @include desktop {
+    padding-bottom: vw(40px);
+  }
+  @include tablet {
+    padding-bottom: 10vw;
+  }
+  @include mobile {
+    padding-bottom: 20vw;
+  }
+  & + .spacer {
+    background: $grey-0;
+  }
+  #map {
+    .liner {
+      padding: 0;
+      max-width: none;
+    }
+    .map {
+      background: #16324d;
+      width: 100vw;
+      @include widescreen {
+        height: px(50vw);
+        margin-bottom: px(5vw);
+      }
+      @include desktop {
+        height: 50vw;
+        margin-bottom: 5vw;
+      }
+      @include tablet {
+        height: 100vw;
+        margin: 0 0 8vw;
+      }
+      @include mobile {
+        height: 130vw;
+        margin: 21vw 0 12vw;
+      }
+      .mapboxgl-map {
+        height: 100%;
+      }
+    }
+  }
+  #list {
+    .input-string {
+      margin: 0 auto;
+      @include mobile {
+        width: 90vw;
+      }
+    }
+    .liner {
+      @include widescreen {
+        width: 600px;
+      }
+      @include desktop {
+        width: vw(600px);
+      }
+      @include tablet {
+        width: 96vw;
+      }
+      @include mobile {
+        width: 100vw;
+      }
+    }
+    .search-list {
+      > p {
+        display: none;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      @include widescreen {
+        margin-top: px(4vw);
+      }
+      @include desktop {
+        margin-top: 4vw;
+      }
+      @include tablet {
+        margin-top: 8vw;
+      }
+      @include mobile {
+        margin-top: 12vw;
+      }
+      li {
+        align-items: flex-start;
+        box-shadow: 0 2px 4px RGBA(0, 0, 0, 0.1);
+        background-color: white;
+        @include widescreen {
+          padding: 50px;
+        }
+        @include desktop {
+          padding: vw(50px);
+        }
+        @include tablet {
+          padding: 5vw;
+        }
+        @include mobile {
+          padding: 18vw 5vw;
+        }
+        & + li {
+          @include widescreen {
+            margin-top: 20px;
+          }
+          @include desktop {
+            margin-top: vw(20px);
+          }
+          @include tablet {
+            margin-top: 2vw;
+          }
+          @include mobile {
+            margin-top: 10vw;
+          }
+        }
+        h2 {
+          font-family: $extrabold;
+          line-height: 140%;
+          @include widescreen {
+            margin-bottom: 16px;
+          }
+          @include desktop {
+            margin-bottom: vw(16px);
+          }
+          @include tablet {
+            margin-bottom: 3vw;
+          }
+          @include mobile {
+            margin-bottom: 8vw;
+          }
+        }
+        p {
+          margin: 0;
+        }
+        p.country {
+          font-family: $bold;
+        }
+        div + div {
+          @include widescreen {
+            margin-top: 16px;
+          }
+          @include desktop {
+            margin-top: vw(16px);
+          }
+          @include tablet {
+            margin-top: 3vw;
+          }
+          @include mobile {
+            margin-top: 6vw;
+          }
+        }
+      }
+    }
+    h3 {
+      @include light-font(0.8);
+      text-align: left;
+    }
+  }
+}
