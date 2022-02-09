@@ -1,8 +1,11 @@
-#partners-map {
+section#partners-map {
   position: relative;
   min-height: 100vh;
   background: $blue-3;
   padding: 30px;
+  .liner {
+    max-width: none;
+  }
   #mapbox {
     position: fixed;
     left: 0;
@@ -13,6 +16,84 @@
   #markers {
     display: none;
   }
+  .mapboxgl-marker {
+    width: 0;
+    height: 0;
+    // outline: 3px solid yellow;
+    &.shadow {
+      z-index: 1;
+      svg {
+        width: 28px;
+        height: 10px;
+        transform: translate(-14px, 3px) scale(0.9);
+      }
+    }
+    &.icon {
+      z-index: 2;
+      &:hover {
+        z-index: 3;
+      }
+      a {
+        width: 60px;
+        height: 70px;
+        padding-bottom: 10px;
+        box-sizing: border-box;
+        transform: translate(-50%, -80%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        &:hover {
+          svg.marker {
+            height: 80%;
+            .border {
+              opacity: 1;
+            }
+          }
+          p {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        svg.marker {
+          transition: all 300ms $easeOutExpo;
+          height: 60%;
+          width: auto;
+          .border {
+            transition: opacity 300ms $easeOutExpo;
+            opacity: 0;
+          }
+        }
+        p {
+          position: absolute;
+          bottom: 100%;
+          left: 11px;
+          font-family: $regular;
+          font-size: 16px;
+          line-height: 28px;
+          height: 28px;
+          padding: 0 8px;
+          background: white;
+          border-radius: 2px;
+          white-space: nowrap;
+          color: $grey-7;
+          opacity: 0;
+          transition: all 300ms $easeOutExpo;
+          transition-property: opacity, transform;
+          transform: translateY(20px);
+          svg.arrow-down {
+            position: absolute;
+            bottom: -8px;
+            left: 9px;
+            width: 22px;
+            height: auto;
+            [fill] {
+              fill: white;
+            }
+          }
+        }
+      }
+    }
+  }
   h1 {
     font-family: $extrabold;
     font-size: 26px;
@@ -21,5 +102,7 @@
     position: relative;
     z-index: 1;
     margin-bottom: 30px;
+    pointer-events: none;
+    user-select: none;
   }
 }

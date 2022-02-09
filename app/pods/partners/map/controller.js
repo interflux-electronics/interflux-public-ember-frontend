@@ -67,6 +67,11 @@ export default class PartnersMapController extends Controller {
 
     companies.map((company) => {
       const marker = document.querySelector(`#marker-for-${company.slug}`);
+      const shadow = document.querySelector(`#shadow-for-${company.slug}`);
+
+      new window.mapboxgl.Marker({ anchor: 'bottom', element: shadow })
+        .setLngLat({ lon: company.longitude, lat: company.latitude })
+        .addTo(this.mapbox.map);
 
       new window.mapboxgl.Marker({ anchor: 'bottom', element: marker })
         .setLngLat({ lon: company.longitude, lat: company.latitude })

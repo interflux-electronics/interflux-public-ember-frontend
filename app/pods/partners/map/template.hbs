@@ -5,17 +5,21 @@
 
   <div id='markers'>
     {{#each @model.companies as |c|}}
-      <div id='marker-for-{{c.slug}}' class='marker'>
+      <div id='marker-for-{{c.slug}}' class='icon'>
         <Button @route='partners.map.partner' @model={{c.slug}}>
-          <Svg::MapboxMarker />
+          <Svg::Marker />
+          <p>
+            <span>{{c.businessName}}</span>
+            <Svg::ArrowDown />
+          </p>
         </Button>
+      </div>
+
+      <div id='shadow-for-{{c.slug}}' class='shadow'>
+        <Svg::MarkerShadow />
       </div>
     {{/each}}
   </div>
 
   {{outlet}}
 </Section>
-
-<!-- <PartnersMap @companies={{@model.companies}}>
-  {{outlet}}
-</PartnersMap> -->
