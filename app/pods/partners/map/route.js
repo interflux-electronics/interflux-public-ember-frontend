@@ -25,7 +25,7 @@ export default class PartnersMapRoute extends BaseRoute {
     });
   }
 
-  afterModel(model) {
+  afterModel() {
     // TODO: add to cache
   }
 }
