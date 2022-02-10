@@ -93,9 +93,6 @@
       position: relative;
       width: 1000px;
       height: 450px;
-      background-color: $blue-4;
-      border-radius: 10px;
-      overflow: hidden;
       position: relative;
       display: flex;
       justify-content: center;
@@ -106,17 +103,29 @@
         color: white;
         margin: 0;
       }
-      a.expand {
-        position: absolute;
-        left: 30px;
-        top: 30px;
-        z-index: 2;
-        color: white;
-      }
-      a.no-icon {
+      a.map {
         display: block;
-        position: relative;
+        position: absolute;
         z-index: 1;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: $blue-4;
+        &:hover,
+        &:focus {
+          & + .expand {
+            background: rgba(white, 0.2);
+            border-color: white;
+            svg {
+              [fill] {
+                fill: white;
+              }
+            }
+          }
+        }
+      }
+      a.expand {
+        position: relative;
+        z-index: 2;
       }
       .preload {
         position: absolute;

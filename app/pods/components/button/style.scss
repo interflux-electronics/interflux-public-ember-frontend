@@ -41,6 +41,55 @@
       border-radius: 3px; // TODO
       padding: 0 30px; // TODO
     }
+
+    &.has-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.icon-left {
+        .icon {
+          @include widescreen {
+            margin-right: 10px;
+          }
+          @include desktop {
+            margin-right: vw(10px);
+          }
+          @include tablet {
+            margin-right: vw-tablet(10px);
+          }
+          @include mobile {
+            margin-right: vw-mobile(10px);
+          }
+        }
+      }
+      &.icon-floats-left {
+        position: relative;
+        padding: 0 46px;
+        .icon {
+          position: absolute;
+          width: 46px;
+          height: 100%;
+          left: 0;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            max-width: 60%;
+            max-height: 60%;
+            height: auto;
+            &.truck {
+              transform: translate(12%, 2%);
+              width: 55%;
+            }
+            &.people {
+              transform: translate(11%, 1%);
+              width: 55%;
+            }
+          }
+        }
+      }
+    }
   }
 
   &.medium {
@@ -260,40 +309,10 @@
       }
     }
 
-    // Icons
-
     &.has-icon {
-      position: relative;
       svg {
         [fill] {
           fill: white;
-        }
-      }
-      // TODO: move up?
-      &.large {
-        padding: 0 46px;
-        .icon {
-          position: absolute;
-          width: 46px;
-          height: 100%;
-          left: 0;
-          top: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          svg {
-            max-width: 60%;
-            max-height: 60%;
-            height: auto;
-            &.truck {
-              transform: translate(12%, 2%);
-              width: 55%;
-            }
-            &.people {
-              transform: translate(11%, 1%);
-              width: 55%;
-            }
-          }
         }
       }
     }
@@ -333,6 +352,21 @@
       border-radius: 3px;
       background-color: rgba($blue-5, 0.8);
       border: 2px solid $blue-3;
+      &:hover,
+      &:focus {
+        background: rgba(white, 0.2);
+        border-color: white;
+        svg {
+          [fill] {
+            fill: white;
+          }
+        }
+      }
+      svg {
+        [fill] {
+          fill: white;
+        }
+      }
     }
 
     &.blue-focus {
@@ -364,39 +398,6 @@
       }
       &:focus {
         box-shadow: 0 0 0 1px $orange-1;
-      }
-    }
-
-    // Icons
-
-    &.has-icon {
-      position: relative;
-
-      // TODO: move up?
-      &.large {
-        .icon {
-          position: absolute;
-          width: 46px;
-          height: 46px;
-          left: 0;
-          top: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          svg {
-            max-width: 60%;
-            max-height: 60%;
-            height: auto;
-            &.share {
-              transform: translate(5%, 5%);
-              width: 50%;
-            }
-            &.star {
-              transform: translate(6%, 1%);
-              width: 54%;
-            }
-          }
-        }
       }
     }
   }
