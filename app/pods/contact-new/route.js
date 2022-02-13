@@ -23,7 +23,8 @@ export default class ContactRoute extends BaseRoute {
       countries: this.store.findAll('country'),
       companies: this.store.findAll('company', {
         include: ['public_members', 'public_members.person'].join(',')
-      })
+      }),
+      companyMarkets: this.store.findAll('company-market')
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
       // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });

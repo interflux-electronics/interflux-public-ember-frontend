@@ -20,8 +20,6 @@ export default class CompanyModel extends Model {
 
   @belongsTo('country') country;
 
-  @hasMany('country') markets;
-
   @hasMany('company-member') companyMembers;
   @hasMany('company-market') companyMarkets;
 

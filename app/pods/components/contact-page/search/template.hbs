@@ -13,14 +13,6 @@
       @onKeyUp={{this.onKeyUp}}
     />
 
-    {{!
-    <div class='column-headers'>
-      <p>Company</p>
-      <p>Country</p>
-      <p>Recommended contacts</p>
-    </div>
-    }}
-
     <FilterableList @updateCounter={{this.updateCounter}}>
       <ul class='companies'>
         {{#each this.sortedCompanies as |company|}}

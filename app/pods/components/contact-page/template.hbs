@@ -45,12 +45,12 @@
     </div>
   </Section>
 
-  <ContactPage::FindSection @countries={{@countries}} />
-
-  <ContactPage::SearchSection
-    @isLoading={{@isLoading}}
+  <ContactPage::Questionair
     @companies={{@companies}}
+    @countries={{@countries}}
   />
+
+  <ContactPage::Search @isLoading={{@isLoading}} @companies={{@companies}} />
 
   <Section @id='join' @aria-labelledby='join-h2'>
     <div class='image'>

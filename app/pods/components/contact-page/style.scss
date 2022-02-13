@@ -93,6 +93,8 @@
       position: relative;
       width: 1000px;
       height: 450px;
+      overflow: hidden;
+      border-radius: 10px;
       position: relative;
       display: flex;
       justify-content: center;
@@ -107,8 +109,6 @@
         display: block;
         position: absolute;
         z-index: 1;
-        overflow: hidden;
-        border-radius: 10px;
         background-color: $blue-4;
         &:hover,
         &:focus {
@@ -136,6 +136,8 @@
         background-image: url('data:image/webp;base64,#{$interflux-network-map}');
         background-size: 100% 100%;
         filter: blur(15px);
+        overflow: hidden;
+        border-radius: 10px;
       }
       img {
         position: relative;
@@ -149,7 +151,7 @@
     }
   }
 
-  #find {
+  #questionair {
     @include dashed-line-on-top;
     .liner {
       max-width: 800px;
@@ -184,6 +186,37 @@
       li {
         font-size: 16px;
         line-height: 180%;
+        display: flex;
+      }
+    }
+    ol.companies {
+      margin-top: 20px;
+      li {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        a {
+          transition: padding 300ms $easeOutExpo;
+          &:hover {
+            padding: 0 12px;
+          }
+        }
+        p.recommended {
+          background: $orange-3;
+          font-family: $semibold;
+          color: white;
+          padding: 0 10px;
+          display: flex;
+          gap: 8px;
+          svg {
+            width: 15px;
+            height: auto;
+            [fill] {
+              fill: white;
+            }
+          }
+        }
       }
     }
   }
@@ -214,18 +247,6 @@
       background-color: $blue-3;
       padding: 0 4px;
       line-height: 22px;
-    }
-
-    .column-headers {
-      display: flex;
-      width: 100%;
-      p {
-        margin: 0;
-        flex: 1;
-      }
-      p:nth-child(2) {
-        flex: 0.6;
-      }
     }
 
     .companies {

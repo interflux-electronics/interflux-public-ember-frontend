@@ -1,4 +1,4 @@
-<Section @id='find' @aria-labelledby='find-h2'>
+<Section @id='questionair' @aria-labelledby='find-h2'>
   <h2 id='find-h2'>Find the right person</h2>
 
   <div class='step'>
@@ -39,7 +39,8 @@
         />
       {{/if}}
 
-      <!-- <Search
+      {{!--
+      <Search
         @id={{this.id}}
         @theme={{@theme}}
         @placeholder="Search"
@@ -56,30 +57,41 @@
         @searchPermanentFilters={{@targetPermanentFilters}}
         @minKeyStrokes={{@minKeyStrokes}}
         @error={{this.error}}
-      /> -->
+      />
 
-      <!-- <Input::Search
+      <Input::Search
         @label='To which country do we need to ship the order?'
         @targetModel='country'
         @targetLabel='nativeName'
         @suggestions={{array 'Belgium' 'France' 'Luxemburg'}}
         @onSelect={{fn (mut this.country)}}
-      /> -->
+      />
+      --}}
     </div>
 
-    {{#if this.country}}
+    {{#if this.shipToCountry}}
       <div class='step'>
         <h3>You can place your order with the following companies:</h3>
-        <ul>
-          {{#each this.recommendedCompanies as |company i|}}
+
+        <ol class='companies'>
+          {{#each this.shipToCountry.marketsSorted as |market|}}
             <li>
-              <span>{{i}} - {{company.name}}, {{company.country}}</span>
-              {{#if company.isRecommended}}
-                <span>recommended</span>
+              <p>{{market.rankAmongCompanies}}.</p>
+              <Button
+                @route='partners.map.partner'
+                @model={{market.company.slug}}
+                @text={{market.company.businessName}}
+                @theme='medium tertiary blue-text'
+              />
+              {{#if market.companyIsRecommended}}
+                <p class='recommended'>
+                  <Svg::ThumbsUp />
+                  <span>recommended</span>
+                </p>
               {{/if}}
             </li>
           {{/each}}
-        </ul>
+        </ol>
       </div>
     {{/if}}
   {{/if}}

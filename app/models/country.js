@@ -1,8 +1,6 @@
-import Model, { attr } from '@ember-data/model';
-import { alias } from '@ember/object/computed';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class CountryModel extends Model {
-  @alias('id') twoLetterCode;
   @attr('string') nameEnglish;
   @attr('string') nameNative;
   @attr('string') threeLetterCode;
@@ -23,5 +21,15 @@ export default class CountryModel extends Model {
       this.nameEnglish +
       (this.nameNative !== this.nameEnglish ? ` - ${this.nameNative}` : '')
     );
+  }
+
+  @hasMany('company-market') companyMarkets;
+
+  get marketsSorted() {
+    return this.companyMarkets.sortBy('rankAmongCompanies');
+  }
+
+  get companies() {
+    return this.companyMarkets.sortBy('rankAmongCompanies').mapBy('company');
   }
 }

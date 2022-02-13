@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ContactPageFindSectionComponent extends Component {
+export default class ContactPageQuestionairComponent extends Component {
   @tracked intention;
   @tracked shipToCountry;
   @tracked neededDocument;
