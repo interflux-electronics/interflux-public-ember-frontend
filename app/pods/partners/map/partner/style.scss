@@ -20,6 +20,10 @@
     z-index: 1;
     box-sizing: border-box;
   }
+  .description {
+    margin: 24px 0 30px;
+    padding: 0 30px;
+  }
   h2 {
     font-family: $extrabold;
     font-size: 23px;
@@ -30,37 +34,92 @@
   h2 + .description {
     margin-top: 30px;
   }
-  .description {
-    margin: 30px 0;
-    padding: 0 30px;
-  }
   p.address,
   p.website,
   p.email,
   p.phone,
   p.fax {
-    padding-left: calc(30px + 40px);
-    padding-right: 30px;
+    position: relative;
+    padding-left: calc(25px + 40px);
+    padding-right: 25px;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 6px;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
   p {
+    line-height: 150%;
     span {
-      display: block;
+      display: flex;
+      align-items: center;
     }
+    img.flag {
+      margin-left: 8px;
+      height: 20px;
+      width: auto;
+    }
+    & + p {
+      margin-top: 8px;
+    }
+  }
+  p.address:before {
+    background-image: url('#{$cdn}/images/public/icons/marker.svg');
+  }
+  p.website:before {
+    background-image: url('#{$cdn}/images/public/icons/globe.svg');
+  }
+  p.email:before {
+    background-image: url('#{$cdn}/images/public/icons/envelope.svg');
+  }
+  p.phone:before {
+    background-image: url('#{$cdn}/images/public/icons/phone.svg');
+  }
+  p.fax:before {
+    background-image: url('#{$cdn}/images/public/icons/fax.svg');
   }
   ul.members {
     border-top: 1px solid $grey-1;
     margin-top: 30px;
-    padding: 0 30px;
     li {
-      padding: 30px 0;
+      padding: 20px;
       display: flex;
-      img {
+      align-items: center;
+      & + li {
+        border-top: 1px solid $grey-1;
+      }
+      .avatar {
+        display: flex;
+        align-items: center;
         width: 72px;
         height: 72px;
+        border-radius: 50%;
+        overflow: hidden;
         margin-right: 20px;
+        flex-shrink: 0;
+        img {
+          width: 72px;
+          height: 72px;
+        }
       }
-      h3 {
-        font-family: $bold;
+      .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h3 {
+          font-family: $bold;
+          font-size: 16px;
+          color: $grey-7;
+          line-height: 180%;
+        }
+        p + p {
+          margin-top: 0;
+        }
       }
     }
   }

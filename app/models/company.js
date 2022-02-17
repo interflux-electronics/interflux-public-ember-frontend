@@ -65,6 +65,10 @@ export default class CompanyModel extends Model {
     return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 
+  get phoneForHumans() {
+    return this.phone;
+  }
+
   get faxForHumans() {
     return this.fax ? this.fax.replace(/\s|-|\.|\(|\)/g, '') : null;
   }

@@ -19,14 +19,7 @@
           <span>{{c.address}}</span>
         {{/if}}
         {{#if c.country.nameEnglish}}
-          <span>{{c.country.nameEnglish}}</span>
-          <img
-            src='{{env 'cdnHost'}}/images/public/flags/{{c.country.id}}.svg'
-            alt={{c.country.nameEnglish}}
-            width='32'
-            height='24'
-            class={{lowercase c.country.id}}
-          />
+          <span>{{c.country.nameEnglish}} <Flag @country={{c.country}} /></span>
         {{/if}}
       </p>
 
@@ -89,8 +82,11 @@
         {{#each c.companyMembers as |member|}}
           <li>
             <div class='avatar'>
-              {{#if member.hasAvatar}}
-                <img src={{member.avatarSrc}} alt={{member.fullName}} />
+              {{#if member.person.hasAvatar}}
+                <img
+                  src='{{env 'cdnHost'}}{{member.person.avatarSrc}}'
+                  alt={{member.person.fullName}}
+                />
               {{else}}
                 <img
                   src='{{env 'cdnHost'}}/images/public/no-avatar.svg'
@@ -107,12 +103,12 @@
                 <p>{{member.title}}</p>
               {{/if}}
               {{#if member.verifiedEmail}}
-                <span>
+                <p>
                   <Link
                     @url='mailto:{{member.verifiedEmail}}'
                     @label={{member.verifiedEmail}}
                   />
-                </span>
+                </p>
               {{/if}}
               {{#if member.verifiedPhone}}
                 <p>

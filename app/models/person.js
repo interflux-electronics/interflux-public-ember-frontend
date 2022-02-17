@@ -19,4 +19,25 @@ export default class PersonModel extends Model {
   get memberOf() {
     return this.companies.mapBy('businessName').join(', ');
   }
+
+  // TODO: replace this temporary hack with image records
+  get avatarSrc() {
+    if (this.fullName === 'Daniel Werkhoven') {
+      return '/images/people/avatar-daniel@250x250.png';
+    }
+
+    if (this.fullName === 'Jan Werkhoven 岩') {
+      return '/images/people/avatar-jan@150x150.png';
+    }
+
+    if (this.fullName === 'Steven Teliszewski') {
+      return '/images/people/avatar-steven@160x160.jpg';
+    }
+
+    return null;
+  }
+
+  get hasAvatar() {
+    return !!this.avatarSrc;
+  }
 }
