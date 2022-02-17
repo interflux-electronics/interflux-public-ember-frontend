@@ -23,15 +23,7 @@
               </div>
 
               <div class='country'>
-                <img
-                  src='{{env
-                    'cdnHost'
-                  }}/images/public/flags/{{company.country.id}}.svg'
-                  alt={{company.country.nameEnglish}}
-                  width='32'
-                  height='24'
-                  class={{lowercase company.country.id}}
-                />
+                <Flag @country={{company.country}} />
                 <p data-search-me>{{company.country.nameEnglish}}</p>
               </div>
 

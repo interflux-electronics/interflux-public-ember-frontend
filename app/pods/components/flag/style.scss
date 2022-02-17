@@ -1,0 +1,18 @@
+img.flag {
+  width: 24px;
+  height: auto;
+  &.sg,
+  &.si,
+  &.bg,
+  &.rs,
+  &.cz,
+  &.fi,
+  &.pl,
+  &.pk,
+  &.kr,
+  &.ru,
+  &.ph,
+  &.id {
+    outline: 1px solid $grey-1;
+  }
+}
