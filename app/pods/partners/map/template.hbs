@@ -1,12 +1,21 @@
 <Section @id='partners-map' @aria-labelledby='h1'>
-  <h1 id='h1'>Interflux Partners</h1>
+  <div id='heading'>
+    <Button
+      @text='Go back'
+      @icon='arrow-left'
+      @theme='tertiary medium white-text icon-left'
+      @route='contact-new'
+    />
 
-  <Button
-    @text='Close'
-    @icon='close'
-    @theme='tertiary medium white-text icon-right'
-    @route='contact'
-  />
+    <h1 id='h1'>Interflux Worldwide</h1>
+
+    <Button
+      @text='Close'
+      @icon='close'
+      @theme='tertiary medium white-text icon-right'
+      @route='contact-new'
+    />
+  </div>
 
   <div id='mapbox' {{did-insert this.onInsertMap}}></div>
 

@@ -99,6 +99,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: $blue-4;
       p {
         position: relative;
         z-index: 2;
@@ -109,7 +110,6 @@
         display: block;
         position: absolute;
         z-index: 1;
-        background-color: $blue-4;
         &:hover,
         &:focus {
           & + .expand {

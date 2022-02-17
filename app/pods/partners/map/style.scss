@@ -1,10 +1,23 @@
 section#partners-map {
   position: relative;
   min-height: 100vh;
-  background: $blue-3;
+  background: $blue-4;
   padding: 30px;
+  box-sizing: border-box;
   .liner {
     max-width: none;
+  }
+  #heading {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-family: $extrabold;
+      font-size: 26px;
+      line-height: 100%;
+      color: white;
+    }
   }
   #mapbox {
     position: fixed;
@@ -94,15 +107,21 @@ section#partners-map {
       }
     }
   }
-  h1 {
-    font-family: $extrabold;
-    font-size: 26px;
-    line-height: 100%;
-    color: white;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 30px;
-    pointer-events: none;
-    user-select: none;
+  .loading {
+    p {
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+    .preload {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/webp;base64,#{$interflux-network-map}');
+      background-size: 100% 100%;
+      filter: blur(15px);
+    }
   }
 }
