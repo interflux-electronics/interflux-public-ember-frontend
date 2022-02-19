@@ -17,7 +17,7 @@
       <ul class='companies'>
         {{#each this.sortedCompanies as |company|}}
           <li data-search-parent>
-            <Button @route='partners.map.partner' @model={{company.slug}}>
+            <LinkTo @route='partners.map' @query={{hash show=company.slug}}>
               <div class='company'>
                 <h3 data-search-me>{{company.businessName}}</h3>
               </div>
@@ -34,7 +34,7 @@
                       <div class='avatar'>
                         {{#if member.hasAvatar}}
                           <img
-                            src={{member.avatarSrc}}
+                            src='{{env 'cdnHost'}}{{member.avatarSrc}}'
                             alt={{member.fullName}}
                           />
                         {{else}}
@@ -55,7 +55,7 @@
               <div class='arrow'>
                 <Svg::ArrowRight />
               </div>
-            </Button>
+            </LinkTo>
           </li>
         {{/each}}
       </ul>

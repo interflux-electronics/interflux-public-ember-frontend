@@ -73,6 +73,7 @@
     line-height: 150%;
     color: $grey-7;
   }
+
   #map {
     .liner {
       padding: 80px 0;
@@ -91,7 +92,8 @@
     }
     .container {
       position: relative;
-      width: 1000px;
+      width: 100%;
+      max-width: 1000px;
       height: 450px;
       overflow: hidden;
       border-radius: 10px;
@@ -100,6 +102,9 @@
       justify-content: center;
       align-items: center;
       background-color: $blue-4;
+      @media (max-width: 1000px) {
+        border-radius: 0;
+      }
       p {
         position: relative;
         z-index: 2;
@@ -147,168 +152,6 @@
         position: absolute;
         z-index: 3;
         color: white;
-      }
-    }
-  }
-
-  #questionair {
-    @include dashed-line-on-top;
-    .liner {
-      max-width: 800px;
-      padding: 100px 30px;
-      display: flex;
-      flex-direction: column;
-    }
-    h2 {
-      margin-bottom: 32px;
-    }
-    h3 + .pills,
-    h3 + .search {
-      margin-top: 20px;
-    }
-    h3 + p {
-      margin-top: 18px;
-    }
-    p + ul.bullets {
-      margin-top: 18px;
-    }
-    .search + .pills {
-      margin-top: 18px;
-    }
-    .step + .step {
-      @include dashed-line-on-top;
-      margin-top: 40px;
-      padding-top: 40px;
-    }
-    ul.bullets {
-      list-style: disc;
-      padding-left: 20px;
-      li {
-        font-size: 16px;
-        line-height: 180%;
-        display: flex;
-      }
-    }
-    ol.companies {
-      margin-top: 20px;
-      li {
-        height: 40px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        a {
-          transition: padding 300ms $easeOutExpo;
-          &:hover {
-            padding: 0 12px;
-          }
-        }
-        p.recommended {
-          background: $orange-3;
-          font-family: $semibold;
-          color: white;
-          padding: 0 10px;
-          display: flex;
-          gap: 8px;
-          svg {
-            width: 15px;
-            height: auto;
-            [fill] {
-              fill: white;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  #search {
-    background-color: $grey-0;
-
-    .liner {
-      max-width: 900px;
-      padding: 100px 30px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    h2 {
-      margin-bottom: 30px;
-    }
-
-    .text-input {
-      margin: 12px 0 30px;
-      align-self: flex-start;
-    }
-
-    h3 {
-      font-family: $bold;
-      font-size: 16px;
-      color: white;
-      background-color: $blue-3;
-      padding: 0 4px;
-      line-height: 22px;
-    }
-
-    .companies {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 5px;
-      a {
-        background: white;
-        border-radius: 3px;
-        border: 1px solid $grey-1;
-        padding: 14px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: box-shadow 200ms ease;
-        white-space: normal; // override <Button> default
-        text-align: left; // override <Button> default
-        &:hover,
-        &:focus {
-          border-color: $blue-0;
-          box-shadow: 0 2px 4px rgba(black, 0.15);
-          [fill] {
-            fill: $blue-0;
-          }
-        }
-      }
-    }
-
-    .company {
-      flex: 1;
-      display: flex;
-    }
-
-    .country {
-      flex: 0.6;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .members {
-      flex: 1;
-      ul {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-    }
-
-    .arrow {
-      svg {
-        height: 10px;
-        width: auto;
-        [fill] {
-          fill: $grey-5;
-        }
       }
     }
   }
