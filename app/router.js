@@ -22,9 +22,7 @@ Router.map(function () {
     this.route('contact', { resetNamespace: true });
     this.route('contact-new', { resetNamespace: true });
     this.route('partners', { resetNamespace: true }, function () {
-      this.route('map', function () {
-        this.route('partner', { path: '/:slug' });
-      });
+      this.route('map');
     });
     this.route('catchall', { path: '*:', resetNamespace: true });
   });
