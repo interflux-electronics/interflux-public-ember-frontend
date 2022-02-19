@@ -32,15 +32,12 @@ export default class PartnersMapController extends Controller {
 
   @action
   onInsertMap() {
-    console.debug('inserted map');
     this.waitForMapBoxReady();
   }
 
   @action
   onMarkerClick(company, event) {
-    console.debug('onMarkerClick');
     this.centerOnCompanyAndZoomIn(company);
-    console.debug('transition');
     this.router.transitionTo('partners.map', {
       queryParams: { show: company.slug }
     });
@@ -65,8 +62,6 @@ export default class PartnersMapController extends Controller {
   }
 
   async renderMap() {
-    console.debug('render map');
-
     window.mapboxgl.accessToken =
       'pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug';
 
@@ -88,15 +83,6 @@ export default class PartnersMapController extends Controller {
       touchZoomRotate: false
     });
 
-    this.mapbox.map.on('click', () => {
-      console.log('click');
-      console.log(this.company);
-      if (this.company) {
-        console.log('HIDE');
-        this.hideCompany();
-      }
-    });
-
     const nav = new window.mapboxgl.NavigationControl({
       visualizePitch: false,
       showCompass: false,
@@ -116,22 +102,12 @@ export default class PartnersMapController extends Controller {
         .setLngLat({ lon: company.longitude, lat: company.latitude })
         .addTo(this.mapbox.map);
     });
-
-    // Create a default Marker and add it to the map.
-    // const marker1 = new window.mapboxgl.Marker()
-    //   .setLngLat([12.554729, 55.70651])
-    //   .addTo(map);
-
-    // Create a default Marker, colored black, rotated 45 degrees.
-    // const marker2 = new window.mapboxgl.Marker({ color: 'black', rotation: 45 })
-    //   .setLngLat([12.65147, 55.608166])
-    //   .addTo(map);
   }
 
   centerOnCompanyAndZoomIn(company) {
     this.mapbox.map.easeTo({
       center: { lon: company.longitude, lat: company.latitude },
-      offset: [60, 0],
+      offset: [235, 0],
       zoom: 11,
       duration: 2000
     });
