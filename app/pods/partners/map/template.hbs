@@ -1,28 +1,160 @@
-<Section @id='partners-map' @aria-labelledby='h1'>
-  <div id='heading'>
-    <Button
-      @text='Go back'
-      @icon='arrow-left'
-      @theme='tertiary medium white-text icon-left'
-      @route='contact-new'
-    />
+<section id='partners-map' aria-labelledby='h1'>
+  <Button
+    @text='Go back'
+    @icon='arrow-left'
+    @theme='tertiary medium white-text icon-left'
+    @route='contact-new'
+    @class='back'
+  />
 
-    <h1 id='h1'>Interflux Worldwide</h1>
-
-    <Button
-      @text='Close'
-      @icon='close'
-      @theme='tertiary medium white-text icon-right'
-      @route='contact-new'
-    />
-  </div>
+  <h1 id='h1'>Interflux Worldwide</h1>
 
   <div id='mapbox' {{did-insert this.onInsertMap}}></div>
 
+  {{#if this.company}}
+    <aside>
+      {{#with this.company as |c|}}
+        <h2>{{c.businessName}}</h2>
+
+        {{#if c.description}}
+          <div class='description'>{{markdown c.description}}</div>
+        {{/if}}
+
+        <p class='address'>
+          {{#if c.legalName}}
+            <span>{{c.legalName}}</span>
+          {{/if}}
+          {{#if c.address}}
+            <span>{{c.address}}</span>
+          {{/if}}
+          {{#if c.country.nameEnglish}}
+            <span>{{c.country.nameEnglish}}
+              <Flag @country={{c.country}} /></span>
+          {{/if}}
+        </p>
+
+        {{#if c.website}}
+          <p class='website'>
+            <Link @url={{c.websiteForRobots}} @label={{c.websiteForHumans}} />
+          </p>
+        {{/if}}
+
+        {{#if
+          (or c.emailGeneral c.emailSupport c.emailOrders c.emailAccounting)
+        }}
+          <p class='email'>
+            {{#if c.emailGeneral}}
+              <span>
+                <Link
+                  @url='mailto:{{c.emailGeneral}}'
+                  @label={{c.emailGeneral}}
+                />
+              </span>
+            {{/if}}
+
+            {{#if c.emailSupport}}
+              <span>
+                <Link
+                  @url='mailto:{{c.emailSupport}}'
+                  @label={{c.emailSupport}}
+                />
+              </span>
+            {{/if}}
+
+            {{#if c.emailOrders}}
+              <span>
+                <Link
+                  @url='mailto:{{c.emailOrders}}'
+                  @label={{c.emailOrders}}
+                />
+              </span>
+            {{/if}}
+
+            {{#if c.emailAccounting}}
+              <span>
+                <Link
+                  @url='mailto:{{c.emailAccounting}}'
+                  @label={{c.emailAccounting}}
+                />
+              </span>
+            {{/if}}
+          </p>
+        {{/if}}
+
+        {{#if c.phone}}
+          <p class='phone'>
+            <Link @url='tel:{{c.phoneForRobots}}' @label={{c.phoneForHumans}} />
+          </p>
+        {{/if}}
+
+        {{#if c.fax}}
+          <p class='fax'>
+            <Link @url='tel:{{c.faxForRobots}}' @label={{c.faxForHumans}} />
+          </p>
+        {{/if}}
+
+        <ul class='members'>
+          {{#each c.companyMembers as |member|}}
+            <li>
+              <div class='avatar'>
+                {{#if member.person.hasAvatar}}
+                  <img
+                    src='{{env 'cdnHost'}}{{member.person.avatarSrc}}'
+                    alt={{member.person.fullName}}
+                  />
+                {{else}}
+                  <img
+                    src='{{env 'cdnHost'}}/images/public/no-avatar.svg'
+                    aria-hidden='true'
+                    width='27'
+                    height='27'
+                  />
+                {{/if}}
+              </div>
+
+              <div class='details'>
+                <h3>{{member.person.fullName}}</h3>
+                {{#if member.title}}
+                  <p>{{member.title}}</p>
+                {{/if}}
+                {{#if member.verifiedEmail}}
+                  <p>
+                    <Link
+                      @url='mailto:{{member.verifiedEmail}}'
+                      @label={{member.verifiedEmail}}
+                    />
+                  </p>
+                {{/if}}
+                {{#if member.verifiedPhone}}
+                  <p>
+                    <Link
+                      @url='tel:{{member.phoneForRobots}}'
+                      @label={{member.verifiedPhone}}
+                    />
+                  </p>
+                {{/if}}
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      {{/with}}
+    </aside>
+
+    <div id='callout'>
+      <Svg::ArrowRight />
+    </div>
+
+    <Button @onClick={{this.hideCompany}} @id='overlay' />
+  {{/if}}
+
+  {{! Markers are rendered here first, but soon after appended to Mapbox. }}
   <div id='markers'>
     {{#each @model.companies as |c|}}
       <div id='marker-for-{{c.slug}}' class='icon'>
-        <Button @route='partners.map.partner' @model={{c.slug}}>
+        <Button
+          @onClick={{fn this.onMarkerClick c}}
+          @class={{if (eq this.company.id c.id) 'active'}}
+        >
           <Svg::Marker />
           <p>
             <span>{{c.businessName}}</span>
@@ -37,5 +169,11 @@
     {{/each}}
   </div>
 
-  {{outlet}}
-</Section>
+  <Button
+    @text='Close'
+    @icon='close'
+    @theme='tertiary medium white-text icon-right'
+    @route='contact-new'
+    @class='close'
+  />
+</section>
