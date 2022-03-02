@@ -75,9 +75,9 @@ export default class PartnersMapController extends Controller {
       container: 'mapbox',
       style: 'mapbox://styles/jw-floatplane-dev/ck8mcsfr50uwe1iohs6xv6n0d',
       center,
-      zoom: 3,
+      zoom: 2,
       maxZoom: 16,
-      minZoom: 3,
+      minZoom: 2,
       pitchWithRotate: false,
       touchPitch: false,
       touchZoomRotate: false
