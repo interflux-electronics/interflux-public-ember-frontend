@@ -27,7 +27,6 @@ export default class PartnersMapPageComponent extends Component {
     this.router.transitionTo('partners.map', {
       queryParams: { show: null }
     });
-    // this.args.show = null;
   }
 
   @action
