@@ -672,13 +672,12 @@
     box-sizing: border-box;
     color: $grey-7;
     padding: 8px 12px;
-    transition: box-shadow 200ms $easeOutExpo;
+    transition: background-color 200ms $easeOutExpo;
     box-sizing: border-box;
     &:hover,
     &:focus {
-      outline: 2px solid $green-1;
-      outline-offset: -2px;
-      box-shadow: 0 3px 6px rgba(black, 0.2);
+      border-color: $green-1;
+      box-shadow: 0 0 0 1px $green-1, 0 3px 6px rgba(black, 0.2);
     }
     &.selected {
       font-family: $semibold;
@@ -687,8 +686,9 @@
       color: white;
       &:hover,
       &:focus {
-        outline-color: $green-3;
         background-color: $green-2;
+        border-color: $green-3;
+        box-shadow: 0 3px 6px rgba(black, 0.2);
       }
     }
     &.has-icon {
