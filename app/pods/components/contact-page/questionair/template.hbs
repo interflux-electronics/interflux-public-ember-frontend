@@ -19,9 +19,9 @@
   {{#if (eq this.intention 'order products')}}
     <div class='step'>
       <h3>To which country do the products need to be shipped?</h3>
-      {{#unless this.shipToCountry}}
+      {{#unless this.country}}
         <Search
-          @onSelect={{fn (mut this.shipToCountry)}}
+          @onSelect={{this.onCountrySelect}}
           @searchModel='country'
           @searchLabel='nameEnglish'
           @searchFilter='nameEnglish'
@@ -34,8 +34,8 @@
           @layout='horizontal'
           @options={{this.suggestedCountries}}
           @label='nameEnglish'
-          @onSelect={{fn (mut this.shipToCountry)}}
-          @selectedOption={{this.shipToCountry}}
+          @onSelect={{fn (mut this.country)}}
+          @selectedOption={{this.country}}
         />
       {{/if}}
 
@@ -69,12 +69,12 @@
       --}}
     </div>
 
-    {{#if this.shipToCountry}}
+    {{#if this.country}}
       <div class='step'>
         <h3>You can place your order with the following companies:</h3>
 
         <ol class='companies'>
-          {{#each this.shipToCountry.marketsSorted as |market|}}
+          {{#each this.country.marketsSorted as |market|}}
             <li>
               <p>{{market.rankAmongCompanies}}.</p>
               <Button

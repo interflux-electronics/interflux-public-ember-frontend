@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 
 export default class ContactPageQuestionairComponent extends Component {
   @tracked intention;
-  @tracked shipToCountry;
   @tracked neededDocument;
   @tracked sdsProduct;
   @tracked browser;
@@ -16,10 +15,27 @@ export default class ContactPageQuestionairComponent extends Component {
     console.debug('send bug report');
   }
 
-  // TODO: Base suggestions on IP, user profile, browser language and previously chosen countries
-  get suggestedCountries() {
-    return this.args.countries.filter((country) => {
-      return ['Belgium', 'Australia', 'China'].includes(country.nameEnglish);
+  @tracked country;
+  @tracked selectedCountries = [];
+
+  @action
+  onCountrySelect(country) {
+    this.country = country;
+    this.selectedCountries = [...this.selectedCountries, country];
+  }
+
+  get uniqueSelectedCountries() {
+    const ids = this.selectedCountries.mapBy('id').uniq();
+
+    return ids.map((id) => {
+      return this.selectedCountries.findBy('id', id);
     });
+  }
+
+  get suggestedCountries() {
+    // TODO include the country of the IP address
+    // TODO include the country of the users profile
+    // TODO make assumption based on browser language
+    return this.uniqueSelectedCountries;
   }
 }
