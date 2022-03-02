@@ -155,7 +155,11 @@
           @onClick={{fn this.onMarkerClick c}}
           @class={{if (eq this.company.id c.id) 'active'}}
         >
-          <Svg::Marker />
+          {{#if c.isHeadquarter}}
+            <Svg::StarMarker />
+          {{else}}
+            <Svg::Marker />
+          {{/if}}
           <p>
             <span>{{c.businessName}}</span>
             <Svg::ArrowDown />

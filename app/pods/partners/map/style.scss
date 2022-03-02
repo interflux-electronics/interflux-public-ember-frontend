@@ -203,7 +203,8 @@ section#partners-map {
         &.active {
           height: 100px;
           width: 100px;
-          svg.marker {
+          svg.marker,
+          svg.star-marker {
             height: 80%;
             .border {
               opacity: 1;
@@ -211,7 +212,8 @@ section#partners-map {
           }
         }
         &:hover:not(.active) {
-          svg.marker {
+          svg.marker,
+          svg.star-marker {
             height: 80%;
             .border {
               opacity: 1;
@@ -222,7 +224,8 @@ section#partners-map {
             transform: translateY(0);
           }
         }
-        svg.marker {
+        svg.marker,
+        svg.star-marker {
           transition: all 300ms $easeOutExpo;
           height: 60%;
           width: auto;
