@@ -13,19 +13,20 @@ export default class PartnersMapRoute extends BaseRoute {
   }
 
   model() {
-    // TODO: return cache
-
     return hash({
-      countries: this.store.findAll('country'),
-      companies: this.store.findAll('company', {
-        include: ['public_members', 'public_members.person'].join(',')
-      })
+      companies:
+        this.cache.companies ||
+        this.store.findAll('company', {
+          include: ['public_members', 'public_members.person'].join(',')
+        }),
+      countries: this.cache.countries || this.store.findAll('country')
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
       // delay: new Promise((resolve) => setTimeout(resolve, 30 * 1000))
     });
   }
 
-  afterModel() {
-    // TODO: add to cache
+  afterModel(model) {
+    this.cache.countries = model.countries;
+    this.cache.companies = model.companies;
   }
 }

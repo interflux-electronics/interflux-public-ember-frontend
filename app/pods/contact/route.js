@@ -20,12 +20,19 @@ export default class ContactRoute extends BaseRoute {
 
   model() {
     return hash({
-      companies: this.store.findAll('company', {
-        include: ['public_members', 'public_members.person'].join(',')
-      }),
-      countries: this.store.findAll('country')
+      companies:
+        this.cache.companies ||
+        this.store.findAll('company', {
+          include: ['public_members', 'public_members.person'].join(',')
+        }),
+      countries: this.cache.countries || this.store.findAll('country')
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
       // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });
+  }
+
+  afterModel(model) {
+    this.cache.countries = model.countries;
+    this.cache.companies = model.companies;
   }
 }
