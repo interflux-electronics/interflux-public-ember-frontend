@@ -14,7 +14,7 @@ export default class CompanyMemberModel extends Model {
   @belongsTo('company') company;
   @belongsTo('person') person;
 
-  get _email() {
+  get verifiedEmail() {
     if (!this.publicEmail && this.email) {
       console.warn(`a non-public email was serialised for ${this.person.name}`);
     }
@@ -24,7 +24,7 @@ export default class CompanyMemberModel extends Model {
     return null;
   }
 
-  get _phone() {
+  get verifiedPhone() {
     if (!this.publicPhone && this.phone) {
       console.warn(`a non-public phone was serialised for ${this.person.name}`);
     }
@@ -32,5 +32,9 @@ export default class CompanyMemberModel extends Model {
       return this.phone;
     }
     return null;
+  }
+
+  get phoneForRobots() {
+    return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 }

@@ -42,6 +42,11 @@
     @content;
   }
 }
+@mixin retina {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    @content;
+  }
+}
 
 // Returns vw for given px at given screenwidth
 //

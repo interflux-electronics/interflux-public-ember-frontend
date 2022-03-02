@@ -5,7 +5,7 @@ export default class WebinarsLoadingRoute extends BaseRoute {
     this.page.update({
       id: 'webinars-loading',
       title: 'Loading ...',
-      theme: 'green'
+      theme: 'green overlap'
     });
   }
 }

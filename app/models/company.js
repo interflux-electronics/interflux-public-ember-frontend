@@ -17,10 +17,9 @@ export default class CompanyModel extends Model {
 
   @attr('number') order;
   @attr('boolean') public;
+  @attr('boolean') isHeadquarter;
 
   @belongsTo('country') country;
-
-  @hasMany('country') markets;
 
   @hasMany('company-member') companyMembers;
   @hasMany('company-market') companyMarkets;
@@ -43,8 +42,17 @@ export default class CompanyModel extends Model {
     return this.order || 999;
   }
 
+  get websiteForRobots() {
+    return this.website ? this.website.replace(/\/$/, '') : null;
+  }
+
   get websiteForHumans() {
-    return this.website ? this.website.replace('https://', '') : null;
+    return this.website
+      ? this.website
+          .replace('https://', '')
+          .replace('http://', '')
+          .replace(/\/$/, '')
+      : null;
   }
 
   get hasOneEmail() {
@@ -58,11 +66,23 @@ export default class CompanyModel extends Model {
     return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 
+  get phoneForHumans() {
+    return this.phone;
+  }
+
+  get faxForHumans() {
+    return this.fax ? this.fax.replace(/\s|-|\.|\(|\)/g, '') : null;
+  }
+
   get faxForRobots() {
-    return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
+    return this.fax ? this.fax.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 
   get hasMultipleContacts() {
     return this.companyMembers && this.companyMembers.length > 1;
+  }
+
+  get slug() {
+    return this.businessName.replace(/\(|\)|®|,|\./g, '').replace(/\s/g, '-');
   }
 }

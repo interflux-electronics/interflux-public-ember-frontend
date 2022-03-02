@@ -1,0 +1,285 @@
+section#partners-map {
+  position: relative;
+  min-height: 100vh;
+  background: $blue-4;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .button.back {
+    position: fixed;
+    z-index: 3;
+    left: 20px;
+    top: 20px;
+  }
+  .button.close {
+    position: fixed;
+    z-index: 3;
+    right: 20px;
+    top: 20px;
+  }
+  h1 {
+    position: fixed;
+    z-index: 2;
+    top: 20px;
+    left: 0;
+    width: 100vw;
+    text-align: center;
+    font-family: $extrabold;
+    font-size: 26px;
+    line-height: 100%;
+    color: white;
+  }
+  #mapbox {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    transition: transform 5000ms $easeOutExpo;
+  }
+  aside {
+    background: white;
+    position: relative;
+    z-index: 3;
+    box-sizing: border-box;
+    transition: transform 5000ms $easeOutExpo;
+    width: 380px;
+    padding: 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 80px 0 80px calc(50vw - 265px); // 265 = ((380 + 120 + 30) / 2)
+    border-radius: 5px;
+    h2 {
+      font-family: $extrabold;
+      font-size: 26px;
+      line-height: 150%;
+    }
+    .description {
+      margin: 24px 0 30px;
+    }
+    h2 + p,
+    h2 + .description {
+      margin-top: 30px;
+    }
+    p.address,
+    p.website,
+    p.email,
+    p.phone,
+    p.fax {
+      position: relative;
+      padding-left: 40px;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+    p {
+      line-height: 150%;
+      span {
+        display: flex;
+        align-items: center;
+      }
+      img.flag {
+        margin-left: 8px;
+        height: 20px;
+        width: auto;
+      }
+      & + p {
+        margin-top: 8px;
+      }
+    }
+    p.address:before {
+      background-image: url('#{$cdn}/images/public/icons/marker.svg');
+    }
+    p.website:before {
+      background-image: url('#{$cdn}/images/public/icons/globe.svg');
+    }
+    p.email:before {
+      background-image: url('#{$cdn}/images/public/icons/envelope.svg');
+    }
+    p.phone:before {
+      background-image: url('#{$cdn}/images/public/icons/phone.svg');
+    }
+    p.fax:before {
+      background-image: url('#{$cdn}/images/public/icons/fax.svg');
+    }
+    ul.members {
+      margin: 30px -25px 0 -25px;
+      li {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        border-top: 1px solid $grey-1;
+        .avatar {
+          display: flex;
+          align-items: center;
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 20px;
+          flex-shrink: 0;
+          img {
+            width: 72px;
+            height: 72px;
+          }
+        }
+        .details {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          h3 {
+            font-family: $bold;
+            font-size: 16px;
+            color: $grey-7;
+            line-height: 180%;
+          }
+          p + p {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+  #overlay {
+    position: fixed;
+    // background: rgba(black, 0.2);
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  #callout {
+    position: fixed;
+    z-index: 3;
+    top: calc(50% - 20px);
+    left: calc(50% + 108px);
+    svg {
+      width: auto;
+      height: 40px;
+      [fill] {
+        fill: white;
+      }
+    }
+  }
+  #markers {
+    display: none;
+  }
+  .mapboxgl-marker {
+    width: 0;
+    height: 0;
+    // outline: 3px solid yellow;
+    &.shadow {
+      z-index: 1;
+      svg {
+        width: 28px;
+        height: 10px;
+        transform: translate(-14px, 3px) scale(0.9);
+      }
+    }
+    &.icon {
+      z-index: 3;
+      &:hover {
+        z-index: 4;
+      }
+      button {
+        width: 70px;
+        height: 70px;
+        padding-bottom: 10px;
+        box-sizing: border-box;
+        transform: translate(-50%, -80%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        &.active {
+          height: 100px;
+          width: 100px;
+          svg.marker,
+          svg.star-marker {
+            height: 80%;
+            .border {
+              opacity: 1;
+            }
+          }
+        }
+        &:hover:not(.active) {
+          svg.marker,
+          svg.star-marker {
+            height: 80%;
+            .border {
+              opacity: 1;
+            }
+          }
+          p {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        svg.marker,
+        svg.star-marker {
+          transition: all 300ms $easeOutExpo;
+          height: 60%;
+          width: auto;
+          .border {
+            transition: opacity 300ms $easeOutExpo;
+            opacity: 0;
+          }
+        }
+        p {
+          position: absolute;
+          bottom: 100%;
+          left: 11px;
+          font-family: $regular;
+          font-size: 16px;
+          line-height: 28px;
+          height: 28px;
+          padding: 0 8px;
+          background: white;
+          border-radius: 2px;
+          white-space: nowrap;
+          color: $grey-7;
+          opacity: 0;
+          transition: all 300ms $easeOutExpo;
+          transition-property: opacity, transform;
+          transform: translateY(20px);
+          svg.arrow-down {
+            position: absolute;
+            bottom: -8px;
+            left: 9px;
+            width: 22px;
+            height: auto;
+            [fill] {
+              fill: white;
+            }
+          }
+        }
+      }
+    }
+  }
+  .loading {
+    p {
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+    .preload {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/webp;base64,#{$interflux-network-map}');
+      background-size: cover;
+      filter: blur(15px);
+    }
+  }
+}

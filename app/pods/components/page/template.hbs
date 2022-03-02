@@ -1,9 +1,11 @@
-{{#if this.showMobileHeader}}
-  <Header::Mobile
-    @title={{if @error 'Whoops' this.title}}
-    @backRoute={{this.backRoute}}
-    @backModel={{this.backModel}}
-  />
+{{#if this.page.showHeader}}
+  {{#if this.showMobileHeader}}
+    <Header::Mobile
+      @title={{if @error 'Whoops' this.title}}
+      @backRoute={{this.backRoute}}
+      @backModel={{this.backModel}}
+    />
+  {{/if}}
 {{/if}}
 
 <div
@@ -13,10 +15,12 @@
   data-main={{this.id}}
   onclick={{this.onPageClick}}
 >
-  {{#if this.showDesktopHeader}}
-    <Header::Desktop @theme={{this.page.theme}} />
-    {{#if @crumbs}}
-      <Breadcrumbs @crumbs={{@crumbs}} />
+  {{#if this.page.showHeader}}
+    {{#if this.showDesktopHeader}}
+      <Header::Desktop @theme={{this.page.theme}} />
+      {{#if @crumbs}}
+        <Breadcrumbs @crumbs={{@crumbs}} />
+      {{/if}}
     {{/if}}
   {{/if}}
 
@@ -29,9 +33,8 @@
     {{yield}}
   </main>
 
-  <div class='spacer'></div>
-
-  {{#if this.showFooter}}
+  {{#if this.page.showFooter}}
+    <div class='spacer'></div>
     <Footer />
   {{/if}}
 </div>

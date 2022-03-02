@@ -54,24 +54,37 @@
     </Section>
 
     <Section @id='documents' @class='list'>
-      <SearchList @input-placeholder='Search' @input-class='big white shadow'>
+      <TextInput
+        @theme='classic'
+        @icon='search'
+        @onChange={{this.onSearch}}
+        @value={{this.query}}
+      />
+
+      <FilterableList>
         <ul>
           {{#each @model.category.documents as |document|}}
-            <li>
+            <li data-search-parent>
               <div class='left'>
-                <p data-search='me'>{{document.name}} (PDF)</p>
+                <p>
+                  <span data-search-me>{{document.name}}</span>
+                  <span> (PDF)</span>
+                </p>
               </div>
 
               <div class='right'>
                 {{#each document.files as |file|}}
-                  <Button @url={{file.url}} @text={{file.language}} />
+                  <Button
+                    @url={{file.url}}
+                    @text={{file.language}}
+                    @theme='tertiary medium blue-text'
+                  />
                 {{/each}}
               </div>
-
             </li>
           {{/each}}
         </ul>
-      </SearchList>
+      </FilterableList>
     </Section>
   </Modal>
 

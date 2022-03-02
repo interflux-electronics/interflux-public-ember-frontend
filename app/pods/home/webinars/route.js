@@ -14,17 +14,23 @@ export default class WebinarsRoute extends BaseRoute {
       id: 'webinars',
       title: 'Webinars',
       backRoute: 'home',
-      theme: 'green'
+      theme: 'green overlap'
     });
   }
 
   model() {
     return hash({
-      webinars: this.store.query('webinar', {
-        include: ['image', 'video', 'document', 'person'].join(',')
-      })
+      webinars:
+        this.cache.webinars ||
+        this.store.query('webinar', {
+          include: ['image', 'video', 'document', 'person'].join(',')
+        })
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
       // delay: new Promise((resolve) => setTimeout(resolve, 30 * 1000))
     });
+  }
+
+  afterModel(model) {
+    this.cache.webinars = model.webinars;
   }
 }

@@ -25,10 +25,13 @@ export default class PageComponent extends Component {
   }
 
   get pageClasses() {
-    return this.modal.showModal ? 'prevent-scroll' : null;
+    return this.modal.showModal ? 'prevent-scroll' : 'allow-scroll';
   }
 
   get mainClasses() {
+    if (!this.page.mainClasses && !this.args.class) {
+      return null;
+    }
     return [this.page.mainClasses, this.args.class]
       .filter((x) => !!x)
       .join(' ');
@@ -46,10 +49,6 @@ export default class PageComponent extends Component {
 
   get showDesktopHeader() {
     return this.media.isDesktopWidescreen && !this.args.loading;
-  }
-
-  get showFooter() {
-    return !this.args.loading;
   }
 
   @action

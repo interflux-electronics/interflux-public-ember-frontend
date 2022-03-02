@@ -1,0 +1,229 @@
+<Section @id='questionair' @aria-labelledby='find-h2'>
+  <h2 id='find-h2'>Find the right person</h2>
+
+  <div class='step'>
+    <h3>What would you like to do?</h3>
+    <Pills
+      @options={{array
+        'order products'
+        'request technical support'
+        'request a document'
+        'report issue with website'
+        'something else'
+      }}
+      @onSelect={{fn (mut this.intention)}}
+      @selectedOption={{this.intention}}
+    />
+  </div>
+
+  {{#if (eq this.intention 'order products')}}
+    <div class='step'>
+      <h3>To which country do the products need to be shipped?</h3>
+      {{#unless this.shipToCountry}}
+        <Search
+          @onSelect={{fn (mut this.shipToCountry)}}
+          @searchModel='country'
+          @searchLabel='nameEnglish'
+          @searchFilter='nameEnglish'
+          @minKeyStrokes='1'
+        />
+      {{/unless}}
+
+      {{#if this.suggestedCountries.length}}
+        <Pills
+          @layout='horizontal'
+          @options={{this.suggestedCountries}}
+          @label='nameEnglish'
+          @onSelect={{fn (mut this.shipToCountry)}}
+          @selectedOption={{this.shipToCountry}}
+        />
+      {{/if}}
+
+      {{!--
+      <Search
+        @id={{this.id}}
+        @theme={{@theme}}
+        @placeholder="Search"
+        @disabled={{@disabled}}
+        @value={{this.value}}
+        @state={{this.state}}
+        @onFocus={{this.onFocus}}
+        @onBlur={{this.onBlur}}
+        @onKeyUp={{this.onKeyUp}}
+        @onSelect={{this.onSelect}}
+        @searchModel={{@targetModel}}
+        @searchLabel={{@targetLabel}}
+        @searchFilter={{@targetFilter}}
+        @searchPermanentFilters={{@targetPermanentFilters}}
+        @minKeyStrokes={{@minKeyStrokes}}
+        @error={{this.error}}
+      />
+
+      <Input::Search
+        @label='To which country do we need to ship the order?'
+        @targetModel='country'
+        @targetLabel='nativeName'
+        @suggestions={{array 'Belgium' 'France' 'Luxemburg'}}
+        @onSelect={{fn (mut this.country)}}
+      />
+      --}}
+    </div>
+
+    {{#if this.shipToCountry}}
+      <div class='step'>
+        <h3>You can place your order with the following companies:</h3>
+
+        <ol class='companies'>
+          {{#each this.shipToCountry.marketsSorted as |market|}}
+            <li>
+              <p>{{market.rankAmongCompanies}}.</p>
+              <Button
+                @route='partners.map.partner'
+                @model={{market.company.slug}}
+                @text={{market.company.businessName}}
+                @theme='medium tertiary blue-text'
+              />
+              {{#if market.companyIsRecommended}}
+                <p class='recommended'>
+                  <Svg::ThumbsUp />
+                  <span>recommended</span>
+                </p>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ol>
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if (eq this.intention 'request technical support')}}
+    <div class='step'>
+      <h3>Please email us and we'll connect you to an expert.</h3>
+      <p>
+        <a href='mailto:support@interflux.com'>support@interflux.com</a>
+      </p>
+      <p>To let us help you faster, please describe:</p>
+      <ul class='bullets'>
+        <li>What you are trying to do</li>
+        <li>Which Interflux products are involved</li>
+        <li>Observed issues</li>
+        <li>Desired outcomes</li>
+      </ul>
+    </div>
+  {{/if}}
+
+  {{#if (eq this.intention 'request a document')}}
+    <div class='step'>
+      <h3>What type of document?</h3>
+      <Pills
+        @options={{array 'Safety data sheet (SDS)' 'something else'}}
+        @onSelect={{fn (mut this.neededDocument)}}
+        @selectedOption={{this.neededDocument}}
+      />
+    </div>
+
+    {{#if (eq this.neededDocument 'Safety data sheet (SDS)')}}
+      <div class='step'>
+        <h3>Please email our REACH coordinator on:</h3>
+        <p>
+          <a href='mailto:reach@interflux.com'>reach@interflux.com</a>
+        </p>
+        <p>A due diligence check is required. We hope you don't mind.</p>
+
+        {{!--
+        <Input::Search
+          @label='For which product do you need an SDS?'
+          @targetModel='product'
+          @targetLabel='name'
+          @suggestions={{array 'IF 2005M' 'LMPA Q6' 'Purgel'}}
+          @onSelect={{fn (mut this.sdsProduct)}}
+        />
+        --}}
+      </div>
+    {{/if}}
+
+    {{#if (eq this.neededDocument 'something else')}}
+      <div class='step'>
+        <!-- <Input::Search
+          @label='Please use the following search. There is a good chance it can be found on in our document library.'
+          @targetModel='document'
+          @targetLabel='name'
+          @suggestions={{array
+            'Technical Data LMPA-Q6'
+            'No conflict mineral declaration'
+            'RoHS compliance statement'
+          }}
+          @onSelect={{fn (mut this.country)}}
+        /> -->
+        <p>If the document cannot be found, then by all means contact us on the
+          email below. We are happy to help.</p>
+        <p>
+          <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
+        </p>
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if (eq this.intention 'report issue with website')}}
+    <div class='step'>
+      <h3>Please describe the issue.</h3>
+      <p>What were you trying to do on our website?</p>
+      <textarea rows='8' cols='80'></textarea>
+      <p>What went wrong?</p>
+      <textarea rows='8' cols='80'></textarea>
+      <p>Which browser are you on?</p>
+      <Pills
+        @layout='horizontal'
+        @options={{array
+          'Chrome'
+          'Firefox'
+          'Edge'
+          'Safari'
+          'Opera'
+          'Brave'
+          'Internet Exploder'
+          'Other'
+        }}
+        @onSelect={{fn (mut this.browser)}}
+        @selectedOption={{this.browser}}
+      />
+      <p>What device are you on?</p>
+      <Pills
+        @layout='horizontal'
+        @options={{array
+          'Windows'
+          'Mac'
+          'Android'
+          'iPhone'
+          'iPad'
+          'Linux'
+          'Other'
+        }}
+        @onSelect={{fn (mut this.device)}}
+        @selectedOption={{this.device}}
+      />
+      <p>Can we contact you if we need more information?</p>
+      <Pills
+        @layout='horizontal'
+        @options={{array 'Yes' 'No'}}
+        @onSelect={{fn (mut this.canContact)}}
+        @selectedOption={{this.canContact}}
+      />
+      <Button
+        @text='Send report'
+        @theme='medium primary green'
+        @onClick={{this.sendBugReport}}
+      />
+    </div>
+  {{/if}}
+
+  {{#if (eq this.intention 'something else')}}
+    <div class='step'>
+      <h3>Ask us anything.</h3>
+      <p>
+        <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
+      </p>
+      <p>We typically respond within 12 hours, except on weekends.</p>
+    </div>
+  {{/if}}
+</Section>

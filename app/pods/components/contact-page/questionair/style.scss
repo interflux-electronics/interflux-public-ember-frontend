@@ -1,0 +1,71 @@
+#contact-new {
+  #questionair {
+    @include dashed-line-on-top;
+    .liner {
+      max-width: 900px;
+      padding: 100px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    h2 {
+      margin-bottom: 32px;
+    }
+    h3 + .pills,
+    h3 + .search {
+      margin-top: 20px;
+    }
+    h3 + p {
+      margin-top: 18px;
+    }
+    p + ul.bullets {
+      margin-top: 18px;
+    }
+    .search + .pills {
+      margin-top: 18px;
+    }
+    .step + .step {
+      @include dashed-line-on-top;
+      margin-top: 40px;
+      padding-top: 40px;
+    }
+    ul.bullets {
+      list-style: disc;
+      padding-left: 20px;
+      li {
+        font-size: 16px;
+        line-height: 180%;
+        display: flex;
+      }
+    }
+    ol.companies {
+      margin-top: 20px;
+      li {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        a {
+          transition: padding 300ms $easeOutExpo;
+          &:hover {
+            padding: 0 12px;
+          }
+        }
+        p.recommended {
+          background: $orange-3;
+          font-family: $semibold;
+          color: white;
+          padding: 0 10px;
+          display: flex;
+          gap: 8px;
+          svg {
+            width: 15px;
+            height: auto;
+            [fill] {
+              fill: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
