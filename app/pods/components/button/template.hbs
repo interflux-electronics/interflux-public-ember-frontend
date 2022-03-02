@@ -10,7 +10,21 @@
       @text={{this.product.name}}
     />
    --}}
-  {{#if @model}}
+  {{#if @query}}
+    <LinkTo
+      @route={{@route}}
+      @query={{@query}}
+      id={{@id}}
+      class={{this.classes}}
+      onclick={{this.onClick}}
+      onfocus={{this.onFocus}}
+      onmouseenter={{this.onMouseEnter}}
+    >
+      <Button::Content @text={{@text}} @icon={{@icon}}>
+        {{yield}}
+      </Button::Content>
+    </LinkTo>
+  {{else if @model}}
     <a
       id={{@id}}
       class={{this.classes}}

@@ -78,8 +78,8 @@
             <li>
               <p>{{market.rankAmongCompanies}}.</p>
               <Button
-                @route='partners.map.partner'
-                @model={{market.company.slug}}
+                @route='partners.map'
+                @query={{hash show=market.company.slug}}
                 @text={{market.company.businessName}}
                 @theme='medium tertiary blue-text'
               />
