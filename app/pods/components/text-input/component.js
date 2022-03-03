@@ -8,7 +8,6 @@ export default class InputString extends Component {
 
   get classes() {
     return [
-      'text-input',
       this.args.theme || null,
       this.args.icon && this.iconIsValid ? 'has-icon' : 'no-icon',
       this.hasFocus ? 'has-focus' : 'no-focus',

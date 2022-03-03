@@ -10,7 +10,6 @@ export default class SearchComponent extends Component {
   // @arg autofocus
   // @arg disabled
   // @arg value
-  // @arg state
   // @arg onFocus
   // @arg onBlur
   // @arg onKeyUp
@@ -23,14 +22,16 @@ export default class SearchComponent extends Component {
 
   @service store;
   @service api;
+  @service window;
 
   @tracked focus = false;
   @tracked hover = false;
+  @tracked state = 'idle'; // idle, warning, error, saving, dirty
 
   get classes() {
     return [
       this.args.theme || 'primary',
-      this.args.state || 'no-state',
+      this.state,
       this.hover ? 'hover' : 'no-hover',
       this.focus ? 'focus' : 'no-focus'
     ].join(' ');
@@ -58,7 +59,6 @@ export default class SearchComponent extends Component {
 
   get showResults() {
     return this.value.length >= this.minKeyStrokes;
-    // return !(this.value === this.recordValue || !this.value);
   }
 
   get keepTypingMessage() {
@@ -276,7 +276,7 @@ export default class SearchComponent extends Component {
     this.recordsForQuery = null;
     this.error = false;
 
-    // Show loadspinner
+    // Show loading state
     this.isSearching = true;
 
     // Prepare filters
@@ -341,7 +341,7 @@ export default class SearchComponent extends Component {
 
     // We add an intentional delay to allow the <Search> component to render the results before
     // ending the loading its loading state.
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    await this.window.delay(100);
 
     this.isSearching = false;
   }
