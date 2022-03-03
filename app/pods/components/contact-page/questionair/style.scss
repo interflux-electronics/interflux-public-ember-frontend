@@ -34,7 +34,6 @@
       li {
         font-size: 16px;
         line-height: 180%;
-        display: flex;
       }
     }
     ol.companies {
@@ -43,7 +42,7 @@
         height: 40px;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
         a {
           transition: padding 300ms $easeOutExpo;
           &:hover {
@@ -52,11 +51,12 @@
         }
         p.recommended {
           background: $orange-3;
-          font-family: $semibold;
           color: white;
           padding: 0 10px;
           display: flex;
           gap: 8px;
+          margin: 0;
+          line-height: 26px;
           svg {
             width: 15px;
             height: auto;

@@ -18,7 +18,7 @@
 
   {{#if (eq this.intention 'order products')}}
     <div class='step'>
-      <h3>To which country do the products need to be shipped?</h3>
+      <h3>To which country?</h3>
       {{#unless this.country}}
         <Search
           @onSelect={{this.onCountrySelect}}
@@ -38,51 +38,28 @@
           @selectedOption={{this.country}}
         />
       {{/if}}
-
-      {{!--
-      <Search
-        @id={{this.id}}
-        @theme={{@theme}}
-        @placeholder="Search"
-        @disabled={{@disabled}}
-        @value={{this.value}}
-        @state={{this.state}}
-        @onFocus={{this.onFocus}}
-        @onBlur={{this.onBlur}}
-        @onKeyUp={{this.onKeyUp}}
-        @onSelect={{this.onSelect}}
-        @searchModel={{@targetModel}}
-        @searchLabel={{@targetLabel}}
-        @searchFilter={{@targetFilter}}
-        @searchPermanentFilters={{@targetPermanentFilters}}
-        @minKeyStrokes={{@minKeyStrokes}}
-        @error={{this.error}}
-      />
-
-      <Input::Search
-        @label='To which country do we need to ship the order?'
-        @targetModel='country'
-        @targetLabel='nativeName'
-        @suggestions={{array 'Belgium' 'France' 'Luxemburg'}}
-        @onSelect={{fn (mut this.country)}}
-      />
-      --}}
     </div>
 
     {{#if this.country}}
       <div class='step'>
-        <h3>You can place your order with the following companies:</h3>
+        {{#if (gt this.country.marketsSorted.length 1)}}
+          <h3>Send your order to one of the following:</h3>
+        {{else}}
+          <h3>Send your order to:</h3>
+        {{/if}}
 
         <ol class='companies'>
           {{#each this.country.marketsSorted as |market|}}
             <li>
-              <p>{{market.rankAmongCompanies}}.</p>
-              <Button
-                @route='partners.map'
-                @query={{hash show=market.company.slug}}
-                @text={{market.company.businessName}}
-                @theme='medium tertiary blue-text'
-              />
+              <Flag @country={{market.company.country}} />
+              <p>
+                <LinkTo
+                  @route='partners.map'
+                  @query={{hash show=market.company.slug}}
+                >
+                  {{market.company.businessName}}
+                </LinkTo>
+              </p>
               {{#if market.companyIsRecommended}}
                 <p class='recommended'>
                   <Svg::ThumbsUp />
