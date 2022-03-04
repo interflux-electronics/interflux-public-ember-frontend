@@ -8,7 +8,6 @@
         'order products'
         'request technical support'
         'request a document'
-        'report issue with website'
         'something else'
       }}
       @onSelect={{fn (mut this.intention)}}
@@ -43,9 +42,9 @@
     {{#if this.country}}
       <div class='step'>
         {{#if (gt this.country.marketsSorted.length 1)}}
-          <h3>Send your order to one of the following:</h3>
+          <h3>Please send your order to one of the following:</h3>
         {{else}}
-          <h3>Send your order to:</h3>
+          <h3>Please send your order to:</h3>
         {{/if}}
 
         <ol class='companies'>
@@ -105,7 +104,6 @@
         <p>
           <a href='mailto:reach@interflux.com'>reach@interflux.com</a>
         </p>
-        <p>A due diligence check is required. We hope you don't mind.</p>
 
         {{!--
         <Input::Search
@@ -121,19 +119,46 @@
 
     {{#if (eq this.neededDocument 'something else')}}
       <div class='step'>
-        <!-- <Input::Search
-          @label='Please use the following search. There is a good chance it can be found on in our document library.'
-          @targetModel='document'
-          @targetLabel='name'
-          @suggestions={{array
-            'Technical Data LMPA-Q6'
-            'No conflict mineral declaration'
-            'RoHS compliance statement'
-          }}
-          @onSelect={{fn (mut this.country)}}
-        /> -->
-        <p>If the document cannot be found, then by all means contact us on the
-          email below. We are happy to help.</p>
+        <h3>Are you able to find the document in our library?</h3>
+
+        <Search
+          @value={{this.document}}
+          @onSelect={{this.onDocumentSelect}}
+          @searchModel='document'
+          @searchLabel='name'
+          @searchFilter='name'
+          @minKeyStrokes='1'
+        />
+
+        {{#if this.document}}
+          <div class='links'>
+            {{#each this.document.files as |file|}}
+              <p>
+                <Svg::File />
+                <Link @url={{file.url}} @label={{file.language}} />
+              </p>
+            {{/each}}
+          </div>
+        {{/if}}
+
+        <Pills
+          @options={{array 'Yes' 'No'}}
+          @onSelect={{fn (mut this.foundDoc)}}
+          @selectedOption={{this.foundDoc}}
+          @layout='horizontal'
+        />
+      </div>
+    {{/if}}
+
+    {{#if (eq this.foundDoc 'Yes')}}
+      <div class='step'>
+        <h3>Great!</h3>
+      </div>
+    {{/if}}
+
+    {{#if (eq this.foundDoc 'No')}}
+      <div class='step'>
+        <h3>Please email us and we'll find it for you:</h3>
         <p>
           <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
         </p>
@@ -141,6 +166,7 @@
     {{/if}}
   {{/if}}
 
+  {{!--
   {{#if (eq this.intention 'report issue with website')}}
     <div class='step'>
       <h3>Please describe the issue.</h3>
@@ -193,6 +219,7 @@
       />
     </div>
   {{/if}}
+  --}}
 
   {{#if (eq this.intention 'something else')}}
     <div class='step'>

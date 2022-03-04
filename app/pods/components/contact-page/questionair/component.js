@@ -9,6 +9,8 @@ export default class ContactPageQuestionairComponent extends Component {
   @tracked browser;
   @tracked device;
   @tracked canContact;
+  @tracked foundDoc;
+  @tracked document;
 
   @action
   sendBugReport() {
@@ -22,6 +24,11 @@ export default class ContactPageQuestionairComponent extends Component {
   onCountrySelect(country) {
     this.country = country;
     this.selectedCountries = [...this.selectedCountries, country];
+  }
+
+  @action
+  onDocumentSelect(document) {
+    this.document = document;
   }
 
   get uniqueSelectedCountries() {

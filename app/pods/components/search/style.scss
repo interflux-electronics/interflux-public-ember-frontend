@@ -28,10 +28,13 @@
     border-radius: 3px;
     transition: box-shadow 300ms $easeOutExpo;
     overflow: hidden;
+
     input {
       border-color: transparent !important;
       box-shadow: none !important;
       border-radius: 0;
+      width: 100%;
+      height: 38px; // 2px smaller because we use wrapper border instead of input border
 
       /* clears the 'X' from Internet Explorer */
       &::-ms-clear,
@@ -48,6 +51,11 @@
       &::-webkit-search-results-decoration {
         display: none;
       }
+    }
+
+    .icon {
+      width: 38px;
+      height: 38px;
     }
 
     .results {
