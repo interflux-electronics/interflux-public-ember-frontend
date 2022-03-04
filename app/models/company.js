@@ -83,6 +83,8 @@ export default class CompanyModel extends Model {
   }
 
   get slug() {
-    return this.businessName.replace(/\(|\)|®|,|\./g, '').replace(/\s/g, '-');
+    return this.businessName
+      .replace(/\(|\)|®|,|\.|\//g, '')
+      .replace(/\s/g, '-');
   }
 }
