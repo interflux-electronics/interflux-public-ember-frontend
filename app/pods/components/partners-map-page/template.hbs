@@ -142,6 +142,14 @@
                       />
                     </p>
                   {{/if}}
+                  {{#if member.verifiedLandline}}
+                    <p>
+                      <Link
+                        @url='tel:{{member.landlineForRobots}}'
+                        @label={{member.verifiedLandline}}
+                      />
+                    </p>
+                  {{/if}}
                 </div>
               </li>
             {{/each}}

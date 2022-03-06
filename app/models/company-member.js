@@ -4,10 +4,12 @@ export default class CompanyMemberModel extends Model {
   @attr('string') title;
   @attr('string') email;
   @attr('string') phone;
+  @attr('string') landline;
   @attr('boolean') public;
   @attr('boolean') publicTitle;
   @attr('boolean') publicEmail;
   @attr('boolean') publicPhone;
+  @attr('boolean') publicLandline;
   @attr('number') rankAmongCompanies;
   @attr('number') rankAmongMembers;
 
@@ -34,7 +36,23 @@ export default class CompanyMemberModel extends Model {
     return null;
   }
 
+  get verifiedLandline() {
+    if (!this.publicLandline && this.landline) {
+      console.warn(
+        `a non-public landline was serialised for ${this.person.name}`
+      );
+    }
+    if (this.publicLandline && this.landline) {
+      return this.landline;
+    }
+    return null;
+  }
+
   get phoneForRobots() {
     return this.phone ? this.phone.replace(/\s|-|\.|\(|\)/g, '') : null;
+  }
+
+  get landlineForRobots() {
+    return this.landline ? this.landline.replace(/\s|-|\.|\(|\)/g, '') : null;
   }
 }
