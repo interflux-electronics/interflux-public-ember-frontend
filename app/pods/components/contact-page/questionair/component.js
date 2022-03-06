@@ -34,21 +34,20 @@ export default class ContactPageQuestionairComponent extends Component {
     this.document = document;
   }
 
-  get uniqueSelectedCountries() {
-    const ids = this.selectedCountries.mapBy('id').uniq();
+  // TODO include the country of the users profile
+  // TODO make assumption based on browser language
+  get suggestedCountries() {
+    const { ipCountry } = this.user;
+    const countries = this.selectedCountries;
 
-    if (this.user.ipCountryId) {
-      ids.push(this.user.ipCountryId);
+    if (ipCountry) {
+      countries.push(ipCountry);
     }
+
+    const ids = countries.mapBy('id').uniq();
 
     return ids.map((id) => {
       return this.args.countries.findBy('id', id);
     });
-  }
-
-  // TODO include the country of the users profile
-  // TODO make assumption based on browser language
-  get suggestedCountries() {
-    return this.uniqueSelectedCountries;
   }
 }

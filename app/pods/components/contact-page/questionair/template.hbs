@@ -3,16 +3,20 @@
 
   <div class='step'>
     <h3>What would you like to do?</h3>
-    <Pills
-      @options={{array
-        'order products'
-        'request technical support'
-        'request a document'
-        'something else'
-      }}
-      @onSelect={{fn (mut this.intention)}}
-      @selectedOption={{this.intention}}
-    />
+    {{#if @isLoading}}
+      <p>Loading ...</p>
+    {{else}}
+      <Pills
+        @options={{array
+          'order products'
+          'request technical support'
+          'request a document'
+          'something else'
+        }}
+        @onSelect={{fn (mut this.intention)}}
+        @selectedOption={{this.intention}}
+      />
+    {{/if}}
   </div>
 
   {{#if (eq this.intention 'order products')}}
