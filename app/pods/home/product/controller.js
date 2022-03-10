@@ -120,9 +120,4 @@ export default class ProductController extends Controller {
   openShareModal() {
     console.log('openShareModal');
   }
-
-  @action
-  openChat() {
-    window.LiveChatWidget.call('maximize');
-  }
 }
