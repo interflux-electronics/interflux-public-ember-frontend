@@ -25,14 +25,17 @@ export default class ContactRoute extends BaseRoute {
         this.store.findAll('company', {
           include: ['public_members', 'public_members.person'].join(',')
         }),
-      countries: this.cache.countries || this.store.findAll('country')
+      countries: this.cache.countries || this.store.findAll('country'),
+      markets: this.cache.markets || this.store.findAll('company-market')
+
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
       // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });
   }
 
   afterModel(model) {
-    this.cache.countries = model.countries;
     this.cache.companies = model.companies;
+    this.cache.countries = model.countries;
+    this.cache.markets = model.markets;
   }
 }

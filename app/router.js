@@ -20,7 +20,6 @@ Router.map(function () {
       this.route('category', { path: '/:category' });
     });
     this.route('contact', { resetNamespace: true });
-    this.route('contact-new', { resetNamespace: true });
     this.route('partners', { resetNamespace: true }, function () {
       this.route('map');
     });
