@@ -60,7 +60,7 @@ export default class SessionService extends Service {
       await this.window.delay(1000);
       this.record = await this.store.findRecord('session', this.record.id);
       counter++;
-      if (this.countryCode) {
+      if (this.ipCountryId) {
         done = true;
       }
     }
