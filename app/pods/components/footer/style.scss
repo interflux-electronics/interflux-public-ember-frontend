@@ -41,16 +41,21 @@ footer {
           color: white;
         }
         img {
+          height: auto;
           @include widescreen {
+            width: 20px;
             margin-right: px(0.4vw);
           }
           @include desktop {
+            width: vw(20px);
             margin-right: 0.4vw;
           }
           @include tablet {
+            width: 2.5vw;
             margin-right: 1vw;
           }
           @include mobile {
+            width: 5vw;
             margin-right: 2vw;
           }
         }

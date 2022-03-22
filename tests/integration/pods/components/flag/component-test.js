@@ -16,7 +16,7 @@ module('Integration | Component | flag', function (hooks) {
 
     const img = this.element.querySelector('img.flag');
 
-    assert.equal(img.src, 'http://localhost:9000/images/public/flags/FL.svg');
+    assert.equal(img.src, 'http://localhost:9000/images/flags/FL.svg');
     assert.equal(img.alt, 'FooLand');
     assert.ok(img.classList.contains('fl'));
   });

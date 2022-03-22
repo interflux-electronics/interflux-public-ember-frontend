@@ -13,7 +13,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'English',
       nameNative: 'English',
       supported: true,
-      ready: true
+      ready: true,
+      flag: 'GB'
     },
     {
       id: 'es',
@@ -21,7 +22,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Spanish',
       nameNative: 'Español',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'ES'
     },
     {
       id: 'de',
@@ -29,7 +31,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'German',
       nameNative: 'Deutsch',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'DE'
     },
     {
       id: 'fr',
@@ -37,7 +40,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'French',
       nameNative: 'français',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'FR'
     },
     {
       id: 'sv',
@@ -45,7 +49,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Swedish',
       nameNative: 'Svenska',
       supported: false,
-      ready: false
+      ready: false,
+      flag: 'SE'
     },
     {
       id: 'pl',
@@ -53,7 +58,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Polish',
       nameNative: 'Polski',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'PL'
     },
     {
       id: 'tr',
@@ -61,7 +67,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Turkish',
       nameNative: 'Türkçe',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'TR'
     },
     {
       id: 'th',
@@ -69,7 +76,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Thai',
       nameNative: 'ภาษาไทย',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'TH'
     },
     {
       id: 'ru',
@@ -77,7 +85,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Russian',
       nameNative: 'Русский',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'RU'
     },
     {
       id: 'ro',
@@ -85,7 +94,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Romanian',
       nameNative: 'Română',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'RO'
     },
     {
       id: 'pt',
@@ -93,7 +103,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Portugese',
       nameNative: 'Português',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'PT'
     },
     {
       id: 'id',
@@ -101,7 +112,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Indonesian',
       nameNative: 'Bahasa Indonesia',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'ID'
     },
     {
       id: 'it',
@@ -109,7 +121,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Italian',
       nameNative: 'Italiano',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'IT'
     },
     {
       id: 'cs',
@@ -117,7 +130,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Chech',
       nameNative: 'Čeština',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'CZ'
     },
     {
       id: 'zh',
@@ -125,7 +139,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Chinese',
       nameNative: '中文',
       supported: true,
-      ready: false
+      ready: false,
+      flag: 'CN'
     },
     {
       id: 'ja',
@@ -133,7 +148,8 @@ export default class TranslationService extends Service {
       nameEnglish: 'Japanese',
       nameNative: '日本語 (にほんご)',
       supported: false,
-      ready: false
+      ready: false,
+      flag: 'JP'
     }
   ];
 
