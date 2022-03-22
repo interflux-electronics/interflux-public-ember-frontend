@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ContactPageQuestionairComponent extends Component {
-  @service user;
+  @service session;
 
   @tracked intention;
   @tracked neededDocument;
@@ -37,7 +37,7 @@ export default class ContactPageQuestionairComponent extends Component {
   // TODO include the country of the users profile
   // TODO make assumption based on browser language
   get suggestedCountries() {
-    const { ipCountry } = this.user;
+    const { ipCountry } = this.session;
     const countries = this.selectedCountries;
 
     if (ipCountry) {

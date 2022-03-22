@@ -6,7 +6,7 @@ export default class PartnersMapPageComponent extends Component {
   @service mapbox;
   @service router;
   @service window;
-  @service user;
+  @service session;
 
   get countries() {
     return this.args.countries;
@@ -66,7 +66,7 @@ export default class PartnersMapPageComponent extends Component {
       'pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug';
 
     const { company, companies } = this;
-    const { ipCountry } = this.user;
+    const { ipCountry } = this.session;
 
     const center = company
       ? { lon: company.longitude, lat: company.latitude }
