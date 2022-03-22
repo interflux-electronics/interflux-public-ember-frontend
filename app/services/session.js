@@ -52,17 +52,15 @@ export default class SessionService extends Service {
     this.updateSoon();
   }
 
-  async updateSoon() {
-    let done = false;
-    let counter = 0;
+  @tracked updateCount = 0;
 
-    while (!done && counter < 5) {
-      await this.window.delay(1000);
-      this.record = await this.store.findRecord('session', this.record.id);
-      counter++;
-      if (this.ipCountryId) {
-        done = true;
-      }
+  async updateSoon() {
+    this.updateCount = this.updateCount + 1;
+    await this.window.delay(500);
+    this.record = await this.store.findRecord('session', this.record.id);
+    await this.window.delay(500); // prevents a second request... HACK
+    if (!this.ipCountryId && this.updateCount < 5) {
+      this.updateSoon();
     }
   }
 }
