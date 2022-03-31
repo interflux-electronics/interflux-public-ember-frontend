@@ -8,9 +8,9 @@
   </Section>
 
   <Section @id='map' @aria-labelledby='map'>
-    <h2 id='map-h2'>We offer worldwide support</h2>
+    <h2 id='map-h2' class='h2'>We offer support worldwide</h2>
 
-    <p>
+    <p class='p'>
       The Interflux Network consists of 40 partners worldwide and is located in
       key regions for the electronics manufacturing industry. That means there
       is good chance someone near you can deliver Interflux products and
@@ -19,7 +19,7 @@
 
     <div class='container'>
       {{#if @isLoading}}
-        <p>Loading ...</p>
+        <p class='p'>Loading ...</p>
         <div class='preload'></div>
       {{else}}
         <Button @route='partners.map' @class='map'>
@@ -66,10 +66,10 @@
     </div>
 
     <div class='text'>
-      <h2 id='join-h2'>Become an Interflux Partner</h2>
-      <p>Gain access to our worldwide distribution network, exclusivity to
-        distribute Interflux products in your region and some of the best
-        soldering chemistry your customers have ever tried.</p>
+      <h2 id='join-h2' class='h2'>Become an Interflux Partner</h2>
+      <p class='p'>Gain access to our worldwide distribution network,
+        exclusivity to distribute Interflux products in your region and some of
+        the best soldering chemistry your customers have ever tried.</p>
       <Button
         @text='Learn more'
         @icon='lightbulb'

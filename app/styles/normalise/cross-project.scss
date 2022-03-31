@@ -138,3 +138,62 @@ dl {
     margin: 0; // Undo the browser default
   }
 }
+
+.h1 {
+  color: red;
+}
+
+.h2 {
+  font-family: $light;
+  line-height: 140%;
+  color: $grey-7;
+  @include widescreen {
+    font-size: 32px;
+  }
+  @include desktop {
+    font-size: vw(32px);
+  }
+  @include tablet {
+    font-size: 2.3vw; // TODO
+  }
+  @include mobile {
+    font-size: 7.5vw;
+  }
+}
+
+.h3 {
+  font-family: $bold;
+  line-height: 150%;
+  color: $grey-7;
+  @include widescreen {
+    font-size: 17px;
+  }
+  @include desktop {
+    font-size: vw(17px);
+  }
+  @include tablet {
+    font-size: 2.3vw; // TODO
+  }
+  @include mobile {
+    font-size: 4.25vw;
+  }
+}
+
+.p {
+  font-family: $regular;
+  color: $grey-7;
+  line-height: 180%;
+  margin: 0;
+  @include widescreen {
+    font-size: 16px;
+  }
+  @include desktop {
+    font-size: vw(16px);
+  }
+  @include tablet {
+    font-size: 2.3vw; // TODO
+  }
+  @include mobile {
+    font-size: 4vw;
+  }
+}

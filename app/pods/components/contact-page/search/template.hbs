@@ -1,10 +1,10 @@
 <Section @id='search' @aria-labelledby='search-h2'>
-  <h2 id='search-h2'>Search our network</h2>
+  <h2 id='search-h2' class='h2'>Search our network</h2>
 
   {{#if @isLoading}}
-    <p>Loading ...</p>
+    <p class='p'>Loading ...</p>
   {{else}}
-    <p>Enter the name of a company, person or country.</p>
+    <p class='p'>Enter the name of a company, person or country.</p>
 
     <TextInput
       @value={{this.query}}
@@ -19,12 +19,12 @@
           <li data-search-parent>
             <LinkTo @route='partners.map' @query={{hash show=company.slug}}>
               <div class='company'>
-                <h3 data-search-me>{{company.businessName}}</h3>
+                <h3 class='h3' data-search-me>{{company.businessName}}</h3>
               </div>
 
               <div class='country'>
                 <Flag @country={{company.country}} />
-                <p data-search-me>{{company.country.nameEnglish}}</p>
+                <p class='p' data-search-me>{{company.country.nameEnglish}}</p>
               </div>
 
               <div class='members'>
@@ -46,7 +46,7 @@
                           />
                         {{/if}}
                       </div>
-                      <p data-search-me>{{member.fullName}}</p>
+                      <p class='p' data-search-me>{{member.fullName}}</p>
                     </li>
                   {{/each}}
                 </ul>
@@ -62,7 +62,7 @@
     </FilterableList>
 
     {{#if (eq this.matches 0)}}
-      <p>No results for "{{this.query}}".</p>
+      <p class='p'>No results for "{{this.query}}".</p>
     {{/if}}
   {{/if}}
 </Section>

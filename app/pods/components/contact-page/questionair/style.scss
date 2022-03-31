@@ -3,16 +3,52 @@
     @include dashed-line-on-top;
     .liner {
       max-width: 900px;
-      padding: 100px 30px;
       display: flex;
       flex-direction: column;
+      @include widescreen {
+        padding: 100px 30px;
+      }
+      @include desktop {
+        padding: vw(100px) vw(30px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        padding: 28vw 7.5vw;
+      }
     }
     h2 {
-      margin-bottom: 32px;
+      @include widescreen {
+        margin-bottom: 32px;
+      }
+      @include desktop {
+        margin-bottom: vw(32px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        margin-bottom: 8vw;
+      }
     }
     h3 + .pills,
     h3 + .search {
       margin-top: 20px;
+      h2 {
+        @include widescreen {
+          margin-top: 20px;
+        }
+        @include desktop {
+          margin-top: vw(20px);
+        }
+        @include tablet {
+          // TODO
+        }
+        @include mobile {
+          margin-top: 5vw;
+        }
+      }
     }
     h3 + p {
       margin-top: 18px;

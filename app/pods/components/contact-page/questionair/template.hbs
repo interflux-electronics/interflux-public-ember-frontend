@@ -1,8 +1,8 @@
 <Section @id='questionair' @aria-labelledby='find-h2'>
-  <h2 id='find-h2'>Find the right person</h2>
+  <h2 id='find-h2' class='h2'>Find the right person</h2>
 
   <div class='step'>
-    <h3>What would you like to do?</h3>
+    <h3 class='h3'>What do you want to do?</h3>
     {{#if @isLoading}}
       <p>Loading ...</p>
     {{else}}
@@ -21,7 +21,7 @@
 
   {{#if (eq this.intention 'order products')}}
     <div class='step'>
-      <h3>To which country?</h3>
+      <h3 class='h3'>To which country?</h3>
       {{#unless this.country}}
         <Search
           @onSelect={{this.onCountrySelect}}
@@ -46,16 +46,16 @@
     {{#if this.country}}
       <div class='step'>
         {{#if (gt this.country.marketsSorted.length 1)}}
-          <h3>Please send your order to one of the following:</h3>
+          <h3 class='h3'>Please send your order to one of the following:</h3>
         {{else}}
-          <h3>Please send your order to:</h3>
+          <h3 class='h3'>Please send your order to:</h3>
         {{/if}}
 
         <ol class='companies'>
           {{#each this.country.marketsSorted as |market|}}
             <li>
               <Flag @country={{market.company.country}} />
-              <p>
+              <p class='p'>
                 <LinkTo
                   @route='partners.map'
                   @query={{hash show=market.company.slug}}
@@ -64,7 +64,7 @@
                 </LinkTo>
               </p>
               {{#if market.companyIsRecommended}}
-                <p class='recommended'>
+                <p class='p recommended'>
                   <Svg::ThumbsUp />
                   <span>recommended</span>
                 </p>
@@ -78,7 +78,7 @@
 
   {{#if (eq this.intention 'request technical support')}}
     <div class='step'>
-      <h3>Please email us and we'll connect you to an expert.</h3>
+      <h3 class='h3'>Please email us and we'll connect you to an expert.</h3>
       <p>
         <a href='mailto:support@interflux.com'>support@interflux.com</a>
       </p>
@@ -94,7 +94,7 @@
 
   {{#if (eq this.intention 'request a document')}}
     <div class='step'>
-      <h3>What type of document?</h3>
+      <h3 class='h3'>What type of document?</h3>
       <Pills
         @options={{array 'Safety data sheet (SDS)' 'something else'}}
         @onSelect={{fn (mut this.neededDocument)}}
@@ -104,7 +104,7 @@
 
     {{#if (eq this.neededDocument 'Safety data sheet (SDS)')}}
       <div class='step'>
-        <h3>Please email our REACH coordinator on:</h3>
+        <h3 class='h3'>Please email our REACH coordinator on:</h3>
         <p>
           <a href='mailto:reach@interflux.com'>reach@interflux.com</a>
         </p>
@@ -123,7 +123,7 @@
 
     {{#if (eq this.neededDocument 'something else')}}
       <div class='step'>
-        <h3>Are you able to find the document in our library?</h3>
+        <h3 class='h3'>Are you able to find the document in our library?</h3>
 
         <Search
           @value={{this.document}}
@@ -156,13 +156,13 @@
 
     {{#if (eq this.foundDoc 'Yes')}}
       <div class='step'>
-        <h3>Great!</h3>
+        <h3 class='h3'>Great!</h3>
       </div>
     {{/if}}
 
     {{#if (eq this.foundDoc 'No')}}
       <div class='step'>
-        <h3>Please email us and we'll find it for you:</h3>
+        <h3 class='h3'>Please email us and we'll find it for you:</h3>
         <p>
           <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
         </p>
@@ -173,7 +173,7 @@
   {{!--
   {{#if (eq this.intention 'report issue with website')}}
     <div class='step'>
-      <h3>Please describe the issue.</h3>
+      <h3 class="h3">Please describe the issue.</h3>
       <p>What were you trying to do on our website?</p>
       <textarea rows='8' cols='80'></textarea>
       <p>What went wrong?</p>
@@ -227,11 +227,11 @@
 
   {{#if (eq this.intention 'something else')}}
     <div class='step'>
-      <h3>Ask us anything.</h3>
-      <p>
+      <h3 class='h3'>Ask us anything.</h3>
+      <p class='p'>
         <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
       </p>
-      <p>We typically respond within 12 hours, except on weekends.</p>
+      <p class='p'>We typically respond within 12 hours, except on weekends.</p>
     </div>
   {{/if}}
 </Section>

@@ -1,23 +1,42 @@
 #contact {
   #search {
     background-color: $grey-0;
-
     .liner {
       max-width: 900px;
       padding: 100px 30px;
       display: flex;
       flex-direction: column;
     }
-
     h2 {
-      margin-bottom: 30px;
+      @include widescreen {
+        margin-bottom: 30px;
+      }
+      @include desktop {
+        margin-bottom: vw(30px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        margin-bottom: 3vw;
+      }
     }
-
     .text-input {
       margin: 12px 0 30px;
       align-self: flex-start;
+      @include widescreen {
+        margin: 12px 0 30px;
+      }
+      @include desktop {
+        margin: vw(12px) 0 (30px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        margin: 4vw 0 6vw;
+      }
     }
-
     h3 {
       font-family: $bold;
       font-size: 16px;
@@ -26,23 +45,47 @@
       padding: 0 4px;
       line-height: 22px;
     }
-
     .companies {
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      gap: 5px;
+      @include widescreen {
+        gap: 5px;
+      }
+      @include desktop {
+        gap: vw(5px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        gap: 2vw;
+      }
       a {
         background: white;
         border-radius: 3px;
         border: 1px solid $grey-1;
-        padding: 14px;
         display: flex;
         align-items: center;
         gap: 10px;
         transition: box-shadow 200ms ease;
         white-space: normal; // override <Button> default
         text-align: left; // override <Button> default
+        position: relative;
+        @include widescreen {
+          padding: 14px;
+        }
+        @include desktop {
+          padding: vw(14px);
+        }
+        @include tablet {
+          // TODO
+        }
+        @include mobile {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 6vw;
+        }
         &:hover,
         &:focus {
           border-color: $blue-0;
@@ -63,7 +106,30 @@
       flex: 0.6;
       display: flex;
       align-items: center;
-      gap: 10px;
+      @include widescreen {
+        gap: 10px;
+      }
+      @include desktop {
+        gap: vw(10px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        gap: 2.5vw;
+      }
+      img {
+        @include widescreen {
+        }
+        @include desktop {
+        }
+        @include tablet {
+        }
+        @include mobile {
+          width: 6.75vw;
+          height: auto;
+        }
+      }
     }
 
     .members {
@@ -82,10 +148,34 @@
         width: 27px;
         height: 27px;
         border-radius: 50%;
+        @include widescreen {
+          width: 27px;
+          height: 27px;
+        }
+        @include desktop {
+          width: vw(27px);
+          height: vw(27px);
+        }
+        @include tablet {
+          // TODO
+        }
+        @include mobile {
+          width: 6.75vw;
+          height: 6.75vw;
+        }
       }
     }
 
     .arrow {
+      @include widescreen {
+      }
+      @include desktop {
+      }
+      @include tablet {
+      }
+      @include mobile {
+        position: absolute;
+      }
       svg {
         height: 10px;
         width: auto;

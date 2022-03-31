@@ -36,10 +36,10 @@
       padding: 0 30px; // TODO
     }
     @include mobile {
-      font-size: 5vw; // TODO
-      line-height: 44px; // TODO
-      border-radius: 3px; // TODO
-      padding: 0 30px; // TODO
+      font-size: 4vw;
+      line-height: 11vw;
+      border-radius: 0.75vw;
+      padding: 0 7.5vw;
     }
 
     &.has-icon {
