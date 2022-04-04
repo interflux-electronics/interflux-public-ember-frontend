@@ -34,20 +34,48 @@
     }
     input {
       font-family: $semibold;
-      font-size: 16px;
       line-height: 100%;
-      height: 40px;
-      min-width: 200px;
       max-width: 100%;
       white-space: nowrap;
-      padding: 12px;
       box-sizing: border-box;
       color: $blue-0;
       transition: box-shadow 200ms $easeOutExpo;
       outline: 0;
       background: white;
-      border-radius: 3px;
-      border: 1px solid $grey-2;
+      border-style: solid;
+      border-color: $grey-2;
+      @include widescreen {
+        font-size: 16px;
+        height: 40px;
+        min-width: 200px;
+        padding: 12px;
+        border-radius: 3px;
+        border-width: 1px;
+      }
+      @include desktop {
+        font-size: vw(16px);
+        height: vw(40px);
+        min-width: vw(200px);
+        padding: vw(12px);
+        border-radius: vw(3px);
+        border-width: vw(1px);
+      }
+      @include tablet {
+        font-size: vw-tablet(16px);
+        height: vw-tablet(40px);
+        min-width: vw-tablet(200px);
+        padding: vw-tablet(12px);
+        border-radius: vw-tablet(3px);
+        border-width: vw-tablet(1px);
+      }
+      @include mobile {
+        font-size: vw-mobile(16px);
+        height: vw-mobile(40px);
+        min-width: vw-mobile(200px);
+        padding: vw-mobile(12px);
+        border-radius: vw-mobile(3px);
+        border-width: vw-mobile(1px);
+      }
       &:hover,
       &:focus {
         border-color: $blue-0;
@@ -58,17 +86,45 @@
       }
     }
     .icon {
-      width: 40px;
-      height: 40px;
-      margin-left: -40px;
       display: flex;
       align-items: center;
       justify-content: center;
       user-select: none;
       pointer-events: none;
+      @include widescreen {
+        width: 40px;
+        height: 40px;
+        margin-left: -40px;
+      }
+      @include desktop {
+        width: vw(40px);
+        height: vw(40px);
+        margin-left: vw(-40px);
+      }
+      @include tablet {
+        width: vw-tablet(40px);
+        height: vw-tablet(40px);
+        margin-left: vw-tablet(-40px);
+      }
+      @include mobile {
+        width: vw-mobile(40px);
+        height: vw-mobile(40px);
+        margin-left: vw-mobile(-40px);
+      }
       svg.search {
-        width: 18px;
         height: auto;
+        @include widescreen {
+          width: 18px;
+        }
+        @include desktop {
+          width: vw(18px);
+        }
+        @include tablet {
+          width: vw-tablet(18px);
+        }
+        @include mobile {
+          width: vw-mobile(18px);
+        }
       }
     }
   }

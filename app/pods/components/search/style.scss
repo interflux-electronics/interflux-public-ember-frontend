@@ -4,37 +4,83 @@
 .search {
   display: flex;
   position: relative;
-  z-index: 2; // to make the results be on top of elements at z-index: 1
-  height: 40px;
-
+  z-index: 1; // to make the results be on top of elements at z-index: 1
+  @include widescreen {
+    height: 40px;
+  }
+  @include desktop {
+    height: vw(40px);
+  }
+  @include tablet {
+    height: vw-tablet(40px);
+  }
+  @include mobile {
+    height: vw-mobile(40px);
+  }
   &.hover {
     .wrapper {
       border-color: $blue-0;
     }
   }
-
   &.focus {
     .wrapper {
-      z-index: 1;
+      z-index: 0;
       border-color: $blue-0;
-      box-shadow: 0 2px 10px rgba(black, 0.15);
+      @include widescreen {
+        box-shadow: 0 2px 10px rgba(black, 0.15);
+      }
+      @include desktop {
+        box-shadow: 0 vw(2px) vw(10px) rgba(black, 0.15);
+      }
+      @include tablet {
+        box-shadow: 0 vw-tablet(2px) vw-tablet(10px) rgba(black, 0.15);
+      }
+      @include mobile {
+        box-shadow: 0 vw-mobile(2px) vw-mobile(10px) rgba(black, 0.15);
+      }
     }
   }
-
   .wrapper {
     position: absolute;
     background: white;
-    border: 1px solid $grey-2;
-    border-radius: 3px;
+    border-style: solid;
+    border-color: $grey-2;
     transition: box-shadow 300ms $easeOutExpo;
     overflow: hidden;
+    @include widescreen {
+      border-width: 1px;
+      border-radius: 3px;
+    }
+    @include desktop {
+      border-width: vw(1px);
+      border-radius: vw(3px);
+    }
+    @include tablet {
+      border-width: vw-tablet(1px);
+      border-radius: vw-tablet(3px);
+    }
+    @include mobile {
+      border-width: vw-mobile(1px);
+      border-radius: vw-mobile(3px);
+    }
 
     input {
       border-color: transparent !important;
       box-shadow: none !important;
       border-radius: 0;
       width: 100%;
-      height: 38px; // 2px smaller because we use wrapper border instead of input border
+      @include widescreen {
+        height: 38px; // 2px smaller because we use wrapper border instead of input border
+      }
+      @include desktop {
+        height: vw(38px);
+      }
+      @include tablet {
+        height: vw-tablet(38px);
+      }
+      @include mobile {
+        height: vw-mobile(38px);
+      }
 
       /* clears the 'X' from Internet Explorer */
       &::-ms-clear,
@@ -54,8 +100,22 @@
     }
 
     .icon {
-      width: 38px;
-      height: 38px;
+      @include widescreen {
+        width: 38px;
+        height: 38px;
+      }
+      @include desktop {
+        width: vw(38px);
+        height: vw(38px);
+      }
+      @include tablet {
+        width: vw-tablet(38px);
+        height: vw-tablet(38px);
+      }
+      @include mobile {
+        width: vw-mobile(38px);
+        height: vw-mobile(38px);
+      }
     }
 
     .results {
@@ -68,10 +128,27 @@
         display: block;
         width: 100%;
         text-align: left;
-        font-size: 15px;
-        line-height: 36px;
-        padding: 0 15px;
         outline: 0;
+        @include widescreen {
+          font-size: 15px;
+          line-height: 36px;
+          padding: 0 15px;
+        }
+        @include desktop {
+          font-size: vw(15px);
+          line-height: vw(36px);
+          padding: 0 vw(15px);
+        }
+        @include tablet {
+          font-size: vw-tablet(15px);
+          line-height: vw-tablet(36px);
+          padding: 0 vw-tablet(15px);
+        }
+        @include mobile {
+          font-size: vw-mobile(15px);
+          line-height: vw-mobile(36px);
+          padding: 0 vw-mobile(15px);
+        }
         &.highlight {
           background: $blue-0;
           box-shadow: $blue-0 0 0 0 1px;
@@ -84,18 +161,55 @@
       p {
         background: #eee;
         color: $grey-7;
-        line-height: 28px;
-        font-size: 15px;
-        padding: 0 15px;
+        @include widescreen {
+          line-height: 28px;
+          font-size: 15px;
+          padding: 0 15px;
+        }
+        @include desktop {
+          line-height: vw(28px);
+          font-size: vw(15px);
+          padding: 0 vw(15px);
+        }
+        @include tablet {
+          line-height: vw-tablet(28px);
+          font-size: vw-tablet(15px);
+          padding: 0 vw-tablet(15px);
+        }
+        @include mobile {
+          line-height: vw-mobile(28px);
+          font-size: vw-mobile(15px);
+          padding: 0 vw-mobile(15px);
+        }
       }
       button + p {
         margin-top: 1px;
       }
     }
+    p.message,
+    p.searching {
+      @include widescreen {
+        font-size: 16px;
+        line-height: 36px;
+        padding: 0 15px;
+      }
+      @include desktop {
+        font-size: vw(16px);
+        line-height: vw(36px);
+        padding: 0 vw(15px);
+      }
+      @include tablet {
+        font-size: vw-tablet(16px);
+        line-height: vw-tablet(36px);
+        padding: 0 vw-tablet(15px);
+      }
+      @include mobile {
+        font-size: vw-mobile(16px);
+        line-height: vw-mobile(36px);
+        padding: 0 vw-mobile(15px);
+      }
+    }
     p.message {
-      font-size: 16px;
-      line-height: 36px;
-      padding: 0 15px;
       background: #eee;
       color: $grey-7;
       a {
@@ -107,9 +221,6 @@
       }
     }
     p.searching {
-      font-size: 16px;
-      line-height: 36px;
-      padding: 0 15px;
       color: white;
       background: $blue-0;
       background-color: $blue-0;

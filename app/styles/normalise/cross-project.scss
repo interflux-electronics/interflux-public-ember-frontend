@@ -154,10 +154,10 @@ dl {
     font-size: vw(32px);
   }
   @include tablet {
-    font-size: 2.3vw; // TODO
+    font-size: vw-tablet(32px);
   }
   @include mobile {
-    font-size: 7.5vw;
+    font-size: vw-mobile(32px);
   }
 }
 
@@ -172,10 +172,10 @@ dl {
     font-size: vw(17px);
   }
   @include tablet {
-    font-size: 2.3vw; // TODO
+    font-size: vw-tablet(17px);
   }
   @include mobile {
-    font-size: 4.25vw;
+    font-size: vw-mobile(17px);
   }
 }
 
@@ -191,9 +191,9 @@ dl {
     font-size: vw(16px);
   }
   @include tablet {
-    font-size: 2.3vw; // TODO
+    font-size: vw-tablet(16px);
   }
   @include mobile {
-    font-size: 4vw;
+    font-size: vw-mobile(16px);
   }
 }

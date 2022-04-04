@@ -4,7 +4,7 @@
   <div class='step'>
     <h3 class='h3'>What do you want to do?</h3>
     {{#if @isLoading}}
-      <p>Loading ...</p>
+      <p class='p'>Loading ...</p>
     {{else}}
       <Pills
         @options={{array
@@ -79,15 +79,15 @@
   {{#if (eq this.intention 'request technical support')}}
     <div class='step'>
       <h3 class='h3'>Please email us and we'll connect you to an expert.</h3>
-      <p>
+      <p class='p'>
         <a href='mailto:support@interflux.com'>support@interflux.com</a>
       </p>
-      <p>To let us help you faster, please describe:</p>
+      <p class='p'>To let us help you faster, please describe:</p>
       <ul class='bullets'>
-        <li>What you are trying to do</li>
-        <li>Which Interflux products are involved</li>
-        <li>Observed issues</li>
-        <li>Desired outcomes</li>
+        <li class='p'>What you are trying to do</li>
+        <li class='p'>Which Interflux products are involved</li>
+        <li class='p'>Observed issues</li>
+        <li class='p'>Desired outcomes</li>
       </ul>
     </div>
   {{/if}}
@@ -105,7 +105,7 @@
     {{#if (eq this.neededDocument 'Safety data sheet (SDS)')}}
       <div class='step'>
         <h3 class='h3'>Please email our REACH coordinator on:</h3>
-        <p>
+        <p class='p'>
           <a href='mailto:reach@interflux.com'>reach@interflux.com</a>
         </p>
 
@@ -137,7 +137,7 @@
         {{#if this.document}}
           <div class='links'>
             {{#each this.document.files as |file|}}
-              <p>
+              <p class='p'>
                 <Svg::File />
                 <Link @url={{file.url}} @label={{file.language}} />
               </p>

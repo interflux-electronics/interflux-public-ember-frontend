@@ -107,7 +107,7 @@ export default helper(function markdown(params) {
     } else if (options.noParagraphs) {
       html += `${convertInlineElements(b)}`;
     } else {
-      html += `<p>${convertInlineElements(b)}</p>`;
+      html += `<p class="p">${convertInlineElements(b)}</p>`;
     }
   });
 

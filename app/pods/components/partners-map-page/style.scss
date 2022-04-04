@@ -6,17 +6,61 @@ section#partners-map {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @include widescreen {
+  }
+  @include desktop {
+  }
+  @include tablet {
+  }
+  @include mobile {
+    justify-content: flex-start;
+  }
+  &.zoomed-in {
+    .marker.active {
+      @include widescreen {
+        left: 235px;
+      }
+      @include desktop {
+        left: vw(235px);
+      }
+      @include tablet {
+        // TODO
+      }
+      @include mobile {
+        top: -25vh;
+      }
+    }
+  }
   .button.back {
     position: fixed;
     z-index: 3;
     left: 20px;
     top: 20px;
+    @include widescreen {
+    }
+    @include desktop {
+    }
+    @include tablet {
+    }
+    @include mobile {
+      display: none;
+    }
   }
   .button.close {
     position: fixed;
     z-index: 3;
     right: 20px;
     top: 20px;
+    @include widescreen {
+    }
+    @include desktop {
+    }
+    @include tablet {
+    }
+    @include mobile {
+      top: vw-mobile(10px);
+      right: vw-mobile(20px);
+    }
   }
   h1 {
     position: fixed;
@@ -26,9 +70,24 @@ section#partners-map {
     width: 100vw;
     text-align: center;
     font-family: $extrabold;
-    font-size: 26px;
     line-height: 100%;
     color: white;
+    @include widescreen {
+      font-size: 26px;
+    }
+    @include desktop {
+      font-size: vw(26px);
+    }
+    @include tablet {
+      // TODO
+    }
+    @include mobile {
+      font-size: vw-mobile(22px);
+      top: vw-mobile(10px);
+      left: vw-mobile(20px);
+      line-height: vw-mobile(42px);
+      width: auto;
+    }
   }
   #mapbox {
     position: fixed;
@@ -51,6 +110,19 @@ section#partners-map {
     flex-direction: column;
     margin: 80px 0 80px calc(50vw - 265px); // 265 = ((380 + 120 + 30) / 2)
     border-radius: 5px;
+    @include widescreen {
+      // TODO
+    }
+    @include desktop {
+      // TODO
+    }
+    @include tablet {
+      // TODO
+    }
+    @include mobile {
+      margin: 100vw 5vw 20vw;
+      width: 90vw;
+    }
     h2 {
       font-family: $extrabold;
       font-size: 26px;
@@ -200,6 +272,10 @@ section#partners-map {
         display: flex;
         justify-content: center;
         align-items: flex-end;
+        transition: all $easeOutExpo 2000ms;
+        transition-property: top, left;
+        left: 0;
+        top: 0;
         &.active {
           height: 100px;
           width: 100px;

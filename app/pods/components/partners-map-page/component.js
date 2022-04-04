@@ -110,7 +110,6 @@ export default class PartnersMapPageComponent extends Component {
   centerOnCompanyAndZoomIn(company) {
     this.mapbox.map.easeTo({
       center: { lon: company.longitude, lat: company.latitude },
-      offset: [235, 0],
       zoom: 11,
       duration: 2000
     });

@@ -2,101 +2,185 @@
   #questionair {
     @include dashed-line-on-top;
     .liner {
-      max-width: 900px;
       display: flex;
       flex-direction: column;
       @include widescreen {
+        max-width: 900px;
         padding: 100px 30px;
       }
       @include desktop {
+        max-width: vw(900px);
         padding: vw(100px) vw(30px);
       }
       @include tablet {
-        // TODO
+        padding: 14vw 5vw;
       }
       @include mobile {
-        padding: 28vw 7.5vw;
+        padding: 28vw 8vw;
       }
     }
     h2 {
       @include widescreen {
         margin-bottom: 32px;
+        line-height: 100%;
       }
       @include desktop {
         margin-bottom: vw(32px);
+        line-height: 100%;
       }
       @include tablet {
-        // TODO
+        margin-bottom: vw-tablet(32px);
+        line-height: 100%;
       }
       @include mobile {
-        margin-bottom: 8vw;
+        margin-bottom: vw-mobile(32px);
       }
     }
     h3 + .pills,
-    h3 + .search {
-      margin-top: 20px;
-      h2 {
-        @include widescreen {
-          margin-top: 20px;
-        }
-        @include desktop {
-          margin-top: vw(20px);
-        }
-        @include tablet {
-          // TODO
-        }
-        @include mobile {
-          margin-top: 5vw;
-        }
+    h3 + .search,
+    h3 + ol {
+      @include widescreen {
+        margin-top: 20px;
+      }
+      @include desktop {
+        margin-top: vw(20px);
+      }
+      @include tablet {
+        margin-top: vw-tablet(20px);
+      }
+      @include mobile {
+        margin-top: vw-mobile(20px);
       }
     }
-    h3 + p {
-      margin-top: 18px;
-    }
     p + ul.bullets {
-      margin-top: 18px;
-      margin-left: 18px;
+      @include widescreen {
+        margin-top: 18px;
+        margin-left: 18px;
+      }
+      @include desktop {
+        margin-top: vw(18px);
+        margin-left: vw(18px);
+      }
+      @include tablet {
+        margin-top: vw-tablet(18px);
+        margin-left: vw-tablet(18px);
+      }
+      @include mobile {
+        margin-top: vw-mobile(18px);
+        margin-left: vw-mobile(18px);
+      }
     }
+    p + p,
+    h3 + p,
     .search + .pills {
-      margin-top: 18px;
+      @include widescreen {
+        margin-top: 18px;
+      }
+      @include desktop {
+        margin-top: vw(18px);
+      }
+      @include tablet {
+        margin-top: vw-tablet(18px);
+      }
+      @include mobile {
+        margin-top: vw-mobile(18px);
+      }
     }
     .step + .step {
       @include dashed-line-on-top;
-      margin-top: 40px;
-      padding-top: 40px;
+      @include widescreen {
+        margin-top: 40px;
+        padding-top: 40px;
+      }
+      @include desktop {
+        margin-top: vw(40px);
+        padding-top: vw(40px);
+      }
+      @include tablet {
+        margin-top: vw-tablet(40px);
+        padding-top: vw-tablet(40px);
+      }
+      @include mobile {
+        margin-top: vw-mobile(40px);
+        padding-top: vw-mobile(40px);
+      }
     }
     ul.bullets {
       list-style: disc;
       li {
-        font-size: 16px;
         line-height: 180%;
-        padding-left: 6px;
+        @include widescreen {
+          padding-left: 6px;
+        }
+        @include desktop {
+          padding-left: vw(6px);
+        }
+        @include tablet {
+          padding-left: vw-tablet(6px);
+        }
+        @include mobile {
+          padding-left: vw-mobile(6px);
+        }
       }
     }
     ol.companies {
-      margin-top: 20px;
       li {
-        height: 40px;
         display: flex;
         align-items: center;
-        gap: 16px;
-        a {
-          transition: padding 300ms $easeOutExpo;
-          &:hover {
-            padding: 0 12px;
-          }
+        @include widescreen {
+          height: 40px;
+          gap: 16px;
+        }
+        @include desktop {
+          height: vw(40px);
+          gap: vw(16px);
+        }
+        @include tablet {
+          height: vw-tablet(40px);
+          gap: vw-tablet(16px);
+        }
+        @include mobile {
+          height: vw-mobile(40px);
+          gap: vw-mobile(16px);
         }
         p.recommended {
           background: $orange-3;
           color: white;
-          padding: 0 10px;
           display: flex;
-          gap: 8px;
           margin: 0;
-          line-height: 26px;
+          line-height: 165%;
+          padding: 0 10px;
+          gap: 8px;
+          @include widescreen {
+            padding: 0 10px;
+            gap: 8px;
+          }
+          @include desktop {
+            padding: 0 vw(10px);
+            gap: vw(8px);
+          }
+          @include tablet {
+            padding: 0 vw-tablet(10px);
+            gap: vw-tablet(8px);
+          }
+          @include mobile {
+            padding: 0 vw-mobile(10px);
+            gap: vw-mobile(8px);
+          }
           svg {
-            width: 15px;
             height: auto;
+            @include widescreen {
+              width: 15px;
+            }
+            @include desktop {
+              width: vw(15px);
+            }
+            @include tablet {
+              width: vw-tablet(15px);
+            }
+            @include mobile {
+              width: vw-mobile(15px);
+            }
             [fill] {
               fill: white;
             }
@@ -105,31 +189,90 @@
       }
     }
     .links {
-      margin: 18px 0;
       display: flex;
       flex-direction: column;
       border: 1px dashed $grey-1;
-      padding: 20px 24px;
-      margin: 30px 0;
+      @include widescreen {
+        padding: 20px 24px;
+        margin: 30px 0;
+      }
+      @include desktop {
+        padding: vw(20px) vw(24px);
+        margin: vw(30px) 0;
+      }
+      @include tablet {
+        padding: vw-tablet(20px) vw-tablet(24px);
+        margin: vw-tablet(30px) 0;
+      }
+      @include mobile {
+        padding: vw-mobile(20px) vw-mobile(24px);
+        margin: vw-mobile(30px) 0;
+      }
       p {
         display: flex;
-        gap: 8px;
         align-items: center;
+        @include widescreen {
+          gap: 8px;
+        }
+        @include desktop {
+          gap: vw(8px);
+        }
+        @include tablet {
+          gap: vw-mobile(8px);
+        }
+        @include mobile {
+          gap: vw-tablet(8px);
+        }
       }
       p + p {
         margin-top: 6px;
+        @include widescreen {
+          margin-top: 6px;
+        }
+        @include desktop {
+          margin-top: vw(6px);
+        }
+        @include tablet {
+          margin-top: vw-mobile(6px);
+        }
+        @include mobile {
+          margin-top: vw-tablet(6px);
+        }
       }
       svg {
-        width: 18px;
         height: auto;
+        @include widescreen {
+          width: 18px;
+        }
+        @include desktop {
+          width: vw(18px);
+        }
+        @include tablet {
+          width: vw-mobile(18px);
+        }
+        @include mobile {
+          width: vw-tablet(18px);
+        }
         [fill] {
           fill: $grey-7;
-          // fill: $blue-0;
         }
       }
     }
-    input {
-      width: 300px;
+    .search {
+      .wrapper {
+        @include widescreen {
+          width: 300px;
+        }
+        @include desktop {
+          width: vw(300px);
+        }
+        @include tablet {
+          width: vw-tablet(300px);
+        }
+        @include mobile {
+          width: 100%;
+        }
+      }
     }
   }
 }

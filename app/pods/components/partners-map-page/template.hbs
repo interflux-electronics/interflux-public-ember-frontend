@@ -1,4 +1,8 @@
-<section id='partners-map' aria-labelledby='h1'>
+<section
+  id='partners-map'
+  aria-labelledby='h1'
+  class={{if this.company 'zoomed-in' 'zoomed-out'}}
+>
   <Button
     @text='Go back'
     @icon='arrow-left'
@@ -11,7 +15,7 @@
 
   {{#if @loading}}
     <div class='loading'>
-      <p>Loading ...</p>
+      <p class='p'>Loading ...</p>
       <div class='preload'></div>
     </div>
   {{else}}
@@ -26,7 +30,7 @@
             <div class='description'>{{markdown c.description}}</div>
           {{/if}}
 
-          <p class='address'>
+          <p class='p address'>
             {{#if c.legalName}}
               <span>{{c.legalName}}</span>
             {{/if}}
@@ -40,7 +44,7 @@
           </p>
 
           {{#if c.website}}
-            <p class='website'>
+            <p class='p website'>
               <Link @url={{c.websiteForRobots}} @label={{c.websiteForHumans}} />
             </p>
           {{/if}}
@@ -48,7 +52,7 @@
           {{#if
             (or c.emailGeneral c.emailSupport c.emailOrders c.emailAccounting)
           }}
-            <p class='email'>
+            <p class='p email'>
               {{#if c.emailGeneral}}
                 <span>
                   <Link
@@ -88,7 +92,7 @@
           {{/if}}
 
           {{#if c.phone}}
-            <p class='phone'>
+            <p class='p phone'>
               <Link
                 @url='tel:{{c.phoneForRobots}}'
                 @label={{c.phoneForHumans}}
@@ -97,7 +101,7 @@
           {{/if}}
 
           {{#if c.fax}}
-            <p class='fax'>
+            <p class='p fax'>
               <Link @url='tel:{{c.faxForRobots}}' @label={{c.faxForHumans}} />
             </p>
           {{/if}}
@@ -124,10 +128,10 @@
                 <div class='details'>
                   <h3>{{member.person.fullName}}</h3>
                   {{#if member.title}}
-                    <p>{{member.title}}</p>
+                    <p class='p'>{{member.title}}</p>
                   {{/if}}
                   {{#if member.verifiedEmail}}
-                    <p>
+                    <p class='p'>
                       <Link
                         @url='mailto:{{member.verifiedEmail}}'
                         @label={{member.verifiedEmail}}
@@ -135,7 +139,7 @@
                     </p>
                   {{/if}}
                   {{#if member.verifiedPhone}}
-                    <p>
+                    <p class='p'>
                       <Link
                         @url='tel:{{member.phoneForRobots}}'
                         @label={{member.verifiedPhone}}
@@ -143,7 +147,7 @@
                     </p>
                   {{/if}}
                   {{#if member.verifiedLandline}}
-                    <p>
+                    <p class='p'>
                       <Link
                         @url='tel:{{member.landlineForRobots}}'
                         @label={{member.verifiedLandline}}
@@ -170,14 +174,14 @@
         <div id='marker-for-{{c.slug}}' class='icon'>
           <Button
             @onClick={{fn this.onMarkerClick c}}
-            @class={{if (eq this.company.id c.id) 'active'}}
+            @class='marker {{if (eq this.company.id c.id) 'active'}}'
           >
             {{#if c.isHeadquarter}}
               <Svg::StarMarker />
             {{else}}
               <Svg::Marker />
             {{/if}}
-            <p>
+            <p class='p'>
               <span>{{c.businessName}}</span>
               <Svg::ArrowDown />
             </p>
