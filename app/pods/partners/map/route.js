@@ -28,5 +28,7 @@ export default class PartnersMapRoute extends BaseRoute {
   afterModel(model) {
     this.cache.countries = model.countries;
     this.cache.companies = model.companies;
+
+    this.window.scrollTo(0, 0);
   }
 }

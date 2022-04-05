@@ -1,8 +1,4 @@
-<section
-  id='partners-map'
-  aria-labelledby='h1'
-  class={{if this.company 'zoomed-in' 'zoomed-out'}}
->
+<section id='partners-map' aria-labelledby='h1'>
   <Button
     @text='Go back'
     @icon='arrow-left'
@@ -22,7 +18,7 @@
     <div id='mapbox' {{did-insert this.onInsertMap}}></div>
 
     {{#if this.company}}
-      <aside>
+      <aside class={{if this.doneAnimating 'show' 'hide'}}>
         {{#with this.company as |c|}}
           <h2>{{c.businessName}}</h2>
 
@@ -161,7 +157,7 @@
         {{/with}}
       </aside>
 
-      <div id='callout'>
+      <div id='arrow' class={{if this.doneAnimating 'show' 'hide'}}>
         <Svg::ArrowRight />
       </div>
 
