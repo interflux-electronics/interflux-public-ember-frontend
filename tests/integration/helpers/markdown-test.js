@@ -75,14 +75,14 @@ These are *fruits*:
 `;
 
 const complexListHTML = `
-<p>These are <em>fruits</em>:</p>
+<p class="p">These are <em>fruits</em>:</p>
 <ul>
   <li>Apple with <em>italic</em> text</li>
   <li>Cherry with <em>italic ending</em></li>
   <li>Mango with <strong>bold</strong> text</li>
   <li>Banana with <mark>highlights</mark></li>
 </ul>
-<p>... but not <strong>all</strong> of them.</p>
+<p class="p">... but not <strong>all</strong> of them.</p>
 `;
 
 const flatten = (str) => {
@@ -96,7 +96,10 @@ module('Integration | Helper | markdown', function (hooks) {
     assert.expect(1);
     this.set('string', 'This is paragraph one.');
     await render(hbs`{{markdown string}}`);
-    assert.equal(this.element.innerHTML, '<p>This is paragraph one.</p>');
+    assert.equal(
+      this.element.innerHTML,
+      '<p class="p">This is paragraph one.</p>'
+    );
   });
 
   test('it converts three paragraphs and single line breaks', async function (assert) {
@@ -105,7 +108,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This is paragraph one.<br>This line is preceded by line break.</p><p>This is paragraph two.</p><p>This is paragraph three.</p>'
+      '<p class="p">This is paragraph one.<br>This line is preceded by line break.</p><p class="p">This is paragraph two.</p><p class="p">This is paragraph three.</p>'
     );
   });
 
@@ -115,7 +118,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<h1>Heading 1</h1><p>Foo.</p><h2>Heading 2</h2><p>Foo.</p><h3>Heading 3</h3><p>Foo.</p><h4>Heading 4</h4><p>Foo.</p><h5>Heading 5</h5><p>Foo.</p><h6>Heading 6</h6><p>Foo.</p>'
+      '<h1>Heading 1</h1><p class="p">Foo.</p><h2>Heading 2</h2><p class="p">Foo.</p><h3>Heading 3</h3><p class="p">Foo.</p><h4>Heading 4</h4><p class="p">Foo.</p><h5>Heading 5</h5><p class="p">Foo.</p><h6>Heading 6</h6><p class="p">Foo.</p>'
     );
   });
 
@@ -125,7 +128,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is <em>italic</em>.</p>'
+      '<p class="p">This word is <em>italic</em>.</p>'
     );
   });
 
@@ -135,7 +138,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is <strong>bolded</strong>.</p>'
+      '<p class="p">This word is <strong>bolded</strong>.</p>'
     );
   });
 
@@ -145,7 +148,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is <mark>highlighted</mark>.</p>'
+      '<p class="p">This word is <mark>highlighted</mark>.</p>'
     );
   });
 
@@ -155,7 +158,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is a <a href="/en/products">hyperlink</a>.</p>'
+      '<p class="p">This word is a <a href="/en/products">hyperlink</a>.</p>'
     );
   });
 
@@ -165,7 +168,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This word is a <a href="https://wikipedia.com" target="_blank" rel="noopener noreferrer">hyperlink</a>.</p>'
+      '<p class="p">This word is a <a href="https://wikipedia.com" target="_blank" rel="noopener noreferrer">hyperlink</a>.</p>'
     );
   });
 
@@ -175,7 +178,7 @@ module('Integration | Helper | markdown', function (hooks) {
     await render(hbs`{{markdown string}}`);
     assert.equal(
       this.element.innerHTML,
-      '<p>This is a paragraph.</p><blockquote><p><span class="word">Quote</span><span class="space"> </span><span class="word">me!</span></p></blockquote><p>This is a paragraph.</p>'
+      '<p class="p">This is a paragraph.</p><blockquote><p class="p"><span class="word">Quote</span><span class="space"> </span><span class="word">me!</span></p></blockquote><p class="p">This is a paragraph.</p>'
     );
   });
 

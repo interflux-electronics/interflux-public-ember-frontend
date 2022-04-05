@@ -31,7 +31,7 @@ const convertBlockquote = (str) => {
   const spans = `<span class="word">${words.join(
     '</span><span class="space">&#32;</span><span class="word">'
   )}</span>`;
-  return `<blockquote><p>${spans}</p></blockquote>`;
+  return `<blockquote><p class="p">${spans}</p></blockquote>`;
 };
 
 const convertInlineElements = (str) => {
