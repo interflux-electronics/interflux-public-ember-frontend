@@ -76,7 +76,7 @@ export default class PartnersMapPageComponent extends Component {
       ? { lon: ipCountry.longitude, lat: ipCountry.latitude }
       : { lon: 120, lat: 30 };
 
-    this.mapbox.map = new window.mapboxgl.Map({
+    const map = new window.mapboxgl.Map({
       container: 'mapbox',
       style: 'mapbox://styles/jw-floatplane-dev/ck8mcsfr50uwe1iohs6xv6n0d',
       center,
@@ -88,6 +88,11 @@ export default class PartnersMapPageComponent extends Component {
       touchZoomRotate: true,
       dragRotate: false
     });
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
+
+    this.mapbox.map = map;
 
     const nav = new window.mapboxgl.NavigationControl({
       visualizePitch: false,
