@@ -672,4 +672,8 @@ section#partners-map {
       filter: blur(15px);
     }
   }
+  .mapboxgl-ctrl-bottom-left,
+  .mapboxgl-ctrl-bottom-right {
+    z-index: 3; // to appear above the markers
+  }
 }

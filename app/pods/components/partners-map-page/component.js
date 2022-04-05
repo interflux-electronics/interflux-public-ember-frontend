@@ -85,7 +85,7 @@ export default class PartnersMapPageComponent extends Component {
       minZoom: 2,
       pitchWithRotate: false,
       touchPitch: false,
-      touchZoomRotate: false
+      touchZoomRotate: true
     });
 
     const nav = new window.mapboxgl.NavigationControl({
