@@ -656,6 +656,9 @@ section#partners-map {
     display: flex;
     justify-content: center;
     align-items: center;
+    @include mobile {
+      margin-top: 50vw;
+    }
     p {
       color: white;
       position: relative;
