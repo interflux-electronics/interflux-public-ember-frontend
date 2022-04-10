@@ -197,3 +197,18 @@ dl {
     font-size: vw-mobile(16px);
   }
 }
+
+.p + .p {
+  @include widescreen {
+    margin: 16px 0 0;
+  }
+  @include desktop {
+    margin: vw(16px) 0 0;
+  }
+  @include tablet {
+    margin: vw-tablet(16px) 0 0;
+  }
+  @include mobile {
+    margin: vw-mobile(16px) 0 0;
+  }
+}

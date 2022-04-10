@@ -5,8 +5,8 @@ import { action } from '@ember/object';
 
 export default class PageComponent extends Component {
   @service page;
-  @service modal;
   @service media;
+  @service modal;
 
   get id() {
     return this.page.id || this.args.id;

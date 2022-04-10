@@ -11,7 +11,7 @@ export default class SessionService extends Service {
   @tracked record;
 
   get ipCountryId() {
-    return this.record.countryCode;
+    return this.record?.countryCode;
   }
 
   get ipCountry() {
@@ -61,6 +61,9 @@ export default class SessionService extends Service {
     await this.window.delay(500); // prevents a second request... HACK
     if (!this.ipCountryId && this.updateCount < 5) {
       this.updateSoon();
+    }
+    if (this.ipCountryId) {
+      console.debug(this.ipCountryId);
     }
   }
 }
