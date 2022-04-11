@@ -9,8 +9,8 @@ module('Integration | Helper | span-each-word', function (hooks) {
   test('it wraps each word with a <span>', async function (assert) {
     assert.expect(1);
     this.set('string', 'We are rapt for wrapped words.');
-    await render(hbs`{{span-each-word string}}`);
-    assert.equal(
+    await render(hbs`{{span-each-word this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<span>We</span><span>&nbsp;</span><span>are</span><span>&nbsp;</span><span>rapt</span><span>&nbsp;</span><span>for</span><span>&nbsp;</span><span>wrapped</span><span>&nbsp;</span><span>words.</span>'
     );

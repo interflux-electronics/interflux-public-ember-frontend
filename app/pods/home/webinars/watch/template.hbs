@@ -1,7 +1,7 @@
-{{#with @model as |webinar|}}
+{{#let @model as |webinar|}}
   <Modal @id='watch-webinar' @theme='white-text'>
     <h1>Webinar replay</h1>
     <p>{{webinar.title}}</p>
     <ResponsiveVideo @video={{webinar.video}} />
   </Modal>
-{{/with}}
+{{/let}}

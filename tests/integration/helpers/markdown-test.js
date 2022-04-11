@@ -95,8 +95,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it converts one paragraph', async function (assert) {
     assert.expect(1);
     this.set('string', 'This is paragraph one.');
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This is paragraph one.</p>'
     );
@@ -105,8 +105,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it converts three paragraphs and single line breaks', async function (assert) {
     assert.expect(1);
     this.set('string', twoParagraphsWithBreak);
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This is paragraph one.<br>This line is preceded by line break.</p><p class="p">This is paragraph two.</p><p class="p">This is paragraph three.</p>'
     );
@@ -115,8 +115,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it converts headings', async function (assert) {
     assert.expect(1);
     this.set('string', headings);
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<h1>Heading 1</h1><p class="p">Foo.</p><h2>Heading 2</h2><p class="p">Foo.</p><h3>Heading 3</h3><p class="p">Foo.</p><h4>Heading 4</h4><p class="p">Foo.</p><h5>Heading 5</h5><p class="p">Foo.</p><h6>Heading 6</h6><p class="p">Foo.</p>'
     );
@@ -125,8 +125,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it emphasises words', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is *italic*.');
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This word is <em>italic</em>.</p>'
     );
@@ -135,8 +135,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it bolds words', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is **bolded**.');
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This word is <strong>bolded</strong>.</p>'
     );
@@ -145,8 +145,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it marks words', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is ***highlighted***.');
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This word is <mark>highlighted</mark>.</p>'
     );
@@ -155,8 +155,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it creates internal hyperlinks', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is a [hyperlink](/en/products).');
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This word is a <a href="/en/products">hyperlink</a>.</p>'
     );
@@ -165,8 +165,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it creates external hyperlinks', async function (assert) {
     assert.expect(1);
     this.set('string', 'This word is a [hyperlink](https://wikipedia.com).');
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This word is a <a href="https://wikipedia.com" target="_blank" rel="noopener noreferrer">hyperlink</a>.</p>'
     );
@@ -175,8 +175,8 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it converts blockquotes', async function (assert) {
     assert.expect(1);
     this.set('string', blockquote);
-    await render(hbs`{{markdown string}}`);
-    assert.equal(
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<p class="p">This is a paragraph.</p><blockquote><p class="p"><span class="word">Quote</span><span class="space"> </span><span class="word">me!</span></p></blockquote><p class="p">This is a paragraph.</p>'
     );
@@ -185,14 +185,14 @@ module('Integration | Helper | markdown', function (hooks) {
   test('it converts simple lists', async function (assert) {
     assert.expect(1);
     this.set('string', basicListMarkdown);
-    await render(hbs`{{markdown string}}`);
-    assert.equal(this.element.innerHTML, flatten(basicListHTML));
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(this.element.innerHTML, flatten(basicListHTML));
   });
 
   test('it converts complex lists', async function (assert) {
     assert.expect(1);
     this.set('string', complexListMarkdown);
-    await render(hbs`{{markdown string}}`);
-    assert.equal(this.element.innerHTML, flatten(complexListHTML));
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(this.element.innerHTML, flatten(complexListHTML));
   });
 });

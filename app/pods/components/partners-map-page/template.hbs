@@ -19,7 +19,7 @@
 
     {{#if this.company}}
       <aside class={{if this.doneAnimating 'show' 'hide'}}>
-        {{#with this.company as |c|}}
+        {{#let this.company as |c|}}
           <h2>{{c.businessName}}</h2>
 
           {{#if c.description}}
@@ -154,7 +154,7 @@
               </li>
             {{/each}}
           </ul>
-        {{/with}}
+        {{/let}}
       </aside>
 
       <div id='arrow' class={{if this.doneAnimating 'show' 'hide'}}>

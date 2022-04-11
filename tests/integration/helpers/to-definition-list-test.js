@@ -39,8 +39,8 @@ module('Integration | Helper | to-definition-list', function (hooks) {
   test('it converts one key value pair', async function (assert) {
     assert.expect(1);
     this.set('string', onePair);
-    await render(hbs`{{to-definition-list string}}`);
-    assert.equal(
+    await render(hbs`{{to-definition-list this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<dl><dt>Solid content</dt><dd>5.3% +/- 0.5%</dd></dl>'
     );
@@ -49,8 +49,8 @@ module('Integration | Helper | to-definition-list', function (hooks) {
   test('it converts multiple key value pairs', async function (assert) {
     assert.expect(1);
     this.set('string', multiplePairs);
-    await render(hbs`{{to-definition-list string}}`);
-    assert.equal(
+    await render(hbs`{{to-definition-list this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<dl><dt>Solid content</dt><dd>5.3% +/- 0.5%</dd><dt>Halide content</dt><dd>0.00%</dd></dl>'
     );
@@ -59,8 +59,8 @@ module('Integration | Helper | to-definition-list', function (hooks) {
   test('it converts list items', async function (assert) {
     assert.expect(1);
     this.set('string', multiplePairsWithList);
-    await render(hbs`{{to-definition-list string}}`);
-    assert.equal(
+    await render(hbs`{{to-definition-list this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<dl><dt>Solid content</dt><dd>5.3% +/- 0.5%</dd><dt>Halide content</dt><dd>0.00%</dd><dt>Available alloys</dt><dd><ul><li>SnCuAg</li><li>SnPbAg</li><li>SnPb</li></ul></dd></dl>'
     );
@@ -69,8 +69,8 @@ module('Integration | Helper | to-definition-list', function (hooks) {
   test('it filters out invalid lines', async function (assert) {
     assert.expect(1);
     this.set('string', multiplePairsInvalidLines);
-    await render(hbs`{{to-definition-list string}}`);
-    assert.equal(
+    await render(hbs`{{to-definition-list this.string}}`);
+    assert.strictEqual(
       this.element.innerHTML,
       '<dl><dt>Solid content</dt><dd>5.3% +/- 0.5%</dd><dt>Halide content</dt><dd>0.00%</dd><dt>Available alloys</dt><dd><ul><li>SnCuAg</li><li>SnPbAg</li><li>SnPb</li></ul></dd></dl>'
     );
@@ -79,7 +79,7 @@ module('Integration | Helper | to-definition-list', function (hooks) {
   test('it gracefully handles undefined', async function (assert) {
     assert.expect(1);
     this.set('string', undefined);
-    await render(hbs`{{to-definition-list string}}`);
-    assert.equal(this.element.innerHTML, '<dl></dl>');
+    await render(hbs`{{to-definition-list this.string}}`);
+    assert.strictEqual(this.element.innerHTML, '<dl></dl>');
   });
 });
