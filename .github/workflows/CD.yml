@@ -47,10 +47,7 @@ jobs:
       # First, check out the latest production branch on the remote.
       - run: ssh $URL "cd $ROOT; git checkout production; git pull"
 
-      # Install Node
-      # - run: ssh $URL "cd $ROOT; nvm install"
-
-      # Install Node packages
+      # Install Node and dependencies
       - run: ssh $URL "cd $ROOT; nvm install; yarn install"
 
       # Build Ember app, once built Fastboot restarts
