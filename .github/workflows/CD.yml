@@ -48,10 +48,10 @@ jobs:
       - run: ssh $URL "cd $ROOT; git checkout production; git pull"
 
       # Install Node
-      - run: ssh $URL "cd $ROOT; nvm install"
+      # - run: ssh $URL "cd $ROOT; nvm install"
 
       # Install Node packages
-      - run: ssh $URL "cd $ROOT; yarn install"
+      - run: ssh $URL "cd $ROOT; nvm install; yarn install"
 
       # Build Ember app, once built Fastboot restarts
       - run: ssh $URL "cd $ROOT; yarn build"
