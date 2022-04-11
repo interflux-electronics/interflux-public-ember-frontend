@@ -7,6 +7,10 @@ export default class ModalComponent extends Component {
 
   @service router;
 
+  get modalParent() {
+    return document.getElementById('modals');
+  }
+
   get theme() {
     return this.args.theme || 'white-box';
   }

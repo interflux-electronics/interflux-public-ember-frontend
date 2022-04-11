@@ -22,31 +22,4 @@ export default class DocumentCategoryRoute extends ModalRoute {
       this.router.transitionTo('documents');
     }
   }
-
-  renderTemplate() {
-    this.render({
-      into: 'application',
-      outlet: 'modal'
-    });
-  }
-
-  // Prevent <main> page from scrolling
-  activate() {
-    this.modal.setProperties({
-      showModal: true,
-      pageScrollY:
-        this.window.pageYOffset() || this.document.documentElement.scrollTop
-    });
-    this.window.scrollTo(0, 0);
-  }
-
-  // Allow <main> page to scroll again
-  deactivate() {
-    const { pageScrollY } = this.modal;
-    this.modal.setProperties({
-      showModal: false,
-      pageScrollY: 0
-    });
-    this.window.scrollTo(0, pageScrollY);
-  }
 }

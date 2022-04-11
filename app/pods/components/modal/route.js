@@ -4,13 +4,6 @@ import { inject as service } from '@ember/service';
 export default class ModalRoute extends BaseRoute {
   @service modal;
 
-  renderTemplate() {
-    this.render({
-      into: 'application',
-      outlet: 'modal'
-    });
-  }
-
   // Prevent <main> page from scrolling
   activate() {
     this.modal.setProperties({
