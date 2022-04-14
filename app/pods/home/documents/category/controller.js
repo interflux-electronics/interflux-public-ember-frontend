@@ -6,7 +6,10 @@ export default class HomeDocumentsCategoryController extends Controller {
   @tracked query;
 
   @action
-  onSearch(query) {
+  onSearch(event) {
+    const input = event.target;
+    const query = input.value;
+
     // Update local value so <input> field receives same @value.
     this.query = query;
 
