@@ -16,7 +16,7 @@ Router.map(function () {
       this.route('watch', { path: '/:webinar' });
     });
     this.route('company');
-    this.route('documents', function () {
+    this.route('documents', { resetNamespace: true }, function () {
       this.route('category', { path: '/:category' });
     });
     this.route('contact', { resetNamespace: true });

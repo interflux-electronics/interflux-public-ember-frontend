@@ -22,4 +22,13 @@ export default class DocumentCategoryRoute extends ModalRoute {
       this.router.transitionTo('documents');
     }
   }
+
+  // Properties on controllers will linger when switching between models.
+  // To avoid, we reset them each time the route is exited.
+  // https://api.emberjs.com/ember/3.24/classes/Route/methods?anchor=resetController
+  resetController(controller, isExiting, transition) {
+    if (isExiting && transition.targetName !== 'error') {
+      controller.set('query', null);
+    }
+  }
 }

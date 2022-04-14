@@ -2,7 +2,7 @@
   <h3>What type of document do you need?</h3>
   <nav>
     {{#each this.categories as |category|}}
-      <a href={{href-to 'home.documents.category' category.slug}}>
+      <a href={{href-to 'documents.category' category.slug}}>
         <Icon @name={{category.icon}} />
         <p><strong>{{category.name}}</strong></p>
         <p>{{category.gist}}</p>
