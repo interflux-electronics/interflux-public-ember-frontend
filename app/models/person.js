@@ -34,6 +34,10 @@ export default class PersonModel extends Model {
       return '/images/people/avatar-steven@160x160.jpg';
     }
 
+    if (this.fullName === 'Roy Kingon') {
+      return '/images/people/roy-kingon.jpg';
+    }
+
     return null;
   }
 
