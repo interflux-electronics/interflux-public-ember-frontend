@@ -8,7 +8,6 @@ export default class HeadDataService extends Service {
 
   @tracked title = 'Interflux';
   @tracked description = 'Electronics + Chemistry + Metallurgy';
-  @tracked loadMapBox = false;
 
   // Assign a canonical URL in case multiple URLs can refer to the same page. This is most useful
   // on pages which employ query params to set local page but are not intended to be indexed by
@@ -131,4 +130,7 @@ export default class HeadDataService extends Service {
     this.imageHeight = null;
     this.imageAlt = null;
   }
+
+  // For pages to optionally include Mapbox logic and styles.
+  @tracked loadMapBox = false;
 }
