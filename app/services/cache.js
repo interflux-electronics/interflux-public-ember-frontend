@@ -14,16 +14,4 @@ export default class CacheService extends Service {
   @tracked qualities;
   @tracked productUses;
   @tracked productQualities;
-
-  paths = [];
-
-  hasPath(path) {
-    return this.paths.includes(path);
-  }
-
-  addPath(path) {
-    this.paths.push(path);
-  }
-
-  hasProductsIndex = false;
 }
