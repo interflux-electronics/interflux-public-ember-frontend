@@ -26,7 +26,7 @@
             <div class='description'>{{markdown c.description}}</div>
           {{/if}}
 
-          <p class='p address'>
+          <p class='address'>
             {{#if c.legalName}}
               <span>{{c.legalName}}</span>
             {{/if}}
@@ -103,55 +103,58 @@
           {{/if}}
 
           <ul class='members'>
-            {{#each c.companyMembers as |member|}}
-              <li>
-                <div class='avatar'>
-                  {{#if member.person.hasAvatar}}
-                    <img
-                      src='{{env 'cdnHost'}}{{member.person.avatarSrc}}'
-                      alt={{member.person.fullName}}
-                    />
-                  {{else}}
-                    <img
-                      src='{{env 'cdnHost'}}/images/public/no-avatar.svg'
-                      aria-hidden='true'
-                      width='27'
-                      height='27'
-                    />
-                  {{/if}}
-                </div>
+            {{#each c.members as |member|}}
+              {{#let member.person as |person|}}
+                <li>
+                  <div class='avatar'>
+                    {{#if person.avatarPath}}
+                      <ResponsiveImage
+                        @path={{person.avatarPath}}
+                        @variations={{person.avatarVariations}}
+                        @alt={{person.fullName}}
+                      />
+                    {{else}}
+                      <img
+                        src='{{env "cdnHost"}}/images/public/no-avatar.svg'
+                        aria-hidden='true'
+                        width='27'
+                        height='27'
+                      />
+                    {{/if}}
+                  </div>
 
-                <div class='details'>
-                  <h3>{{member.person.fullName}}</h3>
-                  {{#if member.title}}
-                    <p class='p'>{{member.title}}</p>
-                  {{/if}}
-                  {{#if member.verifiedEmail}}
-                    <p class='p'>
-                      <Link
-                        @url='mailto:{{member.verifiedEmail}}'
-                        @label={{member.verifiedEmail}}
-                      />
-                    </p>
-                  {{/if}}
-                  {{#if member.verifiedPhone}}
-                    <p class='p'>
-                      <Link
-                        @url='tel:{{member.phoneForRobots}}'
-                        @label={{member.verifiedPhone}}
-                      />
-                    </p>
-                  {{/if}}
-                  {{#if member.verifiedLandline}}
-                    <p class='p'>
-                      <Link
-                        @url='tel:{{member.landlineForRobots}}'
-                        @label={{member.verifiedLandline}}
-                      />
-                    </p>
-                  {{/if}}
-                </div>
-              </li>
+                  <div class='details'>
+                    <h3>{{person.fullName}}</h3>
+                    {{#if member.title}}
+                      <p class='p'>{{member.title}}</p>
+                    {{/if}}
+                    {{#if member.verifiedEmail}}
+                      <p class='p'>
+                        <Link
+                          @url='mailto:{{member.verifiedEmail}}'
+                          @label={{member.verifiedEmail}}
+                        />
+                      </p>
+                    {{/if}}
+                    {{#if member.verifiedPhone}}
+                      <p class='p'>
+                        <Link
+                          @url='tel:{{member.phoneForRobots}}'
+                          @label={{member.verifiedPhone}}
+                        />
+                      </p>
+                    {{/if}}
+                    {{#if member.verifiedLandline}}
+                      <p class='p'>
+                        <Link
+                          @url='tel:{{member.landlineForRobots}}'
+                          @label={{member.verifiedLandline}}
+                        />
+                      </p>
+                    {{/if}}
+                  </div>
+                </li>
+              {{/let}}
             {{/each}}
           </ul>
         {{/let}}
@@ -170,7 +173,7 @@
         <div id='marker-for-{{c.slug}}' class='icon'>
           <Button
             @onClick={{fn this.onMarkerClick c}}
-            @class='marker {{if (eq this.company.id c.id) 'active'}}'
+            @class='marker {{if (eq this.company.id c.id) "active"}}'
           >
             {{#if c.isHeadquarter}}
               <Svg::StarMarker />

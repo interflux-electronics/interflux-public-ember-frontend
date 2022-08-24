@@ -25,17 +25,7 @@ export default class CompanyModel extends Model {
   @hasMany('company-market') companyMarkets;
 
   get members() {
-    const publicMembers = this.companyMembers
-      .filterBy('public')
-      .mapBy('person');
-
-    if (publicMembers.length !== this.companyMembers.length) {
-      console.warn(
-        `a non-public member of ${this.businessName} has been serialised`
-      );
-    }
-
-    return publicMembers.sortBy('rankAmongMembers');
+    return this.companyMembers.filterBy('public').sortBy('rankAmongMembers');
   }
 
   get rank() {

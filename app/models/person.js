@@ -8,6 +8,10 @@ export default class PersonModel extends Model {
   @attr('string') phone;
   @attr('string') email;
   @attr('boolean') public;
+  @attr('string') avatarPath;
+  @attr('string') avatarAlt;
+  @attr('string') avatarCaption;
+  @attr('string') avatarVariations;
 
   @hasMany('company') companies;
   @hasMany('company-member') companyMembers;

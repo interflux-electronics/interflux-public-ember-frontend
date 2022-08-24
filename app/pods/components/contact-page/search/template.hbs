@@ -30,24 +30,29 @@
               <div class='members'>
                 <ul>
                   {{#each company.members as |member|}}
-                    <li>
-                      <div class='avatar'>
-                        {{#if member.hasAvatar}}
-                          <img
-                            src='{{env 'cdnHost'}}{{member.avatarSrc}}'
-                            alt={{member.fullName}}
-                          />
-                        {{else}}
-                          <img
-                            src='{{env 'cdnHost'}}/images/public/no-avatar.svg'
-                            aria-hidden='true'
-                            width='27'
-                            height='27'
-                          />
-                        {{/if}}
-                      </div>
-                      <p class='p' data-search-me>{{member.fullName}}</p>
-                    </li>
+                    {{#let member.person as |person|}}
+                      <li>
+                        <div class='avatar'>
+                          {{#if person.avatarPath}}
+                            <ResponsiveImage
+                              @path={{person.avatarPath}}
+                              @variations={{person.avatarVariations}}
+                              @alt={{person.fullName}}
+                            />
+                          {{else}}
+                            <img
+                              src='{{env
+                                "cdnHost"
+                              }}/images/public/no-avatar.svg'
+                              aria-hidden='true'
+                              width='27'
+                              height='27'
+                            />
+                          {{/if}}
+                        </div>
+                        <p class='p' data-search-me>{{person.fullName}}</p>
+                      </li>
+                    {{/let}}
                   {{/each}}
                 </ul>
               </div>
