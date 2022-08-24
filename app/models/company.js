@@ -28,10 +28,6 @@ export default class CompanyModel extends Model {
     return this.companyMembers.filterBy('public').sortBy('rankAmongMembers');
   }
 
-  get topThreeMembers() {
-    return this.companyMembers.slice(0, 3);
-  }
-
   get rank() {
     return this.order || 999;
   }

@@ -29,30 +29,32 @@
 
               <div class='members'>
                 <ul>
-                  {{#each company.topThreeMembers as |member|}}
-                    {{#let member.person as |person|}}
-                      <li>
-                        <div class='avatar'>
-                          {{#if person.avatarPath}}
-                            <ResponsiveImage
-                              @path={{person.avatarPath}}
-                              @variations={{person.avatarVariations}}
-                              @alt={{person.fullName}}
-                            />
-                          {{else}}
-                            <img
-                              src='{{env
-                                "cdnHost"
-                              }}/images/public/no-avatar.svg'
-                              aria-hidden='true'
-                              width='27'
-                              height='27'
-                            />
-                          {{/if}}
-                        </div>
-                        <p class='p' data-search-me>{{person.fullName}}</p>
-                      </li>
-                    {{/let}}
+                  {{#each company.members as |member i|}}
+                    {{#if (lt i 3)}}
+                      {{#let member.person as |person|}}
+                        <li>
+                          <div class='avatar'>
+                            {{#if person.avatarPath}}
+                              <ResponsiveImage
+                                @path={{person.avatarPath}}
+                                @variations={{person.avatarVariations}}
+                                @alt={{person.fullName}}
+                              />
+                            {{else}}
+                              <img
+                                src='{{env
+                                  "cdnHost"
+                                }}/images/public/no-avatar.svg'
+                                aria-hidden='true'
+                                width='27'
+                                height='27'
+                              />
+                            {{/if}}
+                          </div>
+                          <p class='p' data-search-me>{{person.fullName}}</p>
+                        </li>
+                      {{/let}}
+                    {{/if}}
                   {{/each}}
                 </ul>
               </div>
