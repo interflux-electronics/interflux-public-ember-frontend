@@ -91,7 +91,7 @@ li.past-webinar-event {
       width: 100%;
     }
     @include mobile {
-      padding: 0 vw-mobile(15px) vw-mobile(15px);
+      padding: 0 0 vw-mobile(15px);
       width: 100%;
     }
     .content {

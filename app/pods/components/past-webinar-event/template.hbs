@@ -30,7 +30,7 @@
   </div>
 
   <div
-    class='accordion {{if this.expanded 'expanded' 'collapsed'}}'
+    class='accordion {{if this.expanded "expanded" "collapsed"}}'
     style={{this.accordionStyle}}
     {{did-insert this.onInsertAccordion}}
   >
@@ -49,7 +49,7 @@
           <span>30+ years of field experience</span>
         </p>
         <Image
-          @src='{{env 'cdnHost'}}/images/public/avatar-steven@160x160.jpg'
+          @src='{{env "cdnHost"}}/images/people/steven-teliszewski@160x160.jpg'
         />
       </div>
 
@@ -68,7 +68,7 @@
           @icon='cloud-download'
           @theme='primary medium green icon-left'
           @class='collapse'
-          @url='{{env 'cdnHost'}}/{{@webinar.document.path}}.pdf'
+          @url='{{env "cdnHost"}}/{{@webinar.document.path}}.pdf'
         />
       {{/if}}
     </div>

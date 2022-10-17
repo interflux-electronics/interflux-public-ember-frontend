@@ -250,16 +250,16 @@
         svg {
           height: auto;
           @include widescreen {
-            width: 24px;
+            width: 12px;
           }
           @include desktop {
-            width: vw(24px);
+            width: vw(12px);
           }
           @include tablet {
-            width: vw-tablet(24px);
+            width: vw-tablet(12px);
           }
           @include mobile {
-            width: vw-mobile(24px);
+            width: vw-mobile(12px);
           }
         }
       }
