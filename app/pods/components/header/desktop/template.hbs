@@ -1,15 +1,15 @@
 <header id='desktop' role='banner' aria-label='site' class={{@theme}}>
   <nav aria-label='page'>
-    <Button @route='index' @id='logo' @class='left'>
-      <img
-        src='{{env
-          'cdnHost'
-        }}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg'
-        width='3960'
-        height='1000'
-        alt='Interflux Electronics'
-      />
-    </Button>
+    <div class='left'>
+      <Button @route='index' @id='logo'>
+        <img
+          src='{{cdn}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg'
+          width='3960'
+          height='1000'
+          alt='Interflux Electronics'
+        />
+      </Button>
+    </div>
 
     <ul class='center'>
       <li id='products'>
@@ -40,6 +40,16 @@
     </ul>
 
     <div class='right'>
+      <p>
+        <span>Member of the&nbsp;</span>
+        <Link @label='Interflux Group' @url='https://interflux.group' />
+        <img
+          src='{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg'
+          width='20'
+          height='20'
+          alt='Interflux Group'
+        />
+      </p>
       {{!--
       <Button
         @text='Order'

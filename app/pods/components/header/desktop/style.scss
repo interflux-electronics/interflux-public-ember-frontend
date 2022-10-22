@@ -29,32 +29,32 @@ header#desktop {
     justify-content: space-between;
     height: 100%;
     margin: 0 auto;
-    padding: 0 20px;
     box-sizing: border-box;
     @include widescreen {
-      max-width: 1200px;
+      padding: 0 36px;
     }
     @include desktop {
-      max-width: vw(1200px);
-      padding: 0 vw(20px);
+      padding: 0 vw(36px);
     }
   }
-  a#logo {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    transition: transform 400ms $easeOutExpo;
-    &:focus,
-    &:hover {
-      transform: scale(1.1);
-    }
-    img {
-      width: auto; // don't make height auto or Safari will explode
-      @include widescreen {
-        height: 44px;
+  .left {
+    a#logo {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      transition: transform 400ms $easeOutExpo;
+      &:focus,
+      &:hover {
+        transform: scale(1.1);
       }
-      @include desktop {
-        height: vw(44px);
+      img {
+        width: auto; // don't make height auto or Safari will explode
+        @include widescreen {
+          height: 56px;
+        }
+        @include desktop {
+          height: vw(56px);
+        }
       }
     }
   }
@@ -111,11 +111,34 @@ header#desktop {
     }
   }
   .right {
-    @include widescreen {
-      width: 174px; // TEMPORARY
-    }
-    @include desktop {
-      width: vw(174px); // TEMPORARY
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: flex-end;
+    p {
+      color: white;
+      text-align: right;
+      line-height: 100%;
+      display: flex;
+      align-items: center;
+      a {
+        background-color: transparent;
+        color: white;
+        text-decoration: none;
+        font-family: $bold;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+      img {
+        @include widescreen {
+          margin-left: 5px;
+        }
+        @include desktop {
+          margin-left: vw(5px);
+        }
+      }
     }
     // display: flex;
     // align-items: center;
