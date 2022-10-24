@@ -13,6 +13,7 @@ module.exports = {
     'no-invalid-interactive': 'warn',
     'no-html-comments': 'warn',
     'require-presentational-children': 'warn',
-    'no-whitespace-within-word': 'off'
+    'no-whitespace-within-word': 'off',
+    'no-implicit-this': 'warn'
   }
 };
