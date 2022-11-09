@@ -1,0 +1,117 @@
+.ds {
+  &.h2 {
+    font-family: $light;
+    line-height: 140%;
+    color: $grey-7;
+    @include widescreen {
+      font-size: 32px;
+    }
+    @include desktop {
+      font-size: vw(32px);
+    }
+    @include tablet {
+      font-size: vw-tablet(32px);
+    }
+    @include mobile {
+      font-size: 7.6vw;
+    }
+  }
+  &.h3 {
+    font-family: $semibold;
+    line-height: 150%;
+    color: $grey-7;
+    @include widescreen {
+      font-size: 20px;
+    }
+    @include desktop {
+      font-size: vw(20px);
+    }
+    @include tablet {
+      font-size: vw-tablet(20px);
+    }
+    @include mobile {
+      font-size: vw-mobile(20px);
+    }
+  }
+  &.h4 {
+    font-family: $bold;
+    line-height: 180%;
+    color: $grey-7;
+    @include widescreen {
+      font-size: 16px;
+    }
+    @include desktop {
+      font-size: vw(16px);
+    }
+    @include tablet {
+      font-size: vw-tablet(16px);
+    }
+    @include mobile {
+      font-size: vw-mobile(16px);
+    }
+  }
+  &.p {
+    font-family: $regular;
+    line-height: 180%;
+    color: $grey-7;
+    margin: 0;
+    @include widescreen {
+      font-size: 16px;
+    }
+    @include desktop {
+      font-size: vw(16px);
+    }
+    @include tablet {
+      font-size: vw-tablet(16px);
+    }
+    @include mobile {
+      font-size: vw-mobile(16px);
+    }
+  }
+  &.tag {
+    position: relative;
+    &.orange {
+      .bg {
+        .word {
+          color: $orange-2;
+          &:after {
+            background-color: $orange-2;
+          }
+        }
+      }
+    }
+    p {
+      color: white;
+      font-family: $semibold;
+      nobr {
+        display: flex;
+      }
+    }
+    .text {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .bg {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      .word {
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          top: 3px;
+          bottom: 3px;
+          left: -6px;
+          right: -6px;
+        }
+      }
+    }
+  }
+}

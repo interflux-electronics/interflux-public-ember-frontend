@@ -16,6 +16,7 @@
 // Normalise
 @import 'normalise/cross-browser';
 @import 'normalise/cross-project';
+@import 'normalise/interflux-ds';
 
 // Components
 @import 'app/pods/components/accordion/style';
@@ -52,6 +53,7 @@
 @import 'app/pods/components/section/style';
 @import 'app/pods/components/shimmer/style';
 @import 'app/pods/components/filterable-list/style';
+@import 'app/pods/components/events/style';
 
 // Pages
 
