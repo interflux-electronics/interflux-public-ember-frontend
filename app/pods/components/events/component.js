@@ -1,7 +1,24 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class EventsComponent extends Component {
-  get events() {
+  @service cache;
+  @service store;
+
+  constructor() {
+    super(...arguments);
+
+    this.loadEvents();
+  }
+
+  async loadEvents() {
+    this.events = this.cache.events || (await this.store.findAll('event'));
+  }
+
+  @tracked events;
+
+  get eventssss() {
     return [
       {
         date: '28 Oct 2022',

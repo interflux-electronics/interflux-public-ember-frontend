@@ -6,9 +6,9 @@
       {{#each this.events as |event|}}
         <li>
           <p class='ds p'>{{event.date}}</p>
-          <h4 class='ds h4'>{{event.title}}</h4>
+          <h4 class='ds h4'>{{event.name}}</h4>
           <p class='ds p'>{{event.location}}</p>
-          <Tag @text={{event.cta}} @color='orange' />
+          <Tag @text={{event.callToAction}} @color='orange' />
           <div class='pointer'>
             <div class='triangle'></div>
             <div class='dash'></div>
