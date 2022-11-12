@@ -68,50 +68,16 @@
       font-size: vw-mobile(16px);
     }
   }
-  &.tag {
-    position: relative;
-    &.orange {
-      .bg {
-        .word {
-          color: $orange-2;
-          &:after {
-            background-color: $orange-2;
-          }
-        }
-      }
-    }
-    p {
-      color: white;
-      font-family: $semibold;
-      nobr {
-        display: flex;
-      }
-    }
-    .text {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .bg {
-      position: absolute;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      flex-wrap: wrap;
-      .word {
-        position: relative;
-        &:after {
-          content: '';
-          position: absolute;
-          top: 3px;
-          bottom: 3px;
-          left: -6px;
-          right: -6px;
-        }
-      }
+  &.a {
+    font-family: $regular;
+    color: $blue-0;
+    text-decoration: underline;
+    padding: 0;
+    border-radius: 2px;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      cursor: pointer;
     }
   }
 }

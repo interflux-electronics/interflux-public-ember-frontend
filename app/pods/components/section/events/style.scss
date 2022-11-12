@@ -1,0 +1,149 @@
+#events {
+  background-color: $grey-0;
+  border-top: 1px solid $grey-1;
+  .liner {
+    @include widescreen {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    @include desktop {
+      //TODO
+    }
+    @include tablet {
+      //TODO
+    }
+    @include mobile {
+      //TODO
+    }
+  }
+  .h3 {
+    font-family: $regular;
+    text-align: left;
+    @include widescreen {
+      margin-bottom: 40px;
+    }
+    @include desktop {
+      //TODO
+    }
+    @include tablet {
+      //TODO
+    }
+    @include mobile {
+      //TODO
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @include widescreen {
+      gap: 2px;
+      margin-left: -10px;
+    }
+    @include desktop {
+      //TODO
+    }
+    @include tablet {
+      //TODO
+    }
+    @include mobile {
+      //TODO
+    }
+    details {
+      transition: all 400ms $easeOutExpo;
+      border-radius: 3px;
+      &[open] {
+        background: white;
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%);
+        margin: 20px 0;
+        summary {
+          svg {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+      &:hover,
+      &:focus {
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%);
+        background-color: white;
+        summary {
+          svg {
+            [fill] {
+              fill: $blue-0;
+            }
+          }
+        }
+      }
+      summary {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        @include widescreen {
+          gap: 20px;
+          padding: 10px;
+          padding-right: 20px;
+        }
+        @include desktop {
+          //TODO
+        }
+        @include tablet {
+          //TODO
+        }
+        @include mobile {
+          //TODO
+        }
+        h3 {
+          user-select: none;
+          @include widescreen {
+            padding: 0 8px; // to match <Tag> expansion
+          }
+          @include desktop {
+            //TODO
+          }
+          @include tablet {
+            //TODO
+          }
+          @include mobile {
+            //TODO
+          }
+        }
+        p {
+          display: flex;
+          align-items: center;
+          margin: 0;
+          user-select: none;
+          @include widescreen {
+            gap: 7px;
+          }
+          @include desktop {
+            //TODO
+          }
+          @include tablet {
+            //TODO
+          }
+          @include mobile {
+            //TODO
+          }
+        }
+        svg {
+          transform: rotate(0deg);
+          transition: all 400ms $easeOutExpo;
+          width: 12px;
+          height: auto;
+          [fill] {
+            transition: fill 400ms $easeOutExpo;
+            fill: $grey-3;
+          }
+        }
+      }
+      .description {
+        padding: 20px 24px;
+        border-top: 1px dashed #eee;
+        p {
+          max-width: 560px;
+        }
+      }
+    }
+  }
+}
