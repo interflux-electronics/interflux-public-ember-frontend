@@ -3,7 +3,7 @@
   border-top: 1px solid $grey-1;
   .liner {
     @include widescreen {
-      padding-top: 80px;
+      padding: 80px 50px;
     }
     @include desktop {
       padding: vw(80px) vw(50px);
@@ -112,6 +112,9 @@
           flex-direction: column;
           gap: 2vw;
           padding: 2vw;
+        }
+        &::-webkit-details-marker {
+          display: none;
         }
         h3 {
           user-select: none;
