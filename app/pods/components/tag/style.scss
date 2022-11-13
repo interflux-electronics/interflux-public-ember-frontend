@@ -48,8 +48,22 @@
         position: absolute;
         top: 0;
         bottom: 0;
-        left: -8px;
-        right: -8px;
+        @include widescreen {
+          left: -8px;
+          right: -8px;
+        }
+        @include desktop {
+          left: vw(-8px);
+          right: vw(-8px);
+        }
+        @include tablet {
+          left: vw-tablet(-8px);
+          right: vw-tablet(-8px);
+        }
+        @include mobile {
+          left: vw-mobile(-8px);
+          right: vw-mobile(-8px);
+        }
       }
     }
   }

@@ -4,59 +4,73 @@
   .liner {
     @include widescreen {
       padding-top: 80px;
-      padding-bottom: 80px;
     }
     @include desktop {
-      //TODO
+      padding: vw(80px) vw(50px);
     }
     @include tablet {
-      //TODO
+      padding: 15vw 5vw;
     }
     @include mobile {
-      //TODO
+      padding: 32vw 4vw;
     }
   }
   .h3 {
-    font-family: $regular;
     text-align: left;
     @include widescreen {
       margin-bottom: 40px;
     }
     @include desktop {
-      //TODO
+      margin-bottom: vw(40px);
     }
     @include tablet {
-      //TODO
+      margin-bottom: 5vw;
     }
     @include mobile {
-      //TODO
+      margin-bottom: 14vw;
+      text-align: center;
     }
   }
-
   .list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     @include widescreen {
       gap: 2px;
-      margin-left: -10px;
+      margin-left: -8px;
     }
     @include desktop {
-      //TODO
+      gap: vw(2px);
+      margin-left: vw(-8px);
     }
     @include tablet {
-      //TODO
+      gap: vw-tablet(2px);
+      margin-left: vw-tablet(-8px);
     }
     @include mobile {
-      //TODO
+      gap: 10vw;
     }
     details {
       transition: all 400ms $easeOutExpo;
       border-radius: 3px;
+      @include mobile {
+        width: 100%;
+      }
       &[open] {
         background: white;
         box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%);
-        margin: 20px 0;
+        @include widescreen {
+          margin: 20px 0;
+        }
+        @include desktop {
+          margin: vw(20px) 0;
+        }
+        @include tablet {
+          margin: vw-tablet(20px) 0;
+        }
+        @include mobile {
+          margin: vw-mobile(20px) 0;
+        }
         summary {
           svg {
             transform: rotate(-180deg);
@@ -85,13 +99,19 @@
           padding-right: 20px;
         }
         @include desktop {
-          //TODO
+          gap: vw(20px);
+          padding: vw(10px);
+          padding-right: vw(20px);
         }
         @include tablet {
-          //TODO
+          gap: vw-tablet(20px);
+          padding: vw-tablet(10px);
+          padding-right: vw-tablet(20px);
         }
         @include mobile {
-          //TODO
+          flex-direction: column;
+          gap: 2vw;
+          padding: 2vw;
         }
         h3 {
           user-select: none;
@@ -99,38 +119,62 @@
             padding: 0 8px; // to match <Tag> expansion
           }
           @include desktop {
-            //TODO
+            padding: 0 vw(8px); // to match <Tag> expansion
           }
           @include tablet {
-            //TODO
+            padding: 0 vw-tablet(8px); // to match <Tag> expansion
           }
           @include mobile {
-            //TODO
+            padding: 0 vw-mobile(8px); // to match <Tag> expansion
           }
         }
         p {
-          display: flex;
-          align-items: center;
           margin: 0;
           user-select: none;
+          @include mobile {
+            text-align: center;
+          }
+        }
+        img.flag {
+          height: auto;
+          display: inline-block;
           @include widescreen {
-            gap: 7px;
+            width: 20px;
+            transform: translateY(2px);
+            margin-left: 7px;
           }
           @include desktop {
-            //TODO
+            width: vw(20px);
+            transform: translateY(2px);
+            margin-left: vw(7px);
           }
           @include tablet {
-            //TODO
+            width: vw-tablet(20px);
+            transform: translateY(#{vw-tablet(2px)});
+            margin-left: vw-tablet(7px);
           }
           @include mobile {
-            //TODO
+            width: vw-mobile(20px);
+            transform: translateY(#{vw-mobile(2px)});
+            margin-left: vw-mobile(7px);
           }
         }
         svg {
           transform: rotate(0deg);
           transition: all 400ms $easeOutExpo;
-          width: 12px;
           height: auto;
+          @include widescreen {
+            width: 12px;
+          }
+          @include desktop {
+            width: vw(12px);
+          }
+          @include tablet {
+            width: vw-tablet(12px);
+          }
+          @include mobile {
+            width: vw-mobile(12px);
+          }
           [fill] {
             transition: fill 400ms $easeOutExpo;
             fill: $grey-3;
@@ -138,10 +182,32 @@
         }
       }
       .description {
-        padding: 20px 24px;
         border-top: 1px dashed #eee;
+        @include widescreen {
+          padding: 20px 24px;
+        }
+        @include desktop {
+          padding: vw(20px) vw(24px);
+        }
+        @include tablet {
+          padding: vw-tablet(20px) vw-tablet(24px);
+        }
+        @include mobile {
+          padding: vw-mobile(20px) vw-mobile(24px);
+        }
         p {
-          max-width: 560px;
+          @include widescreen {
+            max-width: 560px;
+          }
+          @include desktop {
+            max-width: vw(560px);
+          }
+          @include tablet {
+            max-width: vw-tablet(560px);
+          }
+          @include mobile {
+            max-width: vw-mobile(560px);
+          }
         }
       }
     }
