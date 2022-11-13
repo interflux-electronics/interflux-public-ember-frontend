@@ -6,12 +6,13 @@ export default class CacheService extends Service {
   @tracked companies;
   @tracked countries;
   @tracked documents;
-  @tracked markets;
-  @tracked webinars;
-  @tracked products;
+  @tracked events;
   @tracked families;
-  @tracked uses;
-  @tracked qualities;
+  @tracked markets;
+  @tracked products;
   @tracked productUses;
   @tracked productQualities;
+  @tracked qualities;
+  @tracked uses;
+  @tracked webinars;
 }

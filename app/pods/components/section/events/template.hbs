@@ -1,0 +1,38 @@
+<Section @id='events'>
+  <h2 class='ds h3'>Meet Interflux and partners at ...</h2>
+
+  {{#if (eq this.view 'loading')}}
+    <p>Loading ...</p>
+  {{/if}}
+
+  {{#if (eq this.view 'no-events')}}
+    <p>No upcoming events.</p>
+  {{/if}}
+
+  {{#if (eq this.view 'has-events')}}
+    <div class='list'>
+      {{#each this.events as |event|}}
+        <details>
+          <summary onclick={{this.collapseSiblings}}>
+            <h3>
+              <Tag @text={{event.name}} @theme='blue' />
+            </h3>
+
+            <p class='ds p'>
+              <span>{{event.dates}}, in
+                {{event.city}},
+                {{event.country.nameEnglish}}</span>
+              <Flag @country={{event.country}} />
+            </p>
+
+            <Svg::ChevronDown />
+          </summary>
+
+          <div class='description'>
+            {{markdown event.description}}
+          </div>
+        </details>
+      {{/each}}
+    </div>
+  {{/if}}
+</Section>
