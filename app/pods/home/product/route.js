@@ -6,15 +6,15 @@ export default class ProductRoute extends BaseRoute {
     return hash({
       product: this.store.findRecord('product', params.id, {
         include: [
-          'documents',
+          // 'documents',
           'qualities',
           'uses',
           'product_qualities',
           'product_uses',
           'product_family',
           'product_images',
-          'product_images.image',
-          'product_documents'
+          'product_images.image'
+          // 'product_documents'
         ].join(','),
         reload: true
       })
