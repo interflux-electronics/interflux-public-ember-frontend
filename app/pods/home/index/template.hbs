@@ -23,12 +23,14 @@
         @variations='@640x1200.jpg,@640x1200.webp'
       />
     {{/if}}
+
     {{#if this.media.isTablet}}
       <ResponsiveImage
         @path='images/public/homepage-hero-tablet'
         @variations='@1200x1200.jpg,@1200x1200.webp'
       />
     {{/if}}
+
     {{#if this.media.isDesktopWidescreen}}
       <ResponsiveImage
         @path='images/public/homepage-hero-desktop'
@@ -71,6 +73,19 @@
           </a>
         </li>
       {{/if}}
+    {{else}}
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
     {{/each}}
   </ul>
 </Section>
@@ -97,6 +112,16 @@
           </a>
         </li>
       {{/if}}
+    {{else}}
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
     {{/each}}
   </ul>
   <div class='cta'>

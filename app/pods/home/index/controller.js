@@ -8,6 +8,7 @@ import { inject as service } from '@ember/service';
 
 export default class HomeIndexController extends Controller {
   @service media;
+  @service store;
   @service window;
 
   @tracked heroPhrase;
@@ -18,6 +19,7 @@ export default class HomeIndexController extends Controller {
     super(...arguments);
 
     this.startHeroWordLoop();
+    this.fetchProducts();
   }
 
   async startHeroWordLoop() {
@@ -45,13 +47,26 @@ export default class HomeIndexController extends Controller {
     }
   }
 
-  @action
-  showImage(i) {
-    if (i <= 5) {
-      this.imageLeft = `image-${i}`;
-    } else {
-      this.imageRight = `image-${i}`;
-    }
+  async fetchProducts() {
+    const products = await this.store.query('product', {
+      filter: { onFrontPage: true },
+      include: 'productFamily'
+    });
+    const sorted = products.sortBy('frontPageRank');
+    this.newProducts = sorted.filter((p) => p.isNew);
+    this.popularProducts = sorted.filter((p) => p.isPopular);
+  }
+
+  @tracked newProducts = [];
+  @tracked popularProducts = [];
+
+  get popularLayout() {
+    const n = this.popularProducts.length;
+    return n === 4 || n === 0 ? 'two-columns' : 'three-columns';
+  }
+
+  get newLayout() {
+    return this.newProducts.length === 4 ? 'two-columns' : 'three-columns';
   }
 
   @action
@@ -60,31 +75,8 @@ export default class HomeIndexController extends Controller {
     window.scrollTo({ top, behavior: 'smooth' });
   }
 
-  get popularProducts() {
-    return this.model.products
-      .filterBy('status', 'popular')
-      .filterBy('onFrontPage')
-      .sortBy('frontPageRank');
-  }
-
-  get newProducts() {
-    return this.model.products
-      .filterBy('status', 'new')
-      .filterBy('onFrontPage')
-      .sortBy('frontPageRank');
-  }
-
-  get popularLayout() {
-    return this.popularProducts.length === 4 ? 'two-columns' : 'three-columns';
-  }
-
-  get newLayout() {
-    return this.newProducts.length === 4 ? 'two-columns' : 'three-columns';
-  }
-
   get yearCount() {
     const today = new Date();
-
     return today.getFullYear() - 1980;
   }
 }
