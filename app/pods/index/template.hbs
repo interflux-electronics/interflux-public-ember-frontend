@@ -1,12 +1,215 @@
-{{#if this.fastboot.isFastBoot}}
-  <LoadingCube @position='fixed' />
-{{else}}
-  {{#each this.translation.languages as |lang|}}
-    <a
-      href={{href-to 'home' lang.id}}
-      {{on 'click' (fn this.onLanguageClick lang.id)}}
-    >
-      {{markdown (translate 'index.continue' lang.id)}}
-    </a>
-  {{/each}}
-{{/if}}
+<Section @id='hero'>
+  <div class='text'>
+    <h1>
+      <small>Yes, you can solder electronics ...</small>
+      <strong>{{markdown this.heroPhrase (hash noParagraphs=true)}}</strong>
+      <small>Ask Interflux.</small>
+    </h1>
+  </div>
+
+  <div class='cta'>
+    <Button
+      @onClick={{this.showNextSection}}
+      @icon='chevron-down'
+      @theme='square outlined'
+    />
+  </div>
+
+  <div class='image'>
+    {{#if this.media.isMobile}}
+      {{! template-lint-disable no-potential-path-strings  }}
+      <ResponsiveImage
+        @path='images/public/homepage-hero-mobile'
+        @variations='@640x1200.jpg,@640x1200.webp'
+      />
+    {{/if}}
+
+    {{#if this.media.isTablet}}
+      <ResponsiveImage
+        @path='images/public/homepage-hero-tablet'
+        @variations='@1200x1200.jpg,@1200x1200.webp'
+      />
+    {{/if}}
+
+    {{#if this.media.isDesktopWidescreen}}
+      <ResponsiveImage
+        @path='images/public/homepage-hero-desktop'
+        @variations='@2400x1200.jpg,@2400x1200.webp'
+      />
+    {{/if}}
+    {{! template-lint-enable no-potential-path-strings  }}
+  </div>
+</Section>
+
+<Section @id='what-we-do'>
+  <h2>What we do</h2>
+  <blockquote>
+    <span>We research &amp; develop the </span>
+    <strong>chemistry</strong>
+    <span> needed for soldering </span>
+    <strong>electronics</strong>.
+  </blockquote>
+</Section>
+
+<Section @id='popular'>
+  <h2>Our best-selling products</h2>
+  <ul class='products {{this.popularLayout}}'>
+    {{#each this.popularProducts as |product|}}
+      {{#if product.id}}
+        <li>
+          <a href={{href-to 'product' product.id}}>
+            <div class='image'>
+              <ResponsiveImage
+                @path={{product.avatarPath}}
+                @variations={{product.avatarVariations}}
+                @alt={{@roduct.avatarAlt}}
+              />
+            </div>
+
+            <div class='text'>
+              <h3>{{span-each-word product.name}}</h3>
+              <h4>{{span-each-word product.family.nameSingle}}</h4>
+            </div>
+          </a>
+        </li>
+      {{/if}}
+    {{else}}
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+    {{/each}}
+  </ul>
+</Section>
+
+<Section @id='new'>
+  <h2>Our newest inventions</h2>
+  <ul class='products {{this.newLayout}}'>
+    {{#each this.newProducts as |product|}}
+      {{#if product.id}}
+        <li>
+          <a href={{href-to 'product' product.id}}>
+            <div class='image'>
+              <ResponsiveImage
+                @path={{product.avatarPath}}
+                @variations={{product.avatarVariations}}
+                @alt={{@roduct.avatarAlt}}
+              />
+            </div>
+
+            <div class='text'>
+              <h3>{{span-each-word product.name}}</h3>
+              <h4>{{span-each-word product.family.nameSingle}}</h4>
+            </div>
+          </a>
+        </li>
+      {{/if}}
+    {{else}}
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+      <li class='loading'>
+        <svg class='shimmer' width='400' height='400'></svg>
+      </li>
+    {{/each}}
+  </ul>
+  <div class='cta'>
+    <Button
+      @route='products'
+      @text='See all products'
+      @theme='legacy tertiary orange'
+    />
+  </div>
+</Section>
+
+<Section @id='why'>
+  <h2>Why Interflux?</h2>
+  <blockquote>
+    We've been pioneering soldering chemistry since 1980. That's
+    <strong>{{this.yearCount}}+ years</strong>
+    of accumulated experience in soldering electronics.
+  </blockquote>
+  <div class='cta'>
+    <Button
+      @route='company'
+      @text='Learn more'
+      @theme='legacy tertiary white'
+    />
+  </div>
+</Section>
+
+<Section @id='trusted-by'>
+  <h2>Trusted by</h2>
+  <div class='logos'>
+    <Link @url='https://www.kurtzersa.com/'>
+      <Image
+        @src='{{env "cdnHost"}}/images/public/logo-kurtz-ersa@300x168.png'
+        @width='300'
+        @height='168'
+        @alt='logo Kurtz Ersa in Germany'
+        @id='ersa'
+      />
+    </Link>
+
+    <Link @url='https://www.amw-ems.com/'>
+      <Image
+        @src='{{env "cdnHost"}}/images/public/logo-AMW-the-EMS-solution.png'
+        @width='300'
+        @height='121'
+        @alt='logo AMW the EMS solution in Thailand'
+        @id='amw'
+      />
+    </Link>
+
+    <Link @url='https://abanelectronics.com/'>
+      <Image
+        @src='{{env "cdnHost"}}/images/public/logo-aban-electronics@300x121.jpg'
+        @width='300'
+        @height='121'
+        @alt='logo ABAN Electronics in India'
+        @id='aban'
+      />
+    </Link>
+
+    <Link @url='https://www.vlktechno.com/'>
+      <Image
+        @src='{{env "cdnHost"}}/images/public/logo-VLK-techno-trade@300x180.png'
+        @width='300'
+        @height='180'
+        @alt='logo VLK Techno in Thailand'
+        @id='vlk-techno'
+      />
+    </Link>
+
+    <Link @url='https://www.oritech.com.au/'>
+      <Image
+        @src='{{env "cdnHost"}}/images/public/logo-oritech.svg'
+        @width='300'
+        @height='168'
+        @alt='logo Oritech in Australia'
+        @id='oritech'
+      />
+    </Link>
+
+    <Image
+      @src='{{env "cdnHost"}}/images/public/logo-edstachem.png'
+      @width='300'
+      @height='231'
+      @alt='logo Edstachem Vietnam'
+      @id='edstachem'
+    />
+  </div>
+</Section>
+
+<Section::Events />

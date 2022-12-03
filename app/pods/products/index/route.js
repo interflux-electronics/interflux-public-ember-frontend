@@ -17,11 +17,11 @@ export default class ProductsIndexRoute extends BaseRoute {
     this.page.update({
       id: 'products-index',
       title: 'Products',
-      backRoute: 'home'
+      backRoute: 'index'
     });
   }
 
   model() {
-    return this.modelFor('home.products');
+    return this.modelFor('products');
   }
 }

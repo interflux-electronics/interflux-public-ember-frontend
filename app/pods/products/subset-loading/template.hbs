@@ -1,7 +1,7 @@
 {{! <LoadingCube @message='Loading products ...' /> }}
 
 <div class='liner'>
-  <BackNav @backRoute='home.products' @backLabel='All products' />
+  <BackNav @backRoute='products' @backLabel='All products' />
 
   <div class='columns'>
     {{#if this.media.isDesktopWidescreen}}
@@ -25,7 +25,7 @@
               {{#each this.familyRadios as |radio|}}
                 <li>
                   <a
-                    href={{href-to 'home.products.subset' radio.id}}
+                    href={{href-to 'products.subset' radio.id}}
                     class={{if radio.isChecked 'active'}}
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
@@ -43,7 +43,7 @@
               {{#each this.useRadios as |radio|}}
                 <li>
                   <a
-                    href={{href-to 'home.products.subset' radio.id}}
+                    href={{href-to 'products.subset' radio.id}}
                     class={{if radio.isChecked 'active'}}
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >

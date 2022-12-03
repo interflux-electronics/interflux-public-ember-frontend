@@ -13,7 +13,7 @@ export default class DocumentsRoute extends BaseRoute {
     this.page.update({
       id: 'documents',
       title: 'Documents',
-      backRoute: 'home'
+      backRoute: 'index'
     });
   }
 

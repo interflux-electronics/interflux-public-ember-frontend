@@ -5,7 +5,7 @@ export default class ProductsSubsetErrorRoute extends BaseRoute {
     this.page.update({
       id: 'product-subset-error',
       title: 'Whoops',
-      crumbs: [{ label: 'Interflux', route: 'home' }, { label: 'Products' }]
+      crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
     });
   }
 }

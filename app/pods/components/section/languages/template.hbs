@@ -2,24 +2,24 @@
   {{#each this.languages as |language|}}
     {{#if (eq language.id 'en')}}
       <Button
-        @route='home'
+        @route='index'
         @model={{language.id}}
         @onClick={{fn this.onLanguageClick language.id}}
         @theme='legacy tertiary white inverse'
       >
         <img
-          src='{{env 'cdnHost'}}/images/flags/GB.svg'
+          src='{{env "cdnHost"}}/images/flags/GB.svg'
           alt='flag {{language.nameNative}}'
         />
         <p class='p'>{{language.nameNative}}</p>
       </Button>
     {{else}}
       <Button
-        @url='{{env 'oldHost'}}/{{language.legacy}}'
+        @url='{{env "oldHost"}}/{{language.legacy}}'
         @theme='legacy tertiary white inverse'
       >
         <img
-          src='{{env 'cdnHost'}}/images/flags/{{language.flag}}.svg'
+          src='{{env "cdnHost"}}/images/flags/{{language.flag}}.svg'
           alt='flag {{language.nameNative}}'
         />
         <p class='p'>{{language.nameNative}}</p>

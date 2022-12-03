@@ -2,7 +2,7 @@
 
   <div class='liner'>
     <BackNav
-      @backRoute='home.products.subset'
+      @backRoute='products.subset'
       @backModel={{product.mainFamily.id}}
       @backLabel='All {{product.mainFamily.namePlural}}'
     />
@@ -46,7 +46,7 @@
                 <p>{{product.name}}
                   been replaced by
                   <a
-                    href={{href-to 'home.product' product.superiorProduct.id}}
+                    href={{href-to 'product' product.superiorProduct.id}}
                   >{{product.superiorProduct.name}}</a>.</p>
                 <p>Why? &mdash; Because Interflux never stops innovating. We've
                   found even beter soldering chemistry for you. Do consider

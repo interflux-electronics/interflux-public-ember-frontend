@@ -352,7 +352,7 @@ export default class ProductsSubsetController extends Controller {
 
   @action
   openProductPage(product) {
-    this.router.transitionTo('home.product', product.id);
+    this.router.transitionTo('product', product.id);
   }
 
   get mainFamilies() {

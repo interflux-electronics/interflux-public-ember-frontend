@@ -6,8 +6,8 @@ export default class ProductsSubsetLoadingRoute extends BaseRoute {
       id: 'product-subset-loading',
       title: 'Loading ...',
       hash: [
-        { label: 'Interflux', route: 'home' },
-        { label: 'Products', route: 'home.products' },
+        { label: 'Interflux', route: 'index' },
+        { label: 'Products', route: 'products' },
         { label: 'Loading ...' }
       ]
     });

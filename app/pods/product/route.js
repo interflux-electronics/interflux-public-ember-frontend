@@ -53,11 +53,11 @@ export default class ProductRoute extends BaseRoute {
       id: 'product',
       title: name,
       mainClasses: status,
-      backRoute: 'home.products.subset',
+      backRoute: 'products.subset',
       backModel: mainFamily.get('id'),
       crumbs: [
-        { label: 'Interflux', route: 'home' },
-        { label: 'Products', route: 'home.products' },
+        { label: 'Interflux', route: 'index' },
+        { label: 'Products', route: 'products' },
         { label: name }
       ]
     });

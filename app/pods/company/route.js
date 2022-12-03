@@ -12,7 +12,7 @@ export default class CompanyRoute extends BaseRoute {
     this.page.update({
       id: 'company',
       title: 'Company',
-      backRoute: 'home'
+      backRoute: 'index'
     });
   }
 }

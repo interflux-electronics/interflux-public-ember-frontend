@@ -12,7 +12,7 @@ export default class ContactLoadingRoute extends BaseRoute {
     this.page.update({
       id: 'contact',
       title: 'Contact',
-      backRoute: 'home',
+      backRoute: 'index',
       theme: 'blue overlap'
     });
   }

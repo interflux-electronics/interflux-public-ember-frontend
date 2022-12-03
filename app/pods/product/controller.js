@@ -49,12 +49,12 @@ export default class ProductController extends Controller {
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
-        //     route: 'home.article',
+        //     route: 'article',
         //     model: 'article-123'
         //   },
         //   {
         //     label: `All products for ${use.get('text')}`,
-        //     route: 'home.products',
+        //     route: 'products',
         //     model: use.get('slug')
         //   }
         // ]
@@ -71,12 +71,12 @@ export default class ProductController extends Controller {
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
-        //     route: 'home.article',
+        //     route: 'article',
         //     model: 'article-123'
         //   },
         //   {
         //     label: `All products with ${use.get('text')}`,
-        //     route: 'home.products',
+        //     route: 'products',
         //     model: use.get('slug')
         //   }
         // ]

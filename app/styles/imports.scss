@@ -57,14 +57,13 @@
 @import 'app/pods/components/tag/style';
 
 // Pages
-
-@import 'app/pods/home/index/style';
-@import 'app/pods/home/company/style';
+@import 'app/pods/index/style';
+@import 'app/pods/company/style';
 @import 'app/pods/documents/category/style';
 @import 'app/pods/documents/style';
-@import 'app/pods/home/index/style';
-@import 'app/pods/home/product/style';
-@import 'app/pods/home/products/index/style';
-@import 'app/pods/home/products/subset/style';
-@import 'app/pods/home/webinars/style';
-@import 'app/pods/home/webinars/watch/style';
+@import 'app/pods/index/style';
+@import 'app/pods/product/style';
+@import 'app/pods/products/index/style';
+@import 'app/pods/products/subset/style';
+@import 'app/pods/webinars/style';
+@import 'app/pods/webinars/watch/style';

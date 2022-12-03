@@ -1,40 +1,26 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends BaseRoute {
-  @service router;
-  @service translation;
-
   beforeModel() {
-    // TEMPORARY: until translations are ready
-    if (!this.fastboot.isFastBoot) {
-      this.router.transitionTo('home', 'en');
-    }
+    // TODO: use router.urlFor to generate canoncialPath
+    // https://api.emberjs.com/ember/3.27/classes/RouterService/methods/cacheFor?anchor=cacheFor
+    this.headData.reset();
+    this.headData.setProperties({
+      title: 'Interflux – soldering fluxes, pastes, wires & alloys',
+      description:
+        'We research and develop the chemistry you need for soldering electronics with high-reliability. Products: soldering fluxes, solder pastes, solder wires, solder alloys, fluxing systems, solder masks, tip tinners and more.',
+      canoncialPath: 'products',
+      imagePath: '/images/logos/secondary-interflux-electronics-logo-1.png',
+      imageWidth: '3960',
+      imageHeight: '1000',
+      imageAlt: 'secondary Interflux Electronics logo 1'
+    });
+  }
 
-    // this.headData.setProperties({
-    //   title: 'Interflux = chemistry + electronics + metallurgy',
-    //   description:
-    //     'Interflux researches & develop the chemistry needed for soldering electronics: soldering fluxes, solder pastes, solder wires, fluxing systems and more for wave soldering, selective, reflow, stencil printing, BGA rework, ...',
-    //   canonicalPath: '',
-    //   imagePath: '/images/logos/secondary-interflux-electronics-logo-2.png',
-    //   imageWidth: '1000',
-    //   imageHeight: '1000',
-    //   imageAlt: 'Interflux Electronics logo'
-    // });
-    //
-    // Fastboot (Node) doesn't have localStorage and doesn't handle redirects well.
-    // if (!this.isNode) {
-    //
-    // const locale = localStorage.getItem('preferred-language');
-    // const language = this.translation.languages.find((l) => l.id === locale);
-    //
-    // if (language) {
-    //   // Skip the language page if user has previously selected a language.
-    //   this.router.transitionTo('home', locale);
-    // } else {
-    //   // Clear localStorage if it contains an invalid locale.
-    //   localStorage.removeItem('preferred-language');
-    // }
-    // }
+  activate() {
+    this.page.update({
+      id: 'homepage',
+      title: 'Interflux'
+    });
   }
 }

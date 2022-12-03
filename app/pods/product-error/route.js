@@ -6,9 +6,9 @@ export default class ProductErrorRoute extends BaseRoute {
       id: 'product-error',
       title: 'Whoops',
       crumbs: [
-        { label: 'Interflux', route: 'home' },
-        { label: 'Products', route: 'home.products' },
-        { label: 'Whoops', route: 'home.products' }
+        { label: 'Interflux', route: 'index' },
+        { label: 'Products', route: 'products' },
+        { label: 'Whoops', route: 'products' }
       ]
     });
   }

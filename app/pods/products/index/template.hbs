@@ -6,7 +6,7 @@
       {{#each this.sortedFamilies as |family|}}
         <section aria-labelledby='h2-{{family.id}}'>
           <h2 id='h2-{{family.id}}'>{{family.label}}</h2>
-          <a href={{href-to 'home.products.subset' family.id}}>
+          <a href={{href-to 'products.subset' family.id}}>
             {{#each family.images as |image|}}
               {{#if image.path}}
                 <ResponsiveImage
@@ -33,7 +33,7 @@
       {{#each this.sortedUses as |use|}}
         <section aria-labelledby='h2-{{use.id}}'>
           <h2 id='h2-{{use.id}}'>For {{use.text}}</h2>
-          <a href={{href-to 'home.products.subset' (concat 'for-' use.id)}}>
+          <a href={{href-to 'products.subset' (concat 'for-' use.id)}}>
             {{#each use.images as |image|}}
               {{#if image.path}}
                 <ResponsiveImage

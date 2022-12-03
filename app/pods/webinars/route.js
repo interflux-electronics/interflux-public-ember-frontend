@@ -13,7 +13,7 @@ export default class WebinarsRoute extends BaseRoute {
     this.page.update({
       id: 'webinars',
       title: 'Webinars',
-      backRoute: 'home',
+      backRoute: 'index',
       theme: 'green overlap'
     });
   }

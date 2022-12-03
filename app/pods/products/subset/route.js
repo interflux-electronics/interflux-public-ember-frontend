@@ -3,7 +3,7 @@ import BaseRoute from 'interflux/pods/base/route';
 export default class ProductsSubsetRoute extends BaseRoute {
   model(params) {
     const { slug } = params;
-    const model = this.modelFor('home.products');
+    const model = this.modelFor('products');
 
     if (slug.startsWith('for-')) {
       model.use = this.store.peekRecord('use', slug.slice(4));
@@ -33,10 +33,10 @@ export default class ProductsSubsetRoute extends BaseRoute {
     this.page.update({
       id: 'products-subset',
       title: pageTitle,
-      backRoute: 'home.products',
+      backRoute: 'products',
       crumbs: [
-        { label: 'Interflux', route: 'home' },
-        { label: 'Products', route: 'home.products' },
+        { label: 'Interflux', route: 'index' },
+        { label: 'Products', route: 'products' },
         { label: pageTitle }
       ]
     });

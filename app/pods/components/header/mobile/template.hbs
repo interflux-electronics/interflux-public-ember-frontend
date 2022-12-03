@@ -18,7 +18,7 @@
       <h1 aria-hidden='true'>{{@title}}</h1>
       <Button
         @icon='hamburger'
-        @theme='square outlined {{if this.menuIsOpen 'close'}}'
+        @theme='square outlined {{if this.menuIsOpen "close"}}'
         @onClick={{this.toggleMenu}}
       />
     </div>
@@ -31,21 +31,21 @@
       {{/if}}
 
       <Button
-        @route='home.products'
+        @route='products'
         @text='Products'
         @theme='stack white'
         @icon='flask'
         @onClick={{this.closeMenu}}
       />
       <Button
-        @route='home.webinars'
+        @route='webinars'
         @text='Webinars'
         @theme='stack white'
         @icon='podcast'
         @onClick={{this.closeMenu}}
       />
       <Button
-        @route='home.company'
+        @route='company'
         @text='Company'
         @theme='stack white'
         @icon='microchip'

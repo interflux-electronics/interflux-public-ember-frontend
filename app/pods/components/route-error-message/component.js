@@ -7,7 +7,7 @@ export default class RouteErrorMessage extends Component {
   }
 
   get backRoute() {
-    return this.args.backRoute || 'home';
+    return this.args.backRoute || 'index';
   }
 
   get backLabel() {

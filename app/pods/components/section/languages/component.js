@@ -6,7 +6,8 @@ export default class SectionLanguagesComponent extends Component {
   @service translation;
 
   get languages() {
-    return this.translation.languages.filter((l) => l.supported);
+    return [];
+    // TODO: return this.translation.languages.filter((l) => l.supported);
   }
 
   @action

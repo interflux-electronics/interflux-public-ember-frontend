@@ -2,7 +2,7 @@
   id={{@product.id}}
   class='product-row {{@product.status}} {{@product.family.slug}}'
 >
-  <a href={{href-to 'home.product' @product.id}}>
+  <a href={{href-to 'product' @product.id}}>
     <div class='left'>
       {{#if @avatar}}
         <ResponsiveImage

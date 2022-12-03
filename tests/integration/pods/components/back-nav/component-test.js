@@ -11,13 +11,13 @@ module('Integration | Component | back-nav', function (hooks) {
 
     await render(hbs`
       <BackNav
-        @backRoute="home.products"
+        @backRoute="products"
         @backLabel="All products"
       />
     `);
 
     const span = this.element.querySelector('a span');
 
-    assert.equal(span.textContent, 'All products');
+    assert.strictEqual(span.textContent, 'All products');
   });
 });
