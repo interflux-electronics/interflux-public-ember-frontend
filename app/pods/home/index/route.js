@@ -12,9 +12,9 @@ export default class IndexRoute extends BaseRoute {
   model() {
     return hash({
       products: this.store.findAll('product'),
-      families: this.store.findAll('product-family'),
+      families: this.store.findAll('product-family')
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
+      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });
   }
 }
