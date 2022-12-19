@@ -1,8 +1,8 @@
 <Header::Desktop::Menu @isOpen={{@isOpen}}>
   <div class='links'>
-    <h2>Products we develop</h2>
+    <h2>{{t 'ui.header.products.title'}}</h2>
     <Button
-      @text='LMPA™'
+      @text={{t 'ui.header.products.lmpa'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='for-low-melting-point-soldering'
@@ -10,7 +10,7 @@
       @onMouseEnter={{fn this.showImage 1}}
     />
     <Button
-      @text='Soldering fluxes'
+      @text={{t 'ui.header.products.flux'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='soldering-fluxes'
@@ -18,7 +18,7 @@
       @onMouseEnter={{fn this.showImage 2}}
     />
     <Button
-      @text='Solder pastes'
+      @text={{t 'ui.header.products.paste'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='solder-pastes'
@@ -26,7 +26,7 @@
       @onMouseEnter={{fn this.showImage 3}}
     />
     <Button
-      @text='Solder wires'
+      @text={{t 'ui.header.products.wire'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='solder-wires'
@@ -34,7 +34,7 @@
       @onMouseEnter={{fn this.showImage 4}}
     />
     <Button
-      @text='Solder alloys'
+      @text={{t 'ui.header.products.alloy'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='solder-alloys'
@@ -42,7 +42,7 @@
       @onMouseEnter={{fn this.showImage 5}}
     />
     <Button
-      @text='Auxiliaries'
+      @text={{t 'ui.header.products.aux'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='auxiliaries'
@@ -50,7 +50,7 @@
       @onMouseEnter={{fn this.showImage 6}}
     />
     <Button
-      @text='Fluxing systems'
+      @text={{t 'ui.header.products.icsf'}}
       @icon='arrow-right'
       @route='products.subset'
       @model='fluxing-systems'

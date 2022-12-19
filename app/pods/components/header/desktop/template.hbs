@@ -13,29 +13,32 @@
 
     <ul class='center'>
       <li id='products'>
-        <Button @text='Products' @onClick={{this.toggleMenu}} />
+        <Button @text={{t 'ui.header.products'}} @onClick={{this.toggleMenu}} />
         <Header::Desktop::Menu::Products @isOpen={{this.showProducts}} />
       </li>
 
       <li id='processes'>
-        <Button @text='Processes' @onClick={{this.toggleMenu}} />
+        <Button
+          @text={{t 'ui.header.processes'}}
+          @onClick={{this.toggleMenu}}
+        />
         <Header::Desktop::Menu::Processes @isOpen={{this.showProcesses}} />
       </li>
 
       <li id='know-how'>
-        <Button @text='Webinars' @route='webinars' />
+        <Button @text={{t 'ui.header.webinars'}} @route='webinars' />
       </li>
 
       <li id='company'>
-        <Button @text='Company' @route='company' />
+        <Button @text={{t 'ui.header.company'}} @route='company' />
       </li>
 
       <li id='docs'>
-        <Button @text='Docs' @route='documents' />
+        <Button @text={{t 'ui.header.docs'}} @route='documents' />
       </li>
 
       <li id='contact'>
-        <Button @text='Contact' @route='contact' />
+        <Button @text={{t 'ui.header.contact'}} @route='contact' />
       </li>
     </ul>
 
