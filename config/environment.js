@@ -86,6 +86,8 @@ module.exports = function (env) {
   const locationType = isMobileApp && !isTest ? 'hash' : 'history';
   const rootURL = isMobileApp && !isTest ? '' : '/';
 
+  const locale = process.env.LOCALE;
+
   const ENV = {
     appName: PKG.name,
     modulePrefix: PKG.name,
@@ -113,6 +115,7 @@ module.exports = function (env) {
     gitBranch,
     gitRevision,
     buildTimestamp,
+    locale,
 
     'mapbox-gl': {
       accessToken: `pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug`
