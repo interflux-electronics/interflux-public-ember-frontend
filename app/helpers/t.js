@@ -5,17 +5,9 @@ import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 
 export default class Translate extends Helper {
-  @service store;
+  @service i18n;
 
   compute([key]) {
-    const record = this.store.peekAll('translation').findBy('key', key);
-    const translation = record?.value;
-
-    if (!translation) {
-      console.warn('missing translation for', key);
-      // TODO: log this and show in admin
-    }
-
-    return translation;
+    return this.i18n.t(key); // See i18n service
   }
 }
