@@ -86,7 +86,9 @@ module.exports = function (env) {
   const locationType = isMobileApp && !isTest ? 'hash' : 'history';
   const rootURL = isMobileApp && !isTest ? '' : '/';
 
-  const locale = process.env.LOCALE;
+  // For translations and i18n the environment passes in the domain
+  // We don't use the URL because not reliable in development and testing
+  const domain = process.env.DOMAIN;
 
   const ENV = {
     appName: PKG.name,
@@ -115,7 +117,7 @@ module.exports = function (env) {
     gitBranch,
     gitRevision,
     buildTimestamp,
-    locale,
+    domain,
 
     'mapbox-gl': {
       accessToken: `pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug`
