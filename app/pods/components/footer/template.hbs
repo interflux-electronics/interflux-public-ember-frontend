@@ -1,7 +1,130 @@
 <footer>
-  <Section::Languages />
+  <div class='liner'>
+    <img
+      class='logo'
+      src='{{cdn}}/images/logos/interflux-electronics-logo-white.svg'
+      width='3960'
+      height='1000'
+      alt='Interflux Electronics'
+    />
 
-  <Section @id='copyright'>
-    <p class='p'>&copy; 1980 - {{this.year}} Interflux Electronics &reg;</p>
-  </Section>
+    <div class='languages'>
+      <h3>{{t 'Translations'}}</h3>
+      <ul>
+        <li>
+          <a href='/'>English</a>
+        </li>
+        <li>
+          <a href='/'>中文</a>
+        </li>
+        <li>
+          <a href='/'>Deutsch</a>
+        </li>
+        <li>
+          <a href='/'>Español</a>
+        </li>
+        <li>
+          <a href='/'>Português</a>
+        </li>
+        <li>
+          <a href='/'>français</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'more'}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class='products'>
+      <h3>{{t 'Products'}}</h3>
+      <ul>
+        <li>
+          <a href='/'>LMPA-Q</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'Soldering fluxes'}}</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'Solder pastes'}}</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'Solder wires'}}</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'Solder alloys'}}</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'Auxiliaries'}}</a>
+        </li>
+        <li>
+          <a href='/'>{{t 'Fluxing systems'}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class='more'>
+      <h3>{{t 'More'}}</h3>
+      <ul>
+        <li>
+          <a href={{href-to 'contact'}}>{{t 'Contact us'}}</a>
+        </li>
+        <li>
+          <a href={{href-to 'webinars'}}>{{t 'Webinars'}}</a>
+        </li>
+        <li>
+          <a href={{href-to 'documents'}}>{{t 'Documents'}}</a>
+        </li>
+        <li>
+          <a href={{href-to 'company'}}>{{t 'About us'}}</a>
+        </li>
+        <li>
+          <Link @url='https://interflux.group' @label='Interflux Group' />
+        </li>
+        {{!-- <li>
+          <a href={{href-to 'logos'}}>{{t 'Logos' 'footer'}}</a>
+        </li> --}}
+        {{! <li>
+          <a href='/'>API</a>
+        </li> }}
+      </ul>
+    </div>
+
+    <div class='right-edge'>
+      <div class='social'>
+        <h3>{{t 'Follow us'}}</h3>
+        <ul>
+          <li>
+            <Link
+              @url='https://www.linkedin.com/company/interflux-electronics/'
+            >
+              <Svg::Linkedin />
+            </Link>
+          </li>
+          <li>
+            <Link @url='https://twitter.com/interflux_elec'>
+              <Svg::Twitter />
+            </Link>
+          </li>
+          <li>
+            <Link @url='https://www.youtube.com/@interfluxelectronicsnv1744'>
+              <Svg::Youtube />
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      <div class='legal'>
+        <p>&copy; 1980 - {{this.year}}</p>
+        <p>&reg; Interflux Electronics</p>
+        <ul>
+          <li>
+            <a href='javascript:void(0);'>{{t 'Privacy Policy'}}</a>
+          </li>
+          <li>
+            <a href='javascript:void(0);'>{{t 'Terms & Conditions'}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </footer>

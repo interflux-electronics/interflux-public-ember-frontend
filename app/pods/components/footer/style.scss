@@ -1,87 +1,92 @@
 footer {
-  section#languages {
-    background: $blue-4;
-    .liner {
+  background-image: url('#{$cdn}/images/public/footer-bg.png');
+  background-size: 100% auto;
+  background-position: center 70%;
+  background-attachment: fixed;
+  padding: 90px 30px 30px;
+  display: flex;
+  justify-content: center;
+  .liner {
+    display: flex;
+    box-sizing: border-box;
+    background: radial-gradient(ellipse at right top, #{$blue-3}, #{$blue-5});
+    max-width: 1200px;
+    width: 100%;
+    gap: 50px;
+    padding: 46px 50px;
+  }
+  .logo {
+    width: 300px;
+    height: auto;
+    grid-area: logo;
+  }
+  .languages {
+    flex: 1;
+  }
+  .products {
+    flex: 1;
+  }
+  .more {
+    flex: 1;
+  }
+  .right-edge {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    a,
+    p,
+    h3 {
+      text-align: right;
+    }
+    ul {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      @include widescreen {
-        padding: px(2vw);
-        max-width: px(80vw);
-      }
-      @include desktop {
-        padding: 2vw;
-        max-width: 80vw;
-      }
-      @include tablet {
-        padding: 2.3vw;
-      }
-      @include mobile {
-        padding: 5vw 2vw;
-      }
-      a {
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .social {
+      ul {
         display: flex;
-        align-items: center;
-        padding: 0;
-        @include widescreen {
-          margin: 0 px(0.8vw);
-        }
-        @include desktop {
-          margin: 0 0.8vw;
-        }
-        @include tablet {
-          margin: 0 2vw;
-        }
-        @include mobile {
-          margin: 0 3vw;
-          width: auto;
-        }
-        p {
-          color: white;
-        }
-        img {
-          height: auto;
-          @include widescreen {
-            width: 20px;
-            margin-right: px(0.4vw);
-          }
-          @include desktop {
-            width: vw(20px);
-            margin-right: 0.4vw;
-          }
-          @include tablet {
-            width: 2.5vw;
-            margin-right: 1vw;
-          }
-          @include mobile {
-            width: 5vw;
-            margin-right: 2vw;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 4px;
+        a {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 300ms $easeOutExpo;
+          transition-property: transform, width;
+          &:hover,
+          &:focus {
+            transform: scale(1.5);
+            width: 48px;
           }
         }
+      }
+    }
+    .legal {
+      p + p {
+        margin: 0;
       }
     }
   }
-
-  section#copyright {
-    background: $blue-5;
+  h3 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    line-height: 200%;
     display: flex;
-    justify-content: center;
-    @include widescreen {
-      padding: px(2vw); // TODO
+    &:hover,
+    &:focus {
+      text-decoration: underline;
     }
-    @include desktop {
-      padding: 2vw; // TODO
-    }
-    @include tablet {
-      padding: 3vw; // TODO
-    }
-    @include mobile {
-      padding: 4vw; // TODO
-    }
-    p {
-      text-align: center;
-      color: white;
-    }
+  }
+  p {
+    color: white;
+    text-align: right;
   }
 }
