@@ -20,8 +20,9 @@ export default class SearchComponent extends Component {
   // @arg minKeyStrokes
   // @arg error
 
-  @service store;
   @service api;
+  @service i18n;
+  @service store;
   @service window;
 
   @tracked focus = false;
@@ -63,7 +64,7 @@ export default class SearchComponent extends Component {
 
   get keepTypingMessage() {
     if (!this.value) {
-      return 'Type to search';
+      return this.i18n.translate('Type to search');
     }
     const n = this.minKeyStrokes - this.value.length;
     return `Type ${n} more character${n > 1 ? 's' : ''}`;

@@ -10,11 +10,12 @@
     {{else}}
       <Pills
         @options={{array
-          (t 'order products')
-          (t 'request technical support')
-          (t 'request a document')
-          (t 'something else')
+          (hash label=(t 'order products') value='order')
+          (hash label=(t 'request technical support') value='support')
+          (hash label=(t 'request a document') value='document')
+          (hash label=(t 'something else') value='other')
         }}
+        @label='label'
         @onSelect={{fn (mut this.intention)}}
         @selectedOption={{this.intention}}
       />
@@ -23,7 +24,7 @@
 
   {{! TODO: don't use the option label, instead use an ID }}
 
-  {{#if (eq this.intention 'order products')}}
+  {{#if (eq this.intention.value 'order')}}
     <div class='step'>
       <h3 class='h3'>{{t 'To which country?'}}</h3>
       {{#unless this.country}}
@@ -51,10 +52,7 @@
       <div class='step'>
         {{#if (gt this.country.marketsSorted.length 1)}}
           <h3 class='h3'>
-            {{t
-              'Please send your order to one of the following:'
-              'contact.questions.h3.c'
-            }}
+            {{t 'Please send your order to one of the following:'}}
           </h3>
         {{else}}
           <h3 class='h3'>
@@ -91,7 +89,7 @@
 
   {{! TODO: don't use the option label, instead use an ID }}
 
-  {{#if (eq this.intention 'request technical support')}}
+  {{#if (eq this.intention.value 'support')}}
     <div class='step'>
       <h3 class='h3'>
         {{t "Please email us and we'll connect you to an expert."}}
@@ -118,19 +116,23 @@
     </div>
   {{/if}}
 
-  {{#if (eq this.intention 'request a document')}}
+  {{#if (eq this.intention.value 'document')}}
     <div class='step'>
-      <h3 class='h3'>What type of document?</h3>
+      <h3 class='h3'>{{t 'What type of document?'}}</h3>
       <Pills
-        @options={{array 'Safety data sheet (SDS)' 'something else'}}
+        @options={{array
+          (hash label=(t 'Safety data sheet (SDS)') value='sds')
+          (hash label=(t 'something else') value='other')
+        }}
+        @label='label'
         @onSelect={{fn (mut this.neededDocument)}}
         @selectedOption={{this.neededDocument}}
       />
     </div>
 
-    {{#if (eq this.neededDocument 'Safety data sheet (SDS)')}}
+    {{#if (eq this.neededDocument.value 'sds')}}
       <div class='step'>
-        <h3 class='h3'>Please email our REACH coordinator on:</h3>
+        <h3 class='h3'>{{t 'Please email our REACH coordinator on:'}}</h3>
         <p class='p'>
           <a href='mailto:reach@interflux.com'>reach@interflux.com</a>
         </p>
@@ -147,7 +149,7 @@
       </div>
     {{/if}}
 
-    {{#if (eq this.neededDocument 'something else')}}
+    {{#if (eq this.neededDocument.value 'other')}}
       <div class='step'>
         <h3 class='h3'>
           {{t 'Are you able to find the document in our library?'}}
@@ -174,7 +176,11 @@
         {{/if}}
 
         <Pills
-          @options={{array (t 'Yes') (t 'No')}}
+          @options={{array
+            (hash label=(t 'Yes') value='yes')
+            (hash label=(t 'No') value='no')
+          }}
+          @label='label'
           @onSelect={{fn (mut this.foundDoc)}}
           @selectedOption={{this.foundDoc}}
           @layout='horizontal'
@@ -182,13 +188,13 @@
       </div>
     {{/if}}
 
-    {{#if (eq this.foundDoc 'Yes')}}
+    {{#if (eq this.foundDoc.value 'yes')}}
       <div class='step'>
         <h3 class='h3'>{{t 'Great!'}}</h3>
       </div>
     {{/if}}
 
-    {{#if (eq this.foundDoc 'No')}}
+    {{#if (eq this.foundDoc.value 'no')}}
       <div class='step'>
         <h3 class='h3'>
           {{t "Please email us and we'll find it for you:"}}
@@ -255,13 +261,15 @@
   {{/if}}
   --}}
 
-  {{#if (eq this.intention 'something else')}}
+  {{#if (eq this.intention.value 'other')}}
     <div class='step'>
-      <h3 class='h3'>Ask us anything.</h3>
+      <h3 class='h3'>{{t 'Ask us anything.'}}</h3>
       <p class='p'>
         <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
       </p>
-      <p class='p'>We typically respond within 12 hours, except on weekends.</p>
+      <p class='p'>
+        {{t 'We typically respond within 12 hours, except on weekends.'}}
+      </p>
     </div>
   {{/if}}
 </Section>
