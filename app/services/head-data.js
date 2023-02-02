@@ -21,6 +21,8 @@ export default class HeadDataService extends Service {
   // For example: 'products/for-wave-soldering'
   @tracked canonicalPath = '';
 
+  @tracked path; // TODO
+
   get canonicalURL() {
     return `https://interflux.com/${this.translation.locale}/${this.canonicalPath}`;
   }

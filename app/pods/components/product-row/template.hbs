@@ -22,16 +22,16 @@
     </div>
 
     <div class='center'>
-      <h3>{{@product.name}}</h3>
+      <h3>{{t @product.name}}</h3>
       <div class='tags'>
         {{#if @product.familyLabel}}
-          <h4 class='blue'>{{@product.familyLabel}}</h4>
+          <h4 class='blue'>{{t @product.familyLabel}}</h4>
         {{/if}}
         {{#if @product.isNew}}
-          <h4 class='orange'>NEW</h4>
+          <h4 class='orange'>{{t 'new'}}</h4>
         {{/if}}
         {{#if @product.isPopular}}
-          <h4 class='orange'>popular</h4>
+          <h4 class='orange'>{{t 'popular'}}</h4>
         {{/if}}
         {{#if @product.isOutdated}}
           <h4 class='grey'>{{if
@@ -49,7 +49,7 @@
       </div>
       {{#if @product.pitch}}
         <div class='pitch'>
-          {{markdown @product.pitch}}
+          {{markdown (t @product.pitch)}}
         </div>
       {{/if}}
       {{#if (and this.features this.media.isDesktopWidescreen)}}
@@ -57,7 +57,7 @@
           {{#each this.features as |feature|}}
             <div class='feature'>
               <Image @src={{feature.iconURL}} />
-              <div class='callout'><span>{{feature.text}}</span></div>
+              <div class='callout'><span>{{t feature.text}}</span></div>
             </div>
           {{/each}}
         </div>

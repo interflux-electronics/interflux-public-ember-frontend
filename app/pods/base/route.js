@@ -9,6 +9,7 @@ export default class BaseRoute extends Route {
   @service cache;
   @service fastboot; // Ember's pre-serve renderer.
   @service headData; // Controls the <head> meta tags.
+  @service i18n; // For translations and internationalisation
   @service header;
   @service modal; // Controls the <Modal> component.
   @service page; // Controls the <Page> component.

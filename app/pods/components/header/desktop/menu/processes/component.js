@@ -7,102 +7,102 @@ export default class HeaderDesktopMenuProcessesComponent extends Component {
   get processes() {
     return [
       {
-        label: this.i18n.t('ui.header.processes.lmpa'),
+        label: this.i18n.translate('Low melting point soldering – LMPA-Q'),
         icon: 'LMPA-icon',
         routeModel: 'for-low-melting-point-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.osp'),
+        label: this.i18n.translate('OSP soldering', 'header'),
         icon: 'OSP-soldering-green',
         routeModel: 'for-OSP-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.selective'),
+        label: this.i18n.translate('Selective soldering', 'header'),
         icon: 'selective-soldering',
         routeModel: 'for-selective-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.jet-fluxing'),
+        label: this.i18n.translate('Jet fluxing', 'header'),
         icon: 'jet-fluxing',
         routeModel: 'for-jet-fluxing'
       },
       {
-        label: this.i18n.t('ui.header.processes.hand'),
+        label: this.i18n.translate('Hand soldering', 'header'),
         icon: 'rework-and-repair',
         routeModel: 'for-hand-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.wave'),
+        label: this.i18n.translate('Wave soldering', 'header'),
         icon: 'wave-soldering',
         routeModel: 'for-wave-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.jet-pasting'),
+        label: this.i18n.translate('Solder paste jetting', 'header'),
         icon: 'solder-paste-jetting',
         routeModel: 'for-solder-paste-jetting'
       },
       {
-        label: this.i18n.t('ui.header.processes.robot'),
+        label: this.i18n.translate('Robot soldering', 'header'),
         icon: 'robot-soldering',
         routeModel: 'for-robot-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.reflow'),
+        label: this.i18n.translate('Reflow soldering', 'header'),
         icon: 'reflow-soldering',
         routeModel: 'for-reflow-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.spray'),
+        label: this.i18n.translate('Spray fluxing', 'header'),
         icon: 'spray-fluxing',
         routeModel: 'for-spray-fluxing'
       },
       {
-        label: this.i18n.t('ui.header.processes.laser'),
+        label: this.i18n.translate('Laser soldering', 'header'),
         icon: 'laser-soldering',
         routeModel: 'for-laser-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.stencil'),
+        label: this.i18n.translate('Stencil printing', 'header'),
         icon: 'stencil-printing',
         routeModel: 'for-stencil-printing'
       },
       {
-        label: this.i18n.t('ui.header.processes.foam'),
+        label: this.i18n.translate('Foam fluxing', 'header'),
         icon: 'foam-fluxing',
         routeModel: 'for-foam-fluxing'
       },
       {
-        label: this.i18n.t('ui.header.processes.dispensing'),
+        label: this.i18n.translate('Dispensing', 'header'),
         icon: 'dispensing',
         routeModel: 'for-dispensing'
       },
       {
-        label: this.i18n.t('ui.header.processes.rework'),
+        label: this.i18n.translate('Rework & repair', 'header'),
         icon: 'rework-and-repair',
         routeModel: 'for-rework-and-repair'
       },
       {
-        label: this.i18n.t('ui.header.processes.pre-tinning'),
+        label: this.i18n.translate('Pre-tinning', 'header'),
         icon: 'pre-tinning',
         routeModel: 'for-pre-tinning'
       },
       {
-        label: this.i18n.t('ui.header.processes.solder-bath'),
+        label: this.i18n.translate('Solder bath conditioning', 'header'),
         icon: 'dip-soldering',
         routeModel: 'for-solder-bath-conditioning'
       },
       {
-        label: this.i18n.t('ui.header.processes.vapor'),
+        label: this.i18n.translate('Vapor phase soldering', 'header'),
         icon: 'vapour-phase-soldering',
         routeModel: 'for-vapor-phase-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.dip'),
+        label: this.i18n.translate('Dip soldering', 'header'),
         icon: 'dip-soldering',
         routeModel: 'for-dip-soldering'
       },
       {
-        label: this.i18n.t('ui.header.processes.cleaning'),
+        label: this.i18n.translate('Cleaning', 'header'),
         icon: 'drop-3',
         routeModel: 'for-general-cleaning'
       }

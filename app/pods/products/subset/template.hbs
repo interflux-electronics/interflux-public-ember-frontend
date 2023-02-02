@@ -1,12 +1,12 @@
 <div class='liner'>
-  <BackNav @backRoute='products' @backLabel='All products' />
+  <BackNav @backRoute='products' @backLabel={{t 'All products'}} />
 
   <div class='columns'>
     {{#if this.media.isDesktopWidescreen}}
       <aside>
         <div class='sticky'>
           <fieldset id='search'>
-            <legend>Find a product</legend>
+            <legend>{{t 'Find a product'}}</legend>
             <Search
               @placeholder={{this.searchPlaceHolder}}
               @onSelect={{this.openProductPage}}
@@ -18,7 +18,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Products we develop</legend>
+            <legend>{{t 'Products we develop'}}</legend>
             <ul class='links'>
               {{#each this.familyRadios as |radio|}}
                 <li>
@@ -27,7 +27,7 @@
                     class={{if radio.isChecked 'active'}}
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
-                    <span class='label'>{{radio.label}}</span>
+                    <span class='label'>{{t radio.label}}</span>
                     <Svg::ArrowRight />
                   </a>
                 </li>
@@ -36,7 +36,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Processes we support</legend>
+            <legend>{{t 'Processes we support'}}</legend>
             <ul class='links'>
               {{#each this.useRadios as |radio|}}
                 <li>
@@ -45,7 +45,7 @@
                     class={{if radio.isChecked 'active'}}
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
-                    <span class='label'>{{radio.label}}</span>
+                    <span class='label'>{{t radio.label}}</span>
                     <Svg::ArrowRight />
                   </a>
                 </li>
@@ -54,7 +54,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Filter</legend>
+            <legend>{{t 'Filter'}}</legend>
             {{#each this.statusCheckboxes as |checkbox|}}
               <div class='checkbox-group'>
                 <Checkbox
@@ -63,7 +63,7 @@
                   @onClick={{fn this.toggleStatus checkbox.id}}
                 />
                 <label for='input-{{checkbox.id}}'>
-                  <span>{{checkbox.label}}&nbsp;</span>
+                  <span>{{t checkbox.label}}&nbsp;</span>
                   {{!--<small>{{checkbox.count}}</small>--}}
                 </label>
               </div>
@@ -74,7 +74,7 @@
     {{/if}}
 
     <article {{did-insert this.onInsertArticle}}>
-      <h1 id='h1'>{{this.pageTitle}}</h1>
+      <h1 id='h1'>{{t this.pageTitle}}</h1>
 
       {{#if this.isLoading}}
         <Shimmer::ProductRows::Desktop />
@@ -84,7 +84,7 @@
             {{#if (or s.visibleRows.length s.visibleRows.length)}}
               <section aria-labelledby='h2-{{i}}'>
                 <div class='intro'>
-                  <h2 id='h2-{{i}}'>{{s.title}}</h2>
+                  <h2 id='h2-{{i}}'>{{t s.title}}</h2>
                 </div>
 
                 <ul class='visible'>

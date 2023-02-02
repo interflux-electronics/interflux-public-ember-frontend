@@ -230,6 +230,7 @@ li.product-row {
       .pitch {
         overflow: hidden;
         text-overflow: ellipsis;
+        width: 100%;
         @include widescreen {
           max-height: calc(3 * 16px * 1.8);
         }

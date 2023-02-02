@@ -1,10 +1,9 @@
 {{#let @model.product as |product|}}
-
   <div class='liner'>
     <BackNav
       @backRoute='products.subset'
       @backModel={{product.mainFamily.id}}
-      @backLabel='All {{product.mainFamily.namePlural}}'
+      @backLabel={{t (concat 'All ' product.mainFamily.namePlural)}}
     />
 
     <div class='columns'>
@@ -15,19 +14,19 @@
 
             <div class='tags'>
               {{#if product.familyLabel}}
-                <h2 class='blue'>{{product.familyLabel}}</h2>
+                <h2 class='blue'>{{t product.familyLabel}}</h2>
               {{/if}}
               {{#if product.isNew}}
-                <h2 class='orange'>NEW</h2>
+                <h2 class='orange'>{{t 'new'}}</h2>
               {{/if}}
               {{#if product.isPopular}}
-                <h2 class='orange'>popular</h2>
+                <h2 class='orange'>{{t 'popular'}}</h2>
               {{/if}}
               {{#if product.isOutdated}}
                 <h2 class='grey'>
                   {{if
                     product.superiorProduct
-                    (concat 'replaced by ' product.superiorProduct.name)
+                    (concat (t 'replaced by ') product.superiorProduct.name)
                     'outdated'
                   }}
                 </h2>
@@ -61,7 +60,7 @@
             {{else}}
               {{#if product.pitch}}
                 <div id='pitch'>
-                  {{markdown product.pitch}}
+                  {{markdown (t product.pitch)}}
                 </div>
               {{/if}}
             {{/if}}
@@ -112,7 +111,7 @@
           <section id='uses' aria-labelledby='h3-uses'>
             {{#if product.uses}}
               <div>
-                <h3 id='h3-uses'>Suitable for</h3>
+                <h3 id='h3-uses'>{{t 'Suitable for'}}</h3>
                 <Accordion @sections={{this.useAccordionSections}} />
               </div>
             {{/if}}
@@ -123,7 +122,7 @@
           <section id='qualities' aria-labelledby='h3-qualities'>
             {{#if product.qualities}}
               <div>
-                <h3 id='h3-qualities'>Key advantages</h3>
+                <h3 id='h3-qualities'>{{t 'Key advantages'}}</h3>
                 <Accordion @sections={{this.qualityAccordionSections}} />
               </div>
             {{/if}}
@@ -133,7 +132,7 @@
         {{#if product.properties}}
           <section id='properties' aria-labelledby='h3-properties'>
             <div>
-              <h3 id='h3-properties'>Physical &amp; chemical properties</h3>
+              <h3 id='h3-properties'>{{t 'Physical & chemical properties'}}</h3>
 
               {{to-definition-list product.properties}}
             </div>
@@ -143,47 +142,53 @@
         {{#if this.showCompliance}}
           <section id='compliance' aria-labelledby='h3-compliance'>
             <div>
-              <h3 id='h3-compliance'>Quality compliance</h3>
+              <h3 id='h3-compliance'>{{t 'Quality compliance'}}</h3>
               <div class='single-column'>
 
                 {{#if product.compliesWithIPC}}
                   <h4>IPC</h4>
                   {{#if product.compliesWithIPCJSTD004A}}
                     <p>
-                      <span>{{product.name}} complies with the </span>
+                      <span>{{product.name}} {{t 'complies with the'}}</span>
                       <Link
                         @label='IPC J-STD-004A'
                         @url='https://www.ipc.org/'
                       />
                       <span>
-                        standars making high quality electronic interconnections
-                        with soldering fluxes.</span>
+                        {{t
+                          'standars making high quality electronic interconnections with soldering fluxes.'
+                        }}
+                      </span>
                     </p>
                   {{/if}}
 
                   {{#if product.compliesWithIPCJSTD004B}}
                     <p>
-                      <span>{{product.name}} complies with the </span>
+                      <span>{{product.name}} {{t 'complies with the'}}</span>
                       <Link
                         @label='IPC J-STD-004B'
                         @url='https://www.ipc.org/'
                       />
                       <span>
-                        standars making high quality electronic interconnections
-                        with soldering fluxes.</span>
+                        {{t
+                          'standars making high quality electronic interconnections with soldering fluxes.'
+                        }}
+                      </span>
                     </p>
                   {{/if}}
 
                   {{#if product.compliesWithIPCJSTD005}}
                     <p>
-                      <span>{{product.name}} complies with the </span>
+                      <span>{{product.name}} {{t 'complies with the'}}</span>
                       <Link
                         @label='IPC J-STD-005'
                         @url='https://www.ipc.org/'
                       />
                       <span>
-                        standars making high quality electronic interconnections
-                        with solder pastes.</span>
+                        {{t
+                          'standars making high quality electronic interconnections with soldering fluxes.'
+                        }}
+                      </span>
                     </p>
                   {{/if}}
                 {{/if}}
@@ -191,56 +196,65 @@
                 {{#if product.compliesWithIEC}}
                   <h4>IEC</h4>
                   <p>
-                    <span>{{product.name}}
-                      complies with the European Standard
+                    <span>
+                      {{product.name}}&nbsp;
+                      {{t 'complies with the European Standard'}}
                     </span>
                     <Link
                       @label='EN 61190-1-1(2002)'
                       @url='https://www.standards.govt.nz/shop/iec-61190-1-12002/'
                     />
                     <span>
-                      which outlines the requirements for soldering fluxes for
-                      high-quality interconnections in electronics assembly.</span>
+                      {{t
+                        'which outlines the requirements for soldering fluxes for high-quality interconnections in electronics assembly.'
+                      }}
+                    </span>
                   </p>
                 {{/if}}
 
                 {{#if product.compliesWithROHS}}
                   <h4>RoHS</h4>
                   <p>
-                    <span>{{product.name}}
-                      complies with the European Union's
+                    <span>
+                      {{product.name}}&nbsp;
+                      {{t "complies with the European Union's"}}
                     </span>
                     <Link
                       @label='RoHS'
                       @url='https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive'
                     />
                     <span>
-                      directive for restricting the use of certain hazardous
-                      substances in electrical and electronic equipment.</span>
+                      {{t
+                        'directive for restricting the use of certain hazardous substances in electrical and electronic equipment.'
+                      }}
+                    </span>
                   </p>
                 {{/if}}
 
                 {{#if product.compliesWithISO}}
                   <h4>ISO 9001</h4>
                   <p>
-                    <span>{{product.name}}
-                      is produced at Interflux Electronics in Belgium, which has
-                      been certified year after year with the
+                    <span>
+                      {{product.name}}&nbsp;
+                      {{t
+                        'is produced at Interflux Electronics in Belgium, which has been certified year after year with the'
+                      }}
                     </span>
                     <Link @label='ISO 9001' @url='https://www.iso.org/' />
                     <span>
-                      standard for reliable quality management systems.</span>
+                      {{t 'standard for reliable quality management systems.'}}
+                    </span>
                   </p>
                 {{/if}}
 
                 {{#if product.testResults}}
-                  <h4>Test results</h4>
+                  <h4>{{t 'Test results'}}</h4>
                   <table class='results'>
                     <thead>
                       <tr>
-                        <th>Property</th>
-                        <th>Result</th>
-                        <th>Method</th>
+                        <th>{{t 'Property'}}</th>
+                        <th>{{t 'Result'}}</th>
+                        <th>{{t 'Method'}}</th>
                       </tr>
                     </thead>
 
@@ -263,9 +277,9 @@
         {{#if product.instructions}}
           <section id='instructions' aria-labelledby='h3-instructions'>
             <div>
-              <h3 id='h3-instructions'>How to use {{product.name}}</h3>
+              <h3 id='h3-instructions'>{{t 'How to use'}} {{product.name}}</h3>
               <div class='single-column'>
-                {{markdown product.instructions}}
+                {{markdown (t product.instructions)}}
               </div>
             </div>
           </section>
@@ -274,7 +288,7 @@
         <section aria-labelledby='h3-documents'>
           {{#if product.documents}}
             <div id='documents'>
-              <h3>Documents</h3>
+              <h3>{{t 'Documents'}}</h3>
               <Accordion @sections={{this.documentAccordionSections}} />
             </div>
           {{/if}}
@@ -307,14 +321,15 @@
               />
               --}}
 
-            <h4>Need help?</h4>
+            <h4>{{t 'Need help?'}}</h4>
             <p>
-              Ask someone with decades of fields experience in soldering
-              electronics.
+              {{t
+                'Ask someone with decades of fields experience in soldering electronics.'
+              }}
             </p>
 
             <Button
-              @text='Ask Interflux'
+              @text={{t 'Ask Interflux'}}
               @icon='people'
               @theme='primary large orange icon-floats-left'
               @url='mailto:ask@interflux.com'

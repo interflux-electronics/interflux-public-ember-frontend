@@ -11,8 +11,9 @@ export default class PageService extends Service {
   @tracked crumbs; // For building the breadcrumbs.
   @tracked mainClasses; // For adding modifier CSS classes to the <main>.
   @tracked theme;
-  @tracked showHeader = true;
-  @tracked showFooter = true;
+  @tracked showHeader = false;
+  @tracked showFooter = false;
+  @tracked showLoading = false;
 
   // To allow the <Page> component to close the menus in the <header>.
   @tracked shownHeaderMenu = false;
@@ -34,8 +35,9 @@ export default class PageService extends Service {
     this.crumbs = null;
     this.mainClasses = null;
     this.theme = null;
-    this.shownHeaderMenu = false;
     this.showHeader = true;
+    this.shownHeaderMenu = null; // dropdown menus
     this.showFooter = true;
+    this.showLoading = false;
   }
 }

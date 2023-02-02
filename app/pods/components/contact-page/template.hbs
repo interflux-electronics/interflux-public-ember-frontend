@@ -4,29 +4,28 @@
       <div class='preload'></div>
       <div class='high-res'></div>
     </div>
-    <h1 id='h1'>Contact</h1>
+    <h1 id='h1'>{{t 'Contact'}}</h1>
   </Section>
 
   <Section @id='map' @aria-labelledby='map'>
-    <h2 id='map-h2' class='h2'>We offer support worldwide</h2>
+    <h2 id='map-h2' class='h2'>
+      {{t 'We offer support worldwide'}}
+    </h2>
 
     <p class='p'>
-      The Interflux Network consists of 40 partners worldwide and is located in
-      key regions for the electronics manufacturing industry. That means there
-      is good chance someone near you can deliver Interflux products and
-      localised support.
+      {{t
+        'The Interflux Network consists of 40 partners worldwide and is located in key regions for the electronics manufacturing industry. That means there is good chance someone near you can deliver Interflux products and localised support.'
+      }}
     </p>
 
     <div class='container'>
       {{#if @isLoading}}
-        <p class='p'>Loading ...</p>
+        <p class='p'>{{t 'Loading ...'}}</p>
         <div class='preload'></div>
       {{else}}
         <Button @route='partners.map' @class='map'>
           <img
-            src='{{env
-              "cdnHost"
-            }}/images/public/interflux-network-map/interflux-network-map@1000x450.webp'
+            src='{{cdn}}/images/public/interflux-network-map/interflux-network-map@1000x450.webp'
             alt='the interflux network'
             width='1000'
             height='450'
@@ -36,7 +35,7 @@
 
         <Button
           @route='partners.map'
-          @text='Expand map'
+          @text={{t 'Expand map'}}
           @icon='expand'
           @theme='large secondary white-text-on-blue icon-left'
         />
@@ -55,9 +54,7 @@
   <Section @id='join' @aria-labelledby='join-h2'>
     <div class='image'>
       <img
-        src='{{env
-          "cdnHost"
-        }}/images/public/containers-at-port/containers-at-port@600x400.webp'
+        src='{{cdn}}/images/public/containers-at-port/containers-at-port@600x400.webp'
         alt='containers at port in Singapore'
         width='300'
         height='200'
@@ -66,12 +63,15 @@
     </div>
 
     <div class='text'>
-      <h2 id='join-h2' class='h2'>Become an Interflux Partner</h2>
-      <p class='p'>Gain access to our worldwide distribution network,
-        exclusivity to distribute Interflux products in your region and some of
-        the best soldering chemistry your customers have ever tried.</p>
+      <h2 id='join-h2' class='h2'>
+        {{t 'Become an Interflux Partner'}}</h2>
+      <p class='p'>
+        {{t
+          'Gain access to our worldwide distribution network, exclusivity to distribute Interflux products in your region and some of the best soldering chemistry your customers have ever tried.'
+        }}
+      </p>
       <Button
-        @text='Learn more'
+        @text={{t 'Learn more'}}
         @icon='lightbulb'
         @url='mailto:ask@interflux.com'
         @theme='medium primary orange icon-left'

@@ -2,8 +2,11 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import ENV from 'interflux/config/environment';
+import { inject as service } from '@ember/service';
 
 export default class ProductController extends Controller {
+  @service i18n;
+
   @tracked chosenImage = null;
 
   get avatar() {
@@ -44,8 +47,8 @@ export default class ProductController extends Controller {
     return this.model.product.uses.map((use) => {
       return {
         iconURL: use.get('iconURL'),
-        label: use.get('label'),
-        content: use.get('gist')
+        label: this.i18n.translate(use.get('label')),
+        content: this.i18n.translate(use.get('gist'))
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -66,8 +69,8 @@ export default class ProductController extends Controller {
     return this.model.product.qualities.map((quality) => {
       return {
         iconURL: quality.get('iconURL'),
-        label: quality.get('label'),
-        content: quality.get('gist')
+        label: this.i18n.translate(quality.get('label')),
+        content: this.i18n.translate(quality.get('gist'))
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -96,7 +99,7 @@ export default class ProductController extends Controller {
       return {
         iconURL: `${ENV.cdnHost}/images/icons/file-download.svg`,
         label: `${doc.get('name')} (PDF)`,
-        content: `Available in ${links.length} languages:`,
+        content: this.i18n.translate(`Available in ${links.length} languages:`),
         links
       };
     });

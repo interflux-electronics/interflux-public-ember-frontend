@@ -13,39 +13,40 @@
 
     <ul class='center'>
       <li id='products'>
-        <Button @text={{t 'ui.header.products'}} @onClick={{this.toggleMenu}} />
+        <Button @text={{t 'Products'}} @onClick={{this.toggleMenu}} />
         <Header::Desktop::Menu::Products @isOpen={{this.showProducts}} />
       </li>
 
       <li id='processes'>
-        <Button
-          @text={{t 'ui.header.processes'}}
-          @onClick={{this.toggleMenu}}
-        />
+        <Button @text={{t 'Products'}} @onClick={{this.toggleMenu}} />
         <Header::Desktop::Menu::Processes @isOpen={{this.showProcesses}} />
       </li>
 
       <li id='know-how'>
-        <Button @text={{t 'ui.header.webinars'}} @route='webinars' />
+        <Button @text={{t 'Webinars'}} @route='webinars' />
       </li>
 
       <li id='company'>
-        <Button @text={{t 'ui.header.company'}} @route='company' />
+        <Button @text={{t 'Company'}} @route='company' />
       </li>
 
       <li id='docs'>
-        <Button @text={{t 'ui.header.docs'}} @route='documents' />
+        <Button @text={{t 'Docs'}} @route='documents' />
       </li>
 
       <li id='contact'>
-        <Button @text={{t 'ui.header.contact'}} @route='contact' />
+        <Button @text={{t 'Contact'}} @route='contact' />
       </li>
     </ul>
 
     <div class='right'>
       <p>
-        <span>Member of the&nbsp;</span>
-        <Link @label='Interflux Group' @url='https://interflux.group' />
+        <span>
+          {{markdown
+            (t 'Member of the [Interflux Group](https://interflux.group)')
+            (hash noParagraphs=true)
+          }}
+        </span>
         <img
           src='{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1.svg'
           width='20'

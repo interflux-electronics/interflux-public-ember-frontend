@@ -21,7 +21,7 @@
         <Button
           @route='webinars.watch'
           @model={{@webinar.id}}
-          @text='Watch replay'
+          @text={{t 'Watch replay'}}
           @icon='play'
           @theme='primary medium orange icon-left'
         />
@@ -35,18 +35,18 @@
     {{did-insert this.onInsertAccordion}}
   >
     <div class='content'>
-      <h4>Who should watch</h4>
-      {{markdown @webinar.audience}}
+      <h4>{{t 'Who should watch'}}</h4>
+      {{markdown (t @webinar.audience)}}
 
-      <h4>Topic</h4>
-      {{markdown @webinar.topic}}
+      <h4>{{t 'Topic'}}</h4>
+      {{markdown (t @webinar.topic)}}
 
-      <h4>Speaker</h4>
+      <h4>{{t 'Speaker'}}</h4>
       <div class='host'>
         <p>
           <span>Steven Teliszewski</span>
-          <span>COO at Interflux Electronics</span>
-          <span>30+ years of field experience</span>
+          <span>{{t 'COO at Interflux Electronics'}}</span>
+          <span>{{t '30+ years of field experience'}}</span>
         </p>
         <Image
           @src='{{env "cdnHost"}}/images/people/steven-teliszewski@160x160.jpg'
@@ -75,7 +75,7 @@
   </div>
 
   <Button
-    @text={{if this.expanded 'Hide details' 'Show details'}}
+    @text={{if this.expanded (t 'Hide details') (t 'Show details')}}
     @icon={{if this.expanded 'arrow-up' 'arrow-down'}}
     @theme='secondary medium grey-border blue-focus icon-right'
     @onClick={{this.toggleAccordion}}

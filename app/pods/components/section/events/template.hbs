@@ -1,12 +1,12 @@
 <Section @id='events'>
-  <h2 class='ds h3'>Meet Interflux and partners at ...</h2>
+  <h2 class='ds h3'>{{t 'Meet Interflux and partners at ...'}}</h2>
 
   {{#if (eq this.view 'loading')}}
-    <p>Loading ...</p>
+    <p>{{t 'Loading ...'}}</p>
   {{/if}}
 
   {{#if (eq this.view 'no-events')}}
-    <p>No upcoming events.</p>
+    <p>{{t 'No upcoming events.'}} </p>
   {{/if}}
 
   {{#if (eq this.view 'has-events')}}

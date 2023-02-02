@@ -3,23 +3,21 @@
   <Modal @id='reach'>
     <Section>
       <Icon @name='file-medical' />
-      <h3>{{@model.category.name}}</h3>
-      <p>REACH is the legislation of the European Union regulating chemical
-        substances across Europe. Interflux is subject to and in compliance with
-        this legislation. If you have any questions or need specific documents
-        regarding REACH, please contact our friendly team in Belgium:
-      </p>
+      <h3>{{t @model.category.name}}</h3>
+      {{markdown
+        (t
+          'REACH is the legislation of the European Union regulating chemical substances across Europe. Interflux is subject to and in compliance with this legislation. If you have any questions or need specific documents regarding REACH, please contact our friendly team in Belgium:'
+        )
+      }}
       <Button
         @url='mailto:reach@interflux.com'
         @text='reach@interflux.com'
         @theme='primary large orange'
       />
       <p>
-        Alternatively, visit the
-        <Link
-          @url='https://osha.europa.eu/en/themes/dangerous-substances/reach'
-          @label='REACH website'
-        />.
+        {{t
+          'Alternatively, visit the [REACH website](https://osha.europa.eu/en/themes/dangerous-substances/reach).'
+        }}
       </p>
     </Section>
   </Modal>
@@ -29,9 +27,12 @@
   <Modal @id='sds'>
     <Section>
       <Icon @name='file-medical' />
-      <h3>{{@model.category.name}}</h3>
-      <p>To obtain Safety Data Sheets, please contact our friendly REACH team in
-        Belgium:</p>
+      <h3>{{t @model.category.name}}</h3>
+      <p>
+        {{t
+          'To obtain Safety Data Sheets, please contact our friendly REACH team in Belgium:'
+        }}
+      </p>
       <Button
         @url='mailto:reach@interflux.com'
         @text='reach@interflux.com'
@@ -48,8 +49,8 @@
         <Icon @name={{@model.category.icon}} />
       </div>
       <div class='right'>
-        <h3>{{@model.category.name}}</h3>
-        <p>{{@model.category.gist}}</p>
+        <h3>{{t @model.category.name}}</h3>
+        <p>{{t @model.category.gist}}</p>
       </div>
     </Section>
 

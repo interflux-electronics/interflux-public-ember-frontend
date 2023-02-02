@@ -1,17 +1,19 @@
-<Section @id='questionair' @aria-labelledby='find-h2'>
-  <h2 id='find-h2' class='h2'>Find the right person</h2>
+<Section @id='questions' @aria-labelledby='find-h2'>
+  <h2 id='find-h2' class='h2'>
+    {{t 'Find the right person'}}
+  </h2>
 
   <div class='step'>
-    <h3 class='h3'>What do you want to do?</h3>
+    <h3 class='h3'>{{t 'What do you want to do?'}}</h3>
     {{#if @isLoading}}
-      <p class='p'>Loading ...</p>
+      <p class='p'>{{t 'Loading ...'}}</p>
     {{else}}
       <Pills
         @options={{array
-          'order products'
-          'request technical support'
-          'request a document'
-          'something else'
+          (t 'order products')
+          (t 'request technical support')
+          (t 'request a document')
+          (t 'something else')
         }}
         @onSelect={{fn (mut this.intention)}}
         @selectedOption={{this.intention}}
@@ -19,9 +21,11 @@
     {{/if}}
   </div>
 
+  {{! TODO: don't use the option label, instead use an ID }}
+
   {{#if (eq this.intention 'order products')}}
     <div class='step'>
-      <h3 class='h3'>To which country?</h3>
+      <h3 class='h3'>{{t 'To which country?'}}</h3>
       {{#unless this.country}}
         <Search
           @onSelect={{this.onCountrySelect}}
@@ -46,9 +50,16 @@
     {{#if this.country}}
       <div class='step'>
         {{#if (gt this.country.marketsSorted.length 1)}}
-          <h3 class='h3'>Please send your order to one of the following:</h3>
+          <h3 class='h3'>
+            {{t
+              'Please send your order to one of the following:'
+              'contact.questions.h3.c'
+            }}
+          </h3>
         {{else}}
-          <h3 class='h3'>Please send your order to:</h3>
+          <h3 class='h3'>
+            {{t 'Please send your order to:'}}
+          </h3>
         {{/if}}
 
         <ol class='companies'>
@@ -66,7 +77,9 @@
               {{#if market.companyIsRecommended}}
                 <p class='p recommended'>
                   <Svg::ThumbsUp />
-                  <span>recommended</span>
+                  <span>
+                    {{t 'recommended'}}
+                  </span>
                 </p>
               {{/if}}
             </li>
@@ -76,18 +89,31 @@
     {{/if}}
   {{/if}}
 
+  {{! TODO: don't use the option label, instead use an ID }}
+
   {{#if (eq this.intention 'request technical support')}}
     <div class='step'>
-      <h3 class='h3'>Please email us and we'll connect you to an expert.</h3>
+      <h3 class='h3'>
+        {{t "Please email us and we'll connect you to an expert."}}
+      </h3>
       <p class='p'>
         <a href='mailto:support@interflux.com'>support@interflux.com</a>
       </p>
-      <p class='p'>To let us help you faster, please describe:</p>
+      <p class='p'>
+        {{t 'To let us help you faster, please describe:'}}
+      </p>
       <ul class='bullets'>
-        <li class='p'>What you are trying to do</li>
-        <li class='p'>Which Interflux products are involved</li>
-        <li class='p'>Observed issues</li>
-        <li class='p'>Desired outcomes</li>
+        <li class='p'>
+          {{t 'What you are trying to do'}}</li>
+        <li class='p'>
+          {{t 'Which Interflux products are involved'}}
+        </li>
+        <li class='p'>
+          {{t 'Observed issues'}}
+        </li>
+        <li class='p'>
+          {{t 'Desired outcomes'}}
+        </li>
       </ul>
     </div>
   {{/if}}
@@ -123,7 +149,9 @@
 
     {{#if (eq this.neededDocument 'something else')}}
       <div class='step'>
-        <h3 class='h3'>Are you able to find the document in our library?</h3>
+        <h3 class='h3'>
+          {{t 'Are you able to find the document in our library?'}}
+        </h3>
 
         <Search
           @value={{this.document}}
@@ -146,7 +174,7 @@
         {{/if}}
 
         <Pills
-          @options={{array 'Yes' 'No'}}
+          @options={{array (t 'Yes') (t 'No')}}
           @onSelect={{fn (mut this.foundDoc)}}
           @selectedOption={{this.foundDoc}}
           @layout='horizontal'
@@ -156,13 +184,15 @@
 
     {{#if (eq this.foundDoc 'Yes')}}
       <div class='step'>
-        <h3 class='h3'>Great!</h3>
+        <h3 class='h3'>{{t 'Great!'}}</h3>
       </div>
     {{/if}}
 
     {{#if (eq this.foundDoc 'No')}}
       <div class='step'>
-        <h3 class='h3'>Please email us and we'll find it for you:</h3>
+        <h3 class='h3'>
+          {{t "Please email us and we'll find it for you:"}}
+        </h3>
         <p>
           <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
         </p>

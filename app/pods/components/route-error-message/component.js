@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 
 export default class RouteErrorMessage extends Component {
   get showBackButton() {
-    console.log(this.args.hideBackButton);
     return this.args.hideBackButton ? false : true;
   }
 

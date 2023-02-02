@@ -1,11 +1,11 @@
 import BaseRoute from 'interflux/pods/base/route';
 
-export default class WebinarsLoadingRoute extends BaseRoute {
+export default class LanguageLoadingRoute extends BaseRoute {
   activate() {
     this.page.update({
-      id: 'application-loading',
+      id: 'language-loading',
       title: 'Loading ...',
-      theme: 'green overlap'
+      showLoading: true
     });
   }
 }

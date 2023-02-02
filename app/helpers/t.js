@@ -4,10 +4,10 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 
-export default class Translate extends Helper {
+export default class T extends Helper {
   @service i18n;
 
-  compute([key]) {
-    return this.i18n.t(key); // See i18n service
+  compute([phrase, key]) {
+    return this.i18n.translate(phrase, key); // See i18n service
   }
 }

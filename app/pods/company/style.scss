@@ -99,9 +99,11 @@ main#company {
       background: $blue-3;
       @include widescreen {
         padding: px(4.1666vw);
+        min-height: 261px;
       }
       @include desktop {
         padding: 4.1666vw;
+        min-height: vw(261px);
       }
       @include tablet {
         padding: 5vw 40vw 5vw 5vw;

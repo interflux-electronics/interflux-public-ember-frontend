@@ -1,40 +1,46 @@
-{{#if this.page.showHeader}}
-  {{#if this.showMobileHeader}}
-    <Header::Mobile
-      @title={{if @error 'Whoops' this.title}}
-      @backRoute={{this.backRoute}}
-      @backModel={{this.backModel}}
-    />
-  {{/if}}
-{{/if}}
-
-<div
-  id='page'
-  class={{this.pageClasses}}
-  style={{this.pageStyle}}
-  data-main={{this.id}}
-  onclick={{this.onPageClick}}
->
+{{#if this.page.showError}}
+  <ErrorPage />
+{{else if this.page.showLoading}}
+  <LoadingCube @message='Loading ...' />
+{{else}}
   {{#if this.page.showHeader}}
-    {{#if this.showDesktopHeader}}
-      <Header::Desktop @theme={{this.page.theme}} />
-      {{#if @crumbs}}
-        <Breadcrumbs @crumbs={{@crumbs}} />
-      {{/if}}
+    {{#if this.showMobileHeader}}
+      <Header::Mobile
+        @title={{if @error 'Whoops' this.title}}
+        @backRoute={{this.backRoute}}
+        @backModel={{this.backModel}}
+      />
     {{/if}}
   {{/if}}
 
-  <main
-    id={{this.id}}
-    class={{this.mainClasses}}
-    aria-labelledby={{@ariaLabelledby}}
-    aria-describedby={{@ariaDescribedby}}
+  <div
+    id='page'
+    class={{this.pageClasses}}
+    style={{this.pageStyle}}
+    data-main={{this.id}}
+    onclick={{this.onPageClick}}
   >
-    {{yield}}
-  </main>
+    {{#if this.page.showHeader}}
+      {{#if this.showDesktopHeader}}
+        <Header::Desktop @theme={{this.page.theme}} />
+        {{#if @crumbs}}
+          <Breadcrumbs @crumbs={{@crumbs}} />
+        {{/if}}
+      {{/if}}
+    {{/if}}
 
-  {{#if this.page.showFooter}}
-    <div class='spacer'></div>
-    <Footer />
-  {{/if}}
-</div>
+    <main
+      id={{this.id}}
+      class={{this.mainClasses}}
+      aria-labelledby={{@ariaLabelledby}}
+      aria-describedby={{@ariaDescribedby}}
+    >
+      {{yield}}
+    </main>
+
+    {{#if this.page.showFooter}}
+      <div class='spacer'></div>
+      <Footer />
+    {{/if}}
+  </div>
+{{/if}}
