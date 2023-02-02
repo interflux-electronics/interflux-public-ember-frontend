@@ -85,12 +85,7 @@ export default class IndexController extends Controller {
   }
 
   get pioneerQuote() {
-    return this.i18n
-      .translate(
-        "We've been pioneering soldering chemistry since 1980. That's **42 years** of accumulated experience in soldering electronics.",
-        'home'
-      )
-      .replace('42', this.yearCount);
+    return `We've been pioneering soldering chemistry since 1980. That's **${this.yearCount} years** of accumulated experience in soldering electronics.`;
   }
 
   get yearCount() {
