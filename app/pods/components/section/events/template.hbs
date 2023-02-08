@@ -11,7 +11,7 @@
 
   {{#if (eq this.view 'has-events')}}
     <div class='list'>
-      {{#each this.events as |event|}}
+      {{#each this.sortedEvents as |event|}}
         <details>
           <summary onclick={{this.collapseSiblings}}>
             <h3>
@@ -19,7 +19,7 @@
             </h3>
 
             <p class='ds p'>
-              <span>{{event.dates}}, in
+              <span>{{event.datesCombined}}, in
                 {{event.city}},
                 {{event.country.nameEnglish}}</span>
               <Flag @country={{event.country}} />
