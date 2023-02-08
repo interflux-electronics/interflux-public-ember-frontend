@@ -53,6 +53,10 @@ export default class EventModel extends Model {
   }
 
   get hasEnded() {
+    if (!this.startDate) {
+      return true;
+    }
+
     const endDate = this.startDate.split('-');
     const YYYY = endDate[0];
     const MM = Number(endDate[1]);
