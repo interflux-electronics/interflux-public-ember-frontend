@@ -12,6 +12,7 @@
 
 # misc
 /.env*
+!.env.example
 /.pnp*
 /.sass-cache
 /.eslintcache
