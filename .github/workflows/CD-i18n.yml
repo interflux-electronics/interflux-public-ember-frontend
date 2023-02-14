@@ -1,0 +1,86 @@
+---
+name: Continuous Deployment i18n
+
+on:
+  push:
+    branches:
+      - 'feature/i18n'
+
+concurrency:
+  group: ci-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-de:
+    name: Deploy interflux.de (Frankfurt)
+    runs-on: ubuntu-latest
+    env:
+      SSH: ${{secrets.SSH_FRANKFURT}}
+      URL: admin@frankfurt.server.interflux.com
+      ROOT: /var/www/interflux.de
+    steps:
+      - uses: actions/checkout@v2
+      - run: mkdir ~/.ssh
+      - run: 'echo "$SSH" > ~/.ssh/$URL'
+      - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
+      - run: ssh-keyscan -H server.interflux.com > ~/.ssh/known_hosts
+      - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
+      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull"
+      - run: ssh $URL "cd $ROOT; nvm install; yarn install"
+      - run: ssh $URL "cd $ROOT; yarn build"
+
+  deploy-es:
+    name: Deploy interflux.es (Madrid)
+    runs-on: ubuntu-latest
+    needs: deploy-de
+    env:
+      SSH: ${{secrets.SSH_MADRID}}
+      URL: admin@madrid.server.interflux.com
+      ROOT: /var/www/interflux.es
+    steps:
+      - uses: actions/checkout@v2
+      - run: mkdir ~/.ssh
+      - run: 'echo "$SSH" > ~/.ssh/$URL'
+      - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
+      - run: ssh-keyscan -H server.interflux.com > ~/.ssh/known_hosts
+      - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
+      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull"
+      - run: ssh $URL "cd $ROOT; nvm install; yarn install"
+      - run: ssh $URL "cd $ROOT; yarn build"
+
+  deploy-fr:
+    name: Deploy interflux.fr (Paris)
+    runs-on: ubuntu-latest
+    needs: deploy-de
+    env:
+      SSH: ${{secrets.SSH_PARIS}}
+      URL: admin@interflux.fr
+      ROOT: /var/www/interflux.fr
+    steps:
+      - uses: actions/checkout@v2
+      - run: mkdir ~/.ssh
+      - run: 'echo "$SSH" > ~/.ssh/$URL'
+      - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
+      - run: ssh-keyscan -H server.interflux.com > ~/.ssh/known_hosts
+      - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
+      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull"
+      - run: ssh $URL "cd $ROOT; nvm install; yarn install"
+      - run: ssh $URL "cd $ROOT; yarn build"
+
+  # TODO:
+  # deploy-de:
+  #   name: Deploy interflux.fr
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   env:
+  #     DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: >-
+  #         curl -X POST -d {"project": "interflux.com"} -H "Authorization: token $DEPLOY_KEY" https://frankfurt.server.interflux.comm/deploy
+  #     - run: >-
+  #         curl -X POST -d {"project": "interflux.de"} -H "Authorization: token $DEPLOY_KEY" https://frankfurt.server.interflux.com/deploy
+  #     - run: >-
+  #         curl -X POST -d {"project": "interflux.es"} -H "Authorization: token $DEPLOY_KEY" https://madrid.server.interflux.com/deploy
+  #     - run: >-
+  #         curl -X POST -d {"project": "interflux.fr"} -H "Authorization: token $DEPLOY_KEY" https://paris.server.interflux.com/deploy
