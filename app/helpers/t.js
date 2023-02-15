@@ -3,11 +3,12 @@
 
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
+import ENV from 'interflux/config/environment';
 
 export default class T extends Helper {
   @service i18n;
 
   compute([phrase, key]) {
-    return this.i18n.translate(phrase, key); // See i18n service
+    return ENV.isTest ? phrase : this.i18n.translate(phrase, key); // See i18n service
   }
 }

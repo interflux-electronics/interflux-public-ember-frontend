@@ -41,13 +41,12 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 import { htmlSafe } from '@ember/template';
+import ENV from 'interflux/config/environment';
 
-export default class T extends Helper {
+export default class toDefinitionList extends Helper {
   @service i18n;
 
   compute([string]) {
-    // const string = params[0];
-
     if (!string) {
       return htmlSafe('<dl></dl>');
     }
@@ -60,8 +59,11 @@ export default class T extends Helper {
     let html = '';
 
     lines.forEach((line) => {
-      let key = this.i18n.translate(line.split(':')[0].trim());
-      let value = this.i18n.translate(line.split(':')[1].trim());
+      const left = line.split(':')[0].trim();
+      const right = line.split(':')[1].trim();
+
+      let key = ENV.isTest ? left : this.i18n.translate(left);
+      let value = ENV.isTest ? right : this.i18n.translate(right);
 
       if (value.includes(';;;')) {
         let list = '';
