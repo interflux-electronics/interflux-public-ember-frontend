@@ -46,4 +46,8 @@ export default class EventsComponent extends Component {
       }
     });
   }
+
+  get sortedEvents() {
+    return this.events.sortBy('startDate').rejectBy('hasEnded');
+  }
 }
