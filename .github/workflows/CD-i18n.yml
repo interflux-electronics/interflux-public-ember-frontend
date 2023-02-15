@@ -73,11 +73,11 @@ jobs:
       SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
       - uses: actions/checkout@v2
-      # - run: mkdir ~/.ssh
-      # - run: 'echo "$SSH" > ~/.ssh/$URL'
-      # - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
-      # - run: ssh-keyscan -H paris.server.interflux.com > ~/.ssh/known_hosts
-      # - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
+      - run: mkdir ~/.ssh
+      - run: 'echo "$SSH" > ~/.ssh/$URL'
+      - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
+      - run: ssh-keyscan -H paris.server.interflux.com > ~/.ssh/known_hosts
+      - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
 
       # Start ssh-agent but set it to use the same ssh_auth_sock value.
       # The agent will be running in all steps after this, so it
@@ -96,9 +96,7 @@ jobs:
       - name: Print ssh-add identities
         run: ssh-add -l
 
-      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull"
-      - run: ssh $URL "cd $ROOT; nvm install; yarn install"
-      - run: ssh $URL "cd $ROOT; yarn build"
+      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; yarn build"
 
   # TODO:
   # deploy-de:
