@@ -26,6 +26,7 @@ jobs:
   deploy-de:
     name: Deploy interflux.de (Frankfurt)
     runs-on: ubuntu-latest
+    needs: deploy-fr
     env:
       SSH: ${{secrets.FRANKFURT_SSH}}
       URL: admin@frankfurt.server.interflux.com
@@ -44,7 +45,7 @@ jobs:
   deploy-es:
     name: Deploy interflux.es (Madrid)
     runs-on: ubuntu-latest
-    needs: deploy-de
+    needs: deploy-fr
     env:
       SSH: ${{secrets.MADRID_SSH}}
       URL: admin@madrid.server.interflux.com
@@ -63,11 +64,13 @@ jobs:
   deploy-fr:
     name: Deploy interflux.fr (Paris)
     runs-on: ubuntu-latest
-    needs: deploy-de
     env:
       SSH: ${{secrets.PARIS_SSH}}
       URL: admin@paris.server.interflux.com
       ROOT: /var/www/interflux.fr
+      # Use the same ssh-agent socket value across all jobs
+      # Useful when a GH action is using SSH behind-the-scenes
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
       - uses: actions/checkout@v2
       - run: mkdir ~/.ssh
@@ -75,6 +78,24 @@ jobs:
       - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
       - run: ssh-keyscan -H paris.server.interflux.com > ~/.ssh/known_hosts
       - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
+
+      # Start ssh-agent but set it to use the same ssh_auth_sock value.
+      # The agent will be running in all steps after this, so it
+      # should be one of the first.
+      - name: Setup SSH passphrase
+        env:
+          PARIS_SSH_PASS: ${{secrets.PARIS_SSH_PASS}}
+          PARIS_SSH: ${{secrets.PARIS_SSH}}
+        run: |
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          echo 'echo $PARIS_SSH_PASS' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+          echo "$PARIS_SSH" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+
+      # Debug print out the added identities. This will prove SSH_AUTH_SOCK
+      # is persisted across job steps
+      - name: Print ssh-add identities
+        run: ssh-add -l
+
       - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull"
       - run: ssh $URL "cd $ROOT; nvm install; yarn install"
       - run: ssh $URL "cd $ROOT; yarn build"
