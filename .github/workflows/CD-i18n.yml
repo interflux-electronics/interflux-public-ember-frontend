@@ -27,7 +27,7 @@ jobs:
     name: Deploy interflux.de (Frankfurt)
     runs-on: ubuntu-latest
     env:
-      SSH: ${{secrets.SSH_FRANKFURT}}
+      SSH: ${{secrets.FRANKFURT_SSH}}
       URL: admin@frankfurt.server.interflux.com
       ROOT: /var/www/interflux.de
     steps:
