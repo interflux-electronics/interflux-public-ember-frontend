@@ -57,14 +57,14 @@ export default class EventModel extends Model {
       return true;
     }
 
-    const endDate = this.startDate.split('-');
-    const YYYY = endDate[0];
-    const MM = Number(endDate[1]);
-    const DD = Number(endDate[2]);
+    const referenceDate = this.endDate || this.startDate;
+    const split = referenceDate.split('-');
+    const YYYY = split[0];
+    const MM = Number(split[1]);
+    const DD = Number(split[2]);
+    const date = new Date(YYYY, MM - 1, DD + 1); // DD also +1 because timezones
     const now = new Date();
-    const day = 60 * 60 * 24 * 1000;
-    const tomorrow = new Date(now.getTime() + day);
 
-    return new Date(YYYY, MM, DD) < tomorrow;
+    return date < now;
   }
 }
