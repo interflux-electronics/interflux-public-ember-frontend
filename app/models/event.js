@@ -65,18 +65,6 @@ export default class EventModel extends Model {
     const day = 60 * 60 * 24 * 1000;
     const tomorrow = new Date(now.getTime() + day);
 
-    if (YYYY < tomorrow.getFullYear()) {
-      return true;
-    }
-
-    if (MM < tomorrow.getMonth() + 1) {
-      return true;
-    }
-
-    if (DD < tomorrow.getDate()) {
-      return true;
-    }
-
-    return false;
+    return new Date(YYYY, MM, DD) < tomorrow;
   }
 }
