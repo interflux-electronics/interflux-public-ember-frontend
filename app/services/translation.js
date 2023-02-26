@@ -1,174 +1,128 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class TranslationService extends Service {
-  // The language in which the website is currently translated to.
-  @tracked locale = 'en';
+  @service api;
+  @service store;
 
-  // All available languages.
-  @tracked languages = [
-    {
-      id: 'en',
-      legacy: 'en',
-      nameEnglish: 'English',
-      nameNative: 'English',
-      supported: true,
-      ready: true,
-      flag: 'GB'
-    },
-    {
-      id: 'es',
-      legacy: 'es',
-      nameEnglish: 'Spanish',
-      nameNative: 'Español',
-      supported: true,
-      ready: false,
-      flag: 'ES'
-    },
-    {
-      id: 'de',
-      legacy: 'de',
-      nameEnglish: 'German',
-      nameNative: 'Deutsch',
-      supported: true,
-      ready: false,
-      flag: 'DE'
-    },
-    {
-      id: 'fr',
-      legacy: 'fr',
-      nameEnglish: 'French',
-      nameNative: 'français',
-      supported: true,
-      ready: false,
-      flag: 'FR'
-    },
-    {
-      id: 'sv',
-      legacy: 'sv',
-      nameEnglish: 'Swedish',
-      nameNative: 'Svenska',
-      supported: false,
-      ready: false,
-      flag: 'SE'
-    },
-    {
-      id: 'pl',
-      legacy: 'pl',
-      nameEnglish: 'Polish',
-      nameNative: 'Polski',
-      supported: true,
-      ready: false,
-      flag: 'PL'
-    },
-    {
-      id: 'tr',
-      legacy: 'tr',
-      nameEnglish: 'Turkish',
-      nameNative: 'Türkçe',
-      supported: true,
-      ready: false,
-      flag: 'TR'
-    },
-    {
-      id: 'th',
-      legacy: 'th',
-      nameEnglish: 'Thai',
-      nameNative: 'ภาษาไทย',
-      supported: true,
-      ready: false,
-      flag: 'TH'
-    },
-    {
-      id: 'ru',
-      legacy: 'ru',
-      nameEnglish: 'Russian',
-      nameNative: 'Русский',
-      supported: true,
-      ready: false,
-      flag: 'RU'
-    },
-    {
-      id: 'ro',
-      legacy: 'ro',
-      nameEnglish: 'Romanian',
-      nameNative: 'Română',
-      supported: true,
-      ready: false,
-      flag: 'RO'
-    },
-    {
-      id: 'pt',
-      legacy: 'pt-pt',
-      nameEnglish: 'Portugese',
-      nameNative: 'Português',
-      supported: true,
-      ready: false,
-      flag: 'PT'
-    },
-    {
-      id: 'id',
-      legacy: 'id',
-      nameEnglish: 'Indonesian',
-      nameNative: 'Bahasa Indonesia',
-      supported: true,
-      ready: false,
-      flag: 'ID'
-    },
-    {
-      id: 'it',
-      legacy: 'it',
-      nameEnglish: 'Italian',
-      nameNative: 'Italiano',
-      supported: true,
-      ready: false,
-      flag: 'IT'
-    },
-    {
-      id: 'cs',
-      legacy: 'cs',
-      nameEnglish: 'Chech',
-      nameNative: 'Čeština',
-      supported: true,
-      ready: false,
-      flag: 'CZ'
-    },
-    {
-      id: 'zh',
-      old: 'zh-hans',
-      nameEnglish: 'Chinese',
-      nameNative: '中文',
-      supported: true,
-      ready: false,
-      flag: 'CN'
-    },
-    {
-      id: 'ja',
-      legacy: 'ja',
-      nameEnglish: 'Japanese',
-      nameNative: '日本語 (にほんご)',
-      supported: false,
-      ready: false,
-      flag: 'JP'
-    }
-  ];
+  // The language in which the website is currently being shown.
+  // en, de, es, fr
+  @tracked language;
 
-  @tracked data = {
-    'index.continue': {
-      en: 'Continue in **English**',
-      zh: '继续用**中文**',
-      de: 'Weiter auf **Deutsch**',
-      es: 'Continuar en **español**',
-      fr: 'Continuer en **français**',
-      pl: 'Kontynuuj w języku **polskim**',
-      sv: 'Fortsätt på **svenska**',
-      ru: 'Продолжить на **русском**',
-      id: 'Lanjutkan dalam **bahasa Indonesia**',
-      th: 'ต่อเป็นภาษา**ไทย**',
-      it: 'Continua in **italiano**',
-      pt: 'Continua in **portoghese**',
-      cz: 'Pokračujte v **češtině**',
-      tr: '**Türkçe** devam et'
+  // This method translates the given phrase to shown language.
+  t(english, location) {
+    const { language } = this;
+    const base = `${language} | ${location} | ${english}`;
+
+    if (!english) {
+      console.error(`${base} | no english`);
+      return '?';
     }
-  };
+
+    if (!language) {
+      console.error(`${base} | no language`);
+      return english;
+    }
+
+    if (!location) {
+      console.error(`${base} | no location`);
+      return english;
+    }
+
+    if (language === 'en') {
+      console.debug(`${base} | is English, no translation needed`);
+      return english;
+    }
+
+    const record = this.store
+      .peekAll('translation')
+      .filterBy('language', language)
+      .findBy('location', location);
+
+    if (!record) {
+      console.warn(`${base} | no record 🔥`);
+      this.creatMissingTranslation(language, location, english);
+      return english;
+    }
+
+    if (!record.native) {
+      console.warn(`${base} | no native 🔥`);
+      return english;
+    }
+
+    const englishBefore = record.english;
+    const englishNow = english;
+
+    if (englishBefore !== englishNow) {
+      console.warn(`${base} | english source has changed 🔥`);
+      this.updateEnglish(record, englishBefore, englishNow);
+    }
+
+    console.debug(`${base} | translated 👍🏼`);
+
+    return record.native;
+  }
+
+  // NOTE: for some reason we're unable to create records using the Ember store
+  // and thus we fall back on doing a POST with native fetch().
+
+  async creatMissingTranslation(language, location, english) {
+    const url = `${this.api.host}/${this.api.namespace}/translations`;
+    const request = new Request(url, {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers(this.api.headers),
+      body: JSON.stringify({
+        data: {
+          attributes: {
+            language,
+            location,
+            english,
+            status: 'to-translate'
+          }
+        }
+      })
+    });
+
+    fetch(request)
+      .then((response) => response.json())
+      .then((response) => {
+        console.warn('create succeeded');
+        console.warn(response);
+      })
+      .catch((response) => {
+        console.error('create failed');
+        console.error(response);
+      });
+  }
+
+  async updateEnglish(record, englishBefore, englishNow) {
+    const url = `${this.api.host}/${this.api.namespace}/translations/${record.id}`;
+    const request = new Request(url, {
+      method: 'PATCH',
+      mode: 'cors',
+      headers: new Headers(this.api.headers),
+      body: JSON.stringify({
+        data: {
+          attributes: {
+            english: englishNow,
+            englishBefore,
+            status: 'to-update'
+          }
+        }
+      })
+    });
+
+    fetch(request)
+      .then((response) => response.json())
+      .then((response) => {
+        console.warn('update succeeded');
+        console.warn(response);
+      })
+      .catch((response) => {
+        console.error('update failed');
+        console.error(response);
+      });
+  }
 }
