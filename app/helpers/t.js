@@ -6,9 +6,9 @@ import { inject as service } from '@ember/service';
 import ENV from 'interflux/config/environment';
 
 export default class T extends Helper {
-  @service i18n;
+  @service translation;
 
-  compute([phrase, key]) {
-    return ENV.isTest ? phrase : this.i18n.translate(phrase, key); // See i18n service
+  compute([english, location]) {
+    return ENV.isTest ? english : this.translation.t(english, location);
   }
 }

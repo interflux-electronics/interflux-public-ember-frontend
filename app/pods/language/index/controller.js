@@ -7,19 +7,14 @@ import { inject as service } from '@ember/service';
 // https://codepen.io/RenanB/pen/GZeBNg
 
 export default class IndexController extends Controller {
-  @service i18n;
   @service media;
   @service store;
+  @service translation;
   @service window;
 
   @tracked heroPhrase;
   @tracked imageLeft = 'image-1';
   @tracked imageRight = 'image-6';
-
-  // constructor() {
-  //   super(...arguments);
-
-  // }
 
   @action
   onInsert() {
@@ -38,11 +33,11 @@ export default class IndexController extends Controller {
       '***VOC-free***',
       '***0.00% halides***'
     ]
+      .map((phrase, i) => {
+        return this.translation.t(phrase, `home.11.${i}`);
+      })
       .sort(() => {
         return 0.5 - Math.random();
-      })
-      .map((phrase) => {
-        return this.i18n.translate(phrase, 'home');
       });
 
     const n = array.length - 1;

@@ -5,4 +5,5 @@ export default class TranslationModel extends Model {
   @attr('string') language;
   @attr('string') english;
   @attr('string') native;
+  @attr('string') status;
 }

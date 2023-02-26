@@ -41,10 +41,9 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 import { htmlSafe } from '@ember/template';
-import ENV from 'interflux/config/environment';
 
 export default class toDefinitionList extends Helper {
-  @service i18n;
+  @service translation;
 
   compute([string]) {
     if (!string) {
@@ -59,11 +58,8 @@ export default class toDefinitionList extends Helper {
     let html = '';
 
     lines.forEach((line) => {
-      const left = line.split(':')[0].trim();
-      const right = line.split(':')[1].trim();
-
-      let key = ENV.isTest ? left : this.i18n.translate(left);
-      let value = ENV.isTest ? right : this.i18n.translate(right);
+      let key = line.split(':')[0].trim();
+      let value = line.split(':')[1].trim();
 
       if (value.includes(';;;')) {
         let list = '';

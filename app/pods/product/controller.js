@@ -5,7 +5,7 @@ import ENV from 'interflux/config/environment';
 import { inject as service } from '@ember/service';
 
 export default class ProductController extends Controller {
-  @service i18n;
+  @service translation;
 
   @tracked chosenImage = null;
 
@@ -47,8 +47,8 @@ export default class ProductController extends Controller {
     return this.model.product.uses.map((use) => {
       return {
         iconURL: use.get('iconURL'),
-        label: this.i18n.translate(use.get('label')),
-        content: this.i18n.translate(use.get('gist'))
+        label: this.translation.t(use.get('label'), `use.1.${use.id}`),
+        content: this.translation.t(use.get('gist'), `use.2.${use.id}`)
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -69,8 +69,14 @@ export default class ProductController extends Controller {
     return this.model.product.qualities.map((quality) => {
       return {
         iconURL: quality.get('iconURL'),
-        label: this.i18n.translate(quality.get('label')),
-        content: this.i18n.translate(quality.get('gist'))
+        label: this.translation.t(
+          quality.get('label'),
+          `quality.1.${quality.id}`
+        ),
+        content: this.translation.t(
+          quality.get('gist'),
+          `quality.2.${quality.id}`
+        )
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -96,10 +102,15 @@ export default class ProductController extends Controller {
         };
       });
 
+      const n = links.length;
+
       return {
         iconURL: `${ENV.cdnHost}/images/icons/file-download.svg`,
         label: `${doc.get('name')} (PDF)`,
-        content: this.i18n.translate(`Available in ${links.length} languages:`),
+        content: this.translation.t(
+          `Available in ${n} languages:`,
+          `product.28.${n}`
+        ),
         links
       };
     });

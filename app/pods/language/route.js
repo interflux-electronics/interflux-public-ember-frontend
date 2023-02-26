@@ -11,7 +11,7 @@ export default class LanguageRoute extends BaseRoute {
 
     // Important: here we set the language of the website.
     // The URL is the only thing which decides the language shown.
-    this.i18n.language = language;
+    this.translation.language = language;
 
     // If English, do not load UI translations.
     if (language === 'en') {
@@ -29,7 +29,7 @@ export default class LanguageRoute extends BaseRoute {
   }
 
   afterModel(model) {
-    const language = this.i18n.language;
+    const language = this.translation.language;
     this.cache[`translations-${language}`] = model.translations;
     this.page.update({
       showLoading: true
