@@ -4,23 +4,24 @@
       <div class='preload'></div>
       <div class='high-res'></div>
     </div>
-    <h1 id='h1'>{{t 'Contact'}}</h1>
+    <h1 id='h1'>{{t 'Contact' 'contact.1'}}</h1>
   </Section>
 
   <Section @id='map' @aria-labelledby='map'>
     <h2 id='map-h2' class='h2'>
-      {{t 'We offer support worldwide'}}
+      {{t 'We offer support worldwide' 'contact.2'}}
     </h2>
 
     <p class='p'>
       {{t
         'The Interflux Network consists of 40 partners worldwide and is located in key regions for the electronics manufacturing industry. That means there is good chance someone near you can deliver Interflux products and localised support.'
+        'contact.3'
       }}
     </p>
 
     <div class='container'>
       {{#if @isLoading}}
-        <p class='p'>{{t 'Loading ...'}}</p>
+        <p class='p'>{{t 'Loading ...' 'contact.4'}}</p>
         <div class='preload'></div>
       {{else}}
         <Button @route='partners.map' @class='map'>
@@ -35,7 +36,7 @@
 
         <Button
           @route='partners.map'
-          @text={{t 'Expand map'}}
+          @text={{t 'Expand map' 'contact.5'}}
           @icon='expand'
           @theme='large secondary white-text-on-blue icon-left'
         />
@@ -64,14 +65,15 @@
 
     <div class='text'>
       <h2 id='join-h2' class='h2'>
-        {{t 'Become an Interflux Partner'}}</h2>
+        {{t 'Become an Interflux Partner' 'contact.6'}}</h2>
       <p class='p'>
         {{t
           'Gain access to our worldwide distribution network, exclusivity to distribute Interflux products in your region and some of the best soldering chemistry your customers have ever tried.'
+          'contact.7'
         }}
       </p>
       <Button
-        @text={{t 'Learn more'}}
+        @text={{t 'Learn more' 'contact.8'}}
         @icon='lightbulb'
         @url='mailto:ask@interflux.com'
         @theme='medium primary orange icon-left'

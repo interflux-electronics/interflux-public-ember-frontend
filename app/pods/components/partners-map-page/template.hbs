@@ -1,17 +1,17 @@
 <section id='partners-map' aria-labelledby='h1'>
   <Button
-    @text='Go back'
+    @text={{t 'Go back' 'map.2'}}
     @icon='arrow-left'
     @theme='tertiary medium white-text icon-left'
     @route='contact'
     @class='back'
   />
 
-  <h1 id='h1'>Interflux Worldwide</h1>
+  <h1 id='h1'>{{t 'Interflux worldwide' 'map.3'}}</h1>
 
   {{#if @loading}}
     <div class='loading'>
-      <p class='p'>Loading ...</p>
+      <p class='p'>{{t 'Loading ...' 'map.4'}}</p>
       <div class='preload'></div>
     </div>
   {{else}}
@@ -23,7 +23,9 @@
           <h2>{{c.businessName}}</h2>
 
           {{#if c.description}}
-            <div class='description'>{{markdown c.description}}</div>
+            <div class='description'>
+              {{markdown (t c.description (concat 'map.5.' this.company.id))}}
+            </div>
           {{/if}}
 
           <p class='address'>
@@ -195,7 +197,7 @@
   {{/if}}
 
   <Button
-    @text='Close'
+    @text={{t 'Close' 'map.6'}}
     @icon='close'
     @theme='tertiary medium white-text icon-right'
     @route='contact'

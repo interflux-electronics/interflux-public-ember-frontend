@@ -22,6 +22,6 @@ export default class IndexRoute extends BaseRoute {
       showFooter: false
     });
     // Each time a visitor returns to the index route we reset the language.
-    this.i18n.language = null;
+    this.translation.language = null;
   }
 }

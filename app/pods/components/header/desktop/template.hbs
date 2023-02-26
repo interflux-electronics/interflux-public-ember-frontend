@@ -13,29 +13,35 @@
 
     <ul class='center'>
       <li id='products'>
-        <Button @text={{t 'Products'}} @onClick={{this.toggleMenu}} />
+        <Button
+          @text={{t 'Products' 'header.1'}}
+          @onClick={{this.toggleMenu}}
+        />
         <Header::Desktop::Menu::Products @isOpen={{this.showProducts}} />
       </li>
 
       <li id='processes'>
-        <Button @text={{t 'Products'}} @onClick={{this.toggleMenu}} />
+        <Button
+          @text={{t 'Products' 'header.2'}}
+          @onClick={{this.toggleMenu}}
+        />
         <Header::Desktop::Menu::Processes @isOpen={{this.showProcesses}} />
       </li>
 
       <li id='know-how'>
-        <Button @text={{t 'Webinars'}} @route='webinars' />
+        <Button @text={{t 'Webinars' 'header.3'}} @route='webinars' />
       </li>
 
       <li id='company'>
-        <Button @text={{t 'Company'}} @route='company' />
+        <Button @text={{t 'Company' 'header.4'}} @route='company' />
       </li>
 
       <li id='docs'>
-        <Button @text={{t 'Docs'}} @route='documents' />
+        <Button @text={{t 'Docs' 'header.5'}} @route='documents' />
       </li>
 
       <li id='contact'>
-        <Button @text={{t 'Contact'}} @route='contact' />
+        <Button @text={{t 'Contact' 'header.6'}} @route='contact' />
       </li>
     </ul>
 
@@ -43,7 +49,10 @@
       <p>
         <span>
           {{markdown
-            (t 'Member of the [Interflux Group](https://interflux.group)')
+            (t
+              'Member of the [Interflux Group](https://interflux.group)'
+              'header.7'
+            )
             (hash noParagraphs=true)
           }}
         </span>

@@ -1,92 +1,96 @@
-{{#if (eq @model.category.slug 'REACH')}}
-
-  <Modal @id='reach'>
-    <Section>
-      <Icon @name='file-medical' />
-      <h3>{{t @model.category.name}}</h3>
-      {{markdown
-        (t
-          'REACH is the legislation of the European Union regulating chemical substances across Europe. Interflux is subject to and in compliance with this legislation. If you have any questions or need specific documents regarding REACH, please contact our friendly team in Belgium:'
-        )
-      }}
-      <Button
-        @url='mailto:reach@interflux.com'
-        @text='reach@interflux.com'
-        @theme='primary large orange'
-      />
-      <p>
-        {{t
-          'Alternatively, visit the [REACH website](https://osha.europa.eu/en/themes/dangerous-substances/reach).'
+{{#let @model.category as |category|}}
+  {{#if (eq category.slug 'REACH')}}
+    <Modal @id='reach'>
+      <Section>
+        <Icon @name='file-medical' />
+        <h3>{{t category.name 'docs.5'}}</h3>
+        {{markdown
+          (t
+            'REACH is the legislation of the European Union regulating chemical substances across Europe. Interflux is subject to and in compliance with this legislation. If you have any questions or need specific documents regarding REACH, please contact our friendly team in Belgium:'
+            'docs.6'
+          )
         }}
-      </p>
-    </Section>
-  </Modal>
+        <Button
+          @url='mailto:reach@interflux.com'
+          @text='reach@interflux.com'
+          @theme='primary large orange'
+        />
+        <p>
+          {{t
+            'Alternatively, visit the [REACH website](https://osha.europa.eu/en/themes/dangerous-substances/reach).'
+            'docs.7'
+          }}
+        </p>
+      </Section>
+    </Modal>
 
-{{else if (eq @model.category.slug 'SDS')}}
+  {{else if (eq category.slug 'SDS')}}
 
-  <Modal @id='sds'>
-    <Section>
-      <Icon @name='file-medical' />
-      <h3>{{t @model.category.name}}</h3>
-      <p>
-        {{t
-          'To obtain Safety Data Sheets, please contact our friendly REACH team in Belgium:'
-        }}
-      </p>
-      <Button
-        @url='mailto:reach@interflux.com'
-        @text='reach@interflux.com'
-        @theme='primary large orange'
-      />
-    </Section>
-  </Modal>
+    <Modal @id='sds'>
+      <Section>
+        <Icon @name='file-medical' />
+        <h3>{{t category.name 'docs.8'}}</h3>
+        <p>
+          {{t
+            'To obtain Safety Data Sheets, please contact our friendly REACH team in Belgium:'
+            'docs.9'
+          }}
+        </p>
+        <Button
+          @url='mailto:reach@interflux.com'
+          @text='reach@interflux.com'
+          @theme='primary large orange'
+        />
+      </Section>
+    </Modal>
 
-{{else}}
+  {{else}}
 
-  <Modal @id='document-category'>
-    <Section @class='text'>
-      <div class='left'>
-        <Icon @name={{@model.category.icon}} />
-      </div>
-      <div class='right'>
-        <h3>{{t @model.category.name}}</h3>
-        <p>{{t @model.category.gist}}</p>
-      </div>
-    </Section>
+    <Modal @id='document-category'>
+      <Section @class='text'>
+        <div class='left'>
+          <Icon @name={{@model.category.icon}} />
+        </div>
+        <div class='right'>
+          <h3>{{t @model.category.name (concat 'docs.10.' category.id)}}</h3>
+          <p>{{t @model.category.gist (concat 'docs.10.' category.id)}}</p>
+        </div>
+      </Section>
 
-    <Section @id='documents' @class='list'>
-      <TextInput
-        @theme='classic'
-        @icon='search'
-        @onKeyUp={{this.onSearch}}
-        @value={{this.query}}
-      />
+      <Section @id='documents' @class='list'>
+        <TextInput
+          @theme='classic'
+          @icon='search'
+          @onKeyUp={{this.onSearch}}
+          @value={{this.query}}
+        />
 
-      <FilterableList>
-        <ul>
-          {{#each @model.category.documents as |document|}}
-            <li data-search-parent>
-              <div class='left'>
-                <p>
-                  <span data-search-me>{{document.name}}</span>
-                  <span> (PDF)</span>
-                </p>
-              </div>
+        <FilterableList>
+          <ul>
+            {{#each @model.category.documents as |document|}}
+              <li data-search-parent>
+                <div class='left'>
+                  <p>
+                    <span data-search-me>{{document.name}}</span>
+                    <span> (PDF)</span>
+                  </p>
+                </div>
 
-              <div class='right'>
-                {{#each document.files as |file|}}
-                  <Button
-                    @url={{file.url}}
-                    @text={{file.language}}
-                    @theme='tertiary medium blue-text'
-                  />
-                {{/each}}
-              </div>
-            </li>
-          {{/each}}
-        </ul>
-      </FilterableList>
-    </Section>
-  </Modal>
+                <div class='right'>
+                  {{#each document.files as |file|}}
+                    <Button
+                      @url={{file.url}}
+                      @text={{file.language}}
+                      @theme='tertiary medium blue-text'
+                    />
+                  {{/each}}
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        </FilterableList>
+      </Section>
+    </Modal>
 
-{{/if}}
+  {{/if}}
+{{/let}}

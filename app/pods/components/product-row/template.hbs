@@ -25,31 +25,43 @@
       <h3>{{t @product.name}}</h3>
       <div class='tags'>
         {{#if @product.familyLabel}}
-          <h4 class='blue'>{{t @product.familyLabel}}</h4>
+          <h4 class='blue'>
+            {{t @product.familyLabel (concat 'product.1.' @product.id)}}
+          </h4>
         {{/if}}
         {{#if @product.isNew}}
-          <h4 class='orange'>{{t 'new'}}</h4>
+          <h4 class='orange'>{{t 'new' 'product.2'}}</h4>
         {{/if}}
         {{#if @product.isPopular}}
-          <h4 class='orange'>{{t 'popular'}}</h4>
+          <h4 class='orange'>{{t 'popular' 'product.3'}}</h4>
         {{/if}}
         {{#if @product.isOutdated}}
           <h4 class='grey'>{{if
               @product.superiorProduct
-              (concat 'replaced by ' @product.superiorProduct.name)
+              (concat
+                (t 'replaced by' 'product.4') ' ' @product.superiorProduct.name
+              )
               'outdated'
             }}</h4>
         {{/if}}
         {{#if @product.isDiscontinued}}
-          <h4 class='red'>out of production{{if
+          <h4 class='red'>
+            {{t 'out of production' 'product.5'}}
+            {{if
               @product.superiorProduct
-              (concat '- replaced by ' @product.superiorProduct.name)
-            }}</h4>
+              (concat
+                '– '
+                (t 'replaced by' 'product.4')
+                ' '
+                @product.superiorProduct.name
+              )
+            }}
+          </h4>
         {{/if}}
       </div>
       {{#if @product.pitch}}
         <div class='pitch'>
-          {{markdown (t @product.pitch)}}
+          {{markdown (t @product.pitch (concat 'product.2.' @product.id))}}
         </div>
       {{/if}}
       {{#if (and this.features this.media.isDesktopWidescreen)}}
@@ -57,7 +69,11 @@
           {{#each this.features as |feature|}}
             <div class='feature'>
               <Image @src={{feature.iconURL}} />
-              <div class='callout'><span>{{t feature.text}}</span></div>
+              <div class='callout'>
+                <span>
+                  {{feature.text}}
+                </span>
+              </div>
             </div>
           {{/each}}
         </div>

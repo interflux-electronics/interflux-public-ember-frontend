@@ -1,11 +1,11 @@
 <Section @id='hero'>
   <div class='text'>
     <h1 {{did-insert this.onInsert}}>
-      <small>{{t 'Yes, you can solder electronics ...'}}</small>
+      <small>{{t 'Yes, you can solder electronics ...' 'home.1'}}</small>
       <strong>
         {{markdown (t this.heroPhrase) (hash noParagraphs=true)}}
       </strong>
-      <small>{{t 'Ask Interflux.'}}</small>
+      <small>{{t 'Ask Interflux.' 'home.2'}}</small>
     </h1>
   </div>
 
@@ -42,11 +42,12 @@
 </Section>
 
 <Section @id='what-we-do'>
-  <h2>{{t 'What we do'}}</h2>
+  <h2>{{t 'What we do' 'home.3'}}</h2>
   <blockquote>
     {{markdown
       (t
         'We research & develop the **chemistry** needed for soldering **electronics**.'
+        'home.4'
       )
       (hash noParagraphs=true)
     }}
@@ -54,7 +55,7 @@
 </Section>
 
 <Section @id='popular'>
-  <h2>{{t 'Our best-selling products'}}</h2>
+  <h2>{{t 'Our best-selling products' 'home.5'}}</h2>
   <ul class='products {{this.popularLayout}}'>
     {{#each this.popularProducts as |product|}}
       {{#if product.id}}
@@ -93,7 +94,7 @@
 </Section>
 
 <Section @id='new'>
-  <h2>{{t 'Our newest inventions'}}</h2>
+  <h2>{{t 'Our newest inventions' 'home.6'}}</h2>
   <ul class='products {{this.newLayout}}'>
     {{#each this.newProducts as |product|}}
       {{#if product.id}}
@@ -129,7 +130,7 @@
   <div class='cta'>
     <Button
       @route='products'
-      @text={{t 'See all products'}}
+      @text={{t 'See all products' 'home.7'}}
       @theme='legacy tertiary orange'
     />
   </div>
@@ -138,21 +139,21 @@
 <Section::Events />
 
 <Section @id='why'>
-  <h2>{{t 'Why Interflux?'}}</h2>
+  <h2>{{t 'Why Interflux?' 'home.8'}}</h2>
   <blockquote>
     {{markdown (t this.pioneerQuote) (hash noParagraphs=true)}}
   </blockquote>
   <div class='cta'>
     <Button
       @route='company'
-      @text={{t 'Learn more'}}
+      @text={{t 'Learn more' 'home.9'}}
       @theme='legacy tertiary white'
     />
   </div>
 </Section>
 
 <Section @id='trusted-by'>
-  <h2>{{t 'Trusted by'}}</h2>
+  <h2>{{t 'Trusted by' 'home.10'}}</h2>
   <div class='logos'>
     <Link @url='https://www.kurtzersa.com/'>
       <Image

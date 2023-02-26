@@ -1,12 +1,16 @@
 <Section @id='categories'>
-  <h3>{{t 'What type of document do you need?'}}</h3>
+  <h3>{{t 'What type of document do you need?' 'docs.1'}}</h3>
   <nav>
     {{#each this.categories as |category|}}
       <a href={{href-to 'documents.category' category.slug}}>
         <Icon @name={{category.icon}} />
-        <p><strong>{{t category.name}}</strong></p>
-        <p>{{t category.gist}}</p>
-        <p><span>{{t category.cta}}</span></p>
+        <p>
+          <strong>
+            {{t category.name (concat 'docs.2.' category.id)}}
+          </strong>
+        </p>
+        <p>{{t category.gist (concat 'docs.3.' category.id)}}</p>
+        <p><span>{{t category.cta (concat 'docs.4.' category.id)}}</span></p>
       </a>
     {{/each}}
   </nav>

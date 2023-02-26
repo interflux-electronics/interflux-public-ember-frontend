@@ -24,7 +24,7 @@ export default class HeadDataService extends Service {
   @tracked path; // TODO
 
   get canonicalURL() {
-    return `https://interflux.com/${this.translation.locale}/${this.canonicalPath}`;
+    return `https://interflux.com/${this.translation.language}/${this.canonicalPath}`;
   }
 
   // The open graph type describes the content of the page.

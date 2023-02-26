@@ -3,7 +3,7 @@
     <BackNav
       @backRoute='products.subset'
       @backModel={{product.mainFamily.id}}
-      @backLabel={{t (concat 'All ' product.mainFamily.namePlural)}}
+      @backLabel={{t (concat 'All ' product.mainFamily.namePlural) 'product.6'}}
     />
 
     <div class='columns'>
@@ -14,27 +14,40 @@
 
             <div class='tags'>
               {{#if product.familyLabel}}
-                <h2 class='blue'>{{t product.familyLabel}}</h2>
+                <h2 class='blue'>
+                  {{t product.familyLabel (concat 'product.1.' product.id)}}
+                </h2>
               {{/if}}
               {{#if product.isNew}}
-                <h2 class='orange'>{{t 'new'}}</h2>
+                <h2 class='orange'>{{t 'new' 'product.2'}}</h2>
               {{/if}}
               {{#if product.isPopular}}
-                <h2 class='orange'>{{t 'popular'}}</h2>
+                <h2 class='orange'>{{t 'popular' 'product.3'}}</h2>
               {{/if}}
               {{#if product.isOutdated}}
                 <h2 class='grey'>
                   {{if
                     product.superiorProduct
-                    (concat (t 'replaced by ') product.superiorProduct.name)
+                    (concat
+                      (t 'replaced by' 'product.4')
+                      ' '
+                      product.superiorProduct.name
+                    )
                     'outdated'
                   }}
                 </h2>
               {{/if}}
               {{#if product.isDiscontinued}}
-                <h2 class='red'>out of production{{if
+                <h2 class='red'>
+                  {{t 'out of production' 'product.5'}}
+                  {{if
                     product.superiorProduct
-                    (concat '- replaced by ' product.superiorProduct.name)
+                    (concat
+                      '- '
+                      (t 'replaced by' 'product.4')
+                      ' '
+                      product.superiorProduct.name
+                    )
                   }}
                 </h2>
               {{/if}}
@@ -60,7 +73,9 @@
             {{else}}
               {{#if product.pitch}}
                 <div id='pitch'>
-                  {{markdown (t product.pitch)}}
+                  {{markdown
+                    (t product.pitch (concat 'product.2.' product.id))
+                  }}
                 </div>
               {{/if}}
             {{/if}}
@@ -99,9 +114,9 @@
         {{#if product.summary}}
           <section id='summary' class='markdown'>
             <div>
-              <h3>Summary</h3>
+              <h3>{{t 'Summary' 'product.7'}}</h3>
               <div class='two-columns'>
-                {{markdown product.summary}}
+                {{markdown product.summary (concat 'product.8.' product.id)}}
               </div>
             </div>
           </section>
@@ -111,7 +126,7 @@
           <section id='uses' aria-labelledby='h3-uses'>
             {{#if product.uses}}
               <div>
-                <h3 id='h3-uses'>{{t 'Suitable for'}}</h3>
+                <h3 id='h3-uses'>{{t 'Suitable for' 'product.9'}}</h3>
                 <Accordion @sections={{this.useAccordionSections}} />
               </div>
             {{/if}}
@@ -122,7 +137,7 @@
           <section id='qualities' aria-labelledby='h3-qualities'>
             {{#if product.qualities}}
               <div>
-                <h3 id='h3-qualities'>{{t 'Key advantages'}}</h3>
+                <h3 id='h3-qualities'>{{t 'Key advantages' 'product.10'}}</h3>
                 <Accordion @sections={{this.qualityAccordionSections}} />
               </div>
             {{/if}}
@@ -132,9 +147,11 @@
         {{#if product.properties}}
           <section id='properties' aria-labelledby='h3-properties'>
             <div>
-              <h3 id='h3-properties'>{{t 'Physical & chemical properties'}}</h3>
+              <h3 id='h3-properties'>
+                {{t 'Physical & chemical properties' 'product.11'}}
+              </h3>
 
-              {{to-definition-list product.properties}}
+              {{to-definition-list (t product.properties 'product.29')}}
             </div>
           </section>
         {{/if}}
@@ -142,53 +159,46 @@
         {{#if this.showCompliance}}
           <section id='compliance' aria-labelledby='h3-compliance'>
             <div>
-              <h3 id='h3-compliance'>{{t 'Quality compliance'}}</h3>
+              <h3 id='h3-compliance'>
+                {{t 'Quality compliance' 'product.12'}}
+              </h3>
               <div class='single-column'>
 
                 {{#if product.compliesWithIPC}}
                   <h4>IPC</h4>
                   {{#if product.compliesWithIPCJSTD004A}}
                     <p>
-                      <span>{{product.name}} {{t 'complies with the'}}</span>
-                      <Link
-                        @label='IPC J-STD-004A'
-                        @url='https://www.ipc.org/'
-                      />
-                      <span>
-                        {{t
-                          'standars making high quality electronic interconnections with soldering fluxes.'
-                        }}
-                      </span>
+                      {{product.name}}&nbsp;{{markdown
+                        (t
+                          'complies with the [IPC J-STD-004A](https://www.ipc.org/) standars making high quality electronic interconnections with soldering fluxes.'
+                          'product.13'
+                        )
+                        (hash noParagraphs=true)
+                      }}
                     </p>
                   {{/if}}
 
                   {{#if product.compliesWithIPCJSTD004B}}
                     <p>
-                      <span>{{product.name}} {{t 'complies with the'}}</span>
-                      <Link
-                        @label='IPC J-STD-004B'
-                        @url='https://www.ipc.org/'
-                      />
-                      <span>
-                        {{t
-                          'standars making high quality electronic interconnections with soldering fluxes.'
-                        }}
-                      </span>
+                      {{product.name}}&nbsp;{{markdown
+                        (t
+                          'complies with the [IPC J-STD-004B](https://www.ipc.org/) standars making high quality electronic interconnections with soldering fluxes.'
+                          'product.14'
+                        )
+                        (hash noParagraphs=true)
+                      }}
                     </p>
                   {{/if}}
 
                   {{#if product.compliesWithIPCJSTD005}}
                     <p>
-                      <span>{{product.name}} {{t 'complies with the'}}</span>
-                      <Link
-                        @label='IPC J-STD-005'
-                        @url='https://www.ipc.org/'
-                      />
-                      <span>
-                        {{t
-                          'standars making high quality electronic interconnections with soldering fluxes.'
-                        }}
-                      </span>
+                      {{product.name}}&nbsp;{{markdown
+                        (t
+                          'complies with the [IPC J-STD-005](https://www.ipc.org/) standars making high quality electronic interconnections with soldering fluxes.'
+                          'product.15'
+                        )
+                        (hash noParagraphs=true)
+                      }}
                     </p>
                   {{/if}}
                 {{/if}}
@@ -196,65 +206,50 @@
                 {{#if product.compliesWithIEC}}
                   <h4>IEC</h4>
                   <p>
-                    <span>
-                      {{product.name}}&nbsp;
-                      {{t 'complies with the European Standard'}}
-                    </span>
-                    <Link
-                      @label='EN 61190-1-1(2002)'
-                      @url='https://www.standards.govt.nz/shop/iec-61190-1-12002/'
-                    />
-                    <span>
-                      {{t
-                        'which outlines the requirements for soldering fluxes for high-quality interconnections in electronics assembly.'
-                      }}
-                    </span>
+                    {{product.name}}&nbsp;{{markdown
+                      (t
+                        'complies with the European Standard [EN 61190-1-1(2002)](https://www.standards.govt.nz/shop/iec-61190-1-12002/) which outlines the requirements for soldering fluxes for high-quality interconnections in electronics assembly.'
+                        'product.16'
+                      )
+                      (hash noParagraphs=true)
+                    }}
                   </p>
                 {{/if}}
 
                 {{#if product.compliesWithROHS}}
                   <h4>RoHS</h4>
                   <p>
-                    <span>
-                      {{product.name}}&nbsp;
-                      {{t "complies with the European Union's"}}
-                    </span>
-                    <Link
-                      @label='RoHS'
-                      @url='https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive'
-                    />
-                    <span>
-                      {{t
-                        'directive for restricting the use of certain hazardous substances in electrical and electronic equipment.'
-                      }}
-                    </span>
+                    {{product.name}}&nbsp;{{markdown
+                      (t
+                        "complies with the European Union's [RoHS](https://en.wikipedia.org/wiki/Restriction_of_Hazardous_Substances_Directive) directive for restricting the use of certain hazardous substances in electrical and electronic equipment."
+                        'product.16'
+                      )
+                      (hash noParagraphs=true)
+                    }}
                   </p>
                 {{/if}}
 
                 {{#if product.compliesWithISO}}
                   <h4>ISO 9001</h4>
                   <p>
-                    <span>
-                      {{product.name}}&nbsp;
-                      {{t
-                        'is produced at Interflux Electronics in Belgium, which has been certified year after year with the'
-                      }}
-                    </span>
-                    <Link @label='ISO 9001' @url='https://www.iso.org/' />
-                    <span>
-                      {{t 'standard for reliable quality management systems.'}}
-                    </span>
+                    {{product.name}}&nbsp;{{markdown
+                      (t
+                        'is produced at Interflux Electronics in Belgium, which has been certified year after year with the [ISO 9001](https://www.iso.org/) standard for reliable quality management systems.'
+                        'product.17'
+                      )
+                      (hash noParagraphs=true)
+                    }}
                   </p>
                 {{/if}}
 
                 {{#if product.testResults}}
-                  <h4>{{t 'Test results'}}</h4>
+                  <h4>{{t 'Test results' 'product.18'}}</h4>
                   <table class='results'>
                     <thead>
                       <tr>
-                        <th>{{t 'Property'}}</th>
-                        <th>{{t 'Result'}}</th>
-                        <th>{{t 'Method'}}</th>
+                        <th>{{t 'Property' 'product.19'}}</th>
+                        <th>{{t 'Result' 'product.20'}}</th>
+                        <th>{{t 'Method' 'product.21'}}</th>
                       </tr>
                     </thead>
 
@@ -277,9 +272,12 @@
         {{#if product.instructions}}
           <section id='instructions' aria-labelledby='h3-instructions'>
             <div>
-              <h3 id='h3-instructions'>{{t 'How to use'}} {{product.name}}</h3>
+              <h3 id='h3-instructions'>{{t 'How to use' 'product.22'}}
+                {{product.name}}</h3>
               <div class='single-column'>
-                {{markdown (t product.instructions)}}
+                {{markdown
+                  (t product.instructions (concat 'product.23.' product.id))
+                }}
               </div>
             </div>
           </section>
@@ -288,7 +286,7 @@
         <section aria-labelledby='h3-documents'>
           {{#if product.documents}}
             <div id='documents'>
-              <h3>{{t 'Documents'}}</h3>
+              <h3>{{t 'Documents' 'product.24'}}</h3>
               <Accordion @sections={{this.documentAccordionSections}} />
             </div>
           {{/if}}
@@ -321,15 +319,16 @@
               />
               --}}
 
-            <h4>{{t 'Need help?'}}</h4>
+            <h4>{{t 'Need help?' 'product.25'}}</h4>
             <p>
               {{t
                 'Ask someone with decades of fields experience in soldering electronics.'
+                'product.26'
               }}
             </p>
 
             <Button
-              @text={{t 'Ask Interflux'}}
+              @text={{t 'Ask Interflux' 'product.27'}}
               @icon='people'
               @theme='primary large orange icon-floats-left'
               @url='mailto:ask@interflux.com'

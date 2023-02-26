@@ -1,19 +1,21 @@
 <Section @id='questions' @aria-labelledby='find-h2'>
   <h2 id='find-h2' class='h2'>
-    {{t 'Find the right person'}}
+    {{t 'Find the right person' 'contact.37'}}
   </h2>
 
   <div class='step'>
-    <h3 class='h3'>{{t 'What do you want to do?'}}</h3>
+    <h3 class='h3'>{{t 'What do you want to do?' 'contact.9'}}</h3>
     {{#if @isLoading}}
-      <p class='p'>{{t 'Loading ...'}}</p>
+      <p class='p'>{{t 'Loading ...' 'contact.10'}}</p>
     {{else}}
       <Pills
         @options={{array
-          (hash label=(t 'order products') value='order')
-          (hash label=(t 'request technical support') value='support')
-          (hash label=(t 'request a document') value='document')
-          (hash label=(t 'something else') value='other')
+          (hash label=(t 'order products' 'contact.29') value='order')
+          (hash
+            label=(t 'request technical support' 'contact.30') value='support'
+          )
+          (hash label=(t 'request a document' 'contact.31') value='document')
+          (hash label=(t 'something else' 'contact.32') value='other')
         }}
         @label='label'
         @onSelect={{fn (mut this.intention)}}
@@ -26,10 +28,10 @@
 
   {{#if (eq this.intention.value 'order')}}
     <div class='step'>
-      <h3 class='h3'>{{t 'To which country?'}}</h3>
+      <h3 class='h3'>{{t 'To which country?' 'contact.11'}}</h3>
       {{#unless this.country}}
         <Search
-          @onSelect={{this.onCountrySelect}}
+          @onSelect={{this.onCountrySelect 'contact.12'}}
           @searchModel='country'
           @searchLabel='nameEnglish'
           @searchFilter='nameEnglish'
@@ -52,11 +54,11 @@
       <div class='step'>
         {{#if (gt this.country.marketsSorted.length 1)}}
           <h3 class='h3'>
-            {{t 'Please send your order to one of the following:'}}
+            {{t 'Please send your order to one of the following:' 'contact.13'}}
           </h3>
         {{else}}
           <h3 class='h3'>
-            {{t 'Please send your order to:'}}
+            {{t 'Please send your order to:' 'contact.14'}}
           </h3>
         {{/if}}
 
@@ -76,7 +78,7 @@
                 <p class='p recommended'>
                   <Svg::ThumbsUp />
                   <span>
-                    {{t 'recommended'}}
+                    {{t 'recommended' 'contact.15'}}
                   </span>
                 </p>
               {{/if}}
@@ -92,25 +94,25 @@
   {{#if (eq this.intention.value 'support')}}
     <div class='step'>
       <h3 class='h3'>
-        {{t "Please email us and we'll connect you to an expert."}}
+        {{t "Please email us and we'll connect you to an expert." 'contact.16'}}
       </h3>
       <p class='p'>
         <a href='mailto:support@interflux.com'>support@interflux.com</a>
       </p>
       <p class='p'>
-        {{t 'To let us help you faster, please describe:'}}
+        {{t 'To let us help you faster, please describe:' 'contact.17'}}
       </p>
       <ul class='bullets'>
         <li class='p'>
-          {{t 'What you are trying to do'}}</li>
+          {{t 'What you are trying to do' 'contact.18'}}</li>
         <li class='p'>
-          {{t 'Which Interflux products are involved'}}
+          {{t 'Which Interflux products are involved' 'contact.19'}}
         </li>
         <li class='p'>
-          {{t 'Observed issues'}}
+          {{t 'Observed issues' 'contact.20'}}
         </li>
         <li class='p'>
-          {{t 'Desired outcomes'}}
+          {{t 'Desired outcomes' 'contact.21'}}
         </li>
       </ul>
     </div>
@@ -118,11 +120,11 @@
 
   {{#if (eq this.intention.value 'document')}}
     <div class='step'>
-      <h3 class='h3'>{{t 'What type of document?'}}</h3>
+      <h3 class='h3'>{{t 'What type of document?' 'contact.22'}}</h3>
       <Pills
         @options={{array
-          (hash label=(t 'Safety data sheet (SDS)') value='sds')
-          (hash label=(t 'something else') value='other')
+          (hash label=(t 'Safety data sheet (SDS)' 'contact.33') value='sds')
+          (hash label=(t 'something else' 'contact.34') value='other')
         }}
         @label='label'
         @onSelect={{fn (mut this.neededDocument)}}
@@ -132,7 +134,10 @@
 
     {{#if (eq this.neededDocument.value 'sds')}}
       <div class='step'>
-        <h3 class='h3'>{{t 'Please email our REACH coordinator on:'}}</h3>
+        <h3 class='h3'>{{t
+            'Please email our REACH coordinator on:'
+            'contact.23'
+          }}</h3>
         <p class='p'>
           <a href='mailto:reach@interflux.com'>reach@interflux.com</a>
         </p>
@@ -152,7 +157,7 @@
     {{#if (eq this.neededDocument.value 'other')}}
       <div class='step'>
         <h3 class='h3'>
-          {{t 'Are you able to find the document in our library?'}}
+          {{t 'Are you able to find the document in our library?' 'contact.24'}}
         </h3>
 
         <Search
@@ -177,8 +182,8 @@
 
         <Pills
           @options={{array
-            (hash label=(t 'Yes') value='yes')
-            (hash label=(t 'No') value='no')
+            (hash label=(t 'Yes' 'contact.35') value='yes')
+            (hash label=(t 'No' 'contact.36') value='no')
           }}
           @label='label'
           @onSelect={{fn (mut this.foundDoc)}}
@@ -190,14 +195,14 @@
 
     {{#if (eq this.foundDoc.value 'yes')}}
       <div class='step'>
-        <h3 class='h3'>{{t 'Great!'}}</h3>
+        <h3 class='h3'>{{t 'Great!' 'contact.25'}}</h3>
       </div>
     {{/if}}
 
     {{#if (eq this.foundDoc.value 'no')}}
       <div class='step'>
         <h3 class='h3'>
-          {{t "Please email us and we'll find it for you:"}}
+          {{t "Please email us and we'll find it for you:" 'contact.26'}}
         </h3>
         <p>
           <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
@@ -263,12 +268,15 @@
 
   {{#if (eq this.intention.value 'other')}}
     <div class='step'>
-      <h3 class='h3'>{{t 'Ask us anything.'}}</h3>
+      <h3 class='h3'>{{t 'Ask us anything.' 'contact.27'}}</h3>
       <p class='p'>
         <a href='mailto:ask@interflux.com'>ask@interflux.com</a>
       </p>
       <p class='p'>
-        {{t 'We typically respond within 12 hours, except on weekends.'}}
+        {{t
+          'We typically respond within 12 hours, except on weekends.'
+          'contact.28'
+        }}
       </p>
     </div>
   {{/if}}

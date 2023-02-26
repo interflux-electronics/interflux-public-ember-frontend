@@ -21,7 +21,7 @@
         <Button
           @route='webinars.watch'
           @model={{@webinar.id}}
-          @text={{t 'Watch replay'}}
+          @text={{t 'Watch replay' 'webinars.5'}}
           @icon='play'
           @theme='primary medium orange icon-left'
         />
@@ -35,18 +35,18 @@
     {{did-insert this.onInsertAccordion}}
   >
     <div class='content'>
-      <h4>{{t 'Who should watch'}}</h4>
+      <h4>{{t 'Who should watch' 'webinars.6'}}</h4>
       {{markdown (t @webinar.audience)}}
 
-      <h4>{{t 'Topic'}}</h4>
+      <h4>{{t 'Topic' 'webinars.7'}}</h4>
       {{markdown (t @webinar.topic)}}
 
-      <h4>{{t 'Speaker'}}</h4>
+      <h4>{{t 'Speaker' 'webinars.8'}}</h4>
       <div class='host'>
         <p>
           <span>Steven Teliszewski</span>
-          <span>{{t 'COO at Interflux Electronics'}}</span>
-          <span>{{t '30+ years of field experience'}}</span>
+          <span>{{t 'COO at Interflux Electronics' 'webinars.9'}}</span>
+          <span>{{t '30+ years of field experience' 'webinars.10'}}</span>
         </p>
         <Image
           @src='{{env "cdnHost"}}/images/people/steven-teliszewski@160x160.jpg'
