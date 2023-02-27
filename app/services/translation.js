@@ -115,10 +115,14 @@ export default class TranslationService extends Service {
     });
 
     fetch(request)
-      .then((response) => response.json())
       .then((response) => {
-        console.warn('update succeeded');
-        console.warn(response);
+        if (response.status === 204) {
+          console.debug('update succeeded');
+          console.debug(response);
+        } else {
+          console.warn('update failed (not 204)');
+          console.warn(response);
+        }
       })
       .catch((response) => {
         console.error('update failed');
