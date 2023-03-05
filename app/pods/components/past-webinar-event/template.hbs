@@ -36,10 +36,10 @@
   >
     <div class='content'>
       <h4>{{t 'Who should watch' 'webinars.6'}}</h4>
-      {{markdown (t @webinar.audience)}}
+      {{markdown (t @webinar.audience 'webinars.13')}}
 
       <h4>{{t 'Topic' 'webinars.7'}}</h4>
-      {{markdown (t @webinar.topic)}}
+      {{markdown (t @webinar.topic 'webinars.14')}}
 
       <h4>{{t 'Speaker' 'webinars.8'}}</h4>
       <div class='host'>
@@ -75,7 +75,11 @@
   </div>
 
   <Button
-    @text={{if this.expanded (t 'Hide details') (t 'Show details')}}
+    @text={{if
+      this.expanded
+      (t 'Hide details' 'webinars.11')
+      (t 'Show details' 'webinars.12')
+    }}
     @icon={{if this.expanded 'arrow-up' 'arrow-down'}}
     @theme='secondary medium grey-border blue-focus icon-right'
     @onClick={{this.toggleAccordion}}

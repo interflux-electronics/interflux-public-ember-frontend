@@ -1,12 +1,12 @@
 <div class='liner'>
-  <BackNav @backRoute='products' @backLabel={{t 'All products'}} />
+  <BackNav @backRoute='products' @backLabel={{t 'All products' 'products.1'}} />
 
   <div class='columns'>
     {{#if this.media.isDesktopWidescreen}}
       <aside>
         <div class='sticky'>
           <fieldset id='search'>
-            <legend>{{t 'Find a product'}}</legend>
+            <legend>{{t 'Find a product' 'products.2'}}</legend>
             <Search
               @placeholder={{this.searchPlaceHolder}}
               @onSelect={{this.openProductPage}}
@@ -18,7 +18,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>{{t 'Products we develop'}}</legend>
+            <legend>{{t 'Products we develop' 'products.3'}}</legend>
             <ul class='links'>
               {{#each this.familyRadios as |radio|}}
                 <li>
@@ -27,7 +27,9 @@
                     class={{if radio.isChecked 'active'}}
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
-                    <span class='label'>{{t radio.label}}</span>
+                    <span class='label'>
+                      {{t radio.label (concat 'products.4.' radio.id)}}
+                    </span>
                     <Svg::ArrowRight />
                   </a>
                 </li>
@@ -36,7 +38,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>{{t 'Processes we support'}}</legend>
+            <legend>{{t 'Processes we support' 'products.5'}}</legend>
             <ul class='links'>
               {{#each this.useRadios as |radio|}}
                 <li>
@@ -45,7 +47,9 @@
                     class={{if radio.isChecked 'active'}}
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
-                    <span class='label'>{{t radio.label}}</span>
+                    <span class='label'>
+                      {{t radio.label (concat 'products.5.' radio.id)}}
+                    </span>
                     <Svg::ArrowRight />
                   </a>
                 </li>
@@ -54,7 +58,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>{{t 'Filter'}}</legend>
+            <legend>{{t 'Filter' 'products.6'}}</legend>
             {{#each this.statusCheckboxes as |checkbox|}}
               <div class='checkbox-group'>
                 <Checkbox
@@ -63,8 +67,12 @@
                   @onClick={{fn this.toggleStatus checkbox.id}}
                 />
                 <label for='input-{{checkbox.id}}'>
-                  <span>{{t checkbox.label}}&nbsp;</span>
-                  {{!--<small>{{checkbox.count}}</small>--}}
+                  <span>
+                    {{t
+                      checkbox.label
+                      (concat 'products.7.' checkbox.id)
+                    }}&nbsp;
+                  </span>
                 </label>
               </div>
             {{/each}}
@@ -74,7 +82,7 @@
     {{/if}}
 
     <article {{did-insert this.onInsertArticle}}>
-      <h1 id='h1'>{{t this.pageTitle}}</h1>
+      <h1 id='h1'>{{t this.pageTitle 'products.8'}}</h1>
 
       {{#if this.isLoading}}
         <Shimmer::ProductRows::Desktop />
@@ -84,7 +92,9 @@
             {{#if (or s.visibleRows.length s.visibleRows.length)}}
               <section aria-labelledby='h2-{{i}}'>
                 <div class='intro'>
-                  <h2 id='h2-{{i}}'>{{t s.title}}</h2>
+                  <h2 id='h2-{{i}}'>
+                    {{t s.title (concat 'products.9.' s.title)}}
+                  </h2>
                 </div>
 
                 <ul class='visible'>
@@ -134,9 +144,12 @@
               >
                 <div class='intro'>
                   <div class='title'>
-                    <h2 id='h2-{{mainFamily.id}}'>{{mainFamily.label}}
-                      for
-                      {{this.use.text}}</h2>
+                    <h2 id='h2-{{mainFamily.id}}'>
+                      {{t
+                        (concat mainFamily.label ' for ' this.use.text)
+                        'products.10'
+                      }}
+                    </h2>
                   </div>
                 </div>
               </li>
@@ -148,8 +161,12 @@
               >
                 <div class='intro'>
                   <div class='title'>
-                    <h2 id='h2-other-{{mainFamily.id}}'>Other
-                      {{mainFamily.namePlural}}</h2>
+                    <h2 id='h2-other-{{mainFamily.id}}'>
+                      {{t
+                        (concat 'Other ' mainFamily.namePlural)
+                        'products.11'
+                      }}
+                    </h2>
                   </div>
                 </div>
               </li>
@@ -163,7 +180,9 @@
               >
                 <div class='intro'>
                   <div class='title'>
-                    <h2 id='h2-{{subFamily.id}}'>{{subFamily.label}}</h2>
+                    <h2 id='h2-{{subFamily.id}}'>
+                      {{t subFamily.label 'products.12'}}
+                    </h2>
                   </div>
                 </div>
               </li>
