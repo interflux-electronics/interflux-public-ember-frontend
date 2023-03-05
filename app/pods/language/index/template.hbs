@@ -3,7 +3,7 @@
     <h1 {{did-insert this.onInsert}}>
       <small>{{t 'Yes, you can solder electronics ...' 'home.1'}}</small>
       <strong>
-        {{markdown (t this.heroPhrase) (hash noParagraphs=true)}}
+        {{markdown this.heroPhrase (hash noParagraphs=true)}}
       </strong>
       <small>{{t 'Ask Interflux.' 'home.2'}}</small>
     </h1>
@@ -71,7 +71,11 @@
 
             <div class='text'>
               <h3>{{span-each-word product.name}}</h3>
-              <h4>{{span-each-word (t product.family.nameSingle)}}</h4>
+              <h4>
+                {{span-each-word
+                  (t product.familyLabel (concat 'product.1.' product.id))
+                }}
+              </h4>
             </div>
           </a>
         </li>
@@ -110,7 +114,11 @@
 
             <div class='text'>
               <h3>{{span-each-word product.name}}</h3>
-              <h4>{{span-each-word (t product.family.nameSingle)}}</h4>
+              <h4>
+                {{span-each-word
+                  (t product.familyLabel (concat 'product.1.' product.id))
+                }}
+              </h4>
             </div>
           </a>
         </li>
@@ -141,7 +149,7 @@
 <Section @id='why'>
   <h2>{{t 'Why Interflux?' 'home.8'}}</h2>
   <blockquote>
-    {{markdown (t this.pioneerQuote) (hash noParagraphs=true)}}
+    {{markdown (t this.pioneerQuote 'home.12') (hash noParagraphs=true)}}
   </blockquote>
   <div class='cta'>
     <Button
