@@ -262,6 +262,7 @@
                       {{#each product.testResultsArray as |row|}}
                         <tr>
                           {{#each row as |cell|}}
+                            {{! TODO: translate this sensitive data? }}
                             <td>{{markdown cell}}</td>
                           {{/each}}
                         </tr>
