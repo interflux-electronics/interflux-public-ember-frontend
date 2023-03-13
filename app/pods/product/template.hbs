@@ -1,10 +1,15 @@
 {{#let @model.product as |product|}}
   <div class='liner'>
-    <BackNav
-      @backRoute='products.subset'
-      @backModel={{product.mainFamily.id}}
-      @backLabel={{t (concat 'All ' product.mainFamily.namePlural) 'product.6'}}
-    />
+    {{#let product.mainFamily as |family|}}
+      <BackNav
+        @backRoute='products.subset'
+        @backModel={{family.id}}
+        @backLabel={{t
+          (concat 'All ' family.namePlural)
+          (concat 'product.6.' family.id)
+        }}
+      />
+    {{/let}}
 
     <div class='columns'>
       <article>
