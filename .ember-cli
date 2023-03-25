@@ -1,5 +1,6 @@
 {
   "port": 4200,
   "disableAnalytics": false,
-  "isTypeScriptProject": false
+  "isTypeScriptProject": false,
+  "ssl": true
 }
