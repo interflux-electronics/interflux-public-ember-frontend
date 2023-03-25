@@ -36,7 +36,9 @@ module.exports = function (defaults) {
     }
   });
 
-  app.import('vendor/new-relic.js');
+  if (ENV.isProduction) {
+    app.import('vendor/new-relic.js');
+  }
 
   return app.toTree();
 };
