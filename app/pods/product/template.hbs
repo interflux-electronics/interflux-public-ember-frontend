@@ -4,10 +4,7 @@
       <BackNav
         @backRoute='products.subset'
         @backModel={{family.id}}
-        @backLabel={{t
-          (concat 'All ' family.namePlural)
-          (concat 'product.6.' family.id)
-        }}
+        @backLabel={{t (concat 'All ' family.namePlural) 'product.6' family.id}}
       />
     {{/let}}
 
@@ -20,7 +17,7 @@
             <div class='tags'>
               {{#if product.familyLabel}}
                 <h2 class='blue'>
-                  {{t product.familyLabel (concat 'product.1.' product.id)}}
+                  {{t product.familyLabel 'product.1' product.id}}
                 </h2>
               {{/if}}
               {{#if product.isNew}}
@@ -78,9 +75,7 @@
             {{else}}
               {{#if product.pitch}}
                 <div id='pitch'>
-                  {{markdown
-                    (t product.pitch (concat 'product.2.' product.id))
-                  }}
+                  {{markdown (t product.pitch 'product.2' product.id)}}
                 </div>
               {{/if}}
             {{/if}}
@@ -121,7 +116,7 @@
             <div>
               <h3>{{t 'Summary' 'product.7'}}</h3>
               <div class='two-columns'>
-                {{markdown product.summary (concat 'product.8.' product.id)}}
+                {{markdown product.summary 'product.8' product.id}}
               </div>
             </div>
           </section>
@@ -281,9 +276,7 @@
               <h3 id='h3-instructions'>{{t 'How to use' 'product.22'}}
                 {{product.name}}</h3>
               <div class='single-column'>
-                {{markdown
-                  (t product.instructions (concat 'product.23.' product.id))
-                }}
+                {{markdown (t product.instructions 'product.23' product.id)}}
               </div>
             </div>
           </section>

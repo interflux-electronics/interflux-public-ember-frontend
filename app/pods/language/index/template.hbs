@@ -73,7 +73,7 @@
               <h3>{{span-each-word product.name}}</h3>
               <h4>
                 {{span-each-word
-                  (t product.familyLabel (concat 'product.1.' product.id))
+                  (t product.familyLabel 'product.1' product.id)
                 }}
               </h4>
             </div>
@@ -116,7 +116,7 @@
               <h3>{{span-each-word product.name}}</h3>
               <h4>
                 {{span-each-word
-                  (t product.familyLabel (concat 'product.1.' product.id))
+                  (t product.familyLabel 'product.1' product.id)
                 }}
               </h4>
             </div>

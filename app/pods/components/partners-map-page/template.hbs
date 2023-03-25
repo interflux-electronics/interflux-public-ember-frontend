@@ -24,7 +24,7 @@
 
           {{#if c.description}}
             <div class='description'>
-              {{markdown (t c.description (concat 'map.5.' this.company.id))}}
+              {{markdown (t c.description 'map.5' this.company.id)}}
             </div>
           {{/if}}
 

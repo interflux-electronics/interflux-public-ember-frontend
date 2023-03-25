@@ -28,7 +28,7 @@
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
                     <span class='label'>
-                      {{t radio.label (concat 'products.4.' radio.id)}}
+                      {{t radio.label 'products.4' radio.id}}
                     </span>
                     <Svg::ArrowRight />
                   </a>
@@ -48,7 +48,7 @@
                     {{on 'click' (fn this.openSubsetPage radio.id)}}
                   >
                     <span class='label'>
-                      {{t radio.label (concat 'products.5.' radio.id)}}
+                      {{t radio.label 'products.5' radio.id}}
                     </span>
                     <Svg::ArrowRight />
                   </a>
@@ -68,10 +68,7 @@
                 />
                 <label for='input-{{checkbox.id}}'>
                   <span>
-                    {{t
-                      checkbox.label
-                      (concat 'products.7.' checkbox.id)
-                    }}&nbsp;
+                    {{t checkbox.label 'products.7' checkbox.id}}&nbsp;
                   </span>
                 </label>
               </div>
@@ -93,7 +90,7 @@
               <section aria-labelledby='h2-{{i}}'>
                 <div class='intro'>
                   <h2 id='h2-{{i}}'>
-                    {{t s.title (concat 'products.9.' s.title)}}
+                    {{t s.title 'products.9' s.title}}
                   </h2>
                 </div>
 
@@ -164,7 +161,8 @@
                     <h2 id='h2-other-{{mainFamily.id}}'>
                       {{t
                         (concat 'Other ' mainFamily.namePlural)
-                        (concat 'products.13.' mainFamily.id)
+                        'products.13'
+                        mainFamily.id
                       }}
                     </h2>
                   </div>
@@ -181,7 +179,7 @@
                 <div class='intro'>
                   <div class='title'>
                     <h2 id='h2-{{subFamily.id}}'>
-                      {{t subFamily.label (concat 'products.14.' subFamily.id)}}
+                      {{t subFamily.label 'products.14' subFamily.id}}
                     </h2>
                   </div>
                 </div>

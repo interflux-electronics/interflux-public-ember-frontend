@@ -6,11 +6,11 @@
         <Icon @name={{category.icon}} />
         <p>
           <strong>
-            {{t category.name (concat 'docs.2.' category.id)}}
+            {{t category.name 'docs.2' category.id}}
           </strong>
         </p>
-        <p>{{t category.gist (concat 'docs.3.' category.id)}}</p>
-        <p><span>{{t category.cta (concat 'docs.4.' category.id)}}</span></p>
+        <p>{{t category.gist 'docs.3' category.id}}</p>
+        <p><span>{{t category.cta 'docs.4' category.id}}</span></p>
       </a>
     {{/each}}
   </nav>

@@ -26,7 +26,7 @@
       <div class='tags'>
         {{#if @product.familyLabel}}
           <h4 class='blue'>
-            {{t @product.familyLabel (concat 'product.1.' @product.id)}}
+            {{t @product.familyLabel 'product.1' @product.id}}
           </h4>
         {{/if}}
         {{#if @product.isNew}}
@@ -61,7 +61,7 @@
       </div>
       {{#if @product.pitch}}
         <div class='pitch'>
-          {{markdown (t @product.pitch (concat 'product.2.' @product.id))}}
+          {{markdown (t @product.pitch 'product.2' @product.id)}}
         </div>
       {{/if}}
       {{#if (and this.features this.media.isDesktopWidescreen)}}
