@@ -34,7 +34,7 @@ export default class IndexController extends Controller {
       '***0.00% halides***'
     ]
       .map((phrase, i) => {
-        return this.translation.t(phrase, `home.11.${i}`);
+        return this.translation.t(phrase, 'home.11', i);
       })
       .sort(() => {
         return 0.5 - Math.random();

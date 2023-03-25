@@ -259,13 +259,15 @@ export default class ProductsSubsetController extends Controller {
     if (family) {
       return this.translation.t(
         family.get('label'),
-        `products.15.${family.get('id')}`
+        'products.15',
+        family.get('id')
       );
     }
     if (use) {
       return this.translation.t(
         use.get('forLabel'),
-        `products.16.${use.get('id')}`
+        'products.16',
+        use.get('id')
       );
     }
     return '?';

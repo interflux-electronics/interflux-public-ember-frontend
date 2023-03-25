@@ -47,8 +47,8 @@ export default class ProductController extends Controller {
     return this.model.product.uses.map((use) => {
       return {
         iconURL: use.get('iconURL'),
-        label: this.translation.t(use.get('label'), `use.1.${use.get('id')}`),
-        content: this.translation.t(use.get('gist'), `use.2.${use.get('id')}`)
+        label: this.translation.t(use.get('label'), 'use.1', use.get('id')),
+        content: this.translation.t(use.get('gist'), 'use.2', use.get('id'))
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
@@ -71,11 +71,13 @@ export default class ProductController extends Controller {
         iconURL: quality.get('iconURL'),
         label: this.translation.t(
           quality.get('label'),
-          `quality.1.${quality.get('id')}`
+          'quality.1',
+          quality.get('id')
         ),
         content: this.translation.t(
           quality.get('gist'),
-          `quality.2.${quality.get('id')}`
+          'quality.2',
+          quality.get('id')
         )
         // links: [
         //   {
@@ -109,7 +111,8 @@ export default class ProductController extends Controller {
         label: `${doc.get('name')} (PDF)`,
         content: this.translation.t(
           `Available in ${n} languages:`,
-          `product.28.${n}`
+          'product.28',
+          n
         ),
         links
       };
