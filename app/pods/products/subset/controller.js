@@ -5,8 +5,9 @@ import { inject as service } from '@ember/service';
 
 export default class ProductsSubsetController extends Controller {
   @service media;
-  @service store;
   @service router;
+  @service store;
+  @service translation;
   @service window;
 
   @tracked family; // The family record matching the slug in the URL
@@ -256,10 +257,16 @@ export default class ProductsSubsetController extends Controller {
   get pageTitle() {
     const { family, use } = this;
     if (family) {
-      return family.get('label');
+      return this.translation.t(
+        family.get('label'),
+        `products.15.${family.get('id')}`
+      );
     }
     if (use) {
-      return use.get('forLabel');
+      return this.translation.t(
+        use.get('forLabel'),
+        `products.16.${use.get('id')}`
+      );
     }
     return '?';
   }

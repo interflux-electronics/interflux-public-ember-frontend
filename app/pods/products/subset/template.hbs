@@ -82,7 +82,7 @@
     {{/if}}
 
     <article {{did-insert this.onInsertArticle}}>
-      <h1 id='h1'>{{t this.pageTitle 'products.8'}}</h1>
+      <h1 id='h1'>{{this.pageTitle}}</h1>
 
       {{#if this.isLoading}}
         <Shimmer::ProductRows::Desktop />
@@ -164,7 +164,7 @@
                     <h2 id='h2-other-{{mainFamily.id}}'>
                       {{t
                         (concat 'Other ' mainFamily.namePlural)
-                        'products.11'
+                        (concat 'products.13.' mainFamily.id)
                       }}
                     </h2>
                   </div>
@@ -181,7 +181,7 @@
                 <div class='intro'>
                   <div class='title'>
                     <h2 id='h2-{{subFamily.id}}'>
-                      {{t subFamily.label 'products.12'}}
+                      {{t subFamily.label (concat 'products.14.' subFamily.id)}}
                     </h2>
                   </div>
                 </div>
