@@ -8,7 +8,9 @@ import ENV from 'interflux/config/environment';
 export default class T extends Helper {
   @service translation;
 
-  compute([english, location]) {
-    return ENV.isTest ? english : this.translation.t(english, location);
+  compute([english, locationBase, locationId]) {
+    return ENV.isTest
+      ? english
+      : this.translation.t(english, locationBase, locationId);
   }
 }

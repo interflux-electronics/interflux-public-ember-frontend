@@ -3,7 +3,7 @@
     <time datetime={{@webinar.kebabStartDate}}>
       <span>{{@webinar.humanStartDate}}</span>
     </time>
-    {{span-each-word @webinar.title}}
+    {{span-each-word (t @webinar.title 'webinars.17' @webinar.id)}}
   </h3>
 
   <div class='video'>
@@ -36,10 +36,10 @@
   >
     <div class='content'>
       <h4>{{t 'Who should watch' 'webinars.6'}}</h4>
-      {{markdown (t @webinar.audience 'webinars.13')}}
+      {{markdown (t @webinar.audience 'webinars.15' @webinar.id)}}
 
       <h4>{{t 'Topic' 'webinars.7'}}</h4>
-      {{markdown (t @webinar.topic 'webinars.14')}}
+      {{markdown (t @webinar.topic 'webinars.16' @webinar.id)}}
 
       <h4>{{t 'Speaker' 'webinars.8'}}</h4>
       <div class='host'>
@@ -64,7 +64,7 @@
 
       {{#if @webinar.document.id}}
         <Button
-          @text='Download slides'
+          @text={{t 'Download slides' 'webinars.18'}}
           @icon='cloud-download'
           @theme='primary medium green icon-left'
           @class='collapse'

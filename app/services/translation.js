@@ -11,8 +11,11 @@ export default class TranslationService extends Service {
   @tracked language;
 
   // This method translates the given phrase to shown language.
-  t(english, location) {
+  t(english, locationBase, locationId) {
     const { language } = this;
+    const location = locationId
+      ? `${locationBase}.${locationId}`
+      : locationBase;
     const base = `${language} | ${location} | ${english}`;
 
     if (!english) {
