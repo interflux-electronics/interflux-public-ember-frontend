@@ -22,7 +22,7 @@ export default class ContactRoute extends BaseRoute {
     return hash({
       companies:
         this.cache.companies ||
-        this.store.findAll('company', {
+        this.store.query('company', {
           include: ['public_members', 'public_members.person'].join(',')
         }),
       countries: this.cache.countries || this.store.findAll('country'),

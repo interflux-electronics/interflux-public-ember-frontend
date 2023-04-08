@@ -3,7 +3,7 @@ import BaseRoute from 'interflux/pods/base/route';
 export default class LanguageLoadingRoute extends BaseRoute {
   activate() {
     this.page.update({
-      id: 'language-loading',
+      id: 'application-loading',
       title: 'Loading ...',
       showLoading: true
     });

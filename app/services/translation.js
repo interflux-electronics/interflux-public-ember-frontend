@@ -1,14 +1,23 @@
+import ENV from 'interflux/config/environment';
 import Service from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class TranslationService extends Service {
   @service api;
   @service store;
 
-  // The language in which the website is currently being shown.
-  // en, de, es, fr
-  @tracked language;
+  // The current language of the website representad as a 2 letter code.
+  // The language is set as an environment variable and will vary per domain.
+  //
+  // interflux.com = en
+  // interflux.de = de
+  // interflux.fr = fr
+  // interflux.es = es
+  // interflux.mx = es
+  //
+  get language() {
+    return ENV.LANGUAGE;
+  }
 
   // This method translates the given phrase to shown language.
   t(english, locationBase, locationId) {

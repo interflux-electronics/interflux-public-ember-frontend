@@ -1,5 +1,7 @@
 {{#if this.page.showError}}
-  <ErrorPage />
+  {{! TODO: improve 404 and error pages }}
+  <RouteErrorMessage />
+  {{! <NotFoundPage /> }}
 {{else if this.page.showLoading}}
   <LoadingCube @message='Loading ...' />
 {{else}}
