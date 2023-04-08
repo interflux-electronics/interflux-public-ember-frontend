@@ -30,6 +30,12 @@ jobs:
       SSH: ${{secrets.FRANKFURT_SSH}}
       URL: admin@frankfurt.server.interflux.com
       ROOT: /var/www/interflux.de
+
+      # Use the same ssh-agent socket value across all jobs
+      # Useful when a GH action is using SSH behind-the-scenes
+      # Inspired from:
+      # https://stackoverflow.com/questions/64953274/how-to-send-passphrase-for-ssh-add-with-github-actions
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
     steps:
       - uses: actions/checkout@v2
       - run: mkdir ~/.ssh
@@ -37,9 +43,15 @@ jobs:
       - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
       - run: ssh-keyscan -H frankfurt.server.interflux.com > ~/.ssh/known_hosts
       - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
-      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull"
-      - run: ssh $URL "cd $ROOT; nvm install; yarn install"
-      - run: ssh $URL "cd $ROOT; yarn build"
+
+      - name: Setup SSH passphrase
+        run: |
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          echo 'echo $PASS' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+          echo "$SSH" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+
+      - name: Get latest production code and build
+        run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; echo {{secrets.FRANKFURT_ENV}} > .env; yarn build"
 
   deploy-es:
     name: Deploy interflux.es (Madrid)
@@ -63,23 +75,13 @@ jobs:
       - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
       - run: ssh-keyscan -H madrid.server.interflux.com > ~/.ssh/known_hosts
       - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
-
-      # Start ssh-agent but set it to use the same ssh_auth_sock value.
-      # The agent will be running in all steps after this, so it
-      # should be one of the first.
       - name: Setup SSH passphrase
         run: |
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           echo 'echo $PASS' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
           echo "$SSH" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
-
-      # Debug print out the added identities. This will prove SSH_AUTH_SOCK
-      # is persisted across job steps
-      - name: Print ssh-add identities
-        run: ssh-add -l
-
-      # Install all dependencies and build the app
-      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; yarn build"
+      - name: Get latest production code and build
+        run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; echo {{secrets.MADRID_ENV}} > .env; yarn build"
 
   deploy-fr:
     name: Deploy interflux.fr (Paris)
@@ -103,23 +105,13 @@ jobs:
       - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
       - run: ssh-keyscan -H paris.server.interflux.com > ~/.ssh/known_hosts
       - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
-
-      # Start ssh-agent but set it to use the same ssh_auth_sock value.
-      # The agent will be running in all steps after this, so it
-      # should be one of the first.
       - name: Setup SSH passphrase
         run: |
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           echo 'echo $PASS' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
           echo "$SSH" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
-
-      # Debug print out the added identities. This will prove SSH_AUTH_SOCK
-      # is persisted across job steps
-      - name: Print ssh-add identities
-        run: ssh-add -l
-
-      # Install all dependencies and build the app
-      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; yarn build"
+      - name: Get latest production code and build
+        run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; echo {{secrets.PARIS_ENV}} > .env; yarn build"
 
   deploy-mx:
     name: Deploy interflux.mx (Mexico)
@@ -143,23 +135,13 @@ jobs:
       - run: 'echo "IdentityFile ~/.ssh/$URL" > ~/.ssh/config'
       - run: ssh-keyscan -H mexico.server.interflux.com > ~/.ssh/known_hosts
       - run: chmod 0755 ~/.ssh/; chmod 600 ~/.ssh/$URL; chmod 644 ~/.ssh/known_hosts
-
-      # Start ssh-agent but set it to use the same ssh_auth_sock value.
-      # The agent will be running in all steps after this, so it
-      # should be one of the first.
       - name: Setup SSH passphrase
         run: |
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           echo 'echo $PASS' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
           echo "$SSH" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
-
-      # Debug print out the added identities. This will prove SSH_AUTH_SOCK
-      # is persisted across job steps
-      - name: Print ssh-add identities
-        run: ssh-add -l
-
-      # Install all dependencies and build the app
-      - run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; yarn build"
+      - name: Get latest production code and build
+        run: ssh $URL "cd $ROOT; git checkout feature/i18n; git pull; nvm install; yarn install; echo {{secrets.MEXICO_ENV}} > .env; yarn build"
 
   # TODO:
   # deploy-de:
