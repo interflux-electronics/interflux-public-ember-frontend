@@ -1,8 +1,7 @@
 <img
-  src='{{env 'cdnHost'}}/images/flags/{{@country.id}}.svg'
-  alt={{@country.nameEnglish}}
+  src='{{env "cdnHost"}}/images/flags/{{@country.id}}.svg'
+  alt='{{@country.nameNative}} ({{@country.nameEnlgish}})'
   width='32'
   height='24'
   class='flag {{lowercase @country.id}}'
-  title={{@country.nameNative}}
 />

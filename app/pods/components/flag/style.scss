@@ -12,15 +12,20 @@ img.flag {
   @include mobile {
     width: vw-mobile(24px);
   }
+  &.at,
   &.bg,
+  &.ca,
   &.cz,
   &.fi,
+  &.fr,
   &.id,
   &.it,
   &.kr,
   &.ph,
   &.pk,
   &.pl,
+  &.mx,
+  &.nl,
   &.rs,
   &.ru,
   &.sg,
