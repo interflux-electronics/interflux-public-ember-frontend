@@ -32,10 +32,10 @@ header#desktop {
     margin: 0 auto;
     box-sizing: border-box;
     @include widescreen {
-      padding: 0 36px;
+      padding: 0 0 0 36px;
     }
     @include desktop {
-      padding: 0 vw(36px);
+      padding: 0 0 0 vw(36px);
     }
   }
   .left {
@@ -114,32 +114,61 @@ header#desktop {
   .right {
     display: flex;
     flex-direction: row;
-    align-self: center;
     justify-content: flex-end;
-    p {
-      color: white;
-      text-align: right;
-      line-height: 100%;
+    button {
+      border-left: 1px solid rgba(white, 0.2);
       display: flex;
       align-items: center;
-      a {
-        background-color: transparent;
-        color: white;
-        text-decoration: none;
-        font-family: $bold;
-        &:hover,
-        &:focus {
-          text-decoration: underline;
+      padding: 0 20px;
+      gap: 6px;
+      height: 100%;
+      .icon {
+        width: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          [fill] {
+            fill: white;
+          }
         }
       }
-      img {
-        @include widescreen {
-          margin-left: 5px;
-        }
-        @include desktop {
-          margin-left: vw(5px);
+      .clip {
+        overflow: hidden;
+        transition: width 400ms $easeOutExpo;
+        display: flex;
+        width: 0;
+        span {
+          color: white;
+          font-family: $bold;
+          font-size: 16px;
         }
       }
     }
+    // p {
+    //   color: white;
+    //   text-align: right;
+    //   line-height: 100%;
+    //   display: flex;
+    //   align-items: center;
+    //   a {
+    //     background-color: transparent;
+    //     color: white;
+    //     text-decoration: none;
+    //     font-family: $bold;
+    //     &:hover,
+    //     &:focus {
+    //       text-decoration: underline;
+    //     }
+    //   }
+    //   img {
+    //     @include widescreen {
+    //       margin-left: 5px;
+    //     }
+    //     @include desktop {
+    //       margin-left: vw(5px);
+    //     }
+    //   }
+    // }
   }
 }

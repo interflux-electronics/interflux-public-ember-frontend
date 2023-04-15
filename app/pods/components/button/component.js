@@ -55,9 +55,23 @@ export default class ButtonComponent extends Component {
   }
 
   @action
+  onMouseOut(event) {
+    if (this.args.onMouseOut) {
+      this.args.onMouseOut(event);
+    }
+  }
+
+  @action
   onFocus(event) {
     if (this.args.onFocus) {
       this.args.onFocus(event);
+    }
+  }
+
+  @action
+  onBlur(event) {
+    if (this.args.onBlur) {
+      this.args.onBlur(event);
     }
   }
 }

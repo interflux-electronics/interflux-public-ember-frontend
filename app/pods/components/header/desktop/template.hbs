@@ -12,7 +12,7 @@
     </div>
 
     <ul class='center'>
-      <li id='products'>
+      <li id='products' onmouseleave={{this.closeMenu}}>
         <Button
           @text={{t 'Products' 'header.1'}}
           @onClick={{this.toggleMenu}}
@@ -20,7 +20,7 @@
         <Header::Desktop::Menu::Products @isOpen={{this.showProducts}} />
       </li>
 
-      <li id='processes'>
+      <li id='processes' onmouseleave={{this.closeMenu}}>
         <Button
           @text={{t 'Processes' 'header.2'}}
           @onClick={{this.toggleMenu}}
@@ -45,8 +45,17 @@
       </li>
     </ul>
 
-    <div class='right'>
-      <p>
+    <ul class='right'>
+      {{!--
+      <Button
+        @text='Order'
+        @onClick={{this.openOrderModal}}
+        @icon='truck'
+        @theme='large primary orange icon-floats-left'
+      />
+      --}}
+
+      {{!-- <p>
         <span>
           {{markdown
             (t
@@ -62,23 +71,28 @@
           height='20'
           alt='Interflux Group'
         />
-      </p>
-      {{!--
-      <Button
-        @text='Order'
-        @onClick={{this.openOrderModal}}
-        @icon='truck'
-        @theme='large primary orange icon-floats-left'
-      />
+      </p> --}}
 
-      <Button @icon='search' @text='Search' @onClick={{this.openSearchModal}} />
-
-      <Button
-        @text='Your account'
-        @icon='user'
-        @onClick={{this.openAccountModal}}
-      />
-    --}}
-    </div>
+      <li
+        id='languages'
+        onmouseover={{this.expandButton}}
+        onmouseleave={{this.collapseButton}}
+      >
+        <button
+          class='button'
+          onclick={{this.toggleMenu}}
+          onfocus={{this.expandButton}}
+          onblur={{this.onMenuButtonBlur}}
+        >
+          <div class='icon'>
+            <Svg::Translation />
+          </div>
+          <div class='clip' style='width: 0px'>
+            <span>{{t 'Translations' 'header.38'}}</span>
+          </div>
+        </button>
+        <Header::Desktop::Menu::Languages @isOpen={{this.showLanguages}} />
+      </li>
+    </ul>
   </nav>
 </header>

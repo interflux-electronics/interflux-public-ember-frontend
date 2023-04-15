@@ -33,6 +33,7 @@ export default class ButtonContentComponent extends Component {
       'share',
       'star',
       'street-view',
+      'translation',
       'truck',
       'user',
       'search'

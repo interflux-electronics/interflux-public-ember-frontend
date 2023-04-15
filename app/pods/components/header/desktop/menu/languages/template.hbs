@@ -1,0 +1,107 @@
+<Header::Desktop::Menu @isOpen={{@isOpen}}>
+  <div class='links'>
+    <h2>{{t 'Choose your language' 'header.37'}}</h2>
+
+    <a href='https://interflux.com{{this.path}}'>
+      <span>English<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='gb' nameNative='United Kingdom'}} />
+        <Flag @country={{hash id='us' nameNative='United States of America'}} />
+        <Flag @country={{hash id='ca' nameNative='Canada'}} />
+        <Flag @country={{hash id='au' nameNative='Australia'}} />
+        <Flag @country={{hash id='nz' nameNative='New Zealand'}} />
+        <Flag @country={{hash id='sg' nameNative='Singapore'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.com.cn{{this.path}}'>
+      <span>中文<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='cn' nameNative='中国' nameEnglish='China'}} />
+        <Flag
+          @country={{hash id='tw' nameNative='臺灣' nameEnglish='Taiwan'}}
+        />
+        <Flag @country={{hash id='mo' nameNative='澳門' nameEnglish='Macau'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.de{{this.path}}'>
+      <span>Deutsch<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag
+          @country={{hash
+            id='de'
+            nameNative='Deutschland'
+            nameEnglish='Germany'
+          }}
+        />
+        <Flag
+          @country={{hash
+            id='at'
+            nameNative='Österreich'
+            nameEnglish='Austria'
+          }}
+        />
+        <Flag
+          @country={{hash
+            id='ch'
+            nameNative='Schweiz'
+            nameEnglish='Switzerland'
+          }}
+        />
+      </div>
+    </a>
+
+    <a href='https://interflux.mx{{this.path}}'>
+      <span>Español (México)<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='mx' nameNative='México'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.es{{this.path}}'>
+      <span>Español (España)<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='es' nameNative='España'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.com{{this.path}}'>
+      <span>Português (Brasil)<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='br' nameNative='Brasil'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.pt{{this.path}}'>
+      <span>Português (Portugal)<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='pt' nameNative='Portugal'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.fr{{this.path}}'>
+      <span>français<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag @country={{hash id='fr' nameNative='France'}} />
+        <Flag @country={{hash id='be' nameNative='Belgique'}} />
+      </div>
+    </a>
+
+    <a href='https://interflux.be{{this.path}}'>
+      <span>Nederlands<Svg::ArrowRight /></span>
+      <div class='flags'>
+        <Flag
+          @country={{hash
+            id='nl'
+            nameNative='Nederland'
+            nameEnglish='Netherlands'
+          }}
+        />
+        <Flag
+          @country={{hash id='be' nameNative='België' nameEnglish='Belgium'}}
+        />
+      </div>
+    </a>
+  </div>
+</Header::Desktop::Menu>

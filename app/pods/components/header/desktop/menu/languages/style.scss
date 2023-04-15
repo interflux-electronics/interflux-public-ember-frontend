@@ -1,0 +1,37 @@
+header#desktop {
+  #languages {
+    .menu {
+      justify-content: flex-end;
+      padding-right: 22px;
+      box-sizing: border-box;
+      .box {
+        @include widescreen {
+          width: 300px;
+        }
+        @include desktop {
+          width: vw(300px);
+        }
+      }
+      .callout {
+        @include widescreen {
+          right: 30px;
+        }
+        @include desktop {
+          right: vw(30px);
+        }
+      }
+      .links {
+        a {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .flags {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+          }
+        }
+      }
+    }
+  }
+}

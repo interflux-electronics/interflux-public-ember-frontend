@@ -18,7 +18,9 @@
       class={{this.classes}}
       onclick={{this.onClick}}
       onfocus={{this.onFocus}}
+      onblur={{this.onBlur}}
       onmouseenter={{this.onMouseEnter}}
+      onmouseout={{this.onMouseOut}}
     >
       <Button::Content @text={{@text}} @icon={{@icon}}>
         {{yield}}
@@ -31,7 +33,9 @@
       href={{href-to @route @model}}
       onclick={{this.onClick}}
       onfocus={{this.onFocus}}
+      onblur={{this.onBlur}}
       onmouseenter={{this.onMouseEnter}}
+      onmouseout={{this.onMouseOut}}
     >
       <Button::Content @text={{@text}} @icon={{@icon}}>
         {{yield}}
@@ -44,7 +48,9 @@
       href={{href-to @route}}
       onclick={{this.onClick}}
       onfocus={{this.onFocus}}
+      onblur={{this.onBlur}}
       onmouseenter={{this.onMouseEnter}}
+      onmouseout={{this.onMouseOut}}
     >
       <Button::Content @text={{@text}} @icon={{@icon}}>
         {{yield}}
@@ -71,7 +77,9 @@
     rel='noopener noreferrer'
     onclick={{this.onClick}}
     onfocus={{this.onFocus}}
+    onblur={{this.onBlur}}
     onmouseenter={{this.onMouseEnter}}
+    onmouseout={{this.onMouseOut}}
   >
     <Button::Content @text={{@text}} @icon={{@icon}}>
       {{yield}}
@@ -98,7 +106,9 @@
     disabled={{@isBusy}}
     onclick={{this.onClick}}
     onfocus={{this.onFocus}}
+    onblur={{this.onBlur}}
     onmouseenter={{this.onMouseEnter}}
+    onmouseout={{this.onMouseOut}}
   >
     <Button::Content @text={{@text}} @icon={{@icon}}>
       {{yield}}
