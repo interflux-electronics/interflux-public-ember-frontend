@@ -145,30 +145,35 @@ header#desktop {
         }
       }
     }
-    // p {
-    //   color: white;
-    //   text-align: right;
-    //   line-height: 100%;
-    //   display: flex;
-    //   align-items: center;
-    //   a {
-    //     background-color: transparent;
-    //     color: white;
-    //     text-decoration: none;
-    //     font-family: $bold;
-    //     &:hover,
-    //     &:focus {
-    //       text-decoration: underline;
-    //     }
-    //   }
-    //   img {
-    //     @include widescreen {
-    //       margin-left: 5px;
-    //     }
-    //     @include desktop {
-    //       margin-left: vw(5px);
-    //     }
-    //   }
-    // }
+    p {
+      color: white;
+      text-align: right;
+      line-height: 130%;
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      @media (max-width: 1350px) {
+        display: none;
+      }
+      a {
+        background-color: transparent;
+        color: white;
+        text-decoration: none;
+        font-family: $bold;
+        white-space: nowrap;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+      img {
+        @include widescreen {
+          margin-left: 5px;
+        }
+        @include desktop {
+          margin-left: vw(5px);
+        }
+      }
+    }
   }
 }
