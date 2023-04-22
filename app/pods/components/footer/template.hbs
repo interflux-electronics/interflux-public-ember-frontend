@@ -1,133 +1,106 @@
 <footer>
-  <div class='liner'>
+
+  <div id='logo'>
     <img
-      class='logo'
-      src='{{cdn}}/images/logos/interflux-electronics-logo-white.svg'
+      id='electronics'
+      src='{{cdn}}/images/logos/secondary-interflux-electronics-logo-1-transparent.svg'
       width='3960'
       height='1000'
       alt='Interflux Electronics'
     />
 
-    <div class='languages'>
-      <h3>{{t 'Translations' 'footer-1'}}</h3>
-      <ul>
-        <li>
-          <a href='/'>English</a>
-        </li>
-        <li>
-          <a href='/'>中文</a>
-        </li>
-        <li>
-          <a href='/'>Deutsch</a>
-        </li>
-        <li>
-          <a href='/'>Español</a>
-        </li>
-        <li>
-          <a href='/'>Português</a>
-        </li>
-        <li>
-          <a href='/'>français</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'more' 'footer-2'}}</a>
-        </li>
-      </ul>
-    </div>
+    <div id='group'>
+      <img
+        src='{{cdn}}/images/logos/secondary-interflux-electronics-symbol-1-blue-0.svg'
+        width='20'
+        height='20'
+        alt='Interflux Group'
+      />
 
-    <div class='products'>
-      <h3>{{t 'Products' 'footer-3'}}</h3>
-      <ul>
-        <li>
-          <a href='/'>LMPA-Q</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'Soldering fluxes' 'footer-4'}}</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'Solder pastes' 'footer-5'}}</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'Solder wires' 'footer-6'}}</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'Solder alloys' 'footer-7'}}</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'Auxiliaries' 'footer-8'}}</a>
-        </li>
-        <li>
-          <a href='/'>{{t 'Fluxing systems' 'footer-9'}}</a>
-        </li>
-      </ul>
+      <p>
+        {{markdown
+          (t
+            'Founding member of the [Interflux Group](https://interflux.group)'
+            'footer.21'
+          )
+          (hash noParagraphs=true)
+        }}
+      </p>
     </div>
+  </div>
 
-    <div class='more'>
-      <h3>{{t 'More' 'footer-17'}}</h3>
-      <ul>
-        <li>
-          <a href={{href-to 'contact'}}>{{t 'Contact us' 'footer-10'}}</a>
-        </li>
-        <li>
-          <a href={{href-to 'webinars'}}>{{t 'Webinars' 'footer-11'}}</a>
-        </li>
-        <li>
-          <a href={{href-to 'documents'}}>{{t 'Documents' 'footer-12'}}</a>
-        </li>
-        <li>
-          <a href={{href-to 'company'}}>{{t 'About us' 'footer-13'}}</a>
-        </li>
-        <li>
-          <Link @url='https://interflux.group' @label='Interflux Group' />
-        </li>
-        {{!-- <li>
-          <a href={{href-to 'logos'}}>{{t 'Logos' 'footer'}}</a>
-        </li> --}}
-        {{! <li>
-          <a href='/'>API</a>
-        </li> }}
-      </ul>
-    </div>
+  <div id='image'>
+    <img
+      src='{{cdn}}/images/public/footer-bg.png'
+      alt={{t
+        'office building of Interflux Electronics in Belgium'
+        'footer.20'
+      }}
+    />
+  </div>
 
-    <div class='right-edge'>
-      <div class='social'>
-        <h3>{{t 'Follow us' 'footer-14'}}</h3>
-        <ul>
-          <li>
-            <Link
-              @url='https://www.linkedin.com/company/interflux-electronics/'
-            >
-              <Svg::Linkedin />
-            </Link>
-          </li>
-          <li>
-            <Link @url='https://twitter.com/interflux_elec'>
-              <Svg::Twitter />
-            </Link>
-          </li>
-          <li>
-            <Link @url='https://www.youtube.com/@interfluxelectronicsnv1744'>
-              <Svg::Youtube />
-            </Link>
-          </li>
-        </ul>
+  <div id='languages'>
+    <section>
+      <h3>{{t 'Continue in your language' 'footer.22'}}</h3>
+
+      <LanguageList />
+    </section>
+  </div>
+
+  <div id='links'>
+    <section id='explore'>
+      <h3>{{t 'Explore more' 'footer-23'}}</h3>
+
+      <Link @url='https://lmpa-q.com'>
+        <span>LMPA-Q {{t 'solder alloy' 'footer.26'}}<Svg::ArrowRight /></span>
+      </Link>
+
+      <Link @url='https://www.jetfluxer.com'>
+        <span>ICSF Select6
+          {{t 'jet fluxer' 'footer.27'}}<Svg::ArrowRight /></span>
+      </Link>
+    </section>
+
+    <section id='partners'>
+      <h3>{{t 'Partners' 'footer-24'}}</h3>
+
+      <Link @url='https://interflux.group'>
+        <span>Interflux Group<Svg::ArrowRight /></span>
+      </Link>
+
+      <Link @url='https://www.interflux.dk'>
+        <span>Interflux Scandinavia<Svg::ArrowRight /></span>
+      </Link>
+
+      <Link @url='https://www.interflux.pl'>
+        <span>Interflux Poland<Svg::ArrowRight /></span>
+      </Link>
+    </section>
+
+    <section id='social'>
+      <h3>{{t 'Follow Interflux' 'footer-25'}}</h3>
+
+      <div class='horizontal'>
+        <Link @url='https://www.linkedin.com/company/interflux-electronics/'>
+          <Svg::Linkedin />
+        </Link>
+
+        <Link @url='https://twitter.com/interflux_elec'>
+          <Svg::Twitter />
+        </Link>
+
+        <Link @url='https://www.youtube.com/@interfluxelectronicsnv1744'>
+          <Svg::Youtube />
+        </Link>
       </div>
+    </section>
 
-      <div class='legal'>
-        <p>&copy; 1980 - {{this.year}}</p>
-        <p>&reg; Interflux Electronics</p>
-        <ul>
-          <li>
-            <a href='javascript:void(0);'>{{t 'Privacy Policy' 'footer-15'}}</a>
-          </li>
-          <li>
-            <a href='javascript:void(0);'>{{t
-                'Terms & Conditions'
-                'footer-16'
-              }}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <div class='spacer'></div>
+
+    <section id='legal'>
+      <p>&copy; 1980 -
+        {{this.year}}
+        <nobr>&reg; Interflux Electronics NV</nobr></p>
+    </section>
   </div>
 </footer>
