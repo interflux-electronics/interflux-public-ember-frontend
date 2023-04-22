@@ -1,22 +1,35 @@
 // Usage:
 // @include paragraph;
 // @include paragraph(0.8);
-@mixin paragraph($scale: 1) {
+@mixin paragraph() {
   font-family: $regular;
   color: $grey-7;
   line-height: 180%;
   margin: 0;
+  // TODO: remove after regression check
+  // @include widescreen {
+  //   font-size: 16px * $scale;
+  // }
+  // @include desktop {
+  //   font-size: 1.333vw * $scale;
+  // }
+  // @include tablet {
+  //   font-size: 2.3vw * $scale;
+  // }
+  // @include mobile {
+  //   font-size: 5vw * $scale;
+  // }
   @include widescreen {
-    font-size: 16px * $scale;
+    font-size: 16px;
   }
   @include desktop {
-    font-size: 1.333vw * $scale;
+    font-size: vw(16px);
   }
   @include tablet {
-    font-size: 2.3vw * $scale;
+    font-size: vw-tablet(16px);
   }
   @include mobile {
-    font-size: 5vw * $scale;
+    font-size: vw-mobile(16px);
   }
 }
 

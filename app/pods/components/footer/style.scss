@@ -1,8 +1,16 @@
 footer {
-  @media (min-width: 1301px) {
+  @include widescreen {
     display: flex;
   }
-  @media (max-width: 1300px) {
+  @include desktop {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'logo image'
+      'languages links';
+  }
+  @include tablet {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr 1fr;
@@ -15,13 +23,10 @@ footer {
     flex-direction: column;
   }
   & > * {
-    @media (min-width: 1301px) {
+    @include widescreen {
       width: 25%;
       flex-shrink: 0;
       box-sizing: border-box;
-    }
-    @media (max-width: 1300px) {
-      //
     }
   }
   #image {
@@ -36,47 +41,100 @@ footer {
       left: 0;
       top: 0;
       object-fit: cover;
+      object-position: left;
       width: 100%;
       height: 100%;
     }
   }
   #logo {
     grid-area: logo;
-    background-color: $blue-3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 60px;
+    background-color: $blue-3;
+    @include widescreen {
+      gap: 50px;
+      background: radial-gradient(
+        at top right,
+        lighten($blue-3, 3%),
+        darken($blue-3, 3%)
+      );
+    }
+    @include desktop {
+      gap: vw(50px);
+      background: radial-gradient(
+        at bottom right,
+        lighten($blue-3, 3%),
+        darken($blue-3, 3%)
+      );
+    }
+    @include tablet {
+      gap: 5vw;
+      background: radial-gradient(
+        at bottom right,
+        lighten($blue-3, 3%),
+        darken($blue-3, 3%)
+      );
+    }
     @include mobile {
+      gap: 10vw;
       padding: 25vw 0;
+      background: radial-gradient(
+        at center,
+        lighten($blue-3, 3%),
+        darken($blue-3, 3%)
+      );
     }
     img#electronics {
-      width: 70%;
       height: auto;
-      max-width: 320px;
-      @media (max-width: 1900px) {
-        width: 80%;
+      max-width: 80%;
+      @include widescreen {
+        width: 320px;
+      }
+      @include desktop {
+        width: vw(320px);
+      }
+      @include tablet {
+        width: 32vw;
+      }
+      @include mobile {
+        width: 70vw;
       }
     }
     #group {
       display: flex;
-      gap: 15px;
+      align-items: center;
+      @include widescreen {
+        gap: 10px;
+      }
+      @include desktop {
+        gap: vw(10px);
+      }
+      @include tablet {
+        gap: 1vw;
+      }
+      @include mobile {
+        gap: 2vw;
+      }
       img {
         height: auto;
-        width: 25px;
-        @media (max-width: 1900px) {
-          width: 40px;
+        @include widescreen {
+          width: 30px;
+        }
+        @include desktop {
+          width: vw(30px);
+        }
+        @include tablet {
+          width: 3vw;
+        }
+        @include mobile {
+          width: 7vw;
         }
       }
       p {
-        font-family: $regular;
+        @include paragraph;
         color: white;
-        line-height: 150%;
-        font-size: 15px;
-        @media (max-width: 1900px) {
-          max-width: 160px;
-        }
         a {
           font-family: $bold;
           color: white;
@@ -90,43 +148,74 @@ footer {
   #links {
     display: flex;
     flex-direction: column;
-    padding: 36px 40px;
-    gap: 26px;
+    @include widescreen {
+      padding: 32px 40px;
+      gap: 26px;
+    }
+    @include desktop {
+      padding: vw(32px) vw(40px);
+      gap: vw(26px);
+    }
+    @include tablet {
+      padding: 4vw 5vw;
+      gap: 4vw;
+    }
+    @include mobile {
+      padding: 12vw 12vw;
+      gap: 8vw;
+    }
     section {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
     p {
+      @include paragraph;
       color: white;
-      font-family: $regular;
-      font-size: 15px;
     }
     h3 {
+      @include paragraph;
       color: white;
       font-family: $bold;
-      font-size: 15px;
-      line-height: 200%;
-      margin-bottom: 8px;
+      @include widescreen {
+        margin-bottom: 8px;
+      }
+      @include desktop {
+        margin-bottom: vw(8px);
+      }
+      @include tablet {
+        margin-bottom: 1vw;
+      }
+      @include mobile {
+        margin-bottom: 1.8vw;
+      }
     }
     a {
+      @include paragraph;
       display: flex;
       align-items: center;
       color: white;
-      font-size: 15px;
-      line-height: 30px;
-      font-family: $regular;
       @include widescreen {
         margin-left: -8px;
+        line-height: 30px;
       }
       @include desktop {
         margin-left: vw(-8px);
+        line-height: vw(30px);
+      }
+      @include tablet {
+        margin-left: -1vw;
+        line-height: 5vw;
+      }
+      @include mobile {
+        margin-left: -2vw;
+        line-height: 10vw;
       }
       &:hover,
       &:focus {
         span,
         .flags {
-          background: $orange-3;
+          background: $orange-2;
           color: white;
         }
         svg.arrow-right {
@@ -142,6 +231,12 @@ footer {
         @include desktop {
           padding: 0 vw(8px);
         }
+        @include tablet {
+          padding: 0 1vw;
+        }
+        @include mobile {
+          padding: 0 2vw;
+        }
       }
       svg.arrow-right {
         opacity: 0;
@@ -156,21 +251,49 @@ footer {
           margin-left: vw(8px);
         }
         @include tablet {
+          width: 0.75vw;
+          height: 1vw;
+          margin-left: 1vw;
+        }
+        @include mobile {
           width: 1vw;
           height: 1.5vw;
           margin-left: 2vw;
-        }
-        @include mobile {
-          width: 1vw; // TODO
-          height: 1.5vw; // TODO
-          margin-left: 2vw; // TODO
         }
       }
     }
   }
   #languages {
-    background-color: $blue-4;
     grid-area: languages;
+    background-color: $blue-4;
+    @include widescreen {
+      background: radial-gradient(
+        at top left,
+        lighten($blue-4, 3%),
+        darken($blue-4, 3%)
+      );
+    }
+    @include desktop {
+      background: radial-gradient(
+        at top right,
+        lighten($blue-4, 3%),
+        darken($blue-4, 3%)
+      );
+    }
+    @include tablet {
+      background: radial-gradient(
+        at top right,
+        lighten($blue-4, 3%),
+        darken($blue-4, 3%)
+      );
+    }
+    @include mobile {
+      background: radial-gradient(
+        at bottom left,
+        lighten($blue-4, 3%),
+        darken($blue-4, 3%)
+      );
+    }
     a {
       position: relative;
       svg.arrow-right {
@@ -179,36 +302,85 @@ footer {
       }
       .flags {
         display: flex;
-        gap: 8px;
-        padding: 6px 22px 6px 6px;
+        height: 100%;
+        @include widescreen {
+          gap: 8px;
+          padding: 0 22px 0 6px;
+          height: 30px;
+        }
+        @include desktop {
+          gap: vw(8px);
+          padding: 0 vw(22px) 0 vw(6px);
+          height: vw(30px);
+        }
+        @include tablet {
+          gap: 0.6vw;
+          padding: 0 3vw 0 1vw;
+          height: 5vw;
+        }
+        @include mobile {
+          gap: 1.5vw;
+          padding: 0 7vw 0 2vw;
+          height: 10vw;
+        }
         .flag {
           outline: none;
+          &.nz {
+            // We hide the New Zealand flag between 1300px and 1200px because <a> is too wide
+            @media (max-width: 1300px) and (min-width: 1200px) {
+              display: none;
+            }
+          }
         }
       }
     }
   }
   #links {
-    background-color: $blue-5;
     grid-area: links;
+    background-color: $blue-5;
+    background: radial-gradient(
+      at top left,
+      lighten($blue-5, 3%),
+      darken($blue-5, 3%)
+    );
     #social {
       .horizontal {
         display: flex;
       }
       a {
-        width: 40px;
-        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
         @include widescreen {
           margin-left: -6px;
+          width: 40px;
+          height: 40px;
         }
         @include desktop {
           margin-left: vw(-6px);
+          width: vw(40px);
+          height: vw(40px);
+        }
+        @include tablet {
+          margin-left: -1vw;
+          width: 6vw;
+          height: 6vw;
+        }
+        @include mobile {
+          margin-left: -1vw;
+          width: 11vw;
+          height: 11vw;
+        }
+        &:hover,
+        &:focus {
+          svg {
+            width: 100%;
+          }
         }
         svg {
           width: 60%;
           height: auto;
+          transition: width 300ms $easeOutExpo;
         }
       }
     }
@@ -217,5 +389,3 @@ footer {
     }
   }
 }
-
-// background: radial-gradient(at top right, #23578c, #163759);
