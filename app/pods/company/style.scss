@@ -15,7 +15,8 @@ main#company {
   #iso,
   #pioneer,
   #durable,
-  #support {
+  #support,
+  #iso2 {
     .liner {
       display: flex;
       @include tablet {
@@ -228,6 +229,12 @@ main#company {
         margin-bottom: 9vw;
         width: 100%;
       }
+    }
+  }
+
+  #iso2 {
+    img {
+      max-width: 100%;
     }
   }
 
