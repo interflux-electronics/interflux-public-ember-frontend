@@ -2,61 +2,67 @@
   <div class='links'>
     <h2>{{t 'Products we develop' 'header.29'}}</h2>
     <Button
-      @text={{t 'LMPA-Q' 'header.30'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='for-low-melting-point-soldering'
       @onFocus={{fn this.showImage 1}}
       @onMouseEnter={{fn this.showImage 1}}
-    />
+    >
+      <span>{{t 'LMPA-Q' 'header.30'}}<Svg::ArrowRight /></span>
+    </Button>
+
     <Button
-      @text={{t 'Soldering fluxes' 'header.31'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='soldering-fluxes'
       @onFocus={{fn this.showImage 2}}
       @onMouseEnter={{fn this.showImage 2}}
-    />
+    >
+      <span>{{t 'Soldering fluxes' 'header.31'}}<Svg::ArrowRight /></span>
+    </Button>
+
     <Button
-      @text={{t 'Solder pastes' 'header.32'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='solder-pastes'
       @onFocus={{fn this.showImage 3}}
       @onMouseEnter={{fn this.showImage 3}}
-    />
+    >
+      <span>{{t 'Solder pastes' 'header.32'}}<Svg::ArrowRight /></span>
+    </Button>
+
     <Button
-      @text={{t 'Solder wires' 'header.33'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='solder-wires'
       @onFocus={{fn this.showImage 4}}
       @onMouseEnter={{fn this.showImage 4}}
-    />
+    >
+      <span>{{t 'Solder wires' 'header.33'}}<Svg::ArrowRight /></span>
+    </Button>
+
     <Button
-      @text={{t 'Solder alloys' 'header.34'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='solder-alloys'
       @onFocus={{fn this.showImage 5}}
       @onMouseEnter={{fn this.showImage 5}}
-    />
+    >
+      <span>{{t 'Solder alloys' 'header.34'}}<Svg::ArrowRight /></span>
+    </Button>
+
     <Button
-      @text={{t 'Auxiliaries' 'header.35'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='auxiliaries'
       @onFocus={{fn this.showImage 6}}
       @onMouseEnter={{fn this.showImage 6}}
-    />
+    >
+      <span>{{t 'Auxiliaries' 'header.35'}}<Svg::ArrowRight /></span>
+    </Button>
+
     <Button
-      @text={{t 'Fluxing systems' 'header.36'}}
-      @icon='arrow-right'
       @route='products.subset'
       @model='fluxing-systems'
       @onFocus={{fn this.showImage 7}}
       @onMouseEnter={{fn this.showImage 7}}
-    />
+    >
+      <span>{{t 'Fluxing systems' 'header.36'}}<Svg::ArrowRight /></span>
+    </Button>
   </div>
 
   <div class='image' data-position={{this.imagePosition}}>

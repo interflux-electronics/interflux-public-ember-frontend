@@ -119,14 +119,25 @@ header#desktop {
       border-left: 1px solid rgba(white, 0.2);
       display: flex;
       align-items: center;
-      padding: 0 20px;
-      gap: 6px;
       height: 100%;
+      @include widescreen {
+        padding: 0 20px;
+        gap: 6px;
+      }
+      @include desktop {
+        padding: 0 vw(20px);
+        gap: vw(6px);
+      }
       .icon {
-        width: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
+        @include widescreen {
+          width: 25px;
+        }
+        @include desktop {
+          width: vw(25px);
+        }
         svg {
           [fill] {
             fill: white;
@@ -141,7 +152,12 @@ header#desktop {
         span {
           color: white;
           font-family: $bold;
-          font-size: 16px;
+          @include widescreen {
+            font-size: 16px;
+          }
+          @include desktop {
+            font-size: vw(16px);
+          }
         }
       }
     }
@@ -154,6 +170,12 @@ header#desktop {
       margin-right: 20px;
       @media (max-width: 1350px) {
         display: none;
+      }
+      @include widescreen {
+        font-size: 16px;
+      }
+      @include desktop {
+        font-size: vw(16px);
       }
       a {
         background-color: transparent;
