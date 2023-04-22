@@ -33,6 +33,7 @@ footer {
     position: relative;
     overflow: hidden;
     grid-area: image;
+    background-color: $blue-2;
     @include mobile {
       height: 120vw;
     }
