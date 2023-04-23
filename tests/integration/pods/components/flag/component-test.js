@@ -9,7 +9,8 @@ module('Integration | Component | flag', function (hooks) {
   test('it renders', async function (assert) {
     this.set('country', {
       id: 'FL',
-      nameEnglish: 'FooLand'
+      nameEnglish: 'FooLand',
+      nameNative: 'BarLand'
     });
 
     await render(hbs`<Flag @country={{this.country}} />`);
@@ -17,7 +18,7 @@ module('Integration | Component | flag', function (hooks) {
     const img = this.element.querySelector('img.flag');
 
     assert.equal(img.src, 'http://localhost:9000/images/flags/FL.svg');
-    assert.equal(img.alt, 'FooLand');
+    assert.equal(img.alt, 'BarLand (FooLand)');
     assert.ok(img.classList.contains('fl'));
   });
 });
