@@ -13,6 +13,6 @@ module('Integration | Component | language-list', function (hooks) {
 
     const links = this.element.querySelectorAll('a');
 
-    assert.equal(links.length, 9);
+    assert.equal(links.length, 5);
   });
 });
