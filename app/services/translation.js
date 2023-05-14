@@ -43,7 +43,7 @@ export default class TranslationService extends Service {
     }
 
     if (language === 'en') {
-      console.debug(`${base} | is English, no translation needed`);
+      // console.debug(`${base} | is English, no translation needed`);
       return english;
     }
 
@@ -71,7 +71,7 @@ export default class TranslationService extends Service {
       this.updateEnglish(record, englishBefore, englishNow);
     }
 
-    console.debug(`${base} | translated 👍🏼`);
+    // console.debug(`${base} | translated 👍🏼`);
 
     return record.native;
   }
