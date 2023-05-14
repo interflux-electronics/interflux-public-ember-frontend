@@ -4,7 +4,11 @@ import { hash } from 'rsvp';
 export default class ProductsRoute extends BaseRoute {
   model() {
     return hash({
-      products: this.cache.products || this.store.findAll('product'),
+      products:
+        this.cache.products ||
+        this.store.findAll('product', {
+          include: ['image'].join(',')
+        }),
       families:
         this.cache.families ||
         this.store.findAll('productFamily', {
@@ -19,7 +23,11 @@ export default class ProductsRoute extends BaseRoute {
           include: ['use_images', 'use_images.image'].join(',')
         }),
       qualities: this.cache.qualities || this.store.findAll('quality'),
-      productUses: this.cache.productUses || this.store.findAll('product-use'),
+      productUses:
+        this.cache.productUses ||
+        this.store.findAll('product-use', {
+          include: ['image'].join(',')
+        }),
       productQualities:
         this.cache.productQualities || this.store.findAll('product-quality')
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
