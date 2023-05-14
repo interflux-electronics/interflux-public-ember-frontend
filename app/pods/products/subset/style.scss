@@ -202,9 +202,14 @@ main#products-subset {
         a {
           display: flex;
           justify-content: space-between;
-          padding: 0 20px;
-          line-height: 38px;
           text-decoration: none;
+          line-height: 130%;
+          @include widescreen {
+            padding: 8px 20px;
+          }
+          @include desktop {
+            padding: vw(8px) vw(20px);
+          }
           .label {
             color: $blue-0;
           }

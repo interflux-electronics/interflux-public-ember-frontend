@@ -761,8 +761,8 @@ main#product {
         }
       }
     }
-    button {
-      & + button {
+    a {
+      & + a {
         margin-top: 12px;
       }
     }
@@ -775,13 +775,13 @@ main#product {
     p {
       padding: 0 15px;
     }
-    button + h4 {
+    a + h4 {
       margin-top: 40px;
     }
     h4 + p {
       margin-top: 10px;
     }
-    p + button {
+    p + a {
       margin-top: 20px;
     }
   }
