@@ -7,7 +7,12 @@ export default class ProductsRoute extends BaseRoute {
       products:
         this.cache.products ||
         this.store.findAll('product', {
-          include: ['image'].join(',')
+          include: [
+            'image',
+            'product_uses',
+            'product_uses.image',
+            'product_qualities'
+          ].join(',')
         }),
       families:
         this.cache.families ||
@@ -22,14 +27,14 @@ export default class ProductsRoute extends BaseRoute {
         this.store.findAll('use', {
           include: ['use_images', 'use_images.image'].join(',')
         }),
-      qualities: this.cache.qualities || this.store.findAll('quality'),
-      productUses:
-        this.cache.productUses ||
-        this.store.findAll('product-use', {
-          include: ['image'].join(',')
-        }),
-      productQualities:
-        this.cache.productQualities || this.store.findAll('product-quality')
+      qualities: this.cache.qualities || this.store.findAll('quality')
+      // productUses:
+      //   this.cache.productUses ||
+      //   this.store.findAll('product-use', {
+      //     include: ['image'].join(',')
+      //   }),
+      // productQualities:
+      //   this.cache.productQualities || this.store.findAll('product-quality')
       // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
       // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });
@@ -40,7 +45,7 @@ export default class ProductsRoute extends BaseRoute {
     this.cache.families = model.families;
     this.cache.uses = model.uses;
     this.cache.qualities = model.qualities;
-    this.cache.productUses = model.productUses;
-    this.cache.productQualities = model.productQualities;
+    // this.cache.productUses = model.productUses;
+    // this.cache.productQualities = model.productQualities;
   }
 }
