@@ -51,14 +51,16 @@ const convertInlineElements = (str) => {
   const links = html.match(/\[.*?\)/g);
   if (links != null && links.length > 0) {
     links.forEach((hyper) => {
-      const text = hyper.match(/\[(.*?)\]/)[1];
-      const url = hyper.match(/\((.*?)\)/)[1];
+      const text = hyper.match(/\[(.*?)\]/);
+      const url = hyper.match(/\((.*?)\)/);
 
-      const result = url.startsWith('http')
-        ? `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`
-        : `<a href="${url}">${text}</a>`;
+      if (text && url) {
+        const result = url[0].startsWith('http')
+          ? `<a href="${url[0]}" target="_blank" rel="noopener noreferrer">${text[0]}</a>`
+          : `<a href="${url[0]}">${text[0]}</a>`;
 
-      html = html.replace(hyper, result);
+        html = html.replace(hyper, result);
+      }
     });
   }
 
