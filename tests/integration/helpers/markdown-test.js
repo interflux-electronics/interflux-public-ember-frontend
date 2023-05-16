@@ -172,6 +172,14 @@ module('Integration | Helper | markdown', function (hooks) {
     );
   });
 
+  test('it does not create link for a common typo', async function (assert) {
+    assert.expect(1);
+    const phrase = 'This word is a [typo1(link).';
+    this.set('string', phrase);
+    await render(hbs`{{markdown this.string}}`);
+    assert.strictEqual(this.element.innerHTML, `<p class="p">${phrase}</p>`);
+  });
+
   test('it converts blockquotes', async function (assert) {
     assert.expect(1);
     this.set('string', blockquote);

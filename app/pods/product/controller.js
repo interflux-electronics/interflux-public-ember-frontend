@@ -67,18 +67,14 @@ export default class ProductController extends Controller {
 
   get qualityAccordionSections() {
     return this.model.product.qualities.map((quality) => {
+      const id = quality.get('id');
+      const label = quality.get('label');
+      const gist = quality.get('gist');
+
       return {
         iconURL: quality.get('iconURL'),
-        label: this.translation.t(
-          quality.get('label'),
-          'quality.1',
-          quality.get('id')
-        ),
-        content: this.translation.t(
-          quality.get('gist'),
-          'quality.2',
-          quality.get('id')
-        )
+        label: this.translation.t(label, 'quality.1', id),
+        content: gist ? this.translation.t(gist, 'quality.2', id) : null
         // links: [
         //   {
         //     label: `Learn more about ${use.get('text')}`,
