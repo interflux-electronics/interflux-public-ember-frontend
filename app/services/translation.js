@@ -22,30 +22,29 @@ export default class TranslationService extends Service {
   // This method translates the given phrase to shown language.
   t(english, locationBase, locationId) {
     const { language } = this;
-    const location = locationId
-      ? `${locationBase}.${locationId}`
-      : locationBase;
-    const base = `${language} | ${location} | ${english}`;
-
-    if (!english) {
-      console.error(`${base} | no english`);
-      return '?';
-    }
 
     if (!language) {
-      console.error(`${base} | no language`);
-      return english;
-    }
-
-    if (!location) {
-      console.error(`${base} | no location`);
+      console.error('ENV.LANGUAGE is not set');
       return english;
     }
 
     if (language === 'en') {
-      // console.debug(`${base} | is English, no translation needed`);
       return english;
     }
+
+    if (!english) {
+      console.error(`t() no english passed in | ${location}`);
+      return '?';
+    }
+
+    if (!locationBase) {
+      console.error(`t() no locationBase passed in | ${english}`);
+      return english;
+    }
+
+    const location = locationId
+      ? `${locationBase}.${locationId}`
+      : locationBase;
 
     const record = this.store
       .peekAll('translation')
@@ -53,13 +52,14 @@ export default class TranslationService extends Service {
       .findBy('location', location);
 
     if (!record) {
-      console.warn(`${base} | no record 🔥`);
+      console.warn(`t() no record for "${language}" on "${location}" 🔥`);
+      console.warn('creating missing translation...');
       this.creatMissingTranslation(language, location, english);
       return english;
     }
 
     if (!record.native) {
-      console.warn(`${base} | no native 🔥`);
+      console.warn(`t() no translation for "${language}" on "${location}" 🔥`);
       return english;
     }
 
@@ -67,11 +67,14 @@ export default class TranslationService extends Service {
     const englishNow = english;
 
     if (englishBefore !== englishNow) {
-      console.warn(`${base} | english source has changed 🔥`);
-      this.updateEnglish(record, englishBefore, englishNow);
+      console.warn(
+        `t() english changed from "${englishBefore}" to "${english}" for "${language}" on "${location}" 🔥`
+      );
+      if (record.status !== 'to-update') {
+        console.warn('t() marking translation as outdated...');
+        this.updateEnglish(record, englishBefore, englishNow);
+      }
     }
-
-    // console.debug(`${base} | translated 👍🏼`);
 
     return record.native;
   }
