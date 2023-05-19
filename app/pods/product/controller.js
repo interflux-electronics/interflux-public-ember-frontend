@@ -45,22 +45,14 @@ export default class ProductController extends Controller {
 
   get useAccordionSections() {
     return this.model.product.uses.map((use) => {
+      const id = use.get('id');
+      const label = use.get('label');
+      const gist = use.get('gist');
+
       return {
         iconURL: use.get('iconURL'),
-        label: this.translation.t(use.get('label'), 'use.1', use.get('id')),
-        content: this.translation.t(use.get('gist'), 'use.2', use.get('id'))
-        // links: [
-        //   {
-        //     label: `Learn more about ${use.get('text')}`,
-        //     route: 'article',
-        //     model: 'article-123'
-        //   },
-        //   {
-        //     label: `All products for ${use.get('text')}`,
-        //     route: 'products',
-        //     model: use.get('slug')
-        //   }
-        // ]
+        label: this.translation.t(label, 'use.1', id),
+        content: gist ? this.translation.t(gist, 'use.2', id) : null
       };
     });
   }
@@ -75,18 +67,6 @@ export default class ProductController extends Controller {
         iconURL: quality.get('iconURL'),
         label: this.translation.t(label, 'quality.1', id),
         content: gist ? this.translation.t(gist, 'quality.2', id) : null
-        // links: [
-        //   {
-        //     label: `Learn more about ${use.get('text')}`,
-        //     route: 'article',
-        //     model: 'article-123'
-        //   },
-        //   {
-        //     label: `All products with ${use.get('text')}`,
-        //     route: 'products',
-        //     model: use.get('slug')
-        //   }
-        // ]
       };
     });
   }
