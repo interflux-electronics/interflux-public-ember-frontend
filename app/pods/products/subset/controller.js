@@ -173,6 +173,11 @@ export default class ProductsSubsetController extends Controller {
         .uniq()
         .sortBy('rank')
         .forEach((family, i) => {
+          if (!family) {
+            console.warn('ignoring undefined family');
+            return;
+          }
+
           const id = family.get('id');
           const li = article.querySelector(`li.main-family-for-use#${id}`);
 
@@ -204,6 +209,11 @@ export default class ProductsSubsetController extends Controller {
     // If the subset is a family we use different grouping per family
     if (family) {
       family.subFamilies.sortBy('rank').forEach((subFamily, i) => {
+        if (!subFamily) {
+          console.warn('ignoring undefined subFamily');
+          return;
+        }
+
         const id = subFamily.get('id');
         const li = article.querySelector(`li.sub-family#${id}`);
 
