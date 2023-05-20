@@ -383,7 +383,18 @@ export default class ProductsSubsetController extends Controller {
   }
 
   get sortedProducts() {
-    return this.model.products.sortBy('name');
+    return this.model.products.sortBy('name').map((product) => {
+      let avatar = null;
+
+      if (this.use) {
+        const productUse = product.productUses.findBy('use.id', this.use.id);
+        if (productUse) {
+          avatar = productUse.showAlternativeAvatar ? productUse.image : null;
+        }
+      }
+
+      return { product, avatar };
+    });
   }
 
   @action toggleHiddenRows(event) {

@@ -189,8 +189,8 @@
               </li>
             {{/each}}
 
-            {{#each this.sortedProducts as |product|}}
-              <ProductRow @product={{product}} />
+            {{#each this.sortedProducts as |p|}}
+              <ProductRow @product={{p.product}} @avatar={{p.avatar}} />
             {{/each}}
           </ol>
         {{/if}}
