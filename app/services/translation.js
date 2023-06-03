@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class TranslationService extends Service {
   @service api;
+  @service fastboot;
   @service store;
 
   // The current language of the website representad as a 2 letter code.
@@ -83,6 +84,9 @@ export default class TranslationService extends Service {
   // and thus we fall back on doing a POST with native fetch().
 
   async creatMissingTranslation(language, location, english) {
+    if (this.fastboot.isFastBoot) {
+      return;
+    }
     const url = `${this.api.host}/${this.api.namespace}/translations`;
     const request = new Request(url, {
       method: 'POST',
@@ -113,6 +117,9 @@ export default class TranslationService extends Service {
   }
 
   async updateEnglish(record, englishBefore, englishNow) {
+    if (this.fastboot.isFastBoot) {
+      return;
+    }
     const url = `${this.api.host}/${this.api.namespace}/translations/${record.id}`;
     const request = new Request(url, {
       method: 'PATCH',
