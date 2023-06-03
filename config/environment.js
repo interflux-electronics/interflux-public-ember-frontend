@@ -14,8 +14,8 @@ const apiNamespace = 'v1/public';
 const apiHosts = {
   production: 'https://rails.api.interflux.com',
   development: {
-    web: 'https://localhost:3000',
-    ios: 'https://localhost:3000',
+    web: 'http://localhost:3000',
+    ios: 'http://localhost:3000',
     android: 'http://10.0.2.2:3000'
   },
   test: 'http://localhost:3000'
@@ -25,8 +25,8 @@ const apiHosts = {
 const publicHosts = {
   production: 'https://interflux.com',
   development: {
-    web: 'https://localhost:4200',
-    ios: 'https://localhost:4200',
+    web: 'http://localhost:4200',
+    ios: 'http://localhost:4200',
     android: 'http://10.0.2.2:4400'
   },
   test: 'http://localhost:4400'

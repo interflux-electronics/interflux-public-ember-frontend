@@ -32,7 +32,8 @@ module.exports = {
     'ember/no-computed-properties-in-native-classes': 'warn',
     'ember/no-side-effects': 'warn',
     'ember/no-actions-hash': 'warn',
-    'ember/no-classic-classes': 'warn'
+    'ember/no-classic-classes': 'warn',
+    'no-unused-vars': 'warn'
   },
   overrides: [
     // node files
