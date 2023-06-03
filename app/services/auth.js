@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class AuthService extends Service {
   @service api;
+  @service fastboot;
   @service store;
   @service router;
 
@@ -15,6 +16,11 @@ export default class AuthService extends Service {
   @tracked error;
 
   async getToken(email, password) {
+    // TODO: test fetch() in Fastboot
+    if (this.fastboot.isFastBoot) {
+      return;
+    }
+
     this.error = null;
 
     const url = `${this.api.host}/${this.api.namespace}/auth-token`;
