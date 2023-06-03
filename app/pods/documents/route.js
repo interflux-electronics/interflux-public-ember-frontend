@@ -18,17 +18,28 @@ export default class DocumentsRoute extends BaseRoute {
   }
 
   model() {
-    return hash({
-      documents: this.cache.documents || this.store.findAll('document'),
-      categories:
-        this.cache.categories || this.store.findAll('documentCategory')
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
-    });
+    const shoebox = this.fastboot.shoebox.retrieve(this.routeName);
+    const prerenderSuccess = shoebox?.success;
+
+    if (this.fastboot.isFastBoot) {
+      console.warn('prerenderSuccess', prerenderSuccess);
+    }
+
+    const promises = {
+      documents: this.store.findAll('document'),
+      categories: this.store.findAll('documentCategory')
+    };
+
+    return prerenderSuccess ? promises : hash(promises);
   }
 
   afterModel(model) {
     this.cache.documents = model.documents;
     this.cache.categories = model.categories;
+
+    if (this.fastboot.isFastBoot && model.documents && model.categories) {
+      console.warn('SHOEBOX PUT');
+      this.fastboot.shoebox.put(this.routeName, { success: true });
+    }
   }
 }
