@@ -126,15 +126,20 @@ module.exports = function (env) {
     showdown: {},
 
     fastboot: {
-      hostWhitelist: [
-        'interflux.com',
-        'www.interflux.com',
-        'new.interflux.com',
-        /^0.0.0.0:\d+$/,
-        /^127.0.0.1:\d+$/,
-        'localhost:4400'
-      ]
-    }
+      development: {
+        hostWhitelist: [/^0.0.0.0:\d+$/, /^127.0.0.1:\d+$/, 'localhost:4200']
+      },
+      production: {
+        hostWhitelist: [
+          'interflux.com',
+          'interflux.de',
+          'interflux.es',
+          'interflux.mx',
+          'interflux.fr',
+          'interflux.cn.com'
+        ]
+      }
+    }[env]
   };
 
   if (isTest) {
