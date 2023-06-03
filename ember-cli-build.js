@@ -33,6 +33,14 @@ module.exports = function (defaults) {
     // Fingerprint files with the git revision rather than the MD5 to deduct from which deploy.
     fingerprint: {
       customHash: ENV.gitRevision
+    },
+
+    // The native Javascript fetch() API is now well supported in all browsers, however it does
+    // not exist in Node. This breaks our server side rendering (Ember Fastboot). This package
+    // uses node-fetch on our backend (Node) and the native JS fetch() on our frontend.
+    'ember-fetch': {
+      preferNative: true,
+      nativePromise: true
     }
   });
 
