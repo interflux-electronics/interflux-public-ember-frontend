@@ -83,33 +83,39 @@ export default class TranslationService extends Service {
   // and thus we fall back on doing a POST with native fetch().
 
   async creatMissingTranslation(language, location, english) {
-    const url = `${this.api.host}/${this.api.namespace}/translations`;
-    const request = new Request(url, {
-      method: 'POST',
-      mode: 'cors',
-      headers: new Headers(this.api.headers),
-      body: JSON.stringify({
-        data: {
-          attributes: {
-            language,
-            location,
-            english,
-            status: 'to-translate'
-          }
-        }
-      })
-    });
+    // TODO: test fetch() in Fastboot
+    // if (this.fastboot.isFastBoot) {
+    //   return;
+    // }
+    console.warn('skip translation creation');
+    return;
+    // const url = `${this.api.host}/${this.api.namespace}/translations`;
+    // const request = new Request(url, {
+    //   method: 'POST',
+    //   mode: 'cors',
+    //   headers: new Headers(this.api.headers),
+    //   body: JSON.stringify({
+    //     data: {
+    //       attributes: {
+    //         language,
+    //         location,
+    //         english,
+    //         status: 'to-translate'
+    //       }
+    //     }
+    //   })
+    // });
 
-    fetch(request)
-      .then((response) => response.json())
-      .then((response) => {
-        console.warn('create succeeded');
-        console.warn(response);
-      })
-      .catch((response) => {
-        console.error('create failed');
-        console.error(response);
-      });
+    // fetch(request)
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     console.warn('create succeeded');
+    //     console.warn(response);
+    //   })
+    //   .catch((response) => {
+    //     console.error('create failed');
+    //     console.error(response);
+    //   });
   }
 
   async updateEnglish(record, englishBefore, englishNow) {
