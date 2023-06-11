@@ -3,26 +3,22 @@
 const FastBootAppServer = require('fastboot-app-server');
 const FastBootWatchNotifier = require('fastboot-watch-notifier');
 
-const distPath = 'dist';
+const env = require('dotenv').config();
 
 const notifier = new FastBootWatchNotifier({
-  distPath,
+  distPath: 'dist',
   debounceDelay: 250,
   saneOptions: {
     poll: true
   }
 });
 
-// 4200 interflux.com
-// 4300 admin.interflux.com
-// 4400 lmpa.interflux.com
-
 const server = new FastBootAppServer({
-  distPath,
+  distPath: 'dist',
   notifier,
   gzip: true,
   host: '127.0.0.1',
-  port: 4200
+  port: env.PORT
 });
 
 server.start();
