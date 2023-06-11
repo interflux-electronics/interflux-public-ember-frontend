@@ -1,21 +1,57 @@
 import BaseRoute from 'interflux/pods/base/route';
+import { hash } from 'rsvp';
 
 export default class ProductsSubsetRoute extends BaseRoute {
   model(params) {
-    const { slug } = params;
-    const model = this.modelFor('products');
-
-    if (slug.startsWith('for-')) {
-      model.use = this.store.peekRecord('use', slug.slice(4));
-    } else {
-      model.family = this.store.peekRecord('productFamily', slug);
+    if (this.cachedPayload) {
+      return this.cachedPayload;
     }
 
-    return model;
+    const { slug } = params;
+    const payload = {
+      products: this.store.findAll('product', {
+        include: [
+          'image',
+          'product_uses',
+          'product_uses.image',
+          'product_qualities'
+        ].join(',')
+      }),
+      families: this.store.findAll('productFamily', {
+        include: ['product_family_images', 'product_family_images.image'].join(
+          ','
+        )
+      }),
+      uses: this.store.findAll('use', {
+        include: ['use_images', 'use_images.image'].join(',')
+      }),
+      qualities: this.store.findAll('quality'),
+      use: slug.startsWith('for-')
+        ? this.store.findRecord('use', slug.slice(4))
+        : null,
+      family: slug.startsWith('for-')
+        ? null
+        : this.store.findRecord('productFamily', slug)
+    };
+
+    // TODO: refactor subset route to make this work
+    // return this.serverSideRendered ? payload : hash(payload);
+
+    return hash(payload);
   }
 
   afterModel(model) {
+    // HACK: temporary
+    if (this.clientSide && !this.cachedPayload) {
+      console.log(`cache | ${this.routeName} | storing ⚠️ |`, model);
+      this.cache.store(model, 'products.index');
+    }
+
+    // HACK: temporary
+    // super.activate();
+
     const { use, family } = model;
+
     const pageTitle = use
       ? `Products for ${use.get('label')}`
       : family.get('label');

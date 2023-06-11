@@ -19,23 +19,21 @@ export default class ContactRoute extends BaseRoute {
   }
 
   model() {
-    return hash({
-      companies:
-        this.cache.companies ||
-        this.store.query('company', {
-          include: ['public_members', 'public_members.person'].join(',')
-        }),
-      countries: this.cache.countries || this.store.findAll('country'),
-      markets: this.cache.markets || this.store.findAll('company-market')
+    if (this.cachedPayload) {
+      return this.cachedPayload;
+    }
 
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
-    });
-  }
+    const payload = {
+      countries: this.store.findAll('country'),
+      markets: this.store.findAll('company-market'),
+      companies: this.store.query('company', {
+        include: ['public_members', 'public_members.person'].join(',')
+      }),
+      events: this.store.query('event', {
+        include: 'country'
+      })
+    };
 
-  afterModel(model) {
-    this.cache.companies = model.companies;
-    this.cache.countries = model.countries;
-    this.cache.markets = model.markets;
+    return this.serverSideRendered ? payload : hash(payload);
   }
 }

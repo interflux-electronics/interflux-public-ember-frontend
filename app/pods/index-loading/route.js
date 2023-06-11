@@ -1,17 +1,7 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { hash } from 'rsvp';
 
-export default class HomepageRoute extends BaseRoute {
+export default class HomepageLoadingRoute extends BaseRoute {
   activate() {
-    this.page.update({
-      id: 'homepage',
-      title: 'Interflux'
-    });
-  }
-
-  beforeModel() {
-    // TODO: use router.urlFor to generate canoncialPath
-    // https://api.emberjs.com/ember/3.27/classes/RouterService/methods/cacheFor?anchor=cacheFor
     this.headData.reset();
     this.headData.setProperties({
       title: 'Interflux – soldering fluxes, pastes, wires & alloys',
@@ -22,19 +12,9 @@ export default class HomepageRoute extends BaseRoute {
       imageHeight: '1000',
       imageAlt: 'secondary Interflux Electronics logo 1'
     });
-  }
-
-  model() {
-    if (this.cachedPayload) {
-      return this.cachedPayload;
-    }
-
-    const payload = {
-      events: this.store.query('event', {
-        include: 'country'
-      })
-    };
-
-    return this.serverSideRendered ? payload : hash(payload);
+    this.page.update({
+      id: 'homepage',
+      title: 'Interflux'
+    });
   }
 }

@@ -1,13 +1,10 @@
 import BaseRoute from 'interflux/pods/base/route';
-import { inject as service } from '@ember/service';
 import { hash } from 'rsvp';
 
 export default class ApplicationRoute extends BaseRoute {
-  @service page;
-  @service session;
-  @service translation;
-
   activate() {
+    super.activate();
+
     this.page.update({
       id: 'application',
       showLoading: true
@@ -22,21 +19,25 @@ export default class ApplicationRoute extends BaseRoute {
       return {};
     }
 
-    // For all other languages, load the UI translations.
-    return hash({
-      translations:
-        this.cache[`translations-${language}`] ||
-        this.store.query('translation', {
-          filter: { language }
-        })
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
-    });
+    if (this.cachedPayload) {
+      return this.cachedPayload;
+    }
+
+    const payload = {
+      translations: this.store.query('translation', {
+        filter: { language }
+      })
+    };
+
+    // TODO: make translations non-blocking when pre-rendered?
+    // return this.serverSideRendered ? payload : hash(payload);
+
+    return hash(payload);
   }
 
-  afterModel(model) {
-    const language = this.translation.language;
-    this.cache[`translations-${language}`] = model.translations;
+  afterModel() {
+    super.activate();
+
     this.page.update({
       showLoading: true
     });

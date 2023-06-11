@@ -2,6 +2,8 @@ import BaseRoute from 'interflux/pods/base/route';
 
 export default class CompanyRoute extends BaseRoute {
   activate() {
+    super.activate();
+
     this.headData.reset();
     this.headData.setProperties({
       title: 'Company – Interflux',

@@ -18,12 +18,12 @@ export default class ProductRoute extends BaseRoute {
         ].join(','),
         reload: true
       })
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
     });
   }
 
   afterModel(model) {
+    super.activate();
+
     const {
       id,
       name,

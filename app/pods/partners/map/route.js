@@ -13,21 +13,22 @@ export default class PartnersMapRoute extends BaseRoute {
   }
 
   model() {
-    return hash({
-      companies:
-        this.cache.companies ||
-        this.store.findAll('company', {
-          include: ['public_members', 'public_members.person'].join(',')
-        }),
-      countries: this.cache.countries || this.store.findAll('country')
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 30 * 1000))
-    });
+    if (this.cachedPayload) {
+      return this.cachedPayload;
+    }
+
+    const payload = {
+      countries: this.store.findAll('country'),
+      companies: this.store.findAll('company', {
+        include: ['public_members', 'public_members.person'].join(',')
+      })
+    };
+
+    return this.serverSideRendered ? payload : hash(payload);
   }
 
-  afterModel(model) {
-    this.cache.countries = model.countries;
-    this.cache.companies = model.companies;
+  afterModel() {
+    super.activate();
 
     this.window.scrollTo(0, 0);
   }
