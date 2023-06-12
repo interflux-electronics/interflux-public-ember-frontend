@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: 14.x
           cache: yarn
-      - run: echo "LANGUAGE=en" > .env
+      - run: echo "HOST=interflux.com" > .env
+      - run: echo "LANGUAGE=en" >> .env
+      - run: echo "PORT=4700" >> .env
       - run: yarn install --frozen-lockfile
       - run: yarn test
 
