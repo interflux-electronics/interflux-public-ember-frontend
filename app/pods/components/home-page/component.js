@@ -1,4 +1,4 @@
-import Controller from '@ember/controller';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
@@ -6,7 +6,7 @@ import { inject as service } from '@ember/service';
 // TODO: parallax the hero
 // https://codepen.io/RenanB/pen/GZeBNg
 
-export default class IndexController extends Controller {
+export default class HomePageComponent extends Component {
   @service media;
   @service store;
   @service translation;

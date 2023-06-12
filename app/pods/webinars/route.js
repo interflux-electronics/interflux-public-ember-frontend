@@ -19,18 +19,16 @@ export default class WebinarsRoute extends BaseRoute {
   }
 
   model() {
-    return hash({
-      webinars:
-        this.cache.webinars ||
-        this.store.query('webinar', {
-          include: ['image', 'video', 'document', 'person'].join(',')
-        })
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 30 * 1000))
-    });
-  }
+    if (this.cachedPayload) {
+      return this.cachedPayload;
+    }
 
-  afterModel(model) {
-    this.cache.webinars = model.webinars;
+    const payload = {
+      webinars: this.store.query('webinar', {
+        include: ['image', 'video', 'document', 'person'].join(',')
+      })
+    };
+
+    return this.serverSideRendered ? payload : hash(payload);
   }
 }

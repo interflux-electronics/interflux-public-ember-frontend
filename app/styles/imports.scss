@@ -36,6 +36,7 @@
 @import 'app/pods/components/header/desktop/menu/style';
 @import 'app/pods/components/header/desktop/style';
 @import 'app/pods/components/header/mobile/style';
+@import 'app/pods/components/home-page/style';
 @import 'app/pods/components/icon/style';
 @import 'app/pods/components/image/style';
 @import 'app/pods/components/modal/style';
@@ -59,11 +60,9 @@
 @import 'app/pods/components/tag/style';
 
 // Pages
-@import 'app/pods/index/style';
 @import 'app/pods/company/style';
 @import 'app/pods/documents/category/style';
 @import 'app/pods/documents/style';
-@import 'app/pods/index/style';
 @import 'app/pods/product/style';
 @import 'app/pods/products/index/style';
 @import 'app/pods/products/subset/style';

@@ -4,12 +4,8 @@ import { inject as service } from '@ember/service';
 export default class DocumentService extends Service {
   @service fastboot;
 
-  get isFastBoot() {
-    return this.fastboot.isFastBoot;
-  }
-
   documentElement() {
-    if (this.isFastBoot) {
+    if (this.fastboot.isFastBoot) {
       return { scrollTop: 0 };
     }
 

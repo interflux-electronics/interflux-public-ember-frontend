@@ -3,6 +3,8 @@ import { hash } from 'rsvp';
 
 export default class DocumentsRoute extends BaseRoute {
   activate() {
+    super.activate();
+
     this.headData.reset();
     this.headData.setProperties({
       title: 'Documents – Interflux',
@@ -18,17 +20,15 @@ export default class DocumentsRoute extends BaseRoute {
   }
 
   model() {
-    return hash({
-      documents: this.cache.documents || this.store.findAll('document'),
-      categories:
-        this.cache.categories || this.store.findAll('documentCategory')
-      // error: new Promise((resolve, reject) => setTimeout(reject, 1 * 1000))
-      // delay: new Promise((resolve) => setTimeout(resolve, 3 * 1000))
-    });
-  }
+    if (this.cachedPayload) {
+      return this.cachedPayload;
+    }
 
-  afterModel(model) {
-    this.cache.documents = model.documents;
-    this.cache.categories = model.categories;
+    const payload = {
+      documents: this.store.findAll('document'),
+      categories: this.store.findAll('documentCategory')
+    };
+
+    return this.serverSideRendered ? payload : hash(payload);
   }
 }

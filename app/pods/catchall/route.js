@@ -2,9 +2,17 @@ import BaseRoute from 'interflux/pods/base/route';
 
 export default class CatchallRoute extends BaseRoute {
   beforeModel(transition) {
-    console.warn('Unknown route');
-    console.warn(location.href);
-    console.warn({ transition, location });
+    console.error('404 unknown route');
+
+    if (this.serverSide) {
+      const req = this.fastboot.request;
+      console.error(`${req.method} ${req.path}`);
+    }
+
+    if (this.clientSide) {
+      console.error(location.href);
+      console.erro(transition);
+    }
   }
 
   activate() {

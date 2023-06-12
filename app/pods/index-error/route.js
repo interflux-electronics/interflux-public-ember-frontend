@@ -1,9 +1,9 @@
 import BaseRoute from 'interflux/pods/base/route';
 
-export default class ProductErrorRoute extends BaseRoute {
+export default class HomepageErrorRoute extends BaseRoute {
   activate() {
     this.page.update({
-      id: 'product-error',
+      id: 'homepage',
       title: 'Whoops'
     });
   }
