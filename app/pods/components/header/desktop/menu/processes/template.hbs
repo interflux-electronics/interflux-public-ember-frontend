@@ -1,5 +1,7 @@
 <Header::Desktop::Menu @isOpen={{@isOpen}}>
-  <h2>{{t 'Processes we develop products for' 'header.8'}}</h2>
+  <h2 aria-hidden='true'>
+    {{t 'Processes we develop products for' 'header.8'}}
+  </h2>
   <div class='links'>
     {{#each this.processes as |process|}}
       <Button @route='products.subset' @model={{process.routeModel}}>
@@ -7,6 +9,8 @@
           src='{{env "cdnHost"}}/images/icons/{{process.icon}}.svg'
           role='presentation'
           alt=''
+          width='40'
+          height='40'
         />
         <span>{{process.label}}<Svg::ArrowRight /></span>
       </Button>
