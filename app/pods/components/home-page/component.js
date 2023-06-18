@@ -19,7 +19,6 @@ export default class HomePageComponent extends Component {
   @action
   onInsert() {
     this.startHeroWordLoop();
-    this.fetchProducts();
   }
 
   async startHeroWordLoop() {
@@ -51,18 +50,17 @@ export default class HomePageComponent extends Component {
     }
   }
 
-  async fetchProducts() {
-    const products = await this.store.query('product', {
-      filter: { onFrontPage: true },
-      include: 'productFamily'
-    });
-    const sorted = products.sortBy('frontPageRank');
-    this.newProducts = sorted.filter((p) => p.isNew);
-    this.popularProducts = sorted.filter((p) => p.isPopular);
+  get sortedProducts() {
+    return this.args.products.sortBy('frontPageRank');
   }
 
-  @tracked newProducts = [];
-  @tracked popularProducts = [];
+  get newProducts() {
+    return this.sortedProducts.filter((p) => p.isNew);
+  }
+
+  get popularProducts() {
+    return this.sortedProducts.filter((p) => p.isPopular);
+  }
 
   get popularLayout() {
     const n = this.popularProducts.length;

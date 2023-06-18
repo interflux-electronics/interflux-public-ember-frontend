@@ -56,9 +56,24 @@
 
 <Section @id='popular'>
   <h2>{{t 'Our best-selling products' 'home.5'}}</h2>
-  <ul class='products {{this.popularLayout}}'>
-    {{#each this.popularProducts as |product|}}
-      {{#if product.id}}
+  {{#if @isLoading}}
+    <ul class='products two-columns'>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+    </ul>
+  {{else}}
+    <ul class='products {{this.popularLayout}}'>
+      {{#each this.popularProducts as |product|}}
         <li>
           <a href={{href-to 'product' product.id}}>
             <div class='image'>
@@ -79,29 +94,28 @@
             </div>
           </a>
         </li>
-      {{/if}}
-    {{else}}
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-    {{/each}}
-  </ul>
+      {{/each}}
+    </ul>
+  {{/if}}
 </Section>
 
 <Section @id='new'>
   <h2>{{t 'Our newest inventions' 'home.6'}}</h2>
-  <ul class='products {{this.newLayout}}'>
-    {{#each this.newProducts as |product|}}
-      {{#if product.id}}
+  {{#if @isLoading}}
+    <ul class='products three-columns'>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+      <li class='loading'>
+        <Shimmer::Image />
+      </li>
+    </ul>
+  {{else}}
+    <ul class='products {{this.newLayout}}'>
+      {{#each this.newProducts as |product|}}
         <li>
           <a href={{href-to 'product' product.id}}>
             <div class='image'>
@@ -122,19 +136,9 @@
             </div>
           </a>
         </li>
-      {{/if}}
-    {{else}}
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-      <li class='loading'>
-        <svg class='shimmer' width='400' height='400'></svg>
-      </li>
-    {{/each}}
-  </ul>
+      {{/each}}
+    </ul>
+  {{/if}}
   <div class='cta'>
     <Button
       @route='products'
