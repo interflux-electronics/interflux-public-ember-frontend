@@ -77,6 +77,9 @@ figure.responsive-image {
     .caption {
       top: 0;
       left: 0;
+      a {
+        background-color: none;
+      }
     }
     .copyright {
       bottom: 0;

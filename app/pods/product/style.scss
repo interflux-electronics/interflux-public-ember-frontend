@@ -558,6 +558,9 @@ main#product {
         }
         figure {
           height: 100%;
+          a {
+            background-color: transparent;
+          }
         }
       }
       #images {

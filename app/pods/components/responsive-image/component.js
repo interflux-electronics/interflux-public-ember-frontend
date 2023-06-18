@@ -4,21 +4,6 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-// function arg(object, property) {
-//   return {
-//     get() {
-//       const value = this.args[property];
-//       if (!value) {
-//         console.warn(`missing argument: ${property}`);
-//       }
-//       return value;
-//     },
-//     set() {
-//       console.warn(`argument ${property} is read-only`);
-//     }
-//   };
-// }
-
 export default class ResponsiveImageComponent extends Component {
   // @arg path;
   // @arg variations;
@@ -26,6 +11,7 @@ export default class ResponsiveImageComponent extends Component {
   // @arg alt;
 
   @service browser;
+  @service fastboot;
   @service window;
 
   get path() {
@@ -72,6 +58,10 @@ export default class ResponsiveImageComponent extends Component {
     return this.variations.split(',').filter((x) => x.split('.')[1] === 'webp');
   }
 
+  get PNGs() {
+    return this.variations.split(',').filter((x) => x.split('.')[1] === 'webp');
+  }
+
   get JPGsizes() {
     return this.JPGs.map((x) => x.split('.')[0].replace('@', ''));
   }
@@ -80,23 +70,31 @@ export default class ResponsiveImageComponent extends Component {
     return this.JPGs.map((x) => x.split('.')[0].replace('@', ''));
   }
 
+  get PNGsizes() {
+    return this.PNGs.map((x) => x.split('.')[0].replace('@', ''));
+  }
+
   // PICTURE
 
   // When the <picture> element is inserted we register it for later use.
   @action
-  register(element) {
-    this.picture = element;
+  onInsert(element) {
+    this.imageElement = element;
   }
 
   // The <picture> element
-  @tracked picture;
+  @tracked imageElement;
 
   // This component looks at the actual width the <picture> element and the screen density and
   // decideds which width is the smallest width, which still renders a sharp image.
   get optimalWidth() {
-    const pixelRatio = this.window.devicePixelRatio();
+    if (this.fastboot.isFastBoot || !this.imageElement) {
+      return 50;
+    } else {
+      const pixelRatio = this.window.devicePixelRatio();
 
-    return this.picture.offsetWidth * pixelRatio;
+      return this.imageElement.offsetWidth * pixelRatio;
+    }
   }
 
   // Returns the JPG size "200x200" which has a width above and closest to the optimal width.
@@ -107,6 +105,18 @@ export default class ResponsiveImageComponent extends Component {
   // Returns the WEBP size "200x200" which has a width above and closest to the optimal width.
   get closestWEBPsize() {
     return this.closestSize(this.WEBPsizes);
+  }
+
+  get largestPNG() {
+    return this.largestSize(this.PNGsizes);
+  }
+
+  get largestJPG() {
+    return this.largestSize(this.JPGsizes);
+  }
+
+  get largestWEBP() {
+    return this.largestSize(this.WEBPsizes);
   }
 
   // Accepts and array of sizes "200x200".
@@ -133,110 +143,16 @@ export default class ResponsiveImageComponent extends Component {
     });
   }
 
-  // To create a responsive image we ideally we use the native HTML5 <picture> approach with
-  // <source> and <img> inside:
-  //
-  // <picture>
-  //   <source src="image.webp" type="image/webp" />
-  //   <img src="image.jpg" width="200" height="200" alt="foo" />
-  // </picture>
-  //
-  // However, browsers end up downloading both the JPG and WEBP!
-  // https://www.smashingmagazine.com/2013/05/how-to-avoid-duplicate-downloads-in-responsive-images/
-  // Thus we perform the logic ourselves and render a simple <img> in the end.
-  //
-  get html() {
-    const { path, variations, picture } = this;
-    const { cdnHost } = ENV;
+  largestSize(sizes) {
+    const largestWidth = Math.max(...sizes.map((x) => x.split('x')[0]));
 
-    if (!path) {
-      return console.warn('no path');
-    }
-    if (!variations) {
-      return console.warn('no variations', this.path);
-    }
-    if (!picture) {
-      return null;
-    }
-
-    // Before we add things to the DOM we'll append them to a fragment
-    const fragment = document.createDocumentFragment();
-
-    // Create <img> element
-    const img = new Image();
-
-    // Note: The img.onload event doesn't always fire as expected when images
-    // are cached or load fast. For it to work correctly, it's important to
-    // attach the onload event before rendering it, so not in the Ember
-    // template (unfortunately). Instead we create the DOM in JS and then render
-    // it with Ember.
-    // Resources:
-    // https://stackoverflow.com/questions/12354865/image-onload-event-and-browser-cache
-    // https://stackoverflow.com/questions/23657424/why-image-complete-property-always-return-true-even-if-there-is-no-src-tag
-    img.onload = () => {
-      this.status = 'done';
-    };
-
-    img.onerror = () => {
-      this.status = 'error';
-      console.warn('<ResponsiveImage> failed to load image', this.path);
-    };
-
-    if (this.alt) {
-      img.alt = this.alt;
-    }
-
-    // If SVG, render immediately for the are sizeless.
-    if (this.hasSVG) {
-      img.src = `${cdnHost}/${path}.svg`;
-      fragment.append(img);
-      return fragment;
-    }
-
-    // If WEBP files exist and the browser supports them, then render WEBP instead of JPG.
-    if (this.hasWEBP && this.browser.supportsWEBP) {
-      const size = this.closestWEBPsize;
-      if (size) {
-        img.src = `${cdnHost}/${path}@${size}.webp`;
-        img.width = size.split('x')[0];
-        img.height = size.split('x')[1];
-      } else {
-        img.src = `${cdnHost}/${path}.jpg`;
-      }
-      fragment.append(img);
-      return fragment;
-    }
-
-    // If no WEBP exist or the browser does not support WEBP, then render the trusty old JPG.
-    if (this.hasJPG) {
-      const size = this.closestJPGsize;
-      if (size) {
-        img.src = `${ENV.cdnHost}/${path}@${size}.jpg`;
-        img.width = size.split('x')[0];
-        img.height = size.split('x')[1];
-      } else {
-        img.src = `${ENV.cdnHost}/${path}.jpg`;
-      }
-      fragment.append(img);
-      return fragment;
-    }
-
-    // Image is neither SVG, WEBP or JPG?
-    return null;
+    return sizes.find((s) => s.split('x')[0] === largestWidth.toString());
   }
 
-  @tracked _status = 'loading'; // loading, error, invalid, done
-
-  get status() {
-    return this.path && this.variations ? this._status : 'invalid';
-  }
-
-  set status(value) {
-    this._status = value;
-  }
+  @tracked status = 'loading'; // loading, error, invalid, done
 
   get showShimmer() {
-    return this.status === 'loading' || this.status === 'error' || !this.html;
+    return this.status === 'loading' || this.status === 'error';
   }
 
   get orientation() {
@@ -260,5 +176,104 @@ export default class ResponsiveImageComponent extends Component {
     } else {
       return 'portrait';
     }
+  }
+
+  get img() {
+    const { path, variations } = this;
+    const { cdnHost } = ENV;
+
+    if (!path) {
+      return console.warn('no path');
+    }
+    if (!variations) {
+      return console.warn('no variations', this.path);
+    }
+
+    // If SVG, render immediately for the are sizeless.
+    if (this.hasSVG) {
+      return {
+        src: `${cdnHost}/${path}.svg`
+      };
+    }
+
+    // If WEBP files exist and the browser supports them, then render WEBP instead of JPG.
+    if (this.hasWEBP) {
+      const size = this.closestWEBPsize;
+      if (size) {
+        return {
+          src: `${cdnHost}/${path}@${size}.webp`,
+          width: size.split('x')[0],
+          height: size.split('x')[1]
+        };
+      } else {
+        return {
+          src: `${cdnHost}/${path}.jpg`
+        };
+      }
+    }
+
+    // If no WEBP exist or the browser does not support WEBP, then render the trusty old JPG.
+    if (this.hasJPG) {
+      const size = this.closestJPGsize;
+      if (size) {
+        return {
+          src: `${ENV.cdnHost}/${path}@${size}.jpg`,
+          width: size.split('x')[0],
+          height: size.split('x')[1]
+        };
+      } else {
+        return {
+          src: `${ENV.cdnHost}/${path}.jpg`
+        };
+      }
+    }
+
+    // Image is neither SVG, WEBP or JPG?
+    return {};
+  }
+
+  get src() {
+    return this.img.src;
+  }
+
+  get width() {
+    return this.img.width;
+  }
+
+  get height() {
+    return this.img.height;
+  }
+
+  get bestResolution() {
+    const { path } = this;
+    const { cdnHost } = ENV;
+
+    if (this.hasPNG) {
+      const size = this.largestPNG;
+      return `${cdnHost}/${path}@${size}.png`;
+    }
+
+    if (this.hasJPG) {
+      const size = this.largestJPG;
+      return `${cdnHost}/${path}@${size}.jpg`;
+    }
+
+    if (this.hasWEBP) {
+      const size = this.largestWEBP;
+      return `${cdnHost}/${path}@${size}.webp`;
+    }
+
+    return this.img.src;
+  }
+
+  @action
+  onError() {
+    console.error('<ResponsiveImage> threw error for', this.src);
+    this.status = 'error';
+  }
+
+  @action
+  onLoad() {
+    this.status = 'done';
   }
 }

@@ -1,6 +1,14 @@
 <figure class='responsive-image {{this.orientation}} {{this.status}}'>
-  <picture {{did-insert this.register}}>
-    {{this.html}}
+  <picture>
+    <img
+      src={{this.src}}
+      width={{this.width}}
+      height={{this.height}}
+      alt={{@alt}}
+      {{on 'load' this.onLoad}}
+      {{on 'error' this.onError}}
+      {{did-insert this.onInsert}}
+    />
 
     {{#if this.showShimmer}}
       <div class='overlay'>
@@ -10,7 +18,13 @@
   </picture>
   {{#if @caption}}
     <figcaption>
-      <p class='caption'>{{@caption}}</p>
+      <p class='caption'>
+        {{@caption}}
+        –
+        <a href={{this.bestResolution}} target='_blank'>
+          {{t 'download full sizes' 'image.1'}}
+        </a>
+      </p>
       <p class='copyright'>&copy; Interflux Electronics</p>
     </figcaption>
   {{/if}}
