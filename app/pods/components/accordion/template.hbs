@@ -4,7 +4,7 @@
       {{#if section.content}}
         <button type='button' {{on 'click' (fn this.onButtonClick i)}}>
           <div class='left'>
-            <Image @src={{section.iconURL}} />
+            <Image @src={{section.iconURL}} @width='40' @height='40' />
           </div>
           <div class='middle'>
             <p>{{section.label}}</p>
@@ -39,7 +39,7 @@
       {{else}}
         <div class='no-content'>
           <div class='left'>
-            <Image @src={{section.iconURL}} />
+            <Image @src={{section.iconURL}} @width='40' @height='40' />
           </div>
           <div class='middle'>
             <p>{{section.label}}</p>
