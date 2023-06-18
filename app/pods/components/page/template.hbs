@@ -6,7 +6,7 @@
   <LoadingCube @message='Loading ...' />
 {{else}}
   {{#if this.page.showHeader}}
-    {{#if this.showMobileHeader}}
+    {{#if (not @loading)}}
       <Header::Mobile
         @title={{if @error 'Whoops' this.title}}
         @backRoute={{this.backRoute}}
@@ -23,7 +23,7 @@
     onclick={{this.onPageClick}}
   >
     {{#if this.page.showHeader}}
-      {{#if this.showDesktopHeader}}
+      {{#if (not @loading)}}
         <Header::Desktop @theme={{this.page.theme}} />
         {{#if @crumbs}}
           <Breadcrumbs @crumbs={{@crumbs}} />

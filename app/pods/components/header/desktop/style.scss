@@ -3,6 +3,14 @@ header#desktop {
   background: rgba($blue-5, 100%);
   transition: all 400ms $easeOutExpo;
   z-index: 3;
+
+  // Rather than not rendering the HTML with Ember responsive, we render the
+  // HTML and hide it with CSS. This way, Fastboot does not need to know the
+  // viewport width. It renders both desktop and mobile navigation.
+  @include tablet-and-below {
+    display: none;
+  }
+
   @include widescreen {
     height: 80px;
     box-shadow: 0 2px 2px rgba(black, 0.1);
