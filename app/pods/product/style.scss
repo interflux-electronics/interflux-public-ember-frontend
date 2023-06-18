@@ -556,6 +556,9 @@ main#product {
           width: calc(100vw);
           transform: translateX(-6vw);
         }
+        figure {
+          height: 100%;
+        }
       }
       #images {
         padding: 0;
