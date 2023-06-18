@@ -9,15 +9,11 @@ picture.stateful {
   .loading,
   .error {
     position: absolute;
-    background: #eee;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      max-width: 100%; // to prevent super sized icons
-      max-height: 100%; // to prevent super sized icons
+    svg {
+      width: 100%;
+      height: 100%;
     }
   }
 }
