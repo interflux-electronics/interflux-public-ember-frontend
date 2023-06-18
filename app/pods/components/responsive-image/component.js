@@ -235,12 +235,8 @@ export default class ResponsiveImageComponent extends Component {
     this._status = value;
   }
 
-  get showLoading() {
-    return this.status === 'loading';
-  }
-
-  get showError() {
-    return this.status === 'error';
+  get showShimmer() {
+    return this.status === 'loading' || this.status === 'error' || !this.html;
   }
 
   get orientation() {

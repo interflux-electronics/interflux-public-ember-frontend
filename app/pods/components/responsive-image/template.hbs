@@ -1,22 +1,10 @@
 <figure class='responsive-image {{this.orientation}} {{this.status}}'>
   <picture {{did-insert this.register}}>
-    {{#if this.html}}
-      {{this.html}}
-    {{else}}
-      <div class='no-image'>
-        <Svg::Unknown />
-      </div>
-    {{/if}}
+    {{this.html}}
 
-    {{#if this.showLoading}}
+    {{#if this.showShimmer}}
       <div class='overlay'>
-        <LoadSpinner @icon='cup' />
-      </div>
-    {{/if}}
-
-    {{#if this.showError}}
-      <div class='overlay'>
-        <Svg::Unknown />
+        <Shimmer::Image />
       </div>
     {{/if}}
   </picture>
