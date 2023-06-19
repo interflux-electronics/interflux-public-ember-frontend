@@ -1,18 +1,16 @@
 {{#if this.page.showError}}
-  {{! TODO: improve 404 and error pages }}
   <RouteErrorMessage />
-  {{! <NotFoundPage /> }}
 {{else if this.page.showLoading}}
   <LoadingCube @message='Loading ...' />
 {{else}}
   {{#if this.page.showHeader}}
-    {{#if (not @loading)}}
+    {{#unless @loading}}
       <Header::Mobile
         @title={{if @error 'Whoops' this.title}}
         @backRoute={{this.backRoute}}
         @backModel={{this.backModel}}
       />
-    {{/if}}
+    {{/unless}}
   {{/if}}
 
   <div
@@ -23,12 +21,12 @@
     onclick={{this.onPageClick}}
   >
     {{#if this.page.showHeader}}
-      {{#if (not @loading)}}
+      {{#unless @loading}}
         <Header::Desktop @theme={{this.page.theme}} />
         {{#if @crumbs}}
           <Breadcrumbs @crumbs={{@crumbs}} />
         {{/if}}
-      {{/if}}
+      {{/unless}}
     {{/if}}
 
     <main
