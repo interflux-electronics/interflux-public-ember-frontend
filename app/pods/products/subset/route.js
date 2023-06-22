@@ -52,28 +52,40 @@ export default class ProductsSubsetRoute extends BaseRoute {
 
     const { use, family } = model;
 
-    const pageTitle = use
+    const products = use ? 'A, B and C' : family.productsByRank;
+    const list = products.mapBy('name').join(', ');
+
+    const title = use
       ? `Products for ${use.get('label')}`
       : family.get('label');
 
-    // this.headData.reset();
-    this.headData.setProperties({
-      title: `${pageTitle} – Interflux`,
-      // description: 'TODO',
+    const description = use
+      ? `See all the products Interflux Electronics produces for ${use}: ${list}`
+      : `See all ${family.get(
+          'label'
+        )} Interflux Electronics produces: ${list}`;
+
+    this.headData.update({
       canonicalPath: `/products/${use ? use.forSlug : family.slug}`,
-      imagePath: '/images/logos/secondary-interflux-electronics-logo-1.png',
-      imageWidth: '3960',
-      imageHeight: '1000',
-      imageAlt: 'secondary Interflux Electronics logo 1'
+      title: this.translation.t(`${title} – Interflux Electronics`, 'seo.23'),
+      description: this.translation.t(description, 'seo.24')
+      // ogImagePath: '/images/public/og/og-contact.jpg',
+      // ogImageAlt: this.translation.t(
+      //   'x',
+      //   'seo.25'
+      // ),
+      // ogImageWidth: '1200',
+      // ogImageHeight: '1200'
     });
+
     this.page.update({
       id: 'products-subset',
-      title: pageTitle,
+      title,
       backRoute: 'products',
       crumbs: [
         { label: 'Interflux', route: 'index' },
         { label: 'Products', route: 'products' },
-        { label: pageTitle }
+        { label: title }
       ]
     });
   }

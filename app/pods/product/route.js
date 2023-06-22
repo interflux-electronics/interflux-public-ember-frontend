@@ -31,24 +31,30 @@ export default class ProductRoute extends BaseRoute {
       familyLabel,
       pitch,
       avatarPath,
-      avatarAlt,
-      avatarCaption,
       avatarVariations,
       mainFamily
     } = model.product;
 
-    // this.headData.reset();
-    this.headData.setProperties({
-      title: `${name} ${familyLabel} – Interflux`,
-      description: pitch ? pitch.replace(/\*\*/g, '') : '',
+    if (!avatarVariations.split(',').includes('@1200x1200.jpg')) {
+      console.warn('no image found at @1200x1200');
+    }
+
+    this.headData.update({
       canonicalPath: `/product/${id}`,
-      ogType: 'product'
+      title: this.translation.t(
+        `${name} ${familyLabel} – Interflux Electronics`,
+        `seo.5.${id}`
+      ),
+      description: this.translation.t(
+        'See all the products we produce: soldering fluxes, solder pastes, solder wires, solder alloys, ... All the chemistry needed for soldering electronics.',
+        `seo.6.${id}`
+      ),
+      ogImagePath: `/${avatarPath}@1200x1200.jpg`,
+      ogImageAlt: this.translation.t(pitch, `seo.7.${id}`),
+      ogImageWidth: '1200',
+      ogImageHeight: '1200'
     });
-    this.headData.setImage({
-      path: avatarPath,
-      variations: avatarVariations,
-      alt: [avatarAlt, avatarCaption].filter((x) => !!x).join(' ')
-    });
+
     this.page.update({
       id: 'product',
       title: name,

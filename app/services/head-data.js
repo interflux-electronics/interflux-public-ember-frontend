@@ -14,7 +14,6 @@ export default class HeadDataService extends Service {
     this.title = args.title;
     this.description = args.description;
     this.canonicalPath = args.canonicalPath;
-    this.ogType = args.ogType;
     this.ogImagePath = args.ogImagePath;
     this.ogImageWidth = args.ogImageWidth;
     this.ogImageHeight = args.ogImageHeight;

@@ -12,7 +12,6 @@ export default class SeoService extends Service {
         'Interflux Electronics specialises in researching, developing and producing soldering materials for electronics manufacturers. Best known for soldering fluxes, solder pastes, solder wires and soldering alloys.',
         'seo.1'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-homepage.jpg',
       ogImageAlt: 'Interflux Electronics',
       ogImageWidth: '1200',
@@ -28,7 +27,6 @@ export default class SeoService extends Service {
         'See all the products we produce: soldering fluxes, solder pastes, solder wires, solder alloys, ... All the chemistry needed for soldering electronics.',
         'seo.3'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-products.jpg',
       ogImageAlt: this.translation.t(
         'Interflux Electronics soldering fluxes, solder pastes, solder wires and solder alloys',
@@ -39,24 +37,25 @@ export default class SeoService extends Service {
     };
   }
 
-  get product() {
-    return {
-      canonicalPath: '/products',
-      title: this.translation.t('Product', 'seo.5'),
-      description: this.translation.t(
-        'See all the products we produce: soldering fluxes, solder pastes, solder wires, solder alloys, ... All the chemistry needed for soldering electronics.',
-        'seo.6'
-      ),
-      ogType: 'website',
-      ogImagePath: '/images/public/og/og-products.jpg',
-      ogImageAlt: this.translation.t(
-        'Interflux Electronics soldering fluxes, solder pastes, solder wires and solder alloys',
-        'seo.7'
-      ),
-      ogImageWidth: '1200',
-      ogImageHeight: '630'
-    };
-  }
+  // See product route
+  //
+  // get product() {
+  //   return {
+  //     canonicalPath: '/products',
+  //     title: this.translation.t('Product', 'seo.5'),
+  //     description: this.translation.t(
+  //       'See all the products we produce: soldering fluxes, solder pastes, solder wires, solder alloys, ... All the chemistry needed for soldering electronics.',
+  //       'seo.6'
+  //     ),
+  //     ogImagePath: '/images/public/og/og-products.jpg',
+  //     ogImageAlt: this.translation.t(
+  //       'Interflux Electronics soldering fluxes, solder pastes, solder wires and solder alloys',
+  //       'seo.7'
+  //     ),
+  //     ogImageWidth: '1200',
+  //     ogImageHeight: '630'
+  //   };
+  // }
 
   get webinars() {
     return {
@@ -66,7 +65,6 @@ export default class SeoService extends Service {
         "See videos in which Steven Teliszewski's walks you through research and findings relevant for electronics manufacturers such as: chemical reliability, low melting point alloys, ...",
         'seo.9'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-webinars.jpg',
       ogImageAlt: this.translation.t(
         'Interflux Electronics video webinars',
@@ -85,7 +83,6 @@ export default class SeoService extends Service {
         'Learn more about the values, history and people behind Interflux Electronics.',
         'seo.12'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-company.jpg',
       ogImageAlt: this.translation.t(
         'Interflux Electronics headquarters in Belgium',
@@ -104,7 +101,6 @@ export default class SeoService extends Service {
         'Request technical datasheets, MSDS, RoHS, REACH and other helpful documents.',
         'seo.15'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-documents.jpg',
       ogImageAlt: this.translation.t(
         'Interflux Electronics documents',
@@ -123,7 +119,6 @@ export default class SeoService extends Service {
         'Find the right person to talk to. The Interflux Network consists of 40 partners worldwide and is located in key regions for the electronics manufacturing industry.',
         'seo.18'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-contact.jpg',
       ogImageAlt: this.translation.t(
         'Contact Interflux Electronics world wide',
@@ -143,7 +138,6 @@ export default class SeoService extends Service {
         'Find the right person to talk to. The Interflux Network consists of 40 partners worldwide and is located in key regions for the electronics manufacturing industry.',
         'seo.21'
       ),
-      ogType: 'website',
       ogImagePath: '/images/public/og/og-contact.jpg',
       ogImageAlt: this.translation.t(
         'Contact Interflux Electronics world wide',
@@ -154,6 +148,24 @@ export default class SeoService extends Service {
       loadMapBox: true // IMPORTANT
     };
   }
+
+  // get productSubset() {
+  //   return {
+  //     canonicalPath: '/partners/map',
+  //     title: this.translation.t('Partners', 'seo.23'),
+  //     description: this.translation.t(
+  //       'Find the right person to talk to. The Interflux Network consists of 40 partners worldwide and is located in key regions for the electronics manufacturing industry.',
+  //       'seo.24'
+  //     ),
+  //     ogImagePath: '/images/public/og/og-contact.jpg',
+  //     ogImageAlt: this.translation.t(
+  //       'Contact Interflux Electronics world wide',
+  //       'seo.25'
+  //     ),
+  //     ogImageWidth: '1200',
+  //     ogImageHeight: '630'
+  //   };
+  // }
 
   get error() {
     return {
