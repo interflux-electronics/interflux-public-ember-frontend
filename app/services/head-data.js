@@ -72,7 +72,7 @@ export default class HeadDataService extends Service {
       return null;
     }
 
-    return `${ENV.cdnHost}/${this.ogImagePath}`;
+    return `${ENV.cdnHost}${this.ogImagePath}`;
   }
 
   // Finds the JPG nearest and above the optimal width of 1200.
