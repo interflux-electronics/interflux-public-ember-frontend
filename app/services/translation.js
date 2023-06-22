@@ -17,7 +17,7 @@ export default class TranslationService extends Service {
   // interflux.mx = es
   //
   get language() {
-    return ENV.LANGUAGE;
+    return ENV.locale.slice(0, 2);
   }
 
   // This method translates the given phrase to shown language.
@@ -25,7 +25,7 @@ export default class TranslationService extends Service {
     const { language } = this;
 
     if (!language) {
-      console.error('ENV.LANGUAGE is not set');
+      console.error('ENV.locale is not set');
       return english;
     }
 

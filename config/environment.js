@@ -16,15 +16,15 @@ module.exports = function (env) {
   const isProduction = env === 'production';
   const isDevelopment = env === 'development';
   const isTest = env === 'test';
-  const locale = process.env.LANGUAGE;
-  const host = {
-    en: 'https://interflux.com',
-    de: 'https://interflux.de',
-    fr: 'https://interflux.fr',
-    zh: 'https://interflux.cn.com',
-    'es-ES': 'https://interflux.es',
-    'es-MX': 'https://interflux.mx'
-  }[locale];
+  const host = process.env.HOST;
+  const locale = {
+    'interflux.com': 'en',
+    'interflux.de': 'de',
+    'interflux.fr': 'fr',
+    'interflux.es': 'es-ES',
+    'interflux.mx': 'es-MX',
+    'interflux.cn.com': 'zh'
+  }[host];
 
   const ENV = {
     appName: PKG.name,
@@ -50,8 +50,8 @@ module.exports = function (env) {
     buildTimestamp,
 
     publicHost: {
-      production: host,
-      development: host,
+      production: `https://${host}`,
+      development: 'http://localhost:4200',
       test: 'http://localhost:4200'
     }[env],
 

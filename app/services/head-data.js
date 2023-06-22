@@ -48,7 +48,7 @@ export default class HeadDataService extends Service {
   @tracked ogType = 'website';
 
   // The language of the page
-  @tracked ogLocale = ENV.LANGUAGE;
+  @tracked ogLocale = ENV.locale;
 
   // The Open Graph images are meant to be shown in social media. There is no
   // consensus on which size this image should be. The most adopted seems
