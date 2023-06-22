@@ -3,9 +3,8 @@ import { hash } from 'rsvp';
 
 export default class PartnersMapRoute extends BaseRoute {
   activate() {
-    this.headData.setProperties({
-      loadMapBox: true
-    });
+    super.activate();
+    this.headData.update(this.seo.map);
     this.page.update({
       showHeader: false,
       showFooter: false

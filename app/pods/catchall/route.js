@@ -1,6 +1,15 @@
 import BaseRoute from 'interflux/pods/base/route';
 
 export default class CatchallRoute extends BaseRoute {
+  activate() {
+    super.activate();
+    this.headData.update(this.seo.error);
+    this.page.update({
+      id: 'catchall',
+      title: 'Whoops'
+    });
+  }
+
   beforeModel(transition) {
     console.error('404 unknown route');
 
@@ -13,17 +22,5 @@ export default class CatchallRoute extends BaseRoute {
       console.error(location.href);
       console.erro(transition);
     }
-  }
-
-  activate() {
-    this.headData.reset();
-    this.headData.setProperties({
-      title: 'Sorry, there is no page here.',
-      description: 'Sorry, there is no page here.'
-    });
-    this.page.update({
-      id: 'catchall',
-      title: 'Whoops'
-    });
   }
 }

@@ -3,65 +3,76 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
+// TODO: use router.urlFor to generate canoncialPath
+// https://api.emberjs.com/ember/3.27/classes/RouterService/methods/cacheFor?anchor=cacheFor
+
 export default class HeadDataService extends Service {
   @service translation;
 
-  @tracked title = 'Interflux';
-  @tracked description = 'Electronics + Chemistry + Metallurgy';
-
-  // Assign a canonical URL in case multiple URLs can refer to the same page. This is most useful
-  // on pages which employ query params to set local page but are not intended to be indexed by
-  // crawlers as seperate pages. Also to avoid development and staging environments from being
-  // indexed.
-  //
-  // Gotcha: Avoid window.location.href because we run this Ember app in Fastboot, which is Node,
-  // which does not have access to window and will go nuclear.
-  //
-  // Omit the domain, locale and leading slash.
-  // For example: 'products/for-wave-soldering'
-  @tracked canonicalPath = '';
-
-  @tracked path; // TODO
-
-  get canonicalURL() {
-    return `https://interflux.com/${this.translation.language}/${this.canonicalPath}`;
+  // The main method every route will want to call update the SEO metadata tags.
+  update(args) {
+    this.title = args.title;
+    this.description = args.description;
+    this.canonicalPath = args.canonicalPath;
+    this.ogType = args.ogType;
+    this.ogImagePath = args.ogImagePath;
+    this.ogImageWidth = args.ogImageWidth;
+    this.ogImageHeight = args.ogImageHeight;
+    this.ogImageAlt = args.ogImageAlt;
+    this.loadMapBox = args.loadMapBox;
   }
+
+  // This is the text for <title> element, crucial for our SEO.
+  // Make sure every route overrides the title!
+  // These have to be unique per canonical route.
+  @tracked title;
+
+  // This is the text for <meta name="description">, important for our SEO.
+  // Make sure every route overrides this description.
+  // These have to be unique per canonical route.
+  @tracked description;
+
+  // Assign a canonical URL to avoid search engines from indexing multiple URLs
+  // for the same page. Suppose the URL has params like ?sort=ascending or
+  // ?layout=grid then bots see these as seperate URLs, seperate pages. By
+  // setting a canonical URL we tell bots that these are one and the same page.
+  // Also when working duplicate content across multiple domains (such as
+  // staging environments or blogs / shops which scrape content), we can use
+  // canonical URLs to declare 1 of the domains being the one and only which
+  // search engines should recommend in their searches.
+  @tracked canonicalPath;
 
   // The open graph type describes the content of the page.
   // Most commonly: website, product, article, place, ...
   // Documentation: https://ogp.me/#types
   @tracked ogType = 'website';
 
-  // The Open Graph images are meant to be shown in social media. There is no consensus on which
-  // size this image should be, 1200 x 630 (1.9:1) seems to be most adopted.
-  // https://iamturns.com/open-graph-image-size/
-  //
-  // To include the the open graph image, either set the 4 properties below manually:
-  //
-  // this.headData.setProperties({
-  //   imagePath: '/images/some.png',
-  //   imageWidth: '1200',
-  //   imageHeight: '630',
-  //   imageAlt: 'some logo'
-  // })
-  //
-  // Or use setImage() to find the image closes to the optimal size of 1200x630:
-  //
-  // this.headData.setImage(path, variations, alt);
-  //
-  @tracked imagePath; // '/images/products/IF-2005M/IF-2005M-10L-angle'
-  @tracked imageWidth;
-  @tracked imageHeight;
-  @tracked imageAlt;
+  // The language of the page
+  @tracked ogLocale = ENV.LANGUAGE;
 
-  get imageURL() {
-    return `${ENV.cdnHost}/${this.imagePath}`;
+  // The Open Graph images are meant to be shown in social media. There is no
+  // consensus on which size this image should be. The most adopted seems
+  // 1200 x 630 (1.9:1) for landscape images and 1200 x 1200 for square images.
+  // https://iamturns.com/open-graph-image-size/
+  @tracked ogImagePath; // without the CDN host
+  @tracked ogImageWidth; // in pixels, omit px
+  @tracked ogImageHeight; // in pixels, omit px
+  @tracked ogImageAlt; // descriptive
+
+  get canonicalURL() {
+    if (!this.canonicalPath) {
+      return null;
+    }
+
+    return `${ENV.publicHost}${this.canonicalPath}`;
   }
 
-  get showImage() {
-    return (
-      this.imageURL && this.imageWidth && this.imageHeight && this.imageAlt
-    );
+  get ogImageURL() {
+    if (!this.ogImagePath) {
+      return null;
+    }
+
+    return `${ENV.cdnHost}/${this.ogImagePath}`;
   }
 
   // Finds the JPG nearest and above the optimal width of 1200.
@@ -117,20 +128,6 @@ export default class HeadDataService extends Service {
 
   get buildTimestamp() {
     return ENV.buildTimestamp;
-  }
-
-  // Reset all head data to prevent meta data from other pages lingering.
-  reset() {
-    this.title = 'Interflux';
-    this.description = 'Electronics + Chemistry + Metallurgy';
-    this.canonicalPath = '';
-    this.ogType = 'website';
-    this.imagePath = null;
-    this.imageVariations = null;
-    this.imagePath = null;
-    this.imageWidth = null;
-    this.imageHeight = null;
-    this.imageAlt = null;
   }
 
   // For pages to optionally include Mapbox logic and styles.

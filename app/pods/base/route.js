@@ -14,6 +14,7 @@ export default class BaseRoute extends Route {
   @service modal; // For controlling the <Modal> component.
   @service page; // For controlling the <Page> component.
   @service router; // Ember's route service.
+  @service seo; // For SEO concerns
   @service store; // Ember's data store.
   @service translation;
   @service window;

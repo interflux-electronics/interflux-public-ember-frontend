@@ -37,11 +37,11 @@ export default class ProductRoute extends BaseRoute {
       mainFamily
     } = model.product;
 
-    this.headData.reset();
+    // this.headData.reset();
     this.headData.setProperties({
       title: `${name} ${familyLabel} – Interflux`,
       description: pitch ? pitch.replace(/\*\*/g, '') : '',
-      canonicalPath: `product/${id}`,
+      canonicalPath: `/product/${id}`,
       ogType: 'product'
     });
     this.headData.setImage({

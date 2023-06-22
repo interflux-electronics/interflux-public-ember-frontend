@@ -14,134 +14,63 @@
   <link rel='canonical' href='{{this.model.canonicalURL}}' />
 {{/if}}
 
+{{! Favicons }}
 <link
   rel='icon'
   type='image/png'
-  href='{{env "cdnHost"}}/images/favicons/interflux-blue-favicon@228x228.png'
+  href='{{cdn}}/images/favicons/interflux-blue-favicon@228x228.png'
   sizes='228x228'
 />
-
 <link rel='icon' href='/favicon.ico' type='image/x-icon' />
 
 {{! Open graph, for social media  }}
-
+<meta property='og:url' content={{this.model.canonicalURL}} />
+<meta property='og:locale' content={{this.model.ogLocale}} />
 <meta property='og:type' content={{this.model.ogType}} />
-<meta property='og:title' content='{{this.model.title}}' />
-<meta property='og:description' content='{{this.model.description}}' />
+<meta property='og:title' content={{this.model.title}} />
+<meta property='og:description' content={{this.model.description}} />
+<meta property='og:image' content={{this.model.ogImageURL}} />
+<meta property='og:image:width' content={{this.model.ogImageWidth}} />
+<meta property='og:image:height' content={{this.model.ogImageHeight}} />
+<meta property='og:image:alt' content={{this.model.ogImageAlt}} />
 
-{{#if this.model.canonicalURL}}
-  <meta property='og:url' content='{{this.model.canonicalURL}}' />
-{{/if}}
+{{! For browsers  }}
+<meta name='theme-color' content='#23578c' />
 
-{{#if this.model.showImage}}
-  <meta property='og:image' content={{this.model.imageURL}} />
-  <meta property='og:image:url' content={{this.model.imageURL}} />
-  <meta property='og:image:secure_url' content={{this.model.imageURL}} />
-  <meta property='og:image:width' content={{this.model.imageWidth}} />
-  <meta property='og:image:height' content={{this.model.imageHeight}} />
-  <meta property='og:image:alt' content={{this.model.imageAlt}} />
-{{/if}}
-
-{{! For developers  }}
-
+{{! About deploy & build }}
 <meta name='environment' content={{this.model.environment}} />
 <meta name='build-timestamp' content={{this.model.buildTimestamp}} />
 <meta name='git-branch' content={{this.model.gitBranch}} />
 <meta name='git-revision' content={{this.model.gitRevision}} />
-<meta
-  name='git-repo'
-  content='https://github.com/interflux-electronics/interflux-public-ember-frontend'
-/>
-<meta name='built-by' content='Jan Werkhoven, j.werkhoven@interflux.com' />
+
+{{! About developer }}
+<meta name='built-by' content='Jan Werkhoven, jw@interflux.au' />
 <meta name='built-with' content='Ember Octane, https://emberjs.com/' />
 
-{{! For browsers  }}
-
-<meta name='theme-color' content='#23578c' />
-
-{{! Legal  }}
-
+{{! Legal }}
 <meta name='copyright' content='© since 1980 by Interflux Electronics NV ®' />
-
-{{! Mapbox  }}
-
-{{#if this.model.loadMapBox}}
-  <link
-    href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css'
-    rel='stylesheet'
-  />
-  <script
-    src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'
-  ></script>
-{{/if}}
 
 {{! Multilingual SEO }}
 {{! https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites }}
 {{! https://developers.google.com/search/docs/specialty/international/localized-versions }}
 {{! http://www.lingoes.net/en/translator/langcode.htm }}
 
-{{#let this.model.URLpath as |p|}}
-
-  {{! English }}
-  <link rel='alternate' hreflang='en' href='https://interflux.com/en{{p}}' />
-  <link rel='alternate' hreflang='en-US' href='https://interflux.us{{p}}' />
-  <link rel='alternate' hreflang='en-AU' href='https://interflux.au{{p}}' />
-  <link rel='alternate' hreflang='en-GB' href='https://interflux.co.uk{{p}}' />
-  <link rel='alternate' hreflang='en-SG' href='https://interflux.sg{{p}}' />
-
-  {{! German }}
-  <link rel='alternate' hreflang='de' href='https://interflux.com/de{{p}}' />
-  <link rel='alternate' hreflang='de-DE' href='https://interflux.de{{p}}' />
-  <link rel='alternate' hreflang='de-AT' href='https://interflux.at{{p}}' />
-
-  {{! Spanish }}
-  <link rel='alternate' hreflang='es' href='https://interflux.com/es{{p}}' />
-  <link rel='alternate' hreflang='es-ES' href='https://interflux.es{{p}}' />
-  <link rel='alternate' hreflang='es-MX' href='https://interflux.mx{{p}}' />
-  <link rel='alternate' hreflang='es-AR' href='https://interflux.ar{{p}}' />
-
-  {{! Portugese }}
-  <link rel='alternate' hreflang='pt' href='https://interflux.com/es{{p}}' />
-  <link rel='alternate' hreflang='pt-PT' href='https://interflux.es{{p}}' />
-  <link rel='alternate' hreflang='pt-BR' href='https://interflux.mx{{p}}' />
-
-  {{! French }}
-  <link rel='alternate' hreflang='fr' href='https://interflux.com/fr{{p}}' />
-  <link rel='alternate' hreflang='fr-FR' href='https://interflux.fr{{p}}' />
-  <link rel='alternate' hreflang='fr-LU' href='https://interflux.lu{{p}}' />
-
-  {{! Indonesion }}
-  <link rel='alternate' hreflang='id' href='https://interflux.com/id{{p}}' />
-  <link rel='alternate' hreflang='id-ID' href='https://interflux.id{{p}}' />
-
-  {{! Chinese }}
-  <link rel='alternate' hreflang='zh' href='https://interflux.com/zh{{p}}' />
-  <link rel='alternate' hreflang='zh-CN' href='https://interflux.cn{{p}}' />
-
-  {{! Russian }}
-  <link rel='alternate' hreflang='ru' href='https://interflux.com/ru{{p}}' />
-  <link rel='alternate' hreflang='it-RU' href='https://interflux.ru{{p}}' />
-
-  {{! Italian }}
-  <link rel='alternate' hreflang='it' href='https://interflux.com/ru{{p}}' />
-  <link rel='alternate' hreflang='it-IT' href='https://interflux.it{{p}}' />
-
-  {{! Norwegian }}
-  <link rel='alternate' hreflang='nb' href='https://interflux.com/nb{{p}}' />
-
-  {{! Danish }}
-  <link rel='alternate' hreflang='da' href='https://interflux.com/da{{p}}' />
-
-  {{! Polish }}
-  <link rel='alternate' hreflang='pl' href='https://interflux.com/pl{{p}}' />
-
-  {{! Thai }}
-  <link rel='alternate' hreflang='th' href='https://interflux.com/th{{p}}' />
-
-  {{! Turkish }}
-  <link rel='alternate' hreflang='tr' href='https://interflux.com/tr{{p}}' />
-
-  {{! Chech }}
-  <link rel='alternate' hreflang='cs' href='https://interflux.com/cs{{p}}' />
-
+{{#let this.model.canonicalPath as |cp|}}
+  <link rel='alternate' hreflang='en' href='https://interflux.com{{cp}}' />
+  <link rel='alternate' hreflang='de' href='https://interflux.de{{cp}}' />
+  <link rel='alternate' hreflang='fr' href='https://interflux.fr{{cp}}' />
+  <link rel='alternate' hreflang='zh' href='https://interflux.cn.com{{cp}}' />
+  <link rel='alternate' hreflang='es-ES' href='https://interflux.es{{cp}}' />
+  <link rel='alternate' hreflang='es-MX' href='https://interflux.mx{{cp}}' />
 {{/let}}
+
+{{! Mapbox }}
+{{! Only load the CSS and JS for mapbox if the router asked for it }}
+{{#if this.model.loadMapBox}}
+  <link
+    href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css'
+    rel='stylesheet'
+  />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'>
+  </script>
+{{/if}}

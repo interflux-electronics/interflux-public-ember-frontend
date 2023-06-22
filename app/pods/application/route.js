@@ -4,9 +4,9 @@ import { hash } from 'rsvp';
 export default class ApplicationRoute extends BaseRoute {
   activate() {
     super.activate();
-
     this.page.update({
       id: 'application',
+      title: 'Loading ...',
       showLoading: true
     });
   }

@@ -4,14 +4,7 @@ import { hash } from 'rsvp';
 export default class DocumentsRoute extends BaseRoute {
   activate() {
     super.activate();
-
-    this.headData.reset();
-    this.headData.setProperties({
-      title: 'Documents – Interflux',
-      description:
-        'Technical data sheets (TD), medical & safety data sheets (SDS), REACH, guides, declarations and quality certificates.',
-      canonicalPath: 'documents'
-    });
+    this.headData.update(this.seo.documents);
     this.page.update({
       id: 'documents',
       title: 'Documents',
