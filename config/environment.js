@@ -16,6 +16,15 @@ module.exports = function (env) {
   const isProduction = env === 'production';
   const isDevelopment = env === 'development';
   const isTest = env === 'test';
+  const locale = process.env.LANGUAGE;
+  const host = {
+    en: 'https://interflux.com',
+    de: 'https://interflux.de',
+    fr: 'https://interflux.fr',
+    zh: 'https://interflux.cn.com',
+    'es-ES': 'https://interflux.es',
+    'es-MX': 'https://interflux.mx'
+  }[locale];
 
   const ENV = {
     appName: PKG.name,
@@ -32,19 +41,17 @@ module.exports = function (env) {
     APP: {},
 
     environment,
+    isProduction,
     isDevelopment,
     isTest,
-    isProduction,
-
+    locale,
     gitBranch,
     gitRevision,
     buildTimestamp,
 
-    locale: env.LANGUAGE,
-
     publicHost: {
-      production: env.HOST,
-      development: 'http://localhost:4200',
+      production: host,
+      development: host,
       test: 'http://localhost:4200'
     }[env],
 
