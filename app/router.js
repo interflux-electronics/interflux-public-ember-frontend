@@ -22,5 +22,6 @@ Router.map(function () {
   this.route('partners', function () {
     this.route('map');
   });
+  this.route('permalink', { path: '/QR/:code' });
   this.route('catchall', { path: '*:' });
 });
