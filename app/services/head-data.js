@@ -10,6 +10,7 @@ export default class HeadDataService extends Service {
   @service translation;
 
   // The main method every route will want to call update the SEO metadata tags.
+  // Note that when you omit a property, it will be undefined and thus not rendered.
   update(args) {
     this.title = args.title;
     this.description = args.description;
@@ -19,6 +20,9 @@ export default class HeadDataService extends Service {
     this.ogImageHeight = args.ogImageHeight;
     this.ogImageAlt = args.ogImageAlt;
     this.loadMapBox = args.loadMapBox;
+    this.microData = args.microData
+      ? JSON.stringify(args.microData, null, 4)
+      : null;
   }
 
   // This is the text for <title> element, crucial for our SEO.
@@ -131,4 +135,9 @@ export default class HeadDataService extends Service {
 
   // For pages to optionally include Mapbox logic and styles.
   @tracked loadMapBox = false;
+
+  // For rendering LD+JSON micro data
+  // https://developers.google.com/search/docs/appearance/structured-data
+  // https://developers.google.com/search/docs/appearance/structured-data/search-gallery
+  @tracked microData;
 }
