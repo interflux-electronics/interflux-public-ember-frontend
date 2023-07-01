@@ -52,7 +52,7 @@ export default class ProductsSubsetRoute extends BaseRoute {
 
     const { use, family } = model;
 
-    const products = use ? 'A, B and C' : family.productsByRank;
+    const products = use ? use.productsByRank : family.productsByRank;
     const list = products.mapBy('name').join(', ');
 
     const title = use
