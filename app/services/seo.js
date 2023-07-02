@@ -6,8 +6,8 @@ export default class SeoService extends Service {
   @service log;
   @service translation;
 
-  get homepage() {
-    return {
+  homepage(events) {
+    const data = {
       canonicalPath: '/',
       title: 'Interflux Electronics',
       description: this.translation.t(
@@ -19,6 +19,12 @@ export default class SeoService extends Service {
       ogImageWidth: '1200',
       ogImageHeight: '630'
     };
+
+    if (events) {
+      data.microData = this.microDataEvents(events);
+    }
+
+    return data;
   }
 
   get products() {
@@ -165,8 +171,8 @@ export default class SeoService extends Service {
     };
   }
 
-  get contact() {
-    return {
+  contact(events) {
+    const data = {
       canonicalPath: '/contact',
       title: this.translation.t('Contact', 'seo.17'),
       description: this.translation.t(
@@ -181,6 +187,12 @@ export default class SeoService extends Service {
       ogImageWidth: '1200',
       ogImageHeight: '630'
     };
+
+    if (events) {
+      data.microData = this.microDataEvents(events);
+    }
+
+    return data;
   }
 
   // TODO: make this dynamic for every contact
@@ -271,5 +283,31 @@ export default class SeoService extends Service {
     const WEBPs = images.mapBy('widestWEBP');
 
     return [...PNGs, ...JPGs, ...WEBPs];
+  }
+
+  // LD+JSON microdata for events
+  // https://developers.google.com/search/docs/appearance/structured-data/event
+  microDataEvents(events) {
+    return events.map((event) => {
+      const { name, description, city, country, startDate, endDate } = event;
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name,
+        description,
+        startDate,
+        endDate,
+        location: {
+          '@type': 'Place',
+          name: `${city}, ${country.get('nameEnglish')}`,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: city,
+            addressCountry: country.get('nameEnglish')
+          }
+        }
+      };
+    });
   }
 }

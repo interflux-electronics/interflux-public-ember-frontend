@@ -4,7 +4,6 @@ import { hash } from 'rsvp';
 export default class HomepageRoute extends BaseRoute {
   activate() {
     super.activate();
-    this.headData.update(this.seo.homepage);
     this.page.update({
       id: 'homepage',
       title: 'Interflux'
@@ -26,6 +25,10 @@ export default class HomepageRoute extends BaseRoute {
       })
     };
 
-    return this.serverSideRendered ? payload : hash(payload);
+    return hash(payload);
+  }
+
+  afterModel(model) {
+    this.headData.update(this.seo.homepage(model.events));
   }
 }

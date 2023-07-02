@@ -4,7 +4,6 @@ import { hash } from 'rsvp';
 export default class ContactRoute extends BaseRoute {
   activate() {
     super.activate();
-    this.headData.update(this.seo.contact);
     this.page.update({
       id: 'contact',
       title: 'Contact',
@@ -29,6 +28,10 @@ export default class ContactRoute extends BaseRoute {
       })
     };
 
-    return this.serverSideRendered ? payload : hash(payload);
+    return hash(payload);
+  }
+
+  afterModel(model) {
+    this.headData.update(this.seo.contact(model.events));
   }
 }
