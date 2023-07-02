@@ -76,43 +76,6 @@ export default class HeadDataService extends Service {
     return `${ENV.cdnHost}${this.ogImagePath}`;
   }
 
-  // Finds the JPG nearest and above the optimal width of 1200.
-  setImage(params) {
-    const { path, variations, alt } = params;
-
-    if (!path || !variations || !alt) {
-      return console.warn('setImage() missing param', path, variations, alt);
-    }
-
-    const JPGs = variations.split(',').filter((x) => x.split('.')[1] === 'jpg');
-
-    if (!JPGs.length) {
-      return console.warn('setImage() no JPGs');
-    }
-
-    const optimalWidth = 1200;
-    const sizes = JPGs.map((x) => x.split('.')[0].replace('@', '')); // ['200x200','400x400']
-    const distances = sizes.map((size) => {
-      const width = size.split('x')[0];
-      return width - optimalWidth;
-    });
-    const larger = distances.filter((d) => d >= 0);
-    const smaller = distances.filter((d) => d < 0);
-    const closestDistance = larger.length
-      ? Math.min(...larger)
-      : Math.max(...smaller);
-    const optimalSize = sizes.find((size) => {
-      return size.split('x')[0] - optimalWidth === closestDistance;
-    });
-    const width = optimalSize.split('x')[0];
-    const height = optimalSize.split('x')[1];
-
-    this.imagePath = `${path}@${width}x${height}.jpg`;
-    this.imageWidth = width;
-    this.imageHeight = height;
-    this.imageAlt = alt;
-  }
-
   // For debugging environments
 
   get environment() {
