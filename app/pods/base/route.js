@@ -64,33 +64,19 @@ export default class BaseRoute extends Route {
     const cache = this.cache.retrieve(this.routeName);
 
     if (cache) {
-      console.log(`cache | ${this.routeName} | found 🍉`);
       this.cachedPayload = cache;
     } else {
       // In case Fastboot was successful at doing a server side render (ssr) we'll
       // create a "shoebox" which is a data payload passed down to the client via
       // the first HTML.
       if (this.serverSide) {
-        console.log(`ssr | ${this.routeName} | rendering on server side 🐙`);
         this.fastboot.shoebox.put(this.routeName, { serverSideRendered: true });
-      }
-
-      // Once on the client side, we can read from the "shoebox" (see above).
-      if (this.clientSide) {
-        const success = this.serverSideRendered;
-
-        if (success) {
-          console.log(`ssr | ${this.routeName} | ssr 🥝`);
-        } else {
-          console.log(`ssr | ${this.routeName} | csr ⚠️`);
-        }
       }
     }
   }
 
   afterModel(model) {
     if (this.clientSide && !this.cachedPayload) {
-      console.log(`cache | ${this.routeName} | storing ⚠️ |`, model);
       this.cache.store(model, this.routeName);
     }
   }

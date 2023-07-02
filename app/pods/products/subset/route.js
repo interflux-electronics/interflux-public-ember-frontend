@@ -43,7 +43,6 @@ export default class ProductsSubsetRoute extends BaseRoute {
   afterModel(model) {
     // HACK: temporary
     if (this.clientSide && !this.cachedPayload) {
-      console.log(`cache | ${this.routeName} | storing ⚠️ |`, model);
       this.cache.store(model, 'products.index');
     }
 

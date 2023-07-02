@@ -52,8 +52,6 @@ export default class ImageModel extends Model {
       .split(',')
       .filter((x) => x.split('.')[1] === fileType);
 
-    console.log(ofSameType);
-
     // ['200x200','400x400']
     const sizes = ofSameType.map((path) => path.split('.')[0].replace('@', ''));
 

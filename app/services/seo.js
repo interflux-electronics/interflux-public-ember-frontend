@@ -267,9 +267,6 @@ export default class SeoService extends Service {
     const JPGs = images.mapBy('widestJPG');
     const WEBPs = images.mapBy('widestWEBP');
 
-    console.log('-----');
-    console.log(WEBPs);
-
     return [...PNGs, ...JPGs, ...WEBPs];
   }
 }
