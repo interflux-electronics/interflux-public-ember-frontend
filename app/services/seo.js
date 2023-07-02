@@ -45,26 +45,29 @@ export default class SeoService extends Service {
       'product.1',
       product.id
     );
+
     const description = this.translation.t(product.pitch, 'seo.6', product.id);
 
     const data = {
       canonicalPath: `/product/${product.id}`,
       title: `${product.name} ${familyLabel} – Interflux Electronics`,
       description,
-      microData: {
-        '@context': 'https://schema.org/',
-        '@type': 'Product',
-        sku: product.id,
-        name: product.name,
-        description,
-        brand: {
-          name: 'Interflux Electronics'
+      microData: [
+        {
+          '@context': 'https://schema.org/',
+          '@type': 'Product',
+          sku: product.id,
+          name: product.name,
+          description,
+          brand: {
+            name: 'Interflux Electronics'
+          }
         }
-      }
+      ]
     };
 
     if (product.qualities) {
-      data.microData.review = {
+      data.microData[0].review = {
         '@type': 'Review',
         name: 'Interflux review',
         author: {
@@ -100,7 +103,7 @@ export default class SeoService extends Service {
     const microDataImages = this.microDataImages(product.images);
 
     if (microDataImages.length) {
-      data.microData.image = microDataImages;
+      data.microData[0].image = microDataImages;
     } else {
       this.log.warn(`no microDataImages for ${product.id}`);
     }

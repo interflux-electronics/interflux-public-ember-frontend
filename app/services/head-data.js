@@ -20,9 +20,7 @@ export default class HeadDataService extends Service {
     this.ogImageHeight = args.ogImageHeight;
     this.ogImageAlt = args.ogImageAlt;
     this.loadMapBox = args.loadMapBox;
-    this.microData = args.microData
-      ? JSON.stringify(args.microData, null, 4)
-      : null;
+    this.microData = args.microData;
   }
 
   // This is the text for <title> element, crucial for our SEO.
@@ -140,4 +138,20 @@ export default class HeadDataService extends Service {
   // https://developers.google.com/search/docs/appearance/structured-data
   // https://developers.google.com/search/docs/appearance/structured-data/search-gallery
   @tracked microData;
+
+  // The microdata for our company logo is added to every page.
+  // https://developers.google.com/search/docs/appearance/structured-data/logo
+  get combinedMicroData() {
+    const routeData = this.microData || [];
+    const staticData = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        url: ENV.publicHost,
+        logo: `${ENV.cdnHost}/images/logos/interflux-electronics-logo-blue.svg`
+      }
+    ];
+
+    return JSON.stringify([...staticData, ...routeData], null, 4);
+  }
 }

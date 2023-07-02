@@ -75,8 +75,6 @@
   </script>
 {{/if}}
 
-{{#if this.model.microData}}
-  <script type='application/ld+json'>
-    {{this.model.microData}}
-  </script>
-{{/if}}
+<script type='application/ld+json'>
+  {{this.model.combinedMicroData}}
+</script>
