@@ -59,4 +59,9 @@ export default class WebinarModel extends Model {
   get kebabStartDate() {
     return '2021-10-16'; // TODO
   }
+
+  get isoStartDate() {
+    const date = new Date(this.startTime);
+    return date.toISOString();
+  }
 }

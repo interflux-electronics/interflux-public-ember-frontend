@@ -67,4 +67,14 @@ export default class ImageModel extends Model {
     // 'https://cdn.interflux.com/images/product/LMPA-Q6/LMPA-Q6-500gr-jar-front@400x400.jpg'
     return `${ENV.cdnHost}/${this.path}${variation}`;
   }
+
+  get allVariations() {
+    if (!this.variations) {
+      return null;
+    }
+
+    return this.variations.split(',').map((variation) => {
+      return `${ENV.cdnHost}/${this.path}${variation}`;
+    });
+  }
 }

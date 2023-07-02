@@ -4,7 +4,6 @@ import { hash } from 'rsvp';
 export default class WebinarsRoute extends BaseRoute {
   activate() {
     super.activate();
-    this.headData.update(this.seo.webinars);
     this.page.update({
       id: 'webinars',
       title: 'Webinars',
@@ -24,6 +23,10 @@ export default class WebinarsRoute extends BaseRoute {
       })
     };
 
-    return this.serverSideRendered ? payload : hash(payload);
+    return hash(payload);
+  }
+
+  afterModel(model) {
+    this.headData.update(this.seo.webinars(model.webinars));
   }
 }

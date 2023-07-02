@@ -117,8 +117,8 @@ export default class SeoService extends Service {
     return data;
   }
 
-  get webinars() {
-    return {
+  webinars(webinars) {
+    const data = {
       canonicalPath: '/webinars',
       title: this.translation.t('Webinars', 'seo.8'),
       description: this.translation.t(
@@ -133,6 +133,23 @@ export default class SeoService extends Service {
       ogImageWidth: '1200',
       ogImageHeight: '630'
     };
+
+    if (webinars) {
+      data.microData = webinars.map((webinar) => {
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'VideoObject',
+          name: webinar.title,
+          description: webinar.topic,
+          thumbnailUrl: webinar.image.get('allVariations'),
+          uploadDate: webinar.isoStartDate,
+          contentUrl: webinar.video.get('allVariations'),
+          embedUrl: `https://interflux.com/webinars/${webinar.id}`
+        };
+      });
+    }
+
+    return data;
   }
 
   get company() {
