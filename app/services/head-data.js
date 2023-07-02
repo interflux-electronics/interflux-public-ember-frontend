@@ -110,8 +110,60 @@ export default class HeadDataService extends Service {
       {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        url: ENV.publicHost,
-        logo: `${ENV.cdnHost}/images/logos/interflux-electronics-logo-blue.svg`
+        url: 'https://interflux.com',
+        name: 'Interflux Electronics',
+        legalName: 'Interflux Electronics NV',
+        logo: `${ENV.cdnHost}/images/logos/interflux-electronics-logo-blue.svg`,
+        email: 'info@interflux.com',
+        telephone: '+3292514959',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Eddastraat 51',
+          addressLocality: 'Gent',
+          addressRegion: 'Oost-Vlaanderen',
+          postalCode: '9042',
+          addressCountry: 'BE'
+        },
+        founder: {
+          '@type': 'Person',
+          givenName: 'Daniel',
+          familyName: 'Werkhoven',
+          jobTitle: 'Founder & CEO'
+        },
+        employee: [
+          {
+            '@type': 'Person',
+            givenName: 'Steven',
+            familyName: 'Teliszewski',
+            jobTitle: 'Chief Operational Officer'
+          },
+          {
+            '@type': 'Person',
+            givenName: 'Annick',
+            familyName: 'Peeters',
+            jobTitle: 'Laboratory Manager - REACH Coordinator'
+          }
+        ],
+        brand: [
+          {
+            '@type': 'Brand',
+            name: 'Interflux',
+            logo: `${ENV.cdnHost}/images/logos/interflux-electronics-logo-white-on-blue.svg`,
+            description:
+              'soldering flux, solder paste, solder wire and solder alloys for the electronics industry'
+          },
+          {
+            '@type': 'Brand',
+            name: 'LMPA-Q',
+            logo: `${ENV.cdnHost}/images/logos/LMPA-Q-logo-orange-square.svg`,
+            description: 'Low Melting Point Alloys'
+          },
+          {
+            '@type': 'Brand',
+            name: 'ICSF',
+            description: 'jet fluxing systems'
+          }
+        ]
       }
     ];
 
