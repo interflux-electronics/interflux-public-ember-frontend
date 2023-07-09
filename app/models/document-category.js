@@ -9,9 +9,19 @@ export default class DocumentCategoryModel extends Model {
 
   @hasMany('document') documents;
 
+  get hasToBeRequested() {
+    return this.slug === 'REACH' || this.slug === 'SDS';
+  }
+
   get cta() {
-    return this.slug === 'REACH' || this.slug === 'SDS'
-      ? 'request'
-      : 'download';
+    return this.hasToBeRequested ? 'request' : 'download';
+  }
+
+  get hasDocuments() {
+    if (this.hasToBeRequested) {
+      return true;
+    }
+
+    return this.documents.length > 0;
   }
 }
