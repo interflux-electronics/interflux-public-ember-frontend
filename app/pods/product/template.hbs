@@ -4,7 +4,11 @@
       <BackNav
         @backRoute='products.subset'
         @backModel={{family.id}}
-        @backLabel={{t (concat 'All ' family.namePlural) 'product.6' family.id}}
+        @backLabel={{concat
+          (t 'See all' 'product.32')
+          ' '
+          (t family.namePlural 'family.1' family.id)
+        }}
       />
     {{/let}}
 

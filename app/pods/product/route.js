@@ -12,6 +12,7 @@ export default class ProductRoute extends BaseRoute {
           'product_qualities',
           'product_uses',
           'product_family',
+          'product_family.product_family',
           'product_images',
           'product_images.image',
           'product_documents'
