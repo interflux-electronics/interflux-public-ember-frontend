@@ -114,6 +114,7 @@ export default class HeadDataService extends Service {
         name: 'Interflux Electronics',
         legalName: 'Interflux Electronics NV',
         logo: `${ENV.cdnHost}/images/logos/interflux-electronics-logo-blue.svg`,
+        image: `${ENV.cdnHost}/images/public/interflux-building/interflux-building@800x1067.jpg`,
         email: 'info@interflux.com',
         telephone: '+3292514959',
         address: {
