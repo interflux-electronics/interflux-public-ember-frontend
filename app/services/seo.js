@@ -236,24 +236,6 @@ export default class SeoService extends Service {
     };
   }
 
-  // get productSubset() {
-  //   return {
-  //     canonicalPath: '/partners/map',
-  //     title: this.translation.t('Partners', 'seo.23'),
-  //     description: this.translation.t(
-  //       'Find the right person to talk to. The Interflux Network consists of 40 partners worldwide and is located in key regions for the electronics manufacturing industry.',
-  //       'seo.24'
-  //     ),
-  //     ogImagePath: '/images/public/og/og-contact.jpg',
-  //     ogImageAlt: this.translation.t(
-  //       'Contact Interflux Electronics world wide',
-  //       'seo.25'
-  //     ),
-  //     ogImageWidth: '1200',
-  //     ogImageHeight: '630'
-  //   };
-  // }
-
   get error() {
     return {
       canonicalPath: '/',

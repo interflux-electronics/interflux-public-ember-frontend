@@ -66,15 +66,8 @@ export default class ProductsSubsetRoute extends BaseRoute {
 
     this.headData.update({
       canonicalPath: `/products/${use ? use.forSlug : family.slug}`,
-      title: this.translation.t(`${title} – Interflux Electronics`, 'seo.23'),
-      description: this.translation.t(description, 'seo.24')
-      // ogImagePath: '/images/public/og/og-contact.jpg',
-      // ogImageAlt: this.translation.t(
-      //   'x',
-      //   'seo.25'
-      // ),
-      // ogImageWidth: '1200',
-      // ogImageHeight: '1200'
+      title,
+      description
     });
 
     this.page.update({
