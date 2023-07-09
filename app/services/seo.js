@@ -52,7 +52,11 @@ export default class SeoService extends Service {
       product.id
     );
 
-    const description = this.translation.t(product.pitch, 'seo.6', product.id);
+    const description = this.translation.t(
+      product.pitch,
+      'product.2',
+      product.id
+    );
 
     const data = {
       canonicalPath: `/product/${product.id}`,
