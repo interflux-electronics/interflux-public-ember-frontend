@@ -20,7 +20,7 @@ export default class CatchallRoute extends BaseRoute {
 
     if (this.clientSide) {
       console.error(location.href);
-      console.erro(transition);
+      console.error(transition);
     }
   }
 }
