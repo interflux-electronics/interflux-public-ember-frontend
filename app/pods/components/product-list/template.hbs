@@ -1,0 +1,16 @@
+<div class='product-list'>
+  <h1>{{@title}}</h1>
+  {{#if @loading}}
+    <Shimmer::ProductRows::Desktop />
+  {{else}}
+    {{#each this.groups as |group|}}
+      <section>
+        {{#if group.title}}
+          <h2>{{group.title}}</h2>
+        {{/if}}
+        <ProductList::Featured @products={{group.featured}} />
+        <ProductList::Hidden @products={{group.hidden}} />
+      </section>
+    {{/each}}
+  {{/if}}
+</div>

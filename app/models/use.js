@@ -8,6 +8,10 @@ export default class UseModel extends Model {
   @attr('string') gist;
   @attr('number') rank;
 
+  get name() {
+    return this.text;
+  }
+
   @hasMany('product-use') productUses;
 
   get productsByRank() {
@@ -53,5 +57,9 @@ export default class UseModel extends Model {
 
   get forSlug() {
     return `for-${this.id}`;
+  }
+
+  get improvedRank() {
+    return this.rank || '999';
   }
 }

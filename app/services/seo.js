@@ -45,6 +45,24 @@ export default class SeoService extends Service {
     };
   }
 
+  productsForFamily(family) {
+    return {
+      canonicalPath: `/products/family/${family.id}`,
+      title: family.namePlural, // TODO: translate
+      description: this.translation.t(
+        `See all ${family.namePlural} developed by Interflux Electronics.`,
+        `seo.5.${family.id}`
+      ),
+      ogImagePath: '/images/public/og/og-products.jpg', // TODO: make images for all families
+      ogImageAlt: this.translation.t(
+        'Interflux Electronics soldering fluxes, solder pastes, solder wires and solder alloys', // TODO: describe image
+        'seo.4'
+      ),
+      ogImageWidth: '1200',
+      ogImageHeight: '630'
+    };
+  }
+
   product(product) {
     const familyLabel = this.translation.t(
       product.familyLabel,

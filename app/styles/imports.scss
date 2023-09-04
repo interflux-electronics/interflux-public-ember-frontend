@@ -23,6 +23,7 @@
 @import 'app/pods/components/back-nav/style';
 @import 'app/pods/components/breadcrumbs/style';
 @import 'app/pods/components/button/style';
+@import 'app/pods/components/button/group/style';
 @import 'app/pods/components/checkbox/style';
 @import 'app/pods/components/contact-page/style';
 @import 'app/pods/components/contact-page/questionair/style';
@@ -48,7 +49,8 @@
 @import 'app/pods/components/page/style';
 @import 'app/pods/components/partners-map-page/style';
 @import 'app/pods/components/past-webinar-event/style';
-@import 'app/pods/components/product-row/style';
+@import 'app/pods/components/product-list/style';
+@import 'app/pods/components/product-list/row/style';
 @import 'app/pods/components/responsive-image/style';
 @import 'app/pods/components/responsive-video/style';
 @import 'app/pods/components/route-error-message/style';
@@ -62,8 +64,7 @@
 @import 'app/pods/company/style';
 @import 'app/pods/documents/category/style';
 @import 'app/pods/documents/style';
-@import 'app/pods/product/style';
-@import 'app/pods/products/index/style';
-@import 'app/pods/products/subset/style';
+@import 'app/pods/products/style';
+@import 'app/pods/products/product/style';
 @import 'app/pods/webinars/style';
 @import 'app/pods/webinars/watch/style';

@@ -99,24 +99,28 @@
     @include widescreen {
       font-size: 16px;
       line-height: 32px;
+      height: 32px;
       border-radius: 3px;
       padding: 0 13px;
     }
     @include desktop {
       font-size: vw(16px);
       line-height: vw(32px);
+      height: vw(32px);
       border-radius: vw(3px);
       padding: 0 vw(13px);
     }
     @include tablet {
       font-size: vw-tablet(16px);
       line-height: vw-tablet(32px);
+      height: vw-tablet(32px);
       border-radius: vw-tablet(3px);
       padding: 0 vw-tablet(13px);
     }
     @include mobile {
       font-size: vw-mobile(16px);
       line-height: vw-mobile(40px);
+      height: vw-mobile(40px);
       border-radius: vw-mobile(3px);
       padding: 0 vw-mobile(15px);
     }
@@ -332,7 +336,7 @@
       color: $grey-6;
       svg {
         [fill] {
-          fill: $grey-2;
+          fill: $grey-5;
         }
       }
     }
@@ -374,6 +378,7 @@
       &:focus {
         color: $blue-0;
         border-color: $blue-0;
+        box-shadow: inset 0 0 0 1px $blue-0;
         svg {
           [fill] {
             fill: $blue-0;

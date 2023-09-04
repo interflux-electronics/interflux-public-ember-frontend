@@ -24,19 +24,21 @@ export default class ButtonContentComponent extends Component {
       'email',
       'expand',
       'flask',
+      'grid',
       'hamburger',
       'lightbulb',
+      'list',
       'microchip',
       'people',
       'play',
       'podcast',
+      'search',
       'share',
       'star',
       'street-view',
       'translation',
       'truck',
-      'user',
-      'search'
+      'user'
     ].includes(this.args.icon);
 
     if (!valid) {

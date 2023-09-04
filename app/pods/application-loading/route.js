@@ -9,4 +9,11 @@ export default class ApplicationLoadingRoute extends BaseRoute {
       showLoading: true
     });
   }
+
+  deactivate() {
+    super.activate();
+    this.page.update({
+      showLoading: false
+    });
+  }
 }

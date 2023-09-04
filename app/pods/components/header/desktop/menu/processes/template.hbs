@@ -4,7 +4,7 @@
   </h2>
   <div class='links'>
     {{#each this.processes as |process|}}
-      <Button @route='products.subset' @model={{process.routeModel}}>
+      <Button @route='products.use' @model={{process.routeModel}}>
         <img
           src='{{env "cdnHost"}}/images/icons/{{process.icon}}.svg'
           role='presentation'

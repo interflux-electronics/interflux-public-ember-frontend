@@ -29,17 +29,33 @@ export default class ProductModel extends Model {
   @attr('string') avatarCaption;
   @attr('string') avatarVariations;
 
-  @belongsTo('product-family') productFamily;
+  // @belongsTo('product-family') productFamily;
+  @belongsTo('product-family') mainFamily;
+  @belongsTo('product-family') subFamily;
 
-  get family() {
-    return this.productFamily;
+  get familyLabel() {
+    if (this.subFamily) {
+      return this.subFamily.get('nameSingle');
+    }
+
+    if (this.mainFamily) {
+      return this.mainFamily.get('nameSingle');
+    }
+
+    console.warn(`${this.name} does not have sub nor main family`);
+
+    return 'product';
   }
 
-  get mainFamily() {
-    return this.family.get('isMainFamily')
-      ? this.family
-      : this.family.get('productFamily');
-  }
+  // get family() {
+  //   return this.productFamily;
+  // }
+
+  // get mainFamily() {
+  //   return this.family.get('isMainFamily')
+  //     ? this.family
+  //     : this.family.get('productFamily');
+  // }
 
   @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
   @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
@@ -123,16 +139,30 @@ export default class ProductModel extends Model {
     return this.status === 'discontinued';
   }
 
+  // HACK: the backend should not be serving this... However, when side loading
+  // records with includes the permanent filters are ignored (for now)
+  get isOffline() {
+    return this.status === 'offline';
+  }
+
+  get isFeatured() {
+    return this.isNew || this.isPopular || this.isRecommended;
+  }
+
+  get isHidden() {
+    return this.isOutdated || this.discountinued;
+  }
+
   get testResultsArray() {
     return JSON.parse(this.testResults);
   }
 
-  get familyLabel() {
-    const family = this.family.get('nameSingle');
-    const label = this.label;
+  // get familyLabel() {
+  //   const family = this.family.get('nameSingle');
+  //   const label = this.label;
 
-    return label ? label : family;
-  }
+  //   return label ? label : family;
+  // }
 
   get compliesWithIPC() {
     return (
@@ -140,5 +170,16 @@ export default class ProductModel extends Model {
       this.compliesWithIPCJSTD004B ||
       this.compliesWithIPCJSTD005
     );
+  }
+
+  get statusRank() {
+    return [
+      'new',
+      'popular',
+      'recommended',
+      'outdated',
+      'discontinued',
+      'offline'
+    ].indexOf(this.status);
   }
 }

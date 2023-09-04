@@ -1,0 +1,7 @@
+{{#if @products}}
+  <ul class='featured'>
+    {{#each @products as |product|}}
+      <ProductGroupPage::Product @product={{product}} />
+    {{/each}}
+  </ul>
+{{/if}}

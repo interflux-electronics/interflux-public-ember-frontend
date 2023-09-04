@@ -1,8 +1,10 @@
 <Header::Desktop::Menu @isOpen={{@isOpen}}>
   <div class='links'>
-    <h2 aria-hidden='true'>{{t 'Products we develop' 'header.29'}}</h2>
+    {{! TODO: remove from database }}
+    {{!-- <h2 aria-hidden='true'>{{t 'Products we develop' 'header.29'}}</h2> --}}
+
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='for-low-melting-point-soldering'
       @onFocus={{fn this.showImage 1}}
       @onMouseEnter={{fn this.showImage 1}}
@@ -11,7 +13,7 @@
     </Button>
 
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='soldering-fluxes'
       @onFocus={{fn this.showImage 2}}
       @onMouseEnter={{fn this.showImage 2}}
@@ -20,7 +22,7 @@
     </Button>
 
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='solder-pastes'
       @onFocus={{fn this.showImage 3}}
       @onMouseEnter={{fn this.showImage 3}}
@@ -29,7 +31,7 @@
     </Button>
 
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='solder-wires'
       @onFocus={{fn this.showImage 4}}
       @onMouseEnter={{fn this.showImage 4}}
@@ -38,7 +40,7 @@
     </Button>
 
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='solder-alloys'
       @onFocus={{fn this.showImage 5}}
       @onMouseEnter={{fn this.showImage 5}}
@@ -47,7 +49,7 @@
     </Button>
 
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='auxiliaries'
       @onFocus={{fn this.showImage 6}}
       @onMouseEnter={{fn this.showImage 6}}
@@ -56,12 +58,20 @@
     </Button>
 
     <Button
-      @route='products.subset'
+      @route='products.family'
       @model='fluxing-systems'
       @onFocus={{fn this.showImage 7}}
       @onMouseEnter={{fn this.showImage 7}}
     >
       <span>{{t 'Fluxing systems' 'header.36'}}<Svg::ArrowRight /></span>
+    </Button>
+
+    <Button
+      @route='products.index'
+      @onFocus={{fn this.showImage 1}}
+      @onMouseEnter={{fn this.showImage 1}}
+    >
+      <span>{{t 'All products' 'header.39'}}<Svg::ArrowRight /></span>
     </Button>
   </div>
 

@@ -1,0 +1,34 @@
+<div class='product-group-page'>
+  <div class='liner'>
+    <aside>
+      <div class={{if this.stickyMenu 'sticky'}}>
+        <fieldset>
+          <legend>Search by name</legend>
+          <input type='text' />
+        </fieldset>
+
+        <fieldset>
+          <legend>Product families</legend>
+          <Pills::Routed
+            @options={{this.familyOptions}}
+            @selected={{this.selectedFamily}}
+            @resetRoute='products'
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend>Processes</legend>
+          <Pills::Routed
+            @options={{this.useOptions}}
+            @selected={{this.selectedUse}}
+            @resetRoute='products'
+          />
+        </fieldset>
+      </div>
+    </aside>
+
+    <article class={{this.layout}}>
+      {{outlet}}
+    </article>
+  </div>
+</div>

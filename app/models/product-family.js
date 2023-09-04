@@ -10,7 +10,9 @@ export default class ProductFamilyModel extends Model {
   @belongsTo('product-family', { inverse: 'subFamilies' }) productFamily;
   @hasMany('product-family', { inverse: 'productFamily' }) subFamilies;
 
-  @hasMany('product') products;
+  // @hasMany('product') products;
+  @hasMany('product', { inverse: 'mainFamily' }) productsWithMain;
+  @hasMany('product', { inverse: 'subFamily' }) productsWithSub;
 
   get productsByRank() {
     const rank = 'rankAmongFamily';

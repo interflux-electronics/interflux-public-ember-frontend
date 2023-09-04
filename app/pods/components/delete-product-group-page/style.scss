@@ -1,0 +1,172 @@
+.product-group-page {
+  background: $grey-0;
+  @include tablet {
+    padding-top: 9vw;
+  }
+  @include mobile {
+    padding-top: 21vw;
+  }
+  .liner {
+    display: flex;
+    // Note: this breaks the sticky position of the <aside>
+    // align-items: flex-start;
+    @include widescreen {
+      max-width: 1150px;
+      padding: 30px 30px 90px;
+      margin: 0 auto;
+    }
+    @include desktop {
+      max-width: vw(1150px);
+      padding: vw(30px) vw(30px) vw(90px);
+      margin: 0 auto;
+    }
+  }
+  aside {
+    width: 260px;
+    flex-shrink: 0;
+    margin-right: 30px;
+    .sticky {
+      padding: 20px;
+      border: 1px solid #e3e3e3;
+      position: sticky;
+      top: 30px;
+      bottom: 0;
+    }
+    fieldset {
+      padding: 0;
+      border: 0;
+      margin: 0;
+      & + fieldset {
+        margin-top: 30px;
+      }
+      &.options {
+        a {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          color: $grey-7;
+          line-height: 30px;
+          height: 30px;
+          span {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 190px;
+            // max-width: 220px;
+          }
+        }
+      }
+    }
+    legend {
+      font-size: 16px;
+      font-family: $bold;
+      color: $grey-7;
+      margin-bottom: 16px;
+    }
+    #search {
+      position: relative;
+      z-index: 2;
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  article {
+    background: white;
+    box-shadow: 0 4px 8px rgba(black, 0.1);
+    width: 880px;
+    &.grid {
+      ol {
+        flex-direction: row;
+        flex-wrap: wrap;
+        li {
+          width: 33.3333%;
+        }
+      }
+    }
+    h1 {
+      font-family: $extrabold;
+      line-height: 100%;
+      border-bottom: 1px solid $grey-1;
+      color: $blue-3;
+      @include widescreen {
+        font-size: px(3vw);
+        padding: px(5vw);
+      }
+      @include desktop {
+        font-size: 3vw;
+        padding: 5vw;
+      }
+      @include tablet {
+        display: none;
+      }
+      @include mobile {
+        display: none;
+      }
+    }
+    h2 {
+      font-family: $light;
+      line-height: 160%;
+      color: $grey-7;
+      box-sizing: border-box;
+      @include widescreen {
+        font-size: px(2.5vw);
+        padding: px(5vw);
+      }
+      @include desktop {
+        font-size: 2.5vw;
+        padding: 5vw;
+      }
+      @include tablet {
+        font-size: 4vw;
+        text-align: center;
+        width: 100%;
+        padding: 9vw 5vw;
+      }
+      @include mobile {
+        font-size: 8vw;
+        text-align: center;
+        width: 100%;
+        padding: 16vw 10vw;
+      }
+      & + p {
+        margin-top: 20px;
+      }
+      &.with-arrow {
+        display: flex;
+        gap: 20px;
+        svg {
+          width: 12px;
+          height: auto;
+          [fill] {
+            fill: $blue-0;
+          }
+        }
+      }
+    }
+    ol.hidden {
+      display: none;
+      &.expanded {
+        display: block;
+      }
+      & + button {
+        width: 100%;
+        height: 50px;
+        border-radius: 0;
+        border: 0;
+        border-bottom: 1px solid $grey-1;
+      }
+    }
+    ol {
+      display: flex;
+      flex-direction: column;
+      li {
+        &.hide {
+          display: none;
+        }
+      }
+    }
+  }
+}

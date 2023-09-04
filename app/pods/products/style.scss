@@ -1,0 +1,98 @@
+.product-group-page {
+  background: $grey-0;
+  @include tablet {
+    padding-top: 9vw;
+  }
+  @include mobile {
+    padding-top: 21vw;
+  }
+  .liner {
+    display: flex;
+    // Note: this breaks the sticky position of the <aside>
+    // align-items: flex-start;
+    @include widescreen {
+      max-width: 1150px;
+      padding: 30px 30px 90px;
+      margin: 0 auto;
+    }
+    @include desktop {
+      max-width: vw(1150px);
+      padding: vw(30px) vw(30px) vw(90px);
+      margin: 0 auto;
+    }
+  }
+  aside {
+    width: 260px;
+    flex-shrink: 0;
+    margin-right: 30px;
+    & > div {
+      padding: 20px;
+      border: 1px solid #e3e3e3;
+      top: 30px;
+      bottom: 0;
+      &.sticky {
+        position: sticky;
+      }
+    }
+
+    fieldset {
+      padding: 0;
+      border: 0;
+      margin: 0;
+      & + fieldset {
+        margin-top: 30px;
+      }
+      &.options {
+        a {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          color: $grey-7;
+          line-height: 30px;
+          height: 30px;
+          span {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 190px;
+            // max-width: 220px;
+          }
+        }
+      }
+    }
+    legend {
+      font-size: 16px;
+      font-family: $bold;
+      color: $grey-7;
+      margin-bottom: 16px;
+    }
+    #search {
+      position: relative;
+      z-index: 2;
+      input {
+        width: 100%;
+      }
+    }
+    .button.pill {
+      max-width: 220px; // TODO: make responsive
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  article {
+    background: white;
+    box-shadow: 0 4px 8px rgba(black, 0.1);
+    width: 880px;
+    &.grid {
+      ol {
+        flex-direction: row;
+        flex-wrap: wrap;
+        li {
+          width: 33.3333%;
+        }
+      }
+    }
+  }
+}

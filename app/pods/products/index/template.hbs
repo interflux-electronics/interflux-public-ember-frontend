@@ -1,57 +1,6 @@
-<article aria-label='products'>
-  <div class='liner'>
-    <div class='box'>
-      <h1 id='h1'><span>Products&nbsp;</span><small>by family</small></h1>
-
-      {{#each this.sortedFamilies as |family|}}
-        <section aria-labelledby='h2-{{family.id}}'>
-          <h2 id='h2-{{family.id}}'>{{family.label}}</h2>
-          <a href={{href-to 'products.subset' family.id}}>
-            {{#each family.images as |image|}}
-              {{#if image.path}}
-                <ResponsiveImage
-                  @path={{image.path}}
-                  @variations={{image.variations}}
-                  @alt={{image.alt}}
-                />
-              {{/if}}
-            {{/each}}
-            <div class='cta'>
-              <p class='button'>
-                <span>See all</span>
-                <Svg::ArrowRight />
-              </p>
-            </div>
-          </a>
-        </section>
-      {{/each}}
-    </div>
-
-    <div class='box'>
-      <h1 id='h1'><span>Products&nbsp;</span><small>by process</small></h1>
-
-      {{#each this.sortedUses as |use|}}
-        <section aria-labelledby='h2-{{use.id}}'>
-          <h2 id='h2-{{use.id}}'>For {{use.text}}</h2>
-          <a href={{href-to 'products.subset' (concat 'for-' use.id)}}>
-            {{#each use.images as |image|}}
-              {{#if image.path}}
-                <ResponsiveImage
-                  @path={{image.path}}
-                  @variations={{image.variations}}
-                  @alt={{image.alt}}
-                />
-              {{/if}}
-            {{/each}}
-            <div class='cta'>
-              <p class='button'>
-                <span>See all</span>
-                <Svg::ArrowRight />
-              </p>
-            </div>
-          </a>
-        </section>
-      {{/each}}
-    </div>
-  </div>
-</article>
+<ProductList
+  @title='All products'
+  @products={{@model.products}}
+  @groupBy='mainFamily'
+  @searchFor={{this.query}}
+/>
