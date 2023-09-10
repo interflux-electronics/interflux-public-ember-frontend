@@ -41,6 +41,22 @@
         {{yield}}
       </Button::Content>
     </a>
+  {{else if (or @model @models)}}
+    <LinkTo
+      id={{@id}}
+      class={{this.classes}}
+      @route={{@route}}
+      @models={{@models}}
+      onclick={{this.onClick}}
+      onfocus={{this.onFocus}}
+      onblur={{this.onBlur}}
+      onmouseenter={{this.onMouseEnter}}
+      onmouseout={{this.onMouseOut}}
+    >
+      <Button::Content @text={{@text}} @icon={{@icon}}>
+        {{yield}}
+      </Button::Content>
+    </LinkTo>
   {{else}}
     <a
       id={{@id}}
