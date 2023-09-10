@@ -4,24 +4,27 @@
       <div class={{if this.stickyMenu 'sticky'}}>
         <fieldset>
           <legend>Search by name</legend>
-          <input type='text' />
-        </fieldset>
-
-        <fieldset>
-          <legend>Product families</legend>
-          <Pills::Routed
-            @options={{this.familyOptions}}
-            @selected={{this.selectedFamily}}
-            @resetRoute='products'
+          <TextInput
+            @value={{this.query}}
+            @icon='search'
+            @theme='classic'
+            @onKeyUp={{this.onKeyUp}}
           />
         </fieldset>
 
         <fieldset>
-          <legend>Processes</legend>
+          <legend>Product types</legend>
+          <Pills::Routed
+            @options={{this.familyOptions}}
+            @selected={{this.selectedFamilyOption}}
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend>Suitable for ...</legend>
           <Pills::Routed
             @options={{this.useOptions}}
-            @selected={{this.selectedUse}}
-            @resetRoute='products'
+            @selected={{this.selectedUseOption}}
           />
         </fieldset>
       </div>

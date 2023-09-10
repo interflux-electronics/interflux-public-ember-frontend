@@ -35,6 +35,10 @@
       }
     }
 
+    input {
+      width: 220px;
+    }
+
     fieldset {
       padding: 0;
       border: 0;
@@ -74,7 +78,8 @@
         width: 100%;
       }
     }
-    .button.pill {
+    .button.pill,
+    .button.pill.selected span {
       max-width: 220px; // TODO: make responsive
       overflow: hidden;
       text-overflow: ellipsis;

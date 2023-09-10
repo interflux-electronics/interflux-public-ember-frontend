@@ -1,8 +1,11 @@
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
 export default class ProductsFamilyController extends Controller {
+  @tracked family;
+
   get groupBy() {
-    const id = this.model.family.id;
+    const id = this.family.get('id');
 
     if (id === 'soldering-fluxes' || id === 'auxiliaries') {
       return 'subFamily';
