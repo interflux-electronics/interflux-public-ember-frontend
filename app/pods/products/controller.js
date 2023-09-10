@@ -11,7 +11,7 @@ export default class ProductsController extends Controller {
 
   queryParams = ['search'];
 
-  @tracked search = null;
+  @tracked search = '';
 
   @action
   onKeyUp(event) {
