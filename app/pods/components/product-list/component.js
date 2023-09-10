@@ -8,7 +8,7 @@ export default class ProductListComponent extends Component {
   // @arg loading;
 
   get groups() {
-    const { groupBy, products } = this.args;
+    const { groupBy, products, use } = this.args;
 
     // All products
     if (groupBy === 'mainFamily') {
@@ -56,7 +56,22 @@ export default class ProductListComponent extends Component {
         const subset = use.get('productsByRank');
 
         return {
-          title: `For ${use.get('label')}`,
+          title: use.get('forLabel'),
+          featured: subset.filterBy('isFeatured'),
+          hidden: subset.filterBy('isHidden')
+        };
+      });
+    }
+
+    // All processes (uses)
+    if (groupBy === 'mainFamilyForUse') {
+      const mainFamilies = products.mapBy('mainFamily').uniqBy('id');
+
+      return mainFamilies.map((family) => {
+        const subset = products.filterBy('mainFamily.id', family.get('id'));
+
+        return {
+          title: `${family.get('label')} for ${use.get('name')}`,
           featured: subset.filterBy('isFeatured'),
           hidden: subset.filterBy('isHidden')
         };
