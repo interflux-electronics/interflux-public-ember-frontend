@@ -2,7 +2,7 @@
   <div class='liner'>
     {{#let product.mainFamily as |family|}}
       <BackNav
-        @backRoute='products.subset'
+        @backRoute='products.family'
         @backModel={{family.id}}
         @backLabel={{concat
           (t 'See all' 'product.32')

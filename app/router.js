@@ -13,11 +13,11 @@ Router.map(function () {
   // /products/family/solder-pastes/for/stencil-printing   "Solder pastes for stencil printing"
   // /products/for/stencil-printing                        "For stencil printing"
   this.route('products', function () {
-    this.route('product', { path: '/:product_id' });
     this.route('family', { path: '/family/:main_family_id' });
     this.route('use', { path: '/for/:use_id' });
-    this.route('mix', { path: '/family/:use_id/for/:main_family_id' });
+    this.route('mix', { path: '/family/:main_family_id/for/:use_id' });
   });
+  this.route('product', { path: '/product/:product_id' });
   this.route('webinars', function () {
     this.route('watch', { path: '/:webinar' });
   });
