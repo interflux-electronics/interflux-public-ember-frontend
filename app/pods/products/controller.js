@@ -1,25 +1,29 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
 export default class ProductsController extends Controller {
   @service page;
   @service router;
 
-  // VIEW
+  // SEARCH BY NAME
 
-  // TODO: build
-  // @tracked layout = 'list'; // list, grid
+  queryParams = ['search'];
 
-  // TODO: review
-  get stickyMenu() {
-    return this.router.currentRouteName !== 'products.index';
+  @tracked search = null;
+
+  @action
+  onKeyUp(event) {
+    const input = event.target;
+    this.search = input.value;
   }
 
   // FAMILY
 
   @tracked selectedFamilyId; // set by child routes
-  @tracked mainFamiliesSubset; // set by child routes
+  @tracked familiesSubset; // set by child routes
+  @tracked familiesLoading;
 
   get allMainFamilies() {
     return this.model.families.filterBy('isMainFamily');
@@ -27,8 +31,8 @@ export default class ProductsController extends Controller {
 
   get familyOptions() {
     const families =
-      this.selectedUseId && this.mainFamiliesSubset
-        ? this.mainFamiliesSubset
+      this.selectedUseId && this.familiesSubset
+        ? this.familiesSubset
         : this.allMainFamilies;
 
     return families.sortBy('rank').map((family) => {
@@ -66,8 +70,9 @@ export default class ProductsController extends Controller {
 
   // USE
 
-  @tracked selectedUseId; // set by child routes
-  @tracked usesSubset; // set by child routes
+  @tracked selectedUseId;
+  @tracked usesSubset;
+  @tracked usesLoading;
 
   get allUses() {
     return this.model.uses;
@@ -108,5 +113,15 @@ export default class ProductsController extends Controller {
 
   get selectedUseOption() {
     return this.useOptions.find((option) => option.selected);
+  }
+
+  // VIEW
+
+  // TODO: build
+  // @tracked layout = 'list'; // list, grid
+
+  // TODO: review
+  get stickyMenu() {
+    return this.router.currentRouteName !== 'products.index' || this.search;
   }
 }

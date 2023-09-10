@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
-export default class ProductGroupPageHiddenComponent extends Component {
+export default class ProductListHiddenComponent extends Component {
   @tracked expanded = false;
 
   @action

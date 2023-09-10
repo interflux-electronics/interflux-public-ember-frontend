@@ -5,17 +5,20 @@ export default class ProductsIndexRoute extends BaseRoute {
   beforeModel() {
     super.activate();
 
-    this.controllerFor('products').selectedFamily = null;
-    this.controllerFor('products').selectedUse = null;
+    this.controllerFor('products').selectedFamilyId = null;
+    this.controllerFor('products').selectedUseId = null;
+    this.controllerFor('products').usesLoading = false;
+    this.controllerFor('products').familiesLoading = false;
     this.controllerFor('products.indexLoading').title = 'All products';
 
+    // TODO
     this.headData.update(this.seo.products);
     this.page.update({
       id: 'products-index',
-      title: 'Products', // TODO: translate
-      mainClasses: 'products',
-      backRoute: 'index',
-      crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
+      mainClasses: 'products'
+      // title: 'Products', // TODO: translate
+      // backRoute: 'index',
+      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
     });
   }
 

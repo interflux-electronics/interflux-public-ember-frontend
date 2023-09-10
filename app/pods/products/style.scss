@@ -1,4 +1,4 @@
-.product-group-page {
+main.products {
   background: $grey-0;
   @include tablet {
     padding-top: 9vw;
@@ -99,5 +99,9 @@
         }
       }
     }
+  }
+
+  & + .spacer {
+    background: $grey-0;
   }
 }

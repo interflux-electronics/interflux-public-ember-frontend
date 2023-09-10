@@ -1,37 +1,56 @@
-<div class='product-group-page'>
+<div class='products-page'>
   <div class='liner'>
     <aside>
       <div class={{if this.stickyMenu 'sticky'}}>
         <fieldset>
           <legend>Search by name</legend>
           <TextInput
-            @value={{this.query}}
+            @value={{this.search}}
             @icon='search'
             @theme='classic'
             @onKeyUp={{this.onKeyUp}}
           />
         </fieldset>
 
-        <fieldset>
-          <legend>Product types</legend>
-          <Pills::Routed
-            @options={{this.familyOptions}}
-            @selected={{this.selectedFamilyOption}}
-          />
-        </fieldset>
+        {{#unless this.search}}
+          <fieldset>
+            <legend>Product types</legend>
+            {{#if this.familiesLoading}}
+              <p>Loading ...</p>
+            {{else}}
+              <Pills::Routed
+                @options={{this.familyOptions}}
+                @selected={{this.selectedFamilyOption}}
+              />
+            {{/if}}
+          </fieldset>
 
-        <fieldset>
-          <legend>Suitable for ...</legend>
-          <Pills::Routed
-            @options={{this.useOptions}}
-            @selected={{this.selectedUseOption}}
-          />
-        </fieldset>
+          <fieldset>
+            <legend>Suitable for ...</legend>
+            {{#if this.usesLoading}}
+              <p>Loading ...</p>
+            {{else}}
+              <Pills::Routed
+                @options={{this.useOptions}}
+                @selected={{this.selectedUseOption}}
+              />
+            {{/if}}
+          </fieldset>
+        {{/unless}}
       </div>
     </aside>
 
     <article class={{this.layout}}>
-      {{outlet}}
+      {{#if this.search}}
+        <ProductList
+          @title='Results for "{{this.search}}"'
+          @products={{@model.products}}
+          @search={{this.search}}
+          @groupBy='none'
+        />
+      {{else}}
+        {{outlet}}
+      {{/if}}
     </article>
   </div>
 </div>

@@ -19,7 +19,7 @@ export default class ProductsFamilyController extends Controller {
       return 'alloy';
     }
 
-    if (id === 'auxiliaries') {
+    if (id === 'fluxing-systems') {
       return 'none';
     }
 

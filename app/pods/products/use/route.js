@@ -10,9 +10,22 @@ export default class ProductsUseRoute extends BaseRoute {
     const use = this.store.peekRecord('use', slug);
 
     this.controllerFor('products').selectedUseId = slug;
+    this.controllerFor('products').familiesLoading = true;
+    this.controllerFor('products').familiesSubset = null;
+
     this.controllerFor('products.useLoading').title = use
       ? use.get('label')
       : 'Loading';
+
+    // TODO
+    // this.headData.update(this.seo.products);
+    this.page.update({
+      id: 'products-use',
+      mainClasses: 'products'
+      // title: 'Products', // TODO: translate
+      // backRoute: 'index',
+      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
+    });
   }
 
   model(params) {
@@ -32,7 +45,8 @@ export default class ProductsUseRoute extends BaseRoute {
     const families = products.mapBy('mainFamily').uniqBy('id');
 
     this.controllerFor('products').selectedUseId = use.get('id');
-    this.controllerFor('products').mainFamiliesSubset = families;
+    this.controllerFor('products').familiesSubset = families;
+    this.controllerFor('products').familiesLoading = false;
     this.controllerFor('products.use').title = use.get('forLabel');
     this.controllerFor('products.use').products = products;
     this.controllerFor('products.use').use = use;
@@ -41,6 +55,7 @@ export default class ProductsUseRoute extends BaseRoute {
   @action
   willTransition() {
     this.controllerFor('products').selectedUseId = null;
-    this.controllerFor('products').mainFamiliesSubset = null;
+    this.controllerFor('products').familiesSubset = null;
+    this.controllerFor('products').familiesLoading = false;
   }
 }

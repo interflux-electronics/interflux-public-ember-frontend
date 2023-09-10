@@ -14,11 +14,21 @@ export default class ProductsMixRoute extends BaseRoute {
 
     this.controllerFor('products').selectedFamilyId = familyId;
     this.controllerFor('products').selectedUseId = useId;
-    this.controllerFor('products').mainFamiliesSubset = null;
+    this.controllerFor('products').familiesSubset = null;
     this.controllerFor('products').usesSubset = null;
     this.controllerFor('products.mixLoading').title = family
       ? `${family.get('label')} for ${use.get('name')}`
       : 'Loading';
+
+    // TODO
+    // this.headData.update(this.seo.products);
+    this.page.update({
+      id: 'products-mix',
+      mainClasses: 'products'
+      // title: 'Products', // TODO: translate
+      // backRoute: 'index',
+      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
+    });
   }
 
   model(params) {

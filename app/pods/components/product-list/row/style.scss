@@ -155,6 +155,21 @@
           padding: 1.2vw 4vw 0.6vw;
           border-radius: 0.5vw;
         }
+        mark {
+          background-color: transparent;
+          color: white;
+          display: inline-block;
+          position: relative;
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 2px; // TODO: make responsive
+            height: 3px; // TODO: make responsive
+            width: 100%;
+            background-color: yellow;
+          }
+        }
       }
       .tags {
         display: flex;
@@ -207,7 +222,7 @@
             font-family: $semibold;
           }
           &.grey {
-            background: $grey-3;
+            background: $grey-5;
           }
           &.red {
             background: $red-1;
@@ -270,6 +285,10 @@
             @include mobile {
               height: calc(5vw * 1.8);
             }
+          }
+          mark {
+            background-color: yellow;
+            color: $grey-7;
           }
         }
       }
