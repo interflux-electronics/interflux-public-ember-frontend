@@ -4,7 +4,9 @@
       @text={{get @selected this.label}}
       @icon='cross'
       @theme='pill selected'
-      @route={{@resetRoute}}
+      @route={{@selected.route}}
+      @model={{@selected.model}}
+      @models={{@selected.models}}
     />
   {{else}}
     {{#each @options as |option i|}}
@@ -13,7 +15,7 @@
         @theme='pill idle'
         @route={{option.route}}
         @model={{option.model}}
-        @onClick={{this.onClick}}
+        @models={{option.models}}
       />
     {{/each}}
   {{/if}}
