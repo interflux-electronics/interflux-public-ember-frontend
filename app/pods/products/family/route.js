@@ -9,12 +9,15 @@ export default class ProductsFamilyRoute extends BaseRoute {
     const slug = transition.to.params.main_family_id;
     const family = this.store.peekRecord('product-family', slug);
 
-    this.controllerFor('products').selectedFamilyId = slug;
-    this.controllerFor('products').usesSubset = null;
-    this.controllerFor('products').usesLoading = true;
-    this.controllerFor('products.familyLoading').title = family
-      ? family.get('label')
-      : 'Loading';
+    this.controllerFor('products').setProperties({
+      selectedFamilyId: slug,
+      usesSubset: null,
+      usesLoading: true
+    });
+
+    this.controllerFor('products.familyLoading').setProperties({
+      title: family ? family.get('label') : 'Loading'
+    });
   }
 
   model(params) {
@@ -32,10 +35,15 @@ export default class ProductsFamilyRoute extends BaseRoute {
     const family = model.products.mapBy('mainFamily').uniqBy('id')[0];
     const uses = model.products.mapBy('uses').flat().uniqBy('id');
 
-    this.controllerFor('products').selectedFamilyId = family.get('id');
-    this.controllerFor('products').usesSubset = uses;
-    this.controllerFor('products').usesLoading = false;
-    this.controllerFor('products.family').family = family;
+    this.controllerFor('products').setProperties({
+      selectedFamilyId: family.get('id'),
+      usesSubset: uses,
+      usesLoading: false
+    });
+
+    this.controllerFor('products.family').setProperties({
+      family: family
+    });
 
     // TODO
     // this.headData.update(this.seo.products);
@@ -50,8 +58,10 @@ export default class ProductsFamilyRoute extends BaseRoute {
 
   @action
   willTransition() {
-    this.controllerFor('products').selectedFamilyId = null;
-    this.controllerFor('products').usesSubset = null;
-    this.controllerFor('products').usesLoading = false;
+    this.controllerFor('products').setProperties({
+      selectedFamilyId: null,
+      usesSubset: null,
+      usesLoading: false
+    });
   }
 }

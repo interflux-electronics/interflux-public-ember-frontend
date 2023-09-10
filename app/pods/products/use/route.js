@@ -9,13 +9,15 @@ export default class ProductsUseRoute extends BaseRoute {
     const slug = transition.to.params.use_id;
     const use = this.store.peekRecord('use', slug);
 
-    this.controllerFor('products').selectedUseId = slug;
-    this.controllerFor('products').familiesLoading = true;
-    this.controllerFor('products').familiesSubset = null;
+    this.controllerFor('products').setProperties({
+      selectedUseId: slug,
+      familiesLoading: true,
+      familiesSubset: null
+    });
 
-    this.controllerFor('products.useLoading').title = use
-      ? use.get('label')
-      : 'Loading';
+    this.controllerFor('products.useLoading').setProperties({
+      title: use ? use.get('label') : 'Loading'
+    });
 
     // TODO
     // this.headData.update(this.seo.products);
@@ -44,18 +46,25 @@ export default class ProductsUseRoute extends BaseRoute {
     const products = model.productUses.mapBy('product');
     const families = products.mapBy('mainFamily').uniqBy('id');
 
-    this.controllerFor('products').selectedUseId = use.get('id');
-    this.controllerFor('products').familiesSubset = families;
-    this.controllerFor('products').familiesLoading = false;
-    this.controllerFor('products.use').title = use.get('forLabel');
-    this.controllerFor('products.use').products = products;
-    this.controllerFor('products.use').use = use;
+    this.controllerFor('products').setProperties({
+      selectedUseId: use.get('id'),
+      familiesSubset: families,
+      familiesLoading: false
+    });
+
+    this.controllerFor('products.use').setProperties({
+      title: use.get('forLabel'),
+      products: products,
+      use: use
+    });
   }
 
   @action
   willTransition() {
-    this.controllerFor('products').selectedUseId = null;
-    this.controllerFor('products').familiesSubset = null;
-    this.controllerFor('products').familiesLoading = false;
+    this.controllerFor('products').setProperties({
+      selectedUseId: null,
+      familiesSubset: null,
+      familiesLoading: false
+    });
   }
 }

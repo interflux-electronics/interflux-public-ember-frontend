@@ -12,13 +12,18 @@ export default class ProductsMixRoute extends BaseRoute {
     const family = this.store.peekRecord('product-family', familyId);
     const use = this.store.peekRecord('use', useId);
 
-    this.controllerFor('products').selectedFamilyId = familyId;
-    this.controllerFor('products').selectedUseId = useId;
-    this.controllerFor('products').familiesSubset = null;
-    this.controllerFor('products').usesSubset = null;
-    this.controllerFor('products.mixLoading').title = family
-      ? `${family.get('label')} for ${use.get('name')}`
-      : 'Loading';
+    this.controllerFor('products').setProperties({
+      selectedFamilyId: familyId,
+      selectedUseId: useId,
+      familiesSubset: null,
+      usesSubset: null
+    });
+
+    this.controllerFor('products.mixLoading').setProperties({
+      title: family
+        ? `${family.get('label')} for ${use.get('name')}`
+        : 'Loading'
+    });
 
     // TODO
     // this.headData.update(this.seo.products);
@@ -54,13 +59,17 @@ export default class ProductsMixRoute extends BaseRoute {
       .uniqBy('id')
       .filterBy('mainFamily.id', familyId);
 
-    this.controllerFor('products.mix').title = title;
-    this.controllerFor('products.mix').products = products;
+    this.controllerFor('products.mix').setProperties({
+      title: title,
+      products: products
+    });
   }
 
   @action
   willTransition() {
-    this.controllerFor('products').selectedFamilyId = null;
-    this.controllerFor('products').selectedUseId = null;
+    this.controllerFor('products').setProperties({
+      selectedFamilyId: null,
+      selectedUseId: null
+    });
   }
 }
