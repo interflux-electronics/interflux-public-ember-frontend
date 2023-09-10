@@ -10,7 +10,7 @@ export default class ProductListComponent extends Component {
   get groups() {
     const { groupBy, products, use } = this.args;
 
-    // All products
+    // For index (all products)
     if (groupBy === 'mainFamily') {
       const mainFamilies = products
         .mapBy('mainFamily')
@@ -30,8 +30,8 @@ export default class ProductListComponent extends Component {
       });
     }
 
-    // Soldering fluxes
-    // Auxiliaries
+    // For soldering fluxes
+    // For auxiliaries
     if (groupBy === 'subFamily') {
       const subFamilies = products.mapBy('subFamily').uniqBy('id');
 
@@ -46,9 +46,9 @@ export default class ProductListComponent extends Component {
       });
     }
 
-    // Solder pastes
-    // Solder wires
-    // Solder alloys
+    // For solder pastes
+    // For solder wires
+    // For solder alloys
     if (groupBy === 'alloy') {
       const uses = products.mapBy('uses').flat().uniqBy('id').sortBy('rank');
 
@@ -63,7 +63,7 @@ export default class ProductListComponent extends Component {
       });
     }
 
-    // All processes (uses)
+    // For processes (uses)
     if (groupBy === 'mainFamilyForUse') {
       const mainFamilies = products.mapBy('mainFamily').uniqBy('id');
 
@@ -78,7 +78,7 @@ export default class ProductListComponent extends Component {
       });
     }
 
-    // For
+    // For fluxing systems and search
     if (groupBy === 'none') {
       return [
         {
@@ -89,27 +89,7 @@ export default class ProductListComponent extends Component {
       ];
     }
 
-    // if (groupBy === 'status') {
-    //   const statuses = [
-    //     'new',
-    //     'popular',
-    //     'recommended',
-    //     'outdated',
-    //     'discontinued'
-    //   ];
-
-    //   return statuses.map((status) => {
-    //     const subset = products
-    //       .filterBy('status', status)
-    //       .sortBy('mainFamily', 'rank');
-
-    //     return {
-    //       title: status,
-    //       featured: subset
-    //     };
-    //   });
-    // }
-
+    // For spotting issues
     return [
       {
         title: '?',
