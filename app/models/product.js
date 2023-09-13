@@ -1,37 +1,40 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class ProductModel extends Model {
-  @attr('string') name;
-  @attr('string') label;
-  @attr('string') status;
-  @attr('string') pitch;
-  @attr('string') summary;
-  @attr('string') properties;
-  @attr('string') instructions;
-
-  @attr('number') rankAmongFamily;
-
-  @attr('boolean') compliesWithROHS;
   @attr('boolean') compliesWithIEC;
   @attr('boolean') compliesWithIPCJSTD004A;
   @attr('boolean') compliesWithIPCJSTD004B;
   @attr('boolean') compliesWithIPCJSTD005;
   @attr('boolean') compliesWithISO;
-  @attr('string') testResults;
+  @attr('boolean') compliesWithROHS;
   @attr('boolean') onFrontPage;
+
   @attr('number') frontPageRank;
+  @attr('number') rankAmongFamily;
 
-  @belongsTo('image', { inverse: 'product' }) image;
-
-  // Avatar image properties are cached on the product record as to avoid N+1 when loading long lists of products
-  @attr('string') avatarPath;
   @attr('string') avatarAlt;
   @attr('string') avatarCaption;
+  @attr('string') avatarPath;
   @attr('string') avatarVariations;
+  @attr('string') instructions;
+  @attr('string') label;
+  @attr('string') name;
+  @attr('string') pitch;
+  @attr('string') properties;
+  @attr('string') status;
+  @attr('string') summary;
+  @attr('string') testResults;
 
-  // @belongsTo('product-family') productFamily;
+  @belongsTo('image', { inverse: 'product' }) image;
   @belongsTo('product-family') mainFamily;
   @belongsTo('product-family') subFamily;
+  @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
+
+  @hasMany('product-document') productDocuments;
+  @hasMany('product-image') productImages;
+  @hasMany('product-quality') productQualities;
+  @hasMany('product-use') productUses;
+  @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
 
   get familyLabel() {
     if (this.subFamily) {
@@ -46,24 +49,6 @@ export default class ProductModel extends Model {
 
     return 'product';
   }
-
-  // get family() {
-  //   return this.productFamily;
-  // }
-
-  // get mainFamily() {
-  //   return this.family.get('isMainFamily')
-  //     ? this.family
-  //     : this.family.get('productFamily');
-  // }
-
-  @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
-  @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
-
-  @hasMany('product-use') productUses;
-  @hasMany('product-quality') productQualities;
-  @hasMany('product-document') productDocuments;
-  @hasMany('product-image') productImages;
 
   get hasUses() {
     return this.uses && this.uses.length > 0;
@@ -156,13 +141,6 @@ export default class ProductModel extends Model {
   get testResultsArray() {
     return JSON.parse(this.testResults);
   }
-
-  // get familyLabel() {
-  //   const family = this.family.get('nameSingle');
-  //   const label = this.label;
-
-  //   return label ? label : family;
-  // }
 
   get compliesWithIPC() {
     return (
