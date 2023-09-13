@@ -1,16 +1,17 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class ProductFamilyModel extends Model {
-  @attr('string') nameSingle;
-  @attr('string') namePlural;
-  @attr('string') gist;
-  @attr('string') fullMonty;
   @attr('number') rank;
 
-  @belongsTo('product-family', { inverse: 'subFamilies' }) productFamily;
-  @hasMany('product-family', { inverse: 'productFamily' }) subFamilies;
+  @attr('string') fullMonty;
+  @attr('string') gist;
+  @attr('string') namePlural;
+  @attr('string') nameSingle;
 
-  // @hasMany('product') products;
+  @belongsTo('product-family', { inverse: 'subFamilies' }) productFamily;
+
+  @hasMany('product-family-image') productFamilyImages;
+  @hasMany('product-family', { inverse: 'productFamily' }) subFamilies;
   @hasMany('product', { inverse: 'mainFamily' }) productsWithMain;
   @hasMany('product', { inverse: 'subFamily' }) productsWithSub;
 
@@ -22,8 +23,6 @@ export default class ProductFamilyModel extends Model {
 
     return [...ranked, ...rankless];
   }
-
-  @hasMany('product-family-image') productFamilyImages;
 
   get images() {
     const rank = 'rankAmongImages';
