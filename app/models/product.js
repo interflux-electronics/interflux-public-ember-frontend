@@ -37,11 +37,11 @@ export default class ProductModel extends Model {
   @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
 
   get familyLabel() {
-    if (this.subFamily) {
+    if (this.subFamily.get('id')) {
       return this.subFamily.get('nameSingle');
     }
 
-    if (this.mainFamily) {
+    if (this.mainFamily.get('id')) {
       return this.mainFamily.get('nameSingle');
     }
 
