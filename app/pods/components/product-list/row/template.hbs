@@ -7,29 +7,11 @@
           @variations={{@product.avatarVariations}}
           @alt={{@product.avatarAlt}}
         />
-      {{/if}}
-
-      {{!-- {{#if @avatar}}
-        <ResponsiveImage
-          @path={{@avatar.path}}
-          @variations={{@avatar.variations}}
-          @alt={{@avatar.alt}}
-        />
-      {{else if @product.image.id}}
-        <ResponsiveImage
-          @path={{@product.image.path}}
-          @variations={{@product.image.variations}}
-          @alt={{@product.image.alt}}
-        />
       {{else}}
-        {{#if @product.avatarPath}}
-          <ResponsiveImage
-            @path={{@product.avatarPath}}
-            @variations={{@product.avatarVariations}}
-            @alt={{@product.avatarAlt}}
-          />
-        {{/if}}
-      {{/if}} --}}
+        <div class='no-image'>
+          <Svg::Interflux />
+        </div>
+      {{/if}}
     </div>
 
     <div class='center'>
