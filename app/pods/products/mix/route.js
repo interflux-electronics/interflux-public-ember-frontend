@@ -12,6 +12,10 @@ export default class ProductsMixRoute extends BaseRoute {
     const family = this.store.peekRecord('product-family', familyId);
     const use = this.store.peekRecord('use', useId);
 
+    if (!use || !family || family.get('isSubFamily')) {
+      return this.router.transitionTo('products');
+    }
+
     this.controllerFor('products').setProperties({
       selectedFamilyId: familyId,
       selectedUseId: useId,

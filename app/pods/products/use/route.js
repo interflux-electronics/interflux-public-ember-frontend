@@ -9,6 +9,10 @@ export default class ProductsUseRoute extends BaseRoute {
     const slug = transition.to.params.use_id;
     const use = this.store.peekRecord('use', slug);
 
+    if (!use) {
+      return this.router.transitionTo('products');
+    }
+
     this.controllerFor('products').setProperties({
       selectedUseId: slug,
       familiesLoading: true,
