@@ -16,7 +16,7 @@ export default class ProductsUseRoute extends BaseRoute {
     });
 
     this.controllerFor('products.useLoading').setProperties({
-      title: use ? use.get('label') : 'Loading'
+      title: use ? `Products for ${use.get('name')}` : 'Loading'
     });
 
     // TODO
@@ -32,9 +32,9 @@ export default class ProductsUseRoute extends BaseRoute {
 
   model(params) {
     return hash({
-      productUses: this.store.query('product-use', {
-        filter: { use: params.use_id },
-        include: 'product,use'
+      use: this.store.findRecord('use', params.use_id, {
+        include: ['products'].join(','),
+        reload: true // prevents immediate resolve
       })
     });
   }
@@ -42,8 +42,8 @@ export default class ProductsUseRoute extends BaseRoute {
   afterModel(model) {
     super.activate();
 
-    const use = model.productUses.mapBy('use').uniqBy('id')[0];
-    const products = model.productUses.mapBy('product');
+    const use = model.use;
+    const products = use.products;
     const families = products.mapBy('mainFamily').uniqBy('id');
 
     this.controllerFor('products').setProperties({
@@ -53,7 +53,7 @@ export default class ProductsUseRoute extends BaseRoute {
     });
 
     this.controllerFor('products.use').setProperties({
-      title: use.get('forLabel'),
+      title: `Products for ${use.get('name')}`,
       products: products,
       use: use
     });

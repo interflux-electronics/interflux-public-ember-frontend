@@ -3,7 +3,7 @@
     <aside>
       <div class={{if this.stickyMenu 'sticky'}}>
         <fieldset>
-          <legend>Search by name</legend>
+          <legend>Search product</legend>
           <TextInput
             @value={{this.search}}
             @icon='search'
@@ -14,7 +14,13 @@
 
         {{#unless this.search}}
           <fieldset>
-            <legend>Product types</legend>
+            <legend>
+              {{if
+                this.selectedFamilyOption
+                'Product category'
+                'Product categories'
+              }}
+            </legend>
             {{#if this.familiesLoading}}
               <p>Loading ...</p>
             {{else}}

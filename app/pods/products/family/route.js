@@ -22,9 +22,9 @@ export default class ProductsFamilyRoute extends BaseRoute {
 
   model(params) {
     return hash({
-      products: this.store.query('product', {
-        filter: { main_family: params.main_family_id },
-        include: ['main_family', 'sub_family', 'product_uses', 'uses'].join(',')
+      family: this.store.findRecord('product-family', params.main_family_id, {
+        include: ['products'].join(','),
+        reload: true
       })
     });
   }
@@ -32,8 +32,11 @@ export default class ProductsFamilyRoute extends BaseRoute {
   afterModel(model) {
     super.activate();
 
-    const family = model.products.mapBy('mainFamily').uniqBy('id')[0];
-    const uses = model.products.mapBy('uses').flat().uniqBy('id');
+    const family = model.family;
+    const products = this.store
+      .peekAll('product')
+      .filterBy('mainFamily.id', family.get('id'));
+    const uses = products.mapBy('uses').flat().uniqBy('id');
 
     this.controllerFor('products').setProperties({
       selectedFamilyId: family.get('id'),
@@ -42,7 +45,8 @@ export default class ProductsFamilyRoute extends BaseRoute {
     });
 
     this.controllerFor('products.family').setProperties({
-      family: family
+      family,
+      products
     });
 
     // TODO
