@@ -12,9 +12,27 @@ export default class ProductsRouteRoute extends BaseRoute {
 
   model() {
     return hash({
-      products: this.store.findAll('product'),
-      families: this.store.findAll('product-family'),
-      uses: this.store.findAll('use')
+      products: this.store.findAll('product', {
+        include: [
+          'main_family',
+          'sub_family',
+          'product_uses',
+          'uses',
+          'product_qualities',
+          'qualities'
+        ].join(','),
+        reload: true
+      })
+    });
+  }
+
+  afterModel(model) {
+    const uses = model.products.mapBy('uses').flat().uniqBy('id');
+    const mainFamilies = model.products.mapBy('mainFamily').uniqBy('id');
+
+    this.controllerFor('products').setProperties({
+      uses,
+      mainFamilies
     });
   }
 }

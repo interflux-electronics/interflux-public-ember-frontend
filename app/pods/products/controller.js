@@ -21,19 +21,16 @@ export default class ProductsController extends Controller {
 
   // FAMILY
 
+  @tracked mainFamilies;
   @tracked selectedFamilyId; // set by child routes
   @tracked familiesSubset; // set by child routes
   @tracked familiesLoading;
-
-  get allMainFamilies() {
-    return this.model.families.filterBy('isMainFamily');
-  }
 
   get familyOptions() {
     const families =
       this.selectedUseId && this.familiesSubset
         ? this.familiesSubset
-        : this.allMainFamilies;
+        : this.mainFamilies;
 
     return families.sortBy('rank').map((family) => {
       const label = family.get('label');
@@ -70,17 +67,14 @@ export default class ProductsController extends Controller {
 
   // USE
 
+  @tracked uses;
   @tracked selectedUseId;
   @tracked usesSubset;
   @tracked usesLoading;
 
-  get allUses() {
-    return this.model.uses;
-  }
-
   get useOptions() {
     const uses =
-      this.selectedFamilyId && this.usesSubset ? this.usesSubset : this.allUses;
+      this.selectedFamilyId && this.usesSubset ? this.usesSubset : this.uses;
 
     return uses.sortBy('rank').map((use) => {
       const label = use.get('label');
