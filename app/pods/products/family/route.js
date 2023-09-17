@@ -9,6 +9,10 @@ export default class ProductsFamilyRoute extends BaseRoute {
     const slug = transition.to.params.main_family_id;
     const family = this.store.peekRecord('product-family', slug);
 
+    if (!family.get('isMainFamily')) {
+      return this.router.transitionTo('products');
+    }
+
     this.controllerFor('products').setProperties({
       selectedFamilyId: slug,
       usesSubset: null,
