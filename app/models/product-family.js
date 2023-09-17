@@ -46,17 +46,10 @@ export default class ProductFamilyModel extends Model {
     return !this.isSubFamily;
   }
 
-  get topFamily() {
-    return this.isMainFamily ? this : this.productFamily;
-  }
-
-  get hasAlloys() {
-    return ['solder-pastes', 'solder-wires', 'solder-alloys'].includes(this.id);
-  }
-
   // Returns plural family name with first letter capitalised
   get label() {
     const str = this.namePlural;
+
     return str ? str[0].toUpperCase() + str.slice(1) : '';
   }
 }
