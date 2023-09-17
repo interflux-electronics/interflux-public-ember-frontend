@@ -14,6 +14,10 @@ export default class UseModel extends Model {
 
   @hasMany('product-use') productUses;
 
+  get products() {
+    return this.productUses.mapBy('product').uniqBy('id');
+  }
+
   get productsByRank() {
     const rank = 'rankAmongProducts';
     const records = this.productUses;
