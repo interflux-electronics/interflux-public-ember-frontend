@@ -35,7 +35,7 @@
           <h4 class='red'>{{t 'out of production' 'product.5'}}</h4>
         {{/if}}
       </div>
-      {{#if @product.superiorProduct}}
+      {{#if @product.superiorProduct.id}}
         <p>{{this.replacedBy}}</p>
       {{else}}
         {{#if @product.pitch}}

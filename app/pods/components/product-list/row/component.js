@@ -51,10 +51,10 @@ export default class ProductListRowomponent extends Component {
   }
 
   get replacedBy() {
-    const { id, name, superiorProduct } = this.args.product;
-
-    const a = name;
-    const b = superiorProduct.get('name');
+    const { product } = this.args;
+    const a = product.get('name');
+    const b = product.get('superiorProduct.name');
+    const id = product.get('id');
 
     return this.translation.t(
       `${a} has been replaced by ${b}.`,
