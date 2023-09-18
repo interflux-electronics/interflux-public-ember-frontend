@@ -33,13 +33,23 @@ export default class ProductListComponent extends Component {
     // For soldering fluxes
     // For auxiliaries
     if (groupBy === 'subFamily') {
-      const subFamilies = products.mapBy('subFamily').uniqBy('id');
+      const subFamilies = products
+        .filterBy('subFamily.id')
+        .mapBy('subFamily')
+        .uniqBy('id')
+        .sortBy('rank');
 
-      return subFamilies.map((family) => {
-        const subset = products.filterBy('subFamily.id', family.get('id'));
+      // This approach catches all products with no subFamilies and sorts them
+      // to the bottom in category called "Others" until sub family is assigned.
+      const groups = [...subFamilies, undefined];
+
+      return groups.map((family) => {
+        const subset = family
+          ? products.filterBy('subFamily.id', family.get('id'))
+          : products.rejectBy('subFamily.id');
 
         return {
-          title: family.get('label'),
+          title: family ? family.get('label') : 'Other',
           featured: subset.filterBy('isFeatured'),
           hidden: subset.filterBy('isHidden')
         };
