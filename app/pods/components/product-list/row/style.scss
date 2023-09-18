@@ -14,17 +14,14 @@
   &.hide {
     display: none;
   }
-  &.outdated {
-    img {
-      filter: grayscale(1) opacity(0.5);
-    }
-  }
+  &.outdated,
   &.discontinued {
     h3,
-    h4.blue,
-    img,
-    p {
-      filter: grayscale(1) opacity(0.5);
+    h4:not(.red) {
+      background-color: $grey-5 !important;
+    }
+    img {
+      filter: grayscale(1) opacity(0.8);
     }
   }
   a {
@@ -37,6 +34,7 @@
     text-decoration: none;
     outline-offset: -1px;
     display: flex;
+    transition: box-shadow 150ms ease-out;
     @include widescreen {
       justify-content: space-between;
       align-items: center;
@@ -59,10 +57,10 @@
       z-index: 1;
       outline: 0;
       @include widescreen {
-        box-shadow: 0 0 0 1px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
+        box-shadow: 0 0 0 2px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
       }
       @include desktop {
-        box-shadow: 0 0 0 1px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
+        box-shadow: 0 0 0 2px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
       }
       .right {
         svg {
@@ -108,7 +106,7 @@
         }
       }
       .no-image {
-        filter: grayscale(1) opacity(0.2);
+        filter: grayscale(1) opacity(0.2) brightness(0.7);
       }
     }
     .center {
@@ -164,7 +162,7 @@
             content: '';
             position: absolute;
             left: 0;
-            bottom: 2px; // TODO: make responsive
+            bottom: 3px; // TODO: make responsive
             height: 3px; // TODO: make responsive
             width: 100%;
             background-color: yellow;

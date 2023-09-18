@@ -29,47 +29,37 @@
           <h4 class='orange'>{{t 'popular' 'product.3'}}</h4>
         {{/if}}
         {{#if @product.isOutdated}}
-          <h4 class='grey'>{{if
-              @product.superiorProduct
-              (concat
-                (t 'replaced by' 'product.4') ' ' @product.superiorProduct.name
-              )
-              'outdated'
-            }}</h4>
+          <h4 class='blue'>{{t 'outdated' 'product.33'}}</h4>
         {{/if}}
         {{#if @product.isDiscontinued}}
-          <h4 class='red'>
-            {{t 'out of production' 'product.5'}}
-            {{if
-              @product.superiorProduct
-              (concat
-                '– '
-                (t 'replaced by' 'product.4')
-                ' '
-                @product.superiorProduct.name
-              )
-            }}
-          </h4>
+          <h4 class='red'>{{t 'out of production' 'product.5'}}</h4>
         {{/if}}
       </div>
-      {{#if @product.pitch}}
-        <div class='pitch'>
-          {{mark @search (markdown (t @product.pitch 'product.2' @product.id))}}
-        </div>
-      {{/if}}
-      {{#if (and this.features this.media.isDesktopWidescreen)}}
-        <div class='features'>
-          {{#each this.features as |feature|}}
-            <div class='feature'>
-              <Image @src={{feature.iconURL}} />
-              <div class='callout'>
-                <span>
-                  {{feature.text}}
-                </span>
+      {{#if @product.superiorProduct}}
+        <p>{{this.replacedBy}}</p>
+      {{else}}
+        {{#if @product.pitch}}
+          <div class='pitch'>
+            {{mark
+              @search
+              (markdown (t @product.pitch 'product.2' @product.id))
+            }}
+          </div>
+        {{/if}}
+        {{#if (and this.features this.media.isDesktopWidescreen)}}
+          <div class='features'>
+            {{#each this.features as |feature|}}
+              <div class='feature'>
+                <Image @src={{feature.iconURL}} />
+                <div class='callout'>
+                  <span>
+                    {{feature.text}}
+                  </span>
+                </div>
               </div>
-            </div>
-          {{/each}}
-        </div>
+            {{/each}}
+          </div>
+        {{/if}}
       {{/if}}
     </div>
 

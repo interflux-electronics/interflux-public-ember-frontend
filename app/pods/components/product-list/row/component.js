@@ -6,6 +6,7 @@ export default class ProductListRowomponent extends Component {
   // @arg search
 
   @service media;
+  @service translation;
 
   get classes() {
     return [
@@ -47,5 +48,18 @@ export default class ProductListRowomponent extends Component {
       : [];
 
     return [...uses, ...qualities];
+  }
+
+  get replacedBy() {
+    const { id, name, superiorProduct } = this.args.product;
+
+    const a = name;
+    const b = superiorProduct.get('name');
+
+    return this.translation.t(
+      `${a} has been replaced by ${b}.`,
+      'product.34',
+      id
+    );
   }
 }
