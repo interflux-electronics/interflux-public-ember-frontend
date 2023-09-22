@@ -14,10 +14,10 @@
   footer {
     flex-shrink: 0;
   }
-  // TODO: needed?
-  // main {
-  //   min-height: 100vh;
-  // }
+  main {
+    // This prevents the blue footer from appearing when pages are loading.
+    min-height: 100vh;
+  }
   .spacer {
     height: 100%;
   }
