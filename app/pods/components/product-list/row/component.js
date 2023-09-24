@@ -18,6 +18,7 @@ export default class ProductListRowomponent extends Component {
   }
 
   get searchMatch() {
+    // Show if there is no search query.
     if (!this.args.search) {
       return true;
     }
@@ -25,9 +26,28 @@ export default class ProductListRowomponent extends Component {
     const search = this.args.search.toLowerCase();
     const product = this.args.product;
     const name = product.name.toLowerCase();
-    const pitch = product.pitch ? product.pitch.toLowerCase() : '';
 
-    return name.includes(search) || pitch.includes(search);
+    // Show if the search term matches the search query.
+    if (name.includes(search)) {
+      return true;
+    }
+
+    // Hide if name does not match and product has no pitch.
+    if (!product.pitch) {
+      return false;
+    }
+
+    // Hide if the product has a superior product. This will hide the pitch.
+    if (product.superiorProduct.get('id')) {
+      return false;
+    }
+
+    const pitch = this.translation
+      .t(product.pitch, 'product.2', product.id)
+      .toLowerCase();
+
+    // Show if the first 180 characters of the pitch contain the search term.
+    return pitch.slice(0, 180).includes(search);
   }
 
   get features() {
