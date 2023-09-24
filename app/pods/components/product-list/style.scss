@@ -64,7 +64,7 @@
     overflow: hidden;
     height: 0;
     &.expanded {
-      overflow: auto;
+      overflow: visible;
       height: auto;
     }
     & + .button.secondary.grey-border {
