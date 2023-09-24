@@ -40,11 +40,16 @@
       {{else}}
         {{#if @product.pitch}}
           <div class='pitch'>
+            {{markdown
+              (mark @search (t @product.pitch 'product.2' @product.id))
+            }}
+          </div>
+          {{!-- <div class='pitch'>
             {{mark
               @search
               (markdown (t @product.pitch 'product.2' @product.id))
             }}
-          </div>
+          </div> --}}
         {{/if}}
         {{#if (and this.features this.media.isDesktopWidescreen)}}
           <div class='features'>

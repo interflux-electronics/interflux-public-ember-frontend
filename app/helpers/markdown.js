@@ -66,13 +66,20 @@ const convertInlineElements = (str) => {
 };
 
 export default helper(function markdown(params) {
-  const string = params[0];
+  let string = params[0];
 
   // { noParagraphs: true }
   const options = params[1] || {};
 
   if (!string) {
     return string;
+  }
+
+  // It is possible to pass Ember's SafeString into the markdown helper.
+  // https://api.emberjs.com/ember/5.3/classes/SafeString/methods
+  // Here we make sure we continue with a simple string.
+  if (typeof string === 'object' && typeof string.string === 'string') {
+    string = string.string;
   }
 
   let html = '';
