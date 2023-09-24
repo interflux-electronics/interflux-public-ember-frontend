@@ -60,9 +60,14 @@
     }
   }
   ol.hidden {
-    display: none;
+    overflow: hidden;
+    height: 0;
+    // visibility: hidden;
+    // display: none;
     &.expanded {
-      display: block;
+      overflow: auto;
+      height: auto;
+      // display: block;
     }
     & + .button.secondary.grey-border {
       width: 100%;
