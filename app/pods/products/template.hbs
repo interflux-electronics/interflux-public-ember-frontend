@@ -3,7 +3,7 @@
     <aside>
       <div class={{if this.stickyMenu 'sticky'}}>
         <fieldset>
-          <legend>Search product</legend>
+          <legend>{{t 'Search product' 'products.11'}}</legend>
           <TextInput
             @value={{this.search}}
             @icon='search'
@@ -17,12 +17,12 @@
             <legend>
               {{if
                 this.selectedFamilyOption
-                'Product category'
-                'Product categories'
+                (t 'Product category' 'products.12')
+                (t 'Product categories' 'products.13')
               }}
             </legend>
             {{#if this.familiesLoading}}
-              <p>Loading ...</p>
+              <p>{{t 'Loading ...' 'loading.1'}}</p>
             {{else}}
               <Pills::Routed
                 @options={{this.familyOptions}}
@@ -32,9 +32,9 @@
           </fieldset>
 
           <fieldset>
-            <legend>Suitable for ...</legend>
+            <legend>{{t 'Suitable for' 'product.9'}}</legend>
             {{#if this.usesLoading}}
-              <p>Loading ...</p>
+              <p>{{t 'Loading ...' 'loading.1'}}</p>
             {{else}}
               <Pills::Routed
                 @options={{this.useOptions}}
@@ -49,7 +49,7 @@
     <article class={{this.layout}}>
       {{#if this.search}}
         <ProductList
-          @title='Results for "{{this.search}}"'
+          @title={{this.searchTitle}}
           @products={{@model.products}}
           @search={{this.search}}
           @groupBy='none'

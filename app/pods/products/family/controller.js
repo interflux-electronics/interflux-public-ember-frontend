@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 
 export default class ProductsFamilyController extends Controller {
+  @tracked title;
   @tracked products;
   @tracked family;
 

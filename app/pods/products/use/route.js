@@ -48,18 +48,24 @@ export default class ProductsUseRoute extends BaseRoute {
 
     const use = model.use;
     const products = use.products;
-    const families = products.mapBy('mainFamily').uniqBy('id');
+    const familiesSubset = products.mapBy('mainFamily').uniqBy('id');
 
     this.controllerFor('products').setProperties({
       selectedUseId: use.get('id'),
-      familiesSubset: families,
+      familiesSubset,
       familiesLoading: false
     });
 
+    const title = this.translation.t(
+      `Products for ${use.get('name')}`,
+      'products.18',
+      use.get('id')
+    );
+
     this.controllerFor('products.use').setProperties({
-      title: `Products for ${use.get('name')}`,
-      products: products,
-      use: use
+      title,
+      products,
+      use
     });
   }
 

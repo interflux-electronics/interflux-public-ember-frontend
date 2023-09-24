@@ -6,6 +6,7 @@ import { action } from '@ember/object';
 export default class ProductsController extends Controller {
   @service page;
   @service router;
+  @service translation;
 
   // SEARCH BY NAME
 
@@ -17,6 +18,12 @@ export default class ProductsController extends Controller {
   onKeyUp(event) {
     const input = event.target;
     this.search = input.value;
+  }
+
+  get searchTitle() {
+    const resultsFor = this.translation.t('Results for', 'products.14');
+
+    return `${resultsFor} "${this.search}"`;
   }
 
   // FAMILY
@@ -33,8 +40,9 @@ export default class ProductsController extends Controller {
         : this.mainFamilies;
 
     return families.sortBy('rank').map((family) => {
-      const label = family.get('label');
-      const selected = family.get('id') === this.selectedFamilyId;
+      const id = family.get('id');
+      const label = this.translation.t(family.get('label'), `products.4`, id);
+      const isSelected = id === this.selectedFamilyId;
 
       let route;
       let model;
@@ -57,12 +65,12 @@ export default class ProductsController extends Controller {
         model = family.get('id');
       }
 
-      return { label, route, model, models, selected };
+      return { label, route, model, models, isSelected };
     });
   }
 
   get selectedFamilyOption() {
-    return this.familyOptions.find((option) => option.selected);
+    return this.familyOptions.find((option) => option.isSelected);
   }
 
   // USE
@@ -77,8 +85,13 @@ export default class ProductsController extends Controller {
       this.selectedFamilyId && this.usesSubset ? this.usesSubset : this.uses;
 
     return uses.sortBy('rank').map((use) => {
-      const label = use.get('label');
-      const selected = use.get('id') === this.selectedUseId;
+      const id = use.get('id');
+      const label = this.translation.t(
+        use.get('label'),
+        'products.5',
+        `for-${id}`
+      );
+      const selected = id === this.selectedUseId;
 
       let route;
       let model;

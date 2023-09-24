@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 
 export default class ProductListComponent extends Component {
   // @arg title;
@@ -6,6 +7,8 @@ export default class ProductListComponent extends Component {
   // @arg sortBy;
   // @arg searchFor;
   // @arg loading;
+
+  @service translation;
 
   get groups() {
     const { groupBy, products, use } = this.args;
@@ -18,12 +21,14 @@ export default class ProductListComponent extends Component {
         .sortBy('rank');
 
       return mainFamilies.map((family) => {
+        const id = family.get('id');
+        const title = this.translation.t(family.get('label'), `products.4`, id);
         const subset = products
-          .filterBy('mainFamily.id', family.get('id'))
+          .filterBy('mainFamily.id', id)
           .sortBy('subFamily.rank');
 
         return {
-          title: family.get('label'),
+          title,
           featured: subset.filterBy('isFeatured'),
           hidden: subset.filterBy('isHidden')
         };
@@ -44,12 +49,17 @@ export default class ProductListComponent extends Component {
       const groups = [...subFamilies, undefined];
 
       return groups.map((family) => {
+        const id = family ? family.get('id') : null;
         const subset = family
-          ? products.filterBy('subFamily.id', family.get('id'))
+          ? products.filterBy('subFamily.id', id)
           : products.rejectBy('subFamily.id');
 
+        const title = family
+          ? this.translation.t(family.get('label'), `products.14`, id)
+          : this.translation.t('Other', `products.14`, 'other');
+
         return {
-          title: family ? family.get('label') : 'Other',
+          title,
           featured: subset.filterBy('isFeatured'),
           hidden: subset.filterBy('isHidden')
         };
@@ -64,9 +74,14 @@ export default class ProductListComponent extends Component {
 
       return uses.map((use) => {
         const subset = use.get('productsByRank');
+        const title = this.translation.t(
+          use.get('forLabel'),
+          'products.16',
+          use.get('id')
+        );
 
         return {
-          title: use.get('forLabel'),
+          title,
           featured: subset.filterBy('isFeatured'),
           hidden: subset.filterBy('isHidden')
         };
@@ -79,9 +94,14 @@ export default class ProductListComponent extends Component {
 
       return mainFamilies.map((family) => {
         const subset = products.filterBy('mainFamily.id', family.get('id'));
+        const title = this.translation.t(
+          `${family.get('label')} for ${use.get('name')}`,
+          'products.17',
+          `${family.get('id')}-for-${use.get('id')}`
+        );
 
         return {
-          title: `${family.get('label')} for ${use.get('name')}`,
+          title,
           featured: subset.filterBy('isFeatured'),
           hidden: subset.filterBy('isHidden')
         };

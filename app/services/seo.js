@@ -27,12 +27,12 @@ export default class SeoService extends Service {
     return data;
   }
 
-  get products() {
+  get allProducts() {
     return {
       canonicalPath: '/products',
-      title: this.translation.t('Products', 'seo.2'),
+      title: this.translation.t('All products', 'products.1'),
       description: this.translation.t(
-        'See all the products we produce: soldering fluxes, solder pastes, solder wires, solder alloys, ... All the chemistry needed for soldering electronics.',
+        'We produce soldering fluxes, solder pastes, solder wires, solder alloys, fluxing systems and auxiliaries for soldering electronics.',
         'seo.3'
       ),
       ogImagePath: '/images/public/og/og-products.jpg',
@@ -44,6 +44,24 @@ export default class SeoService extends Service {
       ogImageHeight: '630'
     };
   }
+
+  // get products() {
+  //   return {
+  //     canonicalPath: '/products',
+  //     title: this.translation.t('Products', 'seo.2'),
+  //     description: this.translation.t(
+  //       'See all the products we produce: soldering fluxes, solder pastes, solder wires, solder alloys, ... All the chemistry needed for soldering electronics.',
+  //       'seo.3'
+  //     ),
+  //     ogImagePath: '/images/public/og/og-products.jpg',
+  //     ogImageAlt: this.translation.t(
+  //       'Interflux Electronics soldering fluxes, solder pastes, solder wires and solder alloys',
+  //       'seo.4'
+  //     ),
+  //     ogImageWidth: '1200',
+  //     ogImageHeight: '630'
+  //   };
+  // }
 
   productsForFamily(family) {
     return {

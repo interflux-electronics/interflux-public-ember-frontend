@@ -19,8 +19,11 @@ export default class ProductsFamilyRoute extends BaseRoute {
       usesLoading: true
     });
 
+    const id = family.get('id');
+    const title = this.translation.t(family.get('label'), `products.4`, id);
+
     this.controllerFor('products.familyLoading').setProperties({
-      title: family ? family.get('label') : 'Loading'
+      title
     });
   }
 
@@ -37,18 +40,22 @@ export default class ProductsFamilyRoute extends BaseRoute {
     super.activate();
 
     const family = model.family;
+    const id = family.get('id');
     const products = this.store
       .peekAll('product')
-      .filterBy('mainFamily.id', family.get('id'));
+      .filterBy('mainFamily.id', id);
     const uses = products.mapBy('uses').flat().uniqBy('id');
 
     this.controllerFor('products').setProperties({
-      selectedFamilyId: family.get('id'),
+      selectedFamilyId: id,
       usesSubset: uses,
       usesLoading: false
     });
 
+    const title = this.translation.t(family.get('label'), `products.4`, id);
+
     this.controllerFor('products.family').setProperties({
+      title,
       family,
       products
     });

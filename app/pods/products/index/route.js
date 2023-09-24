@@ -15,8 +15,10 @@ export default class ProductsIndexRoute extends BaseRoute {
       title: 'All products'
     });
 
-    // TODO
-    this.headData.update(this.seo.products);
+    this.headData.update(this.seo.allProducts);
+
+    // TODO: inspect mobile
+    // TODO: translate
     this.page.update({
       id: 'products-index',
       mainClasses: 'products'

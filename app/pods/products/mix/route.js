@@ -23,10 +23,14 @@ export default class ProductsMixRoute extends BaseRoute {
       usesSubset: null
     });
 
+    const title = this.translation.t(
+      `${family.get('label')} for ${use.get('name')}`,
+      'products.19',
+      `${family.get('id')} for ${use.get('id')}`
+    );
+
     this.controllerFor('products.mixLoading').setProperties({
-      title: family
-        ? `${family.get('label')} for ${use.get('name')}`
-        : 'Loading'
+      title
     });
 
     // TODO
@@ -44,7 +48,8 @@ export default class ProductsMixRoute extends BaseRoute {
     return hash({
       productUses: this.store.query('product-use', {
         filter: { use: params.use_id },
-        include: 'product,use'
+        include: 'product,use',
+        reload: true
       })
     });
   }
@@ -57,15 +62,19 @@ export default class ProductsMixRoute extends BaseRoute {
     const useId = params.use_id;
     const family = this.store.peekRecord('product-family', familyId);
     const use = this.store.peekRecord('use', useId);
-    const title = `${family.get('label')} for ${use.get('name')}`;
+    const title = this.translation.t(
+      `${family.get('label')} for ${use.get('name')}`,
+      'products.19',
+      `${family.get('id')} for ${use.get('id')}`
+    );
     const products = model.productUses
       .mapBy('product')
       .uniqBy('id')
       .filterBy('mainFamily.id', familyId);
 
     this.controllerFor('products.mix').setProperties({
-      title: title,
-      products: products
+      title,
+      products
     });
   }
 
