@@ -1,7 +1,6 @@
 <Header::Desktop::Menu @isOpen={{@isOpen}}>
   <div class='links'>
-    {{! TODO: remove from database }}
-    {{!-- <h2 aria-hidden='true'>{{t 'Products we develop' 'header.29'}}</h2> --}}
+    <h2 aria-hidden='true'>{{t 'Products we develop' 'header.29'}}</h2>
 
     <Button
       @route='products.family'
@@ -69,7 +68,7 @@
     <Button
       @route='products.index'
       @onFocus={{fn this.showImage 1}}
-      @onMouseEnter={{fn this.showImage 1}}
+      @onMouseEnter={{fn this.showImage 8}}
     >
       <span>{{t 'All products' 'header.39'}}<Svg::ArrowRight /></span>
     </Button>
@@ -78,7 +77,7 @@
   <div class='image' data-position={{this.imagePosition}}>
     <ResponsiveImage
       @path='images/public/products-menu-sprite'
-      @variations='@666x4662.webp,@666x4662.jpg'
+      @variations='@666x5328.webp,@666x5328.jpg'
     />
   </div>
 </Header::Desktop::Menu>
