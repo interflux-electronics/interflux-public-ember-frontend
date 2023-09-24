@@ -93,6 +93,10 @@ export default class ResponsiveImageComponent extends Component {
     } else {
       const pixelRatio = this.window.devicePixelRatio();
 
+      // if (this.path.includes('/IF-920/')) {
+      //   debugger;
+      // }
+
       return this.imageElement.offsetWidth * pixelRatio;
     }
   }
