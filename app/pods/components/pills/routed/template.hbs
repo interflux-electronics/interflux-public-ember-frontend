@@ -9,7 +9,7 @@
       @models={{@selected.models}}
     />
   {{else}}
-    {{#each @options as |option i|}}
+    {{#each @options as |option|}}
       <Button
         @text={{get option this.label}}
         @theme='pill idle'
