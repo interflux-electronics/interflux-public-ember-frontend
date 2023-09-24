@@ -60,14 +60,12 @@
     }
   }
   ol.hidden {
+    // avoid display: none so <ResponsiveImage> JS can use offsetWidth
     overflow: hidden;
     height: 0;
-    // visibility: hidden;
-    // display: none;
     &.expanded {
       overflow: auto;
       height: auto;
-      // display: block;
     }
     & + .button.secondary.grey-border {
       width: 100%;
