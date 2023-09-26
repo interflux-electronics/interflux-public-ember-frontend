@@ -18,7 +18,7 @@ export default class ProductsFamilyController extends Controller {
       id === 'solder-wires' ||
       id === 'solder-alloys'
     ) {
-      return 'alloy';
+      return 'use';
     }
 
     if (id === 'fluxing-systems') {
