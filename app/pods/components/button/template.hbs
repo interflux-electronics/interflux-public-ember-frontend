@@ -27,10 +27,11 @@
       </Button::Content>
     </LinkTo>
   {{else if @model}}
-    <a
+    <LinkTo
+      @route={{@route}}
+      @model={{@model}}
       id={{@id}}
       class={{this.classes}}
-      href={{href-to @route @model}}
       onclick={{this.onClick}}
       onfocus={{this.onFocus}}
       onblur={{this.onBlur}}
@@ -40,7 +41,7 @@
       <Button::Content @text={{@text}} @icon={{@icon}}>
         {{yield}}
       </Button::Content>
-    </a>
+    </LinkTo>
   {{else if (or @model @models)}}
     <LinkTo
       id={{@id}}
@@ -58,10 +59,10 @@
       </Button::Content>
     </LinkTo>
   {{else}}
-    <a
+    <LinkTo
       id={{@id}}
       class={{this.classes}}
-      href={{href-to @route}}
+      @route={{@route}}
       onclick={{this.onClick}}
       onfocus={{this.onFocus}}
       onblur={{this.onBlur}}
@@ -71,7 +72,7 @@
       <Button::Content @text={{@text}} @icon={{@icon}}>
         {{yield}}
       </Button::Content>
-    </a>
+    </LinkTo>
   {{/if}}
 {{else if @url}}
   {{!
