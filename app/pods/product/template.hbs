@@ -63,9 +63,14 @@
               <div id='replaced-by'>
                 <p>{{product.name}}
                   been replaced by
-                  <a
-                    href={{href-to 'product' product.superiorProduct.id}}
-                  >{{product.superiorProduct.name}}</a>.</p>
+                  <LinkTo
+                    @route='product'
+                    @model={{product.superiorProduct.id}}
+                  >
+                    {{product.superiorProduct.name}}
+                  </LinkTo>
+                  .
+                </p>
                 {{#if product.pitch}}
                   <p>For those still interested:</p>
                   <div id='pitch'>

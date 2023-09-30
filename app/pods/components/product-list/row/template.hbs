@@ -1,5 +1,5 @@
 <li id={{@product.id}} class={{this.classes}}>
-  <a href={{href-to 'product' @product.id}}>
+  <LinkTo @route='product' @model={{@product.id}}>
     <div class='left'>
       {{#if @product.avatarPath}}
         <ResponsiveImage
@@ -68,5 +68,5 @@
         <Svg::ArrowRight />
       </div>
     {{/if}}
-  </a>
+  </LinkTo>
 </li>

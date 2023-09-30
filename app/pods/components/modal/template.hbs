@@ -1,7 +1,7 @@
 {{#in-element this.modalParent}}
   <div id='modal' class={{this.theme}}>
     <div class='overlay'>
-      <a href={{href-to this.parentRoute}} aria-label="Close"></a>
+      <LinkTo @route={{this.parentRoute}} aria-label='Close' />
     </div>
 
     <div class='content' id={{@id}}>
