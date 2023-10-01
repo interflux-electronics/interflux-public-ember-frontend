@@ -1,27 +1,30 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class ProductFamilyModel extends Model {
-  @attr('string') nameSingle;
-  @attr('string') namePlural;
-  @attr('string') gist;
-  @attr('string') fullMonty;
   @attr('number') rank;
 
-  @belongsTo('product-family', { inverse: 'subFamilies' }) productFamily;
-  @hasMany('product-family', { inverse: 'productFamily' }) subFamilies;
+  @attr('string') fullMonty;
+  @attr('string') gist;
+  @attr('string') namePlural;
+  @attr('string') nameSingle;
 
-  @hasMany('product') products;
+  @belongsTo('product-family', { inverse: 'subFamilies' }) productFamily;
+
+  @hasMany('product-family-image') productFamilyImages;
+  @hasMany('product-family', { inverse: 'productFamily' }) subFamilies;
+  @hasMany('product', { inverse: 'mainFamily' }) productsWithMain;
+  @hasMany('product', { inverse: 'subFamily' }) productsWithSub;
 
   get productsByRank() {
     const rank = 'rankAmongFamily';
-    const records = this.products;
+    const records = this.isMainFamily
+      ? this.productsWithMain
+      : this.productsWithSub;
     const ranked = records.filterBy(rank).sortBy(rank);
     const rankless = records.rejectBy(rank);
 
     return [...ranked, ...rankless];
   }
-
-  @hasMany('product-family-image') productFamilyImages;
 
   get images() {
     const rank = 'rankAmongImages';
@@ -45,17 +48,20 @@ export default class ProductFamilyModel extends Model {
     return !this.isSubFamily;
   }
 
+  // Returns plural family name with first letter capitalised
+  get label() {
+    const str = this.namePlural;
+
+    return str ? str[0].toUpperCase() + str.slice(1) : '';
+  }
+
+  // THESE WERE MISSING?? -------------------
+
   get topFamily() {
     return this.isMainFamily ? this : this.productFamily;
   }
 
   get hasAlloys() {
     return ['solder-pastes', 'solder-wires', 'solder-alloys'].includes(this.id);
-  }
-
-  // Returns plural family name with first letter capitalised
-  get label() {
-    const str = this.namePlural;
-    return str ? str[0].toUpperCase() + str.slice(1) : '';
   }
 }

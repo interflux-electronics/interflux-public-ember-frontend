@@ -1,53 +1,60 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class ProductModel extends Model {
-  @attr('string') name;
-  @attr('string') label;
-  @attr('string') status;
-  @attr('string') pitch;
-  @attr('string') summary;
-  @attr('string') properties;
-  @attr('string') instructions;
-
-  @attr('number') rankAmongFamily;
-
-  @attr('boolean') compliesWithROHS;
   @attr('boolean') compliesWithIEC;
   @attr('boolean') compliesWithIPCJSTD004A;
   @attr('boolean') compliesWithIPCJSTD004B;
   @attr('boolean') compliesWithIPCJSTD005;
   @attr('boolean') compliesWithISO;
-  @attr('string') testResults;
+  @attr('boolean') compliesWithROHS;
   @attr('boolean') onFrontPage;
+
   @attr('number') frontPageRank;
+  @attr('number') rankAmongFamily;
 
-  @belongsTo('image', { inverse: 'product' }) image;
-
-  // Avatar image properties are cached on the product record as to avoid N+1 when loading long lists of products
-  @attr('string') avatarPath;
   @attr('string') avatarAlt;
   @attr('string') avatarCaption;
+  @attr('string') avatarPath;
   @attr('string') avatarVariations;
+  @attr('string') instructions;
+  @attr('string') label;
+  @attr('string') name;
+  @attr('string') pitch;
+  @attr('string') properties;
+  @attr('string') status;
+  @attr('string') summary;
+  @attr('string') testResults;
 
-  @belongsTo('product-family') productFamily;
-
-  get family() {
-    return this.productFamily;
-  }
-
-  get mainFamily() {
-    return this.family.get('isMainFamily')
-      ? this.family
-      : this.family.get('productFamily');
-  }
-
+  @belongsTo('image', { inverse: 'product' }) image;
+  @belongsTo('product-family') mainFamily;
+  @belongsTo('product-family') subFamily;
   @belongsTo('product', { inverse: 'inferiorProducts' }) superiorProduct;
-  @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
 
-  @hasMany('product-use') productUses;
-  @hasMany('product-quality') productQualities;
   @hasMany('product-document') productDocuments;
   @hasMany('product-image') productImages;
+  @hasMany('product-quality') productQualities;
+  @hasMany('product-use') productUses;
+  @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
+
+  get familyLabel() {
+    if (this.label) {
+      return this.label;
+    }
+
+    if (this.subFamily.get('id')) {
+      return this.subFamily.get('nameSingle');
+    }
+
+    if (this.mainFamily.get('id')) {
+      return this.mainFamily.get('nameSingle');
+    }
+
+    console.warn(
+      `${this.name} does not have a label, nor sub, nor main family`
+    );
+
+    return '?';
+  }
 
   get hasUses() {
     return this.uses && this.uses.length > 0;
@@ -67,7 +74,7 @@ export default class ProductModel extends Model {
   }
 
   get uses() {
-    return this.productUsesSorted.map((record) => record.use);
+    return this.productUsesSorted.mapBy('use');
   }
 
   get productQualitiesSorted() {
@@ -80,7 +87,7 @@ export default class ProductModel extends Model {
   }
 
   get qualities() {
-    return this.productQualitiesSorted.map((record) => record.quality);
+    return this.productQualitiesSorted.mapBy('quality');
   }
 
   get documents() {
@@ -90,7 +97,7 @@ export default class ProductModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map((record) => record.document);
+    return sorted.mapBy('document');
   }
 
   get images() {
@@ -100,7 +107,7 @@ export default class ProductModel extends Model {
     const rankless = records.rejectBy(rank);
     const sorted = [...ranked, ...rankless];
 
-    return sorted.map((record) => record.image);
+    return sorted.mapBy('image');
   }
 
   get isNew() {
@@ -123,15 +130,22 @@ export default class ProductModel extends Model {
     return this.status === 'discontinued';
   }
 
-  get testResultsArray() {
-    return JSON.parse(this.testResults);
+  // HACK: the backend should not be serving this... However, when side loading
+  // records with includes the permanent filters are ignored (for now)
+  get isOffline() {
+    return this.status === 'offline';
   }
 
-  get familyLabel() {
-    const family = this.family.get('nameSingle');
-    const label = this.label;
+  get isFeatured() {
+    return this.isNew || this.isPopular || this.isRecommended;
+  }
 
-    return label ? label : family;
+  get isHidden() {
+    return this.isOutdated || this.discountinued;
+  }
+
+  get testResultsArray() {
+    return JSON.parse(this.testResults);
   }
 
   get compliesWithIPC() {
@@ -140,5 +154,16 @@ export default class ProductModel extends Model {
       this.compliesWithIPCJSTD004B ||
       this.compliesWithIPCJSTD005
     );
+  }
+
+  get statusRank() {
+    return [
+      'new',
+      'popular',
+      'recommended',
+      'outdated',
+      'discontinued',
+      'offline'
+    ].indexOf(this.status);
   }
 }
