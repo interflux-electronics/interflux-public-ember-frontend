@@ -6,13 +6,13 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | language-list', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders 9 links', async function (assert) {
+  test('it renders 4 links', async function (assert) {
     assert.expect(1);
 
     await render(hbs`<LanguageList />`);
 
     const links = this.element.querySelectorAll('a');
 
-    assert.equal(links.length, 5);
+    assert.strictEqual(links.length, 4);
   });
 });
