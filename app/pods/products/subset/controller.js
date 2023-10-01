@@ -234,33 +234,36 @@ export default class ProductsSubsetController extends Controller {
           });
       });
 
-      const id = family.get('id');
-      const li = article.querySelector(`li.sub-family#other-${id}`);
-      const i = 999;
+      // TODO: this messes up the soldering fluxes grouping...
+      // TODO: keeper?
 
-      family
-        .get('productsByRank')
-        .filter((product) => shownStatuses.includes(product.get('status')))
-        .forEach((product, ii) => {
-          const id2 = product.get('id');
-          const li2 = article.querySelector(`li.product-row#${id2}`);
+      // const id = family.get('id');
+      // const li = article.querySelector(`li.sub-family#other-${id}`);
+      // const i = 999;
 
-          // Show and sort the sub family header
-          if (li) {
-            li.classList.remove('hide');
-            li.style.order = i * n;
-          } else {
-            console.warn(`cannot find: li.sub-family#other-${id}`);
-          }
+      // family
+      //   .get('productsByRank')
+      //   .filter((product) => shownStatuses.includes(product.get('status')))
+      //   .forEach((product, ii) => {
+      //     const id2 = product.get('id');
+      //     const li2 = article.querySelector(`li.product-row#${id2}`);
 
-          // Show and sort all products of that sub family
-          if (li2) {
-            li2.style.order = i * n + ii;
-            li2.classList.remove('hide');
-          } else {
-            console.warn(`cannot find: li.product-row#${id2}`);
-          }
-        });
+      //     // Show and sort the sub family header
+      //     if (li) {
+      //       li.classList.remove('hide');
+      //       li.style.order = i * n;
+      //     } else {
+      //       console.warn(`cannot find: li.sub-family#other-${id}`);
+      //     }
+
+      //     // Show and sort all products of that sub family
+      //     if (li2) {
+      //       li2.style.order = i * n + ii;
+      //       li2.classList.remove('hide');
+      //     } else {
+      //       console.warn(`cannot find: li.product-row#${id2}`);
+      //     }
+      //   });
     }
   }
 
