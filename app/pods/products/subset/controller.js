@@ -168,47 +168,62 @@ export default class ProductsSubsetController extends Controller {
     // If the subset is a use (process) we group by family
     if (use) {
       // Show only the products of the use and sort
-      use.families
-        .mapBy('topFamily')
-        .uniq()
-        .sortBy('rank')
-        .forEach((family, i) => {
-          if (!family) {
-            console.warn('ignoring undefined family');
-            return;
-          }
+      use.mainFamilies.forEach((family, i) => {
+        if (!family.get('id')) {
+          console.warn('ignoring undefined family');
+          return;
+        }
 
-          const id = family.get('id');
-          const li = article.querySelector(`li.main-family-for-use#${id}`);
+        const id = family.get('id');
+        const li = article.querySelector(`li.main-family-for-use#${id}`);
 
-          if (!li) {
-            console.warn('NOT FOUND', id);
-            return;
-          }
+        if (!li) {
+          console.warn('NOT FOUND', id);
+          return;
+        }
 
-          // Iterate over all products which have this use and family and which status is shown.
-          use
-            .get('productsByRank')
-            .filterBy('family.topFamily.id', id)
-            .filter((product) => shownStatuses.includes(product.get('status')))
-            .forEach((product, ii) => {
-              const id2 = product.get('id');
-              const li2 = article.querySelector(`li.product-row#${id2}`);
+        // Iterate over all products which have this use and family and which status is shown.
+        use
+          .get('productsByRank')
+          .filterBy('mainFamily.id', id)
+          .filter((product) => shownStatuses.includes(product.get('status')))
+          .forEach((product, ii) => {
+            const id2 = product.get('id');
+            const li2 = article.querySelector(`li.product-row#${id2}`);
 
-              // Show and sort the family header
-              li.classList.remove('hide');
-              li.style.order = i * n;
+            // Show and sort the family header
+            li.classList.remove('hide');
+            li.style.order = i * n;
 
-              // Show and sort all products of that family
-              li2.style.order = i * n + ii;
-              li2.classList.remove('hide');
-            });
-        });
+            // Show and sort all products of that family
+            li2.style.order = i * n + ii;
+            li2.classList.remove('hide');
+          });
+      });
+
+      return;
     }
 
-    // If the subset is a family we use different grouping per family
-    if (family) {
-      family.subFamilies.sortBy('rank').forEach((subFamily, i) => {
+    if (!family) {
+      console.warn('NO USE NOR FAMILY');
+    }
+
+    const mainFamily = family;
+
+    if (mainFamily.get('id') === 'fluxing-systems') {
+      mainFamily
+        .get('productsByRank')
+        .filter((product) => shownStatuses.includes(product.get('status')))
+        .forEach((product, ii) => {
+          const id2 = product.get('id');
+          const li2 = article.querySelector(`li.product-row#${id2}`);
+
+          // Show and sort all products of that sub family
+          li2.style.order = 1 * n + ii;
+          li2.classList.remove('hide');
+        });
+    } else {
+      mainFamily.subFamilies.sortBy('rank').forEach((subFamily, i) => {
         if (!subFamily) {
           console.warn('ignoring undefined subFamily');
           return;
@@ -233,37 +248,6 @@ export default class ProductsSubsetController extends Controller {
             li2.classList.remove('hide');
           });
       });
-
-      // TODO: this messes up the soldering fluxes grouping...
-      // TODO: keeper?
-
-      // const id = family.get('id');
-      // const li = article.querySelector(`li.sub-family#other-${id}`);
-      // const i = 999;
-
-      // family
-      //   .get('productsByRank')
-      //   .filter((product) => shownStatuses.includes(product.get('status')))
-      //   .forEach((product, ii) => {
-      //     const id2 = product.get('id');
-      //     const li2 = article.querySelector(`li.product-row#${id2}`);
-
-      //     // Show and sort the sub family header
-      //     if (li) {
-      //       li.classList.remove('hide');
-      //       li.style.order = i * n;
-      //     } else {
-      //       console.warn(`cannot find: li.sub-family#other-${id}`);
-      //     }
-
-      //     // Show and sort all products of that sub family
-      //     if (li2) {
-      //       li2.style.order = i * n + ii;
-      //       li2.classList.remove('hide');
-      //     } else {
-      //       console.warn(`cannot find: li.product-row#${id2}`);
-      //     }
-      //   });
     }
   }
 
