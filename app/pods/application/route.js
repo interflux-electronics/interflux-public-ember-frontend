@@ -2,6 +2,16 @@ import BaseRoute from 'interflux/pods/base/route';
 import { hash } from 'rsvp';
 
 export default class ApplicationRoute extends BaseRoute {
+  beforeModel() {
+    super.activate();
+    this.page.update({
+      id: 'application-loading',
+      title: 'Loading ...',
+      showLoading: true,
+      origin: this.routeName
+    });
+  }
+
   model() {
     const language = this.translation.language;
 
@@ -24,5 +34,10 @@ export default class ApplicationRoute extends BaseRoute {
     // return this.serverSideRendered ? payload : hash(payload);
 
     return hash(payload);
+  }
+
+  afterModel() {
+    super.activate();
+    this.page.update({ origin: this.routeName });
   }
 }
