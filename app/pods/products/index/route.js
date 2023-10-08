@@ -15,17 +15,7 @@ export default class ProductsIndexRoute extends BaseRoute {
       title: 'All products'
     });
 
-    this.headData.update(this.seo.allProducts);
-
-    // TODO: inspect mobile
-    // TODO: translate
-    this.page.update({
-      id: 'products-index',
-      mainClasses: 'products'
-      // title: 'Products', // TODO: translate
-      // backRoute: 'index',
-      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
-    });
+    this.headData.update(this.seo.allProducts); // TODO: review
   }
 
   model() {

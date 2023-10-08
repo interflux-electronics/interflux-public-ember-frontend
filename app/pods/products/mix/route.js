@@ -32,16 +32,6 @@ export default class ProductsMixRoute extends BaseRoute {
     this.controllerFor('products.mixLoading').setProperties({
       title
     });
-
-    // TODO
-    // this.headData.update(this.seo.products);
-    this.page.update({
-      id: 'products-mix',
-      mainClasses: 'products'
-      // title: 'Products', // TODO: translate
-      // backRoute: 'index',
-      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
-    });
   }
 
   model(params) {
@@ -76,6 +66,9 @@ export default class ProductsMixRoute extends BaseRoute {
       title,
       products
     });
+
+    // TODO
+    // this.headData.update(this.seo.products);
   }
 
   @action

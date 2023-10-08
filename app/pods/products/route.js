@@ -2,11 +2,14 @@ import BaseRoute from 'interflux/pods/base/route';
 import { hash } from 'rsvp';
 
 export default class ProductsRouteRoute extends BaseRoute {
-  activate() {
+  beforeModel() {
     super.activate();
+
     this.page.update({
       id: 'products',
-      mainClasses: 'products'
+      mainClasses: 'products',
+      title: this.translation.t('Products', 'header.1'),
+      backRoute: 'index'
     });
   }
 

@@ -19,18 +19,10 @@ export default class ProductsUseRoute extends BaseRoute {
       familiesSubset: null
     });
 
-    this.controllerFor('products.useLoading').setProperties({
-      title: use ? `Products for ${use.get('name')}` : 'Loading'
-    });
+    const loading = this.translation.t('Loading ...', 'loading.1');
 
-    // TODO
-    // this.headData.update(this.seo.products);
-    this.page.update({
-      id: 'products-use',
-      mainClasses: 'products'
-      // title: 'Products', // TODO: translate
-      // backRoute: 'index',
-      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
+    this.controllerFor('products.useLoading').setProperties({
+      title: use ? `Products for ${use.get('name')}` : loading
     });
   }
 
@@ -67,6 +59,9 @@ export default class ProductsUseRoute extends BaseRoute {
       products,
       use
     });
+
+    // TODO
+    // this.headData.update(this.seo.products);
   }
 
   @action

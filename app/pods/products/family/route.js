@@ -62,13 +62,6 @@ export default class ProductsFamilyRoute extends BaseRoute {
 
     // TODO
     // this.headData.update(this.seo.products);
-    this.page.update({
-      id: 'products-family',
-      mainClasses: 'products'
-      // title: 'Products', // TODO: translate
-      // backRoute: 'index',
-      // crumbs: [{ label: 'Interflux', route: 'index' }, { label: 'Products' }]
-    });
   }
 
   @action
