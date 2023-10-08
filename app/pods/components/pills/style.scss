@@ -7,7 +7,7 @@
     gap: vw(10px);
   }
   @include tablet {
-    // TODO
+    gap: 0.75vw;
   }
   @include mobile {
     gap: 3vw;

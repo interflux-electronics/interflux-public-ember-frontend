@@ -21,7 +21,7 @@ main.products {
       margin: 0 auto;
     }
     @include tablet {
-      // TODO
+      flex-direction: column;
     }
     @include mobile {
       flex-direction: column;
@@ -38,16 +38,14 @@ main.products {
       margin-right: vw(30px);
     }
     @include tablet {
-      // TODO
+      width: 100vw;
     }
     @include mobile {
       width: 100vw;
     }
-
     & > div {
       border: 1px solid #e3e3e3;
       bottom: 0;
-
       @include widescreen {
         top: 30px;
         padding: 20px;
@@ -57,12 +55,11 @@ main.products {
         padding: vw(20px);
       }
       @include tablet {
-        // TODO
+        padding: 1.5vw;
       }
       @include mobile {
         padding: 4.5vw;
       }
-
       &.sticky {
         @include widescreen {
           position: sticky;
@@ -70,12 +67,8 @@ main.products {
         @include desktop {
           position: sticky;
         }
-        @include tablet {
-          // TODO
-        }
       }
     }
-
     input {
       @include widescreen {
         width: 220px;
@@ -84,13 +77,12 @@ main.products {
         width: vw(220px);
       }
       @include tablet {
-        // TODO
+        width: 33vw;
       }
       @include mobile {
         width: 100%;
       }
     }
-
     fieldset {
       padding: 0;
       border: 0;
@@ -103,14 +95,13 @@ main.products {
           margin-top: vw(30px);
         }
         @include tablet {
-          // TODO
+          margin-top: 1.5vw;
         }
         @include mobile {
           margin-top: 4.5vw;
         }
       }
     }
-
     legend {
       @include paragraph;
       font-family: $bold;
@@ -121,13 +112,12 @@ main.products {
         margin-bottom: vw(16px);
       }
       @include tablet {
-        // TODO
+        margin-bottom: 1.5vw;
       }
       @include mobile {
         margin-bottom: 4.5vw;
       }
     }
-
     #search {
       position: relative;
       z-index: 2;
@@ -135,7 +125,6 @@ main.products {
         width: 100%;
       }
     }
-
     .button.pill,
     .button.pill.selected span {
       overflow: hidden;
@@ -147,7 +136,7 @@ main.products {
         max-width: vw(220px);
       }
       @include tablet {
-        // TODO
+        max-width: calc(100vw - 1.5vw - 1.5vw);
       }
       @include mobile {
         max-width: calc(100vw - 4.5vw - 4.5vw);
@@ -165,23 +154,21 @@ main.products {
       width: vw(880px);
     }
     @include tablet {
-      // TODO
+      width: 100vw;
     }
     @include mobile {
       width: 100vw;
     }
-
-    &.grid {
-      ol {
-        flex-direction: row;
-        flex-wrap: wrap;
-        li {
-          width: 33.3333%;
-        }
-      }
-    }
+    // &.grid {
+    //   ol {
+    //     flex-direction: row;
+    //     flex-wrap: wrap;
+    //     li {
+    //       width: 33.3333%;
+    //     }
+    //   }
+    // }
   }
-
   & + .spacer {
     background: $grey-0;
   }
