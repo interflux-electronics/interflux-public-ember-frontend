@@ -1,22 +1,26 @@
 .product-list {
   h1 {
     font-family: $extrabold;
-    line-height: 100%;
+    line-height: 160%;
     border-bottom: 1px solid $grey-1;
     color: $blue-3;
     @include widescreen {
-      font-size: px(3vw);
-      padding: px(5vw);
+      font-size: 36px;
+      padding: 50px 60px;
     }
     @include desktop {
-      font-size: 3vw;
-      padding: 5vw;
+      font-size: vw(36px);
+      padding: vw(50px) vw(60px);
     }
     @include tablet {
-      display: none;
+      text-align: center;
+      font-size: 4vw;
+      padding: 9vw 5vw;
     }
     @include mobile {
-      display: none;
+      text-align: center;
+      font-size: 7vw;
+      padding: 16vw 10vw;
     }
   }
   h2 {
@@ -25,12 +29,12 @@
     color: $grey-7;
     box-sizing: border-box;
     @include widescreen {
-      font-size: px(2.5vw);
-      padding: px(5vw);
+      font-size: 30px;
+      padding: 50px 60px;
     }
     @include desktop {
-      font-size: 2.5vw;
-      padding: 5vw;
+      font-size: vw(30px);
+      padding: vw(50px) vw(60px);
     }
     @include tablet {
       font-size: 4vw;
@@ -39,7 +43,7 @@
       padding: 9vw 5vw;
     }
     @include mobile {
-      font-size: 8vw;
+      font-size: 7vw;
       text-align: center;
       width: 100%;
       padding: 16vw 10vw;
