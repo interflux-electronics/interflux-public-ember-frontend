@@ -1,6 +1,17 @@
 .pills {
   display: flex;
-  gap: 10px;
+  @include widescreen {
+    gap: 10px;
+  }
+  @include desktop {
+    gap: vw(10px);
+  }
+  @include tablet {
+    // TODO
+  }
+  @include mobile {
+    gap: 3vw;
+  }
   &.horizontal {
     flex-direction: row;
     justify-content: flex-start;
