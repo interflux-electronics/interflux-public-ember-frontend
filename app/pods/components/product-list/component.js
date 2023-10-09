@@ -73,9 +73,15 @@ export default class ProductListComponent extends Component {
       const uses = products.mapBy('uses').flat().uniqBy('id').sortBy('rank');
 
       return uses.map((use) => {
-        const subset = use.get('productsByRank').filter((p) => {
-          return products.findBy('id', p.get('id'));
+        const rank = 'rankAmongProducts';
+        const productUses = use.get('productUses').filter((p) => {
+          return products.findBy('id', p.get('product.id'));
         });
+        const ranked = productUses.filterBy(rank).sortBy(rank);
+        const rankless = productUses.rejectBy(rank);
+        const sorted = [...ranked, ...rankless];
+        const subset = sorted.map((record) => record.get('product'));
+
         const title = this.translation.t(
           use.get('forLabel'),
           'products.16',
@@ -85,7 +91,8 @@ export default class ProductListComponent extends Component {
         return {
           title,
           featured: subset.filterBy('isFeatured'),
-          hidden: subset.filterBy('isHidden')
+          hidden: subset.filterBy('isHidden'),
+          productUses
         };
       });
     }

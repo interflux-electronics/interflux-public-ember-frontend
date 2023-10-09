@@ -1,7 +1,13 @@
 <li id={{@product.id}} class={{this.classes}}>
   <LinkTo @route='product' @model={{@product.id}}>
     <div class='left'>
-      {{#if @product.avatarPath}}
+      {{#if @alternativeAvatar}}
+        <ResponsiveImage
+          @path={{@alternativeAvatar.path}}
+          @variations={{@alternativeAvatar.variations}}
+          @alt={{@alternativeAvatar.alt}}
+        />
+      {{else if @product.avatarPath}}
         <ResponsiveImage
           @path={{@product.avatarPath}}
           @variations={{@product.avatarVariations}}

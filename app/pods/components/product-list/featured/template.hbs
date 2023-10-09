@@ -1,7 +1,10 @@
 {{#if @products}}
   <ol class='featured'>
-    {{#each @products as |product|}}
-      <ProductList::Row @product={{product}} />
+    {{#each this.rows as |row|}}
+      <ProductList::Row
+        @product={{row.product}}
+        @alternativeAvatar={{row.alternativeAvatar}}
+      />
     {{/each}}
   </ol>
 {{/if}}

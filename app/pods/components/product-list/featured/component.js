@@ -17,4 +17,33 @@ export default class ProductListFeaturedComponent extends Component {
   get hasHiddenProducts() {
     return this.count > 0;
   }
+
+  get rows() {
+    const { products, productUses } = this.args;
+
+    if (!productUses) {
+      return products.map((product) => {
+        return { product };
+      });
+    }
+
+    return products.map((product) => {
+      const productUse = productUses.findBy('product.id', product.get('id'));
+      const alternativeAvatar =
+        productUse && productUse.showAlternativeAvatar && productUse.image
+          ? productUse.image
+          : null;
+
+      // TODO: remove after testing in production
+      if (alternativeAvatar) {
+        console.warn(
+          'alternativeAvatar',
+          productUse.get('use.name'),
+          alternativeAvatar.get('path')
+        );
+      }
+
+      return { product, alternativeAvatar };
+    });
+  }
 }

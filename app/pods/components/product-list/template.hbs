@@ -12,8 +12,14 @@
             <h2>{{group.title}}</h2>
           {{/if}}
 
-          <ProductList::Featured @products={{group.featured}} />
-          <ProductList::Hidden @products={{group.hidden}} />
+          <ProductList::Featured
+            @products={{group.featured}}
+            @productUses={{group.productUses}}
+          />
+          <ProductList::Hidden
+            @products={{group.hidden}}
+            @productUses={{group.productUses}}
+          />
         </section>
       {{/each}}
     {{/if}}

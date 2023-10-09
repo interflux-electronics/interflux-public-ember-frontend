@@ -20,6 +20,7 @@ export default class ProductsRouteRoute extends BaseRoute {
           'main_family',
           'sub_family',
           'product_uses',
+          'product_uses.image',
           'uses',
           'product_qualities',
           'qualities'
