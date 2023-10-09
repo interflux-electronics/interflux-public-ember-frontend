@@ -25,7 +25,7 @@ export default class ProductListComponent extends Component {
         const title = this.translation.t(family.get('label'), `products.4`, id);
         const subset = products
           .filterBy('mainFamily.id', id)
-          .sortBy('subFamily.rank');
+          .sortBy('rankAmongFamily'); // TODO: rankAmongMainFamily
 
         return {
           title,
@@ -58,10 +58,12 @@ export default class ProductListComponent extends Component {
           ? this.translation.t(family.get('label'), `products.14`, id)
           : this.translation.t('Other', `products.14`, 'other');
 
+        // TODO: rankAmongSubFamily
+
         return {
           title,
-          featured: subset.filterBy('isFeatured'),
-          hidden: subset.filterBy('isHidden')
+          featured: subset.filterBy('isFeatured').sortBy('rankAmongFamily'),
+          hidden: subset.filterBy('isHidden').sortBy('rankAmongFamily')
         };
       });
     }
