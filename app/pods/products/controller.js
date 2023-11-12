@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 
 export default class ProductsController extends Controller {
   @service page;
+  @service media;
   @service router;
   @service translation;
 
@@ -130,5 +131,19 @@ export default class ProductsController extends Controller {
   // TODO: review
   get stickyMenu() {
     return this.router.currentRouteName !== 'products.index' || this.search;
+  }
+
+  // FOR MOBILE & TABLET
+
+  @tracked fitlersAreShown = false;
+
+  @action
+  showFilters() {
+    this.fitlersAreShown = true;
+  }
+
+  @action
+  hideFilters() {
+    this.fitlersAreShown = false;
   }
 }

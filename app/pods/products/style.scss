@@ -43,6 +43,14 @@ main.products {
     @include mobile {
       width: 100vw;
     }
+    &.hide {
+      display: none;
+    }
+    &.show {
+      @include tablet-and-below {
+        display: block;
+      }
+    }
     & > div {
       border: 1px solid #e3e3e3;
       bottom: 0;
@@ -170,5 +178,53 @@ main.products {
   }
   & + .spacer {
     background: $grey-0;
+  }
+
+  .mobile-buttons {
+    .button {
+      width: 100vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+      background-color: $grey-0;
+      border-bottom: 1px solid $grey-1;
+      @include tablet {
+        padding: 0 2.5vw; // TO REVIEW
+        height: 12vw; // TO REVIEW
+      }
+      @include mobile {
+        padding: 0 4.5vw;
+        height: 16vw;
+      }
+      span {
+        color: $grey-7;
+      }
+      svg {
+        [fill] {
+          fill: $grey-5;
+        }
+        &.search {
+          @include tablet {
+            width: 5vw; // TO REVIEW
+            margin: 1vw; // TO REVIEW
+          }
+          @include mobile {
+            width: 7vw;
+            margin: 2vw;
+          }
+        }
+        &.arrow-up {
+          @include tablet {
+            width: 2vw; // TO REVIEW
+            margin: 2vw; // TO REVIEW
+          }
+          @include mobile {
+            width: 4vw;
+            margin: 2.3vw;
+          }
+        }
+      }
+    }
   }
 }

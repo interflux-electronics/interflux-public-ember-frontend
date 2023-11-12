@@ -1,6 +1,6 @@
 <div class='products-page'>
   <div class='liner'>
-    <aside>
+    <aside class={{if this.fitlersAreShown 'show' 'hide'}}>
       <div class={{if this.stickyMenu 'sticky'}}>
         <fieldset>
           <legend>{{t 'Search product' 'products.11'}}</legend>
@@ -45,6 +45,24 @@
         {{/unless}}
       </div>
     </aside>
+
+    {{#if this.media.isMobileTablet}}
+      <div class='mobile-buttons'>
+        {{#if this.fitlersAreShown}}
+          <Button
+            @text={{t 'Hide' 'products.15'}}
+            @icon='arrow-up'
+            @onClick={{this.hideFilters}}
+          />
+        {{else}}
+          <Button
+            @icon='search'
+            @text={{t 'Search product' 'products.11'}}
+            @onClick={{this.showFilters}}
+          />
+        {{/if}}
+      </div>
+    {{/if}}
 
     <article class={{this.layout}}>
       {{#if this.search}}
