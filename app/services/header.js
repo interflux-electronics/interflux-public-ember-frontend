@@ -13,49 +13,57 @@ export default class HeaderService extends Service {
         label: 'LMPA-Q',
         route: 'products.use',
         model: 'low-melting-point-soldering',
-        i18n: 'header.30'
+        i18n: 'header.30',
+        img: 'LMPA-Q'
       },
       {
         label: 'Soldering fluxes',
         route: 'products.family',
         model: 'soldering-fluxes',
-        i18n: 'header.31'
+        i18n: 'header.31',
+        img: 'fluxes'
       },
       {
         label: 'Solder pastes',
         route: 'products.family',
         model: 'solder-pastes',
-        i18n: 'header.32'
+        i18n: 'header.32',
+        img: 'pastes'
       },
       {
         label: 'Solder wires',
         route: 'products.family',
         model: 'solder-wires',
-        i18n: 'header.33'
+        i18n: 'header.33',
+        img: 'wires'
       },
       {
         label: 'Solder alloys',
         route: 'products.family',
         model: 'solder-alloys',
-        i18n: 'header.34'
+        i18n: 'header.34',
+        img: 'alloys'
       },
       {
         label: 'Auxiliaries',
         route: 'products.family',
         model: 'auxiliaries',
-        i18n: 'header.35'
+        i18n: 'header.35',
+        img: 'aux'
       },
       {
         label: 'Fluxing systems',
         route: 'products.family',
         model: 'fluxing-systems',
-        i18n: 'header.36'
+        i18n: 'header.36',
+        img: 'fluxes'
       },
       {
         label: 'All products',
         route: 'products.index',
         model: null,
-        i18n: 'header.39'
+        i18n: 'header.39',
+        img: 'all'
       }
     ];
   }

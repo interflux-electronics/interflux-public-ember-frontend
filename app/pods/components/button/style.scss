@@ -613,36 +613,78 @@
   }
 
   // For mobile hamburger navigation
-  &.stack {
+  &.stacked {
     display: flex;
     justify-content: center;
     align-items: center;
     background: none;
-    @include tablet {
-      font-size: 3vw;
-      border-radius: 0.4vw;
-      padding: 2vw;
-    }
-    @include mobile {
-      font-size: 5.6vw;
-      border-radius: 0.8vw;
-      padding: 4vw;
-    }
-    svg {
+    width: 100vw;
+    &.medium {
       @include tablet {
-        max-width: 5vw;
-        max-height: 5vw;
-        margin-right: 3vw;
+        font-size: 3vw;
+        border-radius: 0.4vw;
+        padding: 1.5vw 2vw; // TO REVIEW
       }
       @include mobile {
-        max-width: 8vw;
-        max-height: 8vw;
-        margin-right: 4vw;
+        font-size: 5.6vw;
+        border-radius: 0.8vw;
+        padding: 8vw 3vw;
+      }
+      svg {
+        @include tablet {
+          max-width: 5vw;
+          max-height: 5vw;
+          margin-right: 3vw;
+        }
+        @include mobile {
+          max-width: 8vw;
+          max-height: 8vw;
+          margin-right: 4vw;
+        }
+      }
+    }
+    &.small {
+      @include tablet {
+        font-size: 3vw;
+        border-radius: 0.4vw;
+        padding: 1.5vw 2.5vw; // TO REVIEW
+      }
+      @include mobile {
+        font-size: 4.6vw;
+        border-radius: 0.8vw;
+        padding: 3vw 4.5vw;
+      }
+
+      img {
+        @include tablet {
+          width: 5vw; // TO REVIEW
+          height: 5vw; // TO REVIEW
+        }
+        @include mobile {
+          width: 12vw;
+          height: 12vw;
+        }
+      }
+
+      span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        @include tablet {
+          max-width: 80vw; // TO REVIEW
+        }
+        @include mobile {
+          max-width: 80vw;
+        }
       }
     }
     &.white {
       color: white;
-      transition: background $easeOutExpo 300ms;
+      transition: all $easeOutExpo 400ms;
+      border-top: 1px solid rgba(white, 0.2);
+      border-radius: 0;
+      &:last-of-type {
+        border-bottom: 1px solid rgba(white, 0.2);
+      }
       svg {
         [fill] {
           fill: white;
@@ -650,21 +692,13 @@
       }
       &:hover,
       &:focus {
-        box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
+        box-shadow: inset 0 0 0 2px white;
         background: rgba(white, 0.1);
       }
     }
-    & + .button {
-      // @include widescreen {
-      // }
-      // @include desktop {
-      // }
-      @include tablet {
-        margin-top: 3vw; // TODO
-      }
-      @include mobile {
-        margin-top: 3vw;
-      }
+    &.left {
+      justify-content: flex-start;
+      gap: 4vw;
     }
   }
 

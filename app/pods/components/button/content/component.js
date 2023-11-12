@@ -32,6 +32,7 @@ export default class ButtonContentComponent extends Component {
       'people',
       'play',
       'podcast',
+      'prescription-bottle',
       'search',
       'share',
       'star',

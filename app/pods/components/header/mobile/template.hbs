@@ -1,70 +1,122 @@
 <header id='mobile' role='banner' aria-label='site' class={{this.classes}}>
-  <nav aria-label='page'>
+  <nav aria-label='page' {{did-insert this.onInsert}}>
     <div id='top'>
-      {{#if @backRoute}}
-        <Button
-          @route={{@backRoute}}
-          @model={{@backModel}}
-          @icon='chevron-left'
-          @theme='square outlined'
-        />
-      {{else}}
-        <div id='logo'>
-          <div class='clip'>
-            <Svg::PrimaryInterfluxLogo />
-          </div>
+      <Button
+        @id='logo'
+        @route='index'
+        @onClick={{fn this.setView 'hamburger'}}
+      >
+        <div class='clip'>
+          <Svg::PrimaryInterfluxLogo />
         </div>
-      {{/if}}
-      <h1 aria-hidden='true'>{{@title}}</h1>
+      </Button>
+
+      <Button
+        @icon='chevron-left'
+        @theme='square outlined back'
+        @onClick={{fn this.setView 'main'}}
+      />
+
+      <h1 aria-hidden='true'>{{this.title}}</h1>
+
       <Button
         @icon='hamburger'
-        @theme='square outlined {{if this.menuIsOpen "close"}}'
-        @onClick={{this.toggleMenu}}
+        @theme='square outlined {{if this.expanded "close" "hamburger"}}'
+        @onClick={{fn this.setView (if this.expanded 'hamburger' 'main')}}
       />
     </div>
 
     <div id='mid'>
-      {{#if @backRoute}}
-        <div id='logo'>
-          <Svg::PrimaryInterfluxLogo />
-        </div>
-      {{/if}}
+      <div id='main' class='menu'>
+        <Button
+          @text='Products'
+          @theme='stacked medium white'
+          @icon='prescription-bottle'
+          @onClick={{fn this.setView 'products'}}
+        />
+        <Button
+          @text='Processes'
+          @theme='stacked medium white'
+          @icon='flask'
+          @onClick={{fn this.setView 'processes'}}
+        />
+        <Button
+          @route='webinars'
+          @text='Webinars'
+          @theme='stacked medium white'
+          @icon='podcast'
+          @onClick={{fn this.setView 'hamburger'}}
+        />
+        <Button
+          @route='company'
+          @text='Company'
+          @theme='stacked medium white'
+          @icon='microchip'
+          @onClick={{fn this.setView 'hamburger'}}
+        />
+        <Button
+          @route='documents'
+          @text='Documents'
+          @theme='stacked medium white'
+          @icon='document'
+          @onClick={{fn this.setView 'hamburger'}}
+        />
+        <Button
+          @route='contact'
+          @text='Contact'
+          @theme='stacked medium white'
+          @icon='street-view'
+          @onClick={{fn this.setView 'hamburger'}}
+        />
 
-      <Button
-        @route='products.index'
-        @text='Products'
-        @theme='stack white'
-        @icon='flask'
-        @onClick={{this.closeMenu}}
-      />
-      <Button
-        @route='webinars'
-        @text='Webinars'
-        @theme='stack white'
-        @icon='podcast'
-        @onClick={{this.closeMenu}}
-      />
-      <Button
-        @route='company'
-        @text='Company'
-        @theme='stack white'
-        @icon='microchip'
-        @onClick={{this.closeMenu}}
-      />
-      <Button
-        @route='documents'
-        @text='Documents'
-        @theme='stack white'
-        @icon='document'
-        @onClick={{this.closeMenu}}
-      />
-      <Button
-        @route='contact'
-        @text='Contact'
-        @theme='stack white'
-        @icon='street-view'
-        @onClick={{this.closeMenu}}
-      />
+        <div class='spacer'></div>
+      </div>
+
+      <div id='products' class='menu'>
+        {{#each this.header.productLinks as |link i|}}
+          <Button
+            @route={{link.route}}
+            @model={{link.model}}
+            @theme='stacked small white left'
+            @onClick={{fn this.setView 'hamburger'}}
+          >
+            <img
+              src='{{env
+                "cdnHost"
+              }}/images/public/mobile-menu-products/{{link.img}}.jpg'
+              role='presentation'
+              alt=''
+              width='40'
+              height='40'
+            />
+            <span>{{t link.label link.i18n}}</span>
+          </Button>
+        {{/each}}
+
+        <div class='spacer'></div>
+      </div>
+
+      <div id='processes' class='menu'>
+        {{#each this.header.processLinks as |link|}}
+          <Button
+            @route={{link.route}}
+            @model={{link.model}}
+            @theme='stacked small white left'
+            @onClick={{fn this.setView 'hamburger'}}
+          >
+            <img
+              src='{{env "cdnHost"}}/images/icons/{{link.icon}}.svg'
+              role='presentation'
+              alt=''
+              width='40'
+              height='40'
+            />
+            <span>{{t link.label link.i18n}}</span>
+          </Button>
+        {{/each}}
+
+        <div class='spacer'></div>
+      </div>
     </div>
   </nav>
 </header>
