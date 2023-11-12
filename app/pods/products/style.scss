@@ -184,18 +184,19 @@ main.products {
     .button {
       width: 100vw;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-direction: row-reverse;
       background-color: $grey-0;
       border-bottom: 1px solid $grey-1;
       @include tablet {
-        padding: 0 2.5vw; // TO REVIEW
-        height: 12vw; // TO REVIEW
+        padding: 0 2vw;
+        height: 7vw;
+        justify-content: flex-start;
       }
       @include mobile {
         padding: 0 4.5vw;
         height: 16vw;
+        justify-content: space-between;
+        flex-direction: row-reverse;
       }
       span {
         color: $grey-7;
@@ -206,8 +207,8 @@ main.products {
         }
         &.search {
           @include tablet {
-            width: 5vw; // TO REVIEW
-            margin: 1vw; // TO REVIEW
+            width: 3vw;
+            margin: 1vw;
           }
           @include mobile {
             width: 7vw;
@@ -216,8 +217,8 @@ main.products {
         }
         &.arrow-up {
           @include tablet {
-            width: 2vw; // TO REVIEW
-            margin: 2vw; // TO REVIEW
+            width: 1.5vw;
+            margin: 2vw;
           }
           @include mobile {
             width: 4vw;

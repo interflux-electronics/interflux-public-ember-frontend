@@ -19,7 +19,7 @@ header#mobile {
         #logo {
           .clip {
             @include tablet {
-              top: 20vw; // TO REVIEW
+              top: 16vw;
               left: 27vw;
               width: 46vw;
               height: 14vw;
@@ -182,7 +182,7 @@ header#mobile {
         position: absolute;
         transition: all $easeOutExpo 800ms;
         @include tablet {
-          margin: 1vw; // TO REVIEW
+          margin: 0;
           width: 9vw;
           height: 9vw;
         }
