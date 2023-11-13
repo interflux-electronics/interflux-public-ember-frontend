@@ -8,7 +8,7 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   // /products/                                            "All products" grouped by status
-  // /products/LMPA-Q7                                     "LMPA-Q7"
+  // /product/LMPA-Q7                                     "LMPA-Q7"
   // /products/family/solder-pastes                        "Solder pastes"
   // /products/family/solder-pastes/for/stencil-printing   "Solder pastes for stencil printing"
   // /products/for/stencil-printing                        "For stencil printing"
