@@ -1,8 +1,13 @@
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/template';
 
+// This template helper will return the phrase passed in with all occurences of
+// wordToMark wrapped with <mark> tags. Useful for typeahead search.
+//
+// Usage:
+//
 // <p>{{mark this.search.value label}}</p>
-
+//
 export default helper(function mark(params) {
   let phrase = params[1];
 
