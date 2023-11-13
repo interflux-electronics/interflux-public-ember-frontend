@@ -44,7 +44,9 @@ main.products {
       width: 100vw;
     }
     &.hide {
-      display: none;
+      @include tablet-and-below {
+        display: none;
+      }
     }
     &.show {
       @include tablet-and-below {
