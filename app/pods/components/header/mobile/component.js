@@ -28,33 +28,17 @@ export default class HeaderMobileComponent extends Component {
   setView(view) {
     this.view = view;
 
-    if (view === 'hamburger') {
-      // close the modal
-      this.modal.setProperties({
-        showModal: false,
-        pageScrollY: 0
-      });
-
-      // scroll user back to where the were on the page behind the modal
-      const { pageScrollY } = this.modal;
-      window.scrollTo(0, pageScrollY);
-
-      // Reset the computed heights
-      this.nav.style.height = null;
-      this.mid.style.height = null;
-
-      return;
+    if (view === 'main') {
+      this.modal.open();
     }
 
-    if (view === 'main') {
-      // open the modal and remember the scroll position on page behind modal
-      this.modal.setProperties({
-        showModal: true,
-        pageScrollY: window.pageYOffset || document.documentElement.scrollTop
-      });
+    if (view === 'hamburger') {
+      this.modal.close();
 
-      // scroll to the top of the viewport
-      window.scrollTo(0, 0);
+      // Reset the height on the <nav>.
+      this.nav.style.height = null;
+
+      return;
     }
 
     const topHeight = this.top.offsetHeight;
