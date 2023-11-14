@@ -41,6 +41,10 @@ export default class ProductModel extends Model {
   @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
 
   get familyLabel() {
+    if (this.label) {
+      return this.label;
+    }
+
     if (this.subFamily.get('id')) {
       return this.subFamily.get('nameSingle');
     }
@@ -49,9 +53,11 @@ export default class ProductModel extends Model {
       return this.mainFamily.get('nameSingle');
     }
 
-    console.warn(`${this.name} does not have sub nor main family`);
+    console.warn(
+      `${this.name} does not have a label, nor sub, nor main family`
+    );
 
-    return 'product';
+    return '?';
   }
 
   get hasUses() {

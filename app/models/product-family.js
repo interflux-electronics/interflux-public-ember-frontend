@@ -17,7 +17,9 @@ export default class ProductFamilyModel extends Model {
 
   get productsByRank() {
     const rank = 'rankAmongFamily';
-    const records = this.products;
+    const records = this.isMainFamily
+      ? this.productsWithMain
+      : this.productsWithSub;
     const ranked = records.filterBy(rank).sortBy(rank);
     const rankless = records.rejectBy(rank);
 
@@ -51,5 +53,15 @@ export default class ProductFamilyModel extends Model {
     const str = this.namePlural;
 
     return str ? str[0].toUpperCase() + str.slice(1) : '';
+  }
+
+  // THESE WERE MISSING?? -------------------
+
+  get topFamily() {
+    return this.isMainFamily ? this : this.productFamily;
+  }
+
+  get hasAlloys() {
+    return ['solder-pastes', 'solder-wires', 'solder-alloys'].includes(this.id);
   }
 }

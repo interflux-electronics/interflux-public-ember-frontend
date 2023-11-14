@@ -28,8 +28,12 @@ export default class UseModel extends Model {
     return sorted.map((record) => record.product);
   }
 
-  get families() {
-    return this.productsByRank.mapBy('family').uniqBy('id');
+  get mainFamilies() {
+    return this.productUses
+      .mapBy('product')
+      .mapBy('mainFamily')
+      .uniqBy('id')
+      .sortBy('rank');
   }
 
   @hasMany('use-image') useImages;
