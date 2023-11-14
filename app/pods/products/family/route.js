@@ -4,7 +4,11 @@ import { action } from '@ember/object';
 
 export default class ProductsFamilyRoute extends BaseRoute {
   beforeModel(transition) {
-    super.activate();
+    // Does not do anything...
+    // super.activate();
+
+    // Reset the scroll.
+    this.window.scrollTo(0, 0);
 
     const slug = transition.to.params.main_family_id;
     const family = this.store.peekRecord('product-family', slug);

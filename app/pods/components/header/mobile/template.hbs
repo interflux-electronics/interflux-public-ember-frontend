@@ -20,6 +20,7 @@
       <h1 aria-hidden='true'>{{this.title}}</h1>
 
       <Button
+        @id='hamburger'
         @icon='hamburger'
         @theme='square outlined {{if this.expanded "close" "hamburger"}}'
         @onClick={{fn this.setView (if this.expanded 'hamburger' 'main')}}

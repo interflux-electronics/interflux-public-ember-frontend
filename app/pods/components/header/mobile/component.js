@@ -25,7 +25,7 @@ export default class HeaderMobileComponent extends Component {
   @tracked view = 'hamburger'; // hamburger, main, products, processes
 
   @action
-  setView(view) {
+  setView(view, event) {
     this.view = view;
 
     if (view === 'main') {
@@ -33,10 +33,16 @@ export default class HeaderMobileComponent extends Component {
     }
 
     if (view === 'hamburger') {
-      this.modal.close();
-
       // Reset the height on the <nav>.
       this.nav.style.height = null;
+
+      // If the button clicked was the hamburger, then we want the page below
+      // the modal to restor back to position it had before the modal opened.
+      // All other buttons are considered route changes for which we do not wish
+      // to restore the scroll. Instead we reset it to zero.
+      const restoreScroll = event.currentTarget.id === 'hamburger';
+
+      this.modal.close(restoreScroll);
 
       return;
     }

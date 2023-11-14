@@ -2,7 +2,11 @@ import BaseRoute from 'interflux/pods/base/route';
 
 export default class ProductsIndexRoute extends BaseRoute {
   beforeModel() {
-    super.activate();
+    // Does not do anything...
+    // super.activate();
+
+    // Reset the scroll.
+    this.window.scrollTo(0, 0);
 
     this.controllerFor('products').setProperties({
       selectedFamilyId: null,

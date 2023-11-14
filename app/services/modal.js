@@ -26,18 +26,22 @@ export default class ModalService extends Service {
   }
 
   // Closes the modal.
-  async close() {
-    // Remember.
-    const { pageScrollY } = this;
+  async close(restoreScroll) {
+    // Where to scroll to after the modal is closed.
+    const pageScrollY = restoreScroll ? this.pageScrollY : 0;
 
     // Reset
-    this.showModal = false;
-    this.pageScrollY = 0;
+    this.reset();
 
     // Delay so that the Ember and CSS can take effect.
     await this.window.delay(1);
 
     // Scroll the page back to where it was before modal opened.
     window.scrollTo(0, pageScrollY);
+  }
+
+  reset() {
+    this.showModal = false;
+    this.pageScrollY = 0;
   }
 }

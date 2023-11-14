@@ -4,7 +4,11 @@ import { action } from '@ember/object';
 
 export default class ProductsMixRoute extends BaseRoute {
   beforeModel(transition) {
-    super.activate();
+    // Does not do anything...
+    // super.activate();
+
+    // Reset the scroll.
+    this.window.scrollTo(0, 0);
 
     const params = transition.to.params;
     const familyId = params.main_family_id;

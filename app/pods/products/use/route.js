@@ -4,7 +4,11 @@ import { action } from '@ember/object';
 
 export default class ProductsUseRoute extends BaseRoute {
   beforeModel(transition) {
-    super.activate();
+    // Does not do anything...
+    // super.activate();
+
+    // Reset the scroll.
+    this.window.scrollTo(0, 0);
 
     const slug = transition.to.params.use_id;
     const use = this.store.peekRecord('use', slug);
