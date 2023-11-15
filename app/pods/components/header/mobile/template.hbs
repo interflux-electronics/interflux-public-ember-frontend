@@ -74,7 +74,7 @@
       </div>
 
       <div id='products' class='menu'>
-        {{#each this.header.productLinks as |link i|}}
+        {{#each this.header.productLinks as |link|}}
           <Button
             @route={{link.route}}
             @model={{link.model}}
