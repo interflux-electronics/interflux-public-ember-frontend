@@ -4,9 +4,13 @@
       <li>
         {{#if crumb.route}}
           {{#if crumb.model}}
-            <a href={{href-to crumb.route crumb.model}}>{{crumb.label}}</a>
+            <LinkTo @route={{crumb.route}} @model={{crumb.model}}>
+              {{crumb.label}}
+            </LinkTo>
           {{else}}
-            <a href={{href-to crumb.route}}>{{crumb.label}}</a>
+            <LinkTo @route={{crumb.route}}>
+              {{crumb.label}}
+            </LinkTo>
           {{/if}}
           <Svg::ArrowRight />
         {{else}}

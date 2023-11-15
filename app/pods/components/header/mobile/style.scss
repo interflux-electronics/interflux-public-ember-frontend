@@ -1,14 +1,3 @@
-@keyframes fade-slide-in-from-left {
-  from {
-    opacity: 0;
-    transform: translateX(-10vw);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 // z-index: 1 is for #page
 // z-index: 2 is for header#mobile
 // z-index: 3 is for #modal
@@ -23,223 +12,258 @@ header#mobile {
     display: none;
   }
 
-  &.open {
-    #top {
-      background: rgba($blue-5, 0.95);
-      #logo {
-        .clip {
-          @include tablet {
-            top: 20vw;
-            left: 27vw;
-            width: 46vw;
-            height: 14vw;
-          }
-          @include mobile {
-            top: 28vw;
-            left: 13vw;
-            width: 70vw;
-            height: 19vw;
-          }
-          svg {
+  &.expanded {
+    nav {
+      position: relative;
+      #top {
+        #logo {
+          .clip {
             @include tablet {
-              width: 42vw;
-              transform: translate(1.8vw, 1.7vw);
+              top: 16vw;
+              left: 27vw;
+              width: 46vw;
+              height: 14vw;
             }
             @include mobile {
-              width: 63vw;
-              transform: translate(1.4vw, 1.7vw);
+              top: 22vw;
+              left: 13vw;
+              width: 70vw;
+              height: 19vw;
+            }
+            svg {
+              @include tablet {
+                width: 42vw;
+                transform: translate(1.8vw, 1.7vw);
+              }
+              @include mobile {
+                width: 63vw;
+                transform: translate(1.4vw, 1.7vw);
+              }
             }
           }
         }
       }
-    }
-    #mid {
-      background: rgba($blue-5, 0.95);
-      @include tablet {
-        min-height: calc(100vh - 9vw);
-        padding: 12vw 0;
-      }
-      @include mobile {
-        min-height: calc(100vh - 21vw);
-        padding: 12vw 0;
-      }
-      #logo,
-      a {
-        animation-name: fade-slide-in-from-left;
-        animation-duration: 1000ms;
-        animation-timing-function: $easeOutExpo;
-        animation-fill-mode: both;
-        &:nth-of-type(1) {
-          animation-delay: 100ms;
-        }
-        &:nth-of-type(2) {
-          animation-delay: 300ms;
-        }
-        &:nth-of-type(3) {
-          animation-delay: 500ms;
-        }
-        &:nth-of-type(4) {
-          animation-delay: 700ms;
-        }
-        &:nth-of-type(5) {
-          animation-delay: 900ms;
+
+      #mid {
+        .menu {
+          opacity: 1;
+          transform: translateX(0);
         }
       }
     }
   }
 
-  &.closed {
+  &.collapsed {
     &.scrolling-down.not-near-top {
-      #top {
+      nav {
         transform: translateY(-21vw);
       }
     }
-    #top {
+
+    nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-      background: rgba($blue-5, 0.95);
-    }
-    .logo {
-      pointer-events: none;
-      height: 0;
-    }
-    #mid {
-      background: rgba($blue-5, 0);
-      pointer-events: none;
-      height: 0;
+      #mid {
+        .menu {
+          opacity: 0;
+          transform: translateY(-10vw);
+        }
+      }
     }
   }
 
   &.no-back-button {
-    #mid a:first-child {
-      margin-top: 29vw;
+    .back.button {
+      transform: translateX(100vw);
+      opacity: 0;
+      pointer-events: none;
     }
   }
 
-  &.green-theme {
+  &.show-back-button {
+    .back.button {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  &.hamburger-view,
+  &.main-view {
+    #logo {
+      transform: translateX(0);
+    }
+    #main {
+      left: 0;
+    }
+    #products {
+      left: 100vw;
+    }
+    #processes {
+      left: 100vw;
+    }
+  }
+
+  &.products-view {
+    #logo {
+      transform: translateX(-100vw);
+    }
+    #main {
+      left: -100vw;
+    }
+    #products {
+      left: 0;
+    }
+    #processes {
+      left: 100vw;
+    }
+  }
+
+  &.processes-view {
+    #logo {
+      transform: translateX(-100vw);
+    }
+    #main {
+      left: -100vw;
+    }
+    #products {
+      left: 100vw;
+    }
+    #processes {
+      left: 0;
+    }
+  }
+
+  // For overlapping heros
+  &.overlap + #page {
     @include tablet {
-      margin-bottom: -9vw;
+      margin-top: -9vw;
     }
     @include mobile {
-      margin-bottom: -21vw;
-    }
-    &.open {
-      #top,
-      #mid {
-        background: rgba($green-3, 95%);
-      }
-    }
-    #top,
-    #mid {
-      background: rgba($green-3, 70%);
+      margin-top: -21vw;
     }
   }
 
-  #top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  // For the webinar page
+  &.green {
+    &.collapsed {
+      #top {
+        background: rgba($green-3, 0.95);
+      }
+    }
+  }
+
+  nav {
     transition: all $easeOutExpo 800ms;
-    transition-property: background, transform;
+    background: rgba($blue-5, 0.95);
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 10; // max
+
     @include tablet {
       height: 9vw;
     }
     @include mobile {
       height: 21vw;
     }
-    #logo {
+
+    #top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all $easeOutExpo 800ms;
+      transition-property: background, transform;
       position: relative;
-      @include tablet {
-        width: 9vw;
-        height: 9vw;
-      }
-      @include mobile {
-        margin: 2vw;
-        width: 17vw;
-        height: 17vw;
-      }
-      .clip {
+      z-index: 1; // to raise the logo on top #mid
+
+      #logo {
         position: absolute;
-        overflow: hidden;
-        background: white;
-        z-index: 1;
         transition: all $easeOutExpo 800ms;
-        top: 0;
-        left: 0;
         @include tablet {
+          margin: 0;
           width: 9vw;
           height: 9vw;
         }
         @include mobile {
+          margin: 2vw;
           width: 17vw;
           height: 17vw;
         }
-        svg {
-          height: auto;
+        .clip {
+          position: absolute;
+          overflow: hidden;
+          background: white;
+          z-index: 1;
           transition: all $easeOutExpo 800ms;
+          top: 0;
+          left: 0;
           @include tablet {
-            width: 44vw;
-            transform: translate(-5.8vw, 0.3vw);
+            width: 9vw;
+            height: 9vw;
           }
           @include mobile {
-            width: 80vw;
-            transform: translate(-10.5vw, 1.3vw);
+            width: 17vw;
+            height: 17vw;
+          }
+          svg {
+            height: auto;
+            transition: all $easeOutExpo 800ms;
+            @include tablet {
+              width: 44vw;
+              transform: translate(-5.8vw, 0.3vw);
+            }
+            @include mobile {
+              width: 80vw;
+              transform: translate(-10.5vw, 1.3vw);
+            }
           }
         }
       }
-    }
-  }
 
-  #mid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background $easeOutExpo 500ms;
-    overflow: hidden;
-    box-sizing: border-box;
-    #logo {
-      box-sizing: border-box;
-      background: white;
-      @include tablet {
-        width: 36vw;
-        margin-bottom: 12vw;
-        padding: 2vw;
+      .back.button {
+        transition: all $easeOutExpo 800ms;
       }
-      @include mobile {
-        padding: 2vw 5vw;
-        width: 70vw;
-        margin-bottom: 10vw;
-      }
-      svg {
-        width: 100%;
-        height: auto;
+
+      h1 {
+        font-family: $extrabold;
+        color: white;
+        line-height: 120%;
+        text-align: center;
+        overflow: hidden;
         @include tablet {
-          max-width: 100%;
-          max-height: 100%;
+          font-size: 3.2vw;
+          max-height: calc(3.625vw * 1.3 * 2); // max 2 lines
         }
         @include mobile {
-          transform: translateX(-3vw);
+          font-size: 5.625vw;
+          max-height: calc(5.625vw * 1.3 * 2); // max 2 lines
         }
       }
     }
-  }
 
-  h1 {
-    font-family: $extrabold;
-    color: white;
-    line-height: 120%;
-    text-align: center;
-    overflow: hidden;
-    @include tablet {
-      font-size: 3.2vw;
-      max-height: calc(3.625vw * 1.3 * 2); // max 2 lines
-    }
-    @include mobile {
-      font-size: 5.625vw;
-      max-height: calc(5.625vw * 1.3 * 2); // max 2 lines
+    #mid {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+
+      .menu {
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        transition: all $easeOutExpo 800ms;
+        &#main {
+          padding-top: 30vw; // to allow logo to show
+        }
+        .spacer {
+          height: 30vw;
+        }
+      }
     }
   }
 }

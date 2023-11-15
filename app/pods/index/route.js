@@ -18,7 +18,7 @@ export default class HomepageRoute extends BaseRoute {
     const payload = {
       products: this.store.query('product', {
         filter: { onFrontPage: true },
-        include: 'productFamily'
+        include: 'main_family,sub_family'
       }),
       events: this.store.query('event', {
         include: 'country'

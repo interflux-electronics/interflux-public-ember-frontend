@@ -99,24 +99,28 @@
     @include widescreen {
       font-size: 16px;
       line-height: 32px;
+      height: 32px;
       border-radius: 3px;
       padding: 0 13px;
     }
     @include desktop {
       font-size: vw(16px);
       line-height: vw(32px);
+      height: vw(32px);
       border-radius: vw(3px);
       padding: 0 vw(13px);
     }
     @include tablet {
       font-size: vw-tablet(16px);
       line-height: vw-tablet(32px);
+      height: vw-tablet(32px);
       border-radius: vw-tablet(3px);
       padding: 0 vw-tablet(13px);
     }
     @include mobile {
       font-size: vw-mobile(16px);
       line-height: vw-mobile(40px);
+      height: vw-mobile(40px);
       border-radius: vw-mobile(3px);
       padding: 0 vw-mobile(15px);
     }
@@ -332,7 +336,7 @@
       color: $grey-6;
       svg {
         [fill] {
-          fill: $grey-2;
+          fill: $grey-5;
         }
       }
     }
@@ -374,6 +378,7 @@
       &:focus {
         color: $blue-0;
         border-color: $blue-0;
+        box-shadow: inset 0 0 0 1px $blue-0;
         svg {
           [fill] {
             fill: $blue-0;
@@ -608,36 +613,78 @@
   }
 
   // For mobile hamburger navigation
-  &.stack {
+  &.stacked {
     display: flex;
     justify-content: center;
     align-items: center;
     background: none;
-    @include tablet {
-      font-size: 3vw;
-      border-radius: 0.4vw;
-      padding: 2vw;
-    }
-    @include mobile {
-      font-size: 5.6vw;
-      border-radius: 0.8vw;
-      padding: 4vw;
-    }
-    svg {
+    width: 100vw;
+    &.medium {
       @include tablet {
-        max-width: 5vw;
-        max-height: 5vw;
-        margin-right: 3vw;
+        font-size: 3vw;
+        border-radius: 0.4vw;
+        padding: 6vw 2vw;
       }
       @include mobile {
-        max-width: 8vw;
-        max-height: 8vw;
-        margin-right: 4vw;
+        font-size: 5.6vw;
+        border-radius: 0.8vw;
+        padding: 8vw 3vw;
+      }
+      svg {
+        @include tablet {
+          max-width: 5vw;
+          max-height: 5vw;
+          margin-right: 3vw;
+        }
+        @include mobile {
+          max-width: 8vw;
+          max-height: 8vw;
+          margin-right: 4vw;
+        }
+      }
+    }
+    &.small {
+      @include tablet {
+        font-size: 3vw;
+        border-radius: 0.4vw;
+        padding: 3vw 2vw;
+      }
+      @include mobile {
+        font-size: 4.6vw;
+        border-radius: 0.8vw;
+        padding: 3vw 4.5vw;
+      }
+
+      img {
+        @include tablet {
+          width: 8vw;
+          height: 8vw;
+        }
+        @include mobile {
+          width: 12vw;
+          height: 12vw;
+        }
+      }
+
+      span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        @include tablet {
+          max-width: 85vw;
+        }
+        @include mobile {
+          max-width: 80vw;
+        }
       }
     }
     &.white {
       color: white;
-      transition: background $easeOutExpo 300ms;
+      transition: all $easeOutExpo 400ms;
+      border-top: 1px solid rgba(white, 0.2);
+      border-radius: 0;
+      &:last-of-type {
+        border-bottom: 1px solid rgba(white, 0.2);
+      }
       svg {
         [fill] {
           fill: white;
@@ -645,21 +692,13 @@
       }
       &:hover,
       &:focus {
-        box-shadow: rgba(white, 0.1) 0 0 0 2px, 0 0 0 3px white;
+        box-shadow: inset 0 0 0 2px white;
         background: rgba(white, 0.1);
       }
     }
-    & + .button {
-      // @include widescreen {
-      // }
-      // @include desktop {
-      // }
-      @include tablet {
-        margin-top: 3vw; // TODO
-      }
-      @include mobile {
-        margin-top: 3vw;
-      }
+    &.left {
+      justify-content: flex-start;
+      gap: 4vw;
     }
   }
 

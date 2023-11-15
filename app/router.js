@@ -7,10 +7,17 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('product', { path: '/product/:id' });
+  // /products/                                            "All products" grouped by status
+  // /product/LMPA-Q7                                     "LMPA-Q7"
+  // /products/family/solder-pastes                        "Solder pastes"
+  // /products/family/solder-pastes/for/stencil-printing   "Solder pastes for stencil printing"
+  // /products/for/stencil-printing                        "For stencil printing"
   this.route('products', function () {
-    this.route('subset', { path: '/:slug' });
+    this.route('family', { path: '/family/:main_family_id' });
+    this.route('use', { path: '/for/:use_id' });
+    this.route('mix', { path: '/family/:main_family_id/for/:use_id' });
   });
+  this.route('product', { path: '/product/:product_id' });
   this.route('webinars', function () {
     this.route('watch', { path: '/:webinar' });
   });

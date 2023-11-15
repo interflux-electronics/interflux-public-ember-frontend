@@ -1,13 +1,13 @@
 <nav id='back-nav'>
   {{#if @backModel}}
-    <a href={{href-to @backRoute @backModel}}>
+    <LinkTo @route={{@backRoute}} @model={{@backModel}}>
       <Svg::ArrowLeft />
       <span>{{@backLabel}}</span>
-    </a>
+    </LinkTo>
   {{else}}
-    <a href={{href-to @backRoute}}>
+    <LinkTo @route={{@backRoute}}>
       <Svg::ArrowLeft />
       <span>{{@backLabel}}</span>
-    </a>
+    </LinkTo>
   {{/if}}
 </nav>

@@ -13,44 +13,80 @@ export default class HeaderMobileComponent extends Component {
 
   get classes() {
     return [
-      this.menuIsOpen ? 'open' : 'closed',
+      this.expanded ? 'expanded' : 'collapsed',
       this.nearTop ? 'near-top' : 'not-near-top',
       this.scroll.goingDown ? 'scrolling-down' : 'scrolling-up',
-      this.args.backRoute ? 'has-back-button' : 'no-back-button',
-      this.page.theme ? `${this.page.theme}-theme` : 'no-theme'
+      this.page.theme ? `${this.page.theme}` : 'no-theme',
+      this.showBackButton ? 'show-back-button' : 'no-back-button',
+      `${this.view}-view`
     ].join(' ');
   }
 
-  @tracked menuIsOpen = false;
+  @tracked view = 'hamburger'; // hamburger, main, products, processes
 
-  @action toggleMenu() {
-    if (this.menuIsOpen) {
-      this.closeMenu();
-    } else {
-      this.openMenu();
+  @action
+  setView(view, event) {
+    this.view = view;
+
+    if (view === 'main') {
+      this.modal.open();
     }
+
+    if (view === 'hamburger') {
+      // Reset the height on the <nav>.
+      this.nav.style.height = null;
+
+      // If the button clicked was the hamburger, then we want the page below
+      // the modal to restor back to position it had before the modal opened.
+      // All other buttons are considered route changes for which we do not wish
+      // to restore the scroll. Instead we reset it to zero.
+      const restoreScroll = event.currentTarget.id === 'hamburger';
+
+      this.modal.close(restoreScroll);
+
+      return;
+    }
+
+    const topHeight = this.top.offsetHeight;
+    const menuHeight = this.mid.querySelector(`#${view}.menu`).offsetHeight;
+    const navHeight = Math.max(topHeight + menuHeight, window.innerHeight);
+
+    // Set the height of <nav> to make the modal content visible.
+    this.nav.style.height = `${navHeight}px`;
   }
 
-  openMenu() {
-    this.menuIsOpen = true;
-    this.modal.setProperties({
-      showModal: true,
-      pageScrollY: window.pageYOffset || document.documentElement.scrollTop
-    });
-    window.scrollTo(0, 0);
+  get expanded() {
+    return this.view !== 'hamburger';
   }
 
-  @action async closeMenu() {
-    this.menuIsOpen = false;
-    const { pageScrollY } = this.modal;
-    this.modal.setProperties({
-      showModal: false,
-      pageScrollY: 0
-    });
-    window.scrollTo(0, pageScrollY);
+  get showBackButton() {
+    return this.view === 'products' || this.view === 'processes';
   }
 
   get nearTop() {
     return this.scroll.currentY < 100;
+  }
+
+  @tracked nav;
+  @tracked top;
+  @tracked mid;
+
+  @action
+  onInsert(element) {
+    this.nav = element;
+    this.top = element.querySelector('#top');
+    this.mid = element.querySelector('#mid');
+  }
+
+  get title() {
+    if (this.view === 'Products') {
+      return 'products';
+    }
+
+    if (this.view === 'Processes') {
+      return 'processes';
+    }
+
+    return this.args.title;
   }
 }

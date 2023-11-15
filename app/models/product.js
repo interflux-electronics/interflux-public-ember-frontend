@@ -12,6 +12,10 @@ export default class ProductModel extends Model {
   @attr('number') frontPageRank;
   @attr('number') rankAmongFamily;
 
+  // TODO:
+  // rankAmongSubFamily
+  // rankAmongMainFamily
+
   @attr('string') avatarAlt;
   @attr('string') avatarCaption;
   @attr('string') avatarPath;

@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import ENV from 'interflux/config/environment';
 
 export default class WindowService extends Service {
   @service fastboot;
@@ -8,8 +9,8 @@ export default class WindowService extends Service {
     return this.fastboot.isFastBoot;
   }
 
-  delay(ms) {
-    if (this.isFastBoot) {
+  delay(ms, devOnly) {
+    if (this.isFastBoot || (devOnly && !ENV.isDevelopment)) {
       return new Promise((approve) => {
         approve();
       });

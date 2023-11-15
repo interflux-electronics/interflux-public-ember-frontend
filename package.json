@@ -71,7 +71,6 @@
     "ember-cli-autoprefixer": "^2.0.0",
     "ember-cli-head": "^2.0.0",
     "ember-cli-sass": "^10.0.1",
-    "ember-href-to": "^5.0.0",
     "ember-responsive": "^5.0.0",
     "ember-truth-helpers": "^3.0.0",
     "fastboot-app-server": "^4.1.1",
@@ -84,9 +83,5 @@
   },
   "ember": {
     "edition": "octane"
-  },
-  "volta": {
-    "node": "14.17.0",
-    "yarn": "1.22.10"
   }
 }

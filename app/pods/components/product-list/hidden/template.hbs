@@ -1,0 +1,23 @@
+{{#if @products}}
+  <ol class='hidden {{if this.expanded "expanded"}}'>
+    {{#each @products as |product|}}
+      <ProductList::Row @product={{product}} />
+    {{/each}}
+  </ol>
+  {{#if this.expanded}}
+    <Button
+      @text={{t 'Show only recommended products' 'product-list.1'}}
+      @icon='arrow-up'
+      @theme='secondary medium grey-border blue-focus icon-right'
+      @onClick={{this.onClick}}
+    />
+  {{else}}
+    <Button
+      @text={{t 'Show all' 'product-list.2'}}
+      @icon='arrow-down'
+      @theme='secondary medium grey-border blue-focus icon-right'
+      @onClick={{this.onClick}}
+      @class='expand'
+    />
+  {{/if}}
+{{/if}}

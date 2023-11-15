@@ -75,7 +75,7 @@
     <ul class='products {{this.popularLayout}}'>
       {{#each this.popularProducts as |product|}}
         <li>
-          <a href={{href-to 'product' product.id}}>
+          <LinkTo @route='product' @model={{product.id}}>
             <div class='image'>
               <ResponsiveImage
                 @path={{product.avatarPath}}
@@ -92,7 +92,7 @@
                 }}
               </h4>
             </div>
-          </a>
+          </LinkTo>
         </li>
       {{/each}}
     </ul>
@@ -117,7 +117,7 @@
     <ul class='products {{this.newLayout}}'>
       {{#each this.newProducts as |product|}}
         <li>
-          <a href={{href-to 'product' product.id}}>
+          <LinkTo @route='product' @model={{product.id}}>
             <div class='image'>
               <ResponsiveImage
                 @path={{product.avatarPath}}
@@ -134,7 +134,7 @@
                 }}
               </h4>
             </div>
-          </a>
+          </LinkTo>
         </li>
       {{/each}}
     </ul>

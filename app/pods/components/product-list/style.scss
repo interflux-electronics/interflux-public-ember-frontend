@@ -1,0 +1,105 @@
+.product-list {
+  h1 {
+    font-family: $extrabold;
+    line-height: 160%;
+    border-bottom: 1px solid $grey-1;
+    color: $blue-3;
+    @include widescreen {
+      font-size: 36px;
+      padding: 50px 60px;
+    }
+    @include desktop {
+      font-size: vw(36px);
+      padding: vw(50px) vw(60px);
+    }
+    @include tablet {
+      text-align: center;
+      font-size: 4vw;
+      padding: 9vw 5vw;
+    }
+    @include mobile {
+      text-align: center;
+      font-size: 7vw;
+      padding: 16vw 10vw;
+    }
+  }
+  h2 {
+    font-family: $light;
+    line-height: 160%;
+    color: $grey-7;
+    box-sizing: border-box;
+    @include widescreen {
+      font-size: 30px;
+      padding: 50px 60px;
+    }
+    @include desktop {
+      font-size: vw(30px);
+      padding: vw(50px) vw(60px);
+    }
+    @include tablet {
+      font-size: 4vw;
+      text-align: center;
+      width: 100%;
+      padding: 9vw 5vw;
+    }
+    @include mobile {
+      font-size: 7vw;
+      text-align: center;
+      width: 100%;
+      padding: 16vw 10vw;
+    }
+    & + p {
+      margin-top: 20px;
+    }
+    &.with-arrow {
+      display: flex;
+      gap: 20px;
+      svg {
+        width: 12px;
+        height: auto;
+        [fill] {
+          fill: $blue-0;
+        }
+      }
+    }
+  }
+  ol.hidden {
+    // avoid display: none so <ResponsiveImage> JS can use offsetWidth
+    overflow: hidden;
+    height: 0;
+    &.expanded {
+      overflow: visible;
+      height: auto;
+    }
+    & + .button.secondary.grey-border {
+      width: 100%;
+      height: 50px;
+      border-radius: 0;
+      border: 1px solid $grey-1;
+      border-left: 0;
+      border-right: 0;
+      margin-top: -1px;
+      transition: box-shadow 150ms ease-out;
+      &:hover,
+      &:focus {
+        z-index: 1;
+        outline: 0;
+        @include widescreen {
+          box-shadow: 0 0 0 2px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
+        }
+        @include desktop {
+          box-shadow: 0 0 0 2px $blue-0, 0 0 12px RGBA(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+  ol {
+    display: flex;
+    flex-direction: column;
+    li {
+      &.hide {
+        display: none;
+      }
+    }
+  }
+}

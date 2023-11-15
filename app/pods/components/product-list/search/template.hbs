@@ -1,0 +1,5 @@
+<ol class='product-search'>
+  {{#each this.products as |product|}}
+    <ProductList::Row @product={{product}} @search={{@search}} />
+  {{/each}}
+</ol>

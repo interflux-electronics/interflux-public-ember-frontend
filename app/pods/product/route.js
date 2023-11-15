@@ -2,9 +2,16 @@ import BaseRoute from 'interflux/pods/base/route';
 import { hash } from 'rsvp';
 
 export default class ProductRoute extends BaseRoute {
+  activate() {
+    super.activate();
+    this.page.update({
+      id: 'product'
+    });
+  }
+
   model(params) {
     return hash({
-      product: this.store.findRecord('product', params.id, {
+      product: this.store.findRecord('product', params.product_id, {
         include: [
           'documents',
           'qualities',
@@ -30,7 +37,7 @@ export default class ProductRoute extends BaseRoute {
       id: 'product',
       title: product.name,
       mainClasses: product.status,
-      backRoute: 'products.subset',
+      backRoute: 'products.family',
       backModel: product.mainFamily.get('id'),
       crumbs: [
         { label: 'Interflux', route: 'index' },

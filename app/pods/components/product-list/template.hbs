@@ -1,0 +1,27 @@
+<div class='product-list'>
+  <h1>{{@title}}</h1>
+  {{#if @loading}}
+    <Shimmer::ProductRows::Desktop />
+  {{else}}
+    {{#if @search}}
+      <ProductList::Search @products={{@products}} @search={{@search}} />
+    {{else}}
+      {{#each this.groups as |group|}}
+        <section>
+          {{#if group.title}}
+            <h2>{{group.title}}</h2>
+          {{/if}}
+
+          <ProductList::Featured
+            @products={{group.featured}}
+            @productUses={{group.productUses}}
+          />
+          <ProductList::Hidden
+            @products={{group.hidden}}
+            @productUses={{group.productUses}}
+          />
+        </section>
+      {{/each}}
+    {{/if}}
+  {{/if}}
+</div>

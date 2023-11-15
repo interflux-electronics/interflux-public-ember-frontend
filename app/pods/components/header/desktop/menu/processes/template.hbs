@@ -3,16 +3,16 @@
     {{t 'Processes we develop products for' 'header.8'}}
   </h2>
   <div class='links'>
-    {{#each this.processes as |process|}}
-      <Button @route='products.subset' @model={{process.routeModel}}>
+    {{#each this.header.processLinks as |link|}}
+      <Button @route={{link.route}} @model={{link.model}}>
         <img
-          src='{{env "cdnHost"}}/images/icons/{{process.icon}}.svg'
+          src='{{env "cdnHost"}}/images/icons/{{link.icon}}.svg'
           role='presentation'
           alt=''
           width='40'
           height='40'
         />
-        <span>{{process.label}}<Svg::ArrowRight /></span>
+        <span>{{t link.label link.i18n}}<Svg::ArrowRight /></span>
       </Button>
     {{/each}}
   </div>

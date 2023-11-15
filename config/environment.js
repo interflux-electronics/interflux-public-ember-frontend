@@ -24,7 +24,7 @@ module.exports = function (env) {
     'interflux.es': 'es-ES',
     'interflux.mx': 'es-MX',
     'interflux.cn.com': 'zh',
-    'staging.interflux.com': 'en'
+    'staging.interflux.com': 'de'
   }[host];
 
   const ENV = {

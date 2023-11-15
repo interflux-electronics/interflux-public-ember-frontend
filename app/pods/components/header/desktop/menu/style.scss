@@ -75,7 +75,7 @@ header#desktop {
       }
       @include desktop {
         font-size: vw(15px);
-        padding: 10px vw(18px);
+        padding: vw(10px) vw(18px);
       }
     }
     .links {

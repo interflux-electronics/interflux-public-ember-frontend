@@ -6,19 +6,6 @@
   color: $grey-7;
   line-height: 180%;
   margin: 0;
-  // TODO: remove after regression check
-  // @include widescreen {
-  //   font-size: 16px * $scale;
-  // }
-  // @include desktop {
-  //   font-size: 1.333vw * $scale;
-  // }
-  // @include tablet {
-  //   font-size: 2.3vw * $scale;
-  // }
-  // @include mobile {
-  //   font-size: 5vw * $scale;
-  // }
   @include widescreen {
     font-size: 16px;
   }

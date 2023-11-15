@@ -15,6 +15,7 @@
     flex-shrink: 0;
   }
   main {
+    // This prevents the blue footer from appearing when pages are loading.
     min-height: 100vh;
   }
   .spacer {

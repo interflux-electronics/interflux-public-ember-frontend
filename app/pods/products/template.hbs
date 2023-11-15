@@ -1,0 +1,80 @@
+<div class='products-page'>
+  <div class='liner'>
+    <aside class={{if this.fitlersAreShown 'show' 'hide'}}>
+      <div class={{if this.stickyMenu 'sticky'}}>
+        <fieldset>
+          <legend>{{t 'Search product' 'products.11'}}</legend>
+          <TextInput
+            @value={{this.search}}
+            @icon='search'
+            @theme='classic'
+            @onKeyUp={{this.onKeyUp}}
+          />
+        </fieldset>
+
+        {{#unless this.search}}
+          <fieldset>
+            <legend>
+              {{if
+                this.selectedFamilyOption
+                (t 'Product category' 'products.12')
+                (t 'Product categories' 'products.13')
+              }}
+            </legend>
+            {{#if this.familiesLoading}}
+              <p>{{t 'Loading ...' 'loading.1'}}</p>
+            {{else}}
+              <Pills::Routed
+                @options={{this.familyOptions}}
+                @selected={{this.selectedFamilyOption}}
+              />
+            {{/if}}
+          </fieldset>
+
+          <fieldset>
+            <legend>{{t 'Suitable for' 'product.9'}}</legend>
+            {{#if this.usesLoading}}
+              <p>{{t 'Loading ...' 'loading.1'}}</p>
+            {{else}}
+              <Pills::Routed
+                @options={{this.useOptions}}
+                @selected={{this.selectedUseOption}}
+              />
+            {{/if}}
+          </fieldset>
+        {{/unless}}
+      </div>
+    </aside>
+
+    {{#if this.media.isMobileTablet}}
+      <div class='mobile-buttons'>
+        {{#if this.fitlersAreShown}}
+          <Button
+            @text={{t 'Hide' 'products.15'}}
+            @icon='arrow-up'
+            @onClick={{this.hideFilters}}
+          />
+        {{else}}
+          <Button
+            @icon='search'
+            @text={{t 'Search product' 'products.11'}}
+            @onClick={{this.showFilters}}
+          />
+        {{/if}}
+      </div>
+    {{/if}}
+
+    <article class={{this.layout}}>
+      {{#if this.search}}
+        <ProductList
+          @title={{this.searchTitle}}
+          @products={{@model.products}}
+          @search={{this.search}}
+          @groupBy='none'
+        />
+      {{else}}
+        {{outlet}}
+      {{/if}}
+    </article>
+  </div>
+</div>

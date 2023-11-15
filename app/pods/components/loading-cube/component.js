@@ -3,13 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class LoadingCubeComponent extends Component {
-  // @arg message;
-  // @arg fixedToViewport;
-  // get args {
-  //   message: 'loading products ...'
-  //   position: 'fixed'
-  // }
-
   @service window;
   @service fastboot;
 

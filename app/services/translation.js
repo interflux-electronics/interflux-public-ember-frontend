@@ -17,6 +17,11 @@ export default class TranslationService extends Service {
   // interflux.mx = es
   //
   get language() {
+    if (!ENV.locale) {
+      console.warn('no language set', ENV.locale);
+      return 'en';
+    }
+
     return ENV.locale.slice(0, 2);
   }
 

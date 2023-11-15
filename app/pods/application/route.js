@@ -2,12 +2,13 @@ import BaseRoute from 'interflux/pods/base/route';
 import { hash } from 'rsvp';
 
 export default class ApplicationRoute extends BaseRoute {
-  activate() {
+  beforeModel() {
     super.activate();
     this.page.update({
-      id: 'application',
+      id: 'application-loading',
       title: 'Loading ...',
-      showLoading: true
+      showLoading: true,
+      origin: this.routeName
     });
   }
 
@@ -37,9 +38,6 @@ export default class ApplicationRoute extends BaseRoute {
 
   afterModel() {
     super.activate();
-
-    this.page.update({
-      showLoading: true
-    });
+    this.page.update({ origin: this.routeName });
   }
 }
