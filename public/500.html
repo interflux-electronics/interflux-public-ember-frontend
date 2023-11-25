@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:og="https://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>500 – Whoops</title>
+    <style>
+      @font-face {
+        font-family: 'Nunito Sans Regular';
+        src: url('https://cdn.interflux.com/fonts/nunito-sans/NunitoSans-Regular.woff2')
+            format('woff2'),
+          url('https://cdn.interflux.com/fonts/nunito-sans/NunitoSans-Regular.woff')
+            format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Nunito Sans SemiBold';
+        src: url('https://cdn.interflux.com/fonts/nunito-sans/NunitoSans-SemiBold.woff2')
+            format('woff2'),
+          url('https://cdn.interflux.com/fonts/nunito-sans/NunitoSans-SemiBold.woff')
+            format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        font-family: 'Nunito Sans Regular', sans-serif;
+        font-size: 16px;
+        margin: 0;
+        display: flex;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      aside {
+        flex: 1;
+        width: 50vw;
+        min-height: 100vh;
+        background-image: url(data:image/webp;base64,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);
+        background-size: cover;
+        background-position: center;
+      }
+      aside > div {
+        width: 100%;
+        height: 100%;
+        background-image: url('https://cdn.interflux.com/images/public/404-void.webp');
+        background-size: cover;
+        background-position: center;
+      }
+      main {
+        flex: 1;
+        width: 50vw;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      main .liner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        box-sizing: border-box;
+        gap: 44px;
+        width: 400px;
+      }
+      h1 {
+        font-size: 16px;
+        font-family: 'Nunito Sans Semibold', sans-serif;
+        font-weight: normal;
+        margin: 0;
+        background: #23578c;
+        color: white;
+        padding: 0 5px;
+        line-height: 22px;
+      }
+      h2 {
+        font-size: 20px;
+        font-weight: normal;
+        margin: 0;
+        color: #3c3f4b;
+        line-height: 27px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 22px;
+        margin: 0;
+        color: #3c3f4b;
+      }
+      a {
+        color: #3687d9;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="liner">
+        <h1>500 – Whoops</h1>
+        <h2>This page cannot be found / loaded.</h2>
+        <div class="text">
+          <p>We do apologise for the inconvenience!</p>
+          <p>
+            Please return to our <a href="https://interflux.com">homepage</a>.
+          </p>
+          <p>
+            Alternatively,
+            <a href="mailto:jw@interflux.au">report this issue</a>.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <aside>
+      <div></div>
+    </aside>
+  </body>
+</html>
