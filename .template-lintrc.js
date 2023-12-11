@@ -14,7 +14,7 @@ module.exports = {
     'no-html-comments': 'warn',
     'require-presentational-children': 'warn',
     'no-whitespace-within-word': 'off',
-    'no-implicit-this': 'warn',
-    'no-obsolete-elements': 'warn'
+    'no-obsolete-elements': 'warn',
+    'no-implicit-this': { allow: ['cdn'] }
   }
 };
