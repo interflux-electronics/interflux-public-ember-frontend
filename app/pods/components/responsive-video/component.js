@@ -64,15 +64,11 @@ export default class ResponsiveVideoComponent extends Component {
   }
 
   get MP4s() {
-    return this.args.variations
-      .split(',')
-      .filter((x) => x.split('.')[1] === 'mp4');
+    return this.args.variations.split(',').filter((x) => x.endsWith('.mp4'));
   }
 
   get WEBMs() {
-    return this.args.variations
-      .split(',')
-      .filter((x) => x.split('.')[1] === 'webm');
+    return this.args.variations.split(',').filter((x) => x.endsWith('.webm'));
   }
 
   get MP4sizes() {
@@ -126,21 +122,15 @@ export default class ResponsiveVideoComponent extends Component {
   // POSTER
 
   get PNGs() {
-    return this.args.posters
-      .split(',')
-      .filter((x) => x.split('.')[1] === 'png');
+    return this.args.variations.split(',').filter((x) => x.endsWith('png'));
   }
 
   get JPGs() {
-    return this.args.posters
-      .split(',')
-      .filter((x) => x.split('.')[1] === 'jpg');
+    return this.args.variations.split(',').filter((x) => x.endsWith('jpg'));
   }
 
   get WEBPs() {
-    return this.args.posters
-      .split(',')
-      .filter((x) => x.split('.')[1] === 'webp');
+    return this.args.variations.split(',').filter((x) => x.endsWith('webp'));
   }
 
   get PNGsizes() {
@@ -156,7 +146,7 @@ export default class ResponsiveVideoComponent extends Component {
   }
 
   get closestPoster() {
-    if (!this.args.posters) {
+    if (!this.args.variations) {
       return null;
     }
 

@@ -12,8 +12,8 @@ module('Integration | Component | responsive-video', function (hooks) {
 
     this.video = EmberObject.create({
       path: 'videos/test/foo',
-      variations: '@1920x1080.mp4,@1920x1080.webm',
-      posters: '@1920x1080.png,@1920x1080.webp'
+      variations:
+        '@1920x1080.mp4,@1920x1080.webm,@1920x1080.png,@1920x1080.webp'
     });
 
     await render(
