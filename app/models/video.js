@@ -4,7 +4,7 @@ import ENV from 'interflux/config/environment';
 export default class VideoModel extends Model {
   @attr('string') path;
   @attr('string') variations;
-  @attr('string') titlePublic;
+  @attr('string') posters;
 
   get allVariations() {
     if (!this.variations) {

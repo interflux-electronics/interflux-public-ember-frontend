@@ -2,6 +2,10 @@
   <Modal @id='watch-webinar' @theme='white-text'>
     <h1>Webinar replay</h1>
     <p>{{webinar.title}}</p>
-    <ResponsiveVideo @video={{webinar.video}} />
+    <ResponsiveVideo
+      @path={{webinar.video.path}}
+      @variations={{webinar.video.variations}}
+      @posters={{webinar.video.posters}}
+    />
   </Modal>
 {{/let}}
