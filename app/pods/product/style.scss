@@ -716,6 +716,13 @@ main#product {
         }
       }
     }
+
+    ul.videos {
+      padding: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
   }
 
   aside {

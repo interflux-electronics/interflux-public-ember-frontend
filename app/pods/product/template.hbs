@@ -17,7 +17,6 @@
         <section id='hero'>
           <div id='title'>
             <h1 id='h1'>{{product.name}}</h1>
-
             <div class='tags'>
               {{#if product.familyLabel}}
                 <h2 class='blue'>
@@ -86,6 +85,21 @@
               {{/if}}
             {{/if}}
           </div>
+
+          {{#if product.productVideos}}
+            <ul class='videos'>
+              {{#each product.productVideos as |productVideo|}}
+                {{#let productVideo.video as |video|}}
+                  <li>
+                    <ResponsiveVideo
+                      @path={{video.path}}
+                      @variations={{video.variations}}
+                    />
+                  </li>
+                {{/let}}
+              {{/each}}
+            </ul>
+          {{/if}}
 
           {{#if this.heroImage}}
             <div id='avatar'>

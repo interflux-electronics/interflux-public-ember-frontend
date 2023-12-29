@@ -22,6 +22,8 @@ export default class ProductRoute extends BaseRoute {
           'product_family.product_family',
           'product_images',
           'product_images.image',
+          'product_videos',
+          'product_videos.video',
           'product_documents'
         ].join(','),
         reload: true

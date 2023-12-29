@@ -36,6 +36,7 @@ export default class ProductModel extends Model {
 
   @hasMany('product-document') productDocuments;
   @hasMany('product-image') productImages;
+  @hasMany('product-video') productVideos;
   @hasMany('product-quality') productQualities;
   @hasMany('product-use') productUses;
   @hasMany('product', { inverse: 'superiorProduct' }) inferiorProducts;
