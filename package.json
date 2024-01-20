@@ -83,5 +83,9 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "browser": {
+    "crypto": false,
+    "stream": false
   }
 }
