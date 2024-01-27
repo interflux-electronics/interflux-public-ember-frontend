@@ -4,12 +4,15 @@ import { hash } from 'rsvp';
 export default class ApplicationRoute extends BaseRoute {
   beforeModel() {
     super.activate();
+
     this.page.update({
       id: 'application-loading',
       title: 'Loading ...',
       showLoading: true,
       origin: this.routeName
     });
+
+    this.visit.create();
   }
 
   model() {
