@@ -21,6 +21,7 @@ export default class ContactRoute extends BaseRoute {
       countries: this.store.findAll('country'),
       markets: this.store.findAll('company-market'),
       companies: this.store.query('company', {
+        filter: { shownOnMainWebsite: 'true' },
         include: ['public_members', 'public_members.person'].join(',')
       }),
       events: this.store.query('event', {
