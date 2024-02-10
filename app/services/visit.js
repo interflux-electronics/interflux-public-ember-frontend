@@ -1,65 +1,56 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
+// import { tracked } from '@glimmer/tracking';
 
 export default class VisitService extends Service {
   @service fastboot;
   @service store;
   @service uuid;
 
-  // A unique UUID given to this website session. It will:
-  // * be remembered across all Ember routes.
-  // * added to all requests coming from Ember.
-  // * help group requests for analytics
-  @tracked id;
-
   track() {
     const ssr = this.fastboot.isFastBoot;
     const csr = !ssr;
 
-    // Server Side Render
-    // When the app renders on the server in Fastboot.
+    // On server side render (SSR) in Fastboot
     if (ssr) {
-      // 1. Create a visit ID.
-      this.id = this.uuid.generate();
+      // 1. Create a ID for this SSR.
+      const id = this.uuid.generate();
 
-      // 2. Pass this visit ID down to Ember for CSR.
-      this.fastboot.shoebox.put('visit', this.id);
+      // 2. Pass the ID down to Ember for linking up CSR later.
+      this.fastboot.shoebox.put('ssr', id);
 
-      // 3. Create a SSR record in the database.
+      // 3. Log the SSR in our database.
       const request = this.fastboot.request;
+      console.log('🍒');
+      console.log(request);
+      console.log('🍒');
       const record = this.store.createRecord('server-side-render', {
-        visitId: this.id,
+        id,
+        path: request.path,
         host: request.host,
         referrer: request.headers.headers['referer'].join(','),
         userAgent: request.headers.headers['user-agent'][0]
       });
-
       record.save();
     }
 
-    // Client Side Render
-    // When the app renders in the browser, in Ember.
+    // On client side render (CSR) in Ember
     if (csr) {
-      // 1. Retrieve the visit ID from the "shoebox" passed down from Fastboot to Ember.
-      this.id = this.fastboot.shoebox.retrieve('visit');
+      // 1. Retrieve the SSR ID from the Fastboot "shoebox".
+      const ssr = this.fastboot.shoebox.retrieve('ssr');
 
-      if (!this.id) {
-        // 2. In the rare event that Ember would render without Fastboot (during outages), create a UUID.
-        this.id = this.uuid.generate();
-      }
-
-      // 3. Create a CSR record in the database.
+      // 2. Log the CSR in our database.
       const record = this.store.createRecord('client-side-render', {
-        visitId: this.id,
+        id: this.uuid.generate(),
         host: location.host,
+        path: location.pathname + location.search + location.hash,
         referrer: document.referrer,
         userAgent: navigator.userAgent,
         viewportWidth: window.innerWidth,
         viewportHeight: window.innerHeight,
+        serverSideRenderId: ssr,
         userId: null // TODO
       });
-
       record.save();
     }
   }
