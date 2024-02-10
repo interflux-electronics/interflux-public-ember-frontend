@@ -12,7 +12,7 @@ export default class ApplicationRoute extends BaseRoute {
       origin: this.routeName
     });
 
-    this.visit.create();
+    this.visit.track();
   }
 
   model() {

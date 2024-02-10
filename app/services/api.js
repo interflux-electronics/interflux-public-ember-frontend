@@ -48,21 +48,6 @@ export default class ApiService extends Service {
     // expect back from the API is JSON API compliant data.
     headers['Accept'] = 'application/vnd.api+json';
 
-    // Each request will send up the Visit UUID so that subsequent request can
-    // be grouped. This is unique to this project, thus the X namespace.
-    headers['Visit-ID'] = this.visit.id;
-
-    // Add visit metadata to the requests.
-    if (this.fastboot.isFastBoot) {
-      const request = this.fastboot.request;
-      headers['SSR-Host'] = request.host;
-      headers['SSR-Referer'] = request.headers.headers['referer'].join(',');
-      headers['SSR-User-Agent'] = request.headers.headers['user-agent'][0];
-    } else {
-      headers['Browser-Width'] = window.innerWidth;
-      headers['Browser-Height'] = window.innerHeight;
-    }
-
     return headers;
   }
 
