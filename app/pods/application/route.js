@@ -5,14 +5,18 @@ export default class ApplicationRoute extends BaseRoute {
   beforeModel() {
     super.activate();
 
+    if (this.fastboot.isFastBoot) {
+      this.performance.ssr();
+    } else {
+      this.performance.csr();
+    }
+
     this.page.update({
       id: 'application-loading',
       title: 'Loading ...',
       showLoading: true,
       origin: this.routeName
     });
-
-    this.visit.track();
   }
 
   model() {

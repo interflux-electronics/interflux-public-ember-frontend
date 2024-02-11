@@ -13,12 +13,12 @@ export default class BaseRoute extends Route {
   @service header; // To allow routes to make changes to request headers.
   @service modal; // For controlling the <Modal> component.
   @service page; // For controlling the <Page> component.
+  @service performance; // For anything related to performance logging.
   @service router; // Ember's route service.
   @service seo; // For SEO concerns
   @service store; // Ember's data store.
   @service translation;
   @service uuid; // For generating UUIDs.
-  @service visit; // For anything related to visitors.
   @service window; // Shadow methods to prevent Node (Fastboot) from blowing up.
 
   @tracked cachedPayload;

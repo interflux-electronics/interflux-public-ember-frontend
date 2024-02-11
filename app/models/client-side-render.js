@@ -7,6 +7,7 @@ export default class ClientSideRenderModel extends Model {
   @attr('string') userAgent;
   @attr('string') viewportWidth;
   @attr('string') viewportHeight;
-  @attr('string') serverSideRenderId; // is relation on backend only
-  @attr('string') userId; // is relation on backend only
+  @attr('string') serverSideRenderId;
+  @attr('string') browserSessionId;
+  @attr('string') userId;
 }
