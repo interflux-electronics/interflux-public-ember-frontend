@@ -7,17 +7,19 @@ export default class BaseRoute extends Route {
   // These services are available to all routes which inherit BaseRoute.
   @service api; // Knows how to talk to the backend.
   @service auth; // Manages user authentication.
-  @service cache;
+  @service cache; // For caching data and prevent reloads.
   @service fastboot; // Ember's pre-serve renderer.
   @service headData; // Controls the <head> meta tags.
-  @service header;
+  @service header; // To allow routes to make changes to request headers.
   @service modal; // For controlling the <Modal> component.
   @service page; // For controlling the <Page> component.
+  @service performance; // For anything related to performance logging.
   @service router; // Ember's route service.
   @service seo; // For SEO concerns
   @service store; // Ember's data store.
   @service translation;
-  @service window;
+  @service uuid; // For generating UUIDs.
+  @service window; // Shadow methods to prevent Node (Fastboot) from blowing up.
 
   @tracked cachedPayload;
 

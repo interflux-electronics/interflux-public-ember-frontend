@@ -14,6 +14,7 @@ import {
 
 export default class ApiService extends Service {
   @service auth;
+  @service fastboot;
 
   // Where the API lives
   // In production: https://rails.api.interflux.com
