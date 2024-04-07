@@ -1,29 +1,31 @@
-{{#in-element this.modalParent}}
-  <div id='modal' class={{this.theme}}>
-    <div class='overlay'>
-      <LinkTo @route={{this.parentRoute}} aria-label='Close' />
-    </div>
+{{#if this.modal.parent}}
+  {{#in-element this.modal.parent}}
+    <div id='modal' class={{this.theme}}>
+      <div class='overlay'>
+        <LinkTo @route={{this.parentRoute}} aria-label='Close' />
+      </div>
 
-    <div class='content' id={{@id}}>
-      {{#if @loading}}
-        <p>Loading ...</p>
-      {{else if @error}}
-        <div class='box error'>
-          <Svg::Error />
-          <RouteErrorMessage />
-        </div>
-      {{else}}
-        <div class='box'>
-          {{yield}}
-        </div>
-      {{/if}}
-    </div>
+      <div class='content' id={{@id}}>
+        {{#if @loading}}
+          <p>Loading ...</p>
+        {{else if @error}}
+          <div class='box error'>
+            <Svg::Error />
+            <RouteErrorMessage />
+          </div>
+        {{else}}
+          <div class='box'>
+            {{yield}}
+          </div>
+        {{/if}}
+      </div>
 
-    <Button
-      @text='Close'
-      @icon='close'
-      @theme='tertiary medium white-text icon-right'
-      @route={{this.parentRoute}}
-    />
-  </div>
-{{/in-element}}
+      <Button
+        @text='Close'
+        @icon='close'
+        @theme='tertiary medium white-text icon-right'
+        @route={{this.parentRoute}}
+      />
+    </div>
+  {{/in-element}}
+{{/if}}
