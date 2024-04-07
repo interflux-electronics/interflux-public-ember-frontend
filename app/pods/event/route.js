@@ -3,7 +3,7 @@ import ModalRoute from 'interflux/pods/components/modal/route';
 export default class EventRoute extends ModalRoute {
   model(params) {
     return {
-      event: this.store.peekRecord('event', params.event_id)
+      event: this.store.findRecord('event', params.event_id)
     };
   }
 
