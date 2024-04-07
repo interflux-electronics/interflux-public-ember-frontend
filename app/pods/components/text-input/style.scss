@@ -128,4 +128,26 @@
       }
     }
   }
+
+  &.blue {
+    input {
+      background-color: $blue-3;
+      outline: 2px solid $blue-4;
+      color: white;
+      line-height: 40px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 3px;
+      font-family: $bold;
+      width: 180px;
+      &::placeholder {
+        font-family: $regular;
+        color: white;
+        opacity: 0.9;
+      }
+      &:focus {
+        outline: 2px solid $blue-0;
+      }
+    }
+  }
 }

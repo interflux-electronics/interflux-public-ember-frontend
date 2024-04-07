@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class InputString extends Component {
+export default class TextInputString extends Component {
   @tracked hasHover = false;
   @tracked hasFocus = false;
 
@@ -83,25 +83,4 @@ export default class InputString extends Component {
       this.args.onKeyUp(event);
     }
   }
-
-  // @action
-  // onKeyUp(event) {
-  //   const value = event.target.value;
-  //   const valueChanged = value !== this.value;
-  //   if (valueChanged) {
-  //     // Update local value
-  //     this.value = value;
-  //
-  //     // Fire up event
-  //     if (this.args.onChange) {
-  //       this.args.onChange(value);
-  //     }
-  //   }
-  //
-  //   if (event.key === 'Enter') {
-  //     if (this.args.onEnter) {
-  //       this.args.onEnter(event);
-  //     }
-  //   }
-  // }
 }
