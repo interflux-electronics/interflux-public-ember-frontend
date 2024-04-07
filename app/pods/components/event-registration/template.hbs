@@ -1,0 +1,131 @@
+<ol class='event-registration'>
+  <li class={{if this.confirmedInterest 'done' 'current'}}>
+    <h2>Event details</h2>
+    <p>Name: <strong>{{@event.name}}</strong></p>
+    <p>Date: {{@event.datesCombined}}</p>
+    <p>City: {{@event.city}}</p>
+    <p>Country:
+      {{@event.country.nameEnglish}}
+      <Flag @country={{@event.country}} /></p>
+
+    <div class='description'>
+      {{markdown @event.description}}
+    </div>
+
+    {{#unless this.confirmedInterest}}
+      <Button
+        @text="I'm interested"
+        @theme='primary big green'
+        @onClick={{this.confirmInterest}}
+      />
+    {{/unless}}
+
+    <div class='dot'></div>
+    <div class='line'></div>
+  </li>
+
+  <li
+    class={{if
+      this.confirmedAttendee
+      'done'
+      (if this.confirmedInterest 'current' 'todo')
+    }}
+  >
+    <h2>Who will attend?</h2>
+
+    {{#if this.confirmedInterest}}
+      {{#if this.confirmedAttendee}}
+        <p>{{this.firstName}} {{this.lastName}}</p>
+        <p>{{this.role}}</p>
+        <p>{{this.company}}</p>
+      {{else}}
+        <div class='form'>
+          <TextInput
+            @id='firstName'
+            @placeholder='First name'
+            @theme='blue'
+            @onKeyUp={{this.onKeyUp}}
+          />
+
+          <TextInput
+            @id='lastName'
+            @placeholder='Last name'
+            @theme='blue'
+            @onKeyUp={{this.onKeyUp}}
+          />
+
+          <TextInput
+            @id='role'
+            @placeholder='Role'
+            @theme='blue'
+            @onKeyUp={{this.onKeyUp}}
+          />
+
+          <TextInput
+            @id='company'
+            @placeholder='Company'
+            @theme='blue'
+            @onKeyUp={{this.onKeyUp}}
+          />
+
+          <Button
+            @text='Confirm'
+            @theme='primary big green'
+            @onClick={{this.confirmAttendee}}
+          />
+        </div>
+      {{/if}}
+    {{/if}}
+
+    <div class='dot'></div>
+    <div class='line'></div>
+  </li>
+
+  <li
+    class={{if
+      this.confirmedEmail
+      'done'
+      (if this.confirmedAttendee 'current' 'todo')
+    }}
+  >
+    <h2>Send confirmation email to?</h2>
+
+    {{#if this.confirmedAttendee}}
+      {{#if this.confirmedEmail}}
+        <p>{{this.email}}</p>
+      {{else}}
+        <div class='form'>
+          <TextInput
+            @id='email'
+            @placeholder='Email'
+            @theme='blue'
+            @onKeyUp={{this.onKeyUp}}
+          />
+
+          <Button
+            @text='Confirm'
+            @theme='primary big green'
+            @onClick={{this.confirmEmail}}
+          />
+        </div>
+      {{/if}}
+    {{/if}}
+
+    <div class='dot'></div>
+    <div class='line'></div>
+  </li>
+
+  <li class={{if this.confirmedEmail 'done' 'todo'}}>
+    <h2>Done!</h2>
+    {{#if this.confirmedEmail}}
+      <p>See you soon.</p>
+      <Button
+        @text='Close'
+        @route={{this.parentRoute}}
+        @theme='big secondary white-text-on-blue '
+      />
+    {{/if}}
+    <div class='dot'></div>
+    <div class='line'></div>
+  </li>
+</ol>
