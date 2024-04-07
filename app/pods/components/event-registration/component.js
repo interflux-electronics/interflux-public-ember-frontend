@@ -11,11 +11,11 @@ export default class EventRegistration extends Component {
   @tracked confirmedAttendee;
   @tracked confirmedEmail;
 
-  @tracked firstName = 'Jan';
-  @tracked lastName = 'Werkhoven';
-  @tracked role = 'Designer & Web Engineer';
-  @tracked company = 'Interflux Electronics';
-  @tracked email = 'jw@interflux.au';
+  @tracked firstName;
+  @tracked lastName;
+  @tracked role;
+  @tracked company;
+  @tracked email;
 
   @tracked record;
 
