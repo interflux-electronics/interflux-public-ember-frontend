@@ -31,6 +31,15 @@
           <div class='description'>
             {{markdown event.description}}
           </div>
+
+          {{#if event.hasRegistrationForm}}
+            <Button
+              @text='Reserve a seat'
+              @theme='primary medium green'
+              @route={{@eventRoute}}
+              @model={{event.id}}
+            />
+          {{/if}}
         </details>
       {{/each}}
     </div>

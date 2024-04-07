@@ -8,6 +8,12 @@ export default class EventModel extends Model {
   @attr('string') city;
   @attr('string') description;
 
+  @attr('boolean') hasRegistrationForm;
+  @attr('boolean') askFirstName;
+  @attr('boolean') askLastName;
+  @attr('boolean') askRole;
+  @attr('boolean') askCompany;
+
   @belongsTo('country') country;
 
   get datesCombined() {

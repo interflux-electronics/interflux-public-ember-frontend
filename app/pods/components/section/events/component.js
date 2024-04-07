@@ -1,6 +1,9 @@
 import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 
 export default class EventsComponent extends Component {
+  @service modal;
+
   get view() {
     if (this.args.loading) {
       return 'loading';

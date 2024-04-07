@@ -5,6 +5,9 @@ import { inject as service } from '@ember/service';
 export default class ModalService extends Service {
   @service window;
 
+  // The <div id="modals"> element in which modal content needs to be rendered.
+  @tracked parent;
+
   // Set to true to overlay a page with a modal and prevent the page below from scrolling.
   @tracked showModal = false;
 
