@@ -6,6 +6,7 @@ export default class EventAttendeeModel extends Model {
   @attr('string') role;
   @attr('string') company;
   @attr('string') email;
+  @attr('string') locale;
 
   @belongsTo('event') event;
 }
