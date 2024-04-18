@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import ENV from 'interflux/config/environment';
 
 export default class EventRegistration extends Component {
   @service store;
@@ -31,7 +32,8 @@ export default class EventRegistration extends Component {
       lastName: this.lastName,
       role: this.role,
       company: this.company,
-      event: this.args.event
+      event: this.args.event,
+      locale: ENV.locale
     };
 
     this.record = this.store.createRecord('event-attendee', properties);
