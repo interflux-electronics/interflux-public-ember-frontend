@@ -30,6 +30,14 @@
 
           <div class='description'>
             {{markdown event.description}}
+
+            {{#if event.website}}
+              <p>
+                <Link @url={{event.website}}>
+                  <span>{{event.websiteShort}}</span>
+                </Link>
+              </p>
+            {{/if}}
           </div>
 
           {{#if event.hasRegistrationForm}}

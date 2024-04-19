@@ -7,6 +7,7 @@ export default class EventModel extends Model {
   @attr('string') endDate;
   @attr('string') city;
   @attr('string') description;
+  @attr('string') website;
 
   @attr('boolean') hasRegistrationForm;
   @attr('boolean') askFirstName;
@@ -72,5 +73,13 @@ export default class EventModel extends Model {
     const now = new Date();
 
     return date < now;
+  }
+
+  get websiteShort() {
+    if (!this.website) {
+      return null;
+    }
+
+    return this.website.replace('https://', '').slice(0, 50);
   }
 }

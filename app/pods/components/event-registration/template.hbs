@@ -14,6 +14,16 @@
 
       <div class='description'>
         {{markdown (t @event.description 'events.9' @event.id)}}
+
+        {{#if @event.website}}
+          <p>
+            <Button
+              @url={{@event.website}}
+              @text={{@event.websiteShort}}
+              @theme='secondary white-border'
+            />
+          </p>
+        {{/if}}
       </div>
 
       {{#unless this.confirmedInterest}}
