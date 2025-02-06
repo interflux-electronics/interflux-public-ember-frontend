@@ -148,11 +148,13 @@
   </div>
 </Section>
 
-{{#if @isLoading}}
-  <Section::Events @loading={{true}} />
-{{else}}
-  <Section::Events @events={{@events}} @eventRoute='event' />
-{{/if}}
+{{!--
+  {{#if @isLoading}}
+    <Section::Events @loading={{true}} />
+  {{else}}
+    <Section::Events @events={{@events}} @eventRoute='event' />
+  {{/if}}
+--}}
 
 <Section @id='why'>
   <h2>{{t 'Why Interflux?' 'home.8'}}</h2>
