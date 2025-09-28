@@ -1,67 +1,88 @@
-# interflux
+# The main website of Interflux Electronics
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This codebase is the Ember app which runs the frontend of [https://interflux.com](interflux.com) for the company Interflux Electronics.
 
-## Prerequisites
+## Development
 
-You will need the following things properly installed on your computer.
+Install:
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/)
-* [Yarn](https://yarnpkg.com/)
-* [Ember CLI](https://cli.emberjs.com/release/)
-* [Google Chrome](https://google.com/chrome/)
+```sh
+nvm install
+yarn install
+```
 
-## Installation
+Serve:
 
-- `git clone <repository-url>` this repository
-- `cd interflux`
-- `yarn install`
+```sh
+ember serve
+open http://localhost:4200
+open http://localhost:4200/tests
+```
 
-## Running / Development
+Generate code:
 
-- `ember serve` or `yarn serve`
-- Visit your app at [http://localhost:4200](http://localhost:4200).
-- Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+```sh
+ember help generate
+```
 
-### Code Generators
+Testing:
 
-Make use of the many generators for code, try `ember help generate` for more details
+```sh
+ember test
+ember test --server
+```
 
-### Running Tests
+Linting:
 
-- `ember test`
-- `ember test --server`
+```sh
+yarn lint
+yarn lint:fix
+```
 
-### Linting
+Building:
 
-- `yarn lint`
-- `yarn lint:fix`
+```sh
+ember build
+ember build --environment production
+```
 
-### Building
+## Production
 
-- `ember build` (development)
-- `ember build --environment production` (production)
+Spin up Nginx:
 
-### Deploying
+```sh
+sudo ln -s /var/www/interflux.com/nginx/interflux.com.conf /etc/nginx/sites-enabled/
+sudo nginx -T
+sudo systemctl restart nginx
+sudo systemctl status nginx
+```
 
-Specify what it takes to deploy your app.
+Run Ember Fastboot:
 
-## Further Reading / Useful Links
+```sh
+cd /var/www/interflux.com
+node fastboot.js
+```
 
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://cli.emberjs.com/release/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+Run Ember Fastboot in the background:
 
-#### Troubleshooting
+```sh
+cd /etc/systemd/system/
+cp /var/www/interflux.com/systemd/interflux.com.fastboot.service .
+sudo systemctl enable interflux.com.fastboot.service
+sudo systemctl start interflux.com.fastboot.service
+sudo systemctl daemon-reload
+```
 
-Solution for `net::ERR_CLEARTEXT_NOT_PERMITTED`:
+Rotate log files:
 
-https://stackoverflow.com/questions/54752716/why-am-i-seeing-neterr-cleartext-not-permitted-errors-after-upgrading-to-cordo
+```sh
+cd /etc/logrotate.d/
+cp /var/www/interflux.com/logrotate/interflux.com.logs
 
-Solution for `net::ERR_CONNECTION_REFUSED`:
+# debug (optional)
+sudo logrotate -d interflux.com.logs
 
-https://stackoverflow.com/questions/51602082/getting-neterr-connection-refused-http-localhost8080-on-android-4-4-2-ver
+# force (optional)
+sudo logrotate -f interflux.com.logs
+```
