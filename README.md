@@ -72,6 +72,7 @@ sudo ln -s /var/www/interflux.com/systemd/interflux.com.fastboot.service
 sudo systemctl enable interflux.com.fastboot.service
 sudo systemctl daemon-reload
 sudo systemctl start interflux.com.fastboot.service
+sudo systemctl status interflux.com.fastboot.service
 ```
 
 Rotate log files:
