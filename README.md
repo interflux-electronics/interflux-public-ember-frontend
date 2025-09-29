@@ -68,10 +68,10 @@ Run Ember Fastboot in the background:
 
 ```sh
 cd /etc/systemd/system/
-cp /var/www/interflux.com/systemd/interflux.com.fastboot.service .
+sudo ln -s /var/www/interflux.com/systemd/interflux.com.fastboot.service
 sudo systemctl enable interflux.com.fastboot.service
-sudo systemctl start interflux.com.fastboot.service
 sudo systemctl daemon-reload
+sudo systemctl start interflux.com.fastboot.service
 ```
 
 Rotate log files:
