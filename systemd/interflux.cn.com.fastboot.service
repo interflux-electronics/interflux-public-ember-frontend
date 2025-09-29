@@ -5,10 +5,10 @@ Description=This service daemonizes Ember Fastboot for interflux.cn.com
 Type=simple
 User=admin
 Group=admin
-WorkingDirectory=/var/www/interflux.cn.com
 ExecStart=/home/admin/.nvm/versions/node/v18.12.1/bin/node fastboot.js
-StandardOutput=file:logs/fastboot-access.log
-StandardError=file:logs/fastboot-error.log
+WorkingDirectory=/var/www/interflux.cn.com
+StandardOutput=file:/var/www/interflux.cn.com/logs/fastboot/access.log
+StandardError=file:/var/www/interflux.cn.com/logs/fastboot/error.log
 
 [Install]
 WantedBy=multi-user.target
