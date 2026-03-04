@@ -82,12 +82,6 @@ export default class SeoService extends Service {
   }
 
   product(product) {
-    const familyLabel = this.translation.t(
-      product.familyLabel,
-      'product.1',
-      product.id
-    );
-
     const description = this.translation.t(
       product.pitch,
       'product.2',
@@ -96,7 +90,7 @@ export default class SeoService extends Service {
 
     const data = {
       canonicalPath: `/product/${product.id}`,
-      title: `${product.name} ${familyLabel} – Interflux Electronics`,
+      title: `${product.name} ${product.familyLabel} – Interflux Electronics`,
       description,
       microData: [
         {
