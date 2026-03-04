@@ -42,7 +42,7 @@ export default class ProductsController extends Controller {
 
     return families.sortBy('rank').map((family) => {
       const id = family.get('id');
-      const label = this.translation.t(family.get('label'), `products.4`, id);
+      const label = family.get('label');
       const isSelected = id === this.selectedFamilyId;
 
       let route;

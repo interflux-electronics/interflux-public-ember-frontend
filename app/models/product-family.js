@@ -1,6 +1,9 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
+import { inject as service } from '@ember/service';
 
 export default class ProductFamilyModel extends Model {
+  @service translation;
+  
   @attr('number') rank;
 
   @attr('string') fullMonty;
@@ -50,7 +53,7 @@ export default class ProductFamilyModel extends Model {
 
   // Returns plural family name with first letter capitalised
   get label() {
-    const str = this.namePlural;
+    const str = this.translation.t(this.namePlural, 'family.1', this.id);
 
     return str ? str[0].toUpperCase() + str.slice(1) : '';
   }

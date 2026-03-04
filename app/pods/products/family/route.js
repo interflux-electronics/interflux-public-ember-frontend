@@ -23,8 +23,7 @@ export default class ProductsFamilyRoute extends BaseRoute {
       usesLoading: true
     });
 
-    const id = family.get('id');
-    const title = this.translation.t(family.get('label'), `products.4`, id);
+    const title = family.get('label');
 
     this.controllerFor('products.familyLoading').setProperties({
       title
@@ -56,7 +55,7 @@ export default class ProductsFamilyRoute extends BaseRoute {
       usesLoading: false
     });
 
-    const title = this.translation.t(family.get('label'), `products.4`, id);
+    const title = family.get('label');
 
     this.controllerFor('products.family').setProperties({
       title,
