@@ -60,7 +60,7 @@ export default class ProductModel extends Model {
       const id = this.mainFamily.get('id');
       const label = this.mainFamily.get('nameSingle');
 
-      return this.translation.t(label, 'family.1', id);
+      return this.translation.t(label, 'family.2', id);
     }
 
     console.warn(
