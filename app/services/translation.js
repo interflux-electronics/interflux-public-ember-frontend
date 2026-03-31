@@ -122,6 +122,9 @@ export default class TranslationService extends Service {
   }
 
   async updateEnglish(record, englishBefore, englishNow) {
+    // TEMPORARILY DO NOTHING
+    return;
+
     if (this.fastboot.isFastBoot) {
       return;
     }
