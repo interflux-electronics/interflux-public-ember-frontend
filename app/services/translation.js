@@ -78,7 +78,8 @@ export default class TranslationService extends Service {
       );
       if (record.status !== 'to-update') {
         console.warn('t() marking translation as outdated...');
-        this.updateEnglish(record, englishBefore, englishNow);
+        // TEMPORARILY DO NOTHING
+        // this.updateEnglish(record, englishBefore, englishNow);
       }
     }
 
@@ -122,9 +123,6 @@ export default class TranslationService extends Service {
   }
 
   async updateEnglish(record, englishBefore, englishNow) {
-    // TEMPORARILY DO NOTHING
-    return;
-
     if (this.fastboot.isFastBoot) {
       return;
     }
