@@ -31,7 +31,7 @@
       <h3 class='h3'>{{t 'To which country?' 'contact.11'}}</h3>
       {{#unless this.country}}
         <Search
-          @onSelect={{this.onCountrySelect 'contact.12'}}
+          @onSelect={{fn this.onCountrySelect}}
           @searchModel='country'
           @searchLabel='nameEnglish'
           @searchFilter='nameEnglish'
