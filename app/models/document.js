@@ -27,6 +27,15 @@ export default class DocumentModel extends Model {
         EN: 'English',
         DE: 'Deutsch',
         FR: 'Français',
+        ES: 'Espanol',
+        PL: 'Polski',
+        TR: 'Türkçe',
+        TH: 'แบบไทย',
+        RO: 'Română',
+        ID: 'Indonesia',
+        PT: 'Português',
+        IT: 'Italiano',
+        ZH: '中文',
         JA: '日本語'
       }[locale];
 

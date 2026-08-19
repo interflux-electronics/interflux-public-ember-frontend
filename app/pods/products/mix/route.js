@@ -29,8 +29,8 @@ export default class ProductsMixRoute extends BaseRoute {
 
     const title = this.translation.t(
       `${family.get('label')} for ${use.get('name')}`,
-      'products.19',
-      `${family.get('id')} for ${use.get('id')}`
+      'products.17',
+      `${family.get('id')}-for-${use.get('id')}`
     );
 
     this.controllerFor('products.mixLoading').setProperties({
@@ -58,8 +58,8 @@ export default class ProductsMixRoute extends BaseRoute {
     const use = this.store.peekRecord('use', useId);
     const title = this.translation.t(
       `${family.get('label')} for ${use.get('name')}`,
-      'products.19',
-      `${family.get('id')} for ${use.get('id')}`
+      'products.17',
+      `${family.get('id')}-for-${use.get('id')}`
     );
     const products = model.productUses
       .mapBy('product')

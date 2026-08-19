@@ -1,6 +1,9 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
+import { inject as service } from '@ember/service';
 
 export default class ProductModel extends Model {
+  @service translation;
+  
   @attr('boolean') compliesWithIEC;
   @attr('boolean') compliesWithIPCJSTD004A;
   @attr('boolean') compliesWithIPCJSTD004B;
@@ -43,15 +46,21 @@ export default class ProductModel extends Model {
 
   get familyLabel() {
     if (this.label) {
-      return this.label;
+      return this.translation.t(this.label, 'product.1', this.id);
     }
 
     if (this.subFamily.get('id')) {
-      return this.subFamily.get('nameSingle');
+      const id = this.subFamily.get('id');
+      const label = this.subFamily.get('nameSingle');
+
+      return this.translation.t(label, 'family.2', id);
     }
 
     if (this.mainFamily.get('id')) {
-      return this.mainFamily.get('nameSingle');
+      const id = this.mainFamily.get('id');
+      const label = this.mainFamily.get('nameSingle');
+
+      return this.translation.t(label, 'family.2', id);
     }
 
     console.warn(

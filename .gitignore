@@ -36,3 +36,11 @@
 
 # MacOS
 *.DS_Store
+
+# Ignore Nginx logs
+/logs/nginx/*
+!/logs/nginx/.keep
+
+# Ignore Fastboot logs
+/logs/fastboot/*
+!/logs/fastboot/.keep
