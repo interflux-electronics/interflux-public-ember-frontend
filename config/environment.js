@@ -86,9 +86,7 @@ module.exports = function (env) {
       }
     }[env],
 
-    'mapbox-gl': {
-      accessToken: `pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug`
-    },
+    mapboxAccessToken: process.env.MAPBOX_ACCESS_TOKEN,
 
     showdown: {}
   };

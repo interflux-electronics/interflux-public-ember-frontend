@@ -1,3 +1,4 @@
+import ENV from 'interflux/config/environment';
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -64,8 +65,7 @@ export default class PartnersMapPageComponent extends Component {
   }
 
   async renderMap() {
-    window.mapboxgl.accessToken =
-      'pk.eyJ1IjoianctZmxvYXRwbGFuZS1kZXYiLCJhIjoiY2s4bW02N3UyMG93MTNycGduNzJqOGt6OCJ9.PHUKAn3CMmN73tmJXpa0ug';
+    window.mapboxgl.accessToken = ENV.mapboxAccessToken;
 
     const { company, companies } = this;
     const { ipCountry } = this.session;
