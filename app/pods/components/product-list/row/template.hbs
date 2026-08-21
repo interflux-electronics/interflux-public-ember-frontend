@@ -34,8 +34,8 @@
         {{#if @product.isPopular}}
           <h4 class='orange'>{{t 'popular' 'product.3'}}</h4>
         {{/if}}
-        {{#if @product.isOutdated}}
-          <h4 class='blue'>{{t 'outdated' 'product.33'}}</h4>
+        {{#if @product.isReplaced}}
+          <h4 class='grey'>{{t 'replaced' 'product.33'}}</h4>
         {{/if}}
         {{#if @product.isDiscontinued}}
           <h4 class='red'>{{t 'out of production' 'product.5'}}</h4>
