@@ -63,7 +63,9 @@ export default class ProductListComponent extends Component {
         return {
           title,
           featured: subset.filterBy('isFeatured').sortBy('rankAmongFamily'),
-          hidden: subset.filterBy('isHidden').sortBy('rankAmongFamily')
+          hidden: subset
+            .filterBy('isHidden')
+            .sortBy('statusRank', 'rankAmongFamily')
         };
       });
     }
@@ -75,10 +77,10 @@ export default class ProductListComponent extends Component {
       const uses = products.mapBy('uses').flat().uniqBy('id').sortBy('rank');
 
       return uses.map((use) => {
-        const rank = 'rankAmongProducts';
         const productUses = use.get('productUses').filter((p) => {
           return products.findBy('id', p.get('product.id'));
         });
+        const rank = 'rankAmongProducts';
         const ranked = productUses.filterBy(rank).sortBy(rank);
         const rankless = productUses.rejectBy(rank);
         const sorted = [...ranked, ...rankless];
@@ -93,7 +95,7 @@ export default class ProductListComponent extends Component {
         return {
           title,
           featured: subset.filterBy('isFeatured'),
-          hidden: subset.filterBy('isHidden'),
+          hidden: subset.filterBy('isHidden').sortBy('statusRank', rank),
           productUses
         };
       });

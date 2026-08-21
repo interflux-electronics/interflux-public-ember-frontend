@@ -25,32 +25,11 @@
               {{#if product.isPopular}}
                 <h2 class='orange'>{{t 'popular' 'product.3'}}</h2>
               {{/if}}
-              {{#if product.isOutdated}}
-                <h2 class='grey'>
-                  {{if
-                    product.superiorProduct
-                    (concat
-                      (t 'replaced by' 'product.4')
-                      ' '
-                      product.superiorProduct.name
-                    )
-                    'outdated'
-                  }}
-                </h2>
+              {{#if product.isReplaced}}
+                <h2 class='grey'>{{t 'replaced' 'product.5'}}</h2>
               {{/if}}
               {{#if product.isDiscontinued}}
-                <h2 class='red'>
-                  {{t 'out of production' 'product.5'}}
-                  {{if
-                    product.superiorProduct
-                    (concat
-                      '- '
-                      (t 'replaced by' 'product.4')
-                      ' '
-                      product.superiorProduct.name
-                    )
-                  }}
-                </h2>
+                <h2 class='red'>{{t 'out of production' 'product.5'}}</h2>
               {{/if}}
             </div>
 

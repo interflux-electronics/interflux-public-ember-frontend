@@ -132,12 +132,16 @@ export default class ProductModel extends Model {
     return this.status === 'popular';
   }
 
-  get isRecommended() {
-    return this.status === 'recommended';
+  get isPromoted() {
+    return this.status === 'promoted';
   }
 
-  get isOutdated() {
-    return this.status === 'outdated';
+  get isDemoted() {
+    return this.status === 'demoted';
+  }
+
+  get isReplaced() {
+    return this.status === 'replaced' && this.superiorProduct.get('id');
   }
 
   get isDiscontinued() {
@@ -151,11 +155,11 @@ export default class ProductModel extends Model {
   }
 
   get isFeatured() {
-    return this.isNew || this.isPopular || this.isRecommended;
+    return this.isNew || this.isPopular || this.isPromoted;
   }
 
   get isHidden() {
-    return this.isOutdated || this.discountinued;
+    return this.isDemoted || this.isReplaced || this.isDiscontinued;
   }
 
   get testResultsArray() {
@@ -174,8 +178,9 @@ export default class ProductModel extends Model {
     return [
       'new',
       'popular',
-      'recommended',
-      'outdated',
+      'promoted',
+      'demoted',
+      'replaced',
       'discontinued',
       'offline'
     ].indexOf(this.status);

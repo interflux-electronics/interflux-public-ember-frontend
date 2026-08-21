@@ -126,7 +126,7 @@ export default class SeoService extends Service {
         }
       };
     } else {
-      this.log.warn(`no qualities on ${product.id}, thus no microdata`);
+      this.log.warning(`no qualities on ${product.id}, thus no microdata`);
     }
 
     const ogImage = this.ogImage(product.avatarVariations);
@@ -137,7 +137,7 @@ export default class SeoService extends Service {
       data.ogImageWidth = ogImage.width;
       data.ogImageHeight = ogImage.height;
     } else {
-      this.log.warn(`no ogImage for ${product.id}`);
+      this.log.warning(`no ogImage for ${product.id}`);
     }
 
     const microDataImages = this.microDataImages(product.images);
@@ -145,7 +145,7 @@ export default class SeoService extends Service {
     if (microDataImages.length) {
       data.microData[0].image = microDataImages;
     } else {
-      this.log.warn(`no microDataImages for ${product.id}`);
+      this.log.warning(`no microDataImages for ${product.id}`);
     }
 
     return data;
@@ -278,7 +278,9 @@ export default class SeoService extends Service {
   // The logic below searches through all image variations and find the JPG
   // which has a width of exact 1200 (or closest to).
   ogImage(variations) {
-    const JPGs = variations.split(',').filter((x) => x.split('.')[1] === 'jpg');
+    const JPGs = variations
+      ? variations.split(',').filter((x) => x.split('.')[1] === 'jpg')
+      : [];
 
     if (!JPGs.length) {
       return null;
@@ -308,7 +310,7 @@ export default class SeoService extends Service {
   // This function returns for every image, it's largest PNG, JPG and WEBP.
   microDataImages(images) {
     if (!images || !images.length) {
-      return null;
+      return [];
     }
 
     const PNGs = images.mapBy('widestPNG');
