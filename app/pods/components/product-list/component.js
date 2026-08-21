@@ -22,7 +22,7 @@ export default class ProductListComponent extends Component {
 
       return mainFamilies.map((family) => {
         const id = family.get('id');
-        const title = this.translation.t(family.get('label'), `products.4`, id);
+        const title = family.get('label');
         const subset = products
           .filterBy('mainFamily.id', id)
           .sortBy('rankAmongFamily'); // TODO: rankAmongMainFamily

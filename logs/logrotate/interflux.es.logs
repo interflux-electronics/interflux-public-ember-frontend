@@ -1,0 +1,9 @@
+/var/www/interflux.es/logs/*.log {
+    daily
+    rotate 7
+    dateext
+    dateformat .%Y-%m-%d
+    missingok
+    notifempty
+    create 0640 admin admin
+}

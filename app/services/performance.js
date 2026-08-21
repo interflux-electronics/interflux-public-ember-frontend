@@ -26,7 +26,9 @@ export default class PerformanceService extends Service {
       referrer: request.headers.headers['referer']?.join(','),
       userAgent: request.headers.headers['user-agent'][0]
     });
-    record.save();
+
+    // TEMPORARY
+    // record.save();
   }
 
   // Log client side render (CSR) in Ember
@@ -56,6 +58,8 @@ export default class PerformanceService extends Service {
       browserSessionId: this.browserSession,
       userId: null // TODO
     });
-    record.save();
+
+    // TEMPORARY
+    // record.save();
   }
 }
