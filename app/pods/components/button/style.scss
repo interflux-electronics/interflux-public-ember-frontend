@@ -18,28 +18,32 @@
     border: 1px solid transparent;
 
     @include widescreen {
-      font-size: 16px;
-      line-height: 44px;
-      border-radius: 3px;
-      padding: 0 30px;
+      font-size: 18px;
+      line-height: 46px;
+      height: 46px;
+      border-radius: 4px;
+      padding: 0 22px;
     }
     @include desktop {
-      font-size: vw(16px);
-      line-height: vw(44px);
-      border-radius: vw(3px);
-      padding: 0 vw(30px);
+      font-size: vw(18px);
+      line-height: vw(46px);
+      height: vw(46px);
+      border-radius: vw(4px);
+      padding: 0 vw(22px);
     }
     @include tablet {
-      font-size: vw-tablet(16px);
-      line-height: vw-tablet(44px);
-      border-radius: vw-tablet(3px);
-      padding: 0 vw-tablet(39px);
+      font-size: vw-tablet(18px);
+      line-height: vw-tablet(46px);
+      height: vw-tablet(46px);
+      border-radius: vw-tablet(4px);
+      padding: 0 vw-tablet(22px);
     }
     @include mobile {
-      font-size: vw-mobile(16px);
-      line-height: vw-mobile(44px);
-      border-radius: vw-mobile(3px);
-      padding: 0 vw-mobile(39px);
+      font-size: vw-mobile(18px); // TODO: review
+      line-height: vw-mobile(46px); // TODO: review
+      height: vw-mobile(46px); // TODO: review
+      border-radius: vw-mobile(4px); // TODO: review
+      padding: 0 vw-mobile(22px); // TODO: review
     }
 
     &.has-icon {
@@ -86,6 +90,23 @@
               transform: translate(11%, 1%);
               width: 55%;
             }
+          }
+        }
+      }
+      &.email {
+        svg {
+          height: auto;
+          @include widescreen {
+            width: 22px;
+          }
+          @include desktop {
+            width: vw(22px);
+          }
+          @include tablet {
+            width: vw-tablet(22px);
+          }
+          @include mobile {
+            width: vw-mobile(22px);
           }
         }
       }
@@ -311,49 +332,37 @@
   //
   // Primary buttons have white text and opaque background colours to stand out
   //
+
   &.primary {
-    text-decoration: none;
     color: white;
 
     &.green {
       background: $green-1;
       border-color: $green-2;
-      color: white;
-      &:hover {
+
+      &:hover,
+      &:focus {
         background: $green-2;
         border-color: $green-3;
-      }
-      &:focus {
-        border-color: white;
-        // box-shadow: white 0 0 0 2px;
-      }
-      &.big {
-        border-width: 2px;
-        border-style: solid;
+        box-shadow: 0 0 0 1px $green-3, 0 3px 6px rgba(black, 0.2);
       }
     }
 
     &.orange {
       background: $orange-1;
-      border-color: $orange-1;
-      color: white;
-      &:hover {
-        background: $orange-3;
-        border-color: $orange-3;
-      }
+      border-color: $orange-3;
+
+      &:hover,
       &:focus {
-        box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-1;
-        &:hover {
-          box-shadow: white 0 0 0 2px, 0 0 0 4px $orange-3;
-        }
+        background: $orange-2;
+        border-color: $orange-4;
+        box-shadow: 0 0 0 1px $orange-4, 0 3px 6px rgba(black, 0.2);
       }
     }
 
-    &.has-icon {
-      svg {
-        [fill] {
-          fill: white;
-        }
+    svg {
+      [fill] {
+        fill: white;
       }
     }
   }
