@@ -1,0 +1,17 @@
+#modal {
+  #reach,
+  #sds,
+  #request {
+    h2 {
+      font-size: 22px;
+      font-family: $extrabold;
+      color: $grey-7;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

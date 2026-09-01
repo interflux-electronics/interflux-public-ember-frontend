@@ -24,7 +24,9 @@ Router.map(function () {
   });
   this.route('company');
   this.route('documents', function () {
-    this.route('category', { path: '/:category' });
+    this.route('sds');
+    this.route('reach');
+    this.route('request');
   });
   this.route('contact', function () {
     this.route('event', { path: '/event/:event_id' });

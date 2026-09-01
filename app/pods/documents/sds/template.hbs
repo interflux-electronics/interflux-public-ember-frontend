@@ -1,0 +1,17 @@
+<Modal @id='sds' @theme='centered'>
+  <h2>{{t 'Request document' 'doc.new.23'}}</h2>
+  <p>{{t 'To obtain Safety Data Sheets (SDS), please email our REACH officer.' 'doc.new.27'}}</p>
+  <div class="buttons">
+    <Button 
+      @text={{t 'Back' 'doc.new.25'}}
+      @theme="secondary medium grey-border blue-focus icon-right"
+      @route="documents"
+    />
+    <Button 
+      @text="reach@interflux.com" 
+      @url={{this.mailto}} 
+      @theme="medium primary orange icon-left" 
+      @icon="email" 
+    />
+  </div>
+</Modal>

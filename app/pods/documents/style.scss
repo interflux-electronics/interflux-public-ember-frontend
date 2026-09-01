@@ -1,117 +1,160 @@
 main#documents {
-  background: $grey-0;
-  & + .spacer {
-    background: $grey-0;
+  .liner {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
-  section#categories {
+
+  .label {
+    font-family: $bold;
+    line-height: 150%;
+    color: $grey-7;
+
+    @include widescreen {
+      font-size: 15px;
+    }
+
+    @include desktop {
+      font-size: vw(15px);
+    }
+
+    @include tablet {
+      font-size: vw-tablet(15px);
+    }
+
+    @include mobile {
+      font-size: vw-mobile(15px);
+    }
+  }
+
+  #search {
+    padding: 100px 0;
+
     .liner {
-      @include widescreen {
-        padding: 72px 120px 100px;
-      }
-      @include desktop {
-        padding: vw(72px) vw(120px) vw(100px);
-      }
-      @include tablet {
-        padding: 31vw 3vw;
-      }
-      @include mobile {
-        padding: 36vw 5vw;
-      }
-    }
-    h3 {
-      @include light-font(0.9);
-      @include widescreen {
-        margin: 0 auto 72px;
-      }
-      @include desktop {
-        margin: 0 auto vw(72px);
-      }
-      @include tablet {
-        margin: 0 auto 10vw;
-      }
-      @include mobile {
-        width: 90%;
-        margin: 0 auto 15vw;
-      }
-    }
-    nav {
-      box-sizing: border-box;
       display: flex;
-      flex-flow: wrap;
-      justify-content: center;
-      a {
-        width: 33.33333%;
-        gap: 1px;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .filter {
+        display: flex;
+        min-height: 36px;
+        &:first-child {
+          margin-bottom: 20px;
+        }
+        h3 {
+          width: 90px;
+          flex-shrink: 0;
+          line-height: 35px;
+        }
+      }
+    }
+
+    .results {
+      background-color: $grey-0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      p.count {
+        line-height: 100%;
+      }
+      .documents {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid $grey-1;
-        box-sizing: border-box;
-        background: white;
-        transition: transform 200ms ease-out;
-
-        @include widescreen {
-          padding: px(3.5vw) px(3vw);
-        }
-        @include desktop {
-          padding: 3.5vw 3vw;
-        }
-        @include tablet {
-          padding: 8vw 9vw;
-          width: 50%;
-        }
-        @include mobile {
-          padding: 14vw;
-          width: 100%;
-        }
-
-        &:hover {
-          transform: scale(1.05) !important;
-          z-index: 1;
-          box-shadow: 0 2px 4px rgba(black, 0.2);
-        }
-
-        .icon {
-          @include widescreen {
-            margin: 0 0 px(1.5vw);
-          }
-          @include desktop {
-            margin: 0 0 1.5vw;
-          }
-          @include tablet {
-            margin: 0 0 4vw;
-          }
-          @include mobile {
-            margin: 0 0 6vw;
-          }
-        }
-
-        p {
-          text-align: center;
-          line-height: 150%;
-          & + p {
-            @include widescreen {
-              margin-top: px(1vw);
+        gap: 10px;
+        .document {
+          display: flex;
+          align-items: stretch;
+          background: none;
+          border: none;
+          padding: 0;
+          color: $grey-7;
+          &:hover,
+          &:focus {
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(black, 0.2);
+            border-radius: 3px;
+            outline: 0;
+            .labels {
+              border-color: $green-1;
+              box-shadow: 0 0 0 1px $green-1;
             }
-            @include desktop {
-              margin-top: 1vw;
-            }
-            @include tablet {
-              margin-top: 2vw;
-            }
-            @include mobile {
-              margin-top: 4vw;
+            .icon {
+              border-color: $green-1;
+              box-shadow: 0 0 0 1px $green-1;
             }
           }
-          span {
-            color: $blue-0;
+          .labels {
+            background-color: white;
+            border: 1px solid $grey-2;
+            border-right: 0;
+            border-radius: 3px 0 0 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 50px;
+            transition: box-shadow 400ms $easeOutExpo;
+            .left {
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              p {
+                font-size: 16px;
+                margin: 0;
+              }
+            }
+            .right {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              p {
+                font-size: 15px;
+                color: $grey-5;
+                margin: 0;
+              }
+            }
+          }
+
+          .icon {
+            width: 50px;
+            background-color: $green-1;
+            border: 1px solid $green-2;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
           }
         }
       }
+      .expand {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
-  section#spacer {
-    background: $grey-0;
+
+  #request {
+    padding: 0 0 100px;
+    h2 {
+      line-height: 100%;
+    }
+    .liner {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    p {
+      max-width: 400px;
+    }
   }
 }

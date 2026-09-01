@@ -19,7 +19,7 @@ export default class DocumentsRoute extends BaseRoute {
 
     const payload = {
       documents: this.store.findAll('document'),
-      categories: this.store.findAll('documentCategory')
+      products: this.store.findAll('product')
     };
 
     return this.serverSideRendered ? payload : hash(payload);

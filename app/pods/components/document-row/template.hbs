@@ -1,0 +1,16 @@
+  <div class="labels">
+    <div class="left">
+      <p>
+        {{markdown (mark @query @label)}}
+      </p>
+    </div>
+
+    <div class="right">
+      <p>{{@category}}</p>
+      <p>{{@language}}</p>
+    </div>
+  </div>
+
+  <div class="icon">
+    <Vector @name={{@icon}}/>
+  </div>

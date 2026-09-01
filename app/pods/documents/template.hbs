@@ -1,19 +1,108 @@
-<Section @id='categories'>
-  <h3>{{t 'What type of document do you need?' 'docs.1'}}</h3>
-  <nav>
-    {{#each this.categories as |category|}}
-      <LinkTo @route='documents.category' @model={{category.slug}}>
-        <Icon @name={{category.icon}} />
-        <p>
-          <strong>
-            {{t category.name 'docs.2' category.id}}
-          </strong>
-        </p>
-        <p>{{t category.gist 'docs.3' category.id}}</p>
-        <p><span>{{t category.cta 'docs.4' category.id}}</span></p>
-      </LinkTo>
-    {{/each}}
-  </nav>
-</Section>
+<section id="search">
+  <div class="liner">
+    <h2 class="h2">{{t "Search document" 'doc.new.15'}}</h2>
+
+    <div class="fields">
+      <div class="filter">
+        <TextInput
+          @value={{this.query}}
+          @icon='search'
+          @theme='large grey-border'
+          @onKeyUp={{this.onKeyUp}}
+          />
+        </div>
+
+      {{#if (or (gt this.categoryOptions.length 0) this.category)}}
+        <div class="filter">
+            <h3 class="label">
+                {{t 'Category' 'doc.new.1'}}
+            </h3>
+
+            <Pills
+                @options={{this.categoryOptions}}
+                @label='label'
+                @onSelect={{fn (mut this.category)}}
+                @selectedOption={{this.category}}
+                @layout="horizontal"
+            />
+        </div>
+      {{/if}}
+
+      {{#if (or (gt this.languageOptions.length 0) this.language)}}
+        <div class="filter">
+            <h3 class="label">{{t 'Language' 'doc.new.2'}}</h3>
+
+            <Pills
+                @options={{this.languageOptions}}
+                @label='label'
+                @onSelect={{fn (mut this.language)}}
+                @selectedOption={{this.language}}
+                @layout="horizontal"
+            />
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="results">
+      <p class="count">{{this.count_in_words}}</p>
+      {{#if (gt this.count 0)}}
+        <div class="documents">
+          {{#each this.shownDocs as |doc index|}}
+            {{#if doc.url}}
+              <a href={{doc.url}} target="_blank" class="document">
+                <DocumentRow 
+                  @label={{doc.label}} 
+                  @category={{or doc.category.long doc.category.label}}
+                  @language={{doc.language.label}}
+                  @query={{this.query}}
+                  @icon={{doc.category.icon}}
+                />
+              </a>
+            {{else if doc.route}}
+              <Button @route={{doc.route}} @class="document">
+                 <DocumentRow 
+                  @label={{doc.label}} 
+                  @category={{or doc.category.long doc.category.label}}
+                  @language={{doc.language.label}}
+                  @query={{this.query}}
+                  @icon={{doc.category.icon}}
+                />
+              </Button>
+            {{/if}}
+          {{/each}}
+        </div>
+      {{/if}}
+      {{#if (gt this.count this.TRUNC)}}
+        <div class="expand">
+            <Button
+              @text={{if
+                this.showAll
+                (t 'Show less' 'doc.new.3')
+                (t 'Show all' 'doc.new.4')
+              }}
+              @icon={{if this.showAll 'arrow-up' 'arrow-down'}}
+              @theme='secondary medium grey-border blue-focus icon-right'
+              @onClick={{this.toggleShowAll}}
+              @class='expand'
+            />
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</section>
+
+<section id="request">
+  <div class="liner">
+    <h2 class="h2">{{t "Cannot find?" 'doc.new.5'}}</h2>
+    <p class="p">{{t "In case you are unable to find the document you are looking for, feel free to ask our REACH officer." 'doc.new.28'}}</p>
+
+    <Button
+      @text={{t 'Request document' 'doc.new.22'}}
+      @theme='large primary orange icon-left'
+      @icon='email'
+      @route="documents.request"
+    />
+  </div>
+</section>
 
 {{outlet}}
