@@ -8,7 +8,8 @@ export default class DocumentsRoute extends BaseRoute {
     this.page.update({
       id: 'documents',
       title: 'Documents',
-      backRoute: 'index'
+      backRoute: 'index',
+      theme: 'blue overlap'
     });
   }
 
