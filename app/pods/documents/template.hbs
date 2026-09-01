@@ -47,9 +47,9 @@
       <p class="count">{{this.count_in_words}}</p>
       {{#if (gt this.count 0)}}
         <div class="documents">
-          {{#each this.shownDocs as |doc index|}}
+          {{#each this.shownDocs as |doc|}}
             {{#if doc.url}}
-              <a href={{doc.url}} target="_blank" class="document">
+              <a href={{doc.url}} target="_blank" rel="noopener noreferrer" class="document">
                 <DocumentRow 
                   @label={{doc.label}} 
                   @category={{or doc.category.long doc.category.label}}
