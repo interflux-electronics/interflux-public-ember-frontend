@@ -8,7 +8,8 @@ export default class DocumentsRoute extends BaseRoute {
     this.page.update({
       id: 'documents',
       title: 'Documents',
-      backRoute: 'index'
+      backRoute: 'index',
+      theme: 'blue overlap'
     });
   }
 
@@ -19,7 +20,7 @@ export default class DocumentsRoute extends BaseRoute {
 
     const payload = {
       documents: this.store.findAll('document'),
-      categories: this.store.findAll('documentCategory')
+      products: this.store.findAll('product')
     };
 
     return this.serverSideRendered ? payload : hash(payload);
