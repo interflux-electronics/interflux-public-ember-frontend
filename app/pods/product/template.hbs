@@ -33,7 +33,7 @@
               {{/if}}
             </div>
 
-            {{#if product.superiorProduct}}
+            {{#if (and product.superiorProduct (or product.isReplaced product.isDiscontinued))}}
               <div id='replaced-by'>
                 <p>{{product.name}}
                   been replaced by

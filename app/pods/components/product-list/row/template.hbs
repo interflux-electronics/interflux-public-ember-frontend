@@ -39,7 +39,7 @@
           <h4 class='red'>{{t 'out of production' 'product.5'}}</h4>
         {{/if}}
       </div>
-      {{#if @product.superiorProduct.id}}
+      {{#if (and @product.superiorProduct.id (or @product.isReplaced @product.isDiscontinued))}}
         <p>{{this.replacedBy}}</p>
       {{else}}
         {{#if @product.pitch}}
