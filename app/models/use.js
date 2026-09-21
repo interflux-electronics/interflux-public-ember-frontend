@@ -70,4 +70,12 @@ export default class UseModel extends Model {
   get improvedRank() {
     return this.rank || '999';
   }
+
+  get isAlloy() {
+    return [
+      'lead-free-soldering',
+      'low-melting-point-soldering',
+      'lead-based-soldering'
+    ].includes(this.id);
+  }
 }
