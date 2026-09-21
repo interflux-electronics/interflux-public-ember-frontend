@@ -74,7 +74,12 @@ export default class ProductListComponent extends Component {
     // For solder wires
     // For solder alloys
     if (groupBy === 'use') {
-      const uses = products.mapBy('uses').flat().uniqBy('id').sortBy('rank');
+      const uses = products
+        .mapBy('uses')
+        .flat()
+        .uniqBy('id')
+        .filterBy('isAlloy')
+        .sortBy('rank');
 
       return uses.map((use) => {
         const productUses = use.get('productUses').filter((p) => {
