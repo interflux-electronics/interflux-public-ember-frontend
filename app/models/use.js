@@ -73,9 +73,25 @@ export default class UseModel extends Model {
 
   get isAlloy() {
     return [
+      'low-melting-point-soldering',
+      'lead-free-soldering',
+      'lead-based-soldering'
+    ].includes(this.id);
+  }
+
+  get alloyRank() {
+    return [
+      'low-melting-point-soldering',
+      'lead-free-soldering',
+      'lead-based-soldering'
+    ].indexOf(this.id);
+  }
+
+  get wireRank() {
+    return [
       'lead-free-soldering',
       'low-melting-point-soldering',
       'lead-based-soldering'
-    ].includes(this.id);
+    ].indexOf(this.id);
   }
 }
