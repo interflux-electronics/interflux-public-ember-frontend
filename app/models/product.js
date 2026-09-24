@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class ProductModel extends Model {
   @service translation;
-  
+
   @attr('boolean') compliesWithIEC;
   @attr('boolean') compliesWithIPCJSTD004A;
   @attr('boolean') compliesWithIPCJSTD004B;
