@@ -25,8 +25,8 @@ export default class ApiService extends Service {
   // Currently this is "v1/admin"
   //
   // In production:
-  // GET https://rapi.interflux.com/v1/admin/countries
-  // POST https://rapi.interflux.com/v1/admin/product
+  // GET https://api.interflux.com/v1/admin/countries
+  // POST https://api.interflux.com/v1/admin/product
   //
   // In development:
   // GET http://localhost:3000/v1/admin/countries
