@@ -17,7 +17,7 @@ export default class ApiService extends Service {
   @service fastboot;
 
   // Where the API lives
-  // In production: https://rails.api.interflux.com
+  // In production: https://api.interflux.com
   // In developement: http://localhost:3000
   host = ENV.apiHost;
 
@@ -25,8 +25,8 @@ export default class ApiService extends Service {
   // Currently this is "v1/admin"
   //
   // In production:
-  // GET https://rails.api.interflux.com/v1/admin/countries
-  // POST https://rails.api.interflux.com/v1/admin/product
+  // GET https://rapi.interflux.com/v1/admin/countries
+  // POST https://rapi.interflux.com/v1/admin/product
   //
   // In development:
   // GET http://localhost:3000/v1/admin/countries

@@ -63,7 +63,7 @@ module.exports = function (env) {
     }[env],
 
     apiHost: {
-      production: 'https://rails.api.interflux.com',
+      production: 'https://rails.interflux.com',
       development: 'http://localhost:3000',
       test: 'http://localhost:3000'
     }[env],
