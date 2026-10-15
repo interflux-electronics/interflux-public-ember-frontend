@@ -1,12 +1,13 @@
 import Controller from '@ember/controller';
 import ENV from 'interflux/config/environment';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
+import { tracked, cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class DocumentsController extends Controller {
   @service translation;
 
+  @cached
   get categories() {
     return [
       {
@@ -54,6 +55,7 @@ export default class DocumentsController extends Controller {
     ];
   }
 
+  @cached
   get languages() {
     return [
       { id: 'EN', label: this.translation.t('English', 'doc.new.6') },
@@ -74,6 +76,7 @@ export default class DocumentsController extends Controller {
   // * Create 1 row per product for SDS
   // * Create 1 row for REACH
   //
+  @cached
   get extendedDocs() {
     const english = this.languages.find((l) => l.id === 'EN');
     const sds = this.categories.find((c) => c.id === 'SDS');
@@ -93,7 +96,7 @@ export default class DocumentsController extends Controller {
             label: doc.name,
             language,
             category: this.categories.find(
-              (c) => c.id === doc.documentCategory.get('id')
+              (c) => c.id === doc.belongsTo('documentCategory').id()
             ),
             url: `${ENV.cdnHost}/${doc.path}-${ext}`
           };
@@ -122,6 +125,7 @@ export default class DocumentsController extends Controller {
     return list;
   }
 
+  @cached
   get sortedDocs() {
     return this.extendedDocs.sortBy('label');
     // $derived(chain(extendedDocs).sortBy('label'));
