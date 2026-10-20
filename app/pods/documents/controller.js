@@ -62,6 +62,7 @@ export default class DocumentsController extends Controller {
       { id: 'DE', label: this.translation.t('German', 'doc.new.7') },
       { id: 'ES', label: this.translation.t('Spanish', 'doc.new.30') },
       { id: 'FR', label: this.translation.t('French', 'doc.new.8') },
+      { id: 'JA', label: this.translation.t('Japanese', 'doc.new.9') },
       { id: 'ZH', label: this.translation.t('Chinese', 'doc.new.31') },
       { id: 'PL', label: this.translation.t('Polish', 'doc.new.32') },
       { id: 'TR', label: this.translation.t('Turkish', 'doc.new.34') },
@@ -70,8 +71,7 @@ export default class DocumentsController extends Controller {
       { id: 'ID', label: this.translation.t('Indonesian', 'doc.new.37') },
       { id: 'PT', label: this.translation.t('Portugese', 'doc.new.38') },
       { id: 'IT', label: this.translation.t('Italian', 'doc.new.39') },
-      { id: 'CS', label: this.translation.t('Czech', 'doc.new.40') },
-      { id: 'JA', label: this.translation.t('Japanese', 'doc.new.41') }
+      { id: 'CS', label: this.translation.t('Czech', 'doc.new.40') }
     ];
   }
 
